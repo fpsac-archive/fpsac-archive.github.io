@@ -1,0 +1,509 @@
+.disable   { color: #888888;   }
+.invisible { display: none;    }
+.indent    { text-indent: 2em; }
+.noindent  { text-indent: 0em; }
+.box       { border: dotted 1px #CCCCCC; }
+
+.red  { color: #CC0000; }
+.blue { color: #0000CC; }
+.gray { color: #777777; }
+
+.large {
+  font-size: 12.5pt; 
+  line-height: 2.75ex; 
+}
+
+.normalsize {
+  font-size: 11pt; 
+  line-height: 2.75ex; 
+}
+
+.small {
+  font-size: 9.5pt; 
+  line-height: 2.75ex; 
+}
+
+.footnotesize {
+  font-size: 8pt; 
+  line-height: 2.75ex; 
+}
+
+.rmfamily  { font-family: Times,TimesNewRoman,serif;  }
+.sffamily  { font-family: Helvetica,Arial,sans-serif; }
+.ttfamily  { font-family: monospace; }
+.mdseries  { font-weight: normal; }
+.bfseries  { font-weight: bold;   }
+.itshape   { font-style: italic;  }
+.upshape   { font-style: normal;  }
+
+.smallskip { margin-top:  5pt; }
+.medskip   { margin-top:  9pt; }
+.bigskip   { margin-top: 13pt; }
+.smallskip-after { margin-bottom:  5pt; }
+.medskip-after   { margin-bottom:  9pt; }
+.bigskip-after   { margin-bottom: 13pt; }
+
+.w100pct   { width: 100%; }
+.w90pct    { width:  90%; }
+.w80pct    { width:  80%; }
+.w40pct    { width:  40%; }
+.w200px    { width: 200px; }
+.w300px    { width: 300px; }
+.w250px    { width: 250px; }
+.w100pt    { width: 100pt; }
+.w200pt    { width: 200pt; }
+.w300pt    { width: 300pt; margin: 0pt auto; }
+.lh10pt    { line-height: 10pt; }
+.lh11pt    { line-height: 11pt; }
+.lh12pt    { line-height: 12pt; }
+
+.debug    { border: solid 1px #CCCCCC; }
+.debug dt { border: solid 1px #CCCCCC; }
+.debug dd { border: solid 1px #CCCCCC; }
+.debug h2 { border: solid 1px #CCCCCC; }
+.debug h3 { border: solid 1px #CCCCCC; }
+.debug h4 { border: solid 1px #CCCCCC; }
+.debug li { border: solid 1px #CCCCCC; }
+.debug td { border: solid 1px #CCCCCC; }
+.debug p  { border: solid 1px #CCCCCC; }
+
+#main .left   { text-indent: 0em; text-align: left; }
+#main .right  { text-indent: 0em; text-align: right; }
+#main .center { text-indent: 0em; text-align: center; }
+#main .top    { vertical-align: baseline; }
+
+#main .canceled { text-decoration: line-through; }
+
+#main .red-frame {
+  border: solid 2px #CC0000; 
+}
+
+.quote {
+  text-indent: 0pt; 
+  margin-left: 35pt; 
+}
+
+.fbox {
+  border: 1px solid #000000; 
+  padding: 0ex 0.2em; 
+}
+
+.boxtag {
+  position: relative; 
+  bottom: 2px; 
+  font-family: sans-serif; 
+  font-weight: normal; 
+  font-style: normal; 
+  font-size: 61%; 
+  color: #444444; 
+  border: 1px solid #444444; 
+  padding: 0px 2px; 
+  margin-right: 3px; 
+}
+
+.redboxtag {
+  position: relative; 
+  bottom: 2px; 
+  font-family: sans-serif; 
+  font-weight: normal; 
+  font-style: normal; 
+  font-size: 7pt; 
+  color: #CC0000; 
+  border: 1px solid #CC0000; 
+  padding: 0px 2px; 
+  margin-right: 3px; 
+  background-color: #FFEEEE; 
+}
+
+.ctag {
+  font-family: sans-serif; 
+  font-weight: normal; 
+  font-style: normal; 
+  font-size: 7pt; 
+  white-space: nowrap; 
+  color: #444444; 
+}
+
+.float-left {
+  float: left; 
+  margin-right: 10pt; 
+}
+
+.float-right {
+  float: right; 
+  margin-left: 10pt; 
+}
+
+.clear {
+  clear: both; 
+}
+
+table.title {
+  border-collapse: collapse; 
+  margin: 0pt; 
+}
+
+table.title td {
+  vertical-align: middle; 
+  text-align: left; 
+  padding: 0pt; 
+}
+
+table.title img {
+  margin-right: 10pt; 
+  border: none; 
+}
+
+table.title p {
+  text-indent: 0pt; 
+  text-align: left; 
+  margin: 2pt 0pt; 
+}
+
+table.program {
+  margin: 1ex 0em; 
+}
+
+table.program td.event {
+  font-style: italic; 
+  padding-left: 2em; 
+}
+
+table.program td.event:before {
+  margin-right: 0.1em; 
+  content: "\000AB"; 
+}
+
+table.program td.event:after {
+  margin-left: 0.1em; 
+  content: "\000BB"; 
+}
+
+table.program td.time {
+  font-size: 9.5pt; 
+  white-space: nowrap; 
+}
+
+table.program td {
+  padding-bottom: 1ex; 
+}
+
+tr.past th {
+  color: #AAAAAA;
+}
+
+tr.past td {
+  color: #AAAAAA; 
+}
+
+table td.hfill {
+  width: 100%; 
+}
+
+table.program td span.author {
+  color: #660000; 
+}
+
+table.text td {
+  margin: 0px; 
+  padding: 0ex 0.333em 0ex 0em; 
+}
+
+table.border {
+  border: 1px solid #000000; 
+}
+
+table.border th {
+  text-align: center; 
+  border: 1px solid #000000; 
+  padding: 0.25ex 0.25em; 
+  background-color: #EEEEEE; 
+}
+
+table.border td {
+  border: 1px solid #000000; 
+  padding: 0.25ex 0.25em; 
+}
+
+table.warning-box {
+  margin: 10pt auto 10pt auto; 
+  border: 2px solid #CC0000; 
+}
+
+table.warning-box h3 {
+  text-align: center; 
+  margin: 2pt 0pt 5pt 0pt; 
+  color: #CC0000; 
+}
+
+table.warning-box p {
+  text-indent: 0pt; 
+  color: #CC0000; 
+  margin: 0pt; 
+}
+
+table.warning-box td {
+  padding: 5pt 10pt; 
+  background-color: #FFF7F7; 
+}
+
+table.image {
+  margin: 0pt; 
+  padding: 0pt; 
+}
+
+table.image td {
+  /* line-height: 1pt; */
+  margin: 0pt; 
+  padding: 0pt; 
+}
+
+table.center {
+  margin-left: auto; 
+  margin-right: auto; 
+}
+
+table {
+  border-collapse: collapse; 
+  margin-left: 0ex; 
+  margin-right: 0ex; 
+}
+
+table th {
+  text-align: left; 
+  padding: 0ex 1em 0ex 0em; 
+  vertical-align: baseline; 
+}
+
+table td {
+  text-align: left; 
+  padding: 0ex 1em 0ex 0em; 
+  vertical-align: baseline; 
+}
+
+table td.last {
+  text-align: left; 
+  padding: 0ex 0em 0ex 0em; 
+}
+
+caption {
+  font-family: sans-serif; 
+  font-weight: normal; 
+  font-shape: upshape; 
+  font-size: 9.5pt; 
+  margin: 1pt 0pt; 
+}
+
+dl dt {
+  font-weight: bold; 
+}
+
+dl dd {
+  margin-left: 35pt; 
+}
+
+ol.tight li {
+  margin-bottom: 0ex; 
+}
+
+ol li {
+  margin-bottom: 1ex; 
+}
+
+ol {
+  padding-left: 40pt; 
+}
+
+ul.menu {
+  display: none; /* __PRINT__ */
+  margin: 0ex 0em 10pt 0em; 
+  padding: 5pt 0pt 10pt 0pt; 
+  background-color: #FFDDDD; 
+}
+
+ul.menu li.head {
+  font-family: sans-serif; 
+  font-weight: bold; 
+  text-align: center; 
+}
+
+ul.menu li.current {
+  background-color: #CCFFCC; 
+  border: solid 1px #00FF00; 
+}
+
+ul.menu li.disable {
+  color: #CC8888; 
+}
+
+ul.menu li {
+  line-height: 12pt; 
+  list-style-type: none; 
+  margin: 0ex 0em; 
+  padding: 0.3ex 1ex; 
+  background-color: #FFDDDD; 
+  border: solid 1px #FFDDDD; 
+}
+
+ul.tight li {
+  margin-bottom: 0ex; 
+}
+
+ul.paper {
+  margin-top: 10pt; 
+  padding-left: 0pt; 
+}
+
+ul.paper li {
+  list-style-type: none;
+}
+
+ul.paper span.author {
+  color: #660000; 
+}
+
+#main table.participants {
+  margin: 8pt 0pt 0pt 0pt; 
+}
+
+#main table.participants tr th {
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 11pt; 
+  color: #777777; 
+  width: 16px; 
+  text-align: center; 
+  vertical-align: baseline; 
+}
+
+#main table.participants tr td {
+  font-size: 11pt; 
+}
+
+#main table.participants tr td span.affil { 
+  font-size: 12pt; 
+  color: #555555; 
+  vertical-align: baseline; 
+}
+
+ul li {
+  margin-bottom: 1ex; 
+}
+
+ul {
+  padding-left: 40pt; 
+}
+
+li p {
+  text-indent: 0em; 
+}
+
+html {
+  padding: 10pt; 
+}
+
+body {
+  font-family: Times,TimesNewRoman,serif; 
+  font-size: 11pt; 
+  line-height: 2.75ex; 
+}
+
+h1 {
+  font-family: Helvetica,Arial,sans-serif; 
+  font-weight: bold; 
+  font-style: italic; 
+  font-size: 20pt; 
+  line-height: 24pt; 
+  margin: 0pt; 
+  padding: 0pt; 
+}
+
+h2 {
+  font-family: Helvetica,Arial,sans-serif; 
+  font-size: 18pt; 
+  line-height: 18pt; 
+  margin: 0pt 0pt 5pt 0pt; 
+  padding: 0pt; 
+}
+
+h3 {
+  font-family: Helvetica,Arial,sans-serif; 
+  font-size: 12.5pt; 
+  line-height: 14pt; 
+  margin: 10pt 0pt 3pt 0pt; 
+  padding: 0pt; 
+}
+
+h4 {
+  font-family: Times,TimesNewRoman,serif; 
+  font-weight: bold; 
+  font-size: 11pt; 
+  line-height: 12pt; 
+  margin: 10pt 0pt 3pt 0pt; 
+  padding: 0pt; 
+}
+
+p.footer {
+  font-size: 8pt; 
+  text-align: right; 
+  text-indent: 0em; 
+}
+
+p {
+  text-indent: 1em; 
+  margin: 1ex 0ex; 
+  padding: 0pt; 
+}
+
+code.phone {
+  white-space: nowrap; 
+  color: #444444; 
+}
+
+code.email {
+  white-space: nowrap; 
+  color: #444444; 
+  /* text-decoration: underline; */
+}
+
+code {
+  font-family: monospace; 
+  font-size: 85%; 
+  color: #880000; 
+}
+
+pre {
+  font-family: monospace; 
+  font-size: 85%; 
+  color: #880000; 
+}
+
+.code {
+  font-family: monospace; 
+  font-size: 85%; 
+}
+
+.url {
+  text-decoration: none !important; 
+  font-family: monospace; 
+  font-size: 10pt; 
+  color: #444444; 
+}
+
+hr {
+  margin: 10pt 0em; 
+}
+
+img.border {
+  border: solid 1px #7F7F7F; 
+}
+
+.float-left  { float: left; }
+.float-right { float: right; }
+.no-border   { boder-style: none; }
+.clear       { clear: both; }
+.nowrap      { white-space: nowrap; }
+
+#main p  { text-align: justify; }
+#main li { text-align: justify; }
+#main dd { text-align: justify; }
+
