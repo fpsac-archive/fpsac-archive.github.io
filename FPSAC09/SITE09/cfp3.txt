@@ -1,0 +1,172 @@
+        ===============================================
+            21st Annual International Conference on
+        Formal Power Series and Algebraic Combinatorics
+        ===============================================
+
+                          FPSAC'09
+
+        ===============================================
+                      July 20-24, 2009
+                     Hagenberg, Austria
+        ===============================================
+
+Third announcement -- Call for papers
+
+**********************************************************
+******** Extended deadline till November 24, 2008 ********
+**********************************************************
+
+Topics
+    All aspects of combinatorics and their relations with other
+    parts of mathematics, physics, computer science and biology.
+
+Conference program
+    Invited lectures, contributed presentations, poster session,
+    problem session and software demonstrations. As usual there
+    will be no parallel sessions.
+
+Official languages
+    The official languages of the conference are English and
+    French.
+
+Invited Speakers
+    Alexander Barvinok (University of Michigan, USA)
+    Karin Erdmann (University of Oxford, UK)
+    Jaroslav Nesetril (Charles University Prague, Czech Republic)
+    Bruno Salvy (INRIA Rocquencourt, France)
+    Carsten Schneider (RISC, Johannes Kepler University Linz, Austria)
+    Michael F. Singer (North Carolina State University, USA)
+    Frank Sottile (Texas A&M University, USA)
+    Volkmar Welker (Philipps University Marburg, Germany)
+    Ae Ja Yee (Pennsylvania State University, USA)
+
+Call for papers and posters
+    Authors are invited to submit extended abstracts of at most
+    twelve pages by November 24, 2008 (extended deadline).
+    To submit papers please visit the conference web site 
+        http://www.risc.jku.at/conferences/fpsac2009
+    Author instructions can also be found at the conference website.
+
+    The submitted papers should begin with a short abstract written
+    both in English and in French (translation provided if
+    necessary). Authors should indicate the mode of presentation
+    which they consider appropriate for their paper, i.e. lecture
+    or poster session. The notifications of acceptance are scheduled
+    for February 20, 2009.
+
+    Important Note: Each submitted abstract must be prepared in
+    accordance with AMS-LaTeX (see http://www.ams.org/tex/). Authors
+    are encouraged to use the LaTeX template which will be provided
+    on the 'Submission' section of the conference web site.
+
+Open problem session
+    Contributions to the problem session are invited in advance of the
+    conference dates. People interested in submitting a problem in
+    advance should submit it via
+      http://www.risc.jku.at/conferences/fpsac2009
+    before June 30, 2009.
+
+Software demonstrations
+    Demonstrations of software relevant to the topics of the conference
+    are encouraged. People interested in giving a software demonstration
+    should submit through our website before February 20, 2009, a paper
+    briefly explaining the software, and including the hardware
+    requirements.
+
+Graduate student papers
+    In an ongoing FPSAC tradition, an award will be made for the best
+    paper submitted by a graduate student.  Students submitting extended
+    abstracts are invited to indicate their eligibility for this award.
+
+Participant support
+    Limited funds are available for partial support of participants,
+    in particular for students, junior scientists
+    and mathematicians from underrepresented groups. Requests should
+    contain a letter of recommendation and include the estimated
+    transportation and living expenses for the duration of the conference
+    as well as the amount of any support available from other sources.
+    All requests should be sent by March 1, 2009 to an address which
+    we will announce at a later point.
+
+Location
+    The conference will take place at the Research Institute for
+    Symbolic Computation, Johannes Kepler University, Austria.
+
+
+
+Further information
+    All important information concerning FPSAC'09 can be found on the
+    conference web site at http://www.risc.jku.at/conferences/fpsac2009
+
+    More details will be given in future announcements.
+
+
+Summary of important dates
+    Submission of abstracts:  November 17, 2008
+    Extended Deadline:        November 24, 2008
+    Notification of acceptance:  February 20, 2009
+    Requests for support:  March 1, 2009
+    Conference begins:  July 20, 2009
+
+
+Program Committee
+-----------------
+
+    Co-Chairs:
+    Christian Krattenthaler (University of Vienna, Austria)
+    Volker Strehl (University of Erlangen, Germany)
+
+    Members:
+    Matthias Beck (San Francisco State University, USA)
+    Philippe Caldero (Universite Lyon-I, France)
+    Eva-Maria Feichtner (University of Bremen, Germany)
+    Sergey Fomin (University of Michigan, USA)
+    Jan de Gier (University of Melbourne, Australia)
+    Antonio Giambruno (University of Palermo, Italy)
+    Takayuki Hibi (University of Osaka, Japan)
+    Alain Lascoux (Universite Marne-la-Vallee, France)
+    Ezra Miller (University of Minnesota, Minneapolis, USA)
+    Maxim Nazarov (University of York, UK)
+    Marc Noy (Univ. Politecnica de Catalunya, Barcelona, Spain)
+    Grigori Olshanski (Dobrushin Mathematics Laboratory, Moscow, Russia)
+    Soichi Okada (University of Nagoya, Japan)
+    Marko Petkovsek (University of Ljubljana, Slovenia)
+    Amitai Regev (Weizmann Institute, Rehovot, Israel)
+    Monica Vazirani (University of California, Davis, USA)
+    Michelle Wachs (University of Miami, USA)
+    Lauren K. Williams (Harvard University, Boston, USA)
+    Catherine Yan (Texas A&M University, USA)
+
+
+Organizing Committee
+--------------------
+
+    Chair:
+    Peter Paule (RISC, Johannes Kepler University Linz, Austria)
+
+    Members:
+    Susanna Fishel (Arizona State University, USA)
+    Ralf Hemmecke (RISC, Johannes Kepler University Linz, Austria)
+    Franz Lichtenberger (RISC, Johannes Kepler University Linz, Austria)
+    Wolfgang Windsteiger (RISC, Johannes Kepler University Linz, Austria)
+
+
+Local Arrangements Committee
+----------------------------
+
+    Burcin Erocal (RISC, Johannes Kepler University Linz, Austria)
+    Manuel Kauers (RISC, Johannes Kepler University Linz, Austria)
+    Christoph Koutschan (RISC, Johannes Kepler University Linz, Austria)
+    Veronika Pillwein (RISC, Johannes Kepler University Linz, Austria)
+    Clemens Raab (DK Computational Mathematics,
+        Johannes Kepler University Linz, Austria)
+    Silviu Radu (RISC, Johannes Kepler University Linz, Austria)
+    Flavia Stan (RISC, Johannes Kepler University Linz, Austria)
+
+
+Staff Assistants
+----------------
+
+    Tanja Gutenbrunner (RISC, Johannes Kepler University Linz, Austria)
+    Marion Schimpl (DK Computational Mathematics,
+        Johannes Kepler University Linz, Austria)

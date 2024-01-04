@@ -1,0 +1,27 @@
+    ===============================================
+        21st Annual International Conference on
+    Formal Power Series and Algebraic Combinatorics
+    ===============================================
+
+                       FPSAC'09
+
+   ===============================================
+                   July 20-24, 2009
+                  Hagenberg, Austria
+   ===============================================
+
+           Call for software demonstrations
+
+**********************************************************
+******** Extended deadline till April 15, 2009 ***********
+**********************************************************
+
+http://www.risc.uni-linz.ac.at/conferences/fpsac2009/
+
+Demonstrations of software relevant to the topics of the conference
+are encouraged. People interested in giving a software demonstration
+should send before April 15, 2009, a paper briefly explaining the
+software, and including the hardware requirements to
+
+  fpsac2009@risc.uni-linz.ac.at
+
