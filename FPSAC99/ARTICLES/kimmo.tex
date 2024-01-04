@@ -1,0 +1,818 @@
+\documentclass[11pt]{amsart} %[11pt]
+%\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newcommand{\DEF}{\buildrel {\rm def} \over =}
+\newcommand{\id}{\mathop{\rm id}}
+\newcommand{\Bid}{{\id}^\circ}
+\newcommand{\Bpi}{{\pi}^\circ}
+\newcommand{\Tpi}{\Bpi_\circ}
+\newcommand{\xbar}{\overline{x}}
+\newcommand{\ybar}{\overline{y}}
+\newcommand{\abar}{\overline{a}}
+
+\begin{document}
+
+\title{Sorting a bridge hand}
+%\author[H.~Eriksson et al]{Henrik~Eriksson}
+\author[H.~Eriksson]{Henrik~Eriksson}
+\address{NADA, KTH, SE-100 44, Stockholm, Sweden}
+\email{henrik@nada.kth.se}
+\author[K.~Eriksson]{Kimmo~Eriksson}
+\thanks{K.E.: Partially supported by the Swedish Natural Science
+  Council and the Swedish Foundation for Strategic Research.}
+\address{IMa, M{\"a}lardalens H{\"o}gskola, Box 883, SE-721 23 V{\"a}ster{\aa}s}
+\author[J.~Karlander]{Johan~Karlander}
+\author[L.~Svensson]{Lars~Svensson}
+\author[J.~W{\"a}stlund]{Johan~W{\"a}stlund}
+\address{Department of Mathematics, KTH, SE-100 44, Stockholm, Sweden}
+
+% \keywords{}
+% \subjclass{Primary: ; Secondary: }
+\date{}
+
+\begin{abstract}
+Sorting a permutation by block moves is a task that every bridge
+player has to solve every time she picks up a new hand of cards.
+It is also a problem for the computational biologist, for block
+moves are a fundamental type of mutation that can explain why genes
+common to two species do not occur in the same order in the chromosome.
+%The minimum number of block moves needed to get from one species to the
+%other is a parameter that biologists find of interest.
+
+It is not known whether there exists an optimal sorting procedure running in
+polynomial time. Bafna and Pevzner gave a polynomial time algorithm that
+sorts any permutation of length $n$ in at most $3n/4$ moves.
+Our new algorithm improves this to $\lfloor (2n-2)/3 \rfloor$ for $n\ge 9$.
+For the reverse permutation, we give an exact expression for the
+number of moves needed, namely $\lceil (n+1)/2 \rceil$. Computations
+of Bafna and Pevzner up to $n=10$ seemed to suggest that this is the
+worst case; but as it turns out, a first counterexample occurs
+for $n=13$, i.e.~the bridge player's case. 
+
+Professional card players never sort by rank, only by suit. For
+this case, we give a complete answer to the optimal sorting problem.
+
+\end{abstract}
+\maketitle
+
+\section{Introduction}\noindent
+Considering the vast literature on bridge bidding and play,
+it is only right that the phase preceding the bidding should
+receive its proper analysis. Each player is dealt thirteen cards
+face-down on the table, picks them up, has a quick look and starts
+rearranging the hand. 
+Most bridge players use block transpositions to rearrange their
+thirteen cards in some preferred order. Empirically, from diligent
+bridge playing or computer simulations, one finds that most hands
+can be sorted in six moves  while about 30\% need seven moves.
+One of these is the reverse permutation, intuitively felt to be
+the worst case. It is a real challenge to sort the
+permutation $[13\ 12\ 11\ 10\ 9\ 8\ 7\ 6\ 5\ 4\ 3\ 2\ 1]$ in seven
+block moves, and the fearless reader is invited to take on that
+challenge before reading further! It is hardly feasible to let the
+computer check all $13!$ permutations, so some analysis is needed
+to find out what is actually the worst case. The unexpected answer
+will be given in section \ref{sc:values}.
+
+When one plays a card from a sorted bridge hand, one's opponents may
+draw some information from the position of the card.
+Therefore, professional card players never order their cards by rank,
+only by suit. The corresponding optimal sorting problem is easier and
+gets a complete analysis in section  \ref{sc:values}. It turns out that the bridge player can 
+always separate suits in six block moves.
+
+Scientific applications might be found in the field of bioinformatics.
+For the details, we refer to Bafna and Pevzner \cite{BP}, but the gist of the matter
+is that block transpositions occur in gene sequences as rare mutation events.
+The genome breaks in three places and the two middle pieces are
+glued back transposed. 
+
+Bafna and Pevzner \cite{BP} devised a sorting algorithm with a worst case
+performance of about $3n/4$ block moves.
+Our block move sorting algorithm has a better worst case performance, 
+asymptotically $2n/3$. 
+
+\section{Notation and definitions}
+\noindent
+We will denote a permutation in $S_n$ by its sequence of permuted
+numbers within brackets:
+\[
+   \pi = [\pi_1\ \pi_2\ \dots\ \pi_{n-1}\ \pi_n].
+\]
+For any three cut points $0\le i<j<k\le n$, define the {\em
+block move} $\sigma_{ijk}$ by
+\[
+\sigma_{ijk} =
+  [1\ \dots i\ j\!+\!1\ \dots\ k\ i\!+\!1\ \dots\ j\
+   k\!+\!1\ \dots n].
+\]
+This may also be called a {\em block transposition}, as two
+adjacent blocks have been transposed.
+% DNA-researchers simply say transposition.
+
+Composition of permutations is defined as action to the right:
+\[
+\pi \cdot \sigma_{ijk} =
+  [\pi_1\ \dots \pi_i\ \pi_{j+1}\ \dots\ \pi_k\ \pi_{i+1}\ \dots\ \pi_j\
+   \pi_{k+1}\ \dots \pi_n].
+\]
+For convenience, we introduce symbols for two permutations of
+fundamental importance, the identity and the reverse permutation:
+\[
+   \id \DEF [1\ 2\ \dots\ n\!-\!1\ n] \quad\mbox{ and }\quad
+   w_0 \DEF [n\ n\!-\!1\ \dots\ 2\ 1].
+\]
+\noindent
+
+\subsection{Toric model of permutations}
+We can extend an ordinary permutation $\pi$ to a {\em circular
+permutation} $\Bpi$ by inserting an extra element 0 as both
+predecessor of $\pi_1$ and successor of $\pi_n$, and taking
+the equivalence class under cyclic shifts.
+We write 
+\[
+   \Bpi = 0\ \pi_1\ \pi_2\ \dots\ \pi_n
+\]
+where the absence of brackets indicates an equivalence class under cyclic
+shifts. For example, $ 0312 = 3120 = 1203
+= 2031 $. From a circular permutation $\Bpi$, we uniquely
+retrieve the ordinary permutation $\pi$ by removing the element 0
+and letting its successor be the first element of $\pi$.
+
+A block move on $\pi$ has an effect on $\Bpi$ that is easy to state:
+The circle is cut into
+three segments which are then glued together in the other possible
+order. Although this is a slightly nicer setting for our original
+sorting problem we will  go one step further and consider {\em
+toric permutations}, which are circular in values as well as in
+positions. An $m$-step cyclic value shift of $\Bpi$ is defined as
+$$ m\!+\!\Bpi = m \ \ m\!\!+\!\!\pi_1 \ \ m\!\!+\!\!\pi_2 \ldots
+m\!\!+\!\!\pi_n\ \  \pmod{n\!\!+\!\!1} $$ and the
+equivalence class of $\Bpi$ under such value shifts is the toric
+permutation $\Tpi$.
+
+The point of considering equivalence under value shifts is
+that a strategy for block sorting $\Bpi$
+will work also for $m\!+\!\Bpi$: If a move sequence takes $\Bpi$
+to $\Bid$, then the same sequence of moves takes 
+$m\!+\!\Bpi$ to $m\!+\!\Bid$; and $m\!+\!\Bid = \Bid$, so the sorting is
+done! For example, if $\pi=[3\ 1\ 2]$, then the representatives of the
+toric permutation are: 
+\[
+\begin{array}{rl}
+\Bpi&=0312 \\
+1\!+\!\Bpi&=1023 \\
+2\!+\!\Bpi&=2130 \\
+3\!+\!\Bpi&=3201
+\end{array}
+\]
+So $ {[312]^\circ_\circ}= {[231]^\circ_\circ}=
+{[213]^\circ_\circ}= {[132]^\circ_\circ}$ and therefore a block
+sorting strategy for $[312]$ can be translated into a strategy for
+any of the other three permutations.
+%Thus, toric permutations seem to be the correct setting for our investigation.
+
+It is convenient to let $\xbar$ denote the numerical successor of
+$x$ in  any representative of a 
+toric permutation, i.e.~$\xbar=x\!+\!1\ \pmod{n\!\!+\!\!1}$.
+Similarly, we let $\underline{x}=x\!-\!1\ \pmod{n\!\!+\!\!1}$. An
+occurrence of $x\xbar$ is called a {\em bond}, and it is clear
+that bonds need never be broken in an optimal sorting strategy
+which is to end  with the identity permutation. An
+occurrence of $\xbar x$ is called an {\em anti-bond}.
+%and it is clear that all anti-bonds must be broken in the course of a
+%sorting procedure.
+Circularity in positions and values must always be taken into
+account; thus 314052 has one bond (23) and one anti-bond (05).
+%A {\em $k$-move} is a block move that creates $k$
+%new bonds. Obviously, the highest possible value is $k=3$.
+
+In a representative of a toric permutation, we say that an ordered triple of values
+$x\ldots y \ldots z$ is {\em positively oriented} if
+either $x<y<z$ or $y<z<x$ or $z<x<y$.
+
+The justification for the term {\em toric} is the following. An
+ordinary permutation has a geometric representation as a square
+matrix with $n$ rows and $n$ columns and with $n$ dots, one in
+each row and each column. Joining the two vertical sides of the
+square, we get a cylinder representing a circular permutation.
+Joining also the two horizontal sides, we get a torus representing
+a toric permutation. Although toric permutations seem to us a natural
+construction, we have not found any previous mention in the literature.
+An equivalent class of objects, infinite periodic patterns built up
+from permutation matrices, was invented and enumerated in 1907 by Steggall
+\cite{St}, but with no other applications or further considerations. 
+In a very recent M.Sc. thesis at KTH, Hultman \cite{Hu} improves the
+enumeration argument and also discusses some other aspects of
+toric permutations.
+
+\section{The Cayley graph of block transpositions}
+\noindent
+The symmetric group $S_n$ is generated by the set
+% $\Sigma = \{\sigma_{ijk}\, |\, 0\!\le\! i\!<j\!<k\!\le\! n\}$
+of all block moves.  Hence we can define the so called {\em Cayley
+graph}, with vertex set $S_n$ and a directed edge labeled
+$\sigma_{ijk}$ from any $\pi\in S_n$ to $\pi \cdot \sigma_{ijk}$.
+A block sorting strategy for $\pi$ is a directed path from $\pi$
+to $\id$.  Reading the labels of the path,
+%$\sigma_1,\sigma_2,\dots, \sigma_\ell$
+we get the identity $\pi \sigma_1 \sigma_2 \cdots \sigma_\ell =
+\id$.
+
+Let $d(\pi)$ denote the distance from $\id$ to $\pi$ in the Cayley
+graph, i.e.~the minimal number of block moves needed to sort $\pi$.
+
+\subsection{Inverses}
+The inverse of a block move is also a block move:
+\[
+  \sigma_{ijk}^{-1}=\sigma_{irk},%\ \mbox{where}\ r=k+j-i
+\]
+where $r=i+k-j$.
+This means that the block sorting strategy for $\pi$ can be
+regarded as a factorization of $\pi$ into block moves: $\pi =
+\sigma_{\ell}^{-1} \cdots \sigma_2^{-1} \sigma_1^{-1}$. We can conclude 
+that $d(\pi)$ is in fact the length of the shortest word for $\pi$
+in the alphabet of block moves.  Since
+$\pi^{-1}= \sigma_1 \sigma_2 \cdots \sigma_\ell$, we can also conclude 
+that $d(\pi^{-1})=d(\pi)$.
+
+Note that the inverse is also well defined for toric permutations,
+for it is easy to see that if $\pi$ and $\tau$ represent the same
+toric permutation, then  $\pi^{-1}$ and $\tau^{-1}$ represent the
+same toric permutation.
+
+\subsection{The undirected Cayley graph and the toric graph}
+We will let any pair of inversely directed edges in the Cayley
+graph merge into one undirected edge, and thus obtain an undirected graph.
+By merging vertices representing the same toric permutation,
+we obtain the {\em toric graph}.
+This seems to be the correct
+mathematical object for our investigation.
+
+\begin{figure}[htb]
+\begin{picture}(180,120)(-40,-10)
+    \put(-30,0){$[123]^\circ_\circ$}
+    \put(-30,30){$[132]^\circ_\circ$}
+    \put(-30,60){$[321]^\circ_\circ$}
+    \put(-20,10){\line(0,1){15}}
+    \put(-20,40){\line(0,1){15}}
+
+    \put(100,0){$[1234]^\circ_\circ$}
+    \put(75,30){$[1243]^\circ_\circ$}
+    \put(125,30){$[1342]^\circ_\circ$}
+    \put(75,60){$[2143]^\circ_\circ$}
+    \put(125,60){$[1432]^\circ_\circ$}
+    \put(30,60){$[2413]^\circ_\circ$}
+    \put(170,60){$[3142]^\circ_\circ$}
+    \put(100,90){$[4321]^\circ_\circ$}
+    \put(113,10){\line(-1,1){15}}
+    \put(113,10){\line(1,1){15}}
+    \put(88,40){\line(-2,1){30}}
+    \put(88,40){\line(0,1){15}}
+    \put(138,40){\line(0,1){15}}
+    \put(138,40){\line(2,1){30}}
+ %   \put(173,70){\line(-4,1){60}}
+ %   \put(53,70){\line(4,1){60}}
+   \put(107,31){\line(1,0){18}}
+   \put(107,61){\line(1,0){18}}
+   \put(62,61){\line(1,0){13}}
+   \put(157,61){\line(1,0){13}}
+    \put(98,70){\line(1,1){15}}
+    \put(128,70){\line(-1,1){15}}
+\end{picture}
+\caption{The toric graphs for $n=3$ and $n=4$.}
+\end{figure} \noindent
+
+
+\subsection{The diameter of the Cayley graph}
+The {\em diameter} of a graph is
+the maximal distance between two vertices. Since the Cayley graph
+looks exactly the same when seen from any vertex, its diameter is
+the maximal distance from $\id$ to any $\pi$. This number is equal to
+the diameter of the toric graph, and, of course, also to the 
+number of block moves needed, in the worst case,
+to sort a permutation.
+We will denote this diameter, for a given $n$, by
+\[
+d(n) \DEF \max_{\pi\in S_n} \{d(\pi)\}.
+\]
+%No expression for $d(n)$ has been proved, but for $n\le 10$ we
+%have computed $d(n)$ by breadth-first construction of the graph.
+
+ 
+Bafna and Pevzner \cite{BP} observed  that
+$d(n)=\lceil\frac{n+1}{2}\rceil$ for $3 \le n\le 10$.
+When we started
+working on this problem we assumed  that this expression for $d(n)$
+would hold for all $n\ge 3$. Bafna and Pevzner also proved that the
+value of $d(n)$ lies in the interval $\lceil\frac{n-1}{2}\rceil
+\le d(n) \le \lfloor\frac{3n}{4}\rfloor$.
+
+
+\
+
+Our agenda in this paper is the following:
+
+\begin{enumerate}
+\item For the reverse permutation we  find  an exact value:
+$d(w_0)=\lceil\frac{n+1}{2}\rceil$ for $n\ge 3$, which gives
+an improved general lower bound:
+$d(n)\ge \lceil\frac{n+1}{2}\rceil$.
+\item  We 
+ improve the upper bound to $d(n) \le \lfloor\frac{2n-2}{3}\rfloor$.
+\item By a combination of computer assisted computations
+ and theoretical arguments,
+we are able to determine $d(n)$ for $n\leq 15$ (Table 1).
+
+\begin{table}[htb] \label{theTable}
+%\hfil
+\begin{center}
+\begin{tabular}{||r|rrrrrrrrrrrrrrr||}
+\hline $n$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 &
+14 & 15 \cr \hline $d(n)$ & 0 & 1 & 2 & 3 & 3 & 4 & 4 & 5 & 5 & 6 & 6
+& 7 & 8 & 8 & 9 \cr \hline
+\end{tabular}
+\end{center}
+%\hfil
+\caption{Known values of $d(n)$.}
+\end{table}
+\end{enumerate}
+
+\noindent
+Note that our upper bound $d(n) \le\lfloor\frac{2n-2}{3}\rfloor$ 
+is sharp for $9\le n \le 15$.
+Our computer experiments suggest, however, that the patterns that
+are especially difficult to block sort for $n=13$ and $n=15$ cease to be
+difficult for larger $n$.  Hence, our new conjecture is that
+$d(n)=\lceil\frac{n+1}{2}\rceil$ for all $n\ge 3$ {\em except} for
+$n=13$ and $n=15$.
+
+
+\section{An improved lower bound and the reverse permutation}
+\noindent
+Recall that a {\em descent} in a permutation $\pi$ is an occurrence of
+$\pi_k\pi_{k+1}$, such that  $\pi_k>\pi_{k+1}$. Although for a toric
+permutation the notion of descent makes no sense, the {\em number of descents}
+still has meaning; it is easy to see that if $\pi$ and $\tau$ represent the
+same toric permutation, then  $\pi$ and $\tau$ have the same number of
+descents.
+
+\begin{lemma}  
+The number of descents in a permutation can decrease by at most two in 
+a block move.
+\end{lemma}
+\begin{proof}
+Obviously, the number of descents can change by at most three in
+every move.  We will see that a decrease by three is in fact impossible,
+since it would require a permutation of the following form:
+\[
+   [\dots \ a\ b\ \dots \ c\ d\ \dots \ e\ f \dots],
+\]
+where $a>b$, $c>d$ and $e>f$, and where all three descents are broken
+by a move, giving \vspace{-2mm}
+\[
+   [\dots \ a\ d\ \dots \ e\ b\ \dots \ c\ f \dots],
+\]
+with no new descents, so that $a<d$, $e<b$ and $c<f$.
+Together, the six inequalities imply that \vspace{-1mm}
+\[
+   a < d < c < f < e < b < a,
+\]
+which is absurd. The argument remains valid if $b=c$, $d=e$ or $f=a$.
+\end{proof}
+
+\subsection{An optimal sorting algorithm for $w_0$.}
+Now we return to the bridge player, faced with the problem of
+reversing the order of her cards using only seven block moves. For
+simplicity, we illustrate the solution for $n=9$ cards,
+which easily extends to any $n$ cards. 
+$ |9876|54|321 \!\rightarrow\! 5|4987|63|21 \!\rightarrow\! 
+56|3498|72|1 \!\rightarrow\! 567|2349|81| \!\rightarrow\! 
+|5678|1234|9 \!\rightarrow\! 123456789 $
+%$$ [|765|43|21] \!\rightarrow\! [4|376|52|1] \!\rightarrow\! [45|237|61|] \!\rightarrow\! 
+%[|456|123|7] \!\rightarrow\! [1234567] $$
+
+\begin{theorem}\label{th:jw}
+For $n\ge 3$, the reverse permutation $w_0$ can be sorted in $
+\lceil \frac{n+1}{2} \rceil$ block moves, and this is optimal.
+\end{theorem}
+\begin{proof}
+It is sufficient to give an algorithm for odd $n=2k\!+\!1$ using
+$k\!+\!1$ moves, for if we have an even $n=2k$, we can use the
+algorithm for $n=2k\!+\!1$, forgetting about one of the elements.
+%Like in the Emperor's New Clothes,
+%an observer would see us sometimes respectfully moving emptiness around,
+%but still performing the sorting task in the stated number of moves.
+
+{\bf Algorithm:} We can sort  $w_0=[n\ldots\ 1\ 0]$ by $k+1$ moves
+of the same type: a block of size two is moved $k$ steps to the
+left. First $[k\! +\! 1\ k]$ is moved to the far left, then $[k\!
++\! 2\ k\! -\! 1]$ is inserted in the middle of the block last
+moved etc. The last pair to be moved is $[n 0]$, after which the
+permutation will be $[k\! +\! 1\ldots n\ 0\ldots k]$, a
+representative of the toric identity permutation.
+
+{\bf Optimality: } $w_0$ has $n-1$ descents, while $\id$ has no
+descent. It is easy to see that any first move from $w_0$ can
+decrease the number of descents by just one.  The same holds for
+any last move leading to $\id$.  By the above lemma, each intermediate move decreases
+the number of descents by at most two.
+Hence, at least $(n-3)/2$ moves must be made between the first and
+the last move (but for $n=2$, the first move is also the last).
+\end{proof}  
+
+\
+
+\section{An improved upper bound}
+In this section, we will prove a new upper bound on $d(n)$. The main
+work will be to prove the following lemma.
+
+\begin{lemma}\label{lm:3-in-2}
+Let $\pi$ be any permutation other than $w_0$.
+Then we can find block moves $\sigma$ and $\tau$ such that one of
+$\pi\sigma\tau$, $\sigma\pi\tau$, and $\sigma\tau\pi$ has at least
+three bonds.
+\end{lemma}
+
+We defer the proof of the lemma until after the statement and proof 
+of the main theorem:
+
+\begin{theorem}\label{th:2/3}
+An upper bound on the number of block moves needed to sort a
+permutation is $d(n) \le \lfloor \frac{2n-2}{3} \rfloor$ for $n\ge 9$.
+\end{theorem}
+\begin{proof}
+First, we will prove that $d(\pi) \leq  2 + d(n-3)$ for any 
+permutation with $n \ge 9$. If $\pi=w_0$, this is a consequence
+of Theorem \ref{th:jw}.
+If $\pi$ is any permutation other than $w_0$, then
+one of the three cases in Lemma \ref{lm:3-in-2} applies.
+
+In the case where $\sigma \pi \tau$ has three bonds, we know that 
+$d( \sigma \pi \tau )\leq d(n-3)$, for bonds can be regarded as
+single symbols. By writing $\pi=\sigma^{-1}\sigma\pi\tau\tau^{-1}$ we get
+$$ d( \pi )\le d( \sigma^{-1})+d(\sigma\pi\tau)+d(\tau^{-1}) 
+                            \leq 1 + d( n-3) + 1.$$
+The two other cases are similar.
+
+But if for an arbitrary permutation $d(\pi) \leq  2 + d(n-3)$,
+then the definition of $d(n)$ implies
+$ d(n)  \leq 2 + d( n-3)$, for $n \ge 9.$
+Since Table 1 shows that $d(n)=\lfloor (2n-2)/3 \rfloor$ for $9\leq n \leq 11$,
+the theorem follows by induction.
+\end{proof}
+
+\begin{proof}[Proof of Lemma \ref{lm:3-in-2}]
+If there is already a bond in $\pi$, then getting two more bonds in two
+moves is trivial, so we can assume that $\pi$ is bondless.
+As we will see below, all permutations other than $w_0$ 
+fall into one of several categories, for each of which we can construct the
+required move or moves. In fact, the proof of Lemma \ref{lm:3-in-2}
+amounts to an algorithm for sorting any permutation by block moves. 
+We will use the toric model of permutations throughout the proof,
+which occupies the remainder of Section 5.
+
+\subsection{Criteria for existence of 2-moves}
+Given a permutation $\pi$, we define a  {\em $k$-move} to be a
+block move $\sigma$ such that $\pi\sigma$ has $k$ more bonds than $\pi$.
+A block move $\sigma$ is a {\em $k$-move to the left} if 
+$\sigma\pi$ has $k$ more bonds than $\pi$.
+
+A {\em 2-move} is possible in $\pi$ if the toric permutation $\Tpi$ contains a
+segment of the form
+$   x\ \dots\ y \xbar\ \dots\ \ybar$,  
+since the block move defined by cutting at the indicated places
+\begin{equation}\label{eq:2-move}
+   x|\ \dots\ y| \xbar\ \dots\ |\ybar \ ,
+\end{equation}
+gives $x\xbar\ \dots\ y\ybar$ with two new bonds. We allow the
+possibility that $x=\ybar$. A {\em 2-move to the left} is possible in $\pi$ if
+the toric permutation $\Tpi$ has a segment of the form
+\begin{equation}\label{eq:2-inv}
+   xy\ \dots\ z\xbar, %\mbox{ where $x,y,z$ are positively oriented.}
+\end{equation}
+where $x,y,z$ are positively oriented. Here we allow the
+possibility that $y=z$. It is easy to verify that the criteria
+(\ref{eq:2-move}) and (\ref{eq:2-inv}) are transformed into each
+other if the roles of values and positions are interchanged.
+
+If either criterion (1) or (2) is satisfied, 
+then getting a following 1-move is 
+trivial, resulting in the desired three bonds.
+
+\subsection{Reducibility}
+We say that a toric permutation is {\em reducible} if, in some
+suitable representation $\pi$ and for some $0<k<n$, the segment $
+0\ \dots\ \pi_k $ contains all values $0,\dots, k$ and the segment
+$ \pi_k\ \dots\ \pi_n $ contains all values $k,\dots, n$. In
+particular, $\pi_k=k$ must then be true.
+
+Here we show that the lemma holds in the reducible case. 
+We can reduce a reducible permutation to a smaller toric
+permutation by contracting the segment $ \pi_k\ \dots\ \pi_n\ 0$
+to a single symbol 0. If the reduced permutation is not a reverse
+permutation, then we can use induction to find the required
+moves yielding the lemma.
+On the other hand, if it does reduce to a reverse permutation, we 
+instead contract the
+segment $ 0\ \dots\ \pi_k $ to $0$.
+Again, if the reduced permutation is not a reverse permutation, then we
+can use induction to find the required moves yielding the 
+lemma.  In the remaining case where both contractions result in a
+reverse permutation, we must have 
+$$\pi=[0\ k\!-\!1\ k\!-\!2\ldots 1\ k\ n\ n\!-\!1\ldots k\!+\!1], $$ 
+and after the 1-move 
+$$0\ k\!-\!1\ |\ k\!-\!2\ldots 1\ k\ n\ |\ n\!-\!1\ldots k\!+\!1\ |$$
+(bonding $n0$), criterion (\ref{eq:2-inv}) applies to 
+$k\!-\!1\ n\!-\!1\ldots 1\ k$ yielding the lemma.
+For example, in $0432159876$ we first try to
+contract 598760, but this results in 04321, which is a reverse
+permutation. Then we contract the first six values and obtain
+$09876$, which is interpreted as $04321$, another reverse
+permutation. Finally, a 1-move produces 0487632159, and here
+ criterion (\ref{eq:2-inv}) applies to $48\ldots 15$.
+
+\subsection{All other possibilities considered}
+Here we show that the lemma holds whenever the toric permutation $\Tpi$
+is bondless, non-reducible, and does not satisfy either
+criterion (1) or (2) for 2-moves.
+We can find a value  $x$ in a representative of $\Tpi$ such that
+the length of $x\ldots \xbar$ is  minimum.  Specifically, we 
+ choose that representative $\pi$ with $x=0$ and initial sequence  
+$0\ldots 1$ of this minimum length. The
+absence of bonds excludes the extreme case $01$ and the absence of
+2-moves prohibits $0a1$, as $a$ could be moved to bond with $\abar$,
+while allowing $0$ to bond with $1$.
+
+Let this permutation be denoted as 
+ $\pi= 0\ x_1\ x_2 \dots x_\ell\ 1\dots$, with $\ell \ge 2$.
+We must have $x_1>x_\ell$, for otherwise criterion
+(\ref{eq:2-inv}) applies to $0\ x_1\ \dots\ x_\ell\ 1$.
+By the minimality condition on  the length of $0\dots
+1$, we know that $\xbar_1$ is not in that interval and thus a
+1-move $$0|x_1\ x_2\dots x_\ell\ |1\dots |\xbar_1$$ is possible,
+after which we have $$x_1\ x_2\dots x_\ell\ \xbar_1.$$ Now unless
+$x_1>x_2>x_\ell$, criterion (\ref{eq:2-inv}) yields the lemma. Thus we
+need only assume $\pi= 0\ x_1\ x_2 \dots x_\ell\
+1\dots$ with $x_1>x_2>x_\ell$ and $\ell \ge 3$. 
+There are two cases that must be treated quite differently:
+ Either $x_2=x_1\!-\!1$ (an anti-bond) or $x_2 < x_1 -1$.
+
+\subsection{The case for $x_2=x_1-1$} 
+The minimality condition on $0\dots 1$ means that the situation
+$0\dots x\dots \xbar\dots 1$ cannot occur. In the case 
+there is an $x$  such that 
+$$0\ x_1\ x_2 \dots x\dots 1\dots \xbar \dots,$$ 
+a 1-move $0\ x_1 |\ x_2\dots x|\dots 1\dots |\xbar \dots$
+would lead to $0\ x_1\dots 1\dots x_2 \dots$, after which a
+2-move is possible according to criterion (\ref{eq:2-move}). 
+The only other possibility is that, for each $x$ inside  $x_2 \ldots1$,
+$\xbar$ is further left in $0 \ldots 1$.  By letting $x$ be $x_3$,  $x_4$,
+etc. consecutively, we see  that 
+$0 x_1 x_2 \ldots x_{\ell}$ must be a reversed consecutive sequence.
+In this case 
+either 
+$x_{\ell} =2$ or $x_{\ell} >2$ with $x_i \ne 2$ for $i \le \ell$.
+
+For the subcase where $x_{\ell}  = 2$, we have, by the assumed non-reducibility,
+that the value $1$ is not followed by $\xbar_1$ .
+ Moreover, 1 is not followed by 0  since $\pi\neq w_0$.
+Hence there is a 1-move $$0|x_1\dots 2|1 \xbar|\dots x$$ leading to
+$1\xbar\dots 2\dots x$, and criterion (\ref{eq:2-move}) applies.
+
+For the  remaining subcase, we have that  $x_\ell>2$.  Since
+$0\ x_1\ x_2 \dots x_{\ell-1} x_{\ell}$
+is a reverse consecutive sequence, 2 must be to the right of 
+$x_{\ell}$.  The lack of bonds  implies $2 < x_{\ell + 2} < x_{\ell}$. 
+Hence, the 1-move 
+$$ 0\ | x_1  \ldots    x_{\ell-1} x_{\ell}  1|   x_{\ell + 2}
+\ldots | 2 \ldots $$
+leads to 
+$$  0 \   x_{\ell + 2} \ldots  x_{\ell} \ 1\  2 \ldots$$
+to which  criterion (\ref{eq:2-inv}) applies.
+
+\subsection{The case for $x_1  > x_2 -1$ }
+Note that  $\underline{x}_1  \neq  x_2$.
+If   $\underline{x}_1 $ is to the right of 1, criterion (1) 
+applies to  $0 x_1 \dots 1 \dots
+\underline{x}_1$.
+ If $\underline{x}_1 $  is to the left of 1, then 
+let $k \ge 2 $ be the smallest $k$,  $k \in \{ 2, \ldots, \ell -1 \}$,
+such that 
+$$
+x_1 + k - 1 >
+x_2 + k - 2 >
+x_3 + k - 3 > \ldots  > 
+x_k >
+x_{\ell}.
+$$
+The minimality condition on $0 \ldots 1$ implies that $\xbar_k$
+is to the right of 1, so there is a 1-move 
+$$
+0|x_1\dots
+x_\ell|1\dots |\xbar_k,
+$$ 
+resulting in a permutation containing the sequence
+ $$ 0 \ 1\ \dots x_k\ x_{k+1}\dots
+x_\ell\ \xbar_k.$$
+Now, either (a) $x_k > x_{\ell}  > x_{k+1}$,
+            (b) $x_{k+1} > x_k > x_{\ell}$,   or
+            (c) $ x_k >  x_{k+1} > x_{\ell}.$
+Inequality (a) is impossible by the definition of $k$.
+Inequality (b) permits criterion (2) and thus a 2-move to the left.
+From the way that $k$ was chosen, for inequality (c) we
+must have an anti-bond $\xbar_{k+1} = x_k$, which we 
+can split by a 1-move 
+$$0|x_1\dots x_k|x_{k+1}\dots\underline{x}_1|\dots 1.$$ 
+Now criterion (\ref{eq:2-move}) can be
+used on $x_{k+1}\dots x_{k-1}x_k \dots \xbar_{k-1}$. Note that by
+the minimality of $0\dots 1$, the value $\xbar_{k-1}$ must occur
+to the right of 1.
+
+This completes the proof of Lemma \ref{lm:3-in-2}.
+\end{proof}
+
+\section{The bridge player's problem and $d(n)$ for $n\le 15$}
+\label{sc:values} The values of $d(n)$ for $n\leq 10$ were
+calculated by computer, by breadth-first construction of the Cayley graph
+(which has on the order of $n^3\cdot n!$ edges).
+ We will now describe how we determined the values $d(11)=6$, $d(12)=7$,
+$d(13)=8$, $d(14)=8$ and $d(15)=9$. A minimal counterexample to
+our working conjecture $d(n)=\lceil(n+1)/2\rceil$ cannot allow a
+2-move or a 1-move followed by a 3-move.  For $n\le 13$, a
+computer search listed all toric permutations satisfying this
+restriction; there are not many of them. For each one of these
+candidates we have checked by computer if they can be sorted in
+$\lceil(n+1)/2\rceil$ moves. This is indeed the case for $n=11$,
+which proves the values $d(11)=6$ and $d(12)=7$. To our surprise,
+for $n=13$ a counterexample was found: the permutation $$[4\ 3\ 2\
+1\ 5\ 13\ 12\ 11\ 10\ 9\ 8\ 7\ 6],$$ and a few others, need 8
+block moves. This means that in the worst case, the bridge player
+will need eight block moves to sort her hand.
+
+Lemma \ref{lm:3-in-2} says in effect that $d(n+3)\le d(n)+2$, so
+we have $d(14)\le 8$ and $d(15)\le 9$. For $n=14$, the reverse
+permutation shows that equality holds. For $n=15$, the permutation
+$$[4\ 3\ 2\ 1\ 5\ 15\ 14\ 13\ 12\ 11\ 10\ 9\ 8\ 7\ 6]$$ takes 9
+block moves.
+
+One can also consider other sorting problems. Some bridge players
+only want the cards within each suit sorted without regard to the order
+of the suits.
+However, this does not change
+the worst case, as we may get thirteen cards in a single suit.
+(Bridge players would not call this a ``worst case''.) A
+different problem occurs if we demand only that all cards in a
+suit be grouped without concern for the order
+of the cards within a suit. We invite the reader to verify that if
+only two suits are present, then in a hand of $n$ cards, the suits
+can be grouped together in at most $\lfloor (n-1)/2 \rfloor$
+moves. If cards of the different suits alternate, then this bound
+is attained.
+
+We will show, using some of the ideas of the proof of Lemma
+\ref{lm:3-in-2}, that $\lfloor (n-1)/2 \rfloor$ moves suffice even
+when there are more than two suits. For simplicity, we use the
+circular model. To pass from an ordinary hand to a circular
+arrangement, we add the joker as
+predecessor of the first card and successor of the last one.
+The added card is included in the $n+1$ count below.
+
+\begin{theorem}
+If $n+1$ cards are arranged cyclically, then the suits can be
+grouped together in at most $\lfloor \frac{n-1}{2} \rfloor$ block
+moves.
+\end{theorem}
+\begin{proof}
+We will use induction on $n$. The statement is obviously true for
+$n\leq 2$. A \emph{bond} will now mean two consecutive cards from
+the same suit. We can assume that, to begin with, there are no
+bonds. Furthermore, we can assume that there is at most one
+``singleton'' (only card in its suit),
+ since if there is more than one singleton, the problem
+becomes at least as difficult
+as the problem where
+we replace the singletons by a single suit.
+We now find a pair of cards from the same suit, such
+that one of the two segments between these cards does not contain
+two cards from the same suit, and moreover does not contain the
+possible singleton. (Note that this is always possible!) Since
+these two cards, say spades, are not consecutive, the predecessor
+of the last one, say a heart, must belong to the same suit as a
+card not in the same segment between the two spades. The situation
+must be:
+\[
+\spadesuit |\dots \heartsuit |\spadesuit \dots |\heartsuit
+\]
+Cutting at the indicated places gives two bonds, and the induction
+is complete.
+\end{proof}
+
+\begin{corollary}
+For any array of $n$ not necessarily different objects,  
+$\lfloor \frac{n-1}{2} \rfloor$
+block moves are sufficient to group like objects together. This bound is sharp.
+\end{corollary}\noindent
+Hence, a bridge hand can be suit separated in at
+most 6 block moves, and this bound is attained if two suits
+alternate.
+% \[ \spadesuit \heartsuit \spadesuit \heartsuit
+%\spadesuit \heartsuit \spadesuit \heartsuit \spadesuit \heartsuit
+%\spadesuit \heartsuit \spadesuit.
+%\]
+
+One can also demand that the suits should occur in a specified
+order, without paying attention to the order of the cards within a
+suit. Then the original sorting problem becomes a special case, so
+it is perhaps unreasonable to ask for a simple solution to this
+problem.
+
+\section{Discussion}
+According to molecular biologists, there are two fundamental types 
+of rearrangement events occuring in DNA: block moves and block reversals.
+It would be desireable with an efficient algorithm for finding the 
+minimal number of such events between two genomes.  No such algorithm is
+known.  For the case of (unsigned) block reversals only, the
+problem has been shown to be NP-complete \cite{C}.
+Block moves seem to behave somewhat better than, and in our opinion
+there is still good hope of finding an exact algorithm that runs in polynomial
+time.
+
+The relative proportion between the two types of events is not known.
+Our results could be useful in cases where block moves dominate.
+Typically, genes common to two species often come in largely the same order
+in both genomes. In other words, there is an abundance of bonds in
+the permutation. In our analysis, we first contract bonded genes,
+and without even looking at the resulting no-bonds permutation, we
+can state that sorting by block moves must take at least $\lceil
+\frac{n}{3} \rceil$ moves and at most
+$\lfloor\frac{2n-2}{3}\rfloor$ moves.
+In the interval between these bounds, what is the distribution
+of random permutations?
+
+Computer runs indicate that a large majority of random permutations live 
+at or very
+near the level occupied by $w_0$ in the Cayley graph, which is level
+$\lceil\frac{n+1}{2}\rceil$. 
+In fact, as $n$ grows, the distribution of permutations on 
+the top levels appears to converge to some limit distribution
+(one for odd $n$ and one for even $n$).
+For odd $n$ we find about 32\% of all permutations on the highest level, 
+about 53\% on the level below, and about 14\% two levels below. 
+The last percent is spread
+out in a distribution rapidly decreasing with level index. 
+
+Such a biased distribution is typical not only for block sorting
+distance, but for just about any distance measure on permutations
+based on a set of legal moves.
+The explanation is that at a low level, the proportion of permutations
+at this level or below is so small that the vast majority of 
+permutations that can be reached by one move will belong to the level
+above.
+
+The statistics for random permutations with no bonds is even more biased.
+For odd $n\le 9$, about 71\% live on level
+$\lceil\frac{n+1}{2}\rceil$, about 29\% on the
+level below and no permutations occupy lower levels!  
+Hence, after contracting bonds in a
+random gene permutation you can use $\lceil\frac{n+1}{2}\rceil$ to
+estimate its transposition distance; judging from the pattern for small
+$n$, it is unlikely that you will be off by more than one.
+%
+%However, gene permutations are not really random, so they may be closer
+%to the lower bound $\lceil\frac{n}{3} \rceil$.
+%The lower bound applies only to a product of 3-moves. If there are thousands
+%of genes and all breakpoints are equally probable, 
+%then among the first hundred
+%block moves, probably most will be 3-moves. So, in this biologically 
+%interesting case, we are in fact close to the lower bound. A more
+%typical situation, however, is when breakpoints occur with much higher 
+%probability at some {\em hot spots}. So after all, the percentages for
+%random permutations may well apply to gene permutations also.
+
+\begin{thebibliography}{ABC}
+
+\bibitem{BP} V. Bafna and P. Pevzner, Sorting by transpositions,
+{\em SIAM J.Discrete Math.} {\bf 11 } (1998), 224--240.
+
+\bibitem{C} A. Caprara, Sorting by reversals is difficult, {\em Proc.
+RECOMB '97}, ACM Press, 1997.
+
+\bibitem{Hu} A. Hultman, Toric permutations, M.Sc. thesis,
+Dept. of Mathematics, KTH, Stockholm, Sweden, 1999.
+
+\bibitem{St} J. E. A. Steggall, On the number of patterns which can be
+derived from certain identities,
+{\em Messenger Math.} {\bf 37 } (1907), 56--61.
+
+\end{thebibliography}
+\end{document}
+

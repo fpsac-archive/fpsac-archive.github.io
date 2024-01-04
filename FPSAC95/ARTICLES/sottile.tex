@@ -1,0 +1,900 @@
+%       A Geometric Approach to the Combinatorics of Schubert
+%       Polynomials
+%
+%       Frank Sottile 
+%
+%       Extended Abstract of Talk Delivered at SFCA'95 - Paris
+%
+%       Published in Conference Proceedings, 29 May, 1995
+%       pp 501--510
+
+\documentstyle[amssymb,12pt]{amsart}
+
+
+\addtolength{\evensidemargin}{-.6in}\addtolength{\oddsidemargin}{-.6in}
+\addtolength{\textwidth}{1.2in}
+%\addtolength{\textheight}{.2in} \addtolength{\topmargin}{-.1in}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{thm}[lemma]{Theorem}
+\newtheorem{prop}[lemma]{Proposition}
+\newtheorem{cor}[lemma]{Corollary}
+\newtheorem{example}[lemma]{Example}
+\newtheorem{conjecture}[lemma]{Conjecture}
+
+
+
+\newcommand{\Edot}{{E\!_{\mbox{\Huge $.$}}}\!}
+\newcommand{\Fdot}{{F\!\!_{\mbox{\Huge $.$}}}}
+\newcommand{\Fpdot}{{{F\!\!_{\mbox{\Huge $.$}}}\!'}}
+\newcommand{\Gdot}{{G\!_{\mbox{\Huge $.$}}}\!}
+\newcommand{\Gpdot}{{G\!_{\mbox{\Huge $.$}}}\!'\!}
+\newcommand{\llra}{\relbar\joinrel\relbar\joinrel\longrightarrow}
+\newcommand{\lllra}{\relbar\joinrel\llra}
+\newcommand{\Span}{\mbox{span}}
+
+\newcommand{\rkm}{\stackrel{r[k,m]}{\llra}}
+\newcommand{\ckm}{\stackrel{c[k,m]}{\llra}}
+
+\newcommand{\QED}{
+\setlength{\unitlength}{1.0pt}%
+\begin{picture}(7.5,7.5)
+\put(0,-2.5){\rule{2.5pt}{2.5pt}}
+\put(0,0){\rule{5pt}{2.5pt}}
+\put(0,2.5){\rule{7.5pt}{2.5pt}}
+\end{picture}\vspace{10pt}}
+
+
+
+\begin{document}
+
+\mbox{ }\vspace{-10pt}
+
+\title[Combinatorics of Schubert Polynomials]{A 
+Geometric Approach to the Combinatorics of Schubert Polynomials}
+
+\author{Frank Sottile}
+\address{Department of Mathematics\\
+        University of Toronto\\
+        100 St.~George Street\\
+        Toronto, Ontario  M5S 3G3\\
+        Canada\\
+        (416) 978-4031}
+\email{sottile@@math.toronto.edu}
+\date{8 March, 1995}
+
+\thanks{Extended abstract of talk delivered at SFCA'95 29 
+May -- 2 June, 1995, Paris.
+Published in conference abstracts, pp 501--510.}
+
+\maketitle
+\vspace{-.2in}
+
+\section*{English Summary}
+
+Schubert polynomials, which had their origins in 
+the cohomology of flag varieties, have recently been the subject 
+of much interest in algebraic combinatorics.
+This scrutiny has led to an elucidation of many of their 
+properties.
+A basic open problem is to give a rule for multiplying two 
+Schubert polynomials, that is,  find an analog of the 
+Littlewood-Richardson rule for Schubert polynomials.
+
+Our talk would discuss some recent work on this problem using 
+ideas from algebraic geometry, as well as some implications of this 
+work for the combinatorics of the symmetric group.
+Specifically, we will describe a geometric proof of an
+analog of Pieri's rule for Schubert 
+polynomials.
+This was stated by Lascoux and 
+Sch\"utzenberger in~\cite{Lascoux_Schutzenberger_polynomes_schubert}, 
+where an algebraic proof was suggested.
+Interpreting this formula geometrically exposes a new and striking link to 
+the Littlewood-Richardson rule for Schur polynomials, and indicates 
+possible extensions of this result.
+While our approach uses ideas and methods from algebraic geometry, 
+we will present proofs involving little more than elementary (albeit 
+complicated) linear algebra.
+
+\section*{R\'esum\'e} 
+
+Les polyn\^omes de Schubert, qui sont issus
+de la cohomologie des vari\'et\'es de drapeaux, ont sucit\'e depuis
+quelques temps un grand int\'er\^et en combinatoire alg\'ebrique.
+Un examen attentif a conduit \`a l'\'elucidation de beaucoup de leurs
+propri\'et\'es. Un probl\`eme ouvert fondamental est de trouver
+une r\`egle pour multiplier deux polyn\^omes de Schubert, autrement dit,
+un analogue de la r\`egle de Littlewood-Richardson. 
+
+Notre expos\'e discutera certains travaux r\'ecents sur ce probl\`eme
+en faisant appel \`a des id\'ees provenant de la g\'eom\'etrie
+alg\'ebrique, et aussi certaines cons\'equences de ces travaux pour
+la combinatoire du groupe sym\'etrique. Plus pr\'ecis\'ement, nous
+d\'ecrirons une preuve g\'eom\'etrique d'un analogue de la r\`egle de
+Pieri pour les polyn\^omes de Schubert. Cette r\`egle a \'et\'e
+\'enonc\'ee dans \cite{Lascoux_Schutzenberger_polynomes_schubert},
+o\`u une preuve alg\'ebrique \'etait sugg\'er\'ee. L'interpretation
+g\'eom\'etrique de cette formule met en \'evidence un lien nouveau
+et surprenant avec la r\`egle de Littlewood-Richardson, et indique
+des extensions possibles de ce r\'esultat.
+Bien que notre approche fasse appel \`a des id\'ees et des m\'ethodes de
+g\'eom\'etrie alg\'ebrique, nous pr\'esenterons des preuves qui
+n'utilisent gu\`ere que de l'alg\`ebre lin\'eaire \'el\'ementaire
+(quoique compliqu\'ee).
+
+
+\section{Structure Constants for Schubert Polynomials}
+
+
+The Appendix contains a brief introduction to Schubert polynomials.
+Let $S_n$ be the symmetric group of permutations on the set 
+$\{1,2,\ldots,n\}$ and
+$S_{\infty} = \bigcup_{n=1}^{\infty} S_n$, the group of 
+permutations of the positive integers that fix all but finitely many 
+integers.
+The collection of Schubert polynomials 
+$\{{\frak S}_{w}\,|\,w\in S_{\infty}\}$ forms a basis 
+for the polynomial ring 
+$R_\infty={\Bbb Z}[x_1,x_2,\ldots]$.
+A basic open question is the analog of the Littlewood-Richardson rule:
+For $u,v,w \in S_n$, find integer constants $c^{w}_{uv}$ 
+such that
+\begin{equation}
+{\frak S}_{u}\cdot {\frak S}_{v}\  = \ 
+\sum_{w\in S_n}c^{w}_{uv}{\frak S}_{w}.
+\label{eq:structure}
+\end{equation}
+These structure constants are positive and 
+are known only in certain special cases.
+
+For example, if both $u$ and $v$ are Grassmannian permutations with 
+descent $k$ so that ${\frak S}_{u}$ and ${\frak S}_{v}$ are 
+symmetric polynomials in the variables $x_1,\ldots,x_k$, then
+(\ref{eq:structure}) reduces to the classical Littlewood-Richardson rule.
+
+An important case is when one of
+$u$ or $v$ is an adjacent 
+transposition, $t_{k\,k{+}1}$.
+This is usually attributed to Monk~\cite{Monk}.
+However,  at the same time
+Chevalley established the analogous formula for generalized
+flag varieties in an unpublished manuscript~\cite{Chevalley58}.   
+For $w\in S_{\infty}$,
+let $\ell(w)$ be the length of $w$.   
+Monk's rule states:
+\begin{equation}\label{eq:Monk}
+{\frak S}_{w}\cdot {\frak S}_{t_{k\,k{+}1}}
+\ =\  \sum {\frak S}_{w\cdot t_{a\,b}},
+\end{equation}
+the sum over all $a\leq k <b$ with 
+$\ell(w t_{a\,b})=\ell(w)+1$.
+We use geometry to prove a similar result, which is the analog for
+Schubert polynomials of the classical 
+Pieri's rule.
+This analog of Pieri's rule was announced by Lascoux and Sch\"utzenberger
+in~\cite{Lascoux_Schutzenberger_polynomes_schubert}, where an algebraic 
+proof was suggested.
+\smallskip
+
+%We begin with some definitions. 
+Permutations $w$ are represented by the sequence 
+$(w(1),w(2),\ldots)$ of their values.
+For positive integers $k,m$, we define the permutations:
+\begin{eqnarray*}
+r[k,m] &=&
+(1,2,\ldots,k{-}1,\,\,k{+}m,\,\,k,\,\,k{+}1,\ldots,k{+}m{-}1,
+\,\,k{+}m{+}1,\ldots)\\
+c[k,m] &=&
+(1,2,\ldots,k{-}m,\,\,k{-}m{+}2,\ldots,k{+}1,\,\,k{-}m{+}1,\,\,k{+}2,\ldots)
+\end{eqnarray*}
+%In cycle notation, these are the $m{+}1$-cycles  
+%\begin{eqnarray*}
+%r[k,m] &=&
+%(k{+}m\,\,\,\,k{+}m{-}1\,\ldots\,k{+}2\,\,\,\,k{+}1\,\,\,\,k)\\
+%c[k,m]  &=&
+%(k{-}m{+}1\,\,\,\,k{-}m{+}2\,\ldots\,k{-}1\,\,\,\,k\,\,\,\,k{+}1)
+%\end{eqnarray*}
+
+Let $w,w' \in S_{\infty}$.
+Write $w \rkm w'$ if
+there exist $a_1,b_1,\ldots,a_m,b_m$ such that
+\begin{enumerate}
+\item[(a)] $a_i\leq k <b_i$ for $1\leq i\leq m$ and
+$w' = w\cdot t_{a_1\,b_1}\cdots t_{a_m\,b_m}$,
+ \smallskip
+\item[(b)]  $\ell(w^{(i)}) = \ell(w) +i$,
+where $w^{(0)} = w$ and 
+$w^{(i)}=w^{(i-1)}\cdot t_{a_i\,b_i}$,
+ \smallskip
+\item[(c)] $w^{(1)}(a_1) <w^{(2)}(a_2)<\cdots <
+w^{(m)}(a_m)$.
+\end{enumerate}
+Equivalently, given any $a_1,\ldots,b_m$ satisfying (a) and (b), 
+$b_1,\ldots,b_m$ are distinct.
+Similarly, write $w\ckm w'$ 
+if we have such $a_1,b_1,\ldots,a_m,b_m$ where now
+$$
+w^{(1)}(a_1) >w^{(2)}(a_2)>\cdots >
+w^{(m)}(a_m).
+$$
+
+The range of summation in Monk's rule (\ref{eq:Monk}) generates a partial 
+order $\leq_k$ on $S_n$ by $w \leq_k w  t_{a\,b}$ whenever
+$a\leq k<b$ and $\ell(w t_{a\,b}) = \ell(w)+1$.
+We call it the {\em $k$-Bruhat order} 
+($k$-colored Ehresmano\"edre 
+in~\cite{Lascoux_Schutzenberger_Symmetry}).
+The data $(a_1,b_1), \ldots,(a_m,b_m)$ in the definition
+of $w\rkm w'$ describe a particular path from 
+$w$ to $w'$ in the $k$-Bruhat order.
+\bigskip
+
+
+\begin{thm} \label{thm:pieri_analog}
+Let $w\in S_{\infty}$ and $k,m$ be positive integers.
+Then we have
+\begin{enumerate}
+
+\item ${\displaystyle 
+{\frak S}_{w}\cdot {\frak S}_{r[k,m]} \ 
+= \sum_{w \rkm w'}
+{\frak S}_{w'}}$.
+\smallskip
+
+\item ${\displaystyle 
+{\frak S}_{w}\cdot {\frak S}_{c[k,m]} \ 
+= \sum_{w \ckm w'}
+{\frak S}_{w'}}$.
+
+\end{enumerate}
+\end{thm}
+
+This is in a different form than the original 
+statement in~\cite{Lascoux_Schutzenberger_polynomes_schubert}.
+Bergeron and Billey~\cite{Bergeron_Billey} 
+independently conjectured the above form.
+
+This form exposes a link between multiplying 
+Schubert polynomials and paths in the Bruhat order.
+Such a link is not unexpected.
+The Littlewood-Richardson rule
+for multiplying Schur functions may be expressed
+as a sum over certain paths in Young's lattice of 
+partitions.
+Lascoux and 
+Sch\"utzenberger~\cite{Lascoux_Schutzenberger_schubert_polynials_LR_rule} 
+give a procedure for multiplying Schur polynomials 
+based upon paths in the Bruhat order on $S_n$.
+A connection between paths in the Bruhat order and the 
+intersection theory of Schubert varieties is described
+in~\cite{Hiller_intersections}.
+We believe the eventual description of the structure 
+constants $c^w_{uv}$ will be in terms
+of paths of certain types in the  Bruhat order
+on $S_n$.
+
+
+
+We first establish the
+equivalence of the two formulas given in Theorem~\ref{thm:pieri_analog},  
+then prove the first formula by reducing it to the classical Pieri's rule.
+Our approach illustrates an unexpected link to the classical Pieri's rule, 
+allowing the elucidation of more structure constants.
+We conclude with a `path counting formula' generalizing
+Theorem~\ref{thm:pieri_analog} where
+${\frak S}_{r[k,m]}$ and ${\frak S}_{c[k,m]}$ are replaced by
+hook Schur polynomials.
+\smallskip
+
+We would like to thank Sara Billey who suggested these problems to us,
+Jean-Yves Thibon for indicating to us the work of Lascoux and 
+Sch\"utzenberger, and Nantel Bergeron for many stimulating discussions 
+about these results and possible extensions.
+
+\section{The Flag Variety}
+
+Let ${\Bbb F}(n)$ denote the variety of complete flags in ${\Bbb C}\,^n$, 
+that is
+$$
+{\Bbb F}(n) = 
+\{ \Edot : E_1\subset E_2\subset \cdots\subset E_n = {\Bbb C}\,^n \,|\,
+\dim{E_j} = j\}.
+$$
+A fixed flag $\Fdot$ determines a cell decomposition of ${\Bbb F}(n)$
+due to Ehresmann~\cite{Ehresmann}, which may be
+indexed by elements of $S_n$.
+The cell determined by $w \in S_n$ is 
+\medskip
+
+\noindent $\{ \Edot \,|\, \exists\, f_1,\ldots,f_n \mbox{ with }
+f_i \in F_{n+1-w(i)}-
+F_{n-w(i)} \mbox{ for }  1\leq i\leq n \mbox{ and }$
+
+\hfill
+$E_j = \Span\{f_1,\ldots,f_j\},\mbox{ for }  1\leq j\leq n\},$\medskip
+
+\noindent
+which has codimension $\ell(w)$.
+Its closure is the Schubert variety   $X_{w}\Fdot$.
+
+
+The cohomology classes\footnote{Strictly speaking, we mean the 
+classes Poincar\'e dual to the fundamental cycles in homology.}
+[$X_w\Fdot$] of the Schubert varieties $X_w\Fdot$ give 
+an integral basis for the cohomology ring of the flag 
+variety~\cite{Ehresmann}.
+Using Chern classes, Borel~\cite{Borel} gave an alternate description 
+of this ring as $H_n = {\Bbb Z}[x_1,\ldots,x_n]/{\cal S}$, 
+where ${\cal S}$ is the ideal generated by the symmetric polynomials.
+These two descriptions were reconciled by Demazure~\cite{Demazure}
+and Berstein-Gelfand-Gelfand~\cite{BGG}, who described 
+representatives for the cohomology classes of Schubert varieties.
+Later, Lascoux and 
+Sch\"utzenberger~\cite{Lascoux_Schutzenberger_polynomes_schubert}
+gave explicit polynomial representatives ${\frak S}_{w}$, called 
+Schubert polynomials.
+
+We utilize a few algebraic facts about these cohomology rings.
+Let $w_0$ be the longest element of $S_n$, that is,
+$w_0(j) = n{+}1{-}j$.
+Then 
+$X_{w_0}\Fdot = \{\Fdot\}$, so ${\frak S}_{w_0}$
+is the class of a point.
+The Schubert polynomial basis is a Poincar\'e dual basis;
+by this we mean  if 
+$\ell(w) + \ell(w') = \ell(w_0)$, then 
+$$
+{\frak S}_{w} \cdot {\frak S}_{w'}
+= \left\{\begin{array}{ll} {\frak S}_{w_0}&\mbox{ if }
+w' = w_0 w\\
+0 & \mbox{ otherwise} \end{array}\right.. %}
+$$
+There is also an involution induced by the map
+${\frak S}_{w} \longmapsto
+{\frak S}_{w_0ww_0}$.
+\smallskip
+
+
+We first observe that the two formulas in 
+Theorem~\ref{thm:pieri_analog} are equivalent.
+This follows easily from the next lemma.
+
+\begin{lemma}\mbox{ }
+
+\begin{enumerate}
+\item
+Let $w, w' \in S_n$.
+Then 
+$w \rkm w'$
+if and only if \ 
+$w_0ww_0 
+\stackrel{c[n-k,m]}{\relbar\joinrel\lllra} 
+w_0\,w'\,w_0$.
+\item $w_0\, r[k,m]\, w_0 = c[n-k,m]$.
+\end{enumerate}
+\end{lemma}
+
+Using Poincar\'e duality, formula (1) of Theorem~\ref{thm:pieri_analog}
+is equivalent to 
+$$
+{\frak S}_{w} \cdot {\frak S}_{w_0w'}
+\cdot {\frak S}_{r[k,m]} = 
+\left\{
+\begin{array}{ll}{\frak S}_{w_0}&\mbox{ if }
+w  \rkm  w'\\
+0 & \mbox{ otherwise} \end{array}\right. . %}
+$$
+Alternatively, 
+\begin{equation} \label{eq:structure_constants}
+c_{w\,r[k,m]}^{w'} = \left\{
+\begin{array}{ll} 1&\mbox{ if }
+w  \rkm  w'\\
+0 & \mbox{ otherwise} \end{array}\right. . %}
+\end{equation}
+
+To prove (3), fix $w$ and $w'$ in $S_n$.
+Note that
+$r[k,m] = t_{k\,k+1}\, t_{k\,k+2}\cdots t_{k\,k+m}$.
+Iterating Monk's rule  shows that ${\frak S}_{r[k,m]}$ is a summand of
+${\frak S}_{t_{k\,k+1}}^m$ with coefficient 1.
+Thus the coefficient of ${\frak S}_{w'}$ in the expansion of
+${\frak S}_w \cdot {\frak S}_{t_{k\,k+1}}^m$  exceeds the 
+coefficient of ${\frak S}_{w'}$ in ${\frak S}_w \cdot {\frak S}_{r[k,m]}$.
+The first coefficient is zero unless 
+$w\leq_k w'$ and $\ell(w') = \ell(w) +m$.
+Thus $c_{w\,r[k,m]}^{w'} = 0$ unless 
+$w\leq_k w'$ and $\ell(w') = \ell(w) +m$.
+\smallskip
+
+
+For the rest of this section, we will assume that $w\leq_k w'$ and 
+$\ell(w') = \ell(w) +m$.
+We will also refer to the accompanying data:
+integers $a_1,b_1,a_2,\ldots,a_m,b_m$ with $a_i\leq k <b_i$ where
+$w' = wt_{a_1\,b_1}\cdots t_{a_m\,b_m}$ and 
+$\ell(wt_{a_1\,b_1}\cdots t_{a_i\,b_i}) = \ell(w) +i$.
+\medskip
+
+We establish (\ref{eq:structure_constants}) using the cohomology
+of Grassmann varieties.
+The association of a flag $\Edot$ to its $k$-dimensional 
+part gives a map $\pi$ from the flag variety to the
+Grassmannian of $k$-dimensional subspaces in ${\Bbb C}\,^n$,
+$G(k,n)$.
+This induces a ring homomorphism $\pi^*$ from the 
+cohomology of $G(k,n)$ to that of the flag 
+variety.
+Algebraically, $\pi^*$ is  induced by the inclusion of symmetric polynomials
+in $x_1,\ldots,x_k$ into the ring ${\Bbb Z}[x_1,\ldots,x_n]$.
+There is also a covariant pushforward map $\pi_*$
+induced via Poincar\'e duality from the functorial map on homology.
+While $\pi_*$ is not a ring homomorphism,
+it does satisfy the following projection formula
+(see Example~8.17~of~\cite{Fulton_intersection}):
+For cohomology classes $\alpha$ on the flag variety and $\beta$ on
+$G(k,n)$, we have:
+\begin{equation}\label{eq:projection}
+\pi_* (\alpha \cdot \pi^* \beta) = \pi_*(\alpha) \cdot \beta.
+\end{equation}
+
+The cohomology ring of $G(k,n)$ is isomorphic to 
+a quotient of the ring of symmetric polynomials in 
+$x_1,\ldots,x_k$ by the ideal generated by all Schur polynomials
+$s_{\lambda}$ where the partition $\lambda$ satisfies
+$\lambda_1 > n-k$.
+The class of a point is $s_{(n-k)^k}$, where $(n{-}k)^k$ is 
+the partition with $k$ parts  each equal to $n-k$.
+For a partition $\lambda$ with $\lambda_1\leq n-k$ and 
+$\lambda_{k+1} = 0$, let $\lambda^c$ be the partition
+$(n-k-\lambda_k,\ldots,n-k-\lambda_1)$.
+Then $s_\lambda$ and $s_{\lambda^c}$ are Poincar\'e dual 
+cohomology classes.
+Let $\underline{m}$ be the partition $(m,0,\ldots,0)$.
+A key fact is that  $\pi^*(s_{\underline{m}}) = {\frak S}_{r[k,m]}$.
+For partitions $\mu$ and $\lambda$, write 
+$\lambda \stackrel{m}{\longrightarrow} \mu$ if $|\lambda|+m=|\mu|$
+and 
+$$
+\mu_1\geq\lambda_1\geq\mu_2\geq\cdots\geq\mu_k\geq\lambda_k.
+$$
+That is, if $\mu\supset \lambda$ and the skew diagram 
+$\mu/\lambda$ is a skew row of length $m$.
+
+The classical Pieri's rule states that for any 
+partitions $\lambda$ and $\mu$ with 
+$|\lambda|+m = |\mu|$,
+$$
+s_{\lambda}\cdot s_{\mu^c} \cdot s_{\underline{m}}\  = \ \left\{
+\begin{array}{ll} s_{(n-k)^k} & \mbox{ if }
+\lambda \stackrel{m}{\longrightarrow} \mu\\
+0 & \mbox{ otherwise}\end{array}
+\right . .
+$$
+
+We use geometry to prove the following:
+
+
+\begin{lemma}\label{lemma:pushforward}
+ Let $w<_k w'$ be permutations in $S_n$.
+Suppose  $w' = w t_{a_1\,b_1}\cdots t_{a_m\,b_m}$,
+where $a_i\leq k<b_i$, and 
+$\ell(w t_{a_1\,b_1}\cdots t_{a_i\,b_i}) = \ell(w)+i$.
+Then
+\begin{enumerate}
+\item There is a cohomology class $\delta$ on $G(k,n)$
+such that
+$\pi_*({\frak S}_w\cdot {\frak S}_{w_0w'}) = \delta \cdot s_{d^k}$,
+where $d = \#\{j>k\,|\, w(j) = w'(j)\} = 
+n-k-\#\{b_1,\ldots,b_m\}$.
+\smallskip
+\item If $w\rkm w'$, then there are partitions 
+$\mu \supset \lambda$ where $\mu/\lambda$ is a skew row of length $m$
+whose $j^{\mbox{\scriptsize th}}$ row 
+is equal to $\#\{i\,|\, a_i = j\}$
+and
+$\pi_*({\frak S}_w\cdot {\frak S}_{w_0w'}) = s_{\lambda}\cdot s_{\mu^c}$.
+\end{enumerate}
+\end{lemma}
+
+In our talk, we will not present a proof of this Lemma.
+A proof involving a mixture of 
+combinatorics, linear algebra and geometry may be found 
+in~\cite{sottile_Pieri_flag}.
+
+We deduce Theorem~\ref{thm:pieri_analog} from Lemma 3.
+Suppose $w\leq_k w'$ and $\ell(w') = \ell(w) +m$.
+We use $\pi_*$  to evaluate $c^{w'}_{w\,r[k,m]}$.
+Recall that $ c^{w'}_{w \,r[k,m]}$ is defined by 
+$$
+ c^{w'}_{w \,r[k,m]} {\frak S}_{w_0}
+\ = \ 
+{\frak S}_w\cdot {\frak S}_{w_0w'} \cdot {\frak S}_{r[k,m]}.
+$$
+As  ${\frak S}_{w_0}$ is the class of a point, 
+$\pi_*({\frak S}_{w_0})= s_{(n-k)^k}$. 
+Apply $\pi_*$ to obtain
+$$
+ c^{w'}_{w \,r[k,m]} s_{(n-k)^k} 
+\ =\ 
+\pi_*({\frak S}_w\cdot {\frak S}_{w_0w'} \cdot {\frak S}_{r[k,m]}).
+$$
+Since  $\pi^*(s_{\underline{m}}) = {\frak S}_{r[k,m]}$,
+we apply the projection formula (\ref{eq:projection}) to obtain
+$$
+c^{w'}_{w \,r[k,m]} s_{(n-k)^k} \ = \ 
+\pi_*({\frak S}_w\cdot {\frak S}_{w_0w'}) \cdot s_{\underline{m}}.
+$$
+Since $s_{\underline{m}}  s_{d^k} = 0$ unless $d+m \leq n-k$, we 
+apply part (1) of Lemma~\ref{lemma:pushforward} to see that 
+$$
+\pi_*({\frak S}_w\cdot {\frak S}_{w_0w'}) \cdot s_{\underline{m}}
+\  =\   \delta \cdot s_{d^k}\cdot s_{\underline{m}}\   =\   0,
+$$
+unless $\#\{b_1,\ldots,b_m\} = m$, that is unless
+$w\rkm w'$.
+Supposing $w\rkm w'$, part (2) of  Lemma~\ref{lemma:pushforward}
+and the classical Pieri's rule shows that 
+$$
+\pi_*({\frak S}_w\cdot {\frak S}_{w_0w'}) \cdot s_{\underline{m}}
+\  =\   s_{\lambda}\cdot s_{\mu^c}\cdot s_{\underline{m}}\   =
+\   s_{(n-k)^k},
+$$
+as $\mu/\lambda$ is a skew row of length $m$.
+This establishes Theorem~\ref{thm:pieri_analog}.
+
+
+\section{Connection to Pieri's Rule and Extensions}
+
+The formulas in Theorem~\ref{thm:pieri_analog} are the analogs of Pieri's rule
+for several reasons:
+\begin{enumerate}
+\item The Schubert polynomial ${\frak S}_{r[k,m]}$ 
+equals  $\pi^*(s_{\underline{m}})$.
+\item The structure constants in both are either 1 or 0.
+\item Theorem~\ref{thm:pieri_analog} is proven by reduction to 
+Pieri's rule.
+\end{enumerate}
+In~\cite{sottile_Pieri_flag}, we show the geometry of
+the classical Pieri's rule and Theorem~\ref{thm:pieri_analog} to be 
+nearly identical.   This is the unexpected link to Pieri's rule
+mentioned in \S 1.
+\medskip
+
+
+The computation of $\pi_*({\frak S}_w \cdot{\frak S}_{w_0w'})$
+in Lemma~\ref{lemma:pushforward} allows us to determine 
+more structure constants.
+To any partition $\nu$ with at most $k$ parts, associate
+a permutation 
+$$
+w(\nu)\  = \ 
+(\nu_k+1,\,\nu_{k-1}+2,\,\ldots,\,\nu_2+k-1,\,\nu_1+k,\,\ldots),
+$$
+the remaining entries written in increasing order.
+Then $\pi^*(s_{\nu}) = {\frak S}_{w(\nu)}$.
+
+\begin{thm} Let $w\in S_n$ and $k,m$ be integers. 
+Suppose  $w\leq_k w'$ and $\ell(w') = \ell(w) +m$.
+Let $a_1,b_1,\ldots,a_m,b_m$ be such that 
+$a_i\leq k <b_i$ where $w' = w t_{a_1\,b_1}\cdots t_{a_m\,b_m}$ 
+and $\ell(w t_{a_1\,b_1}\cdots t_{a_i\,b_i}) = \ell(w) +i$.
+Then
+\begin{enumerate}
+\item  Suppose $w\rkm w'$.
+For any partition
+$\nu$, the structure constant $c^{w'}_{w\, w(\nu)}$
+equals the Littlewood-Richardson coefficient
+$c^\mu_{\lambda\,\nu}$, where $\mu/\lambda$ is a skew row of length
+$m$, whose $j^{\mbox{\scriptsize th}}$ row has length 
+$\mu_j - \lambda_j \ = \ \#\{i \,|\, a_i = j\}$.
+\item
+ Suppose $w\ckm w'$.
+For any partition
+$\nu$, the structure constant $c^{w'}_{w\, w(\nu)}$
+equals the Littlewood-Richardson coefficient
+$c^\mu_{\lambda\,\nu}$, where $\mu/\lambda$ is a skew column of length
+$m$, whose $j^{\mbox{\scriptsize th}}$ column has length
+$\#\{i \,|\, b_i=j\}$.
+\end{enumerate}
+\end{thm}
+
+\noindent{\bf Proof:} Using the involution
+${\frak S}_{w} \longmapsto {\frak S}_{w_0\,w\,w_0}$, it suffices to 
+prove part (1).
+We use  part (2) of Lemma~\ref{lemma:pushforward} to 
+evaluate $c^{w'}_{w\,w(\nu)}$. 
+Recall that ${\frak S}_{w(\nu)} = \pi^*(s_\nu)$.  Then 
+\begin{eqnarray*}
+c^{w'}_{w\,w(\nu)}\, s_{(n-k)^k}\   =\  
+\pi_*(c^{w'}_{w\,w(\nu)}\,  {\frak S}_{w_0}) &=&
+\pi_*({\frak S}_w\cdot{\frak S}_{w_0w'}\cdot {\frak S}_{w(\nu)})\\
+%&=& \pi_*({\frak S}_w\cdot{\frak S}_{w_0w'}\cdot \pi^* s_\nu)\\
+&=& \pi_*({\frak S}_w\cdot{\frak S}_{w_0w'}) \cdot s_\nu\\
+&=& s_\lambda \cdot s_{\mu^c}\cdot s_\nu\\
+&=& c^{\mu}_{\lambda\nu}\,  s_{(n-k)^k}. \ \ \ \  \QED
+\end{eqnarray*}
+
+In multiset notation for partitions,  $(p,1^{(q-1)})$ 
+is the hook shape partition whose first row has length $p$ and 
+first column has length $q$.
+Define
+$$
+h[k;\,p,q] \   =\   w(p,1^{(q-1)}).
+$$
+%In cycle notation,
+%$$
+%h[k;p,q] = (k{-}q{+}1\,\,\,k{-}q{+}2\,\ldots\,k{-}1\,\,\,
+%k\,\,\,k{+}p\,\,\,k{+}p{-}1\,\ldots\,k{+}1).
+%$$
+
+We use Theorem~\ref{thm:pieri_analog} to deduce the following
+formula for multiplication of an arbitrary Schubert polynomial
+${\frak S}_w$ by the hook symmetric function 
+${\frak S}_{h[k;\,p,q]} =  \pi^*(s_{(p,1^{(q-1)})})$.
+
+\begin{thm}
+Let $q\leq k$ and $k{+}p \leq n$ be integers.
+Set $m = p{+}q{-}1$.
+For $w\in S_n$,
+$$
+{\frak S}_w \cdot {\frak S}_{h[k;\,p,q]} \   =\  
+\sum {\frak S}_{w\, t_{a_1\,b_1}\cdots t_{a_m\,b_m}},
+$$
+the sum over all $a_1,b_1,\ldots,a_m,b_m$ with 
+$w^{(i)} = w t_{a_1\,b_1}\cdots t_{a_m\,b_m}$ where
+\begin{enumerate}
+\item[(a)] For $1\leq i\leq m$, we have $a_i \leq k < b_i$
+and $\ell(w^{(i)}) = \ell(w) +i$.
+\smallskip
+\item[(b)] $w^{(1)}(a_1) < \cdots < w^{(p)}(a_p)$ and
+$w^{(p)}(a_p) > w^{(p{+}1)}(a_{p{+}1})>\cdots > w^{(m)}(a_m)$.
+\end{enumerate}
+Alternatively, condition $(\mbox{\rm b})$ for the summation may be replaced by
+\begin{enumerate}
+\item[(b$'$)] 
+$w^{(1)}(a_1) > \cdots > w^{(q)}(a_q)$ and
+$w^{(q)}(a_q) <\cdots < w^{(m)}(a_m)$.
+\end{enumerate}
+\end{thm}
+
+\noindent{\bf Proof:}
+Consider the formula involving Schur polynomials
+in variables $x_1,\ldots, x_k$:
+$$
+s_{\underline{p}}\, \cdot \, s_{1^{(q-1)}} \   = \  
+s_{(p{+}1,1^{(q-2)})} \, + \, s_{(p,1^{(q-1)})}.
+$$
+Expressing these as Schubert polynomials (applying $\pi^*$), we have:
+$$
+{\frak S}_{r[k,p]}\, \cdot\, {\frak S}_{c[k,q{-}1]}
+\   =\   {\frak S}_{h[k;\,p{+}1,q{-}1]}  +
+{\frak S}_{h[k;\,p,q]}.
+$$
+
+To establish the Theorem, fix $m$ and use downward induction  
+on either $p$ or $q$, 
+using this formula and Theorem~\ref{thm:pieri_analog}.
+\QED
+
+
+
+
+\section*{Appendix: Schubert Polynomials}
+
+In~\cite{BGG,Demazure} cohomology classes of Schubert subvarieties of 
+the flag manifold were obtained from the class of a point using repeated 
+correspondences in ${\Bbb P}^1$-bundles.
+Subsequently, Lascoux and 
+Sch\"utzenberger~\cite{Lascoux_Schutzenberger_polynomes_schubert} 
+showed it was possible to find explicit polynomial representatives.
+
+This has given rise to the present algebraic and combinatorial 
+theory of Schubert polynomials.
+We outline their construction of Schubert polynomials; for a 
+more complete 
+account see~\cite{Macdonald_schubert}.
+
+
+For each integer $n>1$, let $R_n = {\Bbb Z}[x_1,\ldots,x_n]$.
+The polynomial ring $R_n$ is graded by the total degree of a monomial.
+The symmetric group $S_n$ acts on $R_n$ by permuting the variables.
+Let $f\in R_n$  and  $s_i = t_{i\,i{+}1}$ be an adjacent 
+transposition.
+The polynomial
+$f - s_i f$ is anti-symmetric in $x_i$ and $x_{i+1}$,
+and so is 
+divisible by $x_i - x_{i+1}$.
+Thus we define the linear {\em divided difference} operator 
+$$
+\partial_i = (x_i-x_{i+1})^{-1} (1 - s_i).
+$$
+This operator has degree $-1$. 
+If $f$ is symmetric in $x_i$ and $x_{i+1}$, then $\partial_i f$ is zero.
+Otherwise, $\partial_i f$ is symmetric in $x_i$ and $x_{i+1}$.
+The divided differences satisfy
+\begin{eqnarray*}
+\partial_i\circ \partial_i & = & 0 \\
+\partial_i \circ\partial_j &=& \partial_j \circ \partial_i \ \ \ 
+\ \ \ \ \ \ \ \ \ \ \mbox{ if } |i-j|\geq 2\\
+\partial_i\circ\partial_{i+1}\circ\partial_i & = &
+\partial_{i+1}\circ\partial_i\circ\partial_{i+1}
+\end{eqnarray*}
+Thus, if $a = (a_1,\ldots,a_p)$ is a reduced word for a permutation
+$w$, then the composition of divided differences 
+$\partial_a = \partial_{a_1}\circ\cdots\circ\partial_{a_p}$
+depends only upon $w$ and not upon $a$.  
+This defines operators $\partial_{w}$ for each $w\in S_n$.
+
+Let $w_0$ be the longest permutation in $S_n$, that is
+$w_0(j) = n{+}1{-}j$.
+For $w \in S_n$, define the Schubert polynomial ${\frak S}_{w}$
+by
+$$
+{\frak S}_{w} = \partial_{w^{-1}w_0}
+\left( x_1^{n-1} x_2^{n-2}\cdots x_{n-1} \right).
+$$
+Recently other, more combinatorial descriptions have been discovered 
+for the Schubert 
+polynomials~\cite{Bergeron,BJS,Fomin_Kirillov}.
+In each of these a class of combinatorial objects is 
+defined with a rule for associating
+a monomial to each object.
+Given a permutation $w$, a finite set of these combinatorial
+objects is constructed.
+Then it is proven that the Schubert polynomial ${\frak S}_{w}$
+is the sum of all monomials obtained from that set
+(counting multiplicities).
+This is in the same spirit as the tableaux 
+theoretic description of 
+symmetric polynomials given by Lascoux and 
+Sch\"utzenberger~\cite{Lascoux_Schutzenberger_monoid_plactic}.
+
+The polynomial ${\frak S}_{w}$ is homogeneous of degree
+$\ell(w)$, and is independent of which $n$ was chosen, thus
+${\frak S}_{w}$ is well defined for each $w\in S_{\infty}$.
+Here $S_\infty = \bigcup_{n=1}^\infty S_n$, the group of permutations of the 
+positive integers which fix all but finitely many integers.
+
+If $w$ has a unique {\em descent} ($j$ such that $w(j) >
+w(j{+}1)$) at $k$, then $w$ is said to be {\em Grassmannian} 
+with descent $k$
+and ${\frak S}_{w}$ is the Schur polynomial 
+$s_{\lambda(w)}(x_1,\ldots,x_k)$.
+Here $\lambda(w)$ is the partition 
+$(\lambda_1\geq\cdots\geq\lambda_k)$ 
+with $k$ parts where 
+$\lambda_{k-j+1} = w(j){-}j$.
+A permutation $w\in S_n$ is represented as the sequence 
+$(w(1),w(2),\ldots)$ of its values.
+A partition $\lambda$ with at most $k$ parts determines
+a Grassmannian permutation $w(\lambda)$ with descent at $k$: 
+$$
+w(\lambda) = 
+(1{+}\lambda_k,2{+}\lambda_{k-1},\ldots,k{+}\lambda_1,\ldots),
+$$
+the remaining entries written in increasing order.
+If we define
+\begin{eqnarray*}
+r[k,m] &=&
+(1,2,\ldots,k{-}1,\,k{+}m,\,\,k,\,k{+}1,\ldots,k{+}m{-}1,
+\,k{+}m{+}1,\ldots)\\
+c[k,m] &=&
+(1,2,\ldots,k{-}m,\,k{-}m{+}2,\ldots,k{+}1,\,\,k{-}m{+}1,\,k{+}2,\ldots),
+\end{eqnarray*}
+then $r[k,m]$ and $c[k,m]$ are Grassmannian permutations
+with descent at $k$,  and we have 
+$\lambda(r[k,m]) = (m,0,\ldots,0)$ and
+$\lambda(c[k,m]) = (1^m)$, a single column of length $m$.
+
+The set $\{{\frak S}_{w}\,|\, w\in S_n\}$ is an
+integral basis for 
+the $\Bbb Z$-module 
+$$
+H_n \ =\  {\Bbb Z}\langle x_1^{i_1}\cdots x_{n-1}^{i_{n-1}}\,|\, i_j \leq n{-}j
+\rangle \   \subset \   {\Bbb Z}[x_1,\ldots,x_n],
+$$ 
+which is a complete transversal to the ideal ${\cal S}$ generated by the 
+non-constant symmetric functions.
+As $\Bbb Z$-modules, $H_n \simeq {\Bbb Z}[x_1,\ldots,x_n]/{\cal S}$.
+Allowing $n$ to increase shows 
+ $\{{\frak S}_{w}\,|\, w\in S_\infty\}$ is an integral 
+basis for $R_\infty = {\Bbb Z}[x_1,x_2,\ldots]$.
+Given any formula involving finitely many Schubert polynomials
+(as in the statement of Theorem~\ref{thm:pieri_analog}),
+there is a positive integer $n$ such that $H_n$ contains all the Schubert 
+polynomials appearing in that formula.
+Thus it is no loss of generality in proving formulas in the rings 
+${\Bbb Z}[x_1,\ldots,x_n]/{\cal S}$.
+This is the approach we take in \S\S1--3.
+
+\begin{thebibliography}{10}
+
+\bibitem[1]{Bergeron}
+{\sc N.~Bergeron}, {\em A combinatorial construction of the {S}chubert
+  polynomials}, J. Combin. Theory, Ser. A, 60 (1992), pp.~168--182.
+
+\bibitem[2]{Bergeron_Billey}
+{\sc N.~Bergeron and S.~Billey}, {\em {R}{C}-{G}raphs and {S}chubert
+  polynomials}, Experimental Math., 2 (1993), pp.~257--269.
+
+\bibitem[3]{BGG}
+{\sc I.~N. Bernstein, I.~M. Gelfand, and S.~I. Gelfand}, {\em Schubert cells
+  and cohomology of the spaces {$G/P$}}, Russian Mathematical Surveys, 28
+  (1973), pp.~1--26.
+
+\bibitem[4]{BJS}
+{\sc S.~Billey, W.~Jockush, and R.~Stanley}, {\em Some combinatorial properties
+  of {S}chubert polynomials}, J. Algebraic Combinatorics, 2 (1993),
+  pp.~345--374.
+
+\bibitem[5]{Borel}
+{\sc A.~Borel}, {\em Sur la cohomologie des espaces fibr\'es principaux et des
+  espaces homog\`enes des groupes de {L}ie compacts}, Ann. Math., 57 (1953),
+  pp.~115--207.
+
+\bibitem[6]{Chevalley58}
+{\sc C.~Chevalley}, {\em Sur les d\'ecompositions cellulaires des espaces
+  $g/b$}.
+\newblock unpublished manuscript, 1958.
+
+\bibitem[7]{Demazure}
+{\sc M.~Demazure}, {\em D\'esingularization des vari\'et\'es de {S}chubert
+  g\'en\'eralis\'ees}, Ann. Sc. E. N. S. (4), 7 (1974), pp.~53--88.
+
+\bibitem[8]{Ehresmann}
+{\sc C.~Ehresmann}, {\em Sur la topologie de certains espaces homog\`enes},
+  Ann. Math., 35 (1934), pp.~396--443.
+
+\bibitem[9]{Fomin_Kirillov}
+{\sc S.~Fomin and A.~Kirillov}, {\em {Y}ang-{B}axter equation, symmetric
+  functions and {S}chubert polynomials}, Adv. Math., 103 (1994), pp.~196--207.
+
+\bibitem[10]{Fulton_intersection}
+{\sc W.~Fulton}, {\em Intersection Theory}, Ergebnisse der Math. 2,
+  Springer-Verlag, 1984.
+
+\bibitem[11]{Hiller_intersections}
+{\sc H.~Hiller}, {\em Combinatorics and intersections of {S}chubert varieties},
+  Comment. Math. Helvetica, 57 (1982), pp.~41--59.
+
+\bibitem[12]{Lascoux_Schutzenberger_monoid_plactic}
+{\sc A.~Lascoux and M.-P. Sch{\"u}tzenberger}, {\em Le m{ono\"{\i}d} plaxique},
+  in Non-Commutative Structures in Algebra and Geometric Combinatorics,
+  Quaderni de {``la ricerca scientifica,''} {\bf 109} Roma, CNR, 1981,
+  pp.~129--156.
+
+\bibitem[13]{Lascoux_Schutzenberger_polynomes_schubert}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Polyn{\^o}mes de
+  {S}chubert}, C. R. Acad. Sci. Paris, 294 (1982), pp.~447--450.
+
+\bibitem[14]{Lascoux_Schutzenberger_Symmetry}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em Symmetry and flag
+  manifolds}, in Invariant Theory, ({M}ontecatini, 1982), Springer--Verlag,
+  1983, pp.~118--144.
+\newblock {L}ecture {N}otes in {M}athematics 996.
+
+\bibitem[15]{Lascoux_Schutzenberger_schubert_polynials_LR_rule}
+\leavevmode\vrule height 2pt depth -1.6pt width 23pt, {\em {S}chubert
+  polynomials and the {L}ittlewood-{R}ichardson rule}, Lett. Math. Phys., 10
+  (1985), pp.~111--124.
+
+\bibitem[16]{Macdonald_schubert}
+{\sc I.~G. Macdonald}, {\em Notes on {S}chubert Polynomials}, Laboratoire de
+  combinatoire et d'informatique math\'ematique {(LACIM)}, Universit\'e du
+  Qu\'ebec \`a Montr\'eal, Montr\'eal, 1991.
+
+\bibitem[17]{Monk}
+{\sc D.~Monk}, {\em The geometry of flag manifolds}, Proc. London Math. Soc., 9
+  (1959), pp.~253--286.
+
+\bibitem[18]{sottile_Pieri_flag}
+{\sc F.~Sottile}, {\em {P}ieri's rule for flag manifolds and 
+Schubert polynomials},
+\newblock Annales d'Institut Fourier, Grenoble, 46 no. 1 (1996), pp. 1--22.
+
+\end{thebibliography}
+
+\end{document}
+
+

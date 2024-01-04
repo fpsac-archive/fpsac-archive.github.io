@@ -1,0 +1,1213 @@
+From tonyg@ms.unimelb.edu.au Thu Jul  2 00:18:42 1998
+Received: from mail.liafa.jussieu.fr (liafa1.liafa.jussieu.fr [132.227.81.128]) by young.liafa.jussieu.fr (8.6.10/8.6.6) with ESMTP id AAA06656 for <cp@young.liafa.jussieu.fr>; Thu, 2 Jul 1998 00:18:39 +0100
+Received: from isis.lip6.fr (isis.lip6.fr [132.227.60.2])
+          by mail.liafa.jussieu.fr (8.8.6/jtpda-5.2) with ESMTP id AAA17650
+          for <Claude.Precetti@liafa.jussieu.fr>; Thu, 2 Jul 1998 00:15:16 +0200 (MET DST)
+Received: from mulga.cs.mu.OZ.AU (mulga.cs.mu.OZ.AU [128.250.1.22])
+          by isis.lip6.fr (8.8.8/jtpda-5.2.9.1+lip6) with ESMTP id AAA20587
+          for <Claude.Precetti@liafa.jussieu.fr>; Thu, 2 Jul 1998 00:14:59 +0200 (MET DST)
+Received: from mundoe.ms.unimelb.EDU.AU (mundoe.maths.mu.OZ.AU [128.250.35.32]) by mulga.cs.mu.OZ.AU with ESMTP
+	id IAA22621 for <Claude.Precetti@liafa.jussieu.fr>; Thu, 2 Jul 1998 08:14:47 +1000 (EST)
+Received: by mundoe.ms.unimelb.EDU.AU (8.8.8)
+	id IAA06531; Thu, 2 Jul 1998 08:14:46 +1000 (EST)
+Date: Thu, 2 Jul 1998 08:14:46 +1000 (EST)
+From: tonyg@ms.unimelb.edu.au (Tony Guttmann)
+Message-Id: <199807012214.6531@mundoe.ms.unimelb.EDU.AU>
+To: Claude.Precetti@liafa.jussieu.fr
+Status: R
+
+%\documentstyle[prl,aps,floats]{revtex}
+\documentstyle[11pt]{article}
+%\vofsett=-1.9cm
+%\hofsett=-1.3cm
+%\textwidth=16.5cm
+%\topmargin=5cm
+\textheight=22.0cm
+%\renewcommand{\baselinestretch}{1.0}
+\newcommand{\D}{\Delta}
+\newcommand{\cs}{correction-to-scaling}
+%\draft
+\begin{document}
+\title{Indicators of solvability for lattice models}
+\author{ A J Guttmann  \\
+Department of Mathematics \& Statistics, The University of Melbourne\\
+Parkville, Vic. 3052, Australia}
+\date{\today}
+\maketitle
+\bibliographystyle{plain}
+\begin{abstract}
+We present a numerical method, based on exact series expansions,
+that distinguishes between lattice-based models both in combinatorics
+and statistical mechanics that are likely to be solvable in
+terms of standard functions of mathematical physics, and those
+that possess a natural boundary in a suitably defined complex
+plane. This latter class cannot
+therefore be algebraic, nor differentiably finite
+nor constructably differentiably algebraic.
+Known solutions in this latter case are all expressed as
+$q$-generalisations of standard functions.
+ \end{abstract}
+%\pacs{75.10.Hk, 61.41.+e, 64.60.Fr, 05.50.+q}
+\section{Introduction}
+\label{Intro}
+Some of the most famous results in mathematics involve a proof
+of the intrinsic unsolvability of certain problems. Some, such
+as `trisecting an angle' are of long standing, while others, such
+as the lack of integer solutions to the equation $x^n + y^n = z^n$
+for $n > 2$  have only quite recently been acceptably
+proved \cite{Wil}. In mathematical physics and combinatorics
+such results concerning the solvability or otherwise of problems
+are largely unknown. In this article we take a
+first step in addressing this absence by presenting and developing
+what is essentially a numerical method that provides, at worst,
+strong evidence that a problem has no solution within a large
+class of functions, including algebraic,  differentiably finite
+(D-finite) \cite{Stan80,Lip89} and at least a sub-class \cite{Berg90} of 
+differentially algebraic functions, called {\em constructably
+differentiably algebraic}  $(CDA).$  Since most
+of the special functions of mathematical physics --- in terms of
+which most known solutions are given --- are differentiably finite,
+this exclusion renders the problem unsolvable within this class.
+Throughout this article I will use the term {\em D-unsolvable}
+to mean that the problem has no solution within the class of
+D-finite functions as well as the sub-class of
+differentiably algebraic functions described above.
+
+
+In fact, the exclusion is wider than this, as we show that the
+solutions  possess a natural boundary on the unit circle in an
+appropriately defined complex plane. This excludes not only
+D-finite functions, but a number of others as well --- though we
+have no simple way to describe this excluded class.
+
+It may be worthwhile to recall the definitions of these classes of
+functions.
+A series $f(z)$ is said to be {\em differentiably finite}
+if there exists an integer $k$ and polynomials $P_0(z), \cdots, P_k(z)$
+with complex coefficients such that $P_0(z)$ is not the null polynomial and
+$$P_0(z)f(z) + P_1(z)f'(z) + \cdots + P_k(z)f^{(k)}(z) = 0. $$ 
+A series $f(z)$ is said to be {\em differentiably algebraic}
+if there exists an integer $k$ and a polynomial $P$ in $k+1$ variables
+with complex coefficients, such that
+$$P(f(z),f'(z), \cdots, f^{(k)}(z)) = 0.$$
+A series $f(z)$ is said to be {\em constructably differentiably algebraic}
+if there exists both series $f_1(z), f_2(z), \cdots , f_k(z)$ with $f = f_1,$
+and  polynomials $P_1, P_2, \cdots, P_K$ in $k$-variables, with
+complex coefficients, such that
+\begin{eqnarray}
+f_1' &=& P_1(f_1,f_2,\cdots,f_k),\\
+f_2' &=& P_2(f_1,f_2,\cdots,f_k), \nonumber \\
+     &  & \cdots \nonumber \\
+f_k' &=& P_k(f_1,f_2,\cdots,f_k).\nonumber
+\end{eqnarray}
+Differentiably algebraic functions in several variables are discussed
+in \cite{Lip89}.
+
+
+
+The method which we shall describe and which can, in favourable circumstances,
+be sharpened
+into a formal proof, has been applied to a wide variety of
+problems in both statistical mechanics and combinatorics. An
+underlying requirement is that the problem admits to a
+combinatorial formulation requiring the enumeration of graphs
+on a lattice.
+Typically, the solution of the problem will require the calculation
+of the graph generating function in terms of some parameter,
+such as perimeter, area, number of bonds or sites. A key first step is to
+{\em anisotropise} the generating function. For example, if
+counting graphs by the number of bonds on, say, an underlying
+square lattice, one distinguishes between horizontal and vertical bonds.
+In this way, one can construct a two-variable generating function,
+$G(x,y) = \sum_{m,n} g_{m,n} x^m y^n$ where $g_{m,n}$ denotes
+the number of graphs with $m$ horizontal and $n$ vertical bonds.
+Summing over one of the variables, we may write
+\begin{equation}
+G(x,y) = \sum_{m,n} g_{m,n} x^m y^n = \sum_n H_n(x) y^n 
+\end{equation}
+where $H_n(x)$ is the generating function for the relevant
+graphs with $n$ vertical bonds. It has been observed in all
+the problems so far studied, that the so called {\em $H$ functions}
+are rational, with denominator zeros lying on the unit circle in 
+the complex $x$ plane.
+
+In some cases one finds only a small finite number (typically
+one or two) of denominator zeros on the unit circle. Loosely
+speaking, this is the hallmark of a solvable problem. If, as is
+often observed, the denominator zeros become dense on the unit circle
+as $n$ increases, so that in the limit a natural boundary
+is formed, then this is the hallmark of a D-unsolvable problem.
+
+The significance of this observation is substantial. It is observed
+ that, as
+$n$ increases, the denominators of $H_n(x)$ contain zeros given by 
+steadily higher roots of unity.  Hence
+the structure of the functions $H_n(x)$ is that of a rational function
+whose poles all lie on the unit circle in the complex $x$-plane, such
+that the poles become dense on the unit circle as $n$ gets large. This
+behaviour implies that the functions $H_n(x)$ and
+hence $G(x,y)$ as a function of $x$ for $y$ fixed, (a) have a
+natural boundary (b) are neither algebraic nor D-finite, nor $CDA.$
+
+Of course, we are primarily interested in the solution of the 
+{\em isotropic} case, when $x = y,$ and it is clear that the
+anisotropic case can behave quite differently from the isotropic
+case. This is most easily seen by construction. Consider the
+function
+\begin{equation}
+f(x,y) = f_1(x,y) + (x-y)f_2(x,y),
+\end{equation}
+where $f_1(x,y)$ is D-finite and $f_2(x,y)$ is not. 
+Clearly, the function $f(x,y)$ is not D-finite, while $f(x,x)$ is D-finite.
+However, in all the cases we have studied where the solutions are known, 
+the effect of anisotropisation {\em does not} change the analytic structure
+of the solution. Rather, it simply moves singularities around in
+the complex plane, at most causing the bifurcation of a real singularity
+into a complex pair. This can readily be seen from equation~\ref{mag},
+ given below,
+for the magnetisation of the Ising model. Replacing $y$ by $\lambda x$ and
+varying $\lambda$ merely causes the singularities to move smoothly,
+and indeed initially linearly, with $\lambda$ in the complex plane.
+Further, for unsolved problems, numerical procedures indicate that
+a similar behaviour prevails. Nevertheless, this remains an observation,
+rather than an established fact, and, strictly speaking, should
+be established for each new problem.
+
+If we now ask what functions {\em do} display the type of behaviour
+we have just observed - a build up of singularities on the unit
+circle in the complex plane, then
+the most obvious candidate that displays this behaviour is the $q$-
+generalisation of the standard functions of mathematical physics. We
+have seen these in a number of solutions already, such as the hard
+hexagon model \cite{BHH}, certain interacting walk models \cite{OP}
+and some polygon models \cite{BM}. 
+An explicit example is given immediately below.
+
+That being said, not all problems with a small number of
+denominator zeros have been solved, while some D-unsolvable
+problems have been solved. In the former case however we
+believe that it is only a matter of time before a solution is found
+for these problems, while in the latter case the solutions
+have usually been expressed in terms of $q$-generalisations of the
+standard functions, which are of course not D-finite.
+As an example, the generating function for the
+number of parallelogram polygons given
+in terms of the area ($q$), horizontal semi-perimeter ($x$)
+and vertical semi-perimeter ($y$) is \cite{BV92}
+\begin{eqnarray}
+G(x,y,q) &=& y\frac{J_1}{J_0} \mbox{  where} \\
+J_1(x,y,q) &=& \sum_{n \ge 1} \frac{(-1)^{n-1}x^nq^{n+1 \choose
+2}}{(q)_{n-1}(yq)_n} \mbox{ and }\\ 
+J_0(x,y,q) &=& \sum_{n \ge 0} \frac{(-1)^nx^nq^{n+1 \choose
+2}}{(q)_n(yq)_n}.
+\end{eqnarray}
+In this case, it is clear that if we look at $G(x,1,q)$ in the
+complex $q$-plane with $x$ held fixed, the solution possesses a 
+natural boundary on the unit circle.
+
+
+We suggest that this method is a particularly useful first step in the
+study of such problems. One anisotropises, generates enough
+terms in the generating function to be able to construct
+the first few $H$ functions, then studies the denominator pattern.
+If it appears that the zeros are becoming dense on the unit
+circle, one has good reason to believe
+that the problem is D-unsolvable. If on
+the other hand there are only one or two zeros, one is in an
+excellent position to seek the solution in terms of the
+standard functions of mathematical physics --- loosely defined
+as those described in \cite{AS}. In some cases one may be able
+to {\em prove} that the observed denominator pattern persists.
+In that case, one has proved the observed results.
+
+The construction of the $H$ functions deserves some explanation. 
+At very low order this can often be done exactly, by combinatorial
+arguments based on the allowed  graphs. Beyond this, our
+method is to generate the coefficients in the expansion, {\em assume}
+it is rational, then by essentially constructing the Pad\'e approximant
+one can conjecture the solution. Typically, one might generate 50-100
+terms in the expansion and find a rational function with numerator
+and denominator of perhaps degree 5 or 10. Thus the first 10 or 20 terms of
+the series are used to identify the rational function, the remainder
+are used to confirm it. Hence while this is not a derivation that proves
+that the function is rational,
+the chance of it being irrational is extraordinarily small.
+
+It should be said explicitly that this technique is computationally
+demanding. That is to say, the generation of sufficient terms
+in the generating function is usually quite difficult. Only
+with improved algorithms --- most notably the combination of
+the finite lattice method \cite{Neef77,Ent97} with a transfer matrix
+formulation --- and computers with large physical memory that 
+are needed for the efficient implementation of such algorithms,
+has it been possible to obtain expansions of the required length
+in a reasonable time. The technique is still far from routine,
+with each problem requiring a significant calculational effort.
+
+An additional, and exceptionally valuable feature of the
+method comes when the numerical work, described above, is
+combined
+with certain functional relations that the anisotropised
+generating functions must satisfy. In the language of
+statistical mechanics, these key functional relations are
+called {\em inversion relations} and imply a connection
+between the generating function and its analytic continuation,
+usually involving the reciprocal of one or more of the expansion
+variable(s). As we show below, the existence of these inversion
+relations, coupled with any obvious symmetries (usually
+a symmetry with respect to the interchange of $x$ and $y$),
+coupled with the {\em observed} behaviour of the $H$ functions ---
+described above --- can yield an {\em implicit} solution to
+the underlying problem with no further calculation. An
+example of this is the solution \cite{Bax80} of the zero-field
+free energy of the two-dimensional Ising model.
+
+In the remainder of this article, we describe the method
+in considerable detail in a few cases, then go on to apply
+it to a range of problems in statistical mechanics and
+combinatorics. We also take the first steps in extending
+the inversion relation idea from its natural home in
+statistical mechanics to the arena of combinatorics --- where
+it sits less naturally due to the absence of an underlying
+Hamiltonian, the symmetries of which give rise to the
+inversion relation.
+It is comforting to discover that, without exception, the
+unsolved problems we discuss are all found to be D-unsolvable.
+
+Other important aspects of the method, such as the connection of these
+ideas with concepts of integrability,  and with the existence of
+a Yang-Baxter equation are not explored here.
+
+\section{The Ising model free energy and magnetisation}
+\label{Ising}
+
+The one-dimensional Ising model consists of a chain of $N$ spins, each
+of which may point up or down,  denoted
+$\mu_i=\pm 1, \mbox{  } i=1,\cdots N.$  Each spin interacts 
+only
+with nearest-neighbour spins with interaction strength $J$
+and with an external magnetic field, with interaction strength $H.$
+This model is described \cite{Tho} by the Hamiltonian
+\begin{equation}
+{\mathcal H} = -J \sum_{<i,j>} \mu_i \mu_j - H\sum_{i=1}^N \mu_i 
+\end{equation}
+where the first sum is over nearest-neighbour pairs. Imposing cyclic
+boundary conditions, so that $\mu_{N+1} = \mu_1$ allows us to write
+the first sum explicitly as $\sum_{i=1}^N \mu_i \mu_{i+1}.$
+
+The partition function, in the thermodynamic limit, is defined by
+$$\lim_{N \rightarrow \infty} Z(N,T)^{\frac{1}{N}},$$
+where
+$$Z(N,T) = \sum_{\mu_1=\pm 1}  \sum_{\mu_1=\pm 2} \cdots
+\sum_{\mu_N=\pm 1} \exp(-\beta {\mathcal H}) $$
+and $\beta = 1/k_BT$ where $k_B$ is Boltzmann's constant.
+
+This multiple sum can be expressed as an iterated matrix product \cite{Tho}
+and the problem then reduces to finding the eigenvalues of a $2 \times 2$ matrix.
+
+The result is
+\begin{equation}
+Z(K,H) = \exp(K)\cosh H + \sqrt{\exp(2K)\sinh^2H + \exp(-2K)}
+\end{equation}
+where $K = \beta J.$ It can readily be verified that the partition
+function satisfies a so called {\em inversion relation}
+\begin{equation}
+Z(K,H)Z(K+\frac{i\pi}{2},-H) = 2i\sinh(2K),
+\end{equation}
+which connects the partition function and its analytic continuation.
+
+In two dimensions the problem is substantially more difficult \cite{Tho}.
+If we take a lattice of $M$ rows and $N$ columns, then 
+ the first term in the Hamiltonian now becomes a double sum
+ \begin{equation}
+J_1\sum_{i=1}^{M-1} \sum_{j=1}^N \mu_{i,j} \mu_{i+1,j} +J_2 \sum_{i=1}^M \sum_{j=1}^N \mu_{i,j} \mu_{i,j+1},
+\end{equation}
+where cylindrical boundary conditions have been imposed, so that
+$\mu_{i,N+1}=\mu_{i,1}, \mbox{    } i=1,2,\cdots,M.$
+
+The calculation of the partition function now involves the diagonalization
+of a $2^M \times 2^M$ matrix in the limit as $M \rightarrow \infty,$
+a calculation which has only been carried out \cite{Ons}, \cite{Tho} in
+the case of zero magnetic field ($H=0$). In the limit of an infinitely
+large lattice ($\lim_{M,N} \rightarrow \infty$) one finds
+$$\log Z(K_1,K_2) = \log 2 + \frac{1}{2\pi^2}\int\int_{0}^{\pi} \log f(\theta_1,\theta_2)d\theta_1 d\theta_2, $$
+where $K_1 = \beta J_1, \mbox{ } K_2 = \beta J_2$ and 
+$$f(\theta_1,\theta_2) = \cosh 2K_1\cosh 2K_2-\sinh 2K_1\cos \theta_1- \sinh 2K_2 \cos \theta_2$$
+which can be expressed in terms of complete
+elliptic integrals. This is one of the most famous calculations of  $20^{th}$ century
+statistical mechanics.
+
+It is convenient to define the {\em reduced} partition function by
+$$\Lambda(t_1,t_2) = Z(K_1,K_2)/2\cosh K_1\cosh K_2,$$ where $t_{1,2}
+=\tanh K_{1,2}.$ The reduced partition function then \cite{Bax80}
+satisfies the inversion relation
+$$\ln \Lambda(t_1,t_2) + \ln \Lambda(1/t_1,-t_2) = \ln(1 - t_2^2),$$
+where again the second term in the sum is an analytic continuation of
+the first.
+Writing the reduced partition function
+$$\ln \Lambda(t_1,t_2) = \sum_{n,m} a_{n,m}t_1^{2m}t_2^{2n} = \sum_n
+R_n(t_1^2)t_2^{2n}$$
+Baxter \cite{Bax80} points out that Onsager's solution can be used to show
+that
+$$R_n(t_1^2) = P_{2n-1}(t_1^2)/(1 - t_1^2)^{2n-1},$$
+where $P_{2n-1}(t^2)$ is a polynomial in $t^2$ of degree $2n-1.$
+That is, the functions $R_n$ are rational, with numerator and denominator
+of equal degree, and with the denominator having only one
+pole of degree $2n-1$ in the complex $t_1^2$ plane, at $t_1^2 = 1.$
+
+The significance of this observation is that when it is coupled with the above 
+inversion relation and the obvious symmetry 
+$$\Lambda(t_1,t_2) =  \Lambda(t_2,t_1),$$ it is sufficient to determine,
+order by order, the numerator polynomials $P_n.$ That is to say, the
+complete Onsager solution is implicitly determined by these two functional
+equations and the simple form of the denominator (and some analyticity
+assumptions \cite{Bax80}).
+
+To be more precise, as the numerator is a polynomial of degree
+$2n-1$ there are $2n$ unknowns in the numerator. The
+symmetry relation reduces this to $n$ unknowns, and the inversion
+relation allows us to find the $n$ unknowns.
+
+A similar result is seen if we consider the spontaneous magnetisation
+of the anisotropic square lattice Ising model. Denoting $x = \exp(-4J_1/k_BT),
+\mbox{   } y=\exp(-4J_2/k_BT),$ the magnetisation is \cite{Chg}
+\begin{eqnarray}
+M(x,y) = [1 - \frac{16xy}{(1-x)^2(1-y)^2}]^\frac{1}{8}. \label{mag}
+\end{eqnarray}
+This clearly satisfies the symmetry relation $M(x,y)=M(y,x),$ and
+it also satisfies the inversion relation $M(x,y) - M(x,1/y) = 0,$ as
+can be seen upon inspection. Writing the magnetisation as a partially
+re-summed series, so that 
+$$M(x,y) = 1 - \sum_n H_n(y)x^n,$$ we {\em observe} that the functions $H_n$
+are rational functions of the form
+$$H_n(y) = \frac{yP_n(y)}{(1 - y)^{2n}}, $$
+for $|y| < 1$ where $P_n(y)$ is a polynomial of degree $2n-2.$
+Each such function can be analytically continued to $|y| > 1,$ 
+and substitution into the inversion relation allows one to verify that
+it is satisfied, as far as one cares to push the expansion.
+
+The first few numerators are
+$$-2y\mbox{  },-2y(2+3y+2y^2)\mbox{  },-2y(3+16y+32y^2+16y^3+3y^4)\mbox{, for } 
+ n=1,2,3.$$
+As observed for the free energy, the symmetry relation, inversion
+relation and functional form of the $H$ functions are sufficient
+to determine the solution.
+Some other models were similarly solved by Stroganov \cite{strog79}.
+
+Note that two independent features were necessary for this method of
+solution. The existence of the inversion and symmetry relation is
+one feature,
+and the particularly simple form of the functions $R_n,$ and in
+particular their denominator structure is the other. These two examples
+led us to try and generalise this approach to other solved and
+unsolved problems, in order to obtain solutions, or at least 
+additional information.
+
+For statistical mechanical systems, the existence of an inversion
+relation follows from the underlying symmetries of the Hamiltonian
+\cite{strog79, Bax80, Bax82,Jaek82,Mail84}. As a consequence, a
+number of unsolved problems, such as the susceptibility of the
+two-dimensional Ising model, the free energy of the three-dimensional
+Ising model, and various thermodynamic properties of the $q$-state Potts
+model \cite{Jaek82}  all possess known inversion relations.
+For example, for the free energy of the three-dimensional
+Ising model \cite{Jaek82b}, if the reduced partition function is defined by
+$\Lambda(t_1,t_2,t_3) = Z(K_1,K_2,K_3)/2\cosh K_1\cosh K_2\cosh K_3,$
+where $t_{1,2,3} =\tanh K_{1,2,3},$ the reduced partition function
+then satisfies the inversion relation
+$$\ln \Lambda(t_1,t_2,t_3) + \ln \Lambda(1/t_1,-t_2,-t_3) = \ln(1 - t_2^2) +
+\ln(1 - t_3^2).$$
+
+For lattice based combinatorial structures there is in general no
+analogue of a Hamiltonian, and so notions of the symmetry group of
+the Hamiltonian are not relevant. There is thus no obvious concept
+of an inversion relation. However it is possible
+to determine analogous functional relations for some combinatorial problems,
+though to date these have largely been derived ``experimentally'', as we show
+below.
+
+As well as the inversion relation (and symmetry relation), the general
+form of the rational functions (denoted $R_n$ in the case of the Ising
+partition function above) needs to be known. Unless the problem has
+already been fully solved, this will not usually be {\em a priori}
+known. In fact it too will be determined ``experimentally'' and, in
+favourable cases, subsequently proved.
+
+These observations lead to the following proposed approach to the
+study of statistical mechanical systems for which inversion relations
+are known. We derive the (anisotropic) series expansion of the
+quantity of interest, partially re-sum as above,
+and study the analytic properties of the functions which are the coefficients
+of the re-summed series. As mentioned above, the derivation
+of the series is usually a demanding computational exercise, for
+which efficient algorithms need to be designed. Otherwise there
+is simply insufficient data for the above approach to be pursued.
+It is the development of such algorithms and the availability of cheap,
+fast computing that has made this approach possible.
+
+\section{The Ising model susceptibility.}
+As our first example of this proposed approach to the study
+of unsolved problems, we consider the susceptibility of the two-dimensional
+Ising model, which is one of the most extensively studied \cite{Cit72}, 
+ yet still
+unsolved, problems in statistical mechanics. For the square lattice
+version of this model, the relevant inversion relation \cite{Jaek85b}
+is $\chi(t_1,t_2) + \chi(1/t_1,-t_2) = 0,$ and the symmetry relation
+$ \chi(t_1,t_2) = \chi(t_2,t_1)$ also holds. Partially 2r allows us to
+write the susceptibility as
+$$\chi(t_1,t_2) = \sum_{m,n\ge 0} c_{m,n}t_1^mt_2^n = \sum_{n\ge 0}
+H_n(t_1)t_2^n. $$ 
+
+This approach was first taken in \cite{Hans87}, in
+which $H_1, \mbox{  }H_2, \mbox{  }H_3, \mbox{ and }H_5 $ were
+found.
+They are
+\begin{eqnarray*}
+H_0(t)& =& (1 + t)/(1 - t), \\
+H_1(t)& =& 2(1 + t)^2/(1 - t)^2,\\ 
+H_2(t)& =& 2(1 + 6t + 8t^2 + 6t^3 + t^4)/(1 - t)^3(1+t),\\
+H_3(t)& =& 2(1 + 8t + 10t^2 + 8t^3 + t^4)/(1 - t)^4 \mbox{ and}\\
+H_5(t)& =& 2(1 + 16(t+t^7) + 64(t^2+t^6) + 144(t^3+t^5) + 166t^4+ t^8)/(1 - t)^6(1+t)^2.
+\end{eqnarray*}
+
+The calculation of these functions is computationally demanding,
+being of exponential complexity. Over the last twenty years, Enting
+\cite{Ent97} has developed an alternative method, known as the finite lattice 
+method, which while still of exponential complexity, is nevertheless
+exponentially faster than preexisting methods based on direct enumeration.
+Based on this method, we \cite{Gut96} have obtained the first 14 of these
+rational functions.
+
+Even from the 5 $H$ functions given above, it is clear that the situation
+is not as straightforward as for the partition function or magnetization.
+For the next two, we \cite{Gut96} find
+
+\begin{eqnarray*}
+H_4(t) & =&  2(1 + t^{10} + 15(t+t^9) + 71(t^2+t^8) + 192(t^3+t^7) + 326(t^4+ t^6) + 388t^5)\\
+       &  &   /(1 - t^3)(1 - t)^4 (1+t)^3, \\
+H_6(t)& = & 2(1 + t^{18} + 28(t+t^{17}) + 220(t^2+t^{16}) + 1149(t^3+t^{15}) + 4081(t^4+ t^{14}) \\
+&  & + 10768(t^5+t^{13}) +22083(t^6+t^{12})+36283(t^7+t^{11})+48543(t^8+t^{10})\\
+&  & +53446t^9)/(1 - t^3)^3 (1 - t)^4 (1+t)^5.
+\end{eqnarray*}
+
+
+For all $n \le 14$ (including the others not shown), the numerator polynomial is
+found to be
+symmetric, unimodal and with positive coefficients. The denominator polynomial
+has zeros lying on the unit circle, at $t = 1$ for all $n,$ at $t = -1$ for $n
+=2$ and $n \ge 4,$ and we observe that for $n = 4 \mbox{  and } n \ge 6$ there
+are zeros at $t^3 = 1$ and for $n = 12 \mbox{  and } n \ge 14$ there
+are zeros at $t^5 = 1.$ The numerator and denominator are of equal degree,
+notably $1,2,4,4,10,8,18,20,26,28,34,36,48,44,62 \cdots$ for $n =
+0,1,2,\cdots,14$ respectively.
+
+The degree of the polynomials is increasing so rapidly that even if we
+could predict the denominator for all $n,$ the constraints imposed by the
+inversion relation and the symmetry relation are insufficient to
+implicitly yield the solution, unlike the case of the free energy and
+magnetisation.
+
+Nevertheless, we can obtain useful analytic information about the
+structure of the solution. We use the notation of \cite{Wu76}, in which the
+susceptibility of the Ising model is expressed as an expansion in terms
+of so called $2k + 1$ particle excitations,
+$$\chi(t_1,t_2) = \sum_k \chi^{2k+1}(t_1,t_2).$$
+We note in passing that this expansion applies to the
+high-temperature susceptibility. For
+the low temperature susceptibility the corresponding expansion involves
+$2k$ particle excitations. The notion of {\em particle excitations} is the
+language of a field-theoretic
+expansion of the Ising model, an explanation of which would take
+us unnecessarily far afield. It suffices to say that such an expansion
+exists, and refer the interested reader to \cite{Wu76} for details.
+
+Syozi and Naya \cite{syo} appear to have been the first to calculate
+$\chi^{1},$ even though their calculation preceded the particle
+excitation formulation of \cite{Wu76}.
+>From \cite{syo} we find
+$$\chi^{1} =
+\frac{(1-t_1^2)(1-t_2^2)}{(1-t_1-t_2-t_1t_2)^2}(1-16\frac{t_1^2t_2^2}{(1-t_1^2)^2(1-t_2^2)^2})^\frac{1}{4} =\sum_n H_n^{(1)}(t_1)t_2^n,$$
+and
+$H_n^{(1)}(t_1) = H_n(t_1)$ for $n=1,2,3,5$ while
+$$H_4^{(1)}(t) = 2(1 + t^{8} + 14(t+t^7) + 56(t^2+t^6) + 122(t^3+t^5) + 146t^4)/
+(1 - t)^5 (1+t)^3.$$
+It is straightforward to show that, for all $n,$ the numerators are symmetric,
+unimodal polynomials (with positive coefficients). Further, for $n$ even,
+the denominator is
+$(1-t)^{n+1}(1+t)^{n-1},$ and for $n$ odd, the denominator is 
+$(1-t)^{n+1}(1+t)^{n-3}.$ In both cases negative subscripts are to be
+replaced by zero. The structure of the numerator and denominator, taken
+together, imply that the symmetry and inversion relations that hold
+for $\chi$ also hold for $\chi^{1}.$
+For $n$ even, the numerator and denominator polynomials
+are of degree $2n,$ hence there are $2n+1$ coefficients to be determined.
+Symmetry reduces this to $n+1,$ while the inversion relation determines
+$n$ coefficients, leaving $1$ unknown. This can be determined by
+the observation that the residue  at $t=-1$ of $H_n^{(1)}(t),$ for $n$ even,  is
+$$-\frac{(2n-5)!!!!}{2(n/2)!}$$ where $n!!!!=n(n-4)(n-8) \cdots,$ terminating
+at the smallest integer greater than $0.$
+For $n$ odd, the numerator and denominator polynomials
+are of degree $2n-2,$ hence there are $2n-1$ coefficients to be determined.
+Symmetry reduces this to $n-1,$ and the inversion relation determines
+all of these. 
+
+For $\chi^{3}, \mbox{ } \chi^{5},$ etc. no closed form expression is yet
+known - though they can \cite{GGO98} be expressed as hyper-elliptic
+integrals, and at least the first few are \cite{BMP98} differentiably finite.
+(They probably all are but this hasn't been proved.) However our
+numerical studies clearly imply (but do not prove) that a similar, but
+more complex structure prevails in these cases.
+
+The principal features we observe are that
+$\chi^{2k+1}$ can be similarly expanded in terms of rational functions,
+as shown explicitly for $\chi^{1}$ above, with numerators and
+denominators of equal degree. Furthermore, the numerators are observed
+to be unimodal, symmetric and with all coefficients positive, from
+which follows that the symmetry and inversion relations apply not
+only to $\chi,$ but to each term $\chi^{2k+1}$ in its expansion ---
+at least as far as we have proceeded.
+
+Further, we find that the denominator of the rational coefficients
+which occur in the expansion of $\chi^{2k+1}$ have, in addition to the
+factors in $\chi^{1}$ given above, systematic occurrences of powers of the
+terms $(1-t^3),(1-t^5),\cdots,(1-t^{2k+1}),$ which can be predicted
+\cite{GGO98}.
+>From the results for $\chi$ and
+$\chi^{1}$ given above, it can be seen that the first contribution of
+$\chi^{3}$ to  $\chi$ occurs in $H_4,$ (as evidenced by the occurrence
+of the term $(1-t^3)$ in the denominator). Similarly, we find that
+the first contribution of
+$\chi^{5}$ to  $\chi$ occurs in $H_{12}.$
+Hence it appears that the first occurrence of the factor $1-t^{2k+1}$ in
+the denominator coincides with the first contribution of a $2k+1$ particle
+excitation.
+
+It follows that, as
+$n$ increases, the denominators of $H_n(t)$ contain zeros given by the
+$(2k+1)^{th}$ roots of unity. And as $n$ increases, so does $k.$ Hence
+the structure of the functions $H_n(t)$ is that of a rational function
+whose poles all lie on the unit circle in the complex $t$-plane, such
+that the poles become dense on the unit circle as $n$ gets large. This
+behaviour implies (unless miraculous cancellation of almost all poles
+suddenly starts to occur at high order) that the functions $H_n(t)$ and
+hence $\chi(t_1,t_2)$ as a function of $t_1$ for $t_2$ fixed, (a) have a
+natural boundary (b) are neither algebraic nor D-finite, nor $CDA.$
+
+Leaving these considerations aside for the moment, the significance of these
+observations of the Ising model is that the observed behaviour
+suggests a new and powerful tool to investigate the analytic
+structure of a wide variety of problems. By generalizing to
+the anisotropic model, and studying the distribution of zeros
+of the denominators in the $H_n(t)$ functions and their analogues,
+we can distinguish between those that are likely to be solvable
+in terms of standard functions, and those that are not. In
+the former case there is a finite number (usually one or two)
+of singularities on the unit circle, while in the latter case
+there is, in the limit of large $n,$
+an infinite number, corresponding to a natural
+boundary. Numerically, this is signified by an increasing
+number of singularities in the denominator of $H_n(t)$
+as $n$ increases. In favourable cases one can
+predict the behaviour of the denominator, and thus prove
+that the number of denominator zeros grow indefinitely.
+The magnetisation and susceptibility of the
+two-dimensional zero field Ising model, discussed above, are
+examples of the two types of behaviour.
+
+We do not claim that in the former case the solution is D-finite,
+though all the models we have studied that display this
+behaviour are D-finite. Indeed, it is easy to construct an example
+of non D-finite functions that display this behaviour.
+For example,
+\begin{equation}
+f(x,y) = \exp(x(\exp{\frac{y}{1-x}} - 1)) = 1 + \frac{xy}{1-x} +
+\frac{x(1+x)y^2}{2(1-x)^2} + \frac{x(1+3x+x^2)y^3}{6(1-x)^3} + \cdots .
+\end{equation}
+Another example, corresponding to a model of interest, rather than
+just a contrived function as above, is that of
+three-dimensional convex polygons \cite{BG96a,BG96b} enumerated
+by perimeter. The generating function is not D-finite, yet the
+$H$-functions appear to have only a single denominator zero
+(though this has not been tested at high order).
+
+
+A related but
+distinct observation is that the existence of 
+inversion relations, coupled with construction of the $H$-functions,
+provides an alternative method of
+solution in some cases. We show, in the next section,
+how this concept can be applied
+to certain combinatorial problems too.
+
+\section{Staircase polygons}
+The enumeration of staircase polygons by perimeter is one of the
+simpler combinatorial exercises, but is nevertheless useful
+pedagogically, as so many distinct methods can be
+demonstrated in its solution. To this long list we
+add the experimental approach of studying the early
+terms of the two variable series expansion of the
+perimeter generating function and {\em observing} a
+functional relation equivalent to the inversion relation
+discussed above for certain statistical mechanical systems.
+
+If we write the perimeter generating function as
+$$P(x,y) = \sum_{n,m} p_{n,m} x^{2n}y^{2m} = \sum_m H_m(x^2)y^{2m} $$
+then $H_m(x^2)$ is the generating function for 
+staircase polygons with $2m$ vertical bonds.
+
+>From {\em observation} of the early terms, it is
+clear that $$H_m(x^2) = x^2S_m(x^2)/(1-x^2)^{2m-1}$$ for
+$m > 1,$ where $S_m(x^2)$ is a symmetric, unimodal polynomial
+with non-negative coefficients, of degree $(m-2).$ This
+observed  symmetry can be expressed formally as
+$$x^{2m}H_m(x^2) + x^2H_m(1/x^2) = 0, \mbox{  } n > 1.$$
+
+This  in turn translates into the functional relation
+$$P(x,y) + x^2P(1/x,y/x) = -y^2.$$
+There is also an obvious symmetry relation $P(x,y)=P(y,x),$
+and these observations are sufficient to implicitly
+solve the problem by calculating the $H$ functions order
+by order in polynomial time.
+
+Of course, this must rank as one of the least impressive
+ways of solving this fairly simple model. However the
+purpose of this example is twofold. Firstly to show that
+this essentially experimental method can be applied
+to combinatorial structures in order to discover an
+inversion relation. Secondly, to show that once one has such an
+inversion relation, then this, coupled with symmetry and the
+structure of the $H$ functions, (plus certain analyticity assumptions)
+provides an alternative method for obtaining a solution
+(albeit experimentally). Once one has such a conjectured
+solution, it is a comparatively easy task to prove that it is
+correct.
+
+Numerous other polygon problems can also be tackled 
+similarly \cite{ROG}.
+
+
+\section{Three-choice polygons}
+
+The problem of three-choice polygons \cite{ARC97} is an intriguing
+one, as we know everything about this model except a closed
+form solution. We have a polynomial time algorithm to
+generate the coefficients in its series expansion --- which
+is tantamount to a solution --- and have made an analysis
+of its asymptotic behaviour.
+
+We have recently anisotropised the model \cite{ARC,WPC} in order 
+to see whether
+the ideas developed here give insight into the solution.
+
+Let $P_3(x,y) = \sum_{m,n} a_{m,n} x^m y^n $ be the perimeter
+generating function, where $a_{m,n}$ gives the number of
+3-choice polygons, distinct up to translation, with $2m$
+horizontal bonds and $2n$ vertical bonds. Then
+$$P_3(x,y) = \sum_n H_n(y) x^n, $$ where 
+$$H_n(y) = P_n(y)/Q_n(y)$$ is a rational function of $y.$ The
+degree of the numerator polynomial increases like $3n$ while
+the denominators are observed to be
+\begin{eqnarray*}
+Q_n(y) &=& (1 - y)^{2n-1}(1 + y)^{2n-7}, \mbox{ $n$ even,} \\ 
+      & =&  (1 - y)^{2n-1}(1 + y)^{2n-8}, \mbox{ $n$ odd,}
+\end{eqnarray*}
+where there are no terms in $(1+y)$ for $n < 5.$ It is
+not difficult to construct a combinatorial argument,
+based on the way the polygon can ``grow'' that is consistent
+with this behaviour. This argument 
+has recently been sharpened to a proof \cite{BMP98}.
+It has also been proved \cite{BMP98} that the solution is
+D-finite,
+
+and cannot be algebraic as the asymptotic behaviour of
+the number of coefficients \cite{ARC97} includes a logarithmic term.
+
+An inversion relation for this model can be found
+experimentally \cite{ROG}, and the solution possesses
+$(x,y)$ symmetry. Nevertheless, because the numerator
+grows like $3n$ we do not have enough constraints
+to implicitly solve the model. What is needed is some additional
+constraint on the behaviour of the coefficients, the
+discovery of which has so far eluded us. We nevertheless
+consider this a promising approach, which has already
+revealed valuable analytic information about the
+solution.
+
+\section{Hexagonal directed animals}
+A directed site animal ${\mathcal A}$ on a lattice is defined to
+be a set of
+vertices such that all vertices $p \in {\mathcal A}$
+are either the (unique) origin vertex or may be reached
+from the origin by a connected path, containing bonds
+only in the allowed directions,
+through sites of ${\mathcal A}.$
+
+In \cite{DPB,CBG} it was found that the number of such
+animals of perimeter $n$
+grew asymptotically like $\mu^n/\sqrt{n},$ where $\mu = 4$
+for the triangular lattice, $\mu = 3$ for the square lattice.
+Furthermore, the generating function was given by the
+solution of a simple algebraic equation.
+For the hexagonal lattice however we \cite{CBG} found
+$\mu = 2.025131 \pm 0.000005,$ and were unable to solve
+for the generating function.
+
+In order to gain more insight into this seemingly anomalous
+situation, the model was anisotropised \cite{ARC}. 
+Let $A_h(x,y) = \sum_{m,n} a_{m,n} x^m y^n $ be the site
+generating function, where $a_{m,n}$ gives the number of
+hexagonal lattice site animals,  with $m$
+sites supported \cite{BM98} one particular way and $n - m$ other sites. Then
+$$A_h(x,y) = \sum_n H_n(y) x^n, $$ where 
+$$H_n(y) = P_n(y)/Q_n(y)$$ is observed to be
+a rational function of $y.$
+
+However the denominator pattern, while regular, contains
+terms of the form $(1 - y^k)$ where $k$ is an increasing
+function of $n.$ The degree of the numerator also
+increases faster than linearly. Thus this model displays the same
+qualitative behaviour as the susceptibility of the Ising model,
+discussed above. Hence similar conclusions such as
+the existence of a natural boundary in the appropriate
+complex plane, and that the solution is not D-finite
+may be drawn.
+
+This is then consistent with the seemingly anomalous 
+value of the constant $\mu.$
+
+\section {Self avoiding walks and polygons}
+The problem of square lattice self avoiding walks (SAW)
+and self avoiding polygons (SAP) are much studied
+problems,  equally widely known for their mathematical 
+interest and their intractability. See for example \cite{Hug96,Mad96}.
+
+A study of anisotropic square lattice SAW has been
+reported in \cite{CG96}. Writing the SAW generating function
+$C(x)$ in the by now familiar form as
+\begin{equation}
+C(x,y) = \sum_{m,n\ge 0} c_{m,n}x^my^n = \sum_{n\ge 0} H_n(x)y^n, 
+\end{equation}
+ we found the first 11 $H$ functions, $H_0(x), \cdots , H_{10}(x).$
+
+The first few  are:
+\begin{eqnarray*}
+H_0(x)& =& (1 + x)/(1 - x), \\
+H_1(x)& =& 2(1 + x)^2/(1 - x)^2,\\ 
+H_2(x)& =& 2(1 + 7x + 14x^2 + 16x^3 + 9x^4+ 3x^5)/(1 - x)^3(1+x)^2  \mbox{
+and} \\
+H_3(x)& =& 2(1 + 10x + 29x^2 + 44x^3 + 41x^4 + 22x^5 + 7x^6)/(1 - x)^4(1 +
+x)^2.\\
+\end{eqnarray*}
+The first occurrence of the term $(1-x^3)$ appears in $H_5(x)$ and the
+term $(1 + x^2)$ first appears in $H_7.$ Higher order roots of $\pm 1$
+then systematically occur as $n$ increases. The denominator pattern
+appears to be predictable, though we have not been able to prove
+this. The degree of the numerator is equal to the degree of the
+denominator in all cases observed.
+
+Thus we see again the, by now, characteristic hallmark of a
+D-unsolvable problem.  
+Similar behaviour is observed for SAP.
+ Writing the SAP generating function
+ $P(x)$ as
+ $$P(x,y) = \sum_{m,n\ge 1} p_{m,n}x^{2m}y^{2n} = \sum_{n\ge 1} R_n(x)y^{2n}, $$
+ where $p_{m,n}$ is the number of square lattice polygons, equivalent
+ up to a translation, with $2n$ horizontal steps and $2m$ vertical
+ steps.
+ We \cite{EG98}  found the first 9 $R$ functions, $R_1(x), \cdots , R_{9}(x),$
+ and these were found to behave in a manner characteristic of D-unsolvable
+ problems --- that is, the zeros appear to build up on the unit
+ circle.
+  They first few  are:
+  \begin{eqnarray*}
+  R_1(x)& =&  x/(1 - x),\\
+  R_2(x)& =& x(1 + x)^2/(1 - x)^3,\\ 
+  R_3(x)& =& x(1 + 8x + 17x^2 + 12x^3 + 3x^4)/(1 - x)^5,\\
+  R_4(x)& =& x(1 + 18x + 98x^2 + 204x^3 + 178x^4 + 70x^5 + 11x^6)/(1 - x)^7,\\
+  R_5(x)& =& xP_9(x)/(1 - x)^9(1 + x)^2,\\
+  R_6(x)& =& xP_{15}(x)/(1 - x)^{11}(1 + x)^4,\\
+  R_7(x)& =& xP_{20}(x)/(1 - x)^{13}(1 + x)^6(1 + x^2 + x^4).\\
+  \end{eqnarray*}
+
+In the above equations, $P_k(x)$ denotes a polynomial of degree $k.$
+As for 3-choice polygons,
+the occurrence of new terms in the denominator,
+corresponding to higher roots of unity, can be identified
+with the first occurrence of specific graphs. 
+In this way \cite{BMP98} the denominator pattern can be predicted,
+though rather more work is required to refine this observation into
+a proof.
+
+A similar study of hexagonal lattice polygons \cite{EG98} leads to
+similar conclusions. Furthermore, we observed that
+the denominators of the $H$ functions
+for the square and hexagonal lattices are simply related.
+
+\section{The 8-vertex model}
+Very recently, as a test of the idea that ``solvable'' models should,
+when anisotropised, have $H$ functions with only one or two
+denominator zeros, Tsukahara and Inami \cite{TI98} studied the 8-vertex
+model - which is one of the most difficult statistical mechanics  models
+that has been exactly solved \cite{Bax80}. It can be described
+as two  inter-penetrating planar Ising models,
+coupled by a four-spin coupling, with two spins in each of
+the sub-lattices. Let the coupling in one sub-lattice be $L,$
+that in the other be $K,$ and the four-spin coupling be $M.$
+Then the usual high-temperature expansion
+variables are $t_1=\tanh{K}, t_2=\tanh{L}, t_3=\tanh{M}.$
+New high temperature variables may be defined as follows:
+\begin{eqnarray}
+z_1 &=& \frac{t_1 + t_2t_3}{1 + t_1t_2t_3}, \mbox{  }\\
+z_2 &=& \frac{t_2 + t_1t_3}{1 + t_1t_2t_3}, \mbox{  }\\
+z_3 &=& \frac{t_3 + t_1t_2}{t_1 + t_2t_3}.
+\end{eqnarray}
+then it has recently been shown \cite{TI98} that the logarithm of the reduced
+partition function per face $$\log{ \Lambda(z_1,z_2,z_3)} = \sum_{l,m,n}
+a_{l,m,n} z_1^{2l}z_2^{2m}z_3^{2n}$$ satisfies
+\begin{equation}
+\log{ \Lambda(z_1,z_2,z_3)} + \log{ \Lambda(\frac{1-z_2^2}{z_1(1-z_3^2)},-z_2,-z_3)} = \log(1 - z_2^2).
+\end{equation}
+
+A partial re-summation allows the reduced partition function
+to be written as
+\begin{equation}
+\log\Lambda(z_1,z_2,z_3) =  \sum_{m,n} R_{m,n}(z_1^2)z_2^{2m}z_3^{2n}. 
+ \end{equation}
+After a complicated graphical calculation \cite{TI98}, 
+it was found that
+\begin{eqnarray}
+R_{1,0}(z^2)& =& z^2/(1 - z^2), \\
+R_{1,1}(z^2)& =& 2z^4/(1 - z^2)^3, \\ 
+R_{2,0}(z^2)& =& z^2(2 - 5z^2 + z^4)/(1 - z^2) \\
+R_{1,2}(z^2)& =& 3z^6(1 + z^2)/(1 - z^2)^5.
+    \end{eqnarray}
+It is then argued \cite{TI98} that the general form of the
+coefficients is
+$$R_{m,n}(z^2) = P_{m,n}(z^2)/(1 - z^2)^{2m+2n-1}.$$
+
+This behaviour then accords with the expected behaviour of
+solvable models. That is to say, only a finite number --- in this
+case 1 --- of denominator singularities.
+
+\section{The three-dimensional Ising model}
+These ideas are also applicable to three-dimensional models, such
+as the three-dimensional Ising model. For this model there are no
+exact results known. However inversion relations can still be
+proved,  (indeed, the appropriate relation in the case
+of the free energy is given in Section \ref{Ising}). 
+Similarly, the susceptibility of the model on the simple
+cubic lattice, anisotropic in all three directions, satisfies the
+inversion relation
+\begin{equation}
+\chi(t_1,t_2,t_3) + \chi(1/t_1,-t_2,-t_3) = 0.
+\end{equation}
+Here $t_1 = \tanh(J_1/k_BT),$
+$t_2 = \tanh(J_2/k_BT),$ and $t_3 = \tanh(J_3/k_BT).$
+ Partially re-summing allows us to write the susceptibility as
+\begin{equation}
+\chi(t_1,t_2,t_3) = \sum_{l,m,n\ge 0} c_{l,m,n}t_1^lt_2^mt_3^n = \sum_{m,n\ge 0}
+ H_{m,n}(t_1)t_2^mt_3^n. 
+\end{equation}
+
+ This approach was first taken in \cite{Hans87}, in
+ which $H_{1,1}, \mbox{  }H_{2,1}, \mbox{  }H_{3,1}, \mbox{ and }H_{2,2} $ were
+studied, though only the first three were identified. 
+ They were found to be
+ \begin{eqnarray}
+ H_{1,1}(t)& =& 8(1 + t)^3/(1 - t)^3, \\
+ H_{2,1}(t)& =& 16(1 + 5t^2+ 7t^2 + 5t^3 + t^4)/(1 - t)^4,\\ 
+ H_{3,1}(t)& =& 8(3 + 23t + 46t^2 + 46t^3 + 23t^4 + 3t^5)/(1 - t)^5.
+ \end{eqnarray}
+
+ These display the simple behaviour also observed for the first few
+ $H$-functions
+ in the case of the two-dimensional model. That is to say, the denominator
+ has only a single zero. However the next term, which we have managed to
+ identify from the raw data given in \cite{Hans87}, already
+ shows the occurrence of a cube root of unity in the denominator. It is
+
+ \begin{eqnarray}
+ H_{2,2}(t) = 16(3 + 3t^{10} + 34(t+t^9) + 143(t^2+t^8) + 373(t^3+t^7) \nonumber \\
+ + 623(t^4+t^6) + 745t^5)/(1 - t^3)(1 - t)^4 (1+t)^3. 
+ \end{eqnarray}
+ Indeed,
+ in structure it is very similar to $H_4(t)$ for the two-dimensional case.
+ We have not gone further, but it seems very likely that higher order
+ $H$ functions will be rational with denominators corresponding to 
+ higher roots of unity.
+\section{Percolation and directed percolation}
+Two widely studied but unsolved problems are that of ordinary and
+directed percolation in dimension two and higher. Our preliminary
+studies \cite{JGT} show that these two models display the
+characteristic behaviour of D-unsolvable models --- a build up of
+higher roots of unity in the denominators of the
+$H$ functions when the models
+are anisotropised. Much further work needs to be done for these
+two models.
+\section{Conclusion}
+At worst we have developed a powerful numerical technique capable
+of indicating whether a problem is likely to be readily
+D-solvable or not. The hallmark of unsolvability, which is
+the build up of zeros around the unit circle in the
+complex $x$-plane in the $H(x)$ functions of the anisotropised
+models, can, in favourable cases, be refined into a proof.
+
+In the most favourable cases, where in addition
+an inversion relation can be obtained --- as in the case of
+the free energy of the two-dimensional
+Ising model --- or numerically inferred, as in the case of staircase
+polygons, and the $H$ functions are sufficiently simple,
+with only a pole at 1 on the unit circle, an exact solution
+can be implicitly obtained.
+
+Most tantalisingly, the prospect of solving hitherto unsolved
+problems by predicting the numerator and denominator of the
+$H$ functions by a combination of combinatorial and symmetry 
+based arguments remains open.
+
+Clearly, much further work remains to be done in classifying
+precisely what class of functions is excluded by certain
+observed behaviour, and in developing methods to solve problems
+which are identifiable as D-unsolvable. 
+
+\section{Acknowledgments}
+I would like to thank my colleagues Mireille Bousquet-M\'elou,
+Richard Brak, Will Orrick, Paul Pearce and Aleks
+Owczarek for valuable comments on the manuscript, and 
+Mireille Bousquet-M\'elou and Jean-Marie Maillard for many
+illuminating discussions. Much of the underlying enumerative
+work was carried out in collaboration with Ian Enting.
+This work was supported by the Australian Research Council.
+
+\begin{thebibliography}{10}
+
+
+
+
+\bibitem{AS}
+M. Abramowitz and I. A. Stegun (Editors),
+\newblock {\em Handbook of Mathematical Functions}, 
+(Dover, New York) (1972).
+
+\bibitem{Bax80}
+R.~J. Baxter,
+\newblock in {\em Fundamental Problems in Statistical Mechanics},
+{\bf 5}, E.~G.~D. Cohen ed. (North Holl. Amsterdam) (1981).
+
+  \bibitem{BHH}
+  R. ~J. Baxter,
+  \newblock Hard hexagons: exact solution, J. Phys. A. {\bf 13}, L61-70, (1980).
+
+\bibitem{Bax82}
+R.~J. Baxter,
+\newblock The Inversion relation method for some two-dimensional
+exactly solved models in lattice statistics, 
+J. Stat. Phys, {\bf 28}, 1-41 (1982).
+
+
+  \bibitem{BM}
+  M. Bousquet-M\'elou,
+  \newblock A method for the enumeration of various classes of column-convex
+  polygons, Disc. Math. {\bf 154}, 1-25, (1996).
+
+  \bibitem{BMP98}
+  M. Bousquet-M\'elou,
+  \newblock (Private communication).
+
+  \bibitem{BV92}
+  M. Bousquet-M\'elou and X. Viennot,
+  \newblock Empilements de segments et $q$-\'enum\'eration
+  de polyominos convexes dirig\'es. J. Combin. Theory Ser. A {\bf 60)},
+  (1992), 196-224.
+
+\bibitem{Berg90}
+F. Bergeron and C. Reutenauer,
+\newblock Combinatorial resolution of systems of differential equations III: a
+special class of differentiably algebraic series. Europ. J. combinatorics,
+{\bf 11} (1990) 501-12.
+
+\bibitem{BM98}
+M. Bousquet-M\'elou,
+\newblock New enumerative results on two-dimensional directed animals,
+Disc. Math {\bf180} (1998) 73-106.
+
+  \bibitem{BG96a}
+  M. Bousquet-M\'elou and A.J. Guttmann,
+\newblock  Enumeration of three-dimensional convex polygons,
+ Annals of combinatorics, {\em 1}, (1997), 27-53.
+  
+  \bibitem{BG96b}
+  M. Bousquet-M\'elou and A.J. Guttmann,
+ \newblock Three-dimensional self-avoiding convex polygons,
+  Phys. Rev. E, {\em 55}, (1997), R6323-6.
+
+  
+  \bibitem{Chg}
+  C.~H. Chang, 
+  \newblock The spontaneous magnetisation of a two-dimensional rectangular
+  Ising model, Phys. Rev. {\bf 88}, 1422, (1952).
+
+  \bibitem{Cit72}
+  C.~A.~W. Citteur and P.~W. Kasteleyn,
+  \newblock Critical behaviour of Ising systems on extremely
+  anisotropic lattices, Physica {\bf 62}, 17-40, (1972), {\em ibid.}
+  {\bf 64}, 415-26, (1973),
+  {\em ibid.} {\bf 66}, 94-110 (1973), {\em ibid.} {\bf 68}, 491-510 (1973).
+
+\bibitem{ARC}
+A. ~R. Conway,
+\newblock Private communication.
+
+\bibitem{CBG}
+A. ~R. Conway, R. Brak and A. ~J. Guttmann,
+\newblock Directed animals on two-dimensional lattices,
+J. Phys. A. {\bf 26}, (1993),3085-91.
+
+\bibitem{CG96}
+A. ~R. Conway and A. ~J. Guttmann,
+\newblock  Square Lattice Self-Avoiding Walks and Corrections to Scaling,
+ Phys. Rev. Letts. {\bf 77}, 5284, (1996).
+
+\bibitem{ARC97}
+A. ~R. Conway, A. ~J. Guttmann and M. ~P. Delest,
+\newblock The number of three-choice polygons,
+Mathl. Comput. Modelling {\bf 26} 51-8, (1997)
+
+  \bibitem{Neef77}
+  T. de Neef and I.~G. Enting,
+  \newblock  Series expansions from the finite lattice method, 
+  J. Phys. A: Math. Gen. {\bf 10}, 801-5, (1977).
+
+\bibitem{DPB}
+D. Dhar, M. ~H. Phani and M. Barma,
+\newblock Enumeration of directed site animals on two-dimensional
+lattices, J. Phys. A. {\bf 15}, (1982) L279-84.
+
+\bibitem{EG98}
+I.~G. Enting and A. ~J. Guttmann,
+\newblock In preparation.
+
+  \bibitem{Ent97} 
+  I.~G. Enting,
+ \newblock Series Expansions from the Finite Lattice Method,
+ Nucl. Phys. B (Proc. Suppl.) {\bf 47},  (1996) 180-7.
+
+  \bibitem{GGO98}
+  M.~L. Glasser, A.~J. Guttmann, and W.~P. Orrick,
+  \newblock (In preparation).
+
+  \bibitem{Gut96}
+  A.~J. Guttmann and I.~G. Enting,
+  \newblock Solvability of some statistical mechanical systems,
+  Phys. Rev. Letts. {\bf 76}, (1996), 344-7.
+
+\bibitem{Hans87}
+D. Hansel, J.~M. Maillard, J. Oitmaa and M.~J. Velgakis,
+\newblock Analytical Properties of the Anisotropic Cubic Ising Model, 
+J. Stat. Phys, {\bf 48}, (1987), 69-80.
+
+\bibitem{Hug96}
+B. ~D. Hughes,
+\newblock Random walks and random environments: 1 Random walks,
+Clarendon Press (Oxford) 1995.
+
+\bibitem{Jaek82b}
+M.~T. Jaekel and J.~M. Maillard,
+\newblock Symmetry relations in exactly soluble models,
+J. Phys. A: Math. Gen. {\bf 15},  1309-25, (1982).
+
+\bibitem{Jaek82}
+M.~T. Jaekel and J.~M. Maillard,
+\newblock Inverse functional relation on the Potts model,
+J. Phys. A: Math. Gen. {\bf 15},  2241-57, (1982).
+
+\bibitem{Jaek85a}
+M.~T. Jaekel and J.~M. Maillard,
+\newblock A disorder solution for a cubic Ising model, 
+J. Phys. A: Math. Gen. {\bf 18}, 641-51, (1985).
+
+\bibitem{Jaek85b}
+M.~T. Jaekel and J.~M. Maillard,
+\newblock A criterion for disorder solutions of spin models, 
+J. Phys. A: Math. Gen. {\bf 18}, 1229-38, (1985).
+
+\bibitem{JGT}
+I. Jensen and A. ~J. Guttmann,
+\newblock In preparation.
+
+\bibitem{Lip89}
+L. Lipshitz
+\newblock D-finite power series. J. Algebra, {\bf 122} (1989) 353-73. 
+
+\bibitem{Mad96}
+N. Madras and G. Slade,
+\newblock The self-avoiding walk, Birkh$\ddot{a}$user (Boston) (1993)
+
+\bibitem{Mail84}
+J.~M. Maillard,
+\newblock The inversion relation, J. Physique {\bf 46},  32a-419, (1984).
+
+\bibitem{Ons} 
+L Onsager,
+\newblock Crystal statistics I: A two-dimensional model with
+an order-disorder transition, Phys. Rev. {\bf 65} (1944) 117-49.
+
+\bibitem{WPC}
+A. Rechnitzer and W.~P. Orrick,
+\newblock Private communication.
+
+  \bibitem{OP}
+  A. ~L. Owczarek and T. Prellberg, 
+  \newblock Exact solution of the discrete (1+1)-dimensional SOS
+  model with field and surface interactions, 
+  J. Stat. Phys. {\bf 70}, 1175-94, (1993).
+
+
+\bibitem{ROG}
+A. Rechnitzer, W.~P. Orrick and A. ~J. Guttmann,
+\newblock (In preparation).
+
+\bibitem{Stan80}
+R. ~P. Stanley,
+\newblock Differentiably finite power series, Europ. J. Comb., {\bf 1}, (1980), 175-88.
+
+\bibitem{strog79}
+Y.~G. Stroganov,
+\newblock A new calculation method for partition functions in
+some lattice models, Phys. Letts. {\bf 74A}, 116-8 (1979).
+
+  \bibitem{syo}
+  I. Syozi and S. Naya,
+  \newblock Symmetrical properties of two-dimensional Ising lattices,
+  Prog. Theor. Phys. {\bf 24} 829, (1960).
+
+\bibitem{Tho} 
+C J Thompson,
+\newblock {\em Classical Equilibrium Statstical Mechanics} (1988)
+(The Clarendon Press, Oxford).
+
+ \bibitem{TI98}
+ H. Tsukahara and T. Inami,
+ \newblock Test of Guttmann and Enting's conjecture in the
+ Eight Vertex Model, J. Phys. Soc. Japan {\bf 67}, 1067-1070,
+(1998).
+
+\bibitem{Wil}
+A. Wiles,
+\newblock Modular Elliptic Curves and Fermat's Last Theorem,
+Annals of Maths., {\bf 142}, (1995), 443-51.
+
+  \bibitem{Wu76}
+  T.~T. Wu, B.~M. McCoy, C.~A. Tracy and E. Barouch,
+  \newblock Spin-spin correlation functions for the two-dimensional
+  Ising model: Exact theory in the scaling region. 
+  Phys. Rev. {\bf 13B}, 316-74, (1976).
+
+
+
+
+
+
+\end{thebibliography}
+\end{document}
+

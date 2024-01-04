@@ -1,0 +1,1228 @@
+% Dear Prof. Stanton:
+%
+%   I hope this manuscript is still in time to be considered for the
+% proceedings of the FPSAC'96 conference next summer.  I think Vic =
+Reiner's
+% submission might be on a related topic.
+%
+%                            Yours, Peter Magyar
+
+%  **  compile using Latex 2.09  **
+%
+\documentstyle{article}
+%
+ \def\Bbb{\bf}
+ \def\frak{\cal}
+ \def\boxtimes{\Box\hspace{-0.76em}\times}
+ \def\bigtimes{\prod}
+%
+%
+%
+% New operators
+\newcommand{\sgn}{\mathop{\rm sgn}}
+\newcommand{\Row}{\mathop{\rm Row}}
+\newcommand{\Col}{\mathop{\rm Col}}
+\newcommand{\Ker}{\mathop{\rm Ker}}
+\newcommand{\IM}{\mathop{\rm Im}}
+\newcommand{\Sym}{\mathop{\rm Sym}\mbox{}}
+\newcommand{\St}{\mathop{\rm St}}
+\newcommand{\Gr}{\mathop{\rm Gr}}
+\newcommand{\id}{\mathop{\rm id}}
+\newcommand{\incl}{\mathop{\rm incl}}
+\newcommand{\rest}{\mathop{\rm rest}\mbox{}}
+\newcommand{\rank}{\mathop{\rm rank}}
+\newcommand{\pr}{ {\mathop{\rm pr}} }
+\newcommand{\wt}{ {\mathop{\rm wt}} }
+\newcommand{\tr}{\mathop{\rm tr}}
+\newcommand{\Hom}{\mathop{\rm Hom}}
+\newcommand{\Char}{ {\mathop{\rm char}} }
+\newcommand{\Span}{ {\mathop{\rm Span}} }
+\newcommand{\diag}{\mathop{\rm diag}}
+%
+% Theorems
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{conj}{Conjecture}
+%
+% Other mathematical symbols
+\newcommand{\eqdef}{\stackrel{\rm def}{=3D}}
+\newcommand{\CC}{{\Bbb C}}
+\newcommand{\C}{{\Bbb C}}
+\newcommand{\R}{{\Bbb R}}
+\newcommand{\Z}{{\Bbb Z}}
+\newcommand{\ZZ}{{\Bbb Z}}
+\newcommand{\NN}{{\Bbb N}}
+\newcommand{\PP}{{\Bbb P}}
+\newcommand{\al}{{\alpha}}
+\newcommand{\be}{{\beta}}
+\newcommand{\om}{{\varpi}}
+\newcommand{\Sig}{{\Sigma}}
+\newcommand{\sig}{{\sigma}}
+\newcommand{\alD}{{\alpha_D}}
+\newcommand{\beD}{{\beta_D}}
+\newcommand{\VV}{ {\cal V} }
+\newcommand{\Vn}{ V^{\otimes n} }
+\newcommand{\lam}{ \lambda }
+\newcommand{\FF}{ { \cal F } }
+\newcommand{\FD}{ \FF_D }
+\newcommand{\FDB}{ \FF_D^B }
+\newcommand{\SVD}{ S_D^{\VV} }
+\newcommand{\II}{ { \cal I } }
+\newcommand{\ID}{ \II_D }
+\newcommand{\LL}{ {\cal L} }
+\newcommand{\LD}{ \LL_D }
+\newcommand{\EE}{ {\cal E} }
+\newcommand{\OO}{ {\cal O} }
+\newcommand{\TT}{ {\cal T} }
+\newcommand{\SS}{ {\frak S} }
+\newcommand{\DV}{ \Delta_D V}
+\newcommand{\DVV}{ \Delta_D^{\VV} V}
+\newcommand{\Dh}{ \widehat{D} }
+\newcommand{\Dt}{ \widetilde{D} }
+\newcommand{\Ch}{ \widehat{C} }
+\newcommand{\tB}{ \stackrel{B}{\times} }
+\newcommand{\tw}{ \tilde{w} }
+\newcommand{\tu}{ \tilde{u} }
+
+% \newcommand{\}{  }
+
+%
+\flushbottom
+%
+\title{Four New Formulas for Schubert Polynomials}
+\author{Peter Magyar \\[.1em]
+Northeastern University\\[.1em]
+{ pmagyar@lynx.neu.edu}}
+%
+ \catcode`@=3D11
+ \def\@date{November 1995}
+ \catcode`@=3D12
+%
+
+\begin{document}
+
+\maketitle
+
+%  \begin{center} {\bf Abstract} \end{center}
+%
+%  {\small \noindent   }
+
+\noindent
+We  state several new combinatorial formulas for
+the Schubert polynomials.
+They are generalizations of well-known expressions
+for the Schur polynomials:
+(1) the Demazure character formula;
+(2) the realization as the generating function of
+semi-standard tableaux of a given shape;
+and (3), (4) the Weyl character formula.
+Our formulas appear surprising
+from a combinatorial point of view because
+their derivation and proof
+involve a new geometric model, the configuration varieties.
+
+The results we state here are a special case of
+formulas for a broad class of Schur-type polynomials,
+the (flagged) Schur polynomials of strictly separated diagrams =
+\cite{LZ},
+\cite{BFZ}.
+These include skew Schur and key polynomials
+\cite{LS3}, and the Schur polynomials of northwest diagrams
+\cite{Mag1},
+\cite{Mag2}, \cite{RS1}, \cite{RS2}.
+
+\section{Schubert polynomials}
+
+The Schubert polynomials $\SS(w)$ of
+permutations $w \in \Sig_n$ are polynomials
+in variables $x_1,\ldots,x_n$.
+They were originally considered as representatives of
+Schubert classes in the Borel picture of the cohomology of
+the flag variety $GL(n)/B$, though we will give a completely
+different geometric interpretation in the later sections of
+this note.
+
+They are constructed in terms of
+the following {\em divided difference operators}
+\cite{Dem}, \cite{LS1}, \cite{MacD}.
+First, the operator $\partial_i$ is defined by
+$$
+\partial_i f\,(x_1,\ldots,x_n) =3D
+{f(x_1,\ldots,x_i,x_{i+1},\ldots,x_n) - =
+f(x_1,\ldots,x_{i+1},x_i,\ldots,x_n)
+\over x_i - x_{i+1}
+}.
+$$
+Then for a reduced decomposition of a
+permutation $u =3D s_{i_1} s_{i_2} \cdots$,
+the operator
+$\partial_u =3D \partial_{i_1} \partial_{i_2} \cdots$
+is independent of the reduced decomposition chosen.
+Also, take $\partial_e =3D \mbox{id}$.
+
+Now we may define the Schubert polynomials as follows.
+Let $w_0 =3D n, n-1, \ldots, 2, 1$
+be the longest permutation,
+and take $u =3D w^{-1} w_0$, so that $wu =3D w_0$.
+Then
+$$
+\SS(w) =3D
+\partial_u(x_1^{n-1} x_2^{n-2} \cdots x_{n-2}^2 x_{n-1}).
+$$
+We have $\mbox{deg } \SS(w) =3D \ell(w)$.
+\\[1em]
+{\bf Example.}
+For the permutation $w =3D 24153 \in \Sig_5$,
+by inverting first ascents we get
+$w s_1 s_3 s_2 s_1 s_4 s_3 =3D w_0$,
+so
+$$
+\SS(w) =3D \partial_1 \partial_3 \partial_2 \partial_1 \partial_4
+\partial_3(x_1^4 x_2^3 x_3^2 x_4)
+=3D x_1 x_2\, (x_1 x_2 + x_1 x_3 + x_2 x_3 + x_1 x_4 + x_2 x_4).
+$$
+
+\section{Orthodontia on a Rothe diagram}
+
+Consider the {\em Rothe diagram}
+of a permutation $w \in \Sig_n$,
+$$
+D =3D D(w) =3D\{(i,j) \in \NN \times \NN
+\mid i < w^{-1}(j), \ \ j < w(i)\}.
+$$
+Its elements are called {\em squares}.
+We shall often think of $D$ as a sequence
+$(C_1,C_2,\ldots,C_r)$ of columns $C_j \subset \NN$,
+by projecting squares $(i,j)$ to their first coordinate.
+We omit any empty columns from the sequence.
+
+In the sequel, our main interest is in Rothe
+diagrams, but our analysis will involve more
+general diagrams $D \subset \NN \times \NN$
+of squares in the plane.  In fact, to any such diagram
+one can associate a ``Schur polynomial'', which is the character
+of its flagged Schur module (see Section 7).
+The formulas we state will apply not only to
+the Schubert polynomials (associated to Rothe diagrams),
+but to the Schur polynomials of any ``strongly separated''
+diagram.  (See Section 9.)
+
+Now, let $D$ be a Rothe diagram.
+For our formulas, we will require a sequence of permutations
+$w_1, w_2, \ldots, w_r$ which is compatible
+with $D$ in the sense that
+$w_j\, \{1,2,\ldots, |\,C_j|\} =3D C_j$ for all $j$.
+We also demand that the sequence be
+monotone in the weak order:
+that is, for some $u_1, u_2, \ldots , u_r$,
+we must have $w_1 =3D u_1,\, w_2 =3D u_1 u_2,\, \ldots\, ,
+w_r =3D u_1 \cdots u_r$,
+with $\ell(w_j) =3D \ell(u_1) + \ell(u_2) + \cdots + \ell(u_j)$.
+(It is enough to require $w_r =3D \ell(u_1) + \cdots + \ell(u_r)$.)
+
+This can be done by means of the following algorithm.
+Given a column $C \subset \{1,\ldots,n\}$, a
+{\em missing tooth} of $C$ is an integer $i$ such
+that $i \not\in C$, but $i' \in C$ for some $i' > i$.
+The only $C$ without any missing teeth are
+$\{1,2,3,\ldots,j\}$.  Given a diagram $D =3D (C_1, \ldots, C_r)$,
+let $(i_0,j_0)$ denote a {\em special} missing tooth in $D$ which is
+in the leftmost column possible, and as high as possible in this column
+subject to the condition that $(i_0+1,j_0) \in D$.
+
+Now perform {\em orthodontia} on $D$ to get a new
+diagram $D'$ with fewer missing teeth,
+by switching rows $i_0$ and $i_0+1$ in the columns weakly
+right of $(i_0,j_0)$.
+That is, change $D$ to
+$$
+\begin{array}{rcl}
+D' & =3D & \{ (i,j) \mid (i,j) \in D \mbox{ and } j < j_0 \} \\
+& & \cup \{ (s_{i_0}i,j) \mid (i,j) \in D \mbox{ and } j \geq j_0 \} .
+\end{array}
+$$
+Next, locate the special missing tooth $(i_1,j_1)$ of
+$D'$, and perform this procedure again on $D'$ to
+get $D''$ and $(i_2,j_2)$, and so on until we reach a diagram
+with no missing teeth.  Notice that $j_0 \leq j_1 \leq \cdots $.
+
+Finally, define the {\em orthodontic sequence} of
+$D =3D D(w)$ to be $w_1, w_2, \ldots$, where
+$w_j =3D \prod_{k \, : \
+% \mbox{\tiny  s.t. }
+j_k \leq j} s_{i_k}$, the product being taken
+over all $k$ such that $(i_k,j_k)$ is weakly left of column $j$.
+It is easily seen that this sequence
+has the desired properties.
+\\[1em]
+{\bf Example.}
+For the same
+$ w =3D 24153$, we have
+$$
+D =3D D(w) =3D \
+\begin{array}{cccc}
+1 & \Box &      &      \\
+2 & \Box &      & \Box \\
+3 &      &      &      \\
+4 &      &      & \Box
+\end{array}
+\ \
+=3D
+\ \
+\begin{array}{cc}
+\Box &  \circ \\
+\Box &  \Box \\
+     &       \\
+     &  \Box
+\end{array}
+$$
+$$
+D' =3D
+\begin{array}{ccc}
+1 & \Box & \Box \\
+2 & \Box &      \\
+3 &      & \circ \\
+4 &      & \Box
+\end{array}
+\ \ \ \
+ D'' =3D
+\begin{array}{ccc}
+1 & \Box &  \Box \\
+2 & \Box & \circ \\
+3 &      &  \Box
+\end{array} \
+\ \ \ \
+ D''' =3D
+\begin{array}{ccc}
+1 & \Box &  \Box \\
+2 & \Box &  \Box \\
+\end{array} \
+$$
+so that the special missing teeth (as indicated by $\circ$) are
+$(i_0,j_0) =3D (1,2)$, $(i_1,j_1) =3D (3,2)$, $(i_2,j_2) =3D (2,2)$,
+and $w_1 =3D e$, \, $w_2 =3D s_{i_0} s_{i_1} s_{i_2} =3D s_1 s_3 s_2$.
+
+Note that $w_r =3D w_2 =3D s_1 s_3 s_2$ is a reduced subword
+of the first-ascent sequence $s_1 s_3 s_2 s_1 s_4 s_3$
+which raises $w$ to the maximal permutation $w_0$,
+as in the previous section.  This is always the case,
+and we can give an algorithm for extracting this subword.
+
+\section{Demazure character formula}
+
+The definition of $\SS(w)$ involves {\em descending} induction
+(lowering the degree), but we give the following
+{\em ascending} algorithm.
+
+Let $D(w) =3D (C_1, \ldots, C_r)$ (omitting empty columns),
+and let $c_j =3D |\, C_j|$.
+Take a monotone compatible sequence $w_1, \ldots, w_r$ for $D(w)$,
+such as the orthodontic sequence defined above, and
+let $u_j =3D w_{j-1}^{-1} w_j$, so that
+$w_1 =3D u_1$,\, $w_2 =3D u_1 u_2, \cdots$.
+Furthermore, let $\lam_i =3D x_1 x_2 \cdots x_i$.
+
+Define the {\em Demazure operators} (isobaric divided differences)
+$ \pi_i =3D \partial_i x_i$ and $\pi_u =3D \pi_{i_1} \pi_{i_2} \cdots$,
+for $u =3D s_{i_1} s_{i_2} \cdots$ a reduced decomposition.
+(See \cite{Dem}.)
+These are analogous to the $\partial$ operators, but
+do not change the degree of a homogeneous polynomial.
+
+Finally, let $\SS_0(w) =3D 1$
+and
+$$
+\SS_k(w) =3D \pi_{u_k}(\lam_{c_k} \SS_{k-1}(w)).
+$$
+
+\begin{thm} \mbox{} \\
+\mbox{} \hfill $\SS_r(w) =3D \SS(w)$.\hfill \mbox{}
+\end{thm}
+{\bf Example.}
+For our permutation $w =3D 24153$,
+we have $c_1 =3D c_2 =3D 2$, $u_1 =3D e$, $u_2 =3D s_1 s_3 s_2$,
+and we may verify that
+$$
+\SS(w) =3D x_1 x_2 \, \pi_1 \pi_3 \pi_2(x_1 x_2) .
+$$
+Note that this makes the factorization evident.
+
+\section{Young tableaux}
+
+The work of
+Lascoux-Schutzenberger \cite{LS3} and Littlemann
+\cite{Lit} allows us to ``quantize'' our Demazure
+formula, realizing the terms of the polynomial by
+certain tableaux endowed with a crystal graph
+structure.   Reiner and Shimozono have shown that our construction
+gives the same
+non-commutative Schubert polynomials as those in
+\cite{LS2}.  In fact, A. Lascoux has informed me that
+some of the contents of this section were known to him, and motivated
+\cite{LS2}, though not explicitly stated there.
+Our tableaux are different, however, from the
+``balanced tableaux'' of Fomin, Greene, Reiner,
+and Shimozono.
+
+Recall that a {\em column-strict filling} of a diagram $D$
+(with entries in $\{1,\ldots, n\}$) is
+a map $t$ filling the squares of $D$ with numbers from
+$1$ to $n$,
+strictly increasing down each column.
+The {\em content} of a filling is a monomial
+$x^t =3D \prod_{(i,j) \in D} x_{t(i,j)}$, so that the
+exponent of $x_i$ is the number of times $i$ appears in the
+filling.
+We will define a set of fillings
+$\TT$ of the Rothe diagram $D(w)$ which satisfy
+$$
+\SS(w) =3D \sum_{t \in \TT} x^t.
+$$
+The set $\TT$ will be defined recursively,
+$\TT_0,\,  \TT_1, \ldots, \TT_r =3D \TT$,
+so that
+$$
+\SS_k(w) =3D \sum_{t \in \TT_k} x^t.
+$$
+
+We will need the {\em root operators} first defined in
+\cite{LS3}.  These are operators $f_i$ which
+take a filling $t$ of a diagram $D$ either to another filling of $D$
+or to the empty set $\emptyset$.  To
+define them we first encode a filling $t$ in terms of its
+{\em reading word}:  that is, the sequence
+of its entries starting at the upper left corner,
+and reading down the columns one after another:
+$t(1,1), t(2,1), t(3,1), \ldots, t(1,2), t(2,2), \ldots $.
+
+The lowering operator $f_i$ either takes a word $t$ to the
+empty word $\emptyset$,
+or it changes one of the $i$ entries to $i+1$,
+according to the following rule.  First, we ignore all the entries
+in $t$ except those containing $i$ or $i+1$;  if an $i$ is
+followed by an $i+1$ (ignoring non $i$ or $i+1$ entries in between),
+then henceforth we ignore that pair of entries; we look again
+for an $i$ followed (up to ignored entries) by an $i+1$,
+and henceforth ignore this pair; and iterate until we obtain
+a subword of the form $i+1,\, i+1,\ldots, i+1,\, i,\, i, \ldots, i$.
+If there are {\em no} $i$ entries in this word, then
+$f_i(t) =3D \emptyset$, the empty word.  If there are some $i$ entries,
+then the {\em leftmost} is changed to $i+1$.
+
+For example, we apply $f_2$ to the word
+$$
+\begin{array}{cccccccccccccc}
+ t & =3D & 1 & 2 & 2 & 1 & 3 & 2 & 1 & 4 & 2 & 2 & 3 & 3 \\
+   &   & . & 2 & 2 & . & 3 & 2 & . & . & 2 & 2 & 3 & 3 \\
+   &   & . & 2 & . & . & . & 2 & . & . & 2 & . & . & 3 \\
+   &   & . & {\bf 2} & . & . & . & {\bf 2} & . & . & . & . & . & .
+\\[.2em]
+f_2(t) & =3D &
+         1 & {\bf 3} & 2 & 1 & 3 & {\bf 2} & 1 & 4 & 2 & 2 & 3 & 3  =
+\\[.2em]
+f_2^2(t) & =3D &
+         1 & {\bf 3} & 2 & 1 & 3 & {\bf 3} & 1 & 4 & 2 & 2 & 3 & 3  =
+\\[.2em]
+f_2^3(t) & =3D & \emptyset
+           &   &   &   &   &   &   &   &   &   &   &
+\end{array}
+$$
+Decoding the image word back into a filling of the same diagram
+$D$, we have defined our operators.
+
+Moreover, consider the column
+$\phi_m =3D \{1,2,\ldots,m\}$
+and its minimal
+column-strict filling
+$t_m$ ($i$th level filled with $i$).
+For a filling $t$ of any diagram
+$D =3D (C_1,\ldots,C_r)$,
+define in the obvious way
+the composite filling $t_m \sqcup\, t$ of the
+juxtaposed diagram $\phi_i \sqcup\, D =3D (\phi_i, C_1, \ldots, C_r)$.
+In terms of words, this means
+concatenating the words $(1,2,\ldots,m)$ and $t$.
+
+Now we can define our sets of tableau.
+Let our notation be as in the Demazure
+character formula,
+$D(w) =3D (C_1,\ldots, C_r)$, etc,
+and take a reduced decomposition
+$u_k =3D s_{i_1} \cdots s_{i_l}$.  Define
+$\TT_0 =3D \{ \emptyset \}$, and
+$$
+\TT_{k} =3D \langle f_{i_1} \rangle \cdots
+\langle f_{i_l} \rangle( t_{c_k} \!\sqcup \TT_{k-1} ),
+$$
+where $\langle f_{i} \rangle$ means the set of powers
+$\{\id, f_i, f_i^2, \ldots\} $.
+
+\begin{thm}  The Schubert polynomial $\SS(w)$
+is the generating function
+for the tableaux $\TT =3D \TT_r$:
+$$
+\SS(w) =3D \sum_{t \in \TT} x^t.
+$$
+Furthermore, the crystal graph structure of
+$\TT$ reflects the splitting of $\SS(w)$ into key polynomials:
+$$
+\SS(w) =3D \sum_{t \in \mbox{Yam}(\TT)} \kappa_{w_t(x^t)},
+$$
+where $\mbox{Yam}(\TT)$ is the set of Yamanouchi words in
+$\TT$, and the $w_t$ are some permutations.
+\end{thm}
+{\bf Example.}
+As above, when $c_1 =3D c_2 =3D 2$, $u_1 =3D e$, $u_2 =3D s_1 s_3 s_2$,
+the set of tableaux (words) grows as follows:
+$$
+\TT_0 =3D \{\emptyset\}
+\stackrel{t_2 \sqcup}{\rightarrow} \{ 12 \}
+\stackrel{\langle f_2 \rangle}{\rightarrow} \{12, 13\}
+\stackrel{\langle f_3 \rangle}{\rightarrow}  \{12, 13, 14\}
+\stackrel{\langle f_1 \rangle}{\rightarrow} \TT_1 =3D \{12, 13, 14, 23, =
+24\}
+$$
+$$
+\stackrel{t_2 \sqcup}{\rightarrow}
+\ \ \TT =3D \TT_2 =3D \{1212, 1213, 1214, 1223, 1224\}.
+$$
+This clearly gives us the Schubert polynomial
+as generating function,
+and furthermore we see the crystal graph
+(with vertices the tableaux in $\TT$ and edges all pairs of the
+form $(t, f_i t)$\ ):
+$$
+\begin{array}{ccc}
+1223 \!\! & \! \stackrel{1}{\leftarrow}  \! & \!\! 1213 \\
+\mbox{\small 3}\! \downarrow & & \downarrow\! \mbox{\small 3} \\
+1224 \!\!& \! \stackrel{1}{\leftarrow} \! &\!\! 1214
+\end{array}
+\ \ \  \ \ 1212
+$$
+The highest-weight elements in each component are the
+Yamanouchi words
+
+$\mbox{Yam}(\TT) =3D \{1213, 1212\}$, and by looking at
+the corresponding lowest elements, we may deduce
+$\SS(w) =3D \kappa_{x_1 x_2^2 x_4} + \kappa_{x_1^2 x_2^2} =3D
+\kappa_{1201} + \kappa_{2200}$.
+Lascoux and Schutzenberger $\cite{LS3}$
+have obtained another characterization of such lowest-weight
+tableaux.
+
+
+\section{Weyl character formula I}
+
+Our next character formula mixes the rational terms
+of the Weyl character formula with the chains of Weyl group
+elements in the Standard Monomial Theory of Lakshmibai-Seshadri-Musili.
+% \cite{Lak}
+For computations, this formula is very inefficient:
+a related expression with much fewer terms, more directly
+generalizing the Weyl formula, is given in
+the following section.  The main advantage of the current expression
+is that one can use it to obtain character formulas for
+certain analogous polynomials associated with other root systems
+(though unfortunately these analogous polynomials do not seem to include
+the Schubert polynomials of other root systems).
+
+Suppose we have any permutation with choice of reduced decomposition,
+$u =3D s_{i_1} \cdots s_{i_l}$,
+and a sequence of zeroes and ones
+$\epsilon =3D (\epsilon_1, \epsilon_2, \cdots )$, $\epsilon_j \in =
+\{0,1\}$.
+Denote
+$$
+u^{\epsilon} =3D s_{i_1}^{\epsilon_1} \cdots s_{i_l}^{\epsilon_l},
+$$
+a subword of $u$, not necessarily reduced.
+
+Consider as before
+a monotone sequence of permutations $w_1, w_2,\ldots,w_r$
+compatible with the Rothe diagram $D =3D D(w)$, and
+choose a reduced decomposition for
+$u_j =3D w_{j-1}^{-1} w_j$.
+This gives a choice of reduced decomposition for each $w_j =3D u_1 =
+\cdots u_j$,
+and in particular for $w_r =3D s_{i_1} \cdots s_{i_l}$.
+Let $v_k =3D s_{i_1} \cdots s_{i_k}$ for $k \leq l$.
+Recall that $\lam_{c_j} =3D x_1 x_2 \cdots x_{c_j}$, the fundumental
+weight associated to the length $c_j$ of the $j$th column of $D$
+(not counting empty columns).
+
+\begin{thm}
+$$
+\SS(w) =3D
+\sum_{\epsilon}
+{ \prod_{j =3D 1}^r \,  w_j^{\epsilon}(\lam_{c_j})
+  \over
+  \prod_{k =3D 1}^l \,
+  (1- v_k^{\epsilon}(x_{i_k}^{-1} x_{i_k+1})) ,
+}
+$$
+where the summation is over all $2^l$  sequences
+of zeroes and ones $\epsilon =3D (\epsilon_1, \ldots, \epsilon_l)$.
+\end{thm}
+This follows straight-forwardly from our Demazure formula,
+though it also has a geometric interpretation in terms of
+Bott-Samelson varieties (see below).
+{\bf Example.}  For the same $w =3D 24153$,
+we have the reduced decomposition $w_r =3D w_2 =3D s_1 s_3 s_2$,
+$l =3D 3$,
+so the Schubert polynomial is the following sum of
+8 terms corresponding
+to $\epsilon =3D (000), (001), (010), (011), \ldots$\ :
+$$
+\begin{array}{rcl}
+S(w) & =3D &
+% (000)
+{ x_1^2 x_2^2
+\over
+(1 - x_1^{-1} x_2) (1 - x_3^{-1} x_4) (1 - x_2^{-1} x_3) }
++
+% (001)
+{ x_1^2 x_2 x_3
+\over
+(1 - x_1^{-1} x_2) (1 - x_3^{-1} x_4) (1 - x_3^{-1} x_2)  }
+\\[.7em]
+& & \
++
+% (010)
+{ x_1^2 x_2^2
+\over
+(1 - x_1^{-1} x_2) (1 - x_4^{-1} x_3) (1 - x_2^{-1} x_4) }
++
+%(011)
+{ x_1^2 x_2 x_4
+\over
+(1 - x_1^{-1} x_2) (1 - x_4^{-1} x_3) (1 - x_4^{-1} x_2)  }
+\\[.7em]
+& & \ \ \
++
+% (100)
+{ x_1^2 x_2^2
+\over
+(1 - x_2^{-1} x_1) (1 - x_3^{-1} x_4) (1 - x_1^{-1} x_3)  }
++
+% (101)
+{ x_1 x_2^2 x_3
+\over
+(1 - x_2^{-1} x_1) (1 - x_3^{-1} x_4) (1 - x_3^{-1} x_1)  }
+\\[.7em]
+& & \ \ \ \ \
++
+% (110)
+{ x_1^2 x_2^2
+\over
+(1 - x_2^{-1} x_1) (1 - x_4^{-1} x_3) (1 - x_1^{-1} x_4)  }
++
+% (111)
+{ x_1 x_2^2 x_4
+\over
+(1 - x_2^{-1} x_1) (1 - x_4^{-1} x_3) (1 - x_4^{-1} x_1)  } .
+\end{array}
+$$
+
+
+\section{Weyl Character Formula II}
+\label{Weyl II}
+
+Finally, we state a result directly generalizing
+the Weyl character formula (Jacobi bialternant), reducing to
+it in case $\SS(w)$ is a Schur polynomial.
+
+The formula involves
+certain extensions of the Rothe diagram $D =3D D(w)$.
+Define the Young diagram
+$\Phi =3D \{ (i,j) \mid 1 \leq i \leq j \leq n-1 \}$.
+Let the {\em flagged diagram }
+$\Phi \sqcup D$ be the concatenation
+of the two diagrams placed horizontally next to each other:
+that is, the columns of $\Phi \sqcup D$
+are those of $\Phi$ followed by those of $D$.
+
+Now, given $\Phi \sqcup D =3D (C_1,\ldots,C_r)$,
+define the {\em blowup} of the flagged diagram
+$\widehat{\Phi \sqcup D} =3D (C_1, \ldots, C_r,
+{C}_1', {C'}_2', \ldots)$,
+where the extra columns  are the intersections
+$\tilde{C} =3D  C_{i_1} \cap C_{i_2} \cap \cdots \subset \NN$,
+for all lists $C_{i_1}$, $C_{i_2}, \ldots$ of columns of
+$\Phi \sqcup D $;
+but if an intersection $C_{i_1} \cap C_{i_2} \cap \cdots =3D C_k$
+is already a column of $\Phi \sqcup D$, then we do not append it.
+
+Now let
+$ \Dt =3D \widehat{\Phi \sqcup D} $.
+Define a {\em standard tabloid} $t$ of
+$ \Dt $
+to be a column-strict filling
+such that if $C, C'$ are columns of
+$ \Dt $
+with $C$ horizontally contained in $C'$,
+then the numbers filling $C$
+all appear in the filling of $C'$.
+In symbols,
+$t : \Dt \rightarrow \{1,\ldots,n\}$ ,
+$t(i,j) < t(i+1,j)$ for all $i, j$,
+and
+$C \subset C' \Rightarrow t(C) \subset t(C')$.
+
+For $1 \leq i \neq j \leq n$
+and a tabloid $t$ of
+$ \Dt $,
+we
+define certain integers: $d_{ij}(t)$
+ is the number of connected components of
+the following graph.
+The vertices are columns $C$ of
+$ \Dt $
+such that $i \in t(C)$,  $j \not\in t(C)$;
+the edges are $(C,C')$ such that $C \subset C'$
+or $C' \subset C$.
+
+Finally, since there are inclusions of diagrams
+$D,\, \Phi \subset \Dt =3D  \widehat{\Phi \sqcup D}$,
+we have the {\em restrictions} of
+a tabloid $t$ for $\Dt$
+to $D$ and $\Phi$, which we denote $t|D$ and $t|\Phi$.
+
+\begin{thm} \mbox{} \\
+$$
+\SS(w) =3D
+\sum_{t}
+{  x^{(t|D \! )}
+  \over \prod_{i < j}\,
+(1-x_i^{-1} x_j)^{d_{ij}(t)-1}\
+(1-x_j^{-1} x_i)^{d_{ji}(t)}  },
+$$
+where $t$ runs over the standard tabloids for
+$\widehat{\Phi \sqcup D}$ such that
+$(t|\Phi)(i,j) =3D i$ for all $(i,j) \in \Phi$.
+\end{thm}
+{\bf Example.}  For the same $w =3D 24153$,
+$$
+D =3D D(w) =3D
+\begin{array}{ccc}
+1 & \Box &      \\
+2 & \Box & \Box \\
+3 &      &      \\
+4 &      & \Box
+\end{array}
+\ \ \ \ \ \ \ \ \ \ \ \ \
+\Phi \sqcup D =3D
+\begin{array}{cccccc}
+\Box & \Box & \Box & \Box & \Box &      \\
+     & \Box & \Box & \Box & \Box & \Box \\
+     &      & \Box & \Box &      &      \\
+     &      &      & \Box &      & \Box
+\end{array}
+$$
+$$
+\widehat{\Phi \sqcup D} =3D
+\begin{array}{cccccccc}
+1 & \Box & \Box & \Box & \Box & \Box &       &       \\
+2 &      & \Box & \Box & \Box & \Box &  \Box & \Box  \\
+3 &      &      & \Box & \Box &      &       &       \\
+4 &      &      &      & \Box &      &  \Box &
+\end{array}.
+$$
+There are six standard
+tabloids of the type occurring in the theorem.
+Their restrictions to the last three columns of
+$\widehat{\Phi \sqcup D}$ are:
+$$
+\begin{array}{ccc}
+1 &   &   \\
+2 & 1 & 1 \\
+  &   &   \\
+  & 2 &
+\end{array},
+\ \
+\begin{array}{ccc}
+1 &   &   \\
+2 & 1 & 1 \\
+  &   &   \\
+  & 3 &
+\end{array},
+\ \
+\begin{array}{ccc}
+1 &   &   \\
+2 & 1 & 1 \\
+  &   &   \\
+  & 4 &
+\end{array},
+\ \
+\begin{array}{ccc}
+1 &   &   \\
+2 & 1 & 2 \\
+  &   &   \\
+  & 2 &
+\end{array},
+\ \
+\begin{array}{ccc}
+1 &   &   \\
+2 & 2 & 2 \\
+  &   &   \\
+  & 3 &
+\end{array},
+\ \
+\begin{array}{ccc}
+1 &   &   \\
+2 & 2 & 2 \\
+  &   &   \\
+  & 4 &
+\end{array}.
+$$
+The integers $d_{ij}(t)$ are 0, 1, or 2,
+and we obtain
+$$
+\begin{array}{rcl}
+S(w) & =3D &
+{ x_1^2 x_2^2
+\over
+(1 - x_1^{-1} x_2) (1 - x_2^{-1} x_3) (1 - x_2^{-1} x_4)  }
++
+%
+{ x_1^2 x_2 x_3
+\over
+(1 - x_1^{-1} x_2) (1 - x_3^{-1} x_4) (1 - x_3^{-1} x_2)  }
+\\[.7em]
+& & \ +
+%
+{ x_1^2 x_2 x_4
+\over
+(1 - x_1^{-1} x_2) (1 - x_4^{-1} x_2) (1 - x_4^{-1} x_3)  }
++
+%
+{ x_1^2 x_2^2
+\over
+(1 - x_1^{-1} x_3) (1 - x_1^{-1} x_4) (1 - x_2^{-1} x_1)  }
+\\[.7em]
+& & \ \ \ \ +
+%
+{ x_1 x_2^2 x_3
+\over
+(1 - x_2^{-1} x_1) (1 - x_3^{-1} x_4) (1 - x_3^{-1} x_1)  }
++
+%
+{ x_1 x_2^2 x_4
+\over
+(1 - x_2^{-1} x_1) (1 - x_4^{-1} x_1) (1 - x_4^{-1} x_3)  } .
+\end{array}
+$$
+Note that some, but not all, of the above six terms are
+among the eight terms of the previous example.
+As in the case of
+the original Weyl character formula,
+it is not clear a priori why either of these rational functions
+should simplify to a polynomial (with positive integer coefficients).
+
+This formula has been implemented by the author in Mathematica, =
+available
+on request.
+
+\section{Schur modules}
+
+The above formulas arise naturally from a Borel-Weil
+theory which relates Schubert polynomials with certain
+algebraic varieties similar to the Schubert varieties
+of $GL(n)$.  (See \cite{Mag2}.)
+The starting point of our theory
+is the result of Kraskiewicz and Pragacz
+which realizes Schubert polynomials as characters
+of ``flagged Schur modules''.
+
+We shall write $G =3D GL(n,\CC)$,
+$B =3D $ the subgroup
+of upper triangular matrices,
+$V =3D \CC^n$ the
+defining representation,
+and $V_i$ the subspace of $V$
+spanned by the first $i$ coordinate vectors.
+
+Let the diagram $D \subset \NN \times \NN$ be
+any set of squares $(i,j)$ in the plane.
+Let $\Sigma_D$ be the
+symmetric group permuting the squares of $D$,
+ $\Col(D) \subset \Sigma_D$ the subgroup permuting
+the squares within each column, and $\Row(D)$
+similarly for rows.
+Define (almost) idempotents
+$\al_D$, $\beta_D$ in the group algebra
+$\CC[\Sigma_D]$ by
+$$
+\alD =3D  \sum_{\sigma \in \Row D} \sigma, \ \ \ \
+\beD =3D  \sum_{\sigma \in \Col D} \sgn(\sigma) \sigma ,
+$$
+where $\sgn(\sigma)$ is the sign of the permutation.
+
+$\Sigma_D$ acts on the right of the tensor product
+$V^{\otimes D}$ by permuting factors,
+and $G$ and  $B$ act on the left
+by the diagonal action.
+These two actions commute.
+Define the {\em flagged Schur module}
+to be the $B$-stable subspace
+$$
+S_D^B =3D (\! \! \bigotimes_{(i,j) \in D} V_i \ )
+\ \alD \beD
+\subset V^{\otimes D} .
+$$
+
+\begin{thm}{(Kraskiewicz-Pragacz)\ }
+\label{KP}
+The Schubert polynomial for a permutation
+is the character of the flagged Schur module
+of its Rothe diagram:
+$$
+\SS(w) =3D
+\tr(\, \diag(x_1,\ldots,x_n) \mid S_{D(w)}^B).
+$$
+Here the constant $n$ is taken so that $D(w)$ has at
+most $n$ rows.
+\end{thm}
+Reiner, Shimozono, and the author have given a proof
+of this theorem using configuration varieties.
+\\[.5em]
+{\bf Example.}  For $w =3D 24153$, if we
+number the squares of $D(w)$ as
+$$
+D =3D D(w) =3D
+\begin{array}{cc}
+ \Box &      \\
+ \Box & \Box \\
+      &      \\
+      & \Box
+\end{array}
+\ \ \
+=3D
+\ \ \
+\begin{array}{cc}
+  1   &      \\
+  2   &  3   \\
+      &      \\
+      &  4
+\end{array}
+,
+$$
+then we have
+(in cycle notation for $\Sigma_D \cong \Sigma_4$),
+$$
+\begin{array}{rcl}
+\alpha_D \beta_D & =3D &
+ (1 + (23)) \ (1-(12))(1-(34)) \\
+& =3D &
+1 + (23) - (12) - (34)
+- (132) - (234) + (12)(34) + (1324) .
+\end{array}
+$$
+
+Take $n =3D 5$,
+so that $V^{\otimes D} \cong (\CC^5)^{\otimes 4}$,
+a 20-dimensional space with coordinate vectors
+$e_{i_1 i_2 i_3 i_4} =3D
+e_{i_1} \otimes e_{i_2} \otimes e_{i_3} \otimes e_{i_4}$,
+$i_1, \ldots, i_4 \in \{1,\ldots,5\}$.
+$\Sigma_D$ acts by
+$e_{i_1 i_2 i_3 i_4} \cdot \sigma =3D
+e_{i_{\sigma(1)} i_{\sigma(2)} i_{\sigma(3)} i_{\sigma(4)}}$,
+and $GL(5)$ acts diagonally on the tensor factors.
+By definition, $S_D^B$ is spanned by vectors of the form
+$$
+v_t =3D e_{t(1), t(2), t(3), t(4)}
+\, \alpha_D \beta_D ,
+$$
+for all fillings $t  : D \rightarrow \{1,\ldots,5\}$
+with $t(1) \leq 1$, $t(2),t(3) \leq 2$,
+$t(4)\leq 4$, and
+it should follow from our theory that we obtain a basis if
+we take only the 6 fillings $t \in \TT$, the set of tableaux
+defined in our second character formula.
+For instance, if $t =3D (1213)$,
+$$
+\begin{array}{rcl}
+v_t & =3D  & e_{1213} + e_{1123} - e_{2113} - e_{1231}
+- e_{1123} - e_{1132} + e_{2131} + e_{1132} \\
+& =3D & e_{1213} - e_{2113} - e_{1231} + e_{2131}.
+\end{array}
+$$
+% We may verify that, as indicated by the crystal graph,
+% this is a highest weight vector:  $b \cdot v_t \in \CC v_t$
+% for any upper triangular matrix $b$.
+
+
+\section{Configuration varieties}
+
+Now we translate our algebra into geometry, realizing a
+flagged Schur module $S_D^B$ as the space of sections
+of a line bundle over a (possibly singular) algebraic
+variety $\FDB$.  Because the singularities are sufficiently
+tame, we can obtain non-trivial transformations of our problem
+by considering desingularizations of $\FDB$ and applying known
+character formulas for spaces of sections over smooth varieties.
+The first three formulas come from a Bott-Samelson resolution
+of $\FDB$ \cite{De1}, the last from an analog of Zelevinsky's resolution
+\cite{Zel}.
+
+Let $D \subset \NN \times \NN$ be a diagram with all its
+squares in rows $i =3D 1,\ldots,n$.  Let $C_1,\ldots,C_r \subset
+\{1,\ldots,n\}$ be the columns of $D$, and for each $C =3D C_j$,
+let $V_C =3D \mbox{Span }\{e_i \mid i \in C\} \subset \CC^n$,
+a coordinate subspace of dimension $c_j =3D |C_j|$.  Consider the =
+$r$-tuple
+$(V_{C_1},\ldots,V_{C_r})$ as a point in the product of Grassmannians
+$\Gr(D) =3D \Gr(c_1, \CC^n) \times \cdots \times \Gr(c_r, \CC^n)$,
+and define the {\em flagged configuration variety}
+$$
+\FDB =3D \overline{B \cdot (V_{C_1},\ldots,V_{C_r})}
+\subset \Gr(D) ,
+$$
+the closure of the $B$-orbit of the above point.
+This is an irreducible projective variety, and the
+Schubert varieties of $GL(n)/B$ and $GL(n)/P$ are clearly
+special cases.
+$\FDB$ has a natural line bundle $\LD$ defined by restricting
+the Plucker bundle $\OO(1,\ldots,1)$ over the product of Grassmannians
+$\Gr(D)$.
+These varieties are very tractable in the case of a Rothe diagram,
+and we may state the following Borel-Weil-Bott theorem.
+
+\begin{thm}{(Magyar-van der Kallen)\ }
+Let $D =3D D(w)$ a Rothe diagram.  Then $\FDB$ has rational
+singularities and is projectively normal with respect to $\LD$.
+Furthermore, the space of global sections
+$$
+H^0(\FDB,\LD) \cong (S_D^B)^*
+$$
+as $B$-modules, and $H^i(\FDB,\LD) =3D 0$ for all $i>0$.
+\end{thm}
+
+
+Now let $w_1, \ldots, w_r$ be the orthodontic sequence of
+$D =3D D(w)$ and $w_r =3D s_{i_1} \cdots s_{i_l}$ the associated
+reduced decomposition.  Thus the initial subwords are reduced
+decompositions $w_j =3D s_{i_1} \cdots s_{i_{l(j)}}$,
+where $l(j) =3D l(w_j)$.
+Consider the associated Bott-Samelson variety \cite{De1}
+$$
+Z =3D P_{i_1} \tB \cdots \tB P_{i_l} / B ,
+$$
+where $P_i$ denotes the maximal parabolic of $G =3D GL(n)$ such that
+$G/P_i \cong \Gr(i,\CC^n)$.  Define the multiplication map
+$$
+\begin{array}{cccc}
+\phi : & Z & \rightarrow &
+\Gr(D) \cong G/P_{c_1} \times G/P_{c_2} \times \cdots \times G/P_{c_r} =
+\\
+& (p_1,\ldots,p_l) & \mapsto &
+( p_1 p_2 \cdots p_{l(1)},\  p_1 p_2 \cdots p_{l(2)},\,
+\ldots \, , \ p_1,\cdots p_{l(r)}) .
+\end{array}
+$$
+
+\begin{thm}
+The map $\phi$ maps $Z$ birationally onto $\FDB$, and so is a
+resolution of singularities.  Furthermore, for all $i$,
+$$
+H^i(Z, \phi^* \LD) \cong H^i(\FDB, \LD) .
+$$
+\end{thm}   From this,
+the computations of Demazure \cite{De1} on the Bott-Samelson
+variety directly imply our formula (1),  and (2) follows by the theory
+of root operators.  Formula (3) results from applying the
+Atiyah-Bott-Lefschetz fixed-point formula to $Z$.
+
+\begin{thm}
+Let $D =3D D(w)$ and
+$\widetilde{D} =3D \widehat{\Phi \sqcup D}$ the blowup diagram
+of section \ref{Weyl II}.  Then the configuration variety
+$\FF^B_{\widetilde{D}}$ is a smooth variety, and is a resolution
+of singularities of $\FDB$ via the natural projection map
+map $\psi : \Gr(\widetilde{D}) \rightarrow \Gr(D)$.
+Furthermore, for all $i$,
+$$
+H^i(\FF^B_{\widetilde{D}}, \psi^* \LD) \cong H^i(\FDB, \LD) .
+$$
+\end{thm}
+%
+Formula (4) now results from Atiyah-Bott-Lefschetz applied to
+$\FF^B_{\widetilde{D}}$.
+\\[.5em]
+{\bf Example.}
+In our case $w =3D 24153$, we may take $n =3D 4$, so that we
+have $\Gr(D) =3D \Gr(2,\CC^4) \times \Gr(2, \CC^4)$, which we
+may think of as the variety of pairs of lines in $\PP^3$.
+The $B$-orbit of the special point $(V_{12}, V_{24})$ is precisely
+the pairs of the form $(V_{12}, W)$, where $W =3D \langle v_1, v_2 =
+\rangle$,
+$v_1 \in V_{12}$, and $v_1, v_2$ are linearly independent.
+Thus
+$$
+\FDB \cong \{ W \in \Gr(2,\CC^4) \mid \mbox{ dim}(V_{12} \cap W)
+ \geq 1 \},
+$$
+the variety of lines in $\PP^3$ which intersect the coordinate axis.
+(We can give such a description of $\FDB$ as configurations
+with intersection conditions for any Rothe diagram. )
+This is the singular Schubert variety in $\Gr(2,\CC^4)$,
+the resolutions mentioned are the original Bott-Samelson and
+Zelevinsky resolutions,
+and there exist regular maps
+$Z \rightarrow \FF^B_{\widetilde{D}} \rightarrow \FDB$.
+
+%  In general, we can realize the Bott-Samelson variety also as
+%  a configuration variety, in this case corresponding to
+%  $$
+%  BS(D) =3D
+%  \begin{\array}{cccc}
+%  1  &      &      & \Box \\
+%  2  & \Box & \Box & \Box \\
+%  3  &  &  &  \\
+%  4  &       & \Box & \Box
+%  \end{array},
+%  $$
+%  the variety of flags
+%  $$
+%  \{ \mbox{ point }\subset \mbox{ line }\subset \mbox{ plane } \subset =
+\PP^3
+%  \mid \mbox{ point }\subset \mbox{ coordinate axis }\subset \mbox{ =
+plane }\}.
+%  $$
+%  In this case $\
+
+\section{Generalizations}
+
+The above results can be used to compute the characters
+of  Schur modules more general than those associated to
+Rothe diagrams.  In fact, let us replace $D(w)$ by any diagram
+which satisfies
+the following {\em strictly separated} condition.
+For two sets $S, S' \subset \NN$, we say $S < S'$ if $s < s'$ for all
+$s \in S$, $s' \in S'$.
+Now, a diagram $D =3D (C_1, \ldots , C_r)$ with
+columns $C_j \subset \{1,\ldots,n\}$,
+is strictly separtated if,
+for any two columns $C, C'$ of $D$, we have
+$$
+(C \setminus C') < (C' \setminus C)
+\ \ \ \mbox{or} \ \ \
+(C \setminus C') > (C' \setminus C) \ ,
+$$
+where $C\setminus C'$ denotes the complement of $C'$ in $C$.
+See \cite{LZ}, \cite{BFZ}.
+Replace the Schubert polynomial by the character of the
+flagged Schur module $S_D^B$.
+Then our Theorems 1, 2, 3, 6, and 7 remain valid:
+the orthodontic algorithm gives a sequence of Weyl group
+elements compatible with $D$, the first three formulas compute the
+character of $S_D^B$, and the associated configuration variety
+$\FF_D^B$ satisfies the Borel-Weil Theorem and possesses a Bott-Samelson
+resolution.
+
+Suppose that $D$ satisfies an even stronger property, the
+{\em northwest condition}:
+$$
+(i,j), (i',j') \in D \Rightarrow (\, \min(i,i'), \min(j,j')\, ) \in D \ =
+.
+$$
+Then Theorems 4 and 8 are valid as well:
+the fourth character formula is true for $S_D^B$, and the
+variety has a Zelevinsky resolution smaller than the Bott-Samelson one.
+
+
+\begin{thebibliography}{99}
+%
+\bibitem{BFZ} A. Berenstein, S. Fomin, and A. Zelevinsky,
+{\em Parametrizations of canonical bases and totally positive matrices},
+preprint 1995.
+%
+%
+%  \bibitem{BGG} I.N. Bernstein, I.M. Gelfand, and S.I. Gelfand,
+%  {\em Schubert cells and cohomology of the the spaces $G/P$},
+%  Russ. Math. Surv. {\bf 28} (1973), 1-26.
+%
+% \bibitem{GGG} I.M. Gelfand, Yu.R. Gelfand, and E.S. Gelfand,
+% {\em A Note on Gelfand's identity},
+% Internat. J. of Gelf. {\bf 99} (2033).
+%
+ \bibitem{De1} M. Demazure, {\em D\'{e}singularisation des
+ vari\'{e}t\'{e}s
+ de Schubert g\'{e}n\'{e}ralis\'{e}s}, Ann. Sci. Ec. Norm. Sup
+  {\bf 7} (1974), 53-88.
+%
+\bibitem{Dem} M. Demazure, {\em Une nouvelle formule des
+caract\`{e}res}, Bull. Sci. Math. (2)
+ {\bf 98} (1974), 163-172.
+%
+% \bibitem{Ed} P. Edelman,
+% {\em Lexicographically first reduced words},
+% to appear.
+%
+% \bibitem{Ful} W. Fulton, ``Young Tableaux with Applications'',
+% to appear.
+%
+% \bibitem{Hil} H. Hiller, The Geometry of Coxeter Groups,
+% Res. Notes in Math {\bf 54}, C.C. Pittman, Toronto (1982).
+%
+% \bibitem{Jantzen} J.C. Jantzen,
+% Representations of Algebraic Groups,
+% Pure and App. Math {\bf 116}, Academic Press, London (1987).
+%
+\bibitem{KP} W. Kraskiewicz and P. Pragacz, {\em Foncteurs de Schubert},
+C.R. Acad. Sci. Paris {\bf 304} Ser I No 9 (1987), 207-211.
+%
+\bibitem{LS1} A. Lascoux and M.-P. Schutzenberger,
+{\em Polynomes de Schubert}, C. R. Acad. Sci. Paris {\bf 294}
+(1982), 447-450.
+%
+\bibitem{LS2} A. Lascoux and M.-P. Schutzenberger,
+{\em Tableaux and non-commutative Schubert polynomials},
+Funkt. Anal. {\bf 23}
+(1989), 63-64.
+%
+\bibitem{LS3} A. Lascoux and M.-P. Schutzenberger,
+{\em Keys and Standard Bases}, Tableaux and Invariant Theory,
+IMA Vol. in Math. and App. {\bf 19},
+ed. D. Stanton (1990), 125-144.
+%
+\bibitem{LZ} B. LeClerc and A. Zelevinsky, {\em Chamber sets}, preprint.
+%
+\bibitem{Lit} P. Littelmann, {\em A Littlewood-Richardson
+rule for Symmetrizable Kac-Moody algebras}, Inv. Math.
+{\bf 116} (1994), 329-346.
+%
+\bibitem{MacD} I.G. Macdonald, Notes on Schubert Polynomials,
+Pub. LCIM {\bf 6}, Univ. du Qu\'{e}bec a Montr\'{e}al, 1991.
+%
+\bibitem{Mag1} P. Magyar, {\em Borel-Weil theorem for
+configuration varieties and Schur modules}, preprint
+alg-geom/9411014.
+%
+\bibitem{Mag2} P. Magyar,
+{\em Bott-Samelson Varieties and
+Configuration Spaces}, preprint alg-geom/9611019.
+%
+\bibitem{RS1} V. Reiner and M. Shimozono, {\em Specht series for
+column-convex diagrams}, to appear in J. Algebra.
+%
+\bibitem{RS2} V. Reiner and M. Shimozono, {\em Key polynomials
+and a flagged Littlewood-Richardson rule}, J. Comb. Th. Ser. A
+{\bf 70} (1995), 107-143.
+%
+\bibitem{Zel} A. Zelevinsky, {\em Small resolutions of singularities
+of Schubert varieties},  Funct. Anal. App. {\bf 17} (1983), 142-144.
+%
+%  \bibitem{}  , {\em  },  {\bf  } (19), .
+%
+\end{thebibliography}
+
+
+
+
+
+\end{document}
+
+------=_NextPart_000_000A_01BEB7DF.314443E0--
+
+

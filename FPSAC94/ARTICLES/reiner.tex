@@ -1,0 +1,703 @@
+\documentstyle{amsppt}
+\NoBlackBoxes
+\magnification=1200
+\baselineskip=11pt
+\newcount\sectno
+\newcount\thmno
+
+
+\define\secthead#1{\global\advance\sectno by 1
+  \bigpagebreak\par\noindent {\bf Section \the\sectno. #1}\bigpagebreak\par}
+
+\define\nextthm{\global\advance\thmno by 1
+  \the\thmno}
+
+
+\define\rem#1{\vskip .2truein \par \noindent {\bf #1} \newline}
+\define\endrem{\vskip .2truein}
+
+\define\endproof{$\qed$\enddemo}
+\define\sq{\square}
+\define\Pos{\Bbb P}
+\define\Nonneg{\Bbb N}
+\define\Int{\Bbb Z}
+%\input ferrer.tex 
+
+
+
+
+
+
+\topmatter
+\title Characters and inversions in the symmetric group
+\endtitle
+\author Anne de M\'edicis, 
+Victor Reiner, 
+%\footnote{work partially supported by NSF Mathematical
+%Sciences Postdoctoral Research Fellowship DMS-9206371}
+Mark Shimozono
+\endauthor
+
+\affil Department of Mathematics \\ University of Minnesota \\ Minneapolis, MN 55455
+\endaffil
+\email demedic@math.umn.edu, reiner@math.umn.edu, mshimo@math.umn.edu
+\endemail
+\date November 1993 
+\enddate
+\endtopmatter
+
+\noindent
+{\bf Abstract}
+\newline
+We consider sums of the form
+$$\sum_{\pi \in S_n} \chi^{\lambda/\mu}(\pi) \,\, q^{inv(\pi)}$$
+where $\chi^{\lambda/\mu}$ is a skew character of the symmetric group
+and $inv(\pi)$ is the number of inversions of $\pi$.
+Our main result gives a lower bound on the number of
+factors of $1+q$ and $1-q$ which divide the above 
+sum, and is shown to be sharp when  
+$\lambda/\mu$ is a hook partition shape.
+\vskip 2cm 
+\noindent
+{\bf R\'esum\'e}
+\newline
+Nous consid\'erons des sommes de la forme
+$$\sum_{\pi \in S_n} \chi^{\lambda/\mu}(\pi) \,\, q^{inv(\pi)}$$
+o\`u $\chi^{\lambda/\mu}$ est un caract\`ere gauche du groupe
+sym\'etrique et $inv(\pi)$ d\'esigne le nombre d'inversions de $\pi$.
+Notre r\'esultat principal donne une borne inf\'erieure pour le nombre de
+facteurs $(1+q)$ et $(1-q)$ qui divisent ces sommes.  Nous d\'emontrons en
+particulier que cette borne est exacte lorsque $\lambda/\mu$ est une \'equerre.
+
+\newpage
+
+\secthead{Introduction}
+In this paper, we consider sums over the symmetric group $S_n$
+of the form
+ $$\sum_{\pi \in S_n} \chi^{\lambda/\mu}(\pi) \, q^{inv(\pi)}$$
+where $\chi^{\lambda/\mu}$ is a {\it skew character} of the symmetric group
+\cite{JP} and $inv(\pi)$ is the number of inversions of $\pi$,
+i.e.
+$$inv(\pi) = \#\{(i,j): 1 \leq  i < j \leq n , 
+                  \,\, \pi^{-1}(i) > \pi^{-1}(j) \}.$$
+There are two motivations for considering such sums.  Firstly, other
+than some special results of Gessel \cite{Ge} and Edelman
+\cite{Ed}, there is very little known about the
+joint distribution of inversions and conjugacy class (i.e. cycle type)
+in $S_n$.  This is in stark contrast to the joint distributions
+known for inversions and descent statistics \cite{GaGe}, and for
+cycle type and descent statistics \cite {GR}.  Thus it seems reasonable to ask what can be said about the sum
+ $$\sum_{\pi \in S_n} f(\pi) \, q^{inv(\pi)}$$
+when $f$ is some {\it class function}, i.e. a function which
+is constant on conjugacy classes in $S_n$, such as an irreducible
+character $\chi^{\lambda}$.
+
+\rem{Remark} As pointed out by the referee,
+there is a different interpretation one can attach to these
+sums, namely that
+$$\sum_{\pi \in S_n} \chi^{\lambda/\mu}(\pi) \, q^{inv(\pi)}
+= \langle s_{\lambda/\mu}, F_n \rangle$$
+where $\langle, \rangle$ is the  usual 
+{\it Hall inner product} on symmetric functions, $s_{\lambda/\mu}$
+is the {\it skew Schur function} corresponding to $\lambda/\mu$,
+and $F_n$ is a certain symmetric function with coefficients in {\bf Z}$[q]$
+which encodes all the information about the distribution of inversions
+and conjugacy class in $S_n$:
+
+$$
+F_n:=\sum_{\pi \in S_n} q^{inv(\pi)} p_{\lambda(\pi)}
+$$
+where $p_\lambda(\pi)$ is the {\it power sum} symmetric function
+corresponding to the cycle type of $\pi$ (see \cite{Mac}).
+\endrem
+
+  The second motivation
+is by analogy to the work of \cite{DF,Re}.  Here it was shown
+that sums of the form
+$$ \sum_{\pi \in W} \chi(w) \, q^{des(\pi)}$$
+have high divisibility by linear polynomial factors,
+where $W$ is a classical Weyl group, $\chi$ is a one-dimensional
+character of $W$, and $des$ is the {\it descent} statistic on $W$.
+ 
+Our main theorem is the following
+\proclaim{Theorem \nextthm{}}
+Let $\lambda/\mu$ be a skew shape with longest row of length $r$
+and longest column of length $s$.  Then 
+$$\sum_{\pi \in S_n} \chi^{\lambda/\mu}(\pi) \,\, q^{inv(\pi)} $$
+is divisible by 
+$$(1+q)^{\lfloor r/2 \rfloor}
+  (1-q)^{\lfloor s/2 \rfloor}.$$
+\endproclaim
+This Theorem is proven in Section 2.
+
+The divisibilities asserted by the previous theorem
+are sometimes tight, as demonstrated by
+
+\proclaim{Theorem \nextthm{}}
+If $\lambda$ is a {\it hook partition} $(r,1^{s-1})$ then 
+$$
+\aligned
+\sum_{\pi \in S_n} \chi^{\lambda}(\pi) \,\, q^{inv(\pi)}
+                 &= (1-q)^{\lfloor s/2 \rfloor} S(q) \\
+                 &= (1+q)^{\lfloor r/2 \rfloor} R(q)
+\endaligned
+$$
+where $S(q), R(q) \in \Int[q]$ satisfy
+$$S(1) = \left\{ 
+\matrix
+{(n+1)! \lfloor s/2 \rfloor ! \over (s+1)!} & s \text{  is even} \\
+{n! \lfloor s/2 \rfloor ! \over s!} & s \text{  is odd}
+\endmatrix \right.
+$$
+and 
+$$R(-1) = \left\{ 
+\matrix
+{(n+1)! \lfloor r/2 \rfloor ! \over (r+1)!} & r \text{  is even} \\
+{n! \lfloor r/2 \rfloor ! \over r!} & r \text{  is odd}
+\endmatrix \right.
+$$
+\endproclaim
+
+This is proven in Section 2.  It is also conjectured there that
+$S(q)$ has non-negative coefficients whenever $r \geq s$.
+In Section 3, we look more closely at the very special case $s=2$
+where can prove this conjecture by a very interesting bijection.
+In this special case, the results relate to the joint distribution
+of fixed points and inversions over the symmetric group.
+
+\secthead{Proof of Theorem 1}
+Theorem 1 will follow by a sequence of straightforward
+reductions from the following lemma, which appears to
+be the essence of the divisibilities appearing in this context.
+Notation: for $A \subseteq [n]$, let $S_A$ be the subgroup
+of permutations in $S_n$ which only permute within the elements
+of $A$ and fix all elements of $[n]-A$.
+\proclaim{Lemma \nextthm{}}
+Fix a subset $A \subseteq [n]$ having cardinality $r$
+and fix any permutation $\sigma \in S_{[n]-A}$.
+Then 
+$$\sum_{\pi \in S_A} q^{inv(\pi\sigma)}$$
+is divisible by
+$(1+q)^{\lfloor r/2 \rfloor}$ 
+\endproclaim
+\demo{Proof:}
+Make a change of variable to $p=1+q$.  We
+need to show $p^{\lfloor r/2 \rfloor}$ divides
+$$
+\aligned
+\sum_{\pi \in S_A} (p-1)^{inv(\pi\sigma)}
+  &=\sum_{\pi \in S_A \atop J \subseteq Inv(\pi)}
+          p^{\#J}(-1)^{inv(\pi\sigma)-\#J} \\
+  &=\sum_{J \subseteq \left( [n] \atop 2 \right)}
+           (-1)^{inv(\sigma)+\#J} p^{\#J}
+      \sum_{\pi \in S_A \atop J \subseteq Inv(\pi)} (-1)^{inv(\pi)}
+\endaligned
+$$
+Here $Inv(\pi)$ denotes the {\it inversion set} of $\pi$, that is
+$$
+Inv(\pi) = \{(i,j): 1 \leq  i < j \leq n , 
+                  \, \pi^{-1}(i) > \pi^{-1}(j) \}
+$$
+So it suffices to show that for any $J \subseteq \left( [n] \atop 2 \right)$
+with $\#J < \lfloor r/2 \rfloor$ we have
+$$\sum_{\pi \in S_A \atop J \subseteq Inv(\pi)} (-1)^{inv(\pi)} = 0$$
+Since $2 \#J \leq r-2$, there must exist a pair
+$i,j \in A$ which are not involved in any of the pairs in $J$, and
+hence multiplication on the left by the transposition $(i j)$ is a 
+sign-reversing involution which shows all terms in the above sum cancel. 
+\endproof
+
+\rem{Remark}
+The preceding lemma bears some resemblance to results of
+Bj\"orner and Wachs \cite{BW} on the distribution of inversions
+over certain subsets of $S_n$ which they call {\it generalized quotients}.
+In particular, for certain of these generalized quotients, they
+produce nice hook-formula factorizations
+for the generating function of inversions,
+which naturally have high divisibility by $(1+q)$.  It would
+be desirable to understand this connection better.
+\endrem
+
+\demo{Proof of Theorem 1}
+We wish to show that if $\lambda/\mu$ is a skew shape with
+longest row of length $r$ and longest column of length $s$, then 
+$$\sum_{\pi \in S_n} \chi^{\lambda/\mu}(\pi) \,\, q^{inv(\pi)} $$
+is divisible by 
+$$(1+q)^{\lfloor r/2 \rfloor}
+  (1-q)^{\lfloor s/2 \rfloor}.$$
+Our strategy will be to reduce the theorem to a very special case
+and then apply the Lemma.
+ 
+First note that if $({\lambda/\mu})^t$ denotes the skew shape which
+is the {\it transpose} of ${\lambda/\mu}$, then
+$$
+\aligned
+\sum_{\pi \in S_n} \chi^{({\lambda/\mu})^t}(\pi) \,\, q^{inv(\pi)}
+ &= \sum_{\pi \in S_n}
+   \chi^{\lambda/\mu}(\pi) \,\, sgn(\pi) \,\, q^{inv(\pi)} \\
+ &= \sum_{\pi \in S_n}
+   \chi^{\lambda/\mu}(\pi) \,\, (-q)^{inv(\pi)}
+\endaligned
+$$
+using the fact that 
+$$\chi^{({\lambda/\mu}^t)} (\pi) = \chi^{\lambda/\mu}(\pi) \,\, sgn(\pi)$$  Therefore it suffices to show only divisibility
+by $(1+q)^{\lfloor r/2 \rfloor}$.
+ 
+  Using the Littlewood-Richardson rule \cite{Sa}, one knows that
+$$\chi^{\lambda/\mu}(\pi)  =  \sum_{\nu} \chi^{\nu}(\pi)$$
+where the sum ranges over a {\it multiset} of partitions $\nu$ which all have
+longest part of size at least $r$. Then using the Jacobi-Trudi identity \cite{Sa}, one can write 
+$$\chi^{\nu}(\pi)  = \sum_{\rho} \pm \chi^{H(\rho)} (\pi)$$
+Here $\rho$ runs over a set of partitions of $n$, and $H(\rho)$ is
+the skew diagram having disjoint horizontal rows of size $\rho_i$ for
+each $i$.  A picture of $H(5,4,2,2)$ is shown below:
+
+%$$\centerline{\vbox{
+%\btableaux{l}
+%\advance\bxdir by 8
+%\plbox{\ }\plbox{\ }\plbox{\ }\plbox{\ }\plbox{\ }
+%\bxdir=4 \advance\bydir by -1
+%\plbox{\ }\plbox{\ }\plbox{\ }\plbox{\ }
+%\bxdir=2 \advance\bydir by -1
+%\plbox{\ }\plbox{\ }
+%\bxdir=0 \advance\bydir by -1
+%\plbox{\ }\plbox{\ }\nbox
+%\etableaux}}$$
+
+
+Furthermore, expanding the Jacobi-Trudi determinant along its
+top row tells us that each $\rho$ appearing in the above sum
+will have its largest part $\rho_1$ of size at least $r$. 
+Since we are only trying to show
+divisibility by $(1+q)^{\lfloor r/2 \rfloor}$,  it therefore
+suffices to prove the theorem in the  special case where
+$\lambda/\mu = H(\rho)$ for some partition $\rho$ with largest part of size $r$.
+ 
+  The character $\chi^{H(\rho)}$ is easy to write down explicitly,
+as it is the character of the {\it permutation representation}
+of $S_n$ acting on the left cosets of the Young subgroup $S_\rho$
+which permutes the first $\rho_1$ numbers among themselves, permutes
+the next $\rho_2$ among themselves, etc.  So $\chi^{H(\rho)}(\pi)$ is
+the number of such left cosets fixed by $\pi$.  Therefore,
+$$
+\aligned
+\sum_{\pi \in S_n} \chi^{H(\rho)}(\pi) \,\, q^{inv(\pi)}
+ &= \sum_{\pi \in S_n}
+      \#\{\text{cosets }\tau S_\rho: \pi \tau S_\rho = \tau S_\rho\}
+      \,\, q^{inv(\pi)} \\
+ &= \sum_{\text{cosets }\tau S_\rho}
+        \sum_{\pi \in S_n \atop \pi \tau S_\rho = \tau S_\rho}
+         \,\, q^{inv(\pi)} \\
+ &=\sum_{(A_1,\ldots,A_k) \atop \uplus A_i = [n], \#A_i=\rho_i}
+       \sum_{(\pi_1,\ldots,\pi_k) \atop \pi_i \in S_{A_i}} 
+         \,\, q^{inv(\pi_1 \cdots \pi_k)} \\
+ &=\sum_{(A_1,\ldots,A_k) \atop \uplus A_i = [n], \#A_i=\rho_i}
+       \sum_{(\pi_2,\ldots,\pi_k) \atop \pi_i \in S_{A_i}}
+       \sum_{\pi_1 \in S_{A_1}}  
+         \,\, q^{inv(\pi_1 \sigma)} 
+\endaligned
+$$
+where $\sigma = \pi_2 \cdots \pi_k$ in the last summation.
+By the Lemma, each of these sums
+$$\sum_{\pi_1 \in S_{A_1}}  
+         \,\, q^{inv(\pi_1 \sigma)}$$
+are divisible by $(1+q)^{\lfloor r/2 \rfloor}$, and hence
+the theorem is proven.
+\endproof
+
+\rem{Remark}
+At least some of the divisibility asserted by Theorem 1 is immediate,
+namely that for $s \geq 2$ the sum is divisible by $(1-q)^1$, and
+by the transpose symmetry, for $r \geq 2$ the sum is divisible by $(1+q)^1$.
+We simply note that by the Littlewood-Richardson rule, for $s \ge 2$,
+$\chi^{\lambda/\mu}$ does not contain the trivial character in
+its irreducible decomposition, and hence by the orthogonality
+relation for characters, we have
+$$\left[ 
+\sum_{\pi \in S_n} \chi^{\lambda/\mu}(\pi) \,\, q^{inv(\pi)}
+\right]_{q=1}
+= \sum_{\pi \in S_n} \chi^{\lambda/\mu}(\pi) \cdot 1(\pi)
+= 0
+$$
+This implies the sum is divisible by $(1-q)^1$.
+\endrem
+
+
+\secthead{Proof of Theorem 2}
+We only give a sketch of the proof.
+ 
+  To begin, we note that our earlier comment about the effect of
+transposing the shape $\lambda/\mu$ on the sum implies that
+we only need to prove that $S(1)$ has the asserted value.
+ 
+  We will proceed by descending induction on $r$, beginning with
+the base case $r=n$.  Note that in this case $\chi^{(r,1^{s-1})}$
+is the trivial character and 
+$$
+\sum_{\pi \in S_n} q^{inv(\pi)} 
+= [n]!_q = [n]_q [n-1]_q \cdots [2]_q [1]_q
+$$
+where $[n]_q = 1 + q + q^2 + ... + q^{n-1}$.
+The theorem then immediately follows in this case from the
+above expression.
+  For the inductive step, our strategy will be to replace
+$\chi^{(r,1^{s-1})}$ with a character we can compute more explicitly.
+Let $(1^{s-1}) \oplus (r)$ denote the skew shape which
+has a column of size $s-1$ disjoint from a row of size $r$ as shown
+below for $r=4, s=6$:
+
+
+%$$\centerline{\vbox{
+%\btableaux{l}
+%\advance\bxdir by 1
+%\plbox{\ }\plbox{\ }\plbox{\ }\plbox{\ }\nbox
+%\plbox{\ }\nbox
+%\plbox{\ }\nbox
+%\plbox{\ }\nbox
+%\plbox{\ }\nbox
+%\plbox{\ }\nbox
+%\etableaux}}$$
+
+By an easy case of the Littlewood-Richardson rule,
+$$\chi^{(1^{s-1}) \oplus (r)} = \chi^{(r,1^{s-1})} + \chi^{(r+1,1^{s-2})}$$
+and hence 
+$$\chi^{(r,1^{s-1})} = \chi^{(1^{s-1}) \oplus (r)} - \chi^{(r+1,1^{s-2})}$$
+Using the last equation, one can check that the inductive step is
+equivalent to proving the following:
+$$
+\left[ {\sum_{\pi \in S_n} \chi^{(1^{s-1}) \oplus (r)}(\pi) \,\, q^{inv(\pi)}
+    \over (1+q)^{\lfloor r/2 \rfloor}  } \right]_{q=-1}
+=
+\left\{ 
+\matrix
+{(n+2) n! \lfloor r/2 \rfloor ! \over (r+1)!} & r \text{  is even} \\
+{n! \lfloor r/2 \rfloor ! \over r!} & r \text{  is odd}
+\endmatrix \right.
+$$
+ 
+ To prove the last expression, we make the change of
+variable $p=1+q$ as before, and we will use the fact that the character
+$\chi^{(1^{s-1}) \oplus (r)}$ is the induction from $S_{s-1} \times S_r$
+to $S_n$ of the character $sgn \otimes 1$.  We then have
+$$
+\aligned
+ &\left[ {\sum_{\pi \in S_n} \chi^{(1^{s-1}) \oplus (r)}(\pi) \,\, q^{inv(\pi)}
+    \over (1+q)^{\lfloor r/2 \rfloor}  } \right]_{q=-1} \\
+ &=
+\left[ {\sum_{\pi \in S_n} \chi^{(1^{s-1}) \oplus (r)}(\pi)
+  \,\, (p-1)^{inv(\pi)}
+    \over p^{\lfloor r/2 \rfloor}  } \right]_{p=0} \\
+ &=
+\left[ p^{-\lfloor r/2 \rfloor} \sum_{\pi \in S_n}
+\sum_{A \in \left([n] \atop s-1 \right) \atop \pi(A)=A} sgn(\pi|_A)
+(p-1)^{inv(\pi)} \right]_{p=0} \\
+ &=
+\left[ p^{-\lfloor r/2 \rfloor} \sum_{\pi \in S_n}
+\sum_{A \in \left([n] \atop s-1 \right) \atop \pi(A)=A} sgn(\pi|_A)
+\sum_{J \subseteq \left([n] \atop 2 \right) \atop J \subseteq Inv(\pi)}
+p^{\#J}(-1)^{inv(\pi)-\#J} \right]_{p=0} \\
+ &=
+(-1)^{\lfloor r/2 \rfloor}
+\sum_{A \in \left([n] \atop s-1 \right), \,
+      J \subseteq \left([n] \atop 2 \right)
+     \atop \#J = \lfloor r/2 \rfloor}
+\sum_{\pi \in S_n \atop \pi(A) = A, \, J \subseteq Inv(\pi)}
+sgn(\pi|_{[n]-A})
+\endaligned
+$$
+The proof then proceeds by finding a sequence of relatively
+simple sign-reversing involutions which sieve the above sum 
+down to a small set of terms, each having sign 
+$(-1)^{\lfloor r/2 \rfloor}$. and having the desired cardinality
+to prove the assertion.
+\endproof
+ 
+The data suggests that even more is true in the hook case:
+\proclaim{Conjecture \nextthm{}}
+Let $\lambda$ be a {\it hook partition} $(r,1^{s-1})$, and $S(q)$
+as before, i.e 
+$$
+\aligned
+\sum_{\pi \in S_n} \chi^{\lambda}(\pi) \,\, q^{inv(\pi)}
+                 &= (1-q)^{\lfloor s/2 \rfloor} S(q) \\
+\endaligned
+$$
+If $r \geq s$, then $S(q)$ has non-negative coefficients.
+\endproclaim
+
+\secthead{The defining representation}
+When $s=2$, the character $\chi^{(r,1^{s-1})}$ is essentially the
+{\it defining character} of $S_n$, i.e. the permutation representation
+of $S_n$ acting on $[n]$.  This character has the
+particularly simple expression
+$$\chi^{(n-1,1)}(\pi) = \#Fix(\pi)-1$$
+where $Fix(\pi)$ is the set of {\it fixed points} or
+$1$-cycles of $\pi$ i.e.
+$$Fix(\pi) = \{k: 1 \leq k \leq n,  \,\, \pi_k = k\}$$
+Therefore our results in this case have interpretations
+in terms of the joint distribution of fixed points and
+inversions over the symmetric group, some of which are
+interesting.  For example, it is well-known
+and easy to see that ``the average permutation 
+in $S_n$ has one fixed point" and 
+``the average permutation  in $S_n$ has
+${1 \over 2} \left( n \atop 2 \right)$ inversions".
+The following corollary asserts that the value of
+$\#Fix(\pi) \cdot inv(\pi)$ for the ``average
+permutation $\pi$ in $S_n$" is 
+$${(3n+1)(n-2) \over 12}$$
+
+\proclaim{Corollary \nextthm}
+$$\sum_{\pi \in S_n} \#Fix(\pi) \cdot inv(\pi)
+= {(3n+1)(n-2) \over 12} n!$$
+\endproclaim
+\demo{Proof}
+  Let $f(q)$ denote the sum
+$$\sum_{\pi \in S_n} \chi^{(n-1,1)}(\pi) \, q^{inv(\pi)}
+= \sum_{\pi \in S_n} (\#Fix(\pi)-1) \, q^{inv(\pi)}$$
+Then we have 
+$$
+\aligned
+S(1) 
+ &=  {lim \atop q \rightarrow 1} \left( {f(q) \over 1-q} \right) \\
+ &= \left[ {d \over dq} f(q) \right]_{q=1} \\
+ &= \sum_{\pi \in S_n} (\#Fix(\pi)-1) \cdot inv(\pi)
+\endaligned
+$$
+By Theorem 2 in the case $s=2$, we have
+$S(1) = (n+1)!/6$.  Combining this with the easy fact
+that
+$$
+\sum_{\pi \in S_n} inv(\pi) = 
+ \left( n \atop 2 \right)  {n! \over 2}
+$$
+gives the result.
+\endproof
+
+The preceding result can be considerably strengthened:
+\proclaim{Proposition \nextthm{}}
+$$\sum_{\pi \in S_n} \#Fix(\pi) \,\, q^{inv(\pi)}=
+\sum_{k=1}^{n}[k-1]!_q [n-k]!_q 
+\sum_{j \geq 0} q^{j^2+2j}
+\left[ k-1 \atop j \right]_q
+\left[ n-k \atop j \right]_q
+$$
+where 
+$$\left[ n \atop k \right]_q = {[n]!_q \over [k]!_q [n-k]!_q}$$.
+\endproclaim
+\demo{Proof}
+$$
+\aligned
+\sum_{\pi \in S_n} \#Fix(\pi) \,\, q^{inv(\pi)}
+ &= \sum_{k=1}^{n} \sum_{\pi \in S_n \atop \pi_k = k}  q^{inv(\pi)} \\
+ &= \sum_{k=1}^{n} \,\, \sum_{\sigma \in 
+        S_{[1,k-1]} \times S_{\{k}\} \times S_{[k+1,n]}} q^{inv(\sigma)} 
+          \sum_{\tau \in S_n, \, \tau_k=k \atop
+            \tau_1 < \cdots \tau_{k-1}, \, \tau_{k+1} < \cdots \tau_{n}}
+          q^{inv(\tau)}
+\endaligned
+$$
+where the last equality comes from the well-known fact that any
+permutation $\pi$ may be factored uniquely as $\pi = \sigma \tau$
+with $\sigma \in  S_{[1,k-1]} \times S_{\{k\}} \times S_{[k+1,n]}$
+and 
+$$\tau_1 < \cdots < \tau_{k-1} \text{ and }\tau_{k+1} < \cdots \tau_{n}$$
+Note that we are restricting this factorization to the set of
+$\pi$ which fix $k$, but this creates no difficulties.  
+Since $\sum_{\pi \in S_n} q^{inv(\pi)} = [n]!_q$, we have
+$$
+\sum_{\pi \in S_n} \#Fix(\pi) \,\, q^{inv(\pi)}
+ = \sum_{k=1}^{n} [k-1]!_q [n-k]!_q 
+          \sum_{\tau \in S_n, \, \tau_k=k \atop
+            \tau_1 < \cdots \tau_{k-1}, \, \tau_{k+1} < \cdots \tau_{n}}
+          q^{inv(\pi)}
+$$
+and it only remains to compute the last sum on the right-hand side.
+Given such a $\tau$, define two subsets $J_1, J_2 \subseteq [n]$ by
+$$
+\aligned
+J_1 &= \{i: 1 \leq i \leq k-1, \,\, \tau^{-1}(i) \geq k+1 \}\\
+J_2 &= \{i: k+1 \leq i \leq n, \,\,\tau^{-1}(i) \leq k-1 \}
+\endaligned
+$$
+Note that $J_1, J_2$ must have the same cardinality which we denote
+by $j$, and choosing the sets $J_1, J_2$ completely determines
+$\tau$. There are exactly $j^2$ inversions between $J_1$ and $J_2$,
+and exactly $2j$ inversions between $k$ and $J_1,J_2$.  This accounts
+for the $q^{j^2+2j}$ term in the sum.  The remaining inversions of
+$\tau$ come from among the numbers in $[1,k-1]$ and among the numbers
+in $[k+1,n]$, and correspond to MacMahon's ``inv" statistic
+on subsets \cite{Ma} applied to the sets $J_1,J_2$ respectively.
+Since the distribution of ``inv" over $k$-subsets of an $n$-set is
+given by $\left[ n \atop k \right]_q$, the theorem follows.
+\endproof
+
+\rem{Remark}
+The last sum on the right-hand side in the preceding theorem
+is similar to the {\it q-Vandermonde convolution}
+$$
+\sum_{j \geq 0} q^{j^2}
+\left[ k-1 \atop j \right]_q
+\left[ n-k \atop j \right]_q = \left[ n-1 \atop k \right]_q
+
+$$
+but does not sum so nicely.  However, when we set
+$q=1$ or $q=-1$, the two are the same.
+%For example, setting $q=1$ in the Proposition yields
+%$$
+%\aligned
+%\sum_{\pi \in S_n} \#Fix(\pi)
+%&=\sum_{k=1}^{n}(k-1)! (n-k)! 
+%   \sum_{j \geq 0} \left( k-1 \atop j \right)
+%   \left( n-k \atop j \right) \\
+%&=\sum_{k=1}^{n}(k-1)! (n-k)! \left( n-1 \atop k \right) \\
+%&=\sum_{k=1}^{n} (n-1)!\\
+%&=n!
+%\endaligned
+%$$
+%which is a hard way to prove an easy fact!
+\endrem
+
+Finally, we wish to prove the $s=2$ case of Conjecture 4.
+Unravelling the statement in this case, it
+conjectures that for all $k \leq n$, one has
+$$\sum_{\pi \in S_n \atop inv(\pi) \leq k} \#Fix(\pi)
+ \geq \#\{\pi \in S_n: inv(\pi) \leq k\}$$
+Recalling that the average permutation in $S_n$ has
+one fixed point, this may be paraphrased as saying
+that the set of all permutations
+with length at most $k$ have, on average, ``more than
+their fair share" of fixed points.  This seems plausible,
+since one would think that having few inversions
+and having fixed points should be positively correlated.
+It is not hard to see that the assertion follows from
+
+\proclaim{Theorem \nextthm{}}
+There exists a bijection $\phi$ between the sets
+$$ 
+\{(\pi,k): \pi \in S_n, \,\, k \in [n], \,\, \pi_k=k\}
+\leftrightarrow S_n
+$$
+with the property that if
+$\phi(\pi,k)=\sigma$ then $inv(\sigma) \geq inv(\pi)$.
+\endproclaim
+
+\demo{Proof}
+First define the {\it folding bijection} $f:[n] \rightarrow [n]$
+by
+$$
+f(k) = \left\{ \matrix 
+   2 \,\,\text{min}\{k-1,n-k\}+1 & 
+    \text{ if } k \leq \lceil {n \over 2} \rceil \\
+   2 \,\,\text{min}\{k-1,n-k\}+2 & 
+    \text{ if } k > \lceil {n \over 2} \rceil
+       \endmatrix \right.
+$$
+Given a pair $(\pi,k)$ as in the left-hand side of the
+theorem, define the permutation 
+$\sigma = \sigma_1 \sigma_2 \cdots \sigma_n$
+as follows: $\sigma_1= f(k)$, and $\sigma_2, \ldots , \sigma_n$ are
+the numbers $[n]-f(k)$ listed in the same relative order of magnitude
+as $\pi_1, \ldots, \pi_{k-1},\pi_{k+1},\ldots \pi_n$.
+It is easy to check that this is a bijection with the desired
+property.
+\endproof
+ 
+Can such a bijection $\phi$ be found so that
+$\sigma \geq \pi$ in {\it weak Bruhat order}? This would
+imply that the permutations in any lower order ideal of 
+weak Bruhat order have, on average, ``more than their fair share"
+of fixed points.
+
+
+\secthead{Acknowledgements}
+The authors would like to thank Paul Edelman and Dennis Stanton
+for helpful discussions and references.
+
+\Refs
+
+\ref
+\key BW
+\by A. Bj\"orner and M. Wachs
+\paper Generalized quotients in Coxeter groups
+\jour Trans. AMS
+\year 1988
+\vol 308
+\pages 1-37
+\endref
+
+\ref
+\key Ed
+\by P. H. Edelman
+\paper On inversions and cycles in permutations
+\jour Eur. J. Comb.
+\year 1987
+\vol 8
+\pages 269-279
+\endref
+
+\ref
+\key DF
+\by J. D\'esarm\'enien and D. Foata
+\paper The signed Eulerian numbers
+\paperinfo preprint
+\endref
+
+\ref
+\key GG
+\by A. Garsia and I. Gessel
+\paper Permutation statistics and partitions
+\jour Adv. Math.
+\year 1979
+\vol 31
+\pages 288-305
+\endref
+
+
+
+\ref
+\key Ge
+\by I. Gessel
+\paper A q-analogue of the exponential formula
+\jour Disc. Math.
+\year 1982
+\vol 40
+\pages 69-80
+\endref
+
+\ref
+\key GR
+\by I. Gessel and C. Reutenauer
+\paper Counting permutations by descent set and cycle structure
+\paperinfo preprint
+\endref
+
+\ref
+\key Ma
+\by P. A. MacMahon
+\book Combinatory Analysis, Vol .1
+\publ Cambridge Univ. Press, Cambridge
+\year 1915
+\endref
+
+\ref
+\key Re
+\by V. Reiner
+\paper Descents and one-dimensional characters for
+classical Weyl groups
+\paperinfo to appear in Disc. Math.
+\endref
+
+
+\ref
+\key Sa
+\by B. Sagan
+\book The symmetric group: representations, combinatorial algorithms,
+and symmetric functions
+\bookinfo Wadsworth \& Brooks/Cole
+\publaddr Pacific Grove
+\yr 1991
+\endref
+\endRefs
+
+\end

@@ -1,0 +1,1995 @@
+\documentclass[12pt]{amsart}
+\pagestyle{empty}
+
+\textwidth16.5truecm
+\textheight22.8truecm
+\oddsidemargin0cm
+\topmargin-1.5cm
+\hoffset-0.7truecm
+%\voffset-0.5truecm
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        Makros zum Formatieren des Entwurfs fuer Christian:               %
+%        Begonnen am 3. November 1993                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+%% \theoremstyle{plain} %% This is the default|
+\catcode`\@=11
+
+\def\endabstract{\endtrivlist
+  \global\let\endabstract\relax
+  \global\dimen@i\prevdepth \egroup \prevdepth\dimen@i
+  \skip@32\p@\@plus 14\p@ \advance\skip@-\baselineskip
+%  \vskip\skip@
+}
+\catcode`\@=12
+ 
+\newcounter{Figure}
+\newenvironment{Figure}%
+    {\refstepcounter{Figurenum}%
+         \vskip0pt  \vbox\bgroup\hsize\textwidth\begin{center}}%
+    {\vskip0pt\centerline{\hfil\small Figure~%
+         \arabic{Figurenum}\hfil}\end{center}\egroup\vskip0pt}
+\newcounter{Figurenum}
+ 
+%\def\abstractname{Summary}
+ 
+\def\la{\lambda}
+\def\ep{\epsilon}
+\def\si{\sigma}
+ 
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+ 
+\theoremstyle{definition}
+\newtheorem{dfn}{Definition}[section]
+ 
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}[section]
+\newtheorem{ex}[rem]{Example}
+ 
+\numberwithin{equation}{section}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Diverse Kleinigkeiten, Abkuerzungen etc.:                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\let\epsilon\varepsilon
+\newcommand{\esf}{{e}}                  % elementary symmetric function
+\newcommand{\hsf}{{h}}                  % homogeneous symmetric function
+\newcommand{\ksf}{{k}}                  % Delta^2 of homogeneous symmetric
+
+\newcommand{\schf}[2]{{s}_{#1}\of{#2,\mathbf{x}}} 
+                   % Schur function
+\newcommand{\defeq}{:=}                                 % define equal...
+\newcommand{\tableau}{T}                                % semistandard tableau
+\newcommand{\Ferrer}{B}                                 % Ferrer's board
+\newcommand{\digraph}{D}                                % directed graph
+\newcommand{\sdigraph}{S}                               % Stembridge's directed
+\newcommand{\horedge}{a}                                % horizontal edge
+\newcommand{\veredge}{\hat{a}}          % vertical edge
+\newcommand{\path}{P}                                   % lattice path
+\newcommand{\pathset}{M}                                % lattice path's
+\newcommand{\fpath}{{\mathcal P}}                   % family of lattice paths
+\newcommand{\nfpath}{{\mathcal N}}          % number of lattice paths
+\newcommand{\nifpath}{{\mathcal P}_o}       % nonintersecting family of lattice
+\newcommand{\SG}[1]{\boldsymbol{S}_{#1}}
+                   % Symmetric group
+\newcommand{\GF}[1]{\mathbf{GF}\of{#1}}
+                   % Generating function
+\newcommand{\sgn}{\operatorname{sgn}}                   % Signum
+\newcommand{\sschf}[2]{{sp}_{#1}\of{#2,\mathbf{x}}}
+ 
+                   % symplectic Schur function
+\newcommand{\reflect}{\mathbf{R}}         % reflection
+\newcommand{\mreflect}{\bar{\mathbf{R}}}          % modified reflection
+\newcommand{\oschf}[2]{{o}_{#1}\of{#2,\mathbf{x}}}
+ 
+                   % orthogonal Schur function
+\newcommand{\oschftriv}[2]{{o}_{#1}(#2,(1^N))}
+ 
+                   % "coarse" orthogonal Schur function
+\newcommand{\liff}{\text{ iff }}                % logical: if and only if
+\newcommand{\limp}{\text{ implies }}
+ 
+                   % logical: implies
+\renewcommand{\land}{\text{ and }}      % logical: and
+ 
+\newcommand{\thmref}[1]{Theorem~\ref{#1}}
+\newcommand{\secref}[1]{\S\ref{#1}}
+\newcommand{\lemref}[1]{Lemma~\ref{#1}}
+\newcommand{\figref}[1]{Figure~\ref{#1}}
+ 
+\newcommand{\QED}{\nobreak\strut\hfill\qedsymbol\par\vskip3mm}
+\newcommand{\noproof}{\nobreak\hfill\qedsymbol\par\vskip3mm}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                    Diverse Klammerungen:                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\seqof}[1]{\langle#1\rangle}
+\newcommand{\setof}[1]{\left\{#1\right\}}
+\newcommand{\of}[1]{\left(#1\right)}
+\newcommand{\parof}[1]{\left(#1\right)}
+\newcommand{\numof}[1]{\left|#1\right|}
+\newcommand{\detof}[2]{|{#2}|_{#1\times #1}}
+\newcommand{\firstcolumn}[1]{%\underbrace{
+#1%}_{\text{first column}}
+\quad \vdots\quad }
+\newcommand{\firstrow}[1]{%\underbrace{
+#1%}_{\text{first row}}
+\quad \vdots\quad }
+\newcommand{\brkof}[1]{\left[#1\right]}
+\newcommand{\intof}[1]{\lfloor #1\rfloor}
+\newcommand{\absof}[1]{\left|#1\right|}
+ 
+ 
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%               GRIDS.TEX: Begonnen am 16. Juli 1993                       %
+% Dieses kleine Macropaket soll einfache Befehle zum Zeichnen von Gittern  %
+% und Gitterpunktwegen einfuehren. (Fuer AMSLaTeX|)                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fonts:                                                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\font\scalefont = cmti8
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Einstellen von grundlegenden Parametern etc.:                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\unitlength = 5mm             % In dieser Einheit wird skaliert
+ 
+\thicklines                     %Dicke Linien
+ 
+\newcount\xmin                % Koordinaten der extremalen Punkte
+\newcount\xmax
+\newcount\ymin
+\newcount\ymax
+ 
+\newcount\gridwidth           % Breite und Hoehe des Gitters
+\newcount\gridheight
+ 
+\newcount\nofxpoints          % Anzahl der Punkte in waagrechter Richtung
+\newcount\nofypoints          % Anzahl der Punkte in senkrechter Richtung
+ 
+\newcount\dummycounta         % Hilfsvariable
+\newcount\dummycountb
+ 
+\def\begingrid#1#2#3#4{
+	% \begingroup Wozu denn?
+	\global\xmin = #1          % Belege die extremalen Gitterpunkte
+	\global\ymin = #2
+	\global\xmax = #3
+	\global\ymax = #4
+	
+	% Sind die Angaben auch sinnvoll?
+	\ifnum\xmin > \xmax
+		\errmessage{GRIDS: \xmin > \xmax|}
+	\fi
+	\ifnum\ymin > \ymax
+		\errmessage{GRIDS: \ymin > \ymax|}
+	\fi
+	% Berechne Hoehe, Breite und die Anzahl der Punkte in x- und y-Richtung
+	\gridwidth = \xmax
+	\gridheight = \ymax
+	\advance\gridwidth by -\xmin
+	\advance\gridheight by -\ymin
+	\nofxpoints = \gridwidth
+	\advance\nofxpoints by 1
+	\nofypoints = \gridheight
+	\advance\nofypoints by 1
+	
+	% Wir wollen ein bisschen Platz rund um unsere Graphik:
+	%\advance\gridwidth by 4
+	%\advance\gridheight by 4
+	%\advance\xmin by -2
+	%\advance\ymin by -2
+	\begin{picture}(\gridwidth, \gridheight)(\xmin, \ymin)
+	\message{Start of LaTeX-picture: }
+	% Im Folgenden sollen aber die Zahlen wieder stimmen:
+	%\advance\gridwidth by -4
+	%\advance\gridheight by -4
+	%\advance\xmin by 2
+	%\advance\ymin by 2
+	\message{GRID: width \number\gridwidth, height \number\gridheight; %
+				at (\number\xmin, \number\ymin)}
+	% Wir zeichnen mit einer doppelten Schleife das Gitter:
+	\global\dummycounta = \ymin
+	\loop\ifnum\dummycounta<\ymax
+		\makegridline\dummycounta
+		\global\advance\dummycounta by 1
+	\repeat
+	\makegridline\ymax
+}
+ 
+% Die innere Schleife muss man offenbar so auslagern:
+\def\makegridline#1{
+		\begingroup
+		\global\dummycountb = \xmin
+		\loop\ifnum\dummycountb<\xmax
+			\put(\dummycountb, #1){\circle*{0.1}}
+			\global\advance\dummycountb by 1
+		\repeat
+		\put(\xmax, #1){\circle*{0.1}}
+		\endgroup
+		}
+ 
+% Achsensystem zeichnen:
+\def\makexaxes{\thinlines
+	\dummycounta = \gridwidth
+	\advance\dummycounta by 1
+	\put(\xmin, 0){\vector(1,0){\dummycounta}}
+        \thicklines
+}
+\def\makeyaxes{\thinlines
+	\dummycountb = \gridheight
+	\advance\dummycountb by 1
+	\put(0, \ymin){\vector(0,1){\dummycountb}}
+        \thicklines
+}
+\def\makeaxes{\thinlines
+	\dummycounta = \gridwidth
+	\advance\dummycounta by 1
+	\put(\xmin, 0){\vector(1,0){\dummycounta}}
+	\dummycountb = \gridheight
+	\advance\dummycountb by 1
+	\put(0, \ymin){\vector(0,1){\dummycountb}}
+        \thicklines
+}
+ 
+% X-Achse skalieren:
+\def\makexscale{
+	\dummycounta = \xmin
+	\loop\ifnum\dummycounta<0
+		\put(\dummycounta, -0.4){\makebox(0,0){{\scalefont\number\dummycounta}}}
+		\advance\dummycounta by 1
+	\repeat
+	\dummycounta = 1
+	\loop\ifnum\dummycounta<\xmax
+		\put(\dummycounta, -0.4){\makebox(0,0){{\scalefont\number\dummycounta}}}
+		\advance\dummycounta by 1
+	\repeat
+	\put(\xmax, -0.4){\makebox(0,0){{\scalefont\number\xmax}}}
+}
+ 
+% Y-Achse skalieren:
+\def\makeyscale{
+	\dummycounta = \ymin
+	\loop\ifnum\dummycounta<0
+		\put(-0.4, \dummycounta){\makebox(0,0){{\scalefont\number\dummycounta}}}
+		\advance\dummycounta by 1
+	\repeat
+	\dummycounta = 1
+	\loop\ifnum\dummycounta<\ymax
+		\put(-0.4, \dummycounta){\makebox(0,0){{\scalefont\number\dummycounta}}}
+		\advance\dummycounta by 1
+	\repeat
+	\put(-0.4, \ymax){\makebox(0,0){{\scalefont\number\ymax}}}
+}
+ 
+% Dicken Punkt ins Koordinatensystem zeichnen:
+\def\gridpoint#1#2{
+	\ifnum#1<\xmin\errmessage{GRIDS: gridpoint left of picture}\fi
+	\ifnum#1>\xmax\errmessage{GRIDS: gridpoint right of picture}\fi
+	\ifnum#2<\ymin\errmessage{GRIDS: gridpoint beneath picture}\fi
+	\ifnum#2>\ymax\errmessage{GRIDS: gridpoint above picture}\fi
+	\put(#1, #2){\circle*{0.2}}
+}
+ 
+% Vertikale und horizontale Kanten zeichnen (indiziert mit Anfangspunkt|):
+\def\vedge#1#2{
+	\put(#1, #2){\line(0,1){1}}
+}
+\def\hedge#1#2{
+	\put(#1, #2){\line(1,0){1}}
+}
+\def\vpath#1#2#3{
+	\put(#1, #2){\line(0,1){#3}}
+}
+\def\hpath#1#2#3{
+	\put(#1, #2){\line(1,0){#3}}
+}
+ 
+% Welches Gewicht haben die horizontalen Kanten?
+\def\hweight#1#2{
+	\dummycounta = \xmax
+	\advance\dummycounta by 1
+	%\put(\xmax, #1){\vector(1,0){0.6}}
+	\put(\dummycounta, #1){\makebox(0,0)[bl]{#2}}
+}
+% Welches Gewicht haben die vertikalen Kanten?
+\def\vweight#1#2{
+	\dummycounta = \ymax
+	\advance\dummycounta by 1
+	%\put(#1, \ymax, #1){\vector(1,0){0.6}}
+	\put(#1, \dummycounta){\makebox(0,0)[bl]{#2}}
+}
+% Welches label tragen horizontale Kante?
+\def\hlabel#1#2#3{
+	\put(#1,#2){\makebox(1,0.6){\scalefont #3}}
+}
+ 
+% Fuer gespiegelte Kantenzuege lassen wir uns ein bisserl was einfallen:
+\newsavebox{\hrefbox}
+\savebox{\hrefbox}(1,0)[bl]{	\put(0.2,0){\circle*{0.01}}
+										\put(0.4,0){\circle*{0.01}}
+										\put(0.6,0){\circle*{0.01}}
+										\put(0.8,0){\circle*{0.01}}
+}
+\def\hredge#1#2{\put(#1,#2){\usebox{\hrefbox}}}
+\def\hrpath#1#2#3{\multiput(#1,#2)(1,0){#3}{\usebox{\hrefbox}}}
+\newsavebox{\vrefbox}
+\savebox{\vrefbox}(0,1)[bl]{	\put(0,0.2){\circle*{0.01}}
+										\put(0,0.4){\circle*{0.01}}
+										\put(0,0.6){\circle*{0.01}}
+										\put(0,0.8){\circle*{0.01}}
+}
+\def\vredge#1#2{\put(#1,#2){\usebox{\vrefbox}}}
+\def\vrpath#1#2#3{\multiput(#1,#2)(0,1){#3}{\usebox{\vrefbox}}}
+% Machen wir die nach oben und nach unten weisenden Haken extra...
+\def\uphook#1#2{
+	\dummycounta=#1
+	\dummycountb=#2
+	\put(#1,#2){\circle*{0.2}}
+	\put(#1,#2){\line(0,1){1}}
+	\advance\dummycounta by 1
+	\advance\dummycountb by 1
+	\put(#1,\dummycountb){\line(1,0){1}}
+	\put(\dummycounta,\dummycountb){\circle*{0.2}}
+}
+\def\hplain#1#2{
+	\dummycounta=#1
+	\put(#1,#2){\circle*{0.2}}
+	\hpath{#1}{#2}{2}
+	\advance\dummycounta by 2
+	\put(\dummycounta,#2){\circle*{0.2}}
+}
+\def\downhook#1#2{
+	\dummycounta=#1
+	\dummycountb=#2
+	\put(#1,#2){\circle*{0.2}}
+	\put(#1,#2){\line(1,0){1}}
+	\advance\dummycounta by 1
+	\advance\dummycountb by 1
+	\put(\dummycounta,#2){\line(0,1){1}}
+	\put(\dummycounta,\dummycountb){\circle*{0.2}}
+}
+\def\vplain#1#2{
+	\dummycountb=#2
+	\put(#1,#2){\circle*{0.2}}
+	\vpath{#1}{#2}{2}
+	\advance\dummycountb by 2
+	\put(#1,\dummycountb){\circle*{0.2}}
+}
+\newsavebox{\uphookbox}
+\savebox{\uphookbox}(0,1)[bl]{\put(0,0.2){\circle*{0.01}}
+										\put(0,0.4){\circle*{0.01}}
+										\put(0,0.6){\circle*{0.01}}
+										\put(0,0.8){\circle*{0.01}}
+										\put(0.2,1){\circle*{0.01}}
+										\put(0.4,1){\circle*{0.01}}
+										\put(0.6,1){\circle*{0.01}}
+										\put(0.8,1){\circle*{0.01}}
+}
+\def\uprhook#1#2{
+	\dummycounta=#1
+	\dummycountb=#2
+	\put(#1,#2){\usebox{\uphookbox}}
+	\put(#1, #2){\circle{0.2}}
+	\advance\dummycounta by 1
+	\advance\dummycountb by 1
+	\put(\dummycounta, \dummycountb){\circle{0.2}}
+}
+\def\hrplain#1#2{
+	\dummycounta=#1
+	\put(#1,#2){\circle{0.2}}
+	\hrpath{#1}{#2}{2}
+	\advance\dummycounta by 2
+	\put(\dummycounta,#2){\circle{0.2}}
+}
+\newsavebox{\downhookbox}
+\savebox{\downhookbox}(0,1)[bl]{\put(0.2,0){\circle*{0.01}}
+										\put(0.4,0){\circle*{0.01}}
+										\put(0.6,0){\circle*{0.01}}
+										\put(0.8,0){\circle*{0.01}}
+										\put(1,0.2){\circle*{0.01}}
+										\put(1,0.4){\circle*{0.01}}
+										\put(1,0.6){\circle*{0.01}}
+										\put(1,0.8){\circle*{0.01}}
+}
+\def\downrhook#1#2{
+	\dummycounta=#1
+	\dummycountb=#2
+	\put(#1,#2){\usebox{\downhookbox}}
+	\put(#1, #2){\circle{0.2}}
+	\advance\dummycounta by 1
+	\advance\dummycountb by 1
+	\put(\dummycounta, \dummycountb){\circle{0.2}}
+}
+\def\vrplain#1#2{
+	\dummycountb=#2
+	\put(#1,#2){\circle{0.2}}
+	\vrpath{#1}{#2}{2}
+	\advance\dummycountb by 2
+	\put(#1,\dummycountb){\circle{0.2}}
+}
+% Bei den schraegen Niveaulinien suchen wir auch eine huebsche Graphik:
+\newsavebox{\downskewbox}
+%\savebox{\downskewbox}(1,1)[lb]{	\put(0.25,-0.25){\circle*{0.01}}
+%											\put(0.3,-0.3){\circle*{0.01}}
+%											\put(0.35,-0.35){\circle*{0.01}}
+%											\put(0.5,-0.5){\circle*{0.01}}
+%											\put(0.65,-0.65){\circle*{0.01}}
+%											\put(0.7,-0.7){\circle*{0.01}}
+%											\put(0.75,-0.75){\circle*{0.01}}
+%}
+\savebox{\downskewbox}(1,1)[lb]{	\put(0.2,-0.2){\circle*{0.01}}
+											\put(0.4,-0.4){\circle*{0.01}}
+											\put(0.6,-0.6){\circle*{0.01}}
+											\put(0.8,-0.8){\circle*{0.01}}
+}
+\def\skewline#1#2#3{\multiput(#1,#2)(1,-1){#3}{\usebox{\downskewbox}}}
+% Hohlen dicken Punkt ins Koordinatensystem zeichnen:
+\def\gridrpoint#1#2{
+	\ifnum#1<\xmin\errmessage{GRIDS: gridpoint left of picture}\fi
+	\ifnum#1>\xmax\errmessage{GRIDS: gridpoint right of picture}\fi
+	\ifnum#2<\ymin\errmessage{GRIDS: gridpoint beneath picture}\fi
+	\ifnum#2>\ymax\errmessage{GRIDS: gridpoint above picture}\fi
+	\put(#1, #2){\circle{0.2}}
+}
+ 
+\def\endgrid{\end{picture}\message{End of LaTeX-picture.}% \endgroup Wozu?
+}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%					TABLEAUX.TEX: Begonnen am 20. Juli 1993							%
+% Dieses kleine Macropaket soll einfache Befehle zur Darstellung von 		%
+% Tableaux  einfuehren. (Nur fuer AMSLaTeX|)									      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcount\rowcount
+\newcount\columncount
+\def\begintableau#1#2{
+\global\rowcount=#1
+\begin{picture}(#2,#1)(0,0)
+\thinlines
+\put(0,0){\line(0,1){#1}}
+\put(0,#1){\line(1,0){#2}}
+}
+\def\endtableau{\end{picture}}
+\def\row#1{
+	\global\advance\rowcount by -1
+	\global\columncount=0
+	\dolist#1\endList
+}
+%\def\endList{\endList}
+\def\dolist{\afterassignment\handlenext\let\next=}
+\def\handlenext{
+	\ifx\next\endList
+		\let\next=\relax
+	\else
+		\put(\columncount,\rowcount){\makebox(1,1){$\next$}}
+		\put(\columncount,\rowcount){\line(1,0){1}}
+		\global\advance\columncount by 1
+		\put(\columncount,\rowcount){\line(0,1){1}}
+		\let\next=\dolist
+	\fi
+	\next
+}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ob ich wohl je verstehe, warum	das nicht einfacher funktioniert? Siehe   %
+% TeX-Book, p.352. -- Also ehrlich gesagt: Die folgenden Macros sind durch	%
+% trial-and-error geworden, wie sie jetzt sind; immerhin funktioniert's|   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newbox\tableaubox
+\def\maketableau{\begingroup\parskip-1.8pt\obeylines\getrowlist}
+{\obeylines\gdef\getrowlist
+	#1
+	{\getrow #1
+	} %
+}
+{\obeylines\gdef\getrow #1
+	{\message{Zeile: #1} %
+	\getentrylist{#1} %
+	\global\def\oldrow{#1} %
+	\ifx\oldrow\empty\let\next=\endgroup\else\let\next=\getrow\fi\next %
+	} %
+}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Die folgenden Macros sind dem Buch ``Einfuehrung in TeX'' von N. Schwarz %
+% entnommen, zumindest im wesentlichen: Siehe dort p.115.						%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\getentrylist#1{\getremaining#1\endList\par}
+\def\endList{\endList}
+\def\getremaining{\afterassignment\getentry\let\next=}
+\def\getentry{
+	\ifx\next\endList
+		\let\next=\relax
+	\else
+		\putinbox{\next}\hskip-1em%{$\next$}\space
+		\let\next=\getremaining%
+	\fi%
+	\next%
+}
+\def\putinbox#1{
+	\framebox[1.5em]{{$#1$\strut}}
+}
+ 
+\begin{document}
+\abovedisplayskip=6pt plus2pt minus 4pt
+\belowdisplayskip=6pt plus2pt minus 4pt
+
+
+\hbox{}\nopagebreak\vskip-1cm
+\nopagebreak\hbox{}
+
+\newbox\fullversion
+\setbox\fullversion\hbox{{\rm\small (Shortened version. The full-length article will appear
+elsewhere)}}
+ 
+\title[Characters of symplectic and orthogonal groups]
+{\uppercase
+{{\bf Lattice path proofs for determinantal formulas for symplectic and
+orthogonal characters}}\\
+\unhbox\fullversion} 
+ 
+\author{Markus Fulmek}
+\author{Christian Krattenthaler}
+\address{Institut f\"ur Mathematik\\Universit\"at Wien\\Strudlhofgasse~4\\
+	A-1090 Vienna, Austria}
+ 
+% \begin{abstract}
+% We give bijective proofs for Jacobi--Trudi-type and Giambelli-type
+% identities for symplectic and orthogonal characters. These proofs
+% base on interpreting King and El-Sharkaway's symplectic tableaux,
+% Proctor's odd
+% and intermediate symplectic tableaux, Proctor's
+% orthogonal tableaux, and Sundaram's odd orthogonal tableaux
+% in terms of certain families of nonintersecting
+% lattice paths. This work is intended to be the counterpart of the
+% Gessel--Viennot proof of the Jacobi--Trudi identities for Schur
+% functions for the case of symplectic and orthogonal characters.
+% \end{abstract}
+% Franzoesische Uebersetzung von Rodica Simion.
+\begin{abstract}
+We give bijective proofs for Jacobi--Trudi-type and Giambelli-type
+identities for symplectic and orthogonal characters. These proofs
+% Kleine Aenderung von Rodica Simion: ``are based'' statt ``base''.
+are based on interpreting King and El-Sharkaway's symplectic tableaux,
+Proctor's odd and intermediate symplectic tableaux, Proctor's      
+orthogonal tableaux, and Sundaram's odd orthogonal tableaux
+in terms of certain families of nonintersecting
+lattice paths. This work is intended to be the counterpart of the
+Gessel--Viennot proof of the Jacobi--Trudi identities for Schur
+functions for the case of symplectic and orthogonal characters.
+
+\noindent{\sc R\'esum\'e.}
+% Quelle: Comptes Rendus Math. 9 (87), Instructions auf p. 176
+On donne des d\'emonstrations bijectives des identit\'es de type
+Jacobi--Trudi et Giambelli pour les caract\`eres symplectiques et
+orthogonaux.   Ces d\'emonstrations sont bas\'ees sur une interpr\'etation 
+des tableaux symplectiques de King et  El-Sharkaway,
+% markus.
+% Gefuehlsmaeesig sollte es doch eher heissen:
+% des tableaux symplectiques impairs et interm\'ediaires de Proctor,
+% oder?
+% markus.
+% Ausgebessert gemaess Deinem Vorschlag.
+des tableaux symplectiques impairs et symplectiques interm\'ediaires
+de Proctor,
+% des tableaux impairs et symplectiques interm\'ediaires de Proctor,
+des tableaux  orthogonaux de Proctor,
+et des tableaux orthogonaux impairs de Sundaram en termes de certaines
+familles de chemins  qui ne s'entrecoupent pas.
+Le but de ce travail est de proposer,
+dans le cas des caract\`eres symplectiques et orthogonaux,
+ des d\'emonstrations  analogues \`a la preuve de
+Gessel et Viennot des identit\'es de Jacobi--Trudi pour
+les fonctions de Schur.
+\end{abstract}
+\maketitle
+
+\vskip-1cm
+
+
+\section{Introduction}\label{Intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Einleitender Ueberblick: Was soll in diesem Papier gezeigt werden...     %
+%                                                                             %
+%    Notizen zum Gespraech vom 21. Oktober 1993:                              %
+%    In der Einleitung: Verweis auf Gessel-Viennot-Artikel, genauer im Buch   %
+%    von Sagan, p154ff: Von diesem approach fuer normale Tableaux ausgehend   %
+%    besonders huebsche e-formel mit den symplektischen Tableaux von King     %
+%    und El-Sharkaway ... liefert insight ... h-Formel leider weniger schoen: %
+%    Uebergang von Christians algebraischen Umformungen der Determinanten     %
+%    zum bijektiven Beweis erklaeren.                                         %
+%                                                                             %
+%	Definitionen schon in Einleitung bringen? Momentan geschieht das nicht|    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\message{introduction: what will happen here...} 
+\ Schur functions, the irreducible general linear characters, can be
+combinatorially defined by means of semistandard Young tableaux (see
+\cite[I, (5.12)]{Macdonald:Symmetric-Functions}).
+There are several
+determinant formulas for Schur functions. Those which are relevant
+for this paper are the Jacobi--Trudi identity and its dual form,
+and the Giambelli identity 
+(see \cite[I, (3.4), (3.5), p.~30,
+Ex.~9]{Macdonald:Symmetric-Functions}).
+In their
+well-known (yet unpublished) paper \cite{Gessel-Viennot:Determinants-paths}
+Gessel and Viennot give a beautiful bijective proof for the
+Jacobi--Trudi identities for Schur functions
+%Christian.
+(see also \cite[sec.~7+1]{Stembridge:Nonintersecting-paths}). It bases on
+interpreting semistandard tableaux as families of nonintersecting
+lattice paths. As was shown by Stembridge
+\cite[sec.~9]{Stembridge:Nonintersecting-paths}, also the Giambelli
+identity allows a bijective proof by using nonintersecting lattice
+paths.
+
+There are Jacobi--Trudi-type and Giambelli-type determinant formulas
+for irreducible symplectic and orthogonal characters 
+(see \cite[Prop.~24.22, Cor.~24.24, Prop.~24.44, Prop.~24.33, 
+(24.47)]{Fulton-Harris:Representation-Theory}), too. 
+Since there are also tableaux
+descriptions for symplectic and orthogonal characters, it is natural
+to ask for bijective proofs of the symplectic and orthogonal
+Jacobi--Trudi and Giambelli identities. First attempts in this
+direction for the
+Jacobi--Trudi identities
+were made by Bressoud and Wei \cite{Bressoud-Wei}, and more
+successfully by Okada \cite{Okada:Lattice-Path}. 
+However, the determinant formulas that Okada
+proved bijectively are different from the Jacobi--Trudi identities
+%Christian.
+(but are interesting in their own right).
+Additional algebraic steps were necessary to prove the Jacobi--Trudi
+identities themselves.		
+
+We solve the problem completely for the symplectic case
+and partially for the orthogonal case. For the bijective proofs of
+the symplectic identities we utilize lattice path interpretations of
+the tableaux given by King and El-Sharkaway
+\cite{King-El-Sharkaway:Standard}. Particularly nice is the bijective
+proof for the {\em dual} symplectic Jacobi--Trudi identity, which
+combines the Gessel--Viennot method with a modified reflection
+principle. The bijective proof for the ``ordinary" symplectic
+Jacobi--Trudi identity is more elaborate. On the other hand, the
+bijective proof of the symplectic Giam\-bel\-li identity is almost
+trivial. In addition, we are able to 
+provide bijective proofs for all of Proctor's
+\cite{Proctor:Odd,Proctor:Intermediate,Proctor:Young-tableaux}
+Jacobi--Trudi identities for his odd symplectic and
+intermediate symplectic characters.
+
+There are several candidates for orthogonal tableaux. We show that
+Proctor's orthogonal tableaux \cite{Proctor:Young-tableaux,Proctor:A-Schensted} are the
+``right" tableaux for proving the dual orthogonal Jacobi--Trudi
+identity. As might be surprising at first sight, these tableaux have a 
+very natural lattice path interpretation. The proof itself is very
+illustrative. It also employs the Gessel--Viennot method and some
+kind of reflection argument. Unfortunately, we were not able to use
+the same tableaux in order to bijectively prove the ``ordinary"
+orthogonal Jacobi--Trudi identity and the orthogonal Giambelli
+identity. As a substitute, by using Sundaram's tableaux
+\cite{Sundaram:Orthogonal} at least we are able to give 
+bijective proofs for the odd
+orthogonal Giambelli identity and for determinant formulas that are
+only slight variations  of the odd orthogonal Jacobi--Trudi
+identities.
+
+\section{Some Definitions}\label{Defs}\ 
+By {\em paths} we always mean lattice paths in the plane integer
+lattice $\mathbb Z^2$ consisting of unit horizontal and vertical steps
+in the positive direction, unless we explicitly allow other
+steps.
+Given points $u$ and $v$, we denote the set of all lattice
+paths from $u$ to $v$ by $\fpath\of{u,v}$. If $\mathbf u=(u_1,\dots,u_m)$
+and $\mathbf v=(v_1,\dots,v_m)$ are vectors of points, we denote the
+set of all $m$-tuples $(\path_1,\dots,\path_m)$ of paths, where
+$\path_i$ runs from $u_i$ to $v_i$, $i=1,\dots,m$, by
+$\fpath\of{\mathbf u,\mathbf v}$. 
+A set of paths is said to be {\em nonintersecting} if no
+two paths of this set have a point in common. Otherwise it is called
+{\em intersecting}. If to each horizontal edge $a$ in $\mathbb Z^2$ a weight
+$w(a)$ is assigned, the weight $w(\path)$ of a path $\path$ is defined
+to be the product of the weights of all its horizontal steps. The
+weight $w(\mathbf\path)$ of an $m$-tuple
+$\mathbf\path=(\path_1,\dots,\path_m)$ is defined to be the product $\prod
+_{i=1} ^{m}w(\path_i)$ of the weights of all the paths in the
+$m$-tuple.
+Given any weight function $w$ defined on a set $\mathcal A$,
+by the generating function $\GF{\mathcal A}$ we mean $\sum
+_{x\in\mathcal A} ^{}w(x)$. 
+
+
+
+\section{Bijective proofs for symplectic
+identities}\label{symplectic}\
+{\sc Bijective proof of the symplectic dual Jacobi--Trudi identity}. 
+Let $\lambda = \parof{\lambda_1,\dots,\lambda_r}$ be a partition
+of length $r\le n$. A
+%Christian.
+(semistandard)
+tableau $\tableau$ of shape $\lambda$ with entries from $\{1,2,\dots\}$ is called a {\em symplectic\/}
+({\em semistandard}) {\em tableau} (see \cite{Proctor:Odd,Sundaram:Tableaux-in}) 
+if it obeys the
+additional constraint
+\begin{equation}
+\label{eq:symplectic-constraint}
+\tableau_{i,j} \ge 2i-1.
+\end{equation}
+Let 
+$\mathbf{x} = \seqof{x_1, x_1^{-1},x_2,x_2^{-1},\dots,x_n,x_n^{-1}}$. 
+The weight of a symplectic tableau $\tableau$ is given by
+\begin{equation}\label{weight:symplectic}
+\mathbf{x}^\tableau = \prod_{i}x_i^{\numof{\setof{\tableau_{j,k} = 2i-1}} -
+	\numof{\setof{\tableau_{j,k} = 2i}}}.
+\end{equation}
+The {\em symplectic character\/} 
+associated to $\lambda$ is combinatorially defined by (see 
+\cite{Proctor:Odd,Sundaram:Tableaux-in})\break 
+$ \sschf{2n}{\lambda} =
+	\sum_{\tableau}\mathbf{x}^{\tableau}, $
+where the sum is over all symplectic tableaux $\tableau$ of shape $\lambda$
+%Christian.
+with entries $\le 2n$.
+
+We are going to sketch a bijective proof of the symplectic
+``$e$-formula" (see
+\cite[Cor,~24.24]{Fulton-Harris:Representation-Theory})
+\begin{equation} \label{thm:e-symplectic}
+\sschf{2n}{\lambda} =
+	\detof{\lambda_1}{\esf_{\lambda_j^\prime-j+i}\of{\mathbf{x}} -
+		\esf_{\lambda_j^\prime-j-i}\of{\mathbf{x}}}. 
+\end{equation} 
+% Christian.
+Here, $e_m(\mathbf x)$ denotes the elementary symmetric function of
+order $m$ in the variables $\mathbf x$. As usual, $\lambda'$ denotes the
+partition conjugate to $\lambda$.
+Formula \eqref{thm:e-symplectic} is 
+the symplectic analogue of the dual form of the
+Jacobi--Trudi identity for Schur functions.
+\begin{Figure}\label{FF}
+\begin{picture}(20,6)(0,0)
+%\put(0,0){\line(1,0){20}}
+%\put(0,7){\line(1,0){20}}
+ 
+\put(2,1){
+	\begingrid{0}{0}{5}{3}
+	\makeaxes
+	\makexscale
+	\makeyscale
+	\put(0.5,4){$h$-labelling:}
+        \thinlines
+        %points
+        \gridpoint{1}{1}
+        \gridpoint{2}{1}
+        \gridpoint{3}{1}
+        \gridpoint{4}{1}
+        \gridpoint{5}{1}
+        \gridpoint{1}{2}
+        \gridpoint{2}{2}
+        \gridpoint{3}{2}
+        \gridpoint{4}{2}
+        \gridpoint{5}{2}
+        \gridpoint{1}{3}
+        \gridpoint{2}{3}
+        \gridpoint{3}{3}
+        \gridpoint{4}{3}
+        \gridpoint{5}{3}
+%Christian. Habe Figure verkleinert. Hier fehlen aber einige Fonts,
+%sodass ich nicht wirklich ueberpruefen kann, ob alles in Ordnung ist.
+%Daher bitte ich Dich, nachzusehen, ob alle Linien und strichlierten
+%Linien ordentlich gesetzt sind.
+	\hpath{0}{1}{5}
+	\hpath{0}{2}{5}
+	\hpath{0}{3}{5}
+        \hlabel{0}{1}{1}
+        \hlabel{1}{1}{1}
+        \hlabel{2}{1}{1}
+        \hlabel{3}{1}{1}
+        \hlabel{4}{1}{1}
+        \hlabel{0}{2}{2}
+        \hlabel{1}{2}{2}
+        \hlabel{2}{2}{2}
+        \hlabel{3}{2}{2}
+        \hlabel{4}{2}{2}
+        \hlabel{0}{3}{3}
+        \hlabel{1}{3}{3}
+        \hlabel{2}{3}{3}
+        \hlabel{3}{3}{3}
+        \hlabel{4}{3}{3}
+	\endgrid
+}
+ 
+\put(9.2,2){level 1}
+\put(9.2,3){level 2}
+\put(9.2,4){level 3}
+ 
+\put(12,1){
+	\begingrid{-1}{0}{4}{3}
+	\makeaxes
+	\makexscale
+	\makeyscale
+	\put(0.5,4){$e$-labelling:}
+        \thinlines
+        %points
+        \gridpoint{1}{1}
+        \gridpoint{2}{1}
+        \gridpoint{3}{1}
+        \gridpoint{4}{1}
+        \gridpoint{1}{2}
+        \gridpoint{2}{2}
+        \gridpoint{3}{2}
+        \gridpoint{4}{2}
+        \gridpoint{1}{3}
+        \gridpoint{2}{3}
+        \gridpoint{3}{3}
+        \gridpoint{4}{3}
+	\hpath{0}{1}{4}
+	\hpath{0}{2}{4}
+	\hpath{0}{3}{4}
+        \hlabel{0}{0}{1}
+        \hlabel{1}{0}{2}
+        \hlabel{2}{0}{3}
+        \hlabel{3}{0}{4}
+        \hlabel{0}{1}{2}
+        \hlabel{1}{1}{3}
+        \hlabel{2}{1}{4}
+        \hlabel{3}{1}{5}
+        \hlabel{0}{2}{3}
+        \hlabel{1}{2}{4}
+        \hlabel{2}{2}{5}
+        \hlabel{3}{2}{6}
+        \hlabel{0}{3}{4}
+        \hlabel{1}{3}{5}
+        \hlabel{2}{3}{6}
+        \hlabel{3}{3}{7}
+	\skewline{-1}{1}{1}
+	\skewline{-1}{2}{2}
+	\skewline{-1}{3}{3}
+	\skewline{0}{3}{3}
+	\skewline{1}{3}{3}
+	\skewline{2}{3}{3}
+	\skewline{3}{3}{2}
+	\skewline{4}{3}{1}
+	\endgrid
+}
+\end{picture}
+\end{Figure}
+
+First we interpret symplectic tableaux in terms of lattice paths.
+Let $\tableau$ be a symplectic tableau of shape $\lambda$ 
+%Christian.
+with entries
+$\le 2n$, where $\la$
+is a partition of length $r\le n$. 
+With $\tableau$ we associate a
+$\lambda_1$-tuple $(\path_1,\dots,\path_{\lambda_1})$ of
+nonintersecting lattice paths, where $\path_j$ runs from $u_j=(-j+1,j-1)$
+to $v_j=(\lambda_j'-j+1,
+%Christian.
+2n-\lambda'_j+j-1)$, by reading $\path_j$ off the $j$-th
+column. Here we use the $e$-labelling of horizontal edges
+which is e.g\@. explained in \cite[ch.~4]{Sagan:The-Symmetric} (see
+Figures~\ref{FF} and \ref{FI}).
+
+Obviously, $\tableau$
+obeys the symplectic constraint if and only if the first path of the associated
+$\la_1$-tuple of paths does not cross the line $y=x-1$.  
+% (See \figref{fig:associated-symplectic-paths}.)
+The following figure gives an example for % $n=6$
+% markus.
+$n=3$
+and $\lambda=(4,3,2)$.
+% \begin{figure}
+% \caption{Illustration of paths associated to symplectic tableau:}
+% \label{fig:associated-symplectic-paths}
+\begin{Figure}\label{FI}
+\begin{picture}(20,10)(0,0)
+\put(16,3){
+	\begintableau{3}{4}
+		\row{2346}
+		\row{446}
+		\row{56}
+		\put(-1.9,1.5){$T$ =}
+	\endtableau
+}
+\put(1,1){
+	\begingrid{-4}{0}{5}{8}
+		\makexaxes
+		\makexscale
+		% Anfangspunkte
+		\gridpoint{0}{0}
+		\gridpoint{-1}{1}
+		\gridpoint{-2}{2}
+		\gridpoint{-3}{3}
+		% Endpunkte
+		\gridpoint{3}{3}
+		\gridpoint{2}{4}
+		\gridpoint{0}{6}
+		\gridpoint{-2}{8}
+		% levels auszeichnen
+		\skewline{-4}{4}{4}
+		% Gerade y=x-1
+                \thinlines
+		\put(1,0){\line(1,1){5}}
+                \thicklines
+		% Pfad 1, entsprechend der ersten Spalte 
+		\vedge{0}{0}
+		\hedge{0}{1}
+		\hlabel{0}{1}{2}
+		\vedge{1}{1}
+		\hpath{1}{2}{2}
+		\hlabel{1}{2}{4}
+		\hlabel{2}{2}{5}
+		\vedge{3}{2}
+		% Pfad 2, entsprechend der zweiten Spalte 
+		\vpath{-1}{1}{2}
+		\hpath{-1}{3}{2}
+		\hlabel{-1}{3}{3}
+		\hlabel{0}{3}{4}
+		\vedge{1}{3}
+		\hedge{1}{4}
+		\hlabel{1}{4}{6}
+		% Pfad 3, entsprechend der dritten Spalte 
+		\vpath{-2}{2}{3}
+		\hedge{-2}{5}
+		\hlabel{-2}{5}{4}
+		\vedge{-1}{5}
+		\hedge{-1}{6}
+		\hlabel{-1}{6}{6}
+		% Pfad 4, entsprechend der vierten Spalte 
+		\vpath{-3}{3}{5}
+		\hedge{-3}{8}
+		\hlabel{-3}{8}{6}
+	\endgrid
+}
+\end{picture}
+\end{Figure}
+If we define the weight of a
+horizontal edge with $e$-label (cf\@. Figure~\ref{FF}) 
+$2i-1$ to be $x_i$, and the weight of
+a horizontal edge with $e$-label $2i$ to be $x_i^{-1}$ then
+the correspondence depicted in Figure~\ref{FI} is
+weight-preserving with respect to the weight (\ref{weight:symplectic}). 
+Therefore the
+left side of (\ref{thm:e-symplectic}) can be interpreted as the generating
+function for all $\lambda_1$-tuples $(\path_1,\dots,\path_{\lambda_1})$ of
+nonintersecting lattice paths, where $\path_j$ runs from $(-j+1,j-1)$
+to $(\lambda_j'-j+1,n-\lambda'_j+j-1)$ and does not cross $y=x-1$.
+
+Next we give the lattice path interpretation of the right side of
+(\ref{thm:e-symplectic}). 
+Let $\reflect$ denote the reflection in the line $y=x-2$. 
+For a permutation $\si\in\SG{\la_1}$ denote 
+$(v_{\sigma\of{1}},\dots,v_{\sigma\of{\la_1}})$ by $\mathbf v_\si$.
+For $\epsilon\in\setof{1,-1}^{\lambda_1}$ denote by
+${\mathbf{u}}^{(\epsilon)}$
+the $\lambda_1$-tuple of points whose $j$-th component is ${u}_j$ if
+$\epsilon_j=1$ and $\reflect\of{{u}_j}$ if $\ep_j=-1$. 
+We consider the set 
+$\bigcup _{\si\in\SG{\la_1},\,\ep\in\{1,-1\}^{\la_1}}
+^{}\fpath(\mathbf u^{(\ep)},\mathbf v_\si)$. It is easy to see that the
+determinant in (\ref{thm:e-symplectic}) can be written as
+%Christian.
+a certain generating function for this set, 
+$$ \detof{\lambda_1}{\esf_{\lambda_j^\prime-j+i}\of{\mathbf{x}} -
+		\esf_{\lambda_j^\prime-j-i}\of{\mathbf{x}}} =
+		{\sum_{\sigma\in \SG{\lambda_1},\,
+                \epsilon\in\{1,-1\}^{\lambda_1}}}
+	\sgn\of{\sigma}
+	\sgn\of{\epsilon}
+	\GF{\fpath\of{{\mathbf{u}}^{(\epsilon)},{\mathbf{v}}_\sigma}},
+$$
+%Christian.
+where $\sgn(\epsilon)=\prod _{i=1} ^{\lambda_1}\epsilon_i$.
+In order to establish (\ref{thm:e-symplectic}),
+we have to give an involution that 
+%Christian.
+in the right-hand side sum cancels all
+%Christian
+contributions of
+ $\lambda_1$-tuples of
+paths in $\bigcup _{\si\in\SG{\la_1},\,\ep\in\{1,-1\}^{\la_1}}
+^{}\fpath({\mathbf{u}}^{(\epsilon)},\break {\mathbf{v}}_\sigma)$ 
+that are either intersecting or contain a path that crosses the
+line $y=x-1$.
+
+This is done by a combination of the Gessel--Viennot method 
+\cite[sec.~1]{Gessel-Viennot:Determinants-paths,%
+%Christian.
+Stembridge:Nonintersecting-paths}
+and a modified reflection
+principle.
+A path $\path$ crossing the line $y=x-1$ must meet the line $y=x-2$. Let $s$ be the
+last meeting point. Now, to $\path$'s initial portion up to $s$
+apply the following modified reflection in $y=x-2$,
+% markus. Der Verweis kommt am Ende des Absatzes noch einmal!?
+% Christian. Dann behalten wir den frueheren.
+which is exemplified in Figure~\ref{FJ}.
+All points $(x,y)\in \path$ with $x+y\equiv 0 \pmod 2$ (call them {\em even
+points\/}) are reflected in the usual way, i.e., $(x,y)\mapsto(y+2,x-2)$,
+and so are all {\em odd\/} points ($x+y\equiv1\pmod2$) whose adjacent
+steps are both vertical or both horizontal.
+The remaining case is a ``kink'' in an odd point $p$, i.e\@., a horizontal step
+of the path meets a vertical one in $p$. Here the whole kink is shifted
+until its even points have reached their new (reflected) positions.
+
+Now we are able to describe the desired weight-preserving and
+sign-reversing involution.
+For a $\lambda_1$-tuple $(\path_1,\dots,\path_{\la_1})$ containing a path meeting the forbidden
+line $y=x-2$, choose $i$ minimal such that $\path_i$ 
+meets $y=x-2$, and 
+replace $\path_i$'s portion up to the last meeting point with the line $y=x-2$
+by its {\em modified} reflection. Clearly, this mapping is weight-preserving 
+and sign-reversing. It reverses sign since it changes the sign
+$\sgn\of\epsilon$ of
+${\epsilon}$ while leaving $\sigma$ invariant.
+On $\lambda_1$-tuples of paths that do not contain any path crossing
+$y=x-1$ but are intersecting we apply the Gessel-Viennot involution.
+Clearly, we thus obtain again a $\lambda_1$-tuple of paths 
+that does not contain any path crossing
+$y=x-1$ but is intersecting. It is easy to see that this mapping is
+a weight-preserving and sign-reversing involution. Thus only those
+$\lambda_1$-tuples remain that are nonintersecting and none of their
+paths cross the line $y=x-1$. But as was exhibited above,
+ these $\lambda_1$-tuples
+correspond to symplectic tableaux. 
+\QED
+% \begin{figure}
+% \caption{Illustration of modified reflection in $y=x-2$:}
+% \label{fig:modified-reflection}
+\begin{Figure}\label{FJ}
+% \begin{picture}(20,7)(0,1)
+% \put(1,0){
+% 	\begingrid{-1}{-3}{8}{5}
+% markus.
+\begin{picture}(20,7)(0,1)
+\put(1,1){
+	\begingrid{-1}{-2}{8}{5}
+		\makexaxes
+		\makexscale
+		% gerade Punkte und ihre Spiegelbilder
+		\gridpoint{0}{0}		\gridrpoint{2}{-2}
+		\gridpoint{0}{2}		\gridrpoint{4}{-2}
+		\gridpoint{2}{2}		\gridrpoint{4}{0}
+		\gridpoint{3}{3}		\gridrpoint{5}{1}
+		\gridpoint{4}{4}		\gridrpoint{6}{2}
+		\gridpoint{6}{4}
+%Christian. Habe die Bezeichnung des Schnittpunktes eingefuegt. Auch
+%habe ich einige Verkleinerungen vorgenoomen. Wiederum, da hier einige
+%Fonts fehlen, kann ich nicht ueberpruefen, ob alles in Ordnung ist
+		\put(6.3,3.7){s}
+		\skewline{0}{0}{2}
+		\skewline{0}{2}{4}
+		\skewline{2}{2}{2}
+		\skewline{3}{3}{2}
+		\skewline{4}{4}{2}
+		% Gerade y=x-2
+                \thinlines
+		\put(0,-2){\line(1,1){7}}
+                \thicklines
+		% Ungespiegelter Pfad
+		\vpath{0}{0}{2}
+		\hpath{0}{2}{2}
+		\vedge{2}{2}
+		\hpath{2}{3}{2}
+		\vedge{4}{3}
+		\hpath{4}{4}{2}
+		\put(6,4){\vector(0,1){2}}
+		% Gespiegelter Pfad
+		\hrpath{2}{-2}{2}
+		\vrpath{4}{-2}{3}
+		\hrpath{4}{1}{2}
+		\vrpath{6}{1}{3}
+	\endgrid
+}
+\end{picture}
+\end{Figure}
+
+
+
+{\sc Bijective proof of the symplectic Jacobi--Trudi identity}. 
+Let $\lambda = \parof{\lambda_1,\dots,\lambda_r}$ be a partition
+of length $r\le n$.
+A bijective proof for the symplectic ``$h$-formula", 
+the symplectic analogue of the ``ordinary"
+Jacobi--Trudi identity for Schur functions,
+(see \cite[Prop.~24.22]{Fulton-Harris:Representation-Theory})
+\begin{equation} \label{thm:h-symplectic}
+\sschf{2n}{\lambda} =
+\detof{r}{
+	\firstcolumn{\hsf_{\lambda_i-i+1}\of{\mathbf{x}}}
+	\hsf_{\lambda_i-i+j}\of{\mathbf{x}} +
+		\hsf_{\lambda_i-i-j+2}\of{\mathbf{x}}} ,
+\end{equation} 
+\noindent
+% markus. Sollten hier nicht - ganz kurz - die homogen symmetrischen
+% Funktionen erwaehnt werden?
+%Christian. Sicherlich.
+is more difficult. Here, $h_m(\mathbf x)$ denotes the complete
+homogeneous symmetric function of order $m$ in the variables $\mathbf x$. 
+We shall give only a rough sketch of the algorithm without
+rigorous argumentation. This time we encode symplectic tableaux of shape
+$\la$ in terms of $r$-tuples $(\path_1,\dots,\path_{r})$ of 
+nonintersecting lattice paths where $\path_i$ runs from $u_i=(r-i,1)$
+to $v_i=(\lambda_i+r-i,
+%Christian
+2n)$, 
+by reading $\path_i$ from the
+$i$-th row of the tableau. Here we use the usual $h$-labelling of
+horizontal edges
+\cite[ch.~4]{Sagan:The-Symmetric} (see Figure~\ref{FF}). 
+%Christian. Hier eingefuegt, dafuer weiter unten gestrichen.
+The symplectic constraint simply says that $\path_i$ must not contain
+a horizontal step strictly below the line $y = 2i-1$.
+We define the weight of a
+horizontal edge with $h$-label 
+$2i-1$ to be $x_i$, and the weight of
+a horizontal edge with $h$-label $2i$ to be $x_i^{-1}$ in order that
+this correspondence is
+weight-preserving with respect to the weight (\ref{weight:symplectic}). 
+
+
+Let now $\reflect$
+denote the reflection in the line $x=r-1$.
+We shall consider the set $\bigcup
+_{\si\in\SG{r},\,\ep\in\{1\}\times\{1,-1\}^{r-1}}
+^{}\fpath({\mathbf u^{(\ep)},\mathbf v_\si})$. The notation $\mathbf 
+u^{(\ep)}$ has
+to be understood in the same sense as above, only the reflection
+$\reflect$ has a different meaning now.
+The determinant in (\ref{thm:h-symplectic}) can be written as 
+$$\detof{r}{
+	\firstcolumn{\hsf_{\lambda_i-i+1}\of{\mathbf{x}}}
+	\hsf_{\lambda_i-i+j}\of{\mathbf{x}} +
+		\hsf_{\lambda_i-i-j+2}\of{\mathbf{x}}}=
+		{\sum_{\sigma\in \SG{r},\,
+                \epsilon\in\{1\}\times\{1,-1\}^{r-1}}} % \in\SG{\lambda_1}}
+	\negthickspace\negthickspace\negthickspace\negthickspace\sgn\of{\sigma}
+	\GF{\fpath\of{{\mathbf{u}}^{(\epsilon)},{\mathbf{v}}_\sigma}}.
+$$
+%Christian.
+The following
+algorithm performs a cancellation in the set $\bigcup
+_{\si\in\SG{r},\,\ep\in\{1\}\times\{1,-1\}^{r-1}}
+^{}\fpath({\mathbf u^{(\ep)},\mathbf v_\si})$ such
+that only those $r$-tuples of paths
+survive for which $\ep=(1,\dots,1)$, and where $\path_i$ does
+not contain any horizontal step strictly below the line $y = 2i-1$.
+In the final step we shall apply Gessel--Viennot involution to cancel 
+all intersecting $r$-tuples. Thus only those $r$-tuples will remain 
+which correspond to symplectic tableaux.
+
+Let $(\path_1,\dots,\path_r)$ be an $r$-tuple of paths
+where there is either a path $\path_i$ containing a horizontal step
+below $y=2i-1$
+or where the associated $\epsilon$ differs from
+$\parof{1,1,\dots,1}$.
+
+At first, we adjoin to each path $\path_{i}$
+a set $\pathset_i$
+of variables. $\pathset_i$ is defined by
+\begin{equation}\label{setassign}
+\pathset_i =
+	\begin{cases}
+		\emptyset &  \hbox{ if } \epsilon_{i} = 1 \\
+		% \setof{x_1,x_1^{-1},\dots,
+		%			x_{\sigma\of{i}-1},x_{\sigma\of{i}-1}^{-1}} &:
+		\{x_1,x_1^{-1},\dots,x_{i-1},x_{i-1}^{-1}\} & 
+			\hbox{ if } \epsilon_{i} = -1.
+	\end{cases}
+\end{equation}
+We are thus concerned with objects of the form
+\begin{equation}\label{initialobject}
+\brkof{\parof{\path_{1},\pathset_1},\dots,
+	\parof{\path_r,\pathset_r},\sigma,\epsilon},
+\end{equation}
+where $(\path_1,\dots,\path_r)$ is an $r$-tuple of paths
+with associated $\sigma$ and $\ep$,
+and the $\pathset_i$'s are subsets from the
+sequence $\mathbf x$. The values $\epsilon_i$ actually are encoded in the sets
+$\pathset_i$.
+Note that for the above object the $x$-coordinate $u_{i}^x$ of
+the starting point of
+$\path_{i}$ can be expressed in $\pathset_i$'s cardinality,
+$ u_{i}^x = \numof{\pathset_i} + r - i. $
+
+The algorithmic involution consists of several steps, each yielding
+``intermediate" objects. This set of intermediate objects, which we
+denote by $\mathcal O$, is the set of all objects of the form
+\begin{equation}\label{objects}
+\brkof{\parof{\path_{1},\pathset_1},\dots,
+	\parof{\path_r,\pathset_r},\sigma},
+\end{equation}
+subject to
+\begin{align}
+\path_{i} &\text{ runs from }(u_i^x,1)\text { to }
+({\lambda_{\sigma\of{i}}+r-\sigma\of{i},2n})
+	\label{cond:0} \\
+\pathset_i & \subseteq\{x_1,x_1^{-1},\dots,x_{i-1},x_{i-1}^{-1}\}
+	\label{cond:A} \\
+\numof{\pathset_i} &= u_{i}^x - r + i.
+	\label{cond:B}
+\end{align}
+Together, conditions (\ref{cond:A}) and (\ref{cond:B})
+imply
+%Christian
+ $r-i\leq u_{i}^x\leq r+i-2$.
+ 
+We define the {\em weight} of an intermediate object in $\mathcal O$ to be the weight of
+the $r$-tuple of the paths times
+the product of all variables contained in the multiset union of the sets. 
+ 
+On the set $\mathcal O$ we define two operations, $\mathbf A$ and $\mathbf
+B$.
+First we define operation $\mathbf{A}$. Let $k$ be minimal such that
+either $\path_{k}$
+contains a horizontal step at height $h<2k-1$ or its adjoined
+set $\pathset_k$ contains the $h$-th component of $\mathbf{x}$
+(%Christian.
+$x_{(h+1)/2}$ if $h$ is odd and $x_{h/2}^{-1}$ if $h$ is even); 
+let $h$ be minimal, too. Now replace
+$\parof{\path_{k},\pathset_k}$ by
+$$
+% \parof{\path_k,\pathset_k}\mapsto
+\begin{cases}
+\parof{\path_{k}\cup h, \pathset_k\setminus\setof{h}} &
+	\hbox{ if } h\in\pathset_k,\\
+\parof{\path_{k}\setminus h, \pathset_k\cup\setof{h}} &
+	\hbox{ if } h\not\in\pathset_k.
+\end{cases}
+$$
+This has to be read in the following sense.
+If the $h$-th component of $\mathbf x$ is in $\pathset_k$,
+remove it
+and insert a horizontal step in $\path_{k}$ at height $h$,
+fixing the end point (this shifts the starting point one unit to the left).
+If not, remove one horizontal step at height $h$ in $\path_{k}$,
+fixing the end point (this
+shifts the starting point one unit to the right) and adjoin the
+$h$-th component
+of $\mathbf{x}$ to $\pathset_k$. 
+
+Two paths in an intermediate object may
+have a common starting point, or the {\em reflection\/} of a
+starting point in the line $x=r-1$ 
+may coincide with the starting point of another path.
+For these two cases, we define operation $\mathbf{B}$.
+Let $\parof{k,l}$ be a (lexicographic) minimal pair of distinct indices
+so that either $u_{k}^x=u_{l}^x$
+(starting points of $\path_{k}$,
+$\path_{l}$ coincide)
+or $u_{k}^x+u_{l}^x=2r-2$ (starting points of $\path_{k}$, $\path_{l}$ lie
+symmetrically with respect to $x=r-1$).
+ 
+In the first case, simply interchange $\path_k$ and
+$\path_l$, and multiply
+$\sigma$ with the transposition $\parof{l,k}$. This results in
+\begin{equation}\label{B1}
+\brkof{\cdots,\parof{\path_k^\prime,\pathset_k},\dots,
+\parof{\path_l^\prime,\pathset_l},\dots,\sigma\circ\parof{l,k}},
+\end{equation}
+where $\path_k^\prime=\path_l$ and $\path_l^\prime=\path_k$.
+Clearly, conditions (\ref{cond:0}), (\ref{cond:A}) and (\ref{cond:B}) are satisfied.
+ 
+In the second case, again interchange paths $\path_k$ and
+$\path_l$, and multiply $\sigma$ with the transposition $\parof{l,k}$; in addition, replace $\pathset_k,\pathset_l$ by their
+``complements"
+$\pathset^\prime_k,\pathset^\prime_l$, resulting in
+\begin{equation}\label{B2}
+\brkof{\cdots,\parof{\path_k^\prime,\pathset^\prime_k},\dots,
+	\parof{\path_l^\prime,\pathset^\prime_l},\dots,\sigma\circ\parof{l,k}},
+\end{equation}
+where $\path_k^\prime=\path_l$, $\path_l^\prime=\path_k$ and
+$\pathset_k^\prime\defeq\{x_1,x_1^{-1},\dots,x_{k-1},x_{k-1}^{-1}\}
+	\setminus\pathset_k^{-1}$,
+$\pathset_l^\prime\defeq\{x_1,x_1^{-1},\dots,x_{l-1},\break 
+x_{l-1}^{-1}\}	\setminus\pathset_l^{-1}
+$.
+Here, $\pathset_k^{-1}$ means the set $\{y^{-1}:y\in\pathset_k\}$,
+and the same for $\pathset_l^{-1}$.
+
+Now we start with an object defined by (\ref{initialobject}) and
+(\ref{setassign}), and forget the $\epsilon$, thus obtaining an
+object 
+$[{({\path_{1},\pathset_1}),\dots,
+	({\path_r,\pathset_r}),\sigma}]$,
+satisfying
+(\ref{cond:0})--(\ref{cond:B}). Hence, it is an element of $\mathcal O$. 
+%Christian. Sparmassnahme.
+We define a weight-preserving mapping by applying operation $\mathbf{A}$
+to this object, then
+$\mathbf{B}$, then $\mathbf{A}$ again, etc\@., 
+(formally: $\mathbf{B}^{[0\text { or }1]}\circ
+\parof{\mathbf{A}\circ\mathbf{B}}^n\circ\mathbf{A}$),
+as long as the particular operation is applicable. 
+ 
+It is not difficult to see that the algorithm terminates with an application of
+$\mathbf A$.
+Let $[{({\bar\path_{1},\bar\pathset_1}),\dots,\break
+	({\bar\path_r,\bar\pathset_r}),\bar\sigma}]$, be the
+terminal object.
+It is easy to show that $\bar u_i^x\in\{r-i,\break r+i-2\}$. 
+($\bar
+u_i^x$ denotes the $x$-coordinate of the starting point of $\bar\path_i$.)
+Besides,
+if $\bar u_i^x=r-i$ we have $\bar \pathset_i=\emptyset$, and
+if $\bar u_i^x=r+i-2$ we have $\bar \pathset_i=
+\{x_1,x_1^{-1},\dots,x_{i-1},x_{i-1}^{-1}\}$. In the first case we
+set $\bar\epsilon_i=1$, in the latter $\bar\epsilon_i=-1$.
+We thus obtain an object
+\begin{equation}\label{terminalobject}
+[{({\bar\path_{1},\bar\pathset_1}),\dots,
+	({\bar\path_r,\bar\pathset_r}),\bar\sigma,\bar\epsilon}].
+\end{equation}
+Thus $(\path_1,\dots,\path_r)$ is mapped to 
+$(\bar\path_1,\dots,\bar\path_r)$.
+It is true that the permutation $\bar\sigma$ exactly corresponds to
+the permutation of the end points of $\bar\path_1,\dots,\bar\path_r$,
+and $\bar\epsilon$ corresponds to the ``right" reflections of the
+starting points of $\bar\path_1,\dots,\bar\path_r$.
+It can be shown that this algorithm is weight-preserving and
+sign-reversing (i.e\@. that $\si$ and $\bar\si$ differ in sign).
+
+Among the remaining $r$-tuples we apply the Gessel--Viennot
+involution thus cancelling all intersecting $r$-tuples. It can be
+shown that, altogether, this defines a weight-preserving and
+sign-reversing involution.
+\QED
+
+
+{\sc Bijective proof of the symplectic Giambelli identity}.
+The symplectic analogue of the Giambelli identity for Schur functions 
+reads (see \cite[(24.47)]{Fulton-Harris:Representation-Theory})
+\begin{equation}
+\label{thm:Giambelli-symplectic}
+\sschf{2n}{\parof{\alpha|\beta}} = \detof{m}{\sschf{2n}{\parof{\alpha_i|\beta_j}}}.
+\end{equation}
+Here, $\parof{\alpha|\beta}$ is the Frobenius notation for partitions
+(cf\@. \cite{Macdonald:Symmetric-Functions})
+%Christian.
+and $m$ is the 
+% markus. Wie waer's mit der Ergaenzung:
+% rank of the partition, i.e., the
+number of cells in the main diagonal of $(\alpha,\beta)$.
+Again, we consider
+paths in the integer lattice consisting of horizontal steps in the
+positive direction. The direction of a vertical step, however, is
+only {\em positive\/} if it is {\em strictly to the right\/} of the
+$y$-axis, and is
+{\em negative\/} if it {\em does not\/} lie strictly to the right of the
+$y$-axis.
+
+To the left of the horizontal axis we consider a
+``shifted'' $h$-labelling by assigning label $i+1$ to a step at height $i$,
+while we consider the 
+%Christian.
+``usual'' $e$-labelling to the right.
+Given a tableau of shape $\parof{\alpha|\beta}$ with entries from
+%Christian. Ueberall n->2n
+$\setof{1,2,\dots, 2n}$, 
+we associate to its
+$i$-th principal hook a path $\path_i$ from $\parof{-\alpha_i,2n-1}$ to
+$\parof{\beta_i+1,2n-\beta_i-1}$ by interpreting the entries of the hook
+(read from ``right to bottom'') as labels of the corresponding
+steps of $\path_i$.
+
+Figure~\ref{FR} shows an example
+(with $n=3$) of this
+correspondence between nonintersecting lattice paths and symplectic
+tableaux.
+\begin{Figure} \label{FR}
+\begin{picture}(20,8)(0,0)
+\put(14,4){
+	\begintableau{3}{4}
+		\row{2346}
+		\row{446}
+		\row{56}
+	\endtableau
+}
+\put(1,0){
+	\begingrid{-4}{-1}{4}{6}
+		\makexaxes
+		\makexscale
+		\makeyaxes
+		\skewline{0}{2}{2}
+		\skewline{0}{4}{4}
+		\skewline{0}{6}{4}
+		% Anfangspunkte
+		\gridpoint{-3}{5}
+		\gridpoint{-1}{5}
+		% Endpunkte
+		\gridpoint{3}{3}
+		\gridpoint{2}{4}
+		% Gerade y=x-1
+                \thinlines
+		\put(1,0){\line(1,1){5}}
+                \thicklines
+		% Pfad 1, entsprechend dem ersten Haken:
+		\hedge{-3}{5}\hlabel{-3}{5}{6}
+		\vpath{-2}{3}{2}
+		\hedge{-2}{3}\hlabel{-2}{3}{4}
+		\vedge{-1}{2}
+		\hedge{-1}{2}\hlabel{-1}{2}{3}
+		\vedge{0}{1}
+		\hedge{0}{1}\hlabel{0}{1}{2}
+		\vedge{1}{1}
+		\hpath{1}{2}{2}\hlabel{1}{2}{4}\hlabel{2}{2}{5}
+		\vedge{3}{2}
+		% Pfad 2, entsprechend dem zweiten Haken:
+		\hedge{-1}{5}\hlabel{-1}{5}{6}
+		\vpath{0}{3}{2}
+		\hedge{0}{3}\hlabel{0}{3}{4}
+		\vedge{1}{3}
+		\hedge{1}{4}\hlabel{1}{4}{6}
+	\endgrid
+}
+\end{picture}
+\end{Figure}
+As is clear from the picture, the symplectic constraint 
+translates into the condition that the first path must not cross the
+line $y=x-1$. Obviously, the set of all $m$-tuples of lattice paths
+subject to his condition (where $m$ denotes the rank of the partition
+$\lambda$) is invariant under Gessel--Viennot involution. Therefore
+the same arguments as in Stembridge's
+%Christian.
+\cite[sec.~9]{Stembridge:Nonintersecting-paths} proof of the ``ordinary"
+Giambelli identity establish (\ref{thm:Giambelli-symplectic}).
+\QED
+
+
+{\sc Bijective proofs of Jacobi--Trudi type identities for Proctor's 
+odd and intermediate symplectic characters}.
+In \cite{Proctor:Odd,Proctor:Intermediate,Proctor:Young-tableaux}
+Proctor introduces odd symplectic characters, and, more generally,
+intermediate symplectic characters that interpolate between Schur
+functions and (even) symplectic characters. These characters can also
+be described combinatorially % be
+% markus.
+by means of tableaux which (roughly
+speaking) obey the symplectic constraint (\ref{eq:symplectic-constraint}) 
+for the first few rows and
+an additional rather intricate constraint involving the jeu de taquin. In certain
+special cases, he gives Jacobi--Trudi identities for these characters 
+\cite[p.~317]{Proctor:Odd}, \cite[Prop.~8.1]{Proctor:Intermediate},
+\cite[App.~A.2]{Proctor:Young-tableaux}. It comes as no surprise
+that, because in these cases the second constraint is either
+superfluous or very simple, the above proof methods for the symplectic
+$e$-formula (\ref{thm:e-symplectic}) and the symplectic $h$-formula 
+(\ref{thm:h-symplectic})
+also suffice to yield bijective proofs of Proctor's Jacobi--Trudi identities.
+
+
+\section{Bijective proofs for orthogonal
+identities}\label{orthogonal}\
+In \cite{Proctor:Young-tableaux,Proctor:A-Schensted} Proctor gave
+tableaux interpretations for orthogonal characters. 
+In fact, Proctor defined two slightly different types of orthogonal
+tableaux, {\em coarse orthogonal tableaux}
+%Christian.
+(to be defined below)
+ and {\em fine 
+orthogonal tableaux}. The number of coarse tableaux of shape $\lambda$ 
+equals the
+dimension of the irreducible representation of the orthogonal group
+indexed by $\lambda$.
+However, the coarse tableaux are not very well
+suited for describing the irreducible characters. This task is better
+performed by the {\em fine} orthogonal tableaux. 
+Orthogonal characters are indexed by $N$-orthogonal partitions 
+\cite{Proctor:Young-tableaux,Proctor:A-Schensted}. These are
+partitions with $\la_1'+\la_2'\le N$. They obey the
+orthogonal ``$e$-formula", the orthogonal analogue of the dual form
+of the Jacobi--Trudi identity,
+\begin{equation}\label{thm:e-orthogonal}
+\oschf{N}{\lambda} = 
+\detof{\lambda_1}{
+	\firstrow{\esf_{\lambda^\prime_j-j+1}\of{\mathbf{x}}}
+	\esf_{\lambda_j^\prime-j+i}\of{\mathbf{x}} +
+		\esf_{\lambda_j^\prime-j-i+2}\of{\mathbf{x}}}. 
+\end{equation}
+Here, $\mathbf{x} = \seqof{x_1, x_1^{-1},\dots x_n,x_n^{-1}}$ if $N$ is
+even, and
+$\mathbf{x} = \seqof{x_1, x_1^{-1},\dots x_n,x_n^{-1},1}$ if $N$ is odd.
+Setting all $x_i$ equal to 1, one obtains 
+\begin{equation}\label{thm:weak-e-orthogonal}
+\oschftriv{N}{\lambda}  =
+\detof{\lambda_1}{
+	\firstrow{\esf_{\lambda^\prime_j-j+1}({(1^N)})}
+	\esf_{\lambda_j^\prime-j+i}{((1^N))} +
+		\esf_{\lambda_j^\prime-j-i+2}{((1^N))}}.
+\end{equation}
+($(1^N)$ is the
+abbreviation for the
+$N$-tuple $(1,1,\dots,1)$.) As is well-known,
+when we replace in $\oschf{N}\lambda$ each $x_i$ by 1 we obtain
+the dimension of the corresponding irreducible representation. 
+As mentioned above, this dimension is equinumerous with 
+the coarse orthogonal tableaux of the shape $\lambda$
+%Christian.
+with entries $\le N$. Therefore, we may
+write
+\begin{equation}\label{thm:equinumerous}
+\oschftriv{N}{\lambda} =
+\numof{\setof{\tableau:\;\tableau\hbox{ coarse orthogonal, }\tableau_{i,j}\leq
+N}}.
+\end{equation}
+ 
+We are able to give a bijective proof for (\ref{thm:e-orthogonal}) by using
+Proctor's fine orthogonal tableaux. However, there is not enough
+space to describe it here. Instead, we describe a bijective proof for
+the weaker (\ref{thm:weak-e-orthogonal}) by using coarse orthogonal
+tableaux and the interpretation
+(\ref{thm:equinumerous}).
+The proof idea for (\ref{thm:e-orthogonal}) is
+the same, however the argumentation has to be more careful because we have
+to take care of weights which is not the case for our proof of 
+(\ref{thm:weak-e-orthogonal}). 
+
+\medskip
+{\sc Bijective proof of the orthogonal dimension formula
+(\ref{thm:weak-e-orthogonal})}.
+Let $\lambda=(\lambda_1,\dots,\break 
+\lambda_r)$ be an $N$-orthogonal
+partition of length $r$. 
+A tableau is called {\em coarse orthogonal\/} if it satisfies the value $p$ 
+case of the coarse orthogonal condition
+for all $p\in\mathbb N$.
+A tableau
+$\tableau$ of shape $\lambda$ is said to satisfy the {\em value $p$ case
+of the coarse orthogonal condition\/} if the number of entries $\leq p$ in
+$\tableau$'s first two columns does not exceed $p$. 
+
+By reading $\path_j$ from the $j$-th column of the tableau
+%Christian.
+and using the $e$-labelling,
+a coarse orthogonal tableau of shape $\la$ corresponds to
+a $\la_1$-tuple $(\path_1,\dots,\path_{\la_1})$ of nonintersecting 
+lattice paths, where $\path_j$
+runs from $u_j=(-j+1,j-1)$ to $v_j=(\lambda_j'-j+1,N-\lambda'_j+j-1)$, and
+where the reflection of $\path_1$ in the line $y=x$ does not intersect
+$\path_2$. 
+This is exemplified in Figure~\ref{FS}.
+\begin{Figure}\label{FS}
+\begin{picture}(20,11)(0,0)
+\put(12,5){
+	\begintableau{4}{4}
+	\row{1445}
+	\row{266}
+	\row{47}
+        \row{6}
+	\endtableau
+}
+\put(1,1){
+\begingrid{-3}{0}{5}{11}
+\makexaxes
+\makexscale
+%\makeyscale
+ 
+% Anfangspunkte
+\gridpoint{0}{0}
+\gridpoint{-1}{1}
+\gridpoint{-2}{2}
+\gridpoint{-3}{3}
+ 
+% Endpunkte
+\gridpoint{4}{5}
+\gridpoint{2}{7}
+\gridpoint{0}{9}
+\gridpoint{-2}{11}
+ 
+% gespiegelte Punkte
+\gridpoint{5}{4}
+
+
+		% Gerade y=x
+                \thinlines
+		\put(-1,-1){\line(1,1){7}}
+                \thicklines
+
+% Pfad 1, entsprechend der ersten Zeile 
+\hlabel{3}{1}{$\path_1$}
+\vedge{2}{0}
+\hedge{0}{0}\hlabel{0}{0}{1}
+\vedge{3}{1}
+\hedge{1}{0}\hlabel{1}{0}{2}
+\vpath{4}{2}{3}
+\hedge{2}{1}\hlabel{2}{1}{4}
+\hedge{3}{2}\hlabel{3}{2}{6}
+%\vpath{6}{5}{3}
+%\put(6,5){\vector(0,1){4}}
+ 
+% Pfad 2, entsprechend der zweiten Zeile 
+\hlabel{2}{5}{$\path_2$}
+\vpath{-1}{1}{3}
+\hedge{-1}{4}\hlabel{-1}{4}{4}
+\vedge{0}{4}
+\hedge{0}{5}\hlabel{0}{5}{6}
+\hedge{1}{5}\hlabel{1}{5}{7}
+\vpath{2}{5}{2}
+ 
+ 
+% Pfad 3, entsprechend der dritten Zeile 
+\hlabel{0}{7}{$\path_3$}
+\vpath{-2}{2}{3}
+\hedge{-2}{5}\hlabel{-2}{5}{4}
+\vedge{-1}{5}
+\hedge{-1}{6}\hlabel{-1}{6}{6}
+\vpath{0}{6}{3}
+ 
+% Pfad 4, entsprechend der vierten Zeile 
+\hlabel{-2}{7}{$\path_4$}
+\vpath{-3}{3}{4}
+\hedge{-3}{7}\hlabel{-3}{7}{5}
+\vpath{-2}{7}{4}
+
+%gespiegelter erster Pfad
+\vrpath{0}{0}{2}
+\hrpath{0}{2}{1}
+\vrpath{1}{2}{1}
+\hrpath{1}{3}{1}
+\vrpath{2}{3}{1}
+\hrpath{2}{4}{3}
+\endgrid
+}
+\end{picture}
+\end{Figure} 
+Let us denote the reflection in the line $y=x$ by $\reflect$.
+For the bijective proof of (\ref{thm:weak-e-orthogonal}) we consider
+the set $\bigcup
+_{\si\in\SG{\la_1}\,\ep\in\{1\}\times\{1,-1\}^{\la_1-1}}
+^{}\fpath({\mathbf u^{(\ep)},\mathbf v_\si})$. It is easy to see that the
+determinant in (\ref{thm:weak-e-orthogonal}) equals the weighted sum 
+$\sum _{\mathbf\path} ^{}\sgn\of\si$ where the sum is over all
+$\la_1$-tuples 
+%Christian.
+$\mathbf\path$ of paths in this set.
+
+We shall give a sign-reversing involution that cancels all ${\la_1}$-tuples
+$(\path_1,\dots,\path_{\la_1})$ that are either intersecting or contain two
+paths $\path_i,\path_j$, $i\ne j$, such that $\path_i$
+intersects $\reflect\of{\path_j}$. 
+Suppose that this had
+% markus. Perfekt genuegt doch, oder?
+% Christian. Das ist nicht Praeperfekt sondern Perfekt-Konjunktiv
+been done. The remaining
+${\la_1}$-tuples are nonintersecting and for all pairs $\path_i,\path_j$
+the reflected path $\path_i$ and the path $\reflect\of{\path_j}$ do
+not intersect. In particular, the paths $\path_i$, $i\ge 2$, neither
+meet $\path_1$ nor $\reflect\of{\path_1}$. A moment's thought shows
+that, because of the order of the end points
+($v_{j+1}$ lies in the
+North-West
+of $v_{j}$, $j=1,2,\dots,{\la_1}-1$, and in addition $v_2$ lies in the
+North-West of $\reflect\of{v_1}$; the latter is true because
+$\la$ is an $N$-orthogonal partition), this implies that the
+end point of $\path_1$ must be $v_1$. Since for $l\ge 2$ the end
+points $v_l$ lie in the North-West of $v_1$ and $\reflect\of{v_1}$, 
+the complete paths
+$\path_i$, $i\ge 2$, must lie in the North-West of $\path_1$ and
+$\reflect\of{\path_1}$, not intersecting any of them. Since also
+$\path_2,\dots,\path_{\la_1}$ are nonintersecting, because of the order of
+the starting and end points, for $i\ge 2$
+$\path_i$ must run from $u_i$ to $v_i$.
+In other words, the remaining ${\la_1}$-tuples are those for which $\si=\text
+{id}$ and $\ep=(1,\dots,1)$, 
+which are nonintersecting, and where
+$\reflect\of{\path_1}$ for $i\ge 2$ does not meet $\path_i$. This would prove the
+assertion.
+ 
+Now we define the involution. First cancel all intersecting
+${\la_1}$-tuples by the Gessel--Viennot involution.
+For a remaining
+${\la_1}$-tuple, look for the lowest level $x+y=c$ containing a point
+$p$ of intersection {\em above $y=x$\/}
+of $\path_i$ and $\reflect\of{\path_j}$. Choose $(i,j)$ to be minimal
+in lexicographic order.
+%Christian. Sparmassnahme.
+Now, as in the Gessel--Viennot involution, interchange terminal portions
+of $\reflect\of{{\path}_j}$ and $\path_i$ beginning from $p$,
+obtaining $\path_i^\prime$ and ${\path_j}^\prime$. Then
+reflect back $\path_i^\prime$, thus obtaining $\reflect\of{\path_i'}$
+and $\path_j'$. The following figure illustrates this
+operation.
+\begin{Figure}\label{FK}
+\begin{picture}(20, 7)(0,0)
+\put(1,0){
+	\begingrid{-1}{0}{7}{7}
+                \thinlines
+		\put(0,0){\line(1,1){7}}
+                \thicklines
+                %labels
+                \put(-1.8,4.6){$u_i$}
+                \put(2.2,0.6){$u_j$}
+                \hlabel{4}{1}{$\path_j$}
+                \hlabel{0}{2}{$\reflect\of{u_j}$}
+                \put(2.2,6.3){$\path_i$}
+                \hlabel{3}{4}{$\hskip-4pt\reflect\of{\path_j}$}
+                \hlabel{1}{5}{$\hskip3pt p$}
+		% Unterhalb y=x:
+		\put(2,5){\circle{0.4}}
+		\gridpoint{3}{1}
+		\hedge{3}{1}
+		\vedge{4}{1}
+		\hedge{4}{2}
+		\gridrpoint{1}{3}
+		\vredge{1}{3}
+		\hredge{1}{4}
+		\vredge{2}{4}
+		% Oberhalb y=x:
+		\hpath{-1}{5}{3}
+		\gridpoint{-1}{5}
+		\vedge{2}{5}
+		\hpath{2}{6}{3}
+		\gridpoint{5}{6}
+		\vpath{5}{2}{2}
+		\hpath{5}{4}{2}
+		\gridpoint{7}{4}
+		\hrpath{2}{5}{2}
+		\vredge{4}{5}
+		\vredge{4}{6}
+		\gridrpoint{4}{7}
+	\endgrid
+}
+ 
+\put(11,3){$\longleftrightarrow$}
+
+\put(14,0){
+	\begingrid{-1}{-1}{7}{7}
+                \thinlines
+		\put(0,0){\line(1,1){7}}
+                \thicklines
+                %labels
+                \put(-1.8,4.6){$u_i$}
+                \put(2.3,-0.8){$\reflect\of{u_i}$}
+                \put(5.2,2){$\reflect\of{\path_i'}$}
+                \hlabel{0}{2}{$\reflect\of{u_j}$}
+                \put(2,6.5){$\path_j'$}
+                \hlabel{3}{4}{$\hskip-4pt{\path_i'}$}
+                \hlabel{1}{5}{$\hskip3pt p$}
+		% Unterhalb y=x:
+		\put(2,5){\circle{0.4}}
+		\gridpoint{5}{-1}
+		\gridpoint{1}{3}
+		\vedge{1}{3}
+		\hedge{1}{4}
+		\vedge{2}{4}
+		% Oberhalb y=x:
+		\hrpath{-1}{5}{3}
+		\gridrpoint{-1}{5}
+		\vedge{2}{5}
+		\hpath{2}{6}{3}
+		\gridpoint{5}{6}
+		\vpath{5}{-1}{5}
+		\hpath{5}{4}{2}
+		\gridpoint{7}{4}
+		\hrpath{2}{5}{2}
+		\vredge{4}{5}
+		\vredge{4}{6}
+		\gridrpoint{4}{7}
+	\endgrid
+}
+\end{picture}
+\end{Figure}
+\noindent
+Thus, from the original ${\la_1}$-tuple of paths we obtain a new ${\la_1}$-tuple
+by replacing $\path_i$ by $\reflect\of{\path_i'}$ and $\path_j$ by
+$\path_j'$.
+It does not introduce a new
+point of (ordinary) intersection in the resulting ${\la_1}$-tuple. In fact, there
+cannot be such a point above level $x+y=c$; and there is no such point below,
+because $c$ was chosen to be minimal. This mapping is sign-reversing since
+the associated permutations differ by the transposition $(i,j)$. And
+it is straight-forward to verify that it is an involution.
+\QED 
+
+
+{\sc Bijective proofs for odd orthogonal identities by means of
+Sundaram's odd orthogonal tableaux}.
+Sundaram's odd orthogonal tableaux 
+\cite{Sundaram:Orthogonal,Sundaram:Tableaux-in} are tableaux 
+with entries from the alphabet
+$1<2<\dots<2n<\infty$ in the usual sense,
+except that column strictness
+does not extend to symbol $\infty$ (i.e\@., the symbol
+$\infty$ may occur {\em more than once in a column\/}), which obey the
+symplectic constraint (\ref{eq:symplectic-constraint}),
+and in addition have at most one entry $\infty$ in each {\em row\/}. 
+The weight of a Sundaram tableaux is defined by
+(\ref{weight:symplectic}), 
+entries $\infty$ do not contribute to the weight.
+Since the difference with symplectic tableaux is not too big, slight
+modifications of the above proofs for the symplectic  Jacobi--Trudi
+identities (\ref{thm:e-symplectic}) and (\ref{thm:e-symplectic}) can
+be used to prove the odd orthogonal Jacobi--Trudi type
+identities
+\begin{equation}
+\oschf{2n+1}{\lambda} =
+\Big\vert{\sum_{k\geq 0}\esf_{\lambda'_i-i+j-k}\of
+        {x_1,x_1^{-1},\dots,x_n,x_n^{-1}} -
+	\sum_{k\geq 0}\esf_{\lambda'_i-i-j-k}\of
+        {x_1,x_1^{-1},\dots,x_n,x_n^{-1}}
+}\Big\vert_{\lambda_1\times \lambda_1}
+\end{equation}
+and 
+\begin{equation}
+\oschf{2n+1}{\lambda} =
+%Christian.
+\detof{r}{\firstcolumn{h'_{\lambda_i-i+1}}
+h'_{\lambda_i-i+j}\of{\mathbf{x}} +
+	h'_{\lambda_i-i-j+2}\of{\mathbf{x}}
+},
+\end{equation}
+where $h_k'=h_k-h_{k-2}$ and $\mathbf
+x=\seqof{x_1,x_1^{-1},\dots,x_n,x_n^{-1},1}$.
+The proof of the odd orthogonal Giambelli identity
+(see \cite[(24.47)]{Fulton-Harris:Representation-Theory})
+\begin{equation}
+\label{thm:Giambelli-orthogonal}
+\oschf{2n+1}{\parof{\alpha|\beta}} = \detof{m}{\oschf{2n+1}{\parof{\alpha_i|\beta_j}}} ,
+\end{equation}
+by means of
+Sundaram's tableaux is similar to the one given for the symplectic
+Giambelli identity (\ref{thm:Giambelli-symplectic}) (see
+Figure~\ref{FR}). The lattice path
+interpretation of Sundaram's tableaux is the same as in the
+symplectic case, besides the entries $\infty$ are interpreted as
+downward diagonal steps. This correspondence 
+maps Sundaram's tableaux to sets of nonintersecting
+lattice paths that contain at
+most one diagonal step (with label $\infty$) in the left half-plane,
+and that do not cross the line $y=x-1$. We give an
+example for $n=4$ in Figure~\ref{FZ}.
+Application of the Gessel--Viennot method immediately implies
+(\ref{thm:Giambelli-orthogonal}).
+\begin{Figure}\label{FZ}
+\begin{picture}(20,11)(0,0)
+\put(16,3){
+	\begintableau{4}{4}
+		\row{236\infty}
+		\row{447\infty}
+		\row{\infty}
+		\row{\infty}
+	\endtableau
+}
+\put(1,1){
+	\begingrid{-3}{0}{4}{9}
+		\makexaxes
+		\makexscale
+		\makeyaxes
+
+		\skewline{0}{2}{2}
+		\skewline{0}{3}{3}
+		\skewline{0}{4}{4}
+		\skewline{0}{5}{4}
+		\skewline{0}{6}{4}
+		\skewline{0}{7}{4}
+		\skewline{0}{8}{4}
+
+                \thinlines
+		\put(1,0){\line(1,1){4}}
+                \thicklines
+		\put(2,7){\line(1,-1){2}}
+                %labels
+                \put(2.5,6.7){$\infty$}
+                \put(3.5,5.7){$\infty$}
+		\gridpoint{4}{5}
+		\gridpoint{1}{8}
+		\gridpoint{-2}{8}
+		\gridpoint{-3}{8}
+                %Pfad 1
+		\put(-3,8){\line(1,-1){1}}
+		\put(-3.4,7.3){$\infty$}
+		\vpath{-2}{5}{2}
+		\hedge{-2}{5}
+		\hlabel{-2}{5}{6}
+		\vpath{-1}{2}{3}
+		\hedge{-1}{2}
+		\hlabel{-1}{2}{3}
+		\vedge{0}{1}
+		\hedge{0}{1}
+		\hlabel{0}{1}{2}
+		\hedge{1}{1}
+		\hlabel{1}{1}{3}
+		\vpath{2}{1}{6}
+                %Pfad 2
+		\put(-2,8){\line(1,-1){1}}
+		\put(-1.2,7.3){$\infty$}
+		\vpath{-1}{6}{1}
+		\hedge{-1}{6}
+		\hlabel{-1}{6}{7}
+		\vpath{0}{3}{3}
+		\hedge{0}{3}
+		\hlabel{0}{3}{4}
+		\vpath{1}{3}{5}
+	\endgrid
+}
+ 
+\end{picture}
+\end{Figure}
+
+\ifx\undefined\bysame
+\newcommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\,}
+\fi
+\begin{thebibliography}{10}
+
+\bibitem{Bressoud-Wei}
+D. M. Bressoud and S.-Y. Wei 
+{\em Determinental formulae for complete symmetric functions},
+J. Combin\@. Theory Ser.~A {\bf 60}, 277--286.
+ 
+
+\bibitem{Fulton-Harris:Representation-Theory}
+W. Fulton and J. Harris,
+{\em Representation Theory},
+Springer--Verlag, New York, 1991.
+ 
+\bibitem{Gessel-Viennot:Determinants-paths}
+Ira~M. Gessel and Xavier Viennot, {\em Determinants, paths, and plane
+  partititions}, preprint, 1988.
+ 
+\bibitem{King-El-Sharkaway:Standard}
+R.~C. King and N.~G.~I. El-Sharkaway, {\em Standard {Y}oung tableaux and weight
+  multiplicities of the classical {L}ie groups}, J.~Physics A {\bf 16} (1983),
+  3153--3178.
+
+\bibitem{Macdonald:Symmetric-Functions}
+I.G. Macdonald, {\em Symmetric {F}unctions and {H}all {P}olynomials}, Oxford
+  University Press, New York/London, 1979.
+ 
+\bibitem{Okada:Lattice-Path}
+Soichi Okada, {\em Lattice path method and characters of classical groups},
+  preprint.
+ 
+\bibitem{Proctor:Odd}
+Robert~A. Proctor,
+{\em Odd symplectic groups},
+Invent.\ Math.\ {\bf 92} (1988), 307--332.
+
+\bibitem{Proctor:A-Schensted}
+\bysame, {\em A {S}chensted algorithm which models tensor representations of
+  the orthogonal group}, Can.~J.~Math. {\bf 42} (1990), 28--49.
+ 
+\bibitem{Proctor:Intermediate}
+\bysame,
+{\em A generalized Berele--Schensted algorithm and conjectured Young 
+tableaux for intermediate symplectic groups},
+Trans.\ Amer.\ Math.\ Soc.\ {\bf 324} (1991), 655--692.
+
+\bibitem{Proctor:Young-tableaux}
+\bysame, {\em Young tableaux. {G}elfand patterns and branching rules
+  for classical {L}ie groups}, 
+J.~Algebra {\bf 164} (1994), 299--360.
+
+\bibitem{Sagan:The-Symmetric}
+Bruce~E. Sagan, {\em The symmetric group}, Wadsworth \& Brooks/Cole, 1991.
+ 
+\bibitem{Stembridge:Nonintersecting-paths}
+John~R. Stembridge, {\em Nonintersecting paths, pfaffians and plane
+  partitions}, Adv.~Math. {\bf 83} (1990), 96--131.
+ 
+\bibitem{Sundaram:Tableaux-in}
+Sheila Sundaram, {\em Tableaux in the representation theory of the classical
+  {L}ie groups}, Invariant Theory and Tableaux (Dennis Stanton, ed.), Springer
+  Verlag, 1990, pp.~191--225.
+ 
+\bibitem{Sundaram:Orthogonal}
+\bysame,
+{\em Orthogonal tableaux and an insertion algorithm for $SO(2n+1)$},
+J. Combin.\ Theory Ser.~A {\bf 53}, 239--256.
+
+\end{thebibliography}
+ 
+\end{document}
+ 
+
+ 

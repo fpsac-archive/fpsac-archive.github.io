@@ -1,0 +1,881 @@
+\documentclass[a4paper,12pt]{amsart}
+\usepackage{amsmath,amssymb,latexsym}
+
+%Dave's macros for fixing running heads, xarrows...
+\addtolength\headheight{2pt}
+\makeatletter
+\setlength{\minaw@}{12pt}
+\let\choose\@@choose
+\let\cal\mathcal
+\makeatother
+
+\setlength{\parskip}{5pt}
+%\setlength{\parindent}{0pt}
+\setlength{\textheight}{9in}
+\setlength{\topmargin}{-.50in}
+\setlength{\oddsidemargin}{.125in}
+\setlength{\evensidemargin}{.125in}
+\setlength{\textwidth}{6.25in}
+
+\makeatletter
+\let\cal\mathcal
+\makeatother
+
+\newtheorem{conj}[equation]{Conjecture}
+
+
+\newtheorem{prop}[equation]{Proposition}
+\newtheorem{dfn}[equation]{Definition}
+\newtheorem{alg}[equation]{Algorithm}
+\newtheorem{thm}[equation]{Theorem}
+\newtheorem{rem}[equation]{Remarks}
+\newtheorem{cor}[equation]{Corollary}
+\newtheorem{lem}[equation]{Lemma}
+\theoremstyle{definition}
+\newtheorem{exa}[equation]{Example}
+\newtheorem{exas}[equation]{Examples}
+\numberwithin{equation}{section}
+\newcommand{\bi}{\bibitem}
+
+%combinatorial macros
+
+\newcommand{\bN}{{\mathbb N}}
+\newcommand{\bZ}{{\mathbb Z}}
+\newcommand{\bR}{{\mathbb R}}
+\newcommand{\bC}{{\mathbb C}}
+\newcommand{\bQ}{{\mathbb Q}}
+\newcommand{\s}{\sigma}
+\newcommand{\sss}{{\cal S}}
+
+%Nige's 10mm arrows (allows about 30 characters in a SES)
+\newcommand{\arr}{\begin{picture}(45,5) \put(3,2.5){\vector(1,0){40}} \end{picture}}
+%\newcommand{\arrl}[1]{\stackrel{\displaystyle{#1}}{\arr}}
+\newcommand{\arrl}[1]{\stackrel{#1}{\arr}}
+
+
+\newcommand{\spandsp}{\mbox{$\qquad\text{and}\qquad$}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Lop}{\operatorname{Lop}}
+\newcommand{\Rop}{\operatorname{Rop}}
+
+\newcommand{\phib}{\overline{\phi}}
+\newcommand{\ax}{\mbox{$A_{\ast}[x]$}}
+\newcommand{\axy}{\mbox{$A_{\ast}[x,y]$}}
+\newcommand{\add}{\mbox{$A^{\ast}\{\!\{D\}\!\}$}}
+\newcommand{\adl}{\mbox{$A^{\ast}\{\!\{\Delta\}\!\}$}}
+\newcommand{\kx}{\mbox{$k_{\ast}[x]$}}
+\newcommand{\px}{\mbox{$\varPhi_{\ast}[x]$}}
+\newcommand{\pdd}{\mbox{$\varPhi^{\ast}\{\!\{D\}\!\}$}}
+\newcommand{\pudd}[1]{\mbox{$\varPhi^{#1}\{\!\{ D\}\!\}$}}
+\newcommand{\audd}[1]{\mbox{$A^{#1}\{\!\{ D\}\!\}$}}
+\newcommand{\audv}[2]{\mbox{$A^{#1}\{\!\{ #2\}\!\}$}}
+\newcommand{\plx}[1]{\mbox{$\varPhi_{#1}[x]$}}
+\newcommand{\alx}[1]{\mbox{$A_{#1}[x]$}}
+\newcommand{\lpb}{\mbox{$L_{\ast}\langle\bb{i}\rangle$}}
+\newcommand{\p}{\mbox{$\varPhi_{\ast}$}}
+\newcommand{\pu}[1]{\mbox{$\varPhi^{#1}$}}
+\newcommand{\pl}[1]{\mbox{$\varPhi_{#1}$}}
+%\newcommand{\hp}{\mbox{$(H\!\cdot\!\varPhi)_\ast$}}
+\newcommand{\hp}{\mbox{$H_\ast$}}
+%\newcommand{\hpu}[1]{\mbox{$(H\!\cdot\!\varPhi)^{#1}$}}
+\newcommand{\hpu}[1]{\mbox{$H^{#1}$}}
+%\newcommand{\hpl}[1]{\mbox{$(H\!\cdot\!\varPhi)_{#1}$}}
+\newcommand{\hpl}[1]{\mbox{$H_{#1}$}}
+\newcommand{\hpdd}{\mbox{$\hpu{\ast}[[D]]$}}
+\newcommand{\hpudd}[1]{\mbox{$\hpu{#1}[[D]]$}}
+\newcommand{\pq}{\mbox{$(\varPhi\otimes\bQ)_\ast$}}
+\newcommand{\pqx}{\mbox{$(\varPhi\otimes\bQ)_\ast[x]$}}
+\newcommand{\pqlx}[1]{\mbox{$(\varPhi\otimes\bQ)_{#1}[x]$}}
+\newcommand{\pqu}[1]{\mbox{$(\varPhi\otimes\bQ)^{#1}$}}
+\newcommand{\pql}[1]{\mbox{$(\varPhi\otimes\bQ)_{#1}$}}
+\newcommand{\hpx}{\mbox{$\hp\{x\}$}}
+\newcommand{\hpb}{\mbox{$\hp \langle\bb{i} \rangle$}}
+\newcommand{\hplx}[1]{\mbox{$\hpl{#1}\{x\}$}}
+\newcommand{\mucp}{L_\ast\langle\bb{i}\rangle}
+\newcommand{\Bal}[1]{\mbox{$B_{#1}^{\alpha}(x)$}}
+\newcommand{\Balb}[1]{\mbox{$B_{#1}^{\overline{\alpha}}(x)$}}
+\newcommand{\Bk}[1]{\mbox{$B_{#1}^{\kappa}(x)$}}
+\newcommand{\Bkb}[1]{\mbox{$B_{#1}^{\overline{\kappa}}(x)$}}
+\newcommand{\Bp}[1]{\mbox{$B_{#1}^{\phi}(x)$}}
+\newcommand{\Bpb}[1]{\mbox{$B_{#1}^{\overline{\phi}}(x)$}}
+\newcommand{\bal}[1]{\mbox{$\beta_{#1}^{\alpha}(x)$}}
+\newcommand{\balb}[1]{\mbox{$\beta_{#1}^{\overline{\alpha}}(x)$}}
+\newcommand{\bp}[1]{\mbox{$\beta_{#1}^{\phi}(x)$}}
+\newcommand{\bpb}[1]{\mbox{$\beta_{#1}^{\overline{\phi}}(x)$}}
+\newcommand{\Ba}[1]{\mbox{$B_{#1}^{a}(x)$}}
+\newcommand{\Bab}[1]{\mbox{$B_{#1}^{\overline{a}}(x)$}}
+\newcommand{\Bb}[1]{\mbox{$B_{#1}^{b}(x)$}}
+\newcommand{\Bm}[1]{\mbox{$B_{#1}^{m}(x)$}}
+\newcommand{\ba}[1]{\mbox{$\beta_{#1}^{a}(x)$}}
+\newcommand{\bab}[1]{\mbox{$\beta_{#1}^{\overline{a}}(x)$}}
+\newcommand{\bb}[1]{\mbox{$\beta_{#1}^{b}(x)$}}
+\newcommand{\bm}[1]{\mbox{$\beta_{#1}^{m}(x)$}}
+\newcommand{\alD}{\mbox{$\alpha(D)$}}
+\newcommand{\aD}{\mbox{$a(D)$}}
+\newcommand{\bD}{\mbox{$b(D)$}}
+\newcommand{\mD}{\mbox{$m(D)$}}
+\newcommand{\kD}{\mbox{$\kappa(D)$}}
+\newcommand{\pD}{\mbox{$\phi(D)$}}
+\newcommand{\abD}{\mbox{$\overline{a}(D)$}}
+\newcommand{\albD}{\mbox{$\overline{\alpha}(D)$}}
+\newcommand{\kbD}{\mbox{$\overline{\kappa}(D)$}}
+\newcommand{\pbD}{\mbox{$\overline{\phi}(D)$}}
+\newcommand{\pDt}{\mbox{$\phi(D^\theta)$}}
+\newcommand{\pDch}{\mbox{$\phi(D^c)$}}
+\newcommand{\pDgm}{\mbox{$\phi(D^\chi)$}}
+\newcommand{\pbDch}{\mbox{$\overline{\phi}(D^c)$}}
+\newcommand{\pbDgm}{\mbox{$\overline{\phi}(D^\chi)$}}
+\newcommand{\bDch}{\mbox{$b(D^c)$}}
+\newcommand{\bDgm}{\mbox{$b(D^\chi)$}}
+\newcommand{\mDch}{\mbox{$m(D^c)$}}
+\newcommand{\mDgm}{\mbox{$m(D^\chi)$}}
+\newcommand{\pDr}{\mbox{$\phi(D^\rho)$}}
+\newcommand{\pbDr}{\mbox{$\overline{\phi}(D^\rho)$}}
+\newcommand{\fal}[1]{\mbox{$f_{#1}^{\alpha}$}}
+\newcommand{\fp}[1]{\mbox{$f_{#1}^{\phi}$}}
+\newcommand{\Fal}[1]{\mbox{$F_{#1}^{\alpha}$}}
+\newcommand{\Fp}[1]{\mbox{$F_{#1}^{\phi}$}}
+\newcommand{\ioal}[1]{\mbox{$\iota_{#1}^{\alpha}$}}
+\newcommand{\iop}[1]{\mbox{$\iota_{#1}^{\phi}$}}
+\newcommand{\fa}[1]{\mbox{$f_{#1}^{a}$}}
+\newcommand{\fb}[1]{\mbox{$f_{#1}^{b}$}}
+\newcommand{\Fa}[1]{\mbox{$F_{#1}^{a}$}}
+\newcommand{\Fb}[1]{\mbox{$F_{#1}^{b}$}}
+\newcommand{\ia}[1]{\mbox{$i_{#1}^{a}$}}
+\newcommand{\ib}[1]{\mbox{$i_{#1}^{b}$}}
+\newcommand{\xez}[1]{\mbox{$[#1]_{x=0}$}}
+\newcommand{\zp}{\mbox{$\zeta^{\phi}$}}
+\newcommand{\mup}{\mbox{$\mu^{\phi}$}}
+\newcommand{\mupi}[1]{\mbox{$\mu_{#1}^{\phi}$}}
+\newcommand{\mbi}[1]{\mbox{$m_{#1}^b$}}
+\newcommand{\chp}{\mbox{$c^{\phi}$}}
+\newcommand{\chpi}[1]{\mbox{$c^{\phi}(#1\,;x)$}}
+\newcommand{\chb}{\mbox{$c^{b}$}}
+\newcommand{\chbi}[1]{\mbox{$c^{b}(#1\,;x)$}}
+\newcommand{\rp}{\mbox{$\rho^{\phi}$}}
+\newcommand{\rpi}[1]{\mbox{$\rho^{\phi}(#1\,;x)$}}
+\newcommand{\rb}{\mbox{$\rho^{b}$}}
+\newcommand{\rbi}[1]{\mbox{$\rho^{b}(#1\,;x)$}}
+\newcommand{\rtlpi}[1]{\mbox{$\widetilde{\rho}^{\phi}(#1\,;x)$}}
+\newcommand{\tp}{\mbox{$\tau^{\phi}$}}
+\newcommand{\tb}[1]{\mbox{$\tau^{b}_{#1}$}}
+\newcommand{\nup}[1]{\mbox{$\nu_{#1}^{\phi}$}}
+\newcommand{\nub}[1]{\mbox{$\nu_{#1}^{b}$}}
+\newcommand{\nupps}{\mbox{$\nup{\ps}$}}
+\newcommand{\gmp}{\mbox{$\chi^{\phi}$}}
+\newcommand{\gmtlp}{\mbox{$\widetilde{\chi}^{\phi}$}}
+\newcommand{\gmpi}[1]{\mbox{$\chi^{\phi}(#1\,;x)$}}
+\newcommand{\gmtlpi}[1]{\mbox{$\widetilde{\chi}^{\phi}(#1\,;x)$}}
+\newcommand{\gmtlbi}[1]{\mbox{$\widetilde{\chi}^{b}(#1\,;x)$}}
+\newcommand{\gmtlki}[1]{\mbox{$\widetilde{\chi}^{\kappa}(#1\,;x)$}}
+\newcommand{\gmb}{\mbox{$\chi^{b}$}}
+\newcommand{\gmbi}[1]{\mbox{$\chi^{b}(#1\,;x)$}}
+\newcommand{\gmk}{\mbox{$\chi^{\kappa}$}}
+\newcommand{\gmki}[1]{\mbox{$\chi^{\kappa}(#1\,;x)$}}
+\newcommand{\chk}{\mbox{$c^{\kappa}$}}
+\newcommand{\chki}[1]{\mbox{$c^{\kappa}(#1\,;x)$}}
+\newcommand{\gk}{\mbox{$g^{\kappa}$}}
+\newcommand{\z}{\widehat{0}}
+\newcommand{\zi}[1]{\mbox{$\widehat{0}_{#1}$}}
+\newcommand{\oi}[1]{\mbox{$\widehat{1}_{#1}$}}
+\newcommand{\ps}{{\cal P}}
+\newcommand{\Ps}{\mbox{${\mathbb P}$}}
+\newcommand{\Sss}{\mathbb S}
+\newcommand{\Ssg}{\mbox{$\mathbb S \mathbb G$}}
+\newcommand{\Ssgp}{\mbox{$\Ssg'$}}
+\newcommand{\Ssgpp}{\mbox{$\Ssg''$}}
+\newcommand{\sps}{\mbox{\rm{Sing}$(\ps)$}}
+\newcommand{\sngl}{\mbox{\rm{Sing}\,}}
+\newcommand{\psb}{\overline{\ps}}
+\newcommand{\psbone}{\overline{\ps_1}}
+\newcommand{\psbtwo}{\overline{\ps_2}}
+\newcommand{\sssb}{\overline{\sss}}
+\newcommand{\psco}{\ps/}
+\newcommand{\sssco}{\sss/}
+\newcommand{\psd}{\ps\setminus}
+\newcommand{\pssd}{\ps\setminus\!\!\setminus}
+\newcommand{\psr}{\ps|}
+\newcommand{\sssr}{\sss|}
+\newcommand{\br}[1]{\langle#1\rangle}
+\newcommand{\bps}{\rm{Bool}(\ps)}
+\newcommand{\bpsi}[1]{\rm{Bool}(#1)}
+\newcommand{\pitl}{\mbox{$\widetilde{\varPi}$}}
+
+\newcommand{\gsss}[1]{\mbox{$\varGamma_{#1}(\sss)$}}
+\newcommand{\gps}[1]{\mbox{$\varGamma_{#1}(\ps)$}}
+\newcommand{\dual}[2]{\br{#1 \:|\: #2}}
+\newcommand{\pps}{\mbox{$\p\langle\Ps\rangle$}}
+\newcommand{\psss}{\mbox{$\p\langle\Sss\rangle$}}
+\newcommand{\dSss}{D_{\Sss}}
+\newcommand{\pdSss}{\pu{\ast}\langle\!\langle\dSss\rangle\!\rangle}
+\newcommand{\dlsss}{D_{\lambda(\sss)}}
+\newcommand{\dlSss}{D_{\lambda(\Sss_\circ)}}
+\newcommand{\pdlSss}{\pu{\ast}\{\!\{\dlSss\}\!\}}
+\newcommand{\pudlSss}[1]{\pu{#1}\{\!\{\dlSss\}\!\}}
+\newcommand{\hpssg}{\mbox{$\hp\langle\Ssg\rangle$}}
+\newcommand{\hpssgp}{\mbox{$\hp\langle\Ssgp\rangle$}}
+\newcommand{\pg}{\mbox{$\p\langle G\rangle$}}
+\newcommand{\kps}{\mbox{$\k\langle\Ps\rangle$}}
+\newcommand{\kg}{\mbox{$\k\langle G\rangle$}}
+\newcommand{\irp}{\mbox{$R_{\ast}^{\phi}$}}
+\newcommand{\iqp}{\mbox{$Q_{\ast}^{\phi}$}}
+\newcommand{\itp}{\mbox{$T_{\ast}^{\phi}$}}
+\newcommand{\aps}{\rm{At}(\ps)}
+\newcommand{\apsi}[1]{\rm{At}(#1)}
+\newcommand{\naps}{\mbox{\rm{Non}$(\ps)$}}
+\newcommand{\napsi}[1]{\mbox{\rm{Non}$(#1)$}}
+\newcommand{\np}[1]{{\cal N}_{#1}}
+\newcommand{\kp}[1]{{\cal K}_{#1}}
+\newcommand{\pDd}{\mbox{$\dual{\pD}{\cdot}$}}
+\newcommand{\ig}{{\cal I}(G)}
+\newcommand{\ag}{{\cal A}(G)}
+\newcommand{\ii}[1]{{\cal I}(#1)}
+\newcommand{\ai}[1]{{\cal A}(#1)}
+\newcommand{\agi}[1]{{\cal A}(G_{#1})}
+\newcommand{\cg}{{\cal C}(G)}
+\newcommand{\ap}{\mbox{$a^{\phi}$}}
+\newcommand{\ip}{\mbox{$i{^\phi}$}}
+\newcommand{\abp}{\mbox{$\widetilde{a}^{\phi}$}}
+\newcommand{\cp}{\mbox{$c^{\phi}$}}
+\newcommand{\ak}{\mbox{$a^{\kappa}$}}
+\newcommand{\ik}{\mbox{$i^{\kappa}$}}
+\newcommand{\ck}{\mbox{$c^{\kappa}$}}
+\newcommand{\gp}{\mbox{${\cal G}$}}
+\newcommand{\tgp}{\mbox{$\widetilde{{\cal G}}$}}
+\newcommand{\cala}{\mbox{${\cal A}$}}
+\newcommand{\odps}{\mbox{$\ps_{1}\odot\ps_{2}$}}
+\newcommand{\asps}{\mbox{$\ps_{1}\ast\ps_{2}$}}
+\newcommand{\veps}{\mbox{$\ps_{1}\vee\ps_{2}$}}
+\newcommand{\cdps}{\mbox{$\ps_{1}\cdot\ps_{2}$}}
+\newcommand{\opps}{\mbox{$\ps_{1}\oplus\ps_{2}$}}
+\newcommand{\odsss}{\mbox{$\sss_{1}\odot\sss_{2}$}}
+\newcommand{\cdsss}{\mbox{$\sss_{1}\cdot\sss_{2}$}}
+\newcommand{\odgp}{\mbox{$\gp_{1}\odot\gp_{2}$}}
+\newcommand{\odtgp}{\mbox{$\tgp_{1}\odot\tgp_{2}$}}
+\newcommand{\asgp}{\mbox{$\gp_{1}\ast\gp_{2}$}}
+\newcommand{\vegp}{\mbox{$\gp_{1}\vee\gp_{2}$}}
+\newcommand{\cdgp}{\mbox{$\gp_{1}\cdot\gp_{2}$}}
+\newcommand{\cdtgp}{\mbox{$\tgp_{1}\cdot\tgp_{2}$}}
+\newcommand{\odgpi}[1]{\mbox{$\gp_{1}^{#1}\odot\gp_{2}^{#1}$}}
+\newcommand{\cdgpi}[1]{\mbox{$\gp_{1}^{#1}\cdot\gp_{2}^{#1}$}}
+\newcommand{\amps}{\mbox{$\ps_{1}\amalg\ps_{2}$}}
+\newcommand{\lb}[1]{\mbox{$^L\!\,#1$}}
+\newcommand{\setp}[2]{\{#1\::\:#2\}}
+\newcommand{\map}[3]{\mbox{$#1 \colon #2 \rightarrow #3$}}
+\newcommand{\case}[5]{#1#2 \left\{ \begin{array}{ll} #3 &\mbox{if $#4$} \\ #5 &\mbox{otherwise\,.} \end{array} \right.}
+\newcommand{\pss}{partition system}
+\newcommand{\psp}{partition systems}
+\newcommand{\Psp}{Partition systems}
+\newcommand{\PSp}{Partition Systems}
+\newcommand{\cps}{chromatic polynomial}
+\newcommand{\ucps}{umbral chromatic polynomial}
+\newcommand{\beps}{Bell polynomial}
+\newcommand{\cbeps}{conjugate Bell polynomial}
+\newcommand{\cpp}{chromatic polynomials}
+\newcommand{\ucpp}{umbral chromatic polynomials}
+\newcommand{\bpp}{Bell polynomials}
+\newcommand{\cbpp}{conjugate Bell polynomials}
+\newcommand{\dlos}{delta operator}
+\newcommand{\dlop}{delta operators}
+\newcommand{\has}{Hopf algebra}
+\newcommand{\hap}{Hopf algebras}
+\newcommand{\eproof}{\mbox{$\;\;\;\Box$}}
+\newcommand{\mxs}{mixture}
+\newcommand{\spa}{\;\:}
+\newcommand{\ssag}{SSWAG}
+\newcommand{\ssags}{SSWAGs}
+\newcommand{\D}[1]{\mbox{$D_{(#1)}$}}
+\newcommand{\x}[1]{\mbox{$x_{(#1)}$}}
+\newcommand{\X}[1]{\mbox{$X_{(#1)}$}}
+\newcommand{\Y}[1]{\mbox{$Y_{(#1)}$}}
+
+
+\newcommand{\calb}{{\cal B}}
+
+
+\newcommand{\CP}{\bC P^\infty}
+\newcommand{\EuC}{E^*(\CP)}
+\newcommand{\ElC}{E_*(\CP)}
+\newcommand{\EQ}{E\bQ}
+\newcommand{\dt}{\operatorname{det}}
+\newcommand{\Bdt}{\operatorname{Bdet}}
+\newcommand{\ab}{\overline{A}_* }
+\newcommand{\ah}{A\bQ_* }
+\newcommand{\abdd}[1]{\overline{A}\,^{#1}\{\!\{D\}\!\} }
+\newcommand{\sla}{Sym_A^* }
+\newcommand{\sua}{Sym_*^A }
+\newcommand{\slah}{Sym_{A\bQ}^* }
+\newcommand{\suah}{Sym_*^{A\bQ} }
+\newcommand{\casec}[5]{#1#2 \left\{ \begin{array}{ll} #3 &\mbox{if $#4$} \\ #5 &\mbox{otherwise\,,} \end{array} \right.}
+\newcommand{\bbb}{m}
+\newcommand{\qf}[1]{q_{#1}^a }
+%\newcommand{ }{ }
+
+\begin{document}
+\bibliographystyle{plain}
+\title[Symmetric Functions and Formal Group Laws]{Symmetric Functions, Formal Group Laws, and Lazard's Theorem}
+\author{Cristian Lenart}
+\address{Department of Mathematics, Massachusetts Institute of Technology, Cambridge, MA 02139-4307, U.S.A.}  
+\email{lenart@math.mit.edu}
+
+
+\begin{abstract}
+Lazard's theorem is a central result in formal group theory; it states that the ring over which the universal formal group law is defined (known as the Lazard ring) is a polynomial algebra over the integers with infinitely many generators. This ring also shows up in algebraic topology as the complex cobordism ring. The main aim of this paper is to show that the polynomial structure of the Lazard ring follows from the polynomial structure of a certain subalgebra of symmetric functions with integer coefficients. The connection between symmetric functions and the Lazard ring is provided by a certain Hopf algebra map from symmetric functions to the covariant bialgebra of a formal group law. We study this map by deriving formulas for the images of certain symmetric functions; in passing, we use this map to prove some symmetric function and Catalan number identities. Based on the above results, we prove Lazard's theorem, and present an application to the construction of certain $p$-!
+!
+!
+typical formal group laws over 
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+The important advances in algebraic combinatorics in recent years have led to a better understanding of various algebraic phenomena, mainly related to representation theory. It is our belief that formal group theory, whose relevance to contemporary mathematics lies in its applications to topology and number theory, also provides a rich ground for applying combinatorial methods. As in other situations, the role of combinatorics is to provide explicit explanation in terms of certain discrete structures.  
+
+A central result in formal group theory is {\em Lazard's theorem}; it states that the ring over which the universal formal group law is defined (known as the {\em Lazard ring}) is a polynomial algebra over the integers with infinitely many generators. By Quillen's theorem (see \cite{adashg}), the Lazard ring is isomorphic to the complex cobordism ring $MU_*$, whence its importance to algebraic topology, as well. There are several proofs of Lazard's theorem (see \cite{adashg} p. 64--74, \cite{hazfga} p. 26--30, \cite{ravccs} p. 357--360 and 368--369), which are essentially existence proofs. Since they have a distinctly combinatorial flavor, relying on binomial coefficient arithmetic, it has long been a challenge to develop methods of proof based on certain combinatorial structures. The aim of this paper is to develop such methods. The bonus of our proof of Lazard's theorem is a better understanding of it, by revealing its connections to the algebra of symmetric functions. We co!
+!
+!
+nstruct polynomial generators f
+
+As we have already mentioned, the combinatorics we develop is related to the algebra of symmetric functions with integer coefficients. In \S2, we construct a new basis for this algebra, and derive the polynomial structure of the subalgebra spanned by forgotten (or monomial) symmetric functions indexed by partitions with all parts greater or equal to $2$. It is the special form of the elements of the new basis that makes induction work nicely in the proof of Lazard's theorem, while the polynomial structure of the subalgebra mentioned above essentially implies the polynomial structure of the Lazard ring. Section 3 starts with a brief review of some formal group theoretic concepts. We then define and study a certain Hopf algebra map from symmetric functions to the covariant bialgebra of a formal group law. We show that this map has a geometrical interpretation (in \S4), and derive formulas for the images of certain symmetric functions. In passing, we use this map to prove some sy!
+!
+!
+mmetric function and Catalan nu
+ 
+\section{A Polynomial Subalgebra of Symmetric Functions}
+
+In this section, we construct a new basis for symmetric functions, and derive the polynomial structure of a certain subalgebra. Our discussion is in terms of the forgotten symmetric functions, rather than the monomial ones, only because of later applications to formal group theory. The main combinatorial ingredients for our computations are Doubilet's change of basis formulas for symmetric functions \cite{doufct7}, which use M\"{o}bius inversion on set partition lattices. 
+
+We start by introducing our notation concerning partitions (of numbers and sets), and symmetric functions. Given a partition $I=(i_1\le i_2\le\ldots\le i_l)=(1^{j_1},\ldots, n^{j_n})$ of the positive integer $n$, we use the notations
+\[l(I):=l\,,\quad |I|:=i_1+\ldots+i_l\,,\quad I!:=i_1!\ldots i_l!\,,\quad \|I\|:=j_1!\ldots j_n!\,;\]
+$l(I)$ is known as the length of $I$, and $|I|$ as the weight of $I$. If $j_k>0$ for some $k$, we write $I|k$ for the partition $(k^{j_k})$.
+
+We denote, as usual, by $\varPi_n$ the lattice of partitions of the set $[n]:=\{1,\ldots,n\}$ ordered by refinement, and by $\varPi_n^{(d)}$ the subposet of {\it $d$-divisible partitions} (that is partitions with all block sizes divisible by $d$). Given $\s$ in $\varPi_n$, we denote by $|\s|$ the number of its blocks, and define its type $I(\s)$ to be the partition of $n$ with parts equal to the block sizes of $\sigma$. Given two partitions $\s\le\pi$ in $\varPi_n$, we recall that the {\em induced partition} $\pi/\s$ on the blocks of $\s$ is the partition of $\s$ whose blocks are the sets $\setp{B\in\s}{B\subseteq C}$ for $C$ in $\pi$. As usual, the {\em M\"{o}bius function} of $\varPi_n$ is denoted by $\mu$. Recall that $\mu(\s,\pi)=(-1)^{|\s|-|\pi|}\prod_{B\in\pi/\s}(|B|-1)!$. 
+
+Given a graded commutative ring $A_*$ with identity, we denote by $\sua=\sua(X)$ the  $A_*$-algebra of
+symmetric functions over an infinite set of indeterminates 
+$X=\{X_1,$ $X_2,\ldots\}$; if $A=\bZ$, we write simply $Sym_*$. We use the notation of Lascoux and Sch\"{u}tzenberger
+\cite{lasfrf} for symmetric functions, which has the advantage of being
+compatible with the modern interpretation of symmetric functions as
+operators on $\lambda$-rings and polynomial functors. Let us recall the standard bases for symmetric functions and the corresponding notation. The {\em complete symmetric function} indexed by a partition $I$ is denoted by
+$S^I:=S^I(X)$, the {\em elementary symmetric function} by
+$\varLambda^I:=\varLambda^I(X)$, the {\em power sum symmetric
+function} by $\varPsi^I:=\varPsi^I(X)$, and the {\em monomial symmetric
+functions} by $\varPsi_I:=\varPsi_I(X)$. 
+
+We recall the comultiplication on $\sua$ specified by
+\[ \delta(P)=\varPhi^{-1}(P(X;Y))\,,\]
+where $\varPhi$ is the canonical isomorphism between
+$\sua(X)\otimes\sua(X)$ and the algebra $\sua(X;Y)$ of symmetric
+polynomials over the disjoint union of the alphabets $X$ and $Y$. In particular, $\{\varLambda_n\}$ and $\{S_n\}$ are divided power sequences, that is
+\begin{equation}\label{divpow}
+\delta(\varLambda_n)=\sum_{i=0}^n \varLambda_i\otimes\varLambda_{n-i}\,,
+\end{equation}
+and similarly for $S_n$. It is well-known that this comultiplication turns $\sua$ into a \has. 
+
+The graded dual of $\sua$ is the algebra
+$\sla:=\sla(X)$ of symmetric formal series over the same alphabet $X$. The complete symmetric functions and the monomial ones form dual bases, that is $\dual{\varPsi_I}{S^J}=\delta_{I,J}$. Let us also recall that the dual basis with respect to the elementary symmetric functions is represented by the so-called {\em forgotten symmetric functions} (see \cite{macsfh}). Alternatively, they can be defined as the images of $\varPsi_I$ under the standard involution on symmetric functions. Here we prefer to introduce a new notation for the forgotten symmetric function indexed by $I$, namely $F_I$, rather than using the $\lambda$-ring formalism to express it as $(-1)^{|I|} \varPsi_I(-X)$. 
+
+
+For every partition $I$, we now define the symmetric function $F^I:=\prod_k F_{I|k}$, where the product ranges over the distinct parts of $I$. We also consider the submodule $Sym_*^{\ge 2}$ of $Sym_*$ spanned by forgotten symmetric functions indexed by partitions with all parts greater or equal to $2$. It can be shown, using one of Doubilet's change of basis formulas in \cite{doufct7}, that the corresponding monomial symmetric functions form a basis of $Sym_*^{\ge 2}$, as well.
+
+\begin{prop}\label{bases}
+The symmetric functions $F^I$ form a basis of $Sym_*$. The symmetric functions $F^I$ indexed by partitions $I$ with all parts greater or equal to $2$ form a basis of $Sym_*^{\ge 2}$. Furthermore, $Sym_*^{\ge 2}$ is a subalgebra of $Sym_*$.
+\end{prop}
+\begin{proof}
+We will first show that the coefficients $c_{IJ}^K$ defined by
+\[F_I\,F_J=\sum_K c_{IJ}^K\,F_K\,,\]
+are non-zero if and only if every part of $K$ is a part of $I$, or a part of $J$, or a sum of two such parts. This is easy to see by a duality argument:
+\[ c_{IJ}^K=\dual{\varLambda^K}{F_I\,F_J}=\dual{\delta(\varLambda^K)}{F_I\otimes F_J}\,.\]
+But by (\ref{divpow}), we have
+\[\delta(\varLambda^K)=\sum_{0\le k_i'\le k_i} \varLambda_{k_1'}\ldots\varLambda_{k_n'}\otimes \varLambda_{k_1-k_1'}\ldots\varLambda_{k_n-k_n'}\,,\]
+where $K=(k_1,\ldots,k_n)$. Hence $c_{IJ}^K$ is non-zero if and only if there are integers $k_i'$ such that the partition formed by the non-zero ones is $I$, and the partition formed by the non-zero $k_i-k_i'$ is $J$. This means that $K$ must be of the stated form. 
+
+We conclude that $F^I$ is a sum of forgotten symmetric functions indexed by partitions which are greater or equal to $I$ in the refinement order, and hence also in the reverse lexicographic order. Furthermore, it is easy to see that the coefficient of $F_I$ is $1$. Indeed, we just use the above argument repeatedly, observing that if $i$ is greater than all the parts of the partition $I$, then the coefficient of $\varLambda_i^n\otimes\varLambda^I$ in $\delta(\varLambda_i^n\varLambda^I)$ is $1$. Hence the transition matrix from $F_I$ to $F^I$ is triangular with $1$'s on the diagonal.
+
+The fact that $Sym_*^{\ge 2}$ is a subalgebra of $Sym_*$ follows from the above observation concerning the coefficients $c_{IJ}^K$. 
+
+\end{proof}
+
+We now intend to show that $Sym_*^{\ge 2}$ is actually a polynomial algebra. We define symmetric functions $G_n$ for $n\ge 2$ in a non-canonical way, and show that they are polynomial generators. If $n=p^t$ for some prime $p$, we let $G_n:=F_{(p^{n/p})}$; otherwise, we choose two distinct primes $p(n),q(n)$ dividing $n$, find integers $k(n),l(n)$ such that $k(n)p(n)+l(n)q(n)=1$, and set $G_n:=(-1)^{n/p(n)}k(n) F_{(p(n)^{n/p(n)})}+(-1)^{n/q(n)}l(n) F_{(q(n)^{n/q(n)})}$. 
+
+\begin{thm}
+$Sym_*^{\ge 2}$ is a polynomial algebra over the integers with polynomial generators $G_n$, $n\ge 2$. In particular, for every divisor $r\ge 2$ of $n$ we have
+\begin{equation}\label{decomp}
+F_{(r^{n/r})}=\alpha_{n,r}\,G_n+\mbox{decomposables in}\spa Sym_*^{\ge 2}\,,\;\;\;\;\;\alpha_{n,r}\in\bZ\,;
+\end{equation}
+furthermore, 
+\[\case{\alpha_{n,r}}{=}{(-1)^{p^{t-1}-p^t/r}r/p}{n=p^t}{(-1)^{n/r}r}\]
+\end{thm}
+\begin{proof}
+We work in the basis $\{F^I\}$ of $Sym_*^{\ge 2}$ ($I$ with all parts greater or equal to 2), so the indecomposable basis elements of degree $n$ are $F_{(r^{n/r})}$, with $r\ge 2$ a divisor of $n$. It is enough to show that any such symmetric function can be expressed as in (\ref{decomp}). 
+
+Let us first recall Doubilet's formula
+\begin{equation}\label{doubilet}
+F_I=\frac{(-1)^{|I|-l(I)}}{||I||}\sum_{\pi\ge\s}|\mu(\s,\pi)|\,\varPsi^{I(\pi)}\,,
+\end{equation}
+where $\s$ is an arbitrary partition in $\varPi_{|I|}$ of type $I$. This formula implies
+\begin{equation}\label{useful}
+F_{((js)^m)}=\sum_{|I|=jm} c_I\left(\prod_{r=1}^{l(I)} F_{(s^{i_r})}\right)\,,
+\end{equation}
+where $j,m,s$ are positive integers with $j,s\ge 2$, $i_r$ are the parts of $I$, and $c_I\in\bZ$ is the coefficient of $S^I$ in the expansion of $F_{(j^m)}$ in the basis $\{S^I\}$; since $S_r=F_{(1^r)}$, we are in fact claiming that $c_I$ does not depend on $s$. Indeed, we only need to express both sides of (\ref{useful}) in the basis $\{\varPsi^I\}$ using (\ref{doubilet}), and note that the expansion of $(-1)^{jms}F_{((js)^m)}$ can be obtained from the expansion of $(-1)^{jm}F_{(j^m)}$ by replacing every $\varPsi_r$ with $\varPsi_{rs}$. Furthermore, by looking at the coefficient of $\varPsi_{jms}$ in the two sides of (\ref{useful}), we get $c_{(jm)}=(-1)^{(j-1)m}j$. 
+
+If $n=p^t$ for a prime $p$, then (\ref{decomp}) holds by the above observations. Otherwise, we consider $p(n), q(n), k(n), l(n)$ as above, $r\ge 2$ a divisor of $n$, and let $r_1:=\mbox{lcm}(r,p(n))$, $r_2:=\mbox{lcm}(r,q(n))$. By applying (\ref{useful}) to express $F_{\left(r_1^{n/r_1}\right)}$ (in two ways if $r_1=rp(n)$), and multiplying through by $(-1)^{n/r+n/r_1}\gcd(r,p(n))$, we obtain
+\[ p(n)F_{(r^{n/r})}=(-1)^{n/r+n/p(n)}r F_{(p(n)^{n/p(n)})}+\mbox{decomposables in}\spa Sym_*^{\ge 2} \,.\]
+Similarly, we have
+\[ q(n)F_{(r^{n/r})}=(-1)^{n/r+n/q(n)}r F_{(q(n)^{n/q(n)})}+\mbox{decomposables in}\spa Sym_*^{\ge 2}\,.\]
+Adding the first equality multiplied through by $k(n)$ and the second one multiplied through by $l(n)$, we finally obtain (\ref{decomp}) for $n$ not a prime power.
+
+
+\end{proof}
+
+Property (\ref{decomp}) will play a crucial role in our proof of Lazard's theorem. We actually need a specific way to express $F_{(r^{n/r})}-\alpha_{n,r}\,G_n$ as an integer linear combination of products of forgotten symmetric functions indexed by partitions with equal parts. There are various ways to do this, and any of them will do. In the above proof we obtained an identity expressing $F_{(r^{n/r})}-\alpha_{n,r}\,G_n$ only in terms of forgotten symmetric functions indexed by partitions with parts equal to $p$ if $n=p^t$, and $r$, $p(n)$, and $q(n)$, otherwise.
+
+\section{A Hopf Algebra Map from Symmetric Functions to the Covariant Bialgebra of a Formal Group Law}
+ 
+We start by recalling a few facts from formal group theory (see \cite{hazfga}). Let $A_*$ be a non-negatively
+graded commutative ring with identity, which we refer to as the ring
+of {\em scalars}. 
+%Since $\ab$ is free of additive torsion, it embeds in its rationalization $\overline{A}{\mathbb Q}_*:=\ab\otimes\mathbb Q$. 
+All rings and algebras we consider are assumed
+graded by complex dimension, so that products commute without signs. We identify $A^{-n}:=\Hom_{A_*}^{n}(A_*,A_*)$ with $A_n$, as it is usually done.
+
+A (one-dimensional, commutative) {\em formal group law} over $A_*$ is a formal power series $f(X,Y)$ in $A^1[[X,Y]]$ with the following properties:
+\begin{enumerate}
+\item $f(X,0)=f(0,X)=X$;
+\item $f(X,Y)=f(Y,X)$;
+\item $f(X,f(Y,Z))=f(f(X,Y),Z)$.
+\end{enumerate}
+We will use the standard notation $X+_fY:=f(X,Y)$. The third condition in the definition of a formal group law allows us to iterate the above notation, e.g. $X+_fY+_fZ:=f(f(X,Y),Z)$. It also makes sense to denote by $\sum^f(\;\:)$ the formal sum of the indicated elements. Clearly, $\sum_n^f X_n$ lies in $\sla$. Given any composition (or partition) $(i_1,\ldots,i_n)$, we denote by $f_{i_1,\ldots,i_n}$ the coefficient of $X_1^{i_1}\ldots X_n^{i_n}$ (or $\varPsi_{(i_1,\ldots,i_n)}$) in $\sum_n^f X_n$; note that this is the same as the coefficient of $X_1^{i_1}\ldots X_n^{i_n}$ in $X_1+_fX_2+_f\ldots+_fX_{n}$.
+
+The {\em contravariant bialgebra} $R(f)^*$ of the formal group law $f(X,Y)$ is the algebra of formal power series $A^*[[\varDelta]]$ with comultiplication
+\[
+\delta\colon R(f)^*\rightarrow R(f)^*\widehat{\otimes} R(f)^*
+\]
+specified by
+\[ \delta(\varDelta)=f(\varDelta\otimes 1,1\otimes\varDelta)\,;\]
+here we use a suitably completed tensor product $\widehat{\otimes}$. The dual structure is the {\em covariant bialgebra} of $f(X,Y)$, which is denoted by $U(f)_*$. This is constructed as follows: we consider the free $A_*$-module spanned by elements $\beta_n$, $n\ge 1$, which form the dual basis to $\{\varDelta^n\}$. We specify the comultiplication by
+\[\beta_n\mapsto\sum_{k=0}^n\beta_k\otimes\beta_{n-k}\,,\]
+where $\beta_0:=1$; this means that $\{\beta_n\}$ is a {\em divided power sequence}. We define the multiplication by dualizing the comultiplication in $R(f)^*$. The covariant bialgebra of $f(X,Y)$ is a Hopf algebra. 
+
+If the ring $A_*$ is torsion free, then it embeds in its rationalization $A_*\otimes\bQ$, which we denote by $A\bQ_*$. In this case, the formal group law $f(X,Y)$ has an {\em exp series}, that is a formal power series 
+\[a(X):=X+a_1 X^2+a_2 X^3+\ldots\spa\mbox{in}\spa A\bQ^1[[X]]\]
+satisfying 
+\begin{equation}\label{defexp}
+a(X+Y)=f(a(X),a(Y))\,.
+\end{equation}
+The substitutional inverse of $a(X)$ is called the {\em log series} of $f(X,Y)$, and is denoted by 
+\[\overline{a}(X):=X+\overline{a}_1 X^2+\overline{a}_2 X^3+\ldots\,.\]
+Given a prime $p$, the formal group law $f(X,Y)$ is called {\em $p$-typical} if the only powers of $X$ in its log series are of the form $X^{p^k}$. To every sequence (or {\em umbra}) $a=(1,a_1,a_2,\ldots)$ with $a_i\in A\bQ_i$ corresponds a formal group law with exp series $a(X)$, namely $a(\overline{a}(X)+\overline{a}(Y))$. We denote this formal group law by $f^a(X,Y)$, and abbreviate $X+_{f^a}Y$ to $X+_a Y$.
+
+Still assuming that $A_*$ is torsion free, we note that we can embed the contravariant bialgebra of $f^a(X,Y)$ in $A\bQ^*[[D]]$, where we identify $\varDelta$ with $a(D)$. Formula (\ref{defexp}) can be easily interpreted as the formula for the comultiplication, which can also be expressed as $D\mapsto D\otimes 1+1\otimes D$. On the other hand, we can embed the covariant bialgebra of $f^a(X,Y)$ in the binomial Hopf algebra $A\bQ_*[x]$, such that $\{x^n\}$ is the dual basis to $\{D^n/n!\}$. The canonical action of $D$ on $A\bQ_*[x]$ is differentiation with respect to $x$, whence the notation. The above embedding identifies the elements $\beta_n$ in $U(f^a)_*$ with some polynomials $\beta_n^a(x)$. In the language of umbral calculus, the polynomials $n!\beta_n^a(x)$ form the {\em associated sequence} to the {\em delta operator} $\varDelta=a(D)$. 
+
+\begin{exa}\label{exfgl}\hfill{\rm
+\begin{enumerate}
+\item Consider the ring $k_*:=\bZ[u]$ and the umbra $k:=(1,u/2!,u^2/3!,\ldots)$. The corresponding formal group law is the {\em multiplicative} one, that is $f^k(X,Y)=X+Y+uXY$, and the polynomials $\beta_n^k(x)$ are the normalized {\em lower factorial polynomials}, that is $\beta_n^k(x)=x(x-u)\ldots (x-(n-1)u)/n!$.
+\item Consider the ring $H_*:=\bZ[b_1,b_2,\ldots]$ and the umbra $b=(1,b_1,b_2,\ldots)$. Let $L_*$ be the subring of $H_*$ generated by the coefficients of the formal group law $f^b(X,Y)$. In \S5, we will prove that this formal group law (over $L_*$) is the universal one, and that $L_*$ is a polynomial algebra. The coefficients $\overline{b}_i$ of the log series of this formal group law are traditionally denoted by $m_i$. Now let $\phi_n:=(n+1)!b_n$; the polynomials $n!\bb{n}$ are the {\em conjugate Bell polynomials} in $\phi_1,\phi_2,\ldots\;\,$.
+\end{enumerate}}
+\end{exa} 
+
+The main object to be studied in this section is the map of graded \hap\
+$d_*\colon\sua\rightarrow U(f)_*$ defined by
+\begin{equation}d_*(S_n)=\beta_n\,.
+\end{equation}
+This is indeed a \has\ map, since $S_n$ is also a divided power sequence. For instance, the map $d_*\colon Sym_*^k\rightarrow U(f^k)_*$ is the well-known specialization
+\[S_n\mapsto\frac{x(x-u)\ldots (x-(n-1)u)}{n!}\,.\]
+
+Although it is not always necessary, we assume for the remainder of this section that the ring $A_*$ is torsion free, and work with the formal group law $f^a(X,Y)$ corresponding to an umbra $a$ in $A\bQ_*$. Let us consider the transpose map $d^*\colon R(f^a)^*\rightarrow\sla$, and its
+extension $\widehat{d}^*\colon A\bQ^*[[D]]\rightarrow\slah$. We denote $d^*(a(D))$ in $\sla$ by $\varGamma$, and $\widehat{d}^*(D)$ in $\slah$ by $\varGamma_0$. 
+\begin{prop}\label{duald}
+We have that
+\begin{equation}\label{id1}
+\varGamma=\sum_{n\ge 1}\!^a X_n\qquad\mbox{in}\spa\sla\,,
+\end{equation}
+and
+\begin{equation}\label{id2}
+\varGamma_0=\sum_{n\ge
+1}\overline{a}_{n-1}\,\varPsi_n\qquad\mbox{in}\spa\slah\,.
+\end{equation}
+\end{prop}
+\begin{proof}
+We have
+\begin{align*}
+\dual{d^*(a(D))}{S^I}&=\dual{a(D)}{d_*(S^I)}=\dual{a(D)}{\ba{i_1}\ldots\ba{i_l}}\\
+&=\dual{\delta^{l-1}(a(D))}{\ba{i_1}\otimes\ldots\otimes\ba{i_l}}=\fa{i_1,\ldots,i_l}\,;
+\end{align*}
+here $\delta^{l-1}$ denotes the comultiplication iterated $l-1$ times,
+and $I=(i_1,\ldots,i_l)$. Since the dual basis to $S^I$ is
+$\varPsi_I$, we have
+\[ d^*(a(D))=\sum_I \fa{I}\,\varPsi_I=\sum_{n\ge 1}\!^a X_n\,.\]
+On the other hand, 
+\[\casec{\dual{\widehat{d}^*(D)}{S^I}=\dual{D}{\ba{i_1}\ldots\ba{i_l}}}{=}{\overline{a}_{i_1-1}}{l=1}{0}\]
+whence (\ref{id2}) follows.
+\end{proof}
+
+\begin{cor}\label{cor1}
+We have
+\[ \sum_{n\ge 1}\!^a X_n=a\left(\sum_{n\ge
+1}\overline{a}_{n-1}\,\varPsi_n\right)\qquad\mbox{in}\spa\slah\,.\]
+\end{cor}
+
+We now present some combinatorial identities as applications of Corollary \ref{cor1}. Let us first consider the formal group law corresponding to the
+umbra $t^q$ in $k\bQ_*$ with 
+\[\overline{t^q}:=\left(1,\frac{[2]_q}{2}u,\frac{[3]_q}{3}u^2,\ldots\right)\,;\]
+here $q$ is an integer, and $[n]_q:=1+q+\ldots+q^{n-1}$. We have
+\[\overline{t^q}(Z)=\frac{1}{(1-q)u}\ln\frac{1-quZ}{1-uZ}\,,\qquad
+t^q(Z)=\frac{\exp((1-q)uZ)-1}{(\exp((1-q)uZ)-q)\,u}\]
+for $q\ne 1$, and 
+\[\overline{t^1}(Z)=\frac{Z}{1-uZ}\,,\qquad t^1(Z)=\frac{Z}{1+uZ}\,.\]
+The formal group law $f^{t^q}(X,Y)$ is given by
+\[ f^{t^q}(X,Y)=\frac{X+Y-(1+q) u X Y}{1-q u^2 X Y}\,,\]
+whence $f^{t^q}(X,Y)\in k^1[[X,Y]]$. It is worth mentioning that this formal group law is relevant to algebraic topology in the following sense: the ring homomorphism from the Lazard ring (which is isomorphic to the complex cobordism ring) to $k_*$ mapping the coefficients of the universal formal group law to the coefficients of $f^{t^q}(X,Y)$ is precisely the {\em Euler characteristic} for $q=1$, the {\em Todd genus} for $q=0$, and the {\em L-genus} for $q=-1$ (see e.g. \cite{mascc}). 
+\begin{cor}\label{cor2}
+The following identity holds in $Sym_{k{\mathbb Q}}^*$:
+\[ t^q\left(\sum_{n\ge
+1}\frac{[n]_q}{n}\,\varPsi_n\,u^{n-1}\right)=\frac{\sum_{n\ge
+1}(-1)^{n-1}[n]_q\,\varLambda_n\,u^{n-1}}{1+q\sum_{n\ge
+2}(-1)^{n-1}[n-1]_q\,\varLambda_n\,u^n}\,.\]
+\end{cor}
+
+Let us note that for $q=0$ we obtain the well-known identity
+\[ \exp\left(\sum_{n\ge 1}\frac{\varPsi_n}{n}\,u^n\right)=\sum_{n\ge
+0}S_n\,u^n\,,\]
+while for $q=1$ we obtain the identity
+\begin{equation}\label{idgessel}
+ \frac{1}{\sum_{n\ge 0}\varPsi_n\,u^n}=\frac{\sum_{n\ge
+0}(-1)^n\varLambda_n\,u^n}{\sum_{n\ge
+0}(-1)^{n-1}(n-1)\,\varLambda_n\,u^n}\,.
+\end{equation}
+The latter appears in a slightly different form in \cite{sasijt}, Proposition 2.2, and is attributed to I. Gessel; hence Corollary \ref{cor2}
+represents the $q$-analogue of (\ref{idgessel}).
+
+Other types of combinatorial identities, not necessarily involving
+symmetric functions, can be derived from Corollary \ref{cor1}. For
+instance, let us consider the ring $\hp$ and the umbra $b$. We view
+$\hp$ as $\bZ[\bbb_1,\bbb_2,\ldots]$, and consider the monomial
+symmetric function basis in $Sym_H^*$. The coefficient of $\varPsi_n$
+in $\sum_{i\ge 1}^b X_i$ is clearly $0$. This means that we can
+obtain a family of identities by computing the coefficient of
+$\bbb_1^{i_1}\ldots\bbb_l^{i_l}\,\varPsi_n$ in $b(\sum_{i\ge
+1}\bbb_{i-1}\,\varPsi_i)$, where $i_1+\ldots+l i_l=n-1$. The key
+ingredient for this computation is Lagrange inversion, namely the fact
+that the coefficient of $\bbb_1^{i_1}\ldots\bbb_l^{i_l}$ in $b_{n-1}$
+is equal to the number of (unlabelled) rooted plane trees with $n$
+leaves and outdegree sequence $(2^{i_1},\ldots,(l+1)^{i_l})$ for the
+internal vertices (see \cite{gajce}). For instance, the coefficient of
+$\bbb_1^{n-1}\,\varPsi_n$ provides the identity
+\begin{equation}\label{catalan}
+\sum_{i=\left\lceil
+\frac{n}{2}\right\rceil}^n (-1)^{i-1}C_i\,\binom{i}{n-i}=0\,,
+\end{equation}
+where $C_i=\frac{1}{i}\binom{2i-2}{i-1}$ is the $i$-th {\em Catalan
+number}. This is a special case of an identity in \cite{rioci} \S4.5 Problem 1(c). More generally, the coefficient of $\bbb_r^s\,\varPsi_{rs+1}$
+provides a different generalization of (\ref{catalan}), namely
+\begin{equation}
+ \sum_{i=\left\lceil\frac{s-1}{r+1}\right\rceil}^s
+(-1)^i C_{ri+1}^{r+1}\,\binom{ri+1}{s-i}=0\,,
+\end{equation}
+where $C_{ri+1}^{r+1}=\frac{1}{(r+1)i+1}\binom{(r+1)i+1}{i}$
+represents the number of $r+1$-ary rooted plane trees with $ri+1$ leaves.
+
+As far as the our application to formal group theory is concerned, the main result about the map $d_*$ we need is an explicit formula for the images of the forgotten symmetric functions. The images of other symmetric functions can also be computed (for instance, the formula for the monomial ones is similar), but we will concentrate on the forgotten symmetric functions. A preliminary result concerns the images of the power sum symmetric functions. 
+
+\begin{prop}\label{impower}
+For every partition $I=(i_1,\ldots,i_l)$ of $n$, we have that
+\[ d_*(\varPsi^I)=\left(\prod_{j=1}^l i_j\,\overline{a}_{i_j-1}\right)\,x^l\,.\]
+\end{prop}
+\begin{proof} Since $d_*$ is an algebra map, it is enough to prove the result for partitions $I$ of length $1$. Since $d_*$ is a coalgebra map and $\varPsi_n$ is a primitive element of $\sua$, we have that $d_*(\varPsi_n)=c x$ for some $c$ in $A_*$. Now
+\[ c=\dual{D}{d_*(\varPsi_n)}=\dual{\varDelta_0}{\varPsi_n}=n \overline{a}_{n-1}\,;\]
+the last equality follows from (\ref{id2}) and the well-known fact that $\dual{\varPsi_i}{\varPsi_j}=i \delta_{i,j}$. 
+\end{proof}
+
+Combining this result with Doubilet's formula (\ref{doubilet}), we can easily express the images of the forgotten symmetric functions.
+\begin{prop}\label{immonomial}
+Let $K$ be a partition of $n$, and choose $\s$ in $\varPi_n$ such that $I(\s)=K$. We have
+\[d_*(F_K)=\frac{(-1)^{|K|-l(K)}}{\|K\|}\,\sum_{\pi\ge\s}|\mu(\s,\pi)|\,\left(\prod_{j=1}^{|\pi|}i_j(\pi)\,\overline{a}_{i_j(\pi)-1}\right)\,x^{|\pi|}\,,\]
+where $I(\pi):=(i_1(\pi),\ldots,i_{|\pi|}(\pi))$. 
+\end{prop}
+
+The following recurrence relation for the polynomials $d_*(F_{(r^s)})$ will be useful in \S5.
+
+\begin{prop}\label{recur}
+We have
+\[d_*(F_{(r^s)})=\frac{1}{s}\sum_{i=1}^s (-1)^{(r-1)i}\, ri\,\overline{a}_{ri-1}\, x \,d_*(F_{(r^{s-i})})\,.\]
+\end{prop}
+\begin{proof}
+Let $\s$ be a partition in $\varPi_{rs}$ of type $(r^s)$, and let $B$ be a fixed block of $\s$. Given $i$ with $1\le i\le s$, let us consider all partitions $\pi\ge\s$ for which the block containing $B$ has cardinality $ri$. Clearly, there are $\binom{s-1}{i-1}$ ways of choosing this block. Therefore, when we restrict the sum in Proposition \ref{immonomial} to the partitions $\pi$ considered above, we get
+\begin{gather*} \binom{s-1}{i-1}\,(i-1)!\, (ri\,\overline{a}_{ri-1})\,x\,((-1)^{(r-1)(s-i)}\, (s-i)!\, d_*(F_{(r^{s-i})}))=\\(-1)^{(r-1)(s-i)}\,(s-1)!\,ri\, \overline{a}_{ri-1}\, x \,d_*(F_{(r^{s-i})})\,.
+\end{gather*}
+This proves the recurrence relation.
+\end{proof}
+
+\section{A Geometrical Interpretation}
+
+In this section, we offer a geometrical interpretation for the map $d_*$. Actually, our study was motivated by this interpretation; this shows that algebraic topology has a great deal to offer in enlightening and guiding our understanding of symmetric functions, and of the two bialgebras associated with a formal group law. 
+
+We refer to \cite{adashg} for all information concerning {\em generalized homology theories}. Let $E^*(\cdot)$ be an unreduced multiplicative cohomology theory
+with complex orientation $Z\in E^2(\CP)$. The ring of coefficients
+$\pi_*(E)$ is denoted, as usual, by $E_*$. We have isomorphisms $E^*(\CP)\cong E^*[[Z]]$ and $E_*(\CP)\cong E_*\langle\beta_1,\beta_2,\ldots\rangle$. The standard map
+$\mu\colon\bC P^\infty\times\bC P^\infty\rightarrow\bC P^\infty$
+classifying the tensor product of the two line bundles over $\bC
+P^\infty\times\bC P^\infty$ determines the multiplicative structure of
+$\ElC$. The diagonal map $\CP\rightarrow\CP\times\CP$ induces a comultiplication $\delta\colon E_*(\CP)\rightarrow E_*(\CP\times\CP)\cong E_*(\CP)\otimes E_*(\CP)$ satisfying
+\[\delta(\beta_n)=\sum_{i=0}^n\beta_i\otimes\beta_{n-i}\,,\]
+which turns $E_*(\CP)$ into a Hopf algebra. The map $\mu$ induces a map $\mu^*\colon\EuC\rightarrow E^*(\CP\times\CP)\cong\EuC\widehat{\otimes}\EuC$. Letting $\mu^*(Z)=f(Z\otimes 1,1\otimes Z)$, it is easy to show that $f(X,Y)$ is a formal group law, and that $\EuC$ is its contravariant bialgebra, while $\ElC$ is its covariant bialgebra. 
+
+Now let us assume that $E_*$ is torsion free. Let $D\in H^2(\CP)$ be the first Chern class of the Hopf bundle over $\CP$, and let $x\in H_2(\CP)$ be the standard spherical generator. In \cite{rayscn} it is shown that the Boardman map 
+\[ \EuC\rightarrow H_*(\EQ)\widehat{\otimes}H^*(\CP)\cong \EQ^*[[D]]\]
+is a monomorphism, which maps $Z$ to the exp-series of the formal group law $f(X,Y)$; we denote this power series in $\EQ^2[[D]]$ by
+\[ a(D)=D+a_1D^2+a_2 D^3+\ldots\;\,.\]
+It is also shown that the Hurewicz homomorphism 
+\[ \ElC\rightarrow H_*(\EQ)\otimes H_*(\CP)\cong\EQ_*[x]\]
+is a monomorphism, which maps $\beta_n$ to $\beta_n^a(x)$.
+
+Now let us consider $E^*(BU)\cong E^*[[c_1,c_2,\ldots]]$, where $c_n$ are the generalized Chern classes. It is well-known that the map
+\[E^*(BU(n))\rightarrow E^*(\CP\times\ldots\times\CP)\cong\EuC\widehat{\otimes}\ldots\widehat{\otimes}\EuC\]
+induced by the classifying map of the direct product of $n$ copies of
+the Hopf bundle over $\bC P^\infty$ is a monomorphism mapping $c_i$, with $i\le n$, to
+the $i$-th elementary symmetric function in $Z\otimes 1\otimes\ldots\otimes
+1$, $1\otimes Z\otimes\ldots\otimes 1$, ..., $1\otimes
+1\otimes\ldots\otimes Z$. On the other hand, we have that
+$E_*(BU)\cong E_*[b_1,b_2,\ldots]$, and that $c_n$ is dual to $b_1^n$
+with respect to the monomial basis of $E_*[b_1,b_2,\ldots]$. The
+multiplicative structure of $E_*(BU)$ is determined by the map
+$BU\times BU\rightarrow BU$ classifying the Whitney sum of vector
+bundles. The diagonal map $BU\rightarrow BU\times BU$ induces a comultiplication $\delta\colon E_*( BU)\rightarrow E_*( BU\times BU)\cong E_*( BU)\otimes E_*( BU)$ satisfying
+\[\delta(b_n)=\sum_{i=0}^n b_i\otimes b_{n-i}\,,\]
+which turns $E_*( BU)$ into a Hopf algebra. The standard inclusion $\bC P^\infty=BU(1)\hookrightarrow BU$ induces a monomorphism $\ElC\hookrightarrow E_*(BU)$ mapping $\beta_n$ to $b_n$. The determinant map $\dt\colon U\rightarrow S^1$ defined on unitary matrices gives rise to a map $\Bdt\colon BU\rightarrow BS^1=\bC P^\infty$; furthermore, the composite of the inclusion $\bC P^\infty\hookrightarrow BU$ with $\Bdt$ is the identity on $\bC P^\infty$, whence $\Bdt_*\colon E_*(BU)\rightarrow \ElC$ maps $b_n$ to $\beta_n$. Since the determinant map is a group homomorphism, the map $\Bdt_*$ is a ring homomorphism; moreover, it is a Hopf algebra map.
+
+It follows from the above considerations that we may identify
+$E_*(BU)$ with $Sym_*^E$ and $E^*(BU)$ with $Sym_E^*$, in such a way
+that $b_n$ is identified with $S_n$ and $c_n$ with $\varLambda_n$; furthermore, the map $\Bdt_*$ is identified with $d_*$. We are now in a position to give a geometrical proof of Proposition
+\ref{duald}. One only needs to consider the composite 
+\[ \bC P^\infty\times\ldots\times\bC P^\infty\rightarrow
+BU(n)\arrl{\Bdt}\bC P^\infty\,,\]
+where the first map classifies the direct product of $n$ copies of the
+Hopf bundle
+over $\bC P^\infty$. It is easy to see that the composite is
+precisely the map classifying the tensor product of the $n$ line
+bundles over $\bC P^\infty\times\ldots\times\bC P^\infty$; in other
+words, it is the map $\mu^*$ iterated $n-1$ times.
+
+We conclude this section by noting that Example \ref{exfgl} (1), concerning the multiplicative formal group law over $k_*$, corresponds to connected $K$-theory, while Example \ref{exfgl} (2), concerning the formal group law $f^b(X,Y)$ over $L_*$, corresponds to complex cobordism. Furthermore, the embedding $L_*\hookrightarrow H_*$ corresponds to the Hurewicz homomorphism $MU_*\hookrightarrow H_*(MU)$. 
+
+\section{Lazard's Theorem and Applications}
+
+Recall the ring $L_*$ defined in Example \ref{exfgl} (2). An important ingredient for the proof of Lazard's theorem is the following composite map:
+\[
+Sym_*^L\arrl{d_*}\:U(f^b)_*\arrl{\dual{b(D)}{\cdot}}L_*\,,
+\]
+which we denote by $\lambda^b$. Since $d^*(b(D))$ is equal to $\sum_i^b X_i$, which was denoted by $\varGamma$, we have $\lambda^b=\dual{\varGamma}{\cdot}$. The map $\lambda^b$ reduces degree by 1, and sends the forgotten symmetric function $F_I$ to the coefficient of $\varLambda^I$ in the expansion of $\varGamma$ in the elementary symmetric function basis. If $r,s$ are positive integers and $r\ge 2$, we denote by $g_{rs,r}$ the image of $F_{(r^s)}$. For every $n\ge 2$, we denote by $g_n$ the image of the symmetric function $G_n$ defined (in a non-canonical way) in \S2. Clearly, $g_n$ is an integer linear combination of at most two elements $g_{rs,r}$. Let us note that $g_{rs,r}$ is the coefficient of $\varLambda_r^s(X_1,\ldots,X_r,0,0,\ldots)$ in the corresponding expansion of $X_1+_b+\ldots+_b X_r$. On the other hand, if $\omega$ is a primitive $r$-th root of unity, then $(-1)^{(r-1)s}g_{rs,r}$ is the coefficient of $Z^{rs}$ in $\omega Z+_b\ldots+_b\omega^r Z$. 
+
+The definition of the Lazard ring as the ring associated with the universal formal group law quickly leads to a definition in terms of generators and relations. It is easy to show that the Lazard ring modulo torsion is isomorphic to $L_*$ (see \cite{ravccs} Lemma A2.1.9). Furthermore, we can use Lazard's comparison lemma, which is easy to prove in the non-torsion situation, to show that $L_*$ is a polynomial algebra over the integers (see \cite{ravccs} Lemmas A2.1.12, A2.1.13, and the remark following the latter). However, it is much harder to prove that the Lazard ring has no torsion, and hence is isomorphic to $L_*$. We will show directly that $L_*$ {\em is} the Lazard ring, in other words that the formal group law $f^b(X,Y)$ over $L_*$ is universal. The only preliminary results we need are Proposition \ref{bases} and (\ref{decomp}). As we have pointed out in the introduction, our proof has the bonus of providing a better understanding of the structure of the Lazard ring, by!
+!
+!
+ relating it to the algebra of 
+
+\begin{thm}\mbox{\rm {\bf (Lazard's theorem)}}. 
+The formal group law $f^b(X,Y)$ over $L_*$ is universal, in the sense that for every formal group law $f(X,Y)$ over a ring $A_*$ (commutative, with identity), there is a unique ring map from $L_*$ to $A_*$ sending the coefficients of $f^b(X,Y)$ to those of $f(X,Y)$. Furthermore, the ring $L_*$ is a polynomial algebra over the integers with generators $g_n$, $n\ge 2$.
+\end{thm}
+\begin{proof}
+This proof is based on a recursive construction of polynomials with integer coefficients $P_I(x_1,\ldots,x_{|I|})$, with the property that the coefficients $c_I$ of $\varGamma$ expanded in the basis dual to $\{F^K\}$ are given by $P_I(g_1,\ldots,g_{|I|})$. Note that $c_I=\lambda^b(F^I)$. Also note that working with the above expansion of the formal group law is equivalent to working with the usual expansion in the monomial symmetric function basis. 
+
+We base our recursive construction of the polynomials $P_I(x_1,\ldots,x_{|I|})$ on the following important observation. Given $k\ge 2$ partitions $I_1,\ldots,I_k$, we have
+\begin{align}\label{xxx}
+\lambda^b\left(\prod_{j=1}^k F_{I_j}\right)&=\left\langle\delta^{k-1}(b(D))\:|\:\bigotimes_{j=1}^k d_*(F_{I_j})\right\rangle\\
+&=\sum_{1\le i_j\le l(I_j)}f_{i_1,\ldots,i_k}^b\prod_{j=1}^k\dual{b(D)^{i_j}}{d_*(F_{I_j})}\nonumber\\
+&=\sum_{1\le i_j\le l(I_j)}f_{i_1,\ldots,i_k}^b\prod_{j=1}^k\dual{\varGamma^{i_j}}{F_{I_j}}\,;\nonumber
+\end{align}
+here we have used the fact that $\dual{\varGamma^m}{F_I}$ is $0$ unless $m\le l(I)$, since $\varGamma$ has no homogeneous component of degree $0$. This formula tells us that the element in the left-hand side of (\ref{xxx}) is decomposable in $L_*$, unless all the partitions $I_j$ are of the form $(1,1,\ldots,1)$.  
+
+Now choose a partition $I$, and assume that we have constructed all polynomials indexed by partitions of positive integers less than $|I|=n\ge 2$. If $I$ has at least two distinct parts, then $\lambda^b(F^I)$ is decomposable in $L_*$, according to the above observation. If $I=(r^{n/r})$ for $r\ge 2$, then
+\[\lambda^b(F^I)=\alpha_{n,r} \,g_n+\mbox{decomposables in}\spa L_*\,,\]
+by (\ref{decomp}) and the above observation. In both cases, the decomposables in $L_*$ are expressed in terms of some coefficients $f_J^b$, where $|J|<n$, and $\dual{\varGamma^m}{F_{(r^s)}}$, where $rs<n$ and $1\le m\le s$. Now $f_J^b$ can be expressed in terms of $c_K$ with $|K|=|J|$ using the transition matrix from the basis dual to $\{F^K\}$ to the monomial basis. On the other hand, $\dual{\varGamma^m}{F_{(r^s)}}$ is the coefficient of $\varLambda_r^s$ in $\left(\sum_{i=1}^s c_{(r^i)}\varLambda_r^i\right)^m$. Therefore, $c_I$ is a certain polynomial in $g_1,\ldots,g_n$ for all partitions of $n$ different from $(1^n)$. Finally, $\lambda^b(F_{(1^n)})=0$. This completes the recursive construction of the polynomials $P_I(x_1,\ldots,x_{|I|})$.
+
+Let us consider a formal group law $f(X,Y)$ over a ring $A_*$, possibly with torsion. We define a map $\lambda^f$ similar to $\lambda^b$ by
+\[
+\sua\arrl{d_*}\:U(f)_*\arrl{\dual{\varDelta}{\cdot}}A_*\,.
+\]
+Let $\map{h^a}{L_*}{A_*}$ be the ring map sending $g_n$ to $\lambda^f(G_n)$. We claim that the polynomials defined above are universal, in the sense that
+\[ \lambda^f(F^I)=\widetilde{P}_I(\lambda^f(G_1),\ldots,\lambda^f(G_{|I|}))\,,\]
+where $\widetilde{P}_I(x_1,\ldots,x_{|I|})$ denotes the polynomial obtained from $P_I(x_1,\ldots,x_{|I|})$ by mapping its coefficients to $A_*$. Indeed, we only need to replace $L_*$ with $A_*$, $f^b(X,Y)$ with $f(X,Y)$, and $b(D)$ with $\varDelta$ in the construction above. Hence, the map $h^a$ sends the coefficients of $f^b(X,Y)$ to the coefficients of $f(X,Y)$. Furthermore, a map with this property is unique, because the image of $g_n$ is uniquely defined (recall that $g_n$ is defined in terms of the coefficients of $f^b(X,Y)$). This completes the proof of Lazard's theorem. 
+\end{proof}
+
+Let us note that induction works nicely in the above proof because of the special form of the elements $F^I$, which we choose as basis of symmetric functions.  For instance, one can check that none of the elements of the usual bases ($\{S^I\},\, \{\varLambda^I\},\, \{\varPsi_I\}, \{F_I\}$) is mapped to a decomposable element in $L_*$ by the map $\lambda^b$.
+
+We can use the results in the previous section to give combinatorial formulas for the elements $g_{rs,r}$. At this point, it is useful to consider the polynomial subring $\p$ of $H_*$ generated by $\phi_n:=(n+1)!b_n$, and the $\p$-{\em incidence algebra} $\p(\varPi_n)$ of the poset $\varPi_n$ (see \cite{staec}). We define the element $\zp$ in $\p(\varPi_n)$ by $\zp(\s,\pi):=\phi_1^{j_2}\ldots\phi_{n-1}^{j_n}$, where $(1^{j_1},\ldots,n^{j_n})$ is the type of the induced partition $\pi/\s$. The convolution inverse of $\zp$ is denoted by $\mup$, and is known as the {\em M\"{o}bius type function} (see also \cite{rayucb}, \cite{larhas}). Recall that
+\[\mu^\phi(\z,\pi)=\prod_{B\in\pi}\overline{\phi}_{|B|-1}\,,\]
+where $\pi$ is an arbitrary partition in $\varPi_n$, and $\z$ is the minimum of $\varPi_n$. 
+
+\begin{prop}\label{expgener}\hfill
+\begin{enumerate}
+\item Let $\s$ be a partition of $[rs]$ with $I(\s)=(r^s)$. We have 
+\begin{align}\label{expgeneri}
+ (-1)^{(r-1)s}g_{rs,r}&=\frac{1}{s!}\,\sum_{\pi\ge\s}|\mu(\s,\pi)|\,\left(\prod_{j=1}^{|\pi|}i_j(\pi)\,m_{i_j(\pi)-1}\right)\,|\pi|!\,b_{|\pi|-1}\\
+&=\sum_{|I|=s}\frac{r^{l(I)}\,l(I)!}{\|I\|}\,\left(\prod_{j=1}^{l(I)}m_{ri_j-1}\right)\,b_{l(I)-1}\nonumber\\
+&=\frac{1}{(rs)!}\sum_{\pi\in\varPi_{rs}^{(r)}}r^{|\pi|}\,\mu^\phi(\z,\pi)\,\zeta^\phi(\pi,\oi{})\,,\nonumber
+\end{align}
+where $I(\pi):=(i_1(\pi),\ldots,i_{|\pi|}(\pi))$. In particular, $g_{n,n}=(-1)^{n-1}n m_{n-1}$; furthermore, the coefficient of $m_{n-1}$ in $g_n$ is $(-1)^{p^t-p^{t-1}}p$ if $n=p^t$ for some prime $p$, and $(-1)^n$ otherwise. 
+\item The following recurrence relation holds:
+\begin{equation}\label{expgenerii}
+g_{rs,r}=\frac{1}{s}\sum_{i=1}^s (-1)^{(r-1)i}\,ri\,m_{ri-1}\left(\sum_{j=0}^{s-i}f_{1,j}^b\,\dual{\varGamma^j}{F_{(r^{s-i})}}\right)\,,
+\end{equation}
+where $\dual{\varGamma^j}{F_{(r^{s-i})}}$ is the coefficient of $\varLambda_r^{s-i}$ in $\left(\sum_{k=1}^{s-i}g_{rk,r}\,\varLambda_r^k\right)^j\,$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+1. The first equality follows immediately from Proposition \ref{immonomial}. We now compute:
+\begin{align*}
+(-1)^{(r-1)s}d_*(F_{(r^s)})&=\frac{1}{s!}\,\sum_{|I|=s}\frac{s!}{I!\,\|I\|}\,\left(\prod_{j=1}^{l(I)}(i_j-1)!\,(ri_j)\,\overline{a}_{ri_j-1}\right)\,x^{l(I)}\\
+&=\frac{1}{n!}\,\sum_{|I|=s}\frac{n!}{(ri_1)!\ldots(ri_{l(I)})!\,\|I\|}\,\left(\prod_{j=1}^{l(I)}\overline{\alpha}_{ri_j-1}\right)\,(rx)^{l(I)}\,;
+\end{align*}
+here we have used the fact that the number of partitions $\pi$ of $[n]$ with $I(\pi)=I$ is $n!/(I!\,\|I\|)$. The first equality implies
+\[(-1)^{(r-1)s}d_*(F_{(r^s)})=\sum_{|I|=s}\frac{1}{\|I\|}\,\left(\prod_{j=1}^{l(I)}\overline{a}_{ri_j-1}\right)\,(rx)^{l(I)}\,,\]
+while the second one implies
+\[(-1)^{(r-1)s}d_*(F_{(r^s)})=\frac{1}{n!}\,\sum_{\pi\in\varPi_n^{(r)}}\mu^\alpha(\z,\pi)\,(rx)^{|\pi|}\,.\]
+It only remains to apply $\dual{b(D)}{\cdot}$ to these two formulas. 
+
+2. The recurrence relation (\ref{expgenerii}) follows easily by applying $\dual{b(D)}{\cdot}$ to the recurrence relation in Proposition \ref{recur}, and using (\ref{xxx}). 
+\end{proof}
+
+Let us note that the coefficients $f_{1,j}^b$ in (\ref{expgenerii}) can be expressed in terms of the $m_i$'s by the following well-known identity for a formal group law $f^a(X,Y)$ (see \cite{ravccs}, or \cite{larhas} for a combinatorial proof):
+\begin{equation}\label{fglident}
+\sum_{i=0}^n (i+1)\,\overline{a}_i\,f_{1,n-i}^a=0\,,\spa\spa n\ge 1\,.
+\end{equation}  
+
+We now present an application of our combinatorial results to the construction of a family of $p$-typical formal group laws (where $p$ is an arbitrary prime). We consider an integer $t\ge 1$, and the $p$-typical formal group law with log series
+\[ X+\frac{u^{p^t-1}}{p} X^{p^t}+\frac{u^{p^{2t}-1}}{p^2} X^{p^{2t}}+\ldots\quad\mbox{in}\spa k\bQ^1[[X]]\,.\]
+Apriori, this is a formal group law over $k\bQ_*$, but we will prove that its coefficients actually lie in $k_*$. We present two new proofs of this well-known result, based on the recurrence relation (\ref{expgenerii}), and the closed formula (\ref{expgeneri}), respectively. Let us denote by $k^{p,t}$ the umbra corresponding to the exp series of this formal group law. Let $h_*^{k^{p,t}}\colon L_*\rightarrow k\bQ_*$ be the ring homomorphism mapping the coefficients of the universal formal group law to those of $f^{k^{p,t}}(X,Y)$. 
+
+\begin{prop}\label{integkpq}
+We have that
+\[\case{h_*^{k^{p,t}}(g_{n,r})}{=}{(-1)^{p^t-p^{t-1}}u^{p^{t}-1}}{n=p^{t}\spa\mbox{and}\spa r=p}{0}\]
+In particular, the formal group law $f^{k^{p,t}}(X,Y)$ is defined over $k_*$.
+\end{prop}
+
+{\em First proof.} From (\ref{expgeneri}) it follows that $h_*^{k^{p,t}}(g_{n,r})=0$ if $r\ne p$, or if $r=p$ and $p^t$ does not divide $n$. The case $n=p^t$, $r=p$ is also clear, because the second sum in (\ref{expgeneri}) contains just one non-zero term after applying the map $h_*^{k^{p,t}}$. We prove the remaining part of the statement by induction on $n$, which is assumed to be divisible by $p^t$. Let us consider a positive integer $s$ for which $p^{t-1}$ is a proper divisor, and set $n=ps$. By applying $h_*^{k^{p,t}}$ to (\ref{expgenerii}), we obtain
+\[h_*^{k^{p,t}}(g_{n,p})=\frac{1}{s}\sum_{1\le p^{ti-1}\le s} (-1)^{(p-1)p^{ti-1}}\,p^{ti}\,\overline{k}_{p^{ti}-1}^{p,t}\left(\sum_{j=0}^{s-p^{ti-1}}f_{1,j}^{k^{p,t}}\,\dual{k^{p,t}(D)^j}{d_*(F_{(p^{s-p^{ti-1}})})}\right)\,.\]
+We now observe the following things concerning this expression:
+\begin{itemize}
+\item the first summation ranges over $0\le p^{t(i-1)}-1\le n/p^t-1$;
+\item $p^{ti}\,\overline{k}_{p^{ti}-1}^{p,t}=p^{t-1}\,u^{p^{ti}-p^{t(i-1)}}\,(p^{t(i-1)}\,\overline{k}_{p^{t(i-1)}-1}^{p,t})$, by examining the coefficients of the log series;
+\item $\dual{k^{p,t}(D)^j}{d_*(F_{(p^{s-p^{ti-1}})})}$ is the coefficient of $\varLambda_p^{s-p^{ti-1}}$ in $\left(\sum^{k^{p,t}}X_l\right)^j$; hence, by induction, it is $(-1)^{n-s+(p-1)p^{ti-1}}\,u^{n-n/p^t-p^{ti}+p^{t(i-1)}}$ if $j=n/p^t-p^{t(i-1)}$, and $0$ otherwise.
+\end{itemize}
+The fact that the above expression is $0$ now follows by applying $h_*^{k^{p,t}}$ to (\ref{fglident}).
+
+{\em Second proof.} Let us assume, as before, that $n=ps$, where $s$ is an integer divisible by $p^{t-1}$. Let
+\[k'(Z):=\overline{k^{p,t}}(Z^{p^{t-1}})=Z^{p^{t-1}}+\frac{u^{p^t-1}}{p} Z^{p^{2t-1}}+\frac{u^{p^{2t}-1}}{p^2} Z^{p^{3t-1}}+\ldots\:.\]
+We claim that $h_*^{k^{p,t}}(g_{n,p})$ is equal to the coefficient of $Z^s$ in $k^{p,t}(k'(Z))=Z^{p^{t-1}}$ up to a factor of $(-1)^{n-s}\,u^{n-n/p^t}$. 
+
+Let $\s$ be a partition $[n]$ such that $I(\s)=(p^s)$. Given a subset $Q$ of $\bN$, we denote by $\varPi_n^Q$ the set of those partitions of $[n]$ for which every block size lies in $Q$. Now consider the sets $P:=\setp{p^{ti}}{i\ge 1}$ and $\overline{P}:=\setp{p^{ti-1}}{i\ge 1}$. According to (\ref{expgeneri}), we have
+\begin{align*}
+(-1)^{n-s}\,h_*^{k^{p,t}}(g_{n,p})&=\frac{1}{s!}\,\sum_{\pi\in\varPi_{n}^P,\,\pi\ge\s} |\mu(\s,\pi)|\,\left(\prod_{j=1}^{|\pi|}\,p^{(t-1)e_j(\pi)}\right)\,u^{n-|\pi|}\,|\pi|!\,k^{p,t}_{|\pi|-1}\\
+&=\frac{1}{s!}\,\sum_{\pi\in\varPi_{s}^{\overline{P}}} \left(\prod_{j=1}^{|\pi|}\,(p^{t e_j(\pi)-1}-1)!\,p^{(t-1)e_j(\pi)}\right)\,u^{n-|\pi|}\,|\pi|!\,k^{p,t}_{|\pi|-1}\\
+&=\frac{1}{s!}\,\sum_{\pi\in\varPi_{s}^{\overline{P}}} \left(\prod_{j=1}^{|\pi|}\,(p^{t e_j(\pi)-1})!\,p^{1-e_j(\pi)}\right)\,u^{n-|\pi|}\,|\pi|!\,k^{p,t}_{|\pi|-1}\,;
+\end{align*}
+here $I(\pi):=(p^{t e_1(\pi)},\ldots,p^{t e_{|\pi|}(\pi)})$ if $\pi$ lies in $\varPi_{n}^P$, and $I(\pi):=(p^{t e_1(\pi)-1},\ldots,p^{t e_{|\pi|}(\pi)-1})$ if $\pi$ lies in $\varPi_{s}^{\overline{P}}$. 
+
+Now recall from \cite{drsfct6} the way in which substitution of formal power series is related to convolution in the incidence algebra of the partition lattice. Given two formal power series $\psi(X)=X+\psi_1 X^2/2!+\psi_2 X^3/3!+\ldots$ and $\theta(X)=X+\theta_1 X^2/2!+\theta_2 X^3/3!+\ldots$, the coefficient of $X^n/n!$ in $\psi(\theta(X))$ is given by 
+\[\sum_{\s\in\varPi_n}\left(\prod_{B\in\s}\theta_{|B|-1}\right)\psi_{|\s|-1}\,.\]
+According to this result, we can express the coefficient of $Z^s$ in $k^{p,t}(k'(Z))$ as follows:
+\[ \frac{1}{s!}\,\sum_{\pi\in\varPi_{s}^{\overline{P}}} \left(\prod_{j=1}^{|\pi|}\,(p^{t e_j(\pi)-1})!\,p^{1-e_j(\pi)}\right)\,u^{n/p^t-|\pi|}\,|\pi|!\,k^{p,t}_{|\pi|-1}\,.\]
+Comparing with the expression of $h_*^{k^{p,t}}(g_{n,p})$, the above claim follows.
+\eproof
+
+We conclude by mentioning that the classical proof of this result uses {\em Hazewinkel's generators} for the ring $V_*$ over which the universal $p$-typical formal group law is defined (which is also a polynomial algebra over the integers) . Our generators $g_n$ for the Lazard ring give rise to new generators for $V_*$ by the canonical projection $L_*\rightarrow V_*$. We hope to find other applications of our combinatorial formulas concerning the generators $g_n$.
+
+\begin{thebibliography}{10}
+
+\bibitem{adashg}
+J.~F. Adams.
+\newblock {\em Stable Homotopy and Generalised Homology}.
+\newblock Chicago University Press, Chicago, 1972.
+
+\bibitem{doufct7}
+P.~Doubilet.
+\newblock On the foundations of combinatorial theory \mbox{VII}: Symmetric
+  functions through the theory of distribution and occupancy.
+\newblock {\em Studies Appl. Math.}, LI:377--396, 1972.
+
+\bibitem{drsfct6}
+P.~Doubilet, G.-C. Rota, and R.~Stanley.
+\newblock On the foundations of combinatorial theory \mbox{VI}: the idea of
+  generating function.
+\newblock In {\em Sixth Berkeley Symposium on Mathematical Statistics and
+  Probability}, volume~2, pages 267--318. University of California Press, 1972.
+
+\bibitem{gajce}
+I.~P. Goulden and D.~M. Jackson.
+\newblock {\em Combinatorial Enumeration}.
+\newblock Wiley Intersci. Ser. in Discrete Math. John Wiley \& Sons, 1983.
+
+\bibitem{hazfga}
+M.~Hazewinkel.
+\newblock {\em Formal Groups and Applications}.
+\newblock Academic Press, New York, 1978.
+
+\bibitem{lasfrf}
+A.~Lascoux and M.-P. Sch\mbox{\"{u}}tzenberger.
+\newblock Formulaire raisonn\mbox{\'e} des fonctions sym\mbox{\'e}triques.
+\newblock Publ. \mbox{U}niv. \mbox{P}aris 7, 1985.
+
+\bibitem{lencmc}
+C.~Lenart.
+\newblock {\em Combinatorial Models for Certain Structures in Formal 
+Group
+  Theory and Algebraic Topology}.
+\newblock PhD thesis, Manchester University, 1996.
+
+\bibitem{larhas} C.~Lenart and N.~Ray, Hopf algebras of set systems, to appear in {\it Discrete Math.}; extended abstract in B. Leclerc and J.-Y. Thibon, editors, {\it Proceedings of the 7th International Conference on Formal Power Series and Algebraic Combinatorics}, 387--398, Universit\'e de Marne-la-Vall\'ee, 1995. 
+
+\bibitem{macsfh}
+I.~G. Macdonald.
+\newblock {\em Symmetric Functions and \mbox{H}all Polynomials}.
+\newblock Oxford Mathematical Monographs. Oxford University Press, Oxford,
+  second edition, 1995.
+
+\bibitem{mascc}
+J.~W. Milnor and J.~D. Stasheff.
+\newblock {\em Characteristic Classes}, volume~76 of {\em Ann. of Math. Stud.}
+\newblock Princeton University Press, Princeton, NJ, 1974.
+
+\bibitem{ravccs}
+D.~C. Ravenel.
+\newblock {\em Complex Cobordism and Stable Homotopy Groups of Spheres}.
+\newblock Academic Press, New York, 1986.
+
+\bibitem{rayucb}
+N.~Ray.
+\newblock Umbral calculus, binomial enumeration and chromatic polynomials.
+\newblock {\em Trans. Amer. Math. Soc.}, 309:191--213, 1988.
+
+\bibitem{rayscn}
+N.~Ray.
+\newblock Symbolic calculus: a 19th century approach to \mbox{$MU$} and
+  \mbox{$BP$}.
+\newblock In J.~D.~S. Jones and E.~Rees, editors, {\em Proceedings of 1985
+  Durham Symposium on Homotopy Theory}, volume 117 of {\em London Math. Soc.
+  Lecture Note Ser.}, pages 195--238, Cambridge, 1987. Cambridge University
+  Press.
+
+\bibitem{rioci}
+J.~Riordan.
+\newblock {\em Combinatorial Identities}.
+\newblock Robert E. Krieger Publishing Co., Huntington, New York, reprint
+  edition, 1979.
+
+\bibitem{staec}
+R.~P. Stanley.
+\newblock {\em Enumerative Combinatorics}.
+\newblock Wadsworth \& Brooks/Cole, Monterey, \mbox{CA}, 1986.
+
+\bibitem{sasijt}
+R.~Stanley and J.~Stembridge.
+\newblock On immanants of \mbox{J}acobi-\mbox{T}rudi matrices and permutations
+  with restricted position.
+\newblock {\em J. Combin. Theory Ser. A}, 62:261--279, 1993.
+
+\end{thebibliography}
+
+\end{document}
+

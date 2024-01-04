@@ -1,0 +1,801 @@
+\documentstyle[12pt]{article}
+\input amssym.def
+\input amssym.tex
+\setlength{\textwidth}{6.2in}
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{.2in}
+\setlength{\topmargin}{-0.25in}
+\setlength{\headheight}{0in}
+\newcommand{\dd}{\ldots}
+\newcommand{\hsp}{\hspace{\parindent}}
+\newcommand{\tht}{\theta}
+\newcommand{\af}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\la}{\lambda}
+\newcommand{\cd}{\cdots}
+\newcommand{\mem}{\in}
+\newcommand{\lt}{\left(}
+\newcommand{\rt}{\right)}
+\newcommand{\lf}{\lfloor}
+\newcommand{\rf}{\rfloor}
+\def\binom#1#2{{#1}\choose{#2}}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\df}{\displaystyle\frac}
+\newcommand{\ds}{\displaystyle\sum}
+\newcommand{\In}{\infty}
+\newcommand{\wg}{\sim}
+\newcommand{\Tht}{\Theta}
+\newcommand{\sq}{\sqrt}
+\newcommand{\ep}{\epsilon}
+\newcommand{\RR}{{\Bbb R}}
+\newcommand{\CC}{{\Bbb C}}
+\newcommand{\ZZ}{{\Bbb Z}}
+\newcommand{\Om}{\Omega}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\beql}[1]{\begin{equation}\label{#1}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\eqn}[1]{(\ref{#1})}
+\newtheorem{lemma}{Lemma}[section] 
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{coro}{Corollary}[section]
+\newtheorem{conj}{Conjecture}[section] 
+\newtheorem{defn}{Definition}[section]
+\newtheorem{exam}{Example}[section]
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+
+\catcode`\@=11
+\renewcommand{\section}{
+	\setcounter{equation}{0}
+	\@startsection {section}{1}{\z@}{-3.5ex plus -1ex minus
+	-.2ex}{2.3ex plus .2ex}{\large\bf}
+	}
+\catcode`@=12
+\thispagestyle{empty}
+\begin{document}
+\begin{center}
+{\Large {\bf Analytic Methods in Asymptotic Enumeration}} \\
+\vspace{\baselineskip}
+{\em A. M. Odlyzko} \\
+\vspace{0.25\baselineskip}
+AT\&T Bell Laboratories \\
+Murray Hill, New Jersey 07974 \\
+\vspace{1.5\baselineskip}
+{\large {\bf Abstract}}
+\vspace{1\baselineskip}
+\end{center}
+\setlength{\baselineskip}{1.5\baselineskip}
+
+Analytic methods give powerful tools for obtaining asymptotic estimates
+in combinatorial enumeration.
+When they can be used, they usually provide extremely precise results.
+However, there are also many situations where they do not apply, and
+one has to use elementary or probabilistic reasoning.
+Problems in various classes are presented, and general
+principles of what kinds of methods are best for various situations are
+discussed.
+
+\vspace*{.1in}
+\section{Introduction}
+\hsp
+Analytic methods provide extremely powerful tools for asymptotic enumeration.
+Their reach is steadily being extended by new research.
+However, there are also many cases where analytic methods
+have failed to yield useful
+information,
+even when it seemed that they ought to apply.
+The goal of this paper is to illustrate both successes and failures of analytic
+methods, indicate where additional research is needed, and draw some
+conclusions about the applicability of such methods to various problems.
+
+The most frequent and obvious reason for failure of analytic methods to yield enumeration information is the lack of a useful analytic generating function.
+Of course, for any sequence $a_0 , a_1 , \dd$, we can find another explicit sequence
+$b_0, b_1 , \dd$, such that the generating function
+\beql{eq101}
+f(z) = \sum_{n=0}^\In a_n b_n^{-1} z^n
+\eeq
+is analytic near $z=0$.
+However, what is needed for a function to be useful for
+asymptotic enumeration is for it to be in a form that can be used to 
+deduce the analytic behavior of that function.
+Usually this requires a generating function (typically ordinary or exponential
+one) that reflects the combinatorial structure of the sequence
+that is being enumerated.
+In many situations no such generating function is known, and so it is no surprise that analytic methods do not apply.
+
+This paper will concentrate on situations where an explicit
+analytic generating function is known,
+but there are difficulties in exploiting this feature.
+We first briefly review the standard analytic methods.
+We then illustrate with a series of examples of recent successes and failures
+of such techniques.
+
+The purpose of this note is not to present a general introduction
+to the use of analytic methods in combinatorial
+enumeration and analysis of algorithms.
+That is done in the author's recent survey and tutorial \cite{AMO5}.
+This paper was inspired and is to some extent based on that
+work.
+There are many other sources for basic asymptotic methods,
+such as \cite{Bender74,BenWil,NGB,Egor84,Erdelyi,Fed89a,Flajolet92,GrKnPa89,GK,HaPa73,Hofri,Kemp84,DEK,DEK1,DEK2,Mahmoud,ViFl90,Wilf90,Wyman}.
+\section{Standard analytic methods}
+\hsp
+When a sequence has an explicit single-variable generating
+function, there is a wealth of techniques that usually suffice to determine
+the asymptotics of that sequence with little effort.
+The coefficients of generating functions $f(z)$ arising in
+combinatorics or analysis of algorithms are usually nonnegative.
+Hence there is typically a single singularity at $z=x_0 \in \RR$
+on the circle of convergence of 
+\beql{eq201}
+f(z) = \sum_{n=0}^\In a_n z^n
+\eeq
+whose influence dominates the behavior of $a_n$.
+It is referred to as the {\em dominant singularity}.
+If it is the only singularity on $|z| = x_0$, everything simplifies.
+When there are other singularities, the situation is more complicated but
+often still tractable.
+
+In almost all cases a pretty good upper bound can be obtained
+for the coefficients of an analytic generating function with nonnegative coefficients by a trivial argument.
+For any real $x > 0$ such that the power series \eqn{eq201}
+converges, we have
+\beql{JU202}
+a_n x^n \le \sum_{k=0}^\In a_k x^k = f(x) ~,
+\eeq
+so
+\beql{JU203}
+a_n \le f(x) x^{-n}~.
+\eeq
+In particular,
+\beql{JU204}
+a_n \le \min_x f(x) x^{-n}~,
+\eeq
+where the minimum is taken over $x > 0$ for which $f(x)$ converges.
+In many situations one does not even need to find the $x$ that
+minimizes the bound \eqn{JU203}, as any $x$ in a substantial range near the
+minimizing one will give a satisfactory result.
+The bound \eqn{JU204} is often only a factor of $n^{1/2}$ or so
+away from the correct one.
+
+The bound \eqn{JU203} relied only on the nonnegativity of the coefficients $a_n$ and not on the analyticity of $f(x)$, and it can be generalized
+to other kinds of generating functions.
+It is also possible to prove that the bound \eqn{JU204} is close to
+best possible, at least for summatory functions of the coefficients
+\cite{AMO4}.
+(Real-variable proofs usually cannot obtain lower bounds for
+individual coefficients.)
+For precise information about the $a_n$, however, one usually has to use analytic methods.
+
+There are two basic classes of methods that apply to single-variable analytic generating functions.
+If the dominant singularity is small, so that $f(z)$ in an appropriate
+neighborhood of $z=x_0$
+behaves like $(z-x_0)^\af$ or $( \log (z- \af ))^\beta$, then
+transfer methods are very effective.
+For example, the generating function of 2-regular graphs is known \cite{Comtet74} to be
+\beql{eq202}
+f(z) = (1-z)^{-1/2} \exp (-z/2 - z^2 /4) ~,
+\eeq
+so that the dominant singularity is at $z=1$ and there are no other singularities on $|z| =1$.
+Transfer theorems, such as those of \cite{FAMO3} immediately show that
+\beql{eq203}
+a_n \sim \pi^{-1/2} \exp (-3/4) n^{-1/2} ~~~\mbox{as}~~~
+n \to \In ~.
+\eeq
+
+If the dominant singularity is large, so that $f(z)$ blows up rapidly as $z$ approaches $x_0$ along the real axis from the left, then another class
+of methods, based largely on the saddle point method, are most productive.
+The saddle point, $z=x_0 = x_0 (n)$, is that value of $x$ which
+where the minimum is achieved in \eqn{JU204}.
+(We assume here that $a_n \ge 0$ for all $n$,
+and that there is a single dominant singularity that is large enough
+to guarantee there is only this one saddle point that matters.
+For precise definitions, see the references mentioned at the end of Section~1.)
+Then usually one obtains an estimate of the form
+\beql{JU206}
+a_n \sim (2 \pi b(x_0))^{-1/2} f(x_0 ) x_0^{-n} ~~~\mbox{as}~~~
+n \to \In ~,
+\eeq
+where
+\beql{JU207}
+b(x) = x \lt x~ \frac{f'(x)}{f(x)} \rt ' ~.
+\eeq
+In general, proving that this estimate holds is rather laborious, as there are many
+sometimes messy details to check.
+A surprisingly large number of problems can be solved by using
+theorems of Hayman \cite{WKH},
+which present conditions that guarantee that the saddle point
+estimates do apply.
+For example, the Bell numbers $B_n$, which
+have the exponential generating function
+\beql{eq204}
+B(z) = \sum_{n=0}^\In B_n \frac{z^n}{n!} =
+\exp ( \exp (z) -1) ~,
+\eeq
+satisfy
+\beql{eq205}
+B_n \sim n! (2 \pi x_0^2 ~\exp (x_0))^{-1/2}
+\exp ( \exp (x_0)-1) x_0^{-n} ~~~\mbox{as}~~~
+n \to \In ~,
+\eeq
+where $x_0 \exp (x_0) = n$.
+The estimate \eqn{eq205} can be derived immediately from the
+results of \cite{WKH}.
+
+Hayman's results are all based on the saddle point method.
+He defines a class of functions, which are now called Hayman-admissible, and proves that the estimate \eqn{JU206}
+holds for them.
+Most important, he shows that there is structure among the Hayman-admissible functions,
+so that if $f(z)$ and $g(z)$ are admissible, then so are $\exp (f(z))$ and
+$f(z) g(z)$, for example.
+The operations on admissible functions that keep them admissible
+correspond to frequently used operations on combinatorial
+structures that those functions enumerate.
+Therefore one obtains, almost for free, asymptotics
+of a variety of interesting objects, just by
+applying Hayman's operations.
+
+The transfer theorem and saddle point
+methods for determining the asymptotics of sequences from univariate generating functions suffice for most examples in books such as
+\cite{Comtet74}.
+They are sufficiently well understood that they can be incorporated into automated systems for determining asymptotics, such as that of \cite{FlaSaZi91}.
+(See also \cite{HaRoSc75}.)
+However, there are many problems where more sophisticated approaches
+are needed.
+\section{Recent successes and failures}
+\hsp
+Single variable asymptotics are well understood.
+That is not the case when multivariate generating functions are required.
+Both transfer theorems and saddle point methods can be generalized (see \cite{AMO5}),
+but their applicability is more limited than in the univariate case.
+However, there have been remarkable successes in extending some of these methods even to cases where the number of variables in the problem
+grows rapidly.
+A good example comes from the work of McKay and Wormald
+\cite{McKay90,McKayW90}.
+\begin{exam}
+\label{Simple}
+Simple labeled graphs of high degree.
+{\rm Let $G(n; d_1 , \dd , d_n )$ be the number of labeled simple graphs on $n$ vertices with degree sequence
+$d_1 , d_2 , \dd , d_n$.
+Then $G(n; d_1 , \dd , d_n )$ is the coefficient of $z_1^{d_1} z_2^{d_2} \cdots z_n^{d_n}$ in
+\beql{JC1310}
+F = \prod_{j,k=1 \atop j < k}^n (1+z_j z_k ) ~,
+\eeq
+and so by Cauchy's theorem
+\beql{JC1311}
+G(n; d_1 , \dd , d_N ) = (2 \pi i)^{-n}
+\int \cdots \int F z_1^{-d_1 -1} \cdots z_n^{-d_n -1} d z_1 \cdots d z_n ~,
+\eeq
+where each integral is on a circle centered at the origin.
+The difficulty of this problem arises from the large number of
+variables that are used.
+The general principle of the saddle point method is to choose an appropriate contour of integration so that a small region of the space of integration gives the dominant contribution to the integral.
+This method, which is well understood for a single variable, can also
+be extended easily to a fixed number of variables.
+When the number of variables increases, though,
+formidable difficulties arise, and it was a great achievement for McKay and Wormald to overcome all the technical problems.
+Let all the radii be equal to some $r > 0$.
+The integrand takes on its maximum absolute value on the product of these circles at precisely the two points $z_1 = z_2 = \cdots = z_n = r$ and $z_1 = z_2 = \cdots = z_n = -r$.
+If $d_1 = d_2 = \cdots = d_n =d$,
+so that we consider only regular graphs, McKay and Wormald \cite{McKayW90} show that for an appropriate choice of the radius $r$, these
+two points are actually saddle points of the integrand, and succeed through careful analysis
+in proving that if $dn$ is even, and $\min (d,n-d-1) > cn( \log n )^{-1}$ for some $c > 2/3$, then
+\beql{JC1312}
+G(n,d,d, \dd , d) = 2^{1/2} ( 2 \pi n \la^{d+1} (1- \la)^{n-d} )^{-n/2}
+\exp
+\lt \frac{-1 + 10 \la - 10 \la^2}{12 \la (1- \la)} + O( n^{- \zeta}) \rt
+\eeq
+as $n \to \In$ for any $\zeta < \min (1/4 , 1/2 - 1/(3c))$, where $\la = d/(n-1)$. \hfill $\blacksquare$
+}
+\end{exam}
+
+In general, multivariate asymptotics when the dimension grows
+rapidly is full of unsolved problems.
+\begin{exam}
+\label{exISRP}
+Increasing subsequences in random permutations.
+{\rm The distribution of the length of the longest
+increasing subsequence of a random permutation of $\{1, \dd , n \}$ has been under study for a long time,
+and it is known that almost always it is very close
+to some $\tau_n$, where $\tau_n \sim 2n^{1/2}$ as $n \to \In$.
+(See \cite{BB,OPWW} for references.)
+However, more precise asymptotics of $\tau_n$ are not known.
+A new approach, developed in \cite{OPWW}, shows that if $f(n,k)$ is the number of
+permutations of $\{1, \dd , n \}$ which have no increasing
+subsequences of length $> k$, then
+\beql{RP304}
+f(n,k) = \frac{2^{2n} (n!)^2}{(2 \pi )^k k! (2n)!}
+\int_{- \pi}^\pi \cdots \int_{- \pi}^\pi
+\lt \sum_{j=1}^k \cos \theta_j \rt^{2n}
+\prod_{1 \le h,j \le k \atop h \neq j}
+|e^{i \theta_h} - e^{i \theta_j} | d \theta_1 \cdots d \theta_k~.
+\eeq
+This leads to asymptotic estimates for
+$f(n,k)$ for $k=o(n^{1/2})$, which is far beyond previous bounds.
+However, so far this integral has not been estimated
+rigorously for $k \sim cn^{1/2}$ for a fixed $c > 0$, which
+is the region of interest.
+There are serious technical difficulties, since the region where the integrand gives the main contribution changes,
+and so the usual methods have not worked yet. \hfill $\blacksquare$
+}
+\end{exam}
+
+Even univariate problems still present challenges.
+Some of the problems arise when the relevant generating
+functions do not have explicit forms,
+but are defined by recursions.
+\begin{exam}
+\label{Heights}
+Heights of binary trees.
+{\rm We let $B_n$ denote the number of binary trees of size $n$,
+so that $B_0 =1$ (by convention), $B_1 =1$, $B_2 =2$, $B_3 = 5, \dd \,$.
+Let
+\beql{Apreq151}
+B(z) = \sum_{n=0}^\In B_n z^n ~.
+\eeq
+Since each nonempty binary tree consists of the root and two binary trees
+(the left and right subtrees), we obtain the functional equation
+\beql{Apreq152}
+B(z) = 1+ z B(z)^2~.
+\eeq
+This implies that
+\beql{Apreq153}
+B(z) = \frac{1- (1-4z)^{1/2}}{2z} ~,
+\eeq
+so that
+\beql{Apreq154}
+B_n = \frac{1}{n+1} {{2n}\choose{n}} ~,
+\eeq
+and the $B_n$ are the Catalan numbers.
+Stirling's formula then shows that
+\beql{Apreq155}
+B_n \sim \pi^{-1/2} n^{-3/2} 4^n ~~~\mbox{as}~~~ n \to \In ~.
+\eeq
+
+Let $B_{h,n}$ be the number of binary trees of size $n$ and height $\le h$,
+and let
+\beql{Apreq156}
+b_h (z) = \sum_{n=0}^\In B_{h,n} z^n ~.
+\eeq
+Then
+\beql{Apreq157}
+b_0 (z) =0 , ~~~b_1 (z) =1 ~,
+\eeq
+and an extension of the argument that led to the relation \eqn{Apreq152} yields
+\beql{Apreq158}
+b_{h+1} (z) =1 + z b_h (z)^2 ~,~~~
+h \ge 0 ~.
+\eeq
+The $b_h (z)$ are polynomials in $z$ of degree $2^{h-1} -1$ for $h \ge 1$.
+Unfortunately there is no simple formula for them like
+Eq.~\eqn{Apreq153} for $B(z)$, and one has to work with the recurrence \eqn{Apreq158} to obtain most of the results about heights of binary trees.
+Different problems involve study of the recurrence in different ranges of values of $z$, and the behavior of the recurrence varies drastically.
+
+For any fixed $z$ with $|z| \le 1/4$, $b_h (z) \to B(z)$ as $h \to \In$.
+For $|z| > 1/4$ the behavior of $b_h (z)$ is more complicated,
+and is a subject of nonlinear
+dynamics.
+For any real $z$ with $z > 1/4$, $b_h (z) \to \In$ as $h \to \In$.
+To study the distribution of the $B_{h,n}$ as $n$ varies for $h$ fixed, but large,
+it is necessary to investigate this range of rapid
+growth.
+It can be shown \cite{FAMO1} that for any $\la_1$ and $\la_2$ with $0 < \la_1 < \la_2 < 1/2$,
+\beql{skp159}
+B_{h,n} = \frac{\exp (2^{h-1} ( \be (r) - r \be' (r) \log r ))}{2^{(h-1)/2} ( 2 \pi (r^2 \be'' (r) + r \be' (r)))^{1/2}}
+(1+ O(2^{-h/2} ))
+\eeq
+uniformly as $h,n \to \In$ with
+\beql{skp1510}
+\la_1 < n/2^h < \la_2 ~.
+\eeq
+The function $\be (x)$
+and the number $r$ are defined by
+transcendental functions that are easy to compute.
+The proof of the estimate \eqn{skp159} is derived from a precise estimate
+for $b_h (z)$
+valid in a region along the half-axis
+$x > 1/4$, and
+the saddle point method.
+
+The methods that are used to study the average height are different
+from those used for trees of a fixed height.
+The basic approach of \cite{FAMO} is to let
+$$H_n = \sum_{T \atop |T| =n} ht (T) ~,$$
+where the sum is over the binary trees $T$ of size $n$,
+and $ht (T)$ is the height of $T$.
+Then the average height is just $H_n / B_n$.
+The generating function for the $H_n$ is
+\beq\label{RPe16}
+H(z) = \sum_{n=0}^\In H_n z^n =
+\sum_{h \ge 0} (B(z) - b_h (z)) ~,
+\eeq
+and the analysis of \cite{FAMO} proceeds by investigating the behavior of $H(z)$ near
+$z=1/4$.
+If we let
+\begin{eqnarray}
+\label{RPe17}
+\ep (z) & = & (1-4z)^{1/2} ~, \\
+e_h (z) & = & (B(z) - b_h (z)) / (2B (z)) ~, \label{Rpe18}
+\end{eqnarray}
+then the recurrence \eqn{Apreq158} yields
+\beq\label{RPe19}
+e_{h+1} (z) = (1- \ep (z)) e_h (z) (1- e_h (z)) ~,~~
+e_0 (z) = 1/2 ~.
+\eeq
+Extensive analysis of this relation yields an approximation
+to $e_h (z)$ of the form
+\beq\label{RPe20}
+e_h (z) \approx \frac{\ep (z) (1- \ep (z))^h}{1-(1- \ep (z))^h} ~,
+\eeq
+valid for $| \ep (z) |$ sufficiently small,
+$| \mbox{Arg}~ \ep (z) | < \pi /4 + \delta$ for a fixed $\delta > 0$.
+(The precise error terms in this approximation are complicated,
+and are given in \cite{FAMO}.)
+This then leads to an expansion for $H(z)$ in a sector
+$|z- 1/4 | < \af$,
+$\pi /2 - \beta < | \mbox{Arg} (z- 1/4 ) | < \pi /2 + \beta$ of the form
+\beq\label{RPe21}
+H(z) = - 2 \log (1-4z) + K + O (| 1-4z|^v ) ~,
+\eeq
+where $v$ is any constant, $v < 1/4$, and $K$ is a fixed constant.
+Transfer theorems then yield the asymptotic estimate
+\beq\label{RPe22}
+H_n \sim 2 n^{-1} 4^n ~~\mbox{as}~~ n \to \In ~.
+\eeq
+When we combine \eqn{RPe22} with \eqn{Apreq155},
+we obtain the desired result that the average height of a binary tree of size $n$
+is $\sim 2 ( \pi n )^{1/2}$ as $n \to \In$.
+
+For extremely small and large heights, different methods are used.
+It follows from \cite{FGOR} that
+\beql{RPe25}
+\frac{B_{h,n} - B_{h-1,n}}{B_n}
+\le \exp (-c (h^2 /n + n/h^2))
+\eeq
+for a constant $c>0$, which shows that extreme heights are infrequent.
+(The estimates in \cite{FGOR} are more precise than \eqn{RPe25}.)
+Bounds of the above form for small heights are obtained in \cite{FGOR}
+by studying the behavior of the $b_h (z)$ almost on the boundary
+between convergence and divergence.
+Let $x_h$ be the unique positive root of $b_h (z) =2$.
+Note that $B(1/4) =2$,
+and each coefficient of the $b_h (z)$ is nondecreasing as $h \to \In$.
+Therefore $x_2 > x_3 > \cdots > 1/4$.
+More effort shows \cite{FGOR}
+that $x_h$ is approximately
+$1/4 + \af h^{-2}$ for a certain $\af > 0$.
+This leads to an upper bound for $B_{h,n}$.
+Bounds for trees of large heights are even easier to obtain,
+since they only involve upper bounds for the $b_h (z) - b_{h-1} (z)$ inside the disk of convergence
+$|z| < 1/4$. \hfill $\blacksquare$
+}
+\end{exam}
+
+There are some univariate generating functions which so far have not yielded
+to analytic approaches.
+\begin{exam}
+\label{HRandom}
+Heights of random binary search trees.
+{\rm Example~\ref{Heights} is set in the standard combinatorial
+counting model, in which all trees of a given size are counted
+equally.
+In many applications it is desirable to have different weights
+for different trees.
+For example, if random permutations are used to construct binary
+search trees, then the two trees of maximal heights will have probability of occurring of $1/n!$ each, whereas more balanced trees will have exponentially
+larger probabilities.
+The average height in this model turns out to be $\sim c \log n$
+as $n \to \infty$, where $c=4.311 \dd$ is a certain constant.
+This was proved by Devroye \cite{Devroye86,Devroye87} using branching
+processes methods.
+(See also \cite{Mahmoud}.)
+It would be nice to develop the analytic generating
+function approach to this problem, since it might then be used to obtain new information about the distribution of heights, for example.
+To study heights, we can consider a model in which at time $n \ge 1$
+there will be $n$ pebbles on the nonnegative integers.
+At time $n=1$, the single pebble will be at 0.
+At time $n$, one of the $n$ pebbles will be chosen at random and removed from its position,
+say from $k$, and replaced by two pebbles at $k+1$.
+The question then is, what is the distribution of the pebbles
+at time $n$.
+By Devroye's results we know that the position of the rightmost pebble will on average be asymptotic to $c \log n$.
+Combined with earlier results of Pittel (see \cite{Mahmoud}),
+this shows that this rightmost pebble is at about $c \log n$ most of the time.
+The methods of Devroye and Pittel are probabilistic,
+and so far nobody has developed an analytic approach to this problem.
+This is in contrast to the situation where we ask for the average number of pebbles on a given integer,
+where simple recurrences show that the distribution is given explicitly
+in terms of Stirling numbers, whose asymptotics are well understood. \hfill $\blacksquare$
+}
+\end{exam}
+
+There are some problems with rather simple generating functions where analytic
+methods fail, not because of the complexity of the function, but rather
+because of the basic limitations of known analytic
+methods.
+This occurs in a set partition problem described below.
+\begin{exam}
+\label{Set}
+Set partitions with distinct block sizes.
+{\rm Let $a_n$ be the number of partitions of a set of $n$ elements into blocks of distinct sizes.
+Then
+$a_n = b_n \cdot n!$,
+where $b_n = [z^n] f(z)$, with
+\beql{JCeq1}
+f(z) = \prod_{k=1}^\In \lt 1 + \frac{z^k}{k!} \rt ~.
+\eeq
+The function $f(z)$ is entire and has nonnegative coefficients,
+so it might appear as an ideal candidate
+for an application of the methods for dealing with large
+singularities, such as the saddle point technique.
+However,
+on circles $|z| = (n+1/2) /e$, $n \in \ZZ^+$,
+$f(z)$ does not vary much, so there are technical
+problems in applying these analytic methods.
+The saddle point method succeeds when the contour of integration can be chosen so that the integrand is large only in a small range,
+and its behavior in that small range is given by an
+approximation by a scaled Gaussian function.
+Because of the peculiar distribution of the roots of $f(z)$, no such contour
+can be found.
+More than that, the results one obtains are very different from those that the saddle point method yields.
+The estimates obtainable from the saddle point method
+give (for the usual type of function encountered in combinatorial enumeration)
+estimates for the coefficients that vary smoothly with the index of the coefficient.
+On the other hand, combinatorial estimates
+can be used to show \cite{KORSW} that
+the $b_n$ behave in a ``regularly irregular'' way, so that, for example,
+\begin{eqnarray}
+\label{JCeq2}
+b_{m(m+1)/2-1} & \sim & b_{m(m+1)/2} ~~~\mbox{as}~~~ m \to \In ~, \\
+b_{m(m+1)/2} & \sim & m b_{m(m+1)/2 +1} ~~~\mbox{as}~~~
+m \to \In ~.
+\label{JCeq3}
+\end{eqnarray}
+The term $b_n z^n$ for $n= m(m+1)/2$ for example, comes almost
+entirely from the product of $z^k / k!$, $1 \le k \le m$, all other products
+contributing an asymptotically negligible amount.
+There do not seem to be any analytic methods that obtain these results
+without essentially redoing the combinatorial estimates. \hfill $\blacksquare$
+}
+\end{exam}
+\clearpage
+\begin{thebibliography}{99}
+%\begin{thebibliography}{AndrewsCMOM}
+%\bibitem[Bender74]{Bender74}
+\bibitem{Bender74}
+E.~A. Bender,
+Asymptotic methods in enumeration,
+{\em SIAM Review},
+{\em 16} (1974),
+pp.~485--515.
+%\bibitem[BenWil]{BenWil}
+\bibitem{BenWil}
+E.~A. Bender
+and S.~G. Williamson,
+{\em Foundations of Applied Combinatorics},
+Addison-Wesley, 1991.
+%\bibitem[BB]{BB}
+\bibitem{BB}
+B. Bollob\'{a}s and G. Brightwell,
+The height of a random partial order:
+concentration of measure, {\em Ann. Appl. Prob. 2} (1992), 1009--1018.
+%\bibitem[NGB]{NGB}
+\bibitem{NGB}
+N.~G. de~Bruijn,
+{\em Asymptotic Methods in Analysis},
+North--Holland, Amsterdam, 1958.
+%\bibitem[Comtet74]{Comtet74}
+\bibitem{Comtet74}
+L. Comtet,
+{\em Advanced Combinatorics},
+Reidel, Dordrecht, 1974.
+%Article{Devroye86,
+%\bibitem[Devroye86]{Devroye86}
+\bibitem{Devroye86}
+L. Devroye,
+A note on the expected height of binary search trees,
+{\em J. ACM},
+{\em 33}
+(1986),
+pp.~489--498.
+%Article{Devroye87,
+%\bibitem[Devroye87]{Devroye87}
+\bibitem{Devroye87}
+L. Devroye,
+Branching processes in the analysis of the heights of trees,
+{\em Acta Informatica},
+{\em 24}
+(1987),
+pp.~277--298.
+%\bibitem[Egor84]{Egor84}
+\bibitem{Egor84}
+G.~P. Egorychev,
+{\em Integral Representation and the Computation of Combinatorial Sums},
+Amer. Math. Soc. 1984.
+%\bibitem[Erdelyi]{Erdelyi}
+\bibitem{Erdelyi}
+A. Erd{\'e}lyi,
+{\em Asymptotic Expansions}, Dover reprint, 1956.
+%\bibitem[Fed89a]{Fed89a}
+\bibitem{Fed89a}
+M.~V. Fedoryuk,
+Asymptotic methods in analysis, pp.~83--191 in
+{\em Analysis I},
+R.~V. Gamkrelidze, ed., Springer 1989.
+%\bibitem[Flajolet92]{Flajolet92}
+\bibitem{Flajolet92}
+P. Flajolet,
+Analytic analysis of algorithms,
+{\em Proc. ICALP '92}, Springer Lecture Notes in Computer Science, 1992, to be published.
+%\bibitem[FGOR]{FGOR}
+\bibitem{FGOR}
+P. Flajolet, Z. Gao,
+A.~M. Odlyzko,
+and B. Richmond,
+The height of binary trees and other simple trees,
+{\em Combinatorics, Probability, and Computing} (1993), to appear.
+%\bibitem[FAMO]{FAMO}
+\bibitem{FAMO}
+P. Flajolet and A.~M. Odlyzko,
+The average height of binary trees and other simple trees,
+{\em J. Comput. System Sci., 25} (1982), pp.~171--213.
+%\bibitem[FAMO1]{FAMO1}
+\bibitem{FAMO1}
+P. Flajolet and A.~M. Odlyzko,
+Limit distributions for coefficients of iterates of
+polynomials with application
+to combinatorial enumeration,
+{\em Math. Proc. Cambridge Phil. Soc., 96} (1984), pp.~237--253.
+%\bibitem[FAMO3]{FAMO3}
+\bibitem{FAMO3}
+P. Flajolet and A.~M. Odlyzko,
+Singularity analysis of generating function,
+{\em SIAM J. Discrete Math., 3} (1990), pp.~216--240.
+%Article{FlaSaZi91,
+%\bibitem[FlaSaZi91]{FlaSaZi91}
+\bibitem{FlaSaZi91}
+P. Flajolet, B. Salvy, and P. Zimmermann,
+Automatic average--case analysis of algorithms,
+{\em Theoretical Computer Science},
+{\em 79} (1991), 37--109.
+%\bibitem[GonnetBY]{GonnetBY}
+\bibitem{GonnetBY}
+G.~H. Gonnet and R. Baeza-Yates,
+{\em Handbook of Algorithms and Data Structures},
+2nd ed., Addison-Wesley, 1991.
+%\bibitem[GJ]{GJ}
+\bibitem{GJ}
+I. Goulden and D. Jackson,
+{\em Combinatorial Enumeration},
+John Wiley, New York, 1983.
+%Book{GrKnPa89,
+%\bibitem[GrKnPa89]{GrKnPa89}
+\bibitem{GrKnPa89}
+R.~L. Graham, D.~E. Knuth, and O. Patashnik,
+{\em Concrete Mathematics},
+Addison Wesley, 1989.
+%\bibitem[GK]{GK}
+\bibitem{GK}
+D. H. Greene and D. E. Knuth,
+{\em Mathematics for the Analysis of Algorithms},
+2nd ed., Birkh\"{a}user, Boston, 1982.
+%Book{HaPa73,
+%\bibitem[HaPa73]{HaPa73}
+\bibitem{HaPa73}
+F. Harary and E.~M. Palmer,
+{\em Graphical Enumeration},
+Academic Press, 1973.
+%Article{HaRoSc75,
+%\bibitem[HaRoSc75]{HaRoSc75}
+\bibitem{HaRoSc75}
+F. Harary, R.~W. Robinson, and A.~J. Schwenk,
+Twenty--step algorithm for determining the asymptotic
+number of trees of various species,
+{\em J. Austral. Math. Soc. {\rm (Series A)}},
+{\em 20} (1975),
+pp.~483--503.
+%\bibitem[WKH]{WKH}
+\bibitem{WKH}
+W.~K. Hayman,
+A generalization of Stirling's formula,
+{\em J. reine angew. Math., 196} (1956), pp.~67--95.
+%\bibitem[Hofri]{Hofri}
+\bibitem{Hofri}
+M. Hofri,
+{\em Probabilistic Analysis of Algorithms},
+Springer, 1987.
+%\bibitem[Kemp84]{Kemp84}
+\bibitem{Kemp84}
+R. Kemp,
+{\em Fundamentals of the Average Case Analysis of Particular Algorithms},
+Wiley, 1984.
+%\bibitem[KORSW]{KORSW}
+\bibitem{KORSW}
+A. Knopfmacher, A. Odlyzko, B. Richmond, G. Szekeres,
+and N. Wormald, manuscript in preparation.
+%\bibitem[DEK]{DEK}
+\bibitem{DEK}
+D.~E. Knuth,
+{\em The Art of Computer Programming Vol. 1}:
+{\em Fundamental Algorithms},
+2nd ed., Addison--Wesley, Reading, 1973.
+%\bibitem[DEK1]{DEK1}
+\bibitem{DEK1}
+D.~E. Knuth,
+{\em The Art of Computer Programming Vol. 2}:
+{\em Semi--Numerical Algorithms},
+2nd ed.,
+Addison--Wesley, Reading, 1981.
+%\bibitem[DEK2]{DEK2}
+\bibitem{DEK2}
+D.~E. Knuth,
+{\em The Art of Computer Programming Vol. 3}:
+{\em Sorting and Searching},
+Addison--Wesley, Reading, 1973.
+%\bibitem[Mahmoud]{Mahmoud}
+\bibitem{Mahmoud}
+H.~S. Mahmoud,
+{\em Evolution of Random Search Trees},
+Wiley, 1992.
+%\bibitem[McKay90]{McKay90}
+\bibitem{McKay90}
+B.~D. McKay,
+The asymptotic numbers of regular tournaments,
+eulerian digraphs, and eulerian and oriented graphs,
+{\em Combinatorica, 10} (1990), 367--377.
+%\bibitem[McKayW90]{McKayW90}
+\bibitem{McKayW90}
+B.~D. McKay and N.~C. Wormald,
+Asymptotic enumeration by degree sequence of graphs of high degree,
+{\em European J. Combinatorics, 11} (1990), 565--580.
+%\bibitem[AMO4]{AMO4}
+\bibitem{AMO4}
+A.~M. Odlyzko,
+Explicit Tauberian estimates for functions with positive coefficients,
+{\em J. Comput. Appl. Math., 41} (1992), 187--197.
+%\bibitem[AMO5]{AMO5}
+\bibitem{AMO5}
+A.~M. Odlyzko,
+Asymptotic enumeration methods,
+in {\em Handbook of Combinatorics}, R.~L. Graham,
+M. Gr\"{o}tschel, and L. Lov\'{a}sz, eds., North-Holland, to appear.
+%\bibitem[OPWW]{OPWW}
+\bibitem{OPWW}
+A.~M. Odlyzko, B. Poonen, H. Widom, and H.~S. Wilf,
+manuscript in preparation.
+%\bibitem[JRIO]{JRIO}
+\bibitem{JRIO}
+J. Riordan,
+{\em Introduction to Combinatorial Analysis},
+John Wiley, New York, 1958.
+%\bibitem[Riordan]{Riordan}
+\bibitem{Riordan}
+J. Riordan,
+{\em Combinatorial Identities},
+Wiley, 1968.
+%\bibitem[RPS]{RPS}
+\bibitem{RPS}
+R.~P. Stanley,
+{\em Enumerative Combinatorics}, vol.~1,
+Wadsworth and Brooks/Cole, Monterey, 1986.
+%incollection{ViFl90,
+%\bibitem[ViFl90]{ViFl90}
+\bibitem{ViFl90}
+J. Vitter and P. Flajolet,
+Analysis of algorithms and data structures,
+{\em Handbook of Theoretical Computer Science},
+Vol.~A: Algorithms and Complexity,
+Ch.~9,
+pp.~432--524,
+J. Van Leeuwen, ed., North Holland, 1990.
+%\bibitem[Wilf90]{Wilf90}
+\bibitem{Wilf90}
+H.~S. Wilf,
+{\em Generatingfunctionology},
+Academic Press, 1990.
+\bibitem{Wyman}
+M. Wyman,
+The asymptotic behavior of the Laurent coefficients,
+{\em Canad. J. Math., 11} (1959), 534--555.
+\end{thebibliography}
+\end{document}

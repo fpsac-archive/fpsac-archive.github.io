@@ -1,0 +1,786 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts,amssymb}
+\addtolength{\textwidth}{2cm}
+\addtolength{\textheight}{3cm}
+\addtolength{\oddsidemargin}{-1cm}
+\addtolength{\topmargin}{-2cm}
+
+\newcommand{\s}{{\succeq}}
+\newcommand{\R}{{\mathbb R}}
+\renewcommand{\a}{{\alpha}}
+\renewcommand{\b}{{\beta}}
+\newcommand{\pg}{{\preceq_{\pi}}}
+\newcommand{\A}{{\cal A}}
+\newcommand{\p}{{\preceq}}
+\newcommand{\Q}{{\cal Q}}
+\renewcommand{\P}{{\cal P}}
+\newcommand{\proof}{\noindent{\em Proof: }}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\m}{\medskip}
+\newcommand{\B}{\bigskip}
+\newcommand{\qed}{\hspace{\fill}$\square$}
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{prop}[equation]{Proposition}
+\newtheorem{cor}[equation]{Corollary}
+\newenvironment{remark}{\noindent\refstepcounter{equation}
+{\bf Remark \theequation}}{\m}
+\newenvironment{example}{\noindent\refstepcounter{equation}
+{\bf Example \theequation}}{\m}
+\newenvironment{question}{\noindent\refstepcounter{equation}
+{\bf Question \theequation}}{\m}
+\title{A Framework for the Greedy Algorithm}
+\author{A. Vince\\Department of
+Mathematics \\
+University of Florida \\
+Gainesville, FL 32611, USA \\
+{\tt vince@math.ufl.edu}}
+\date{}
+\begin{document}
+
+\maketitle
+
+\begin{abstract} The classical setting for the greedy algorithm
+is the theory of matroids.  Given a set system $M$ the greedy
+algorithm correctly solves the associated optimization problem for all
+weight functions if and only if $M$ is a matroid.  There are, however,
+set systems $M$ that are not matroids, for which the greedy algorithm
+nevertheless correctly solves the optimization problem - but not for
+every weight function.  This is the case, for example, for the
+symmetric matroids of Bouchet \cite{bou}, symplectic matroids of
+Borovik, Gelfand and White \cite{BGW} and, more generally, the Coxeter
+matroids of Gelfand and Serganova \cite{GS1,GS2}.  Our intention is to
+put the greedy algorithm into a simple framework that includes such
+examples, as well as ordinary matroids.  For any pair $(P, \P)$
+consisting of a finite set $P$ together with a set $\P$ of partial
+orderings of $P$, we define the concepts of {\it greedy set} and {\it
+admissible function}.  On greedy sets, the greedy algorithm correctly
+solves the naturally associated optimization problem for all
+admissible functions.  Indeed, when $\P$ consists of linear orders,
+the greedy sets are characterized by this property.  A geometric
+condition sufficient for a set to be greedy is given in terms of roots
+and the greedy polytope.
+
+\smallskip\centerline{\bf R\'esum\'e}
+Le cadre classique pour l'algorithme ``greedy'' est la th\'eorie des
+matro\"{\i}des. Etant donn\'e un syst\`eme d'ensembles $M$,  l'algorithme
+``greedy'' r\'esoud correctement le probl\`eme d'optimisation associ\'e pour
+toute fonction de poids si et seulement si $M$ est un matro\"{\i}de.
+Il existe cependant des syst\`emes d'ensembles $M$ qui ne sont pas des
+matro\"{\i}des et pour lesquels l'algorithme ``greedy'' r\'esoud le probl\`eme
+d'optimisation, mais pas pour toutes les fonctions de poids. Par exemple, c'est
+le cas pour  les  matro\"{\i}des sym\'etriques de Bouchet \cite{bou}, les
+matro\"{\i}des symplectiques  de Borovik, Gelfand et White \cite{BGW}, et plus
+g\'en\'eralement les matro\"{\i}des de Coxeter  de Gelfand et Serganova
+\cite{GS1,GS2}. Notre but est de placer l'algorithme ``greedy'' dans un cadre
+plus simple qui comprend tous ces exemples, en plus des matro\"{\i}des
+standards. Pour toute paire $(P, \P)$ d'un ensemble fini $P$ et d'un ensemble
+$\P$ d'ordres  partiels sur $P$, nous d\'efinissons le concept {\it d'ensemble 
+``greedy''} et de {\it fonctions admissibles}. Sur les ensembles ``greedy'',
+d'algorithme ``greedy'' resoud correctement le probl\`eme d'optimisation
+naturellement associ\'e pour toute fonction admissibles. En effet, si $\P$ est
+l'ensemble des ordres lin\'eaires, alors les ensembles ``greedy'' sont
+caract\'eris\'es par cette propri\'et\'e. Une condition g\'eom\'etrique
+suffisante pour que l'ensemble soit ``greedy'' est donn\'ee en termes de racines
+et de polytopes ``greedy''.
+\end{abstract}
+
+
+\section{Introduction} \label{intro}
+Perhaps the best known algorithm in combinatorial optimization is the
+greedy algorithm.  The classical MAXIMAL (MINIMAL) SPANNNING TREE
+problem, for example, is solved by the greedy algorithm: Given a
+finite graph $G$ with weights on the edges, find a spanning tree of
+$G$ with maximum (minimum) total weight.  At each step in the greedy
+algorithm that solves this problem, there is set of edges $T$
+comprising the partial tree; an edge $e$ of maximum weight among the
+edges not in $T$ (the greedy choice) is added to $T$ so long as $T+e$
+contains no cycle.
+
+A natural context in which to place the greedy algorithm is that of a
+matroid.  Consider a pair $(P, \cal I)$ consisting of a finite set $P$
+together with a nonempty collection $\cal I$ of subsets of $P$, called
+{\it independent sets}, closed under inclusion.  There is a natural
+combinatorial optimization problem associated with this pair.  Given a
+weight function $f: P \rightarrow \R$, extend the {\it
+weight} to subsets $A \subseteq P$ by defining $f(A) = \sum_{a\in A}
+f(a)$.  \B
+
+\underline{{\bf OPTIMIZATION PROBLEM.}} \,\, Given a weight
+function $f: P \rightarrow \R$, find an independent set with the
+greatest weight. \B
+
+The {\it greedy algorithm} for this optimization problem is simply: \B
+
+\underline{{\bf GREEDY ALGORITHM}}
+
+\begin{tabbing}
+xxx\=xxx\=\kill
+$I = \emptyset$ \\
+{\bf while} $P \neq \emptyset$ {\bf do} \\
+\>remove from $P$ an element $a$ of largest weight. \\
+\>{\bf if} $I\cup\{a\}$ is independent {\bf then} \\
+\>\>$I =  I\cup\{a\}$ \\
+\>{\bf end}\\
+{\bf end} \\
+\end{tabbing}
+
+\vskip -.5cm
+It is well known that the following statements are equivalent for the
+pair $M = (P, \cal I)$.  Here $\cal B$ denotes the set of bases of
+$M$, a {\it basis} being a maximum independent set.
+
+\begin{enumerate}
+\item $M$ is a matroid.
+\item The greedy algorithm correctly solves the combinatorial
+optimization problem associated with $M$ for any positive weight function
+$f: P \rightarrow \R$.
+\item Every basis has the same cardinality and, for every linear
+ordering $\p$ on $P$, there exists a $B \in \cal B$ such that for any
+$A \in \cal B$, if we write $B = (b_1,b_2,\dots,b_k)$ and $A=(a_1,
+a_2, \dots, a_k)$ with the elements of $B$ and $A$ both in
+increasing order, then $a_i\, \p \,b_i$ for all $i$.  This ordering
+on $k$-element subsets of $X$ is called the {\it Gale order}.
+\end{enumerate}
+
+In the spanning tree problem, the set $P$ consists of the set of
+edges of $G$ and the independent sets are the acyclic subsets of
+edges. Many well known optimization problems, including the spanning
+tree problem, can be put into the framework of matroids.  Texts by
+Lawler \cite{lawler} and by Papadimitriou and Steiglitz \cite{pap}
+contain numerous examples.
+
+Matroids are characterized by the property that the greedy algorithm
+correctly solves the optimization problem for any weight function.
+There are, however, non-matroids, for which the greedy algorithm
+correctly solves the optimization problem - but not for every weight
+function.  This is the case for the symmetric matroids \cite{bou}, the
+sympletric matroids \cite{BGW} and, more generally, the Coxeter
+matroids of Gelfand and Serganova \cite{GS1,GS2}.  It is our intenton
+in this paper to put the greedy algorithm into a simple framework that
+includes such examples.
+
+The basic notion is that of a pair $(P, \P)$ consisting of a finite
+set $P$ together with a set $\P$ of partial orderings of $P$.  In
+Section 2 the concepts of greedy set and admissible function are
+defined and examples are given.  When $P = \{1,2, \dots , n\}$ and
+$\P$ is the set of all linear orderings of $P$, the greedy sets are
+exactly the bases of matroids.  Many of the pairs $(P, \P)$ of interest are
+obtained by letting a group act on the poset $P$.  This group case is
+introduced in Section 3.  In Section 4 we prove that, for greedy sets,
+the greedy algorithm correctly solves the naturally associated
+optimization problem for all admissible functions.  Indeed, when $\P$
+contains only linear orders, the greedy sets are characterized by this
+property.  In fact, it is proved in Section 4 that there is
+essentially no loss of generality in assuming that $\P$ contains only
+linear orders.  The results of Section 4 naturally lead to the problem
+of effectively characterizing greedy sets.  A geometric approach via
+roots and the greedy polytope is considered in Section 5.  It is
+proved that if every edge of the polytope of a collection $L$ is
+parallel to a root, then $L$ is a greedy set.
+
+\section{Greedy sets} \label{greedy}
+\setcounter{equation}{0}
+
+Consider a pair $(P,\P)$ consisting
+of a finite set $P$ and a set $\P$ of partial orderings of $P$.  A
+subset $M \subseteq P$ will be called a {\it greedy set} for the pair
+$(P,\P)$ if $M$ has a unique maximum for every ordering in $\P$.
+
+Let $P_k$ denote the collection of $k$-element subsets of $P$.  Each
+partial order on $P$ induces a partial order on $P_k$, namely the Gale
+order.  If $A,B \in P_k$, then $A \,\p \, B$ in the {\it Gale order}
+if there are orderings $A=(a_1, a_2, \dots, a_k)$ and $B =
+(b_1,b_2,\dots,b_k)$ of the two sets such that $a_i\, \p \,b_i$ for
+all $i$.  If $\p$ is an ordering in $\P$, then the same notation $A
+\,\p \, B$ will be used for sets $A, B \in P_k$ related in the Gale
+order.  The set of Gale orderings induced on $P_k$ by the orderings in
+$\P$ will be denoted $\P_k$.  A greedy set for the pair $(P_k, \P_k)$
+will be referred to as a {\it rank} $k$ {\it greedy set} for $(P,\P)$.
+
+A weight function $f : P \rightarrow \R$ is called {\it compatible}
+with a partial order $\p$ on $P$ if $f(a) < f(b)$ whenever
+$a \,\prec \, b$.  (The notation $a \prec b$ means $a \,\p\, b$ but $a
+\neq b$.)  A weight function $f$ is said to be {\it admissible} for
+$(P,\P)$ if $f$ is compatible with some partial order in $\P$.  An
+admissible weight function $f$ for $(P,\P)$ can be extended to an
+admissible weight function $f: P_k \rightarrow \R$ for $(P_k, \P_k)$
+by defining
+$$f(A) = \sum_{a\in A} f(a).$$
+
+\noindent That this function is indeed admissible is the statement of
+the corollary below.  The first proposition below is obvious from the
+definitions of greedy set and admissible weight function.
+
+\begin{prop} \label{max} If $M \subseteq P$ is a greedy
+set for $(P,\P)$ and $f$ is an admissible weight function, then $f$
+attains a unique maximum on $M$.  \qed
+\end{prop}
+
+\begin{prop} \label{weight} Let $P$ be a partially ordered set
+and $P_k$ the set of all $k$-element subsets of $P$ with the Gale
+order.  For any $A,B \in P_k$ we have $B \,\p \, A$ if and only if $f
+(B) \leq f (A)$ for every weight function $f$ compatible with the
+order on $P$.
+\end{prop}
+
+\proof Assume that $B \,\p \, A$.  Then there are orderings $A = (
+a_1, a_2, \dots, a_k )$ and $B = ( b_1, b_2, \dots, b_k )$ such that
+$b_i \, \p \, a_i$, and hence $f(b_i) \leq f(a_i)$, for $1\leq i \leq
+k$.  Therefore $f(B) = \sum_{b\in B} f(b) \leq \sum_{a\in A} f(a) =
+f(A)$.
+
+Conversely assume that it is not the case that $B \,\p \, A$.  We will
+construct a function $f$ that is compatible with the order on $P$ but
+$f(B) > f (A)$.  For each element $a \in A$, let $B_a = \{ x\in B
+\, | \, x \p a \}$.  Now $B \,\p\, A$ in the Gale order if and only if
+there is a set of distinct representatives of the sets $B_a, a \in A$.
+Hence there is not such set of representatives, and, by Philip Hall's
+theorem on distinct representatives, there must be a set $A' \subseteq
+A$ such that $|g(A')| < |A'|$, where $g(A) = \cup \{B_a \, | \, a\in
+A'\}$.  Now define $f(x) = 0$ for $x \in A' \cup g(A')$ and $f(x) = 1$
+for $x \in B \smallsetminus g(A')$.  For this function $f(B) = \sum_{b\in B}
+f(x) = |B \smallsetminus g(A')| > |A \smallsetminus A'| \geq
+\sum_{a\in A} f(x) = f(A)$.  It is easy to see that this function $f$ can be
+extended and perturbed slightly to be compatible with the order on $P$
+and to retain the property that $f (B) > f(A)$.  \qed \m
+
+{\bf Remark.} By the same reasoning as in the proof above, it is also
+true that, for any $A,B \in P_k$, we have $B \,\prec \, A$ if and only
+if $f (B) < f(A)$ for every weight function $f$ compatible with the
+order on $P$.  \m
+
+\begin{cor}  If $f: P \rightarrow \R$ is admissible for $(P, \P)$,
+then $f: P_k \rightarrow \R$ is admissible for $(P_k, \P_k)$. \qed
+\end{cor}
+\B
+
+\begin{example} \label{mat} {\bf Matroids.}   Let $P = [n] =
+\{ 1, 2, \dots, n\}$ and let $\P$ be the set of all linear orderings
+of $P$.  Then clearly every weight function $f : P \rightarrow \R$
+is admissible.  By definition, a rank $k$ greedy set $M$ is a
+collection of $k$-element subsets of $P$ such that, for every linear
+ordering of $[n]$, there is a unique maximum in $M$ in the induced
+Gale ordering on $P_k$.  But this is exactly the third
+characterization of matroid given in the introduction.  In other
+words, $M$ is a rank $k$ greedy set for $(P,\P)$ if and only if $M$ is
+the set of bases of a rank $k$ matroid.
+\end{example}
+\B
+
+\begin{example} \label{symp} {\bf Symplectic matroids.}  Let
+$[n]^* = \{1^*, \dots, n^*\}$ and let $P = [n]\cup[n]^*$.  By
+convention $i^{**} = i$.  Let $\P$ be the set of all linear orderings
+$\leq$ of $P$ with the property that $i \leq j$ if and only if $j^*
+\leq i^*$ for any $i,j \in P$.  Equivalently, the pair $i$ and $i^*$
+appear symmetrically in the order.  For example, with $n = 3$ one such
+order is $2 < 1^* < 3 < 3^* < 1 < 2^*$.  Consequently the
+admissible weight functions include all weights $f : P \rightarrow \R$
+ such that $f(i^*) = -f(i)$ for each $i \in [n]$.
+A symmetric matroid of
+Bouchet \cite{bou} is exactly a rank $n$ greedy set $L$ for the pair
+$(P, \P)$ with the additional property that $A \cap A^* = \emptyset$
+for each $A \in L$.  More generally, the rank $k$ greedy sets, $0\leq
+k \leq n$, satisfying this same property are exactly the symplectic
+matroids of Borovik, Gelfand and White \cite{BGW}.  The significance
+of the added assumption will be discussed in the next section.
+\end{example}
+
+\section{The Group Case} \label{group}
+\setcounter{equation}{0}
+
+Let $P$ be a partially ordered set and $G$ a transitive group of
+permutations of $P$.  If $\p$ denotes the order on $P$ and $\pi \in
+G$, let $\pg$ denote the order defined by $a \,\pg\, b$ if $\pi ^{-1}a\,
+\p \, \pi ^{-1}b$.  For rank $k$ subsets, the corresponding Gale order
+will likewise be denoted $A\, \pg \,B$.  This shifted order will be
+called the $\pi$-{\it order}.  Let $\P = \P(G)$ be the set of all
+$\pi$-orders on $P$ for $\pi \in G$.  For example, if $P = [n]$ with the
+order $1 < 2 < \cdots < n$, then $\P$ is the set of all orders $\pi(1)
+< \pi (2) < \cdots < \pi(n)$ where $\pi \in G$.  The pair
+$(P, \P(G))$ is referred to as the {\it group case}.
+
+Although $G$ acts transitively on $P$, the induced action of $G$ on
+$P_k$ may not be transitive.  There will therefore be situations
+where attention will be restricted to a
+single orbit $Q_k$ of $G$ acting on $P_k$.  The rank $k$ greedy sets
+of $(P, \P(G))$ will then be restricted to being contained in a set $Q_k$
+on which $G$ acts transitively.   \B
+
+\begin{example} \label{matg} {\bf Matroids.}
+If $P = [n]$ with the linear order $1 \,\prec\, 2\, \prec\, \cdots\,
+\prec n$, and $S_n$ is the symmetric group consisting of all
+permutations of $[n]$, then the greedy sets for $(P, \P(S_n))$ are
+exactly the ordinary matroids of Example~\ref{mat}.
+\end{example}
+\B
+
+\begin{example} \label{sympg} {\bf Symplectic matroids.}
+Let $P = [n]\cup[n]^*$ with the linear order $1 \,\prec\, 2\, \prec\,
+\cdots\, \prec n\, \prec n^* \, \prec \cdots \prec \, 2^* \, \prec \,
+1^*$, and let $G = B_n$ be the permutation group whose generators are
+all transpositions of the form $(i \,i^*)$ and all involutions of the
+form $(i\,j)(i^* \, j^*)$.  The group $B_n$ is called the {\it
+symplectic group}.  Note that the set of all $k$-element sets $A$ with
+the property that $A \cap A^* = \emptyset$ comprises a single orbit of
+$G$ acting on $P_k$; call this orbit $Q_k$.  Then the greedy sets $L
+\subseteq Q_k)$ for $(P, \P (G))$ are exactly the symplectic matroids
+of Example~\ref{symp} above.
+\end{example}
+\B
+
+\begin{example} \label{cyc} {\bf Cyclic case.}  Let $P = [n]$
+be a poset with the order $1 \, \prec 2\, \prec \, \cdots \,\prec n$,
+and let $G$ be the cycle group acting on $[n]$ and generated by the
+cycle $(1 \, 2 \, \cdots \, n)$.  For example, $3\prec 4\prec 1\prec
+2$ is a cyclic ordering for $n=4$.  A collection $L$ of $k$-element
+subsets of $P$ is a greedy set if and only if $L = \{A_1, A_2, \dots
+,A_m\}$ where $A_i = \{a_{i1}, \dots , a_{ik} \}$ and $a_{11} \p
+a_{21} \p \cdots \p a_{m1} \p a_{12} \p a_{22} \p \cdots \a_{m2} \p
+\cdots \p a_{1k} \p a_{2k} \p \cdots \p \a_{mk}$.  This
+characterization is easily proved by induction.
+\end{example}
+\B
+
+\begin{example} \label{bipart} {\bf Bipartite case.}  Let $P = [n]\cup
+[n]^*$ and let $\P$ consist of any linear order such that either all
+the unstarred elements preceed the starred elements or all the starred
+elements preceed the unstarred elements.  This is the group case
+where, if $[n]$ and $[n]^*$ are considered as vertex sets of the two
+parts of a complete bipartite graph $K_{n,n}$, then the group is the
+automorphism group of $K_{n,n}$.
+\end{example}
+
+\section{The Greedy Algorithm} \label{alg}
+\setcounter{equation}{0}
+
+Naturally associated to the pair $(P,\P)$ is the following
+optimization problem.   \B
+
+\underline{{\bf OPTIMIZATION PROBLEM}} \,\, Given an admissible weight
+function $f: P \rightarrow \R$ and a set $L \subseteq P_k$, find an
+element of $L$ that maximizes the induced weight function $f : P_k
+\rightarrow \R$. \B
+
+Given $L \subseteq P_k$, call a subset $I\subseteq P$ {\it independent
+with respect to} $L$ if $I$ is a subset of some element of $L$.  The
+{\it greedy algorithm}, given explicitely in the introduction,
+applied to this optimization problem, merely chooses the largest weight
+element at each stage subject to the condition that the resulting set
+is independent with respect to $L$.
+
+\begin{theorem} \label{algtheorem1} Let $(P, \P)$ be a pair consisting
+of a collection $\P$ of orderings of the finite set $P$.  If $L
+\subseteq P_k$ is a rank $k$ greedy set, then the greedy algorithm
+correctly solves the optimization problem for every admissible weight
+function $f: P \rightarrow \R$.
+\end{theorem}
+
+\proof Assume that $L$ is a greedy set and that $f$ is compatible with
+some order, say $\p$, in $\P$.  Since $L$ is a greedy set, it contains
+a unique set $A$ that is maximum with respect to the Gale order.  We
+claim that the greedy algorithm selects this set $A$.  Suppose,
+instead that $B$ is chosen where $B \, \p \, A$.  Order the sets $A =
+( a_1, a_2, \dots, a_k )$ and $B = ( b_1, b_2, \dots, b_k )$ so that
+the elements of $B$ appear in the order selected by the greedy
+algorithm and $b_i \, \p \, a_i$ for $1\leq i \leq k$.  Assume that
+$a_i = b_i$ for $1\leq i < j$, but $a_j \neq b_j$.  Then $b_j \,\prec \,
+a_j$ implies, by the compatibility of $f$, that $f(b_j) < f(a_j)$.  But
+this contradicts the fact that, at this stage, the greedy
+algorithm chose $b_j$.  \qed \B
+
+In the case that $\P$ contains only linear orderings of $P$, the
+greedy sets are actually characterized by the property that the greedy
+algorithm correctly solves the optimization problem for every
+admissible weight function.  The assumption that $\P$ contains only
+linear orderings of $P$ is a reasonable one in light of
+Theorem~\ref{linear} below.
+
+\begin{theorem} \label{algtheorem2} Let $\P$ be a set of linear orderings
+of $P$ and $L \subseteq P_k$.  Then the greedy algorithm correctly
+solves the optimization problem for every admissible weight function
+if and only if $L$ is a greedy set.
+\end{theorem}
+
+\proof In one direction, this result is a corollary of
+Theorem~\ref{algtheorem1}.  To prove it in the other direction, assume
+that $L$ is not a greedy set.  Then there exists an order on $P$,
+say $\p$, for which $L$ does not attain a unique maximum.  Since
+$\p$ is a linear ordering of $P$, order the elements in each set in $L$
+in decreasing order.  Let $A$ denote the lexicographically
+maximum element of $L$, and let $B \neq A$ be a set in $L$ that is a
+maximum with respect to Gale order.  According to
+Proposition~\ref{weight} there exists a weight function compatible
+with $\p$ such that $f(B) > f(A)$.  On the other hand, the greedy
+algorithm chooses $A$.  \qed \B
+
+It is desirable to choose $\P$ so that there are many admissible weight
+functions and many rank $k$ greedy sets.  Then the greedy algorithm
+will correctly solve a large collection of optimization problems.
+Unfortunately, these two objectives - many admissible functions and
+many greedy sets - are often contradictory.  If $(P,\P)$ and $(P,\Q)$
+have the same collection of admissible functions, but, for each $k$,
+each rank $k$ greedy set for $(P,\P)$ is a rank $k$ greedy set for
+$(P,\Q)$, then clearly it is preferable, for algorithmic purposes, to
+use $(P,\Q)$ rather than $(P,\P)$.
+
+\begin{theorem}\label{linear}  For any pair $(P,\P)$ there is a pair
+$(P, \Q)$ such that
+\begin{enumerate}
+\item $\Q$ contains only linear orders;
+\item $(P,\P)$ and $(P,\Q)$ have the same admissible functions; and
+\item for each $k$, each rank $k$ greedy set for $(P,\P)$ is already
+a rank $k$ greedy set for $(P,\Q)$.
+\end{enumerate}
+\end{theorem}
+
+\proof Let $\Q$ be the collection of all linear extensions of the
+orders in $\P$.  Clearly condition (1) is satisfied.  Concerning
+condition (2) assume that weight function $f$ is admissible for
+$(P,\Q)$.  Then $f$ is compatible with some linear ordering $\leq$ in
+$\Q$ and hence is also compatibale with any ordering in $\P$ having
+$\leq$ as a linear extension.  Therefore $f$ is admissible for
+$(P,\P)$.  Conversely assume that $f$ is admissible for $(P,\P)$.
+Then $f$ is compatible with some ordering $\p$ in $\P$.  Assume that
+the elements of $\{x_1, x_2, \dots , x_n\}$ of $P$ are indexed such
+that $f(x_1) \leq f(x_2) \leq \cdots \leq f(x_n)$.  Then, by
+definition, the linear order $x_1 < x_2 < \cdots < x_n$ is a linear
+extension of $\p$ and $f$ is compatible with this linear order.
+Therefore $f$ is admissible for $(P,\Q)$.
+
+Concerning condition (3) assume that $M$ is a rank $k$ greedy set for
+$(P,\P)$.  To show that $M$ must also be a greedy set for $(P,\Q)$,
+let $\leq$ be any linear order in $\Q$.  Then $\leq$ is a linear
+extension of some order $\p$ in $\P$.  Since $M$ is greedy for
+$(P,\P)$, there is a unique maximum set $A = (a_1, \dots , a_k)$ in
+$M$ such that, for any $B = (b_1, \dots , b_k)$, we have $b_i \, \p \,
+a_i$ for all $i$ for some ordering of the elementsof $A$ and $B$.
+Because $\leq$ is a linear extension of $\p$, it is also true that
+$b_i \leq a_i$ for all $i$.  Therefore $A$ is also the unique maximum
+with respect to the Gale order relative to $\leq$.  So $M$ is a greedy
+set for $(P,\Q)$.  \qed \B
+
+The following examples are chosen to be simple and to demonstrate
+the theory for non-matroid greedy sets.
+ \B
+
+\begin{example} \label{symp2} {\bf Symplectic matroids.}  This is a
+continuation of Example~\ref{symp} of Section 2.  Consider the case $n
+= 3$.    It is not hard to check that the set
+$$M = \{12^*, 13, 2^*3^*, 1^*3^* \}$$
+is a rank 2 greedy set.  Take the particular function $f: [3]\cup[3]^*
+\rightarrow \R$ defined by $f(1) = 1; f(2) = 2; f(3) = 3; f(3^*) = 4;
+f(2^*) = 5; f(1^*) = 6$.  This is an admissible function because it is
+compatible with the ordering $1 \,\prec\, 2\, \prec\, 3\, \prec 3^* \,
+\prec  \, 2^* \, \prec \, 1^*$.  The greedy
+algorithm applied to $M$ chooses the set $1^*3^*$ whose total weight
+is 10, greater than that of any other set in $M$.
+
+On the other hand, for the function $f(1) = 4; f(2) = 2; f(3) = 3;
+f(3^*) = 1; f(2^*) = 5; f(1^*) = 6$, which is not admissible, the
+greedy algorithm again chooses the set $1^*3^*$ whose total weight is
+7, but the total weight of $12^*$ is $9$.  The greedy algorithm fails
+in this case.  Note that the collection $M$ is not an ordinary matroid on the
+set $[3]\cup[3]^*$.
+\end{example}
+\B
+
+\begin{example} \label{cyc2} {\bf Cyclic case.}  This is a continuation
+of Example~\ref{cyc} of Section 3.  Consider the case $n=4$, and take
+the admissible weigh function $f(1) = 3; f(2) = 4; f(3) = 1; f(4) = 2$.
+The set
+$$M = \{13, 24 \}$$ is a greedy set for $(P,\P)$.   The greedy
+algorithm chooses $13$ whose weight is 6, greater than the other
+element of $M$.  On the other hand, for the weight function $f(1) = 1;
+f(2) = 3; f(3) = 5; f(4) = 4$, which is not admissible, the greedy
+algorithm fails for $M$.
+\end{example}
+\B
+
+\begin{example} \label{bipart2} {\bf Bipartite case.}   This is a
+continuation of Example~\ref{bipart} of Section 3.  Consider the case
+$n=2$; clearly
+$$M = \{12, 1^*2^* \}$$
+is a greedy set.  An admissible function is one for which either $f(i)
+< f(j)$ for every unstarred $i$ and starred $j$ or $f(i) < f(j)$ for
+every starred $i$ and unstarred $j$.  As a simple example, let $f(1) =
+1; f(2) = 2; f(1^*) = 3; f(2^*) = 4$.  Then $f$ is admissible, and the
+greedy algorithm chooses $1^*2^*$ which has total weight 7 compared to
+the total weight 3 of $12$.  On the other hand the function $f(1) = 3;
+f(2) = 4; f(1^*) = 1; f(2^*) = 5$, is not admissible.  The greedy
+algorithm chooses $1^*2^*$ which has total weight 6, although $12$ has
+greater total weight 7.
+\end{example}
+
+\section{Roots and Polytopes} \label{tope}
+\setcounter{equation}{0}
+
+In light of Theorems~\ref{algtheorem1} and \ref{algtheorem2}, it is
+important to have an efficient method to determine whether a
+collection $L \subseteq P_k$ is a greedy set.  If $(P,\P)$ is such
+that $|P| = n$ and $\P$ consists of $N$ linear orderings of $P$, then
+$N$ may well be exponential as a function of $n$.  If $L$ is a
+collection of $k$-element subsets of $P$, then it will take no less
+than exponential time to check, using the definition, whether $L$ is a
+greedy set.  An alternative procedure is sought that is polynomial in
+$n$ and the cardinality of $L$.  In the matroid case, any one of many
+cryptomorphic definitions of matroid can be used to do this; that is
+one of the nice properties of matroids.  For ordinary and symplectic
+matroids, the associated matroid polytope \cite{SVZ1} furnishes an
+efficient procedure to determine whether a set is greedy.  For the
+general case, we have the geometric approach of Theorem~\ref{root} and
+the remarks that follow it.
+
+Because of Theorem~\ref{linear}, it will be assumed throughout this
+section that $P = [n]$ and $\P$ contains only linear orders.  Each
+linear order $\prec$ in $\P$ can be denoted by the permutation $\pi$
+for which $\pi(1) \, \prec \, \pi(2) \, \prec \, \dots \, \prec \,
+\pi(n)$.  Given the pair $(P, \P)$, we will associate a polytope
+$\Delta (L)$ to each subset $L \subseteq P_k$ as follows.  Let $\bf
+{\epsilon}_1, \ldots, {\bf \epsilon}_n$ be the canonical orthonormal
+basis for $n$-dimensional Euclidean space $\R^n$.  For any $k$-element
+subset $A$ of $P$, set
+$$
+{\bf \delta}_A = \sum_{i \in A} {\bf \epsilon}_i. \eqno(1)
+$$
+Let $\Delta(L)$ be the convex hull of the points $\{{\bf \delta}_A \,|
+\, A \in L\}$.  Notice that $\Delta (L)$ lies in the (n-1)-dimensional
+hyperplane in $\R^n$ with equation $\sum_{i=1}^n x_i = k$.  \B
+
+A vector ${\bf v} = (x_1,x_2, \dots, x_n) \in \R^n$ will be called
+$\pi$-{\it admissible} for $(P,\P)$ if $0 \, < \, x_{\pi 1} \, < \,
+x_{\pi 2} \, < \, \dots \, < \, x_{\pi n}$.  A vector that is
+$\pi$-admissible for some $\pi \in \P$ will simply be called {\it
+admissible}.
+
+\begin{theorem} \label{adm} A subset $L \subseteq \P_k$ is a rank $k$
+greedy set for $(P,\P)$ if and only if, for each admissible vector
+${\bf v}$, the linear function $f_{\bf v}({\bf x}) = \langle {\bf x},
+{\bf v} \rangle$ attains a maximum on $\Delta(L)$ at a unique vertex.
+\end{theorem}
+
+\proof If ${\bf v} = (x_1, \dots , x_n)$, then
+$$f_{{\bf v}}(\delta_A) = \sum_{i \in A} x_i.$$
+Notice that, for $A,B \in P_k$ and $\pi \in \P$, we have, by
+Proposition~\ref{weight} and the remark following it, that $A \, \prec
+\, B$ in the $\pi$-Gale order if and only if $f(A) < f(B)$ for all
+positive weight functions $f$ compatible with $\prec_{\pi}$.  This
+is equivalent to $\sum_{i\in A} f(i) < \sum_{i\in B} f(i)$ for all
+positive weight function such that $0 < f(\pi 1) < f(\pi 2) < \cdots
+< f(\pi n)$.  But this, in turn, is the same as
+$f_{{\bf v}}(\delta_A) = \sum_{i \in A} x_i = \sum_{i \in B} x_i =
+f_{{\bf v}}(\delta_B)$ for all $\pi$-admissible vectors ${\bf v}$.
+Thus the linear function $f_{\bf v}({\bf x}) = \langle {\bf
+x}, {\bf v} \rangle$ attains a maximum on $\Delta(L)$ at a unique
+vertex for each admissible vector ${\bf v}$ if and only if there is a
+unique $\pi$-Gale maximum in $L$ for each $\pi \in \P$.  But the
+latter condition is the definition of greedy set. \qed \B
+
+Define a {\it root} of $(P, \P)$ as a vector ${\bf r} = \pm (x_1,x_2,\dots
+,x_n)$ that satisfies the following properties.
+\begin{enumerate}
+\item $x_i = 0, 1$ or $-1$ for all $i$,
+\item $\sum_{i=1}^n x_i = 0$, and
+\item $\sum_{i=1}^m x_{\pi i} \geq 0$ for every $\pi \in \P$ and for
+each $m = 1, \dots, n$.
+\end{enumerate}
+
+In particular, note that $\epsilon_i-\epsilon_j$ is a root of any pair
+$(P, \P)$ for all $i\neq  j$.  Our definition  of root of $(P, \P)$ is
+meant as a  generalization of the root system  of a Coxeter group.  In
+the group case, we refer  to a root of $(P,  \P(G))$ as a root of $G$.
+The group acts on the  set of roots, as well as  on the set of
+admissible  vectors.  The roots in the  following examples are easy to
+compute.  \B
+
+\begin{example}  For either the symmetric group $S_n$ or the
+alternating group $A_n$ acting on $[n]$, the roots are $R = \{
+\epsilon_i-\epsilon_j \,| \, i\neq j \}$.
+\end{example}
+\B
+
+\begin{example}  For the cyclic group $Z_n$ of Example~\ref{cyc}
+acting on $[n]$, the roots are $\{ \pm \sum_{j=1}^{2m} (-1)^j
+\epsilon_{i_j} \}$, where $i_1 < i_1 < \cdots < i_{2m}$.  In other
+words, $+1$ and $-1$ alternate in the vector ${\bf r}$.  For
+example, with $n=5$, the vector $(1, 0, -1, 1, -1)$ is a root while
+$(1, -1, 0, -1, 1)$ is not.
+\end{example}
+\B
+
+\begin{example}  For the symplectic group $B_n$ of Example~\ref{sympg}
+acting on $[n] \cup [n]^*$ the roots are $R \cup \{\epsilon_i +
+\epsilon_j - \epsilon_{i^*} + \epsilon_{j^*} \, | \, i\neq j, j^* \}$.
+For example, for $n=3$, the vector $(1, -1, 0, 0, 1, -1)$ is a root.
+\end{example}
+\B
+
+\begin{example}  For the bipartite group of Example~\ref{bipart}
+acting on $[n] \cup [n]^*$, let $\epsilon = \epsilon_1 + \cdots +
+\epsilon_n$ and $\epsilon ^* = \epsilon_{1^*} + \cdots +
+\epsilon_{n^*}$.  The roots are $R \cup \{\epsilon, \epsilon ^* \} $.
+\end{example}
+\B
+
+\begin{lemma} \label{lem}  Let ${\bf r}$ be a vector satisfying conditions
+(1) and (2) in the definition of root.  Then ${\bf r}$ is a root if
+and only if ${\bf r}^{\perp}$ contains no admissible vector.
+\end{lemma}
+
+\proof Assume that ${\bf r} = (y_1, \dots ,y_n)$ is orthogonal to some
+admissible vector ${\bf v} = (x_1, \dots ,x_n)$.  Since ${\bf v}$ is
+admissible, there is a $\pi \in \P$ such that $0 \, < \, x_{\pi 1} \,
+< \, x_{\pi 2} \, < \, \dots \, < \, x_{\pi n}$.  We have
+$\sum_{i=1}^n x_{\pi i} y_{\pi i} = \sum_{i=1}^n x_i y_i = 0$.  Let $A
+= \{ i \, | \, y_{\pi i} = +1\}$ and $B = \{ i \, | \, y_{\pi i} =
+-1\}$.  Then $\sum_{i\in A} x_{\pi i} = \sum_{i\in B} x_{\pi i}$.
+Assume, by way of contradiction, that ${\bf r}$ is a root.  Condition
+(3) in the definition of root implies (without loss of generality)
+that there is a bijection $\phi$ from $A$ onto $B$ so that $\phi(i) >
+i$.  But this implies that $\sum_{i\in A} x_{\pi i} < \sum_{i\in B}
+x_{\pi i}$, a contradiction.
+
+Conversely, assume that ${\bf r} = (y_1, \dots ,y_n)$ is not a root.
+We use the same notation $A$ and $B$ as above.  Without loss of
+generality we can ignore the 0 entries in ${\bf r}$ and assume that $A
+\cup B = [n]$ and that $1 \in A$.  Define a bijection $\phi$ from $A$
+to $B$ recursively as follows.  Let $\phi(1)$ be the least element of
+$B$.  Having defined $\phi(i)$ for $i < j$, define
+$\phi(j)$ as the least element of $B$ not already in the image of
+$\phi$.  Let $C = \{ i\in A \, | \, \phi(i) > i\} \cup \{ \phi(i) \in B \, |
+\,  \phi(i) > i\}$ and $D = \{ i\in A \, | \, \phi(i) < i\}
+\cup \{ \phi(i) \in B \, |  \, \phi(i) < i\}$.  Since ${\bf r}$ is
+not a root, $C$ and $D$ are nonempty.  An admissible vector ${\bf v} =
+(x_1, \dots ,x_n)$ can now be chosen so that $\sum_{i\in C} x_iy_i$
+and $\sum_{i\in D} x_iy_i$ take arbitrary positive and negative values,
+respectively.  In particular, an admissible vector ${\bf v}$ can be chosen so
+that $\langle {\bf r}, {\bf v} \rangle = \sum_{i\in C\cup D} x_iy_i = 0$.
+\qed \B
+
+\begin{theorem} \label{root}  Let $\P$ be a collection of linear orderings
+of a finite set $P$ and let $L \subseteq \P_k$.  If every edge of $\Delta
+(L)$ is parallel to a root, then $L$ is a greedy set for $(P,\P)$.
+\end{theorem}
+
+\proof Assume that $L$ is not a greedy set.  By Theorem~\ref{adm}
+there exists an admissible vector ${\bf v} = (x_1, \dots,
+x_n)$ such that the linear function $f_{\bf v}$ achieves its maximum on at
+least two vertices of $\Delta (L)$.  Since $\Delta (L)$ is convex,
+$f_{\bf v}$ achieves its maximum on some edge ${\bf e}$ of $\Delta
+(L)$.  Therefore $\langle {\bf e}, {\bf v} \rangle = 0$.  By
+Lemma~\ref{lem}, ${\bf e}$ is not parallel to a root.  \qed \B
+
+Unfortunately the converse of Theorem~\ref{root} is, in general,
+false.  There exist greedy sets $L$ for which the polytope $\Delta
+(L)$ has non-root edges.  As an example, consider the cyclic group
+$Z_5$ acting on the poset $[5] = \{ 1,2,3,4,5\}$.  This is the group
+case $n=5$ in Example~\ref{cyc}.  If
+$$L = \{ 12, 23, 34, 15, 35 \},$$ then $L$ is a greedy set:  The
+(Gale) maximum is 35 for the order 12345; 15 for the order 23451; 12
+for the order 34512; 23 for the order 45123; and 34 for the order
+51234.  It is easy to check that the segment joining $\delta_{12}$ and
+$\delta_{34}$ is an edge ${\bf e}$ of $\Delta(L)$ but that ${\bf e} =
+(1,1,-1,-1,0)$ is not a root because condition (3) in the definition
+fails.  \B
+
+Recall from Section 3 that in the group case it is
+natural to require that $L$ be contained in a single orbit $Q_k \subseteq
+P_k$ under the action of $G$.  This is, however, not the case in the
+above example; $L$ is not contained in a single orbit of $P_2$ under
+the action of $Z_5$.  This motivates the following question.
+\B
+
+\begin{question} \label{ques} Let $G$ is a permutation group acting
+on $P$, and let $Q_k$ be an orbit of $G$ acting on $P_k$.
+Is it true that $L \subseteq \Q_k$ is a rank $k$ greedy set for $(P,
+\P(G))$ if and only if every edge of $\Delta (L)$ is parallel to a
+root of $G$?
+\end{question}
+\B
+
+In certain cases the question can be answered in the affirmative.  An
+edge of a polytope $\Delta$ in $\R^n$ will be called {\it supporting}
+if it is contained in a supporting hyperplane of $\Delta$ that is
+orthogonal to an admissible vector.  According to Lemma~\ref{lem}, an
+edge not parallel to a root must be orthogonal to some admisssible
+vector; so it is possible for such an edge to be supporting.  On the
+other hand, an edge that is parallel to a root cannot be supporting.
+A set $L \subseteq P_k$  is called {\it supporting} if each edge
+of $\Delta(L)$ is either supporting or parallel to a root.
+
+\begin{theorem}  Let $\P$ be a collection of linear orderings
+of a finite set $P$.  Assume that $L \subseteq P_k$ is supporting.
+Then $L$ is a greedy set for $(P,\P)$ if and only if every edge of
+$\Delta (L)$ is parallel to a root.
+\end{theorem}
+
+\proof In one direction the statement follows directly from
+Theorem~\ref{root}.  Conversely, assume that some edge ${\bf e}$ of
+$\Delta (L)$ is not parallel to a root.  Because $L$ is
+supporting, there is an admissible vector ${\bf v}$ such that
+${\bf e}$ is contained in a supporting hyperplane of $\Delta (L)$ that is
+orthogonal to ${\bf v}$.  This implies that the linear function
+$f_{\bf v}({\bf x}) = \langle {\bf x}, {\bf v} \rangle$ attains a
+maximum at both endpoints of the edge ${\bf e}$.  By Theorem~\ref{adm},
+$L$ is not a greedy set.  \qed \B
+
+Let $G$ be a permutation group acting on $P$, and let $Q_k$ be an orbit under the induced
+action of $G$ on $P_k$.  Sometimes it is the case that any  $L \subseteq Q_k$ is supporting.
+This is so, for example, if each vector determined by a point on the boundary of
+$\Delta (Q_k)$ is either admissible or orthogonal to a root.  It can be shown that
+this is the case for ordinary and symplectic matroids.
+In general, it is not the case that any  $L \subseteq Q_k$ is supporting.
+Again consider the cyclic group $Z_5$ acting on
+$[5]$.  If
+$$L = \{ 12, 23, 34, 51 \},$$
+then $L$ is a greedy set, but the edge ${\bf e} = (1,1,-1,-1,0)$
+joining $\delta_{12}$ and $\delta_{34}$ in $\Delta (L)$ is not a root
+and is not supporting.  For ${\bf e}$ to be supporting, there would
+have to exist an admissible vector ${\bf v} = (x_1, \dots,x_n)$ such
+that $x_1+x_2 = x_3+x_4$.  This would imply that either $x_2 < x_3 < x_4 <
+x_5 < x_1$ or $x_4 < x_5 < x_1 < x_2 < x_3$.  In the first case, the
+vertex $\delta_{51}$ lies outside the hyperplane containing ${\bf e}$;
+in the second case the vertex $\delta_{23}$ lies outside the hyperplane
+containing ${\bf e}$.  So there does not exist a supporting
+hyperplane of  $\Delta (L)$ containing ${\bf e}$.
+
+\begin{thebibliography}{9}
+
+\bibitem{BGW} A.\, Borovik, I.\, Gelfand and N.\, White,
+Symplectic matroids, preprint.
+
+\bibitem{bou} A.\, Bouchet, Greedy algorithm and symmetric matroids,
+Mathemataical Programming {\bf 38} (1987), 147--159.
+
+\bibitem{gale} D.\, Gale, Optimal assignments in an
+ordered set: an application of matroid theory, J. Combinatorial
+Theory {\bf 4} (1968), 1073-1082.
+
+\bibitem{GS1} I.\,  M.\, Gelfand and
+V.\, V.\, Serganova, On a general definition of a matroid and a
+greedoid, Soviet Math. Dokl., {\bf 35} (1987), 6-10.
+
+\bibitem{GS2} I.\, M.\, Gelfand and V.\, V.\, Serganova,
+Combinatorial geometries and torus strata on homogeneous compact
+manifolds, Russian Math. Surveys {\bf 42}  (198)7 133-168.
+
+\bibitem{lawler} E.\,Lawler, {\em Combinatorial Optimization, Networks
+and Matroids}, Holt, Rinehart and Winston, New York (1976).
+
+\bibitem{pap} C.\,H.\ Papadimitriou and K.\,Steiglitz, {\em
+Combinatorial Optimization - Algorithms and Complexity}, Prentice-Hall,
+Inc. Holt, Englewood Cliffs, New Jersey (1982).
+
+\bibitem{SVZ1} V. \,V.\, Serganova, A.\, Vince and A.\, Zelevinsky,
+A geometric characterization of Coxeter matroids,
+Annals of Combinatorics, to appear.
+
+\bibitem{SVZ2} V. \,V.\, Serganova, A.\, Vince and A.\, Zelevinsky,
+The greedy algorithm and Coxeter matroids, preprint.
+
+\end{thebibliography}
+
+\end{document}
+

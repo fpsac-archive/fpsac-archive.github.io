@@ -1,0 +1,915 @@
+\documentstyle[fullpage,12pt]{article}
+\pagestyle{empty}
+
+\textwidth15.6truecm
+\textheight22.8truecm
+\hoffset-1.43truecm
+\voffset-2truecm
+%\newcommand {\complex} {{\mathbb C}}
+\newcommand {\ord}{\mathop{\rm ord}}
+\newcommand {\lc}{\mathop{\rm lc}}
+%\newcommand {\gcd}{\mathop{\rm gcd}}
+\newcommand {\rGCD}{\mathop{\rm GCD}}
+\newcommand {\qed}{\hfill$\Box$\par\medskip}
+\newcommand {\cS} {{\cal S}}
+%\newcommand {\cA} {{\cal A}}
+\newcommand {\cR} {{\cal R}}
+%\newcommand {\cCO} {{\cal C}_{0}}
+\newcommand {\cC} {{\cal C}}
+%\newcommand {\cM} {{\cal M}}
+%\newcommand {\cI} {{\cal I}}
+%\newcommand {\cI} {{\rm In}}
+%\newcommand {\cU} {{\cal U}}
+%\newcommand {\cV} {{\cal V}}
+\newcommand {\rodtp} {\complex [D,x]}
+\newcommand {\rodcp} {\complex [E,E^{-1},n]}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Proposition}
+\newtheorem{Lemma}{Lemma}
+\newtheorem{Example}{Example}
+\newtheorem{Corollary}{Corollary}
+\def\o{\circ}
+\def\complex{\hbox{C\kern -.58em {\raise .54ex \hbox{$\scriptscriptstyle |$}}
+  \kern-.55em {\raise .53ex \hbox{$\scriptscriptstyle |$}} }}
+
+
+\title{\Large\bf Solutions of linear differential equations
+in the class of sparse power series}
+\author{\large\sl Sergei A. Abramov\thanks{Supported in part by
+the RFBR and INTAS under Grant 95-IN-RU-412. } \\
+\normalsize Computer Center of the Russian Academy of Science\\
+\normalsize  Vavilova 40, Moscow 117967, Russia\\
+\normalsize abramov@ccas.ru,
+\normalsize sabramov@cs.msu.su
+}
+
+\date{}
+\begin{document}
+\maketitle
+
+\begin{center}
+\large\bf Abstract
+\end{center}
+
+We introduce the notion of the $m$-sparse power series
+(e.g. expanding $\sin x$ and $\cos x$ at $x=0$ gives
+2-sparse power series: a coefficient $a_n$ of the series
+can be nonzero only if $remainder(n,2)$ is equal to a
+fixed number). Then we consider the problem of finding all
+$m$-points of a linear ordinary differential equation
+$Ly=0$ with polynomial coefficients (i.e. the points
+at which the equation has a solution in the form of an
+$m$-sparse series). It is easy to find an upper bound for $m$.
+We prove that if $m$ is fixed then either there exists a finite
+number of $m$-points and all of them can be found or all points
+are $m$-points and $L$ can be factored $L=L_1 \circ C$ where $C$
+is an operator of a special kind with constant coefficients.
+Additionally we formulate simple necessary and sufficient
+conditions for the existence of $m$-points for an irreducible $L$.
+
+Combining the algorithms described in the paper with
+Petkov\v sek-Salvy's algorithm we find all $m$-sparse
+$m$-hypergeometric solutions of the equation $Ly=0$.
+
+\begin{center}
+\large\bf R\'esum\'e
+\end{center}
+
+On introduit la notion de s\'erie de puissances
+$m$-creuse. (Les d\'ev\'elop\-pe\-ments
+de $\sin x$ et de $\cos x$ autour de $x=0$ sont des exemples
+de s\'eries $2$-creuses:
+on demande que le coefficient $a_n$ de la s\'erie
+soit non-nul seulement si $n$ appartient \`a une classe
+fix\'ee de residus modulo 2).
+On consid\`ere le probl\`eme de d\'eterminer
+tous les $m$-points d'une \'equation diff\'erentielle
+lin\'eaire $L y = 0$ \`a coefficients polynomiaux
+(i.e. les points o\`u l'\'equation admet une solution
+sous forme $m$-creuse).
+Il est facile de trouver une borne sup\'erieure pour $m$.
+Pour $m$ fix\'e on d\'emontre qu'ou bien il existe un
+nombre fini de $m$-points et on peut les d\'eterminer,
+ou bien tous les points sont des $m$-points et $L$ peut
+se factoriser en $L = L_1 \circ C$ o\`u $C$ est un
+op\'erateur d'un type particulier \`a coefficients
+constants.
+En plus, on donne des crit\`eres n\'ecessaires
+et suffisants  simplespour l'existence de $m$-points lorsque
+l'op\'erateur $L$ est irr\'eductible.
+
+En combinaisant les algorithmes de cet article avec
+l'algorithme de Petkov\v sek-Salvy on peut obtenir
+toutes les solutions $m$-creuses et $m$-hyperg\'eom\'etriques
+de l'\'equation $L y = 0$.
+
+
+\section{$m$-Sparse sequences and series}
+Let ${\cal C}$ be the set of infinite sequences $(c_0,c_1,\dots) \in
+\complex^\infty$,
+${\cal S}$ be the set of formal power series $c_0+c_1x+\dots$ with
+$(c_0,c_1,\dots) \in {\cal C}$ and $m$ be an integer $\ge 2$.
+Call $c=(c_0,c_1,\dots)\in {\cal C}$ an $m$-{\em sparse}
+sequence if  there exists an integer $N$ such that
+\begin{equation}
+\label{one}
+(c_n \neq 0) \Rightarrow (n = N \pmod{m}).
+\end{equation}
+
+Denote by ${\cal C}^{(m)}$ (resp. ${\cal S}^{(m)}$) the set of all $m$-sparse
+elements of ${\cal C}$  (resp. the set of all elements of ${\cal S}$,
+whose sequences of coefficients are in ${\cal C}^{(m)}$).
+
+\noindent {\bf Example 1}
+The series $x+x^4+x^7+\dots+x^{3n+1}+\dots$ is 3-sparse, i.e. belongs
+to ${\cal S}^{(3)}$ with $N=1$.
+
+It is obvious that
+$$
+(m_1 | m_2 )\Rightarrow ( {\cal C}^{(m_2)} \subset {\cal C}^{(m_1)},
+{\cal S}^{(m_2)} \subset {\cal S}^{(m_1)} ).
+$$
+
+Consider a linear ordinary differential equation $Ly=0$ with
+\begin{equation}
+\label{two}
+L=p_r(x) D^r + \dots + p_1(x) D + p_0(x),
+\end{equation}
+$p_0(x),\dots,p_r(x) \in \complex[x]$, $p_r(x) \ne 0$. Our goal is to find
+all  $a \in \complex$ and formal power series solutions
+\begin{equation}
+\label{three}
+y_a(x)=\sum_{n=0}^\infty c_n(x-a)^n
+\end{equation}
+such that
+\begin{equation}
+\label{four}
+Ly_a(x) = 0
+\end{equation}
+and $(c_0,c_1,\dots)\in {\cal C}^{(m)}$. Observe that $y_a(x)$
+satisfies~(\ref{four}) iff
+$$
+y(x)=\sum_{n=0}^\infty c_n x^n
+$$
+satisfies $L^ay(x)=0$ where
+\begin{equation}
+\label{five}
+L^a=p_r(x+a)D^r+\dots+p_1(x+a)D+p_0(x+a).
+\end{equation}
+
+We will consider the problem of finding $m$ and $a$ such that
+the equation $L^ay=0$ has a solution in ${\cal S}^{(m)}$.
+
+\section{m-Points}
+It is well known that the power series coefficients of a solution
+of a linear differential equation with polynomial coefficients
+satisfy a linear recurrence (a difference equation) $Rc=0$
+with polynomial coefficients:
+\begin{equation}
+\label{six}
+q_d(n)c_{n+d}+\dots+q_l(n)c_{n+l}=0,
+\end{equation}
+$$
+d>...>l;\; q_l(n),\dots,q_d(n) \in \complex[n];\; q_d(n),q_l(n)\ne 0.
+$$
+The operator $R$ which is equal to
+\begin{equation}
+\label{seven}
+q_d(n)E^d+\cdots+q_l(n)E^l
+\end{equation}
+is the ${\cal R}$-image of $L$ where ${\cal R}$ is the isomorphism of
+$\complex[D,x,x^{-1}]$ onto \complex$[E,E^{-1},n]$:
+\begin{equation}
+\label{eight}
+{\cal R}D=(n+1)E,\; {\cal R}x = E^{-1},\; {\cal R}x^{-1} = E ;
+\end{equation}
+resp.
+$$
+{\cal R}^{-1}E=x^{-1},\; {\cal R}^{-1}E^{-1}=x, \;{\cal R}^{-1}n = xD
+$$
+(see \cite{APR}). Note that it is possible
+$l<0$ in~(\ref{six}),(\ref{seven}).
+For $R$ of the form~(\ref{seven}) we denote $\omega (R)=d-l$.
+If the coefficient of $x^i$ in the polynomial $p_j(x)$
+is not equal to zero then we write $x^iD^j \in L$.
+It is easy to check that if $L$ is of the form~(\ref{two})
+and $R={\cal R}L$ then
+\begin{equation}
+\label{23}
+d=\max_{x^iD^j\in L} \{j-i\},\; l=\min_{x^iD^j\in L} \{j-i\} ;
+\end{equation}
+and therefore $\omega (R)$ is equal to
+\begin{equation}
+\label{nine}
+\max_{x^iD^j\in L} \{j-i\}- \min_{x^iD^j\in L} \{j-i\}.
+\end{equation}
+
+Let us define finite $m$-sparse objects as well.
+Let $(d_s,d_{s+1},\dots,d_t)$ be an ordered finite set of elements of a ring.
+Call this set $m$-sparse if there exists $N$ such that
+$$
+(d_j \neq 0) \Rightarrow (j = N \pmod{m})
+$$
+for $j=s,s+1,\dots,t$. Call operators of the form~(\ref{two})
+and~(\ref{seven}) as well as the corresponding equations  $m$-sparse
+if the sets
+$$
+(p_0(x),\dots,p_r(x))
+$$
+and
+$$
+(q_l(n),\dots,q_d(n))
+$$
+are $m$-sparse.
+
+Let $c=(c_0,c_1,\dots)\in{\cal C}$. Denote by $(c,x)$ the formal series
+$c_0+c_1x+\dots$ and by $(c)_{\geq k}$ the sequence
+$(c_k,c_{k+1},...)\in \cC$ with $c_k=c_{k+1}=\cdots =c_{-1}=0$ if
+$k<0$. It can be shown that if $R=\cR L$ and $R$ has the form
+(\ref{seven}) then
+%extended by the elements \begin{equation} \label{ten} c_n=0,
+%n=-1,-2,\dots \end{equation} It is well known that
+\begin{equation}
+\label{eleven}
+L(c,x)=0 \Leftrightarrow R(c)_{\geq l}=0.
+\end{equation}
+Let $R$ be of the form (\ref{seven}) and
+$r_0$ be the maximal nonnegative integer root of $q_d(n)$ if such
+roots exist, and $-1$ otherwise. Set
+$$\iota ^* (R)= d+r_0.$$
+If $L \in \rodtp$ and $R= \cR L$, then we set
+$\iota ^*(L)= \iota ^*(R)$.
+For any $(c_0,c_1,...)\in \cC$ such that $L(c,x)=0$ the values
+$c_0,...,c_{\iota ^*(L)}$ let one compute (by means of $\cR L$) the
+values $c_{\iota ^*(L)+1}, c_{\iota ^*(L)+2},...$
+(these
+$c_{\iota ^*(L)+1}, c_{\iota ^*(L)+2},...$
+are uniquely determined  because the leading
+coefficient of the recurrence $\cR L$ does not vanish when we
+compute $c_n$ with $n>\iota ^*(L)$).
+
+We can prove the following
+lemma on the possible values of $m$.
+
+\begin{Lemma}
+\label{valm}
+Let $L$ be of the form (\ref{two}). Let $R= \cR L$ and
+$Ly=0$ have a non-polynomial solution $f(x)=c_0+c_1x+\cdots \in
+\cS ^{(m)}$.  Then $m\leq \omega (R)$.
+\end{Lemma}
+{\em Proof:\/} If $m> \omega (R)$ then
+there is  $k>\max \{\omega (R), \iota ^* (R)\}$ such
+that $c_k=\cdots=c_{k+m-1}=0$. But then $c_n=0$ for all $n\ge k$, i.e.
+$f(x)\in \complex [x]$. Contradiction. \qed
+
+
+{}From now on we will deal only with non-polynomial solutions.
+Polynomial solutions
+can be found by the algorithm described in \cite{ABP}. Furthermore
+we will suppose that $L$ is of the form~(\ref{two}), $R={\cal R}L$
+is of the form~(\ref{seven}) and $m$ is a fixed integer such that
+\begin{equation}
+\label{twelve}
+2\le m\le \omega (R).
+\end{equation}
+
+{}First we discuss the existence in ${\cal S}^{(m)}$
+solutions of $Ly=0$
+(i.e. $L^0y=0$). In Section 3 we will consider the search for all $a$
+such that the equation $L^ay=0$ has solutions in ${\cal S}^{(m)}$.
+%First we prove a preliminary lemma connected with the simplest case.
+%
+%\begin{Lemma}
+%\label{nonsing}
+%Let $R$ be an $m$-sparse recurrence and 0 be a non-singular point of
+%$Ly=0$ (i.e. $p_r(0) \ne 0$). Then the equation $Ly=0$ has $r=\ord
+%L$ linearly independent solutions in ${\cal S}^{(m)}$.  \end{Lemma}
+%{\em Proof:\/}
+%At a non-singular point, any $r$ initial
+%coefficients $c_0,\dots,c_{r-1}$ determine
+%a series which satisfies the equation $Ly=0$.
+%Obviously, it is possible to construct such a basis for the space
+%of vectors $(c_0,\dots,c_{r-1})\in \complex^r$ which contains only
+%$m$-sparse vectors. For example, we can take the vectors
+%$$(1,0,...,0),(0,1,...,0),...,(0,0,...,1).$$
+%If $l<0$ in $R$ then extend
+%every vector of the basis by elements $c_{-1}=0,\dots,c_{l}=0$. All
+%the extended vectors are $m$-sparse.  Applying $m$-sparse recurrence
+%to an $m$-sparse vector of initial elements, we obtain an infinite
+%$m$-sparse sequence. \qed
+
+Going back to $R$ of the form~(\ref{seven}), denote
+$$
+q_{ij}(n) = \left\{
+           \begin{array}{ll}
+                   q_{j}(n) & \mbox{if } j = i+l \pmod{m}\\
+                   0        & \mbox{otherwise},
+           \end{array}
+              \right.
+$$
+$i=0,\dots,m-1$; $j=l,\dots,d$ and
+$$
+R_j = q_{id}(n)E^d+q_{i,d-1}(n)E^{d-1}+\dots+q_{il}(n)E^l,
+$$
+$i=0,\dots,m-1$ (it is not guaranteed that $q_{id}(n)$ and
+$q_{il}(n)$ are nonzero polynomials). Call the set of operators
+$$
+R_0,\dots,R_{m-1}
+$$
+the $m$-{\em splitting} of the operator $R$. It is easy to see that
+$R_0+\dots+R_{m-1}=R$.
+
+\begin{Lemma}
+\label{mspl}
+Let $R$ be of the form (\ref{seven}) and
+$R_0,...,R_{m-1}$ be the $m$-splitting of $R$. Let
+$c\in {\cal C}^{(m)}$. Then
+\begin{equation}
+\label{13}
+(R(c)_{\geq l}=0) \Leftrightarrow (R_i(c)_{\geq l}=0, i=0,\dots,m-1).
+\end{equation}
+\end{Lemma}
+{\em Proof:\/}
+a direct check. \qed
+
+The lemma lets one write down a necessary condition for the existence
+in ${\cal S}^{(m)}$ of solutions of $Ly=0$.
+
+\begin{Theorem}
+Let $R_0,...,R_{m-1}$ be the $m$-splitting of $R$. Let $Ly=0$ have
+a solution in ${\cal S}^{(m)}$. Then the right greatest common divisor
+($\rGCD$) of the operators $R_0,...,R_{m-1}$ has the positive
+$\omega$:
+\begin{equation}
+\label{14}
+\omega ( \rGCD(R_0,...,R_{m-1}))\ge 1.
+\end{equation}
+(We suppose as usual that $R$ has the form
+(\ref{seven}) and that $l$ is the lowest exponent of $E$ in
+$\rGCD(R_0,...,R_{m-1})$.)
+\end{Theorem}
+{\em Proof:\/}
+Due to~(\ref{eleven}) and Lemma \ref{mspl}.\qed
+
+The operator $V=\rGCD(R_0,...,R_{m-1})$ can be found by the (right)
+Euclidean algorithm. If we apply the algorithm to $m$-sparse
+operators then we obviously obtain again an $m$-sparse operator.
+Hence, $V$ is an $m$-sparse operator. Coefficients of $V$ are in $\complex(n)$.
+Let $\omega (V)\geq 1$.
+For some $w(n)\in \complex [n]$ holds
+$$w(n)R=Q\o W,$$
+where $Q,W\in \complex [n,E],W$ is $m$-sparse and $\omega (W)=\omega
+(V) \geq 1$.
+
+It is useful to define  $\iota _*$ which will work together
+with $\iota ^*$.
+Let $R$ be of the form (\ref{seven}).
+Let $r_1$ be the maximal nonnegative integer root of $q_l(n)$ if
+such roots exist, and $-1$ otherwise. Set
+$$\iota _* (R)= \max \{l+r_1,-1\}.$$
+Let $L \in \rodtp$ and $R= \cR L$, then we set
+$\iota _*(L)= \iota _*(R)$.
+For any $(c_0,c_1,...)$ such that $L(c,x)=0$ the values
+$c_k,c_{k+1},...$ with $k>\iota _*(L)+1$
+let one compute (by means of $\cR L$) the
+values $c_{\iota _*(L)+1}, c_{\iota _*(L)+2},...,c_{k-1}$
+(these
+$c_{\iota _*(L)+1}, c_{\iota _*(L)+2},...,c_{k-1}$
+are uniquely determined  because the lowest
+coefficient of the recurrence $\cR L$ does not vanish when we
+compute $c_n$ with $n>\iota _*(L)$).
+
+Set
+$$u=\max \{\iota _* (W),\; \iota _*(w(n)R),\;
+\iota ^*(W),\;\iota ^*(w(n)R)\},$$
+$$v=u+\omega (R)-1.$$
+%Let non-negative integer $v$ be greater than
+%\begin{itemize}
+%\item $\ord R$,
+%\item all integer roots of the leading coefficient of $R$,
+%\item all integer roots of the numerator of the leading coefficient
+%of $V$, \item all integer poles of coefficients of $V$.
+%\end{itemize}
+
+Using an algorithm proposed in~\cite{ABP} we can find a basis for the
+space ${\cal B}$ of vectors $(c_0,...,c_v)\in \complex^{v+1}$ such that
+an infinite sequence $c=(c_0,c_1,...)\in {\cal C}$ satisfies the equality
+$R(c)_{\geq l}=0$ iff $(c_0,...,c_v)\in {\cal B}$
+and all elements $c_n$ with $n>v$ are calculated using the recurrence
+$Rc=0$. After a basis $d_0,...,d_w$, $w\le v$ for ${\cal B}$ is found
+one can check (a linear problem) whether there exist
+$\alpha_0,...,\alpha_w \in \complex$, such that $\alpha_0d_0+...+\alpha_w d_w$
+is an $m$-sparse vector whose the last $\omega (R)-1$ components
+satisfy recurrence $Wc=0$. If such $\alpha_0,...,\alpha_w$
+exist then we can extend the corresponding initial values using the
+recurrence $Wc=0$. It will give us an infinite
+$m$-sparse sequence $c$ which satisfies $R(c)_{\geq l}=0$.
+
+Later we will need the following theorem
+\begin{Theorem}
+Let L have the form (\ref{two}) and $R=\cR L$ have the form
+(\ref{seven}).
+Let $R_0,...,R_{m-1}$ be the $m$-splitting of $R$. Let
+$L_i={\cal R}^{-1}R_i$, $i=0,...,m-1$.
+Let the equation $Ly=0$ have a solution
+in ${\cal S}^{(m)}$. Then
+\begin{equation}
+\label{15}
+\ord \rGCD(L_0,...,L_{m-1}) \ge 1.
+\end{equation}
+\end{Theorem}
+{\em Proof:\/}
+Let $f(x)=c_0+c_1x+... \in {\cal S}^{(m)}$, $Lf=0$. Then
+$R(c)_{\geq l}=0$ where $c=(c_0,c_1,...)$. By Lemma 3 we have
+$R_i(c)_{\geq l}=0$, $i=0,...,m-1$.  By~(\ref{eleven}) we get
+$L_if=0$, $i=0,...,m-1$.\qed
+
+%Observe that this Theorem is true in the both cases: 0 is
+%an ordinary point and 0 is a singularity of $L$.
+
+Now the last remark of this Section. Suppose we know that
+for a fixed $m$ the equation $Ly=0$
+has a solution in ${\cal S}^{(m)}$. Then the next step could be,
+for example, the attempt to find an $m$-sparse series solution which is
+at the same time $m$-{\em hypergeometric}~\cite{PS}
+(a power series is $m$-hypergeometric if
+its sequence of coefficients $(c_0,c_1,...)$ is $m$-hypergeometric, i.e.
+$c_{n+m}=r(n)c_n$, $n=0,1,...$, for a rational function $r(n)$).
+Using an algorithm proposed in~\cite{PS} we can find all $m$-hypergeometric
+solutions of the recurrence $Vc=0$ and then answer the question about
+$m$-hypergeometric $m$-sparse solutions of the original differential
+equation.
+
+Note that the mentioned algorithm from \cite{PS} lets one
+find only primitive $m$-hy\-per\-ge\-omet\-ric solution of a
+recurrence (an $m$-hypergeometric sequence $(c_k,c_{k+1},...)$ is
+{\em primitive} if it satisfies no linear homogeneous recurrence with
+rational coefficients of order $<m$). But it is obvious that an
+$m$-sparse $m$-hypergeometric solution having $c_i\neq 0$ with
+arbitrary large $i$ is a primitive $m$-hypergeometric. Thus the
+algorithm from \cite{PS} is sufficient for our goal.
+
+If we are interested only in $m$-hypergeometric $m$-sparse
+series solutions then there is no necessity to compute
+$\rGCD(R_0,...,R_{m-1})$. We can find solutions in the form of
+$m$-hypergeometric elements of ${\cal S}$ and then select $m$-sparse
+ones from them.
+However the usage of~(\ref{14}),(\ref{15}) is convenient when we solve
+the problem of searching for the points $a$ at which there exist solutions of
+the form~(\ref{three}) with $(c_0,c_1,...)\in {\cal C}^{(m)}$. We will call
+these points the $m$-{\em points}.
+
+\section{The search for $m$-points}
+Let again $Ly=0$ be an equation with operator of the form~(\ref{two})
+and $m$ be a non-negative
+integer such that~(\ref{twelve}) is satisfied. We formulate the problem of
+the search
+for $m$-points as follows: to find all complex values of $a$ such that
+the equation
+$L^ay=0$, with $L^a$ of the form~(\ref{five}), has a solution in
+${\cal S}^{(m)}$.
+Consider the operator $L^a$ and the equation $L^ay=0$ regarding $a$ as an
+indeterminated parameter. Call them the {\em parametrized}
+operator and equation.
+We can also construct $R^a={\cal R}L^a$ and $R_i^a$, $i=0,...,m-1$
+(the $m$-splitting
+of $R^a$). Coefficients of the operators
+\begin{equation}
+\label{16}
+R^a,R_0^a,...,R_{m-1}^a
+\end{equation}
+are polynomials in $n$ over $\complex[a]$. We can construct the operators
+\begin{equation}
+\label{17}
+L_0^a={\cal R}^{-1}R_0^a,\;...,\;L_{m-1}^a={\cal R}^{-1}R_{m-1}^a.
+\end{equation}
+If $a_0$ is a value of the parameter $a$ then we can consider, on the one hand,
+$L^{a_0}$ and
+\begin{equation}
+\label{18}
+R^{a_0},R_0^{a_0},...,R_{m-1}^{a_0},
+\end{equation}
+and, on the other hand, the {\em specialization} of the operators~(\ref{16})
+for $a=a_0$:
+\begin{equation}
+\label{19}
+R^{a=a_0},R_0^{a=a_0},...,R_{m-1}^{a=a_0}
+\end{equation}
+as the result of the substitution $a_0$ in~(\ref{16}) for $a$. It will
+be shown below that operators~(\ref{18}) and~(\ref{19}) are equal.
+This equivalence leads to constructing a set including all $m$-points.
+We can gather together all $a_0$ such that
+\begin{equation}
+\label{20}
+\ord \rGCD(R_0^{a_0},...,R_{m-1}^{a_0}) \ge 1.
+\end{equation}
+Following similar ideas we can gather all $a_0$ such that
+\begin{equation}
+\label{21}
+\ord \rGCD(L_0^{a_0},...,L_{m-1}^{a_0}) \ge 1,
+\end{equation}
+where $L_i^{a_0}={\cal R}^{-1}R_i^{a_0}$, $i=0,...,m-1$. Observe
+that~(\ref{14}),
+(\ref{15}) are particular versions of~(\ref{20}),(\ref{21}) with $a_0=0$.
+
+It will be conveniently to
+consider (\ref{21}).
+Before proceeding further, we
+investigate the structure of the operators
+$L_0^a,...,L_{m-1}^a$. We consider initialy a specific property of
+the operators such that it is possible to give very similar proofs
+for the case $L,L_0,...,L_{m-1}$ and for the case
+$L^a,L_0^a,...,L_{m-1}^a$. We consider the first case for simplicity.
+Recall that $L$ has the form~(\ref{two}), $R={\cal R}L$ has the
+form~(\ref{six}).
+
+We denote by $p_{ji}$ the coefficient of $x^i$ in the
+polynomial $p_j(x)$.
+
+
+\begin{Theorem}
+Let $R_0,...,R_{m-1}$ be the
+$m$-splitting of $R$ and $L_t={\cal R}^{-1}R_t$, $t=0,...,m-1$. Then
+\begin{equation}
+\label{24}
+L_t=\sum_{{x^iD^j\in L}\atop{j-i-l = t\pmod{m}}} p_{ji}x^iD^j,
+\end{equation}
+$t=0,...,m-1$.
+\end{Theorem}
+{\em Proof:\/}
+Let $x^iD^j\in L$ then ${\cal R}(p_{ji}x^iD^j)$ gives a contribution
+only to one of operators $R_0,...,R_{m-1}$, say to $R_t$,
+\begin{equation}
+\label{25}
+j-i-l=t \pmod{m}.
+\end{equation}
+Since $L_t=\cR ^{-1}R_t$, all $p_{ji}x^iD^j$, $x^iD^j\in L$,
+are distributed among $L_0,...,L_{m-1}$ without any transformation
+(as among boxes). By~(\ref{25}) formula~(\ref{24}) is satisfied. \qed
+
+Remark that in the analogous proof of this Theorem for
+$L^a,L_0^a,...,L_{m-1}^a$ the corresponding $p_{ji}$ would be
+polynomial in $a$.
+
+\begin{Theorem}
+\label{trco}
+Let $R^a={\cal R}L^a$. Let as usual
+$L$ and $R$ have the form (\ref{two}) and, resp., (\ref{seven}). Let
+$R^a$ be
+\begin{equation}
+\label{26}
+g_{d'}(n,a)E^{d'}+\cdots +g_{l'}(n,a)E^{l'}.
+\end{equation}
+Then
+\begin{equation}
+\label{27}
+r=d' \ge d,\; l'=l,\; \deg_a g_{l'}(n,a)=0,
+\end{equation}
+i.e.~(\ref{26}) can be written as
+\begin{equation}
+\label{28}
+g_r(n,a)E^r+\sdots +g_{l+1}(n,a)E^{l+1}+g_{l}(n)E^l.
+\end{equation}
+For any value $a_0$ of the parameter $a$ we have
+\begin{equation}
+\label{29}
+{\cal
+R}L^{a_0}=g_r(n,a_0)E^r+\cdots +g_{l+1}(n,a_0)E^{l+1}+g_{l}(n)E^l.
+\end{equation}
+\end{Theorem}
+
+{\em Proof:\/} We prove $r=d'$ using (\ref{23}) and
+$x^0D^r\in L^a$.
+If $x^0D^r\in L$ then $r=d$ else $r>d$.
+The equality $\deg_a g_{l'}(n,a)=0$ (i.e. $\deg_a g_l(n,a)=0$) is a
+consequence of $\deg_a \lc_x p_j(x+a)=0$. The equality $l=l'$ is
+obvious. Finaly, (\ref{29}) is a consequence of the fact that
+$\cR$ is a ring-homomorphism. \qed
+\\
+\noindent {\bf Corollary} {\em (on the specialization).
+Operators ({\ref{18}) and ({\ref{19}) are identical}.
+\\
+
+Now we investigate $\rGCD (L_0^a,\ldots, L_{m-1}^a)$.
+
+\begin{Theorem}
+\label {vw}
+As usual let $L$ have the form~(\ref{two}) and for some $k$,
+$0\le k\le r$, $\deg p_k(x)$ be a positive integer $s$.
+Let $v$, $0\le v\le m-1$, be such that $x^sD^k \in L_v$. Then\\
+$(i)\;\; x^sD^k \in L_v^a$,\\
+%$(ii)\; L_v^{a_0} \ne 0$ for any $a_0$,\\
+$(ii)$ there exists $L_w^a$, $w\ne v$, such that $x^{s-1}D^k \in L_w^a$.
+
+\end{Theorem}
+{\em Proof:\/}
+Let $p_k(x)=p_{ks}x^s+p_{k,s-1}x^{s-1}+\cdots +p_{k0}$, $s>0$,
+$p_{k,s}\ne 0$.  Then
+$p_k(x+a)=p_{ks}x^s+(p_{ks}sa+p_{k,s-1})x^{s-1}+\cdots$ and
+({\em i}) is obvious. The polynomial in $a$
+$$p_{ks}sa+p_{k,s-1} $$
+is nonzero. Together with
+$$ k-s \ne k-s+1 \pmod m $$ is gives ({\em ii}).\qed
+
+Call a differential operator $L$ of the form (\ref{two}) {\em
+primitive} if
+\begin{equation}
+\label{gcd}
+\gcd (p_0(x),...,p_r(x))=1,
+\end{equation}
+where $\gcd $
+denotes the polynomial greatest common divisor. It easy to see that
+$L^a$ and $L^{a_0}$ are primitive iff $L$ is primitive.
+
+
+\begin{Theorem}
+\label{ncc}
+Let $L$ be a primitive operator of the form (\ref{two}).
+Let there exist at least one polynomial of the degree $\ge 1$
+among $p_0(x),...,p_r(x)$.
+Then
+$$
+\ord \rGCD(L_0^a,...,L_{m-1}^a)<r
+$$
+(we mean $\rGCD$ of the operators over
+{\rm $\complex (a)(x)$}).
+\end{Theorem}
+{\em Proof:\/}
+Since
+\begin{equation}
+\label{suma}
+L^a=L_0^a+\cdots L_{m-1}^a.
+\end{equation}
+we have
+$$\ord \rGCD (L_0^a,...,L_{m-1}^a)=
+\ord \rGCD (L_0^a,...,L_{m-1}^a,L^a) \leq
+\ord \rGCD (L_w^a,L^a),$$
+where $L_w^a$ is the operator described in Theorem 5. Thanks to
+
+a) $\ord L_w^a \leq \ord L^a$,
+
+b) $L^a$ is primitive,
+
+c) there exist $s,k$ such that $x^sD^k \in L^a$ and
+$x^{\tilde s}D^k \notin L_w^a$ for any ${\tilde s}\geqs$,\\
+we obtain $ \ord \rGCD (L_w^a,L^a)< \ord L^a$. \qed
+
+\begin{Lemma}
+\label{srss}
+Let $L$ and $R$ have the form (\ref{two}), (\ref{seven}) and
+$R=\cR L$. Let $R$ be an $m$-sparse and 0 be a non-singular point of $L$
+(i.e. $p_r(0) \ne 0$). Then the equation $Ly=0$ has $r=\ord L$
+linearly independent solutions in $\cS^{(m)}$.
+\end{Lemma}
+{\em Proof:\/}
+At a non-singular point, any $r$ initial
+coefficients $c_0,\dots,c_{r-1}$ determine
+a series which satisfies the equation $L(y)=0$.
+Obviously, it is possible to construct such a basis for the space
+of vectors $(c_0,\dots,c_{r-1})\in \complex ^r$ which contains only
+$m$-sparse vectors: we can take $c_i=\delta _{ij}$ in the $j$-th
+element of the basis, $j=0,...,r-1$. Let us  extend every element
+of the basis by elements $c_{-1}=0,\dots,c_l=0$. All the extended
+vectors are $m$-sparse.  Applying $m$-sparse recurrence to an
+$m$-sparse vector of initial elements, we obtain an infinite
+$m$-sparse sequence. \qed
+
+\begin{Lemma}
+\label{nsing}
+Let $Ly=0$ be a differential equation with constant coefficients.
+Then either $L=L_1\o L_2$ where $L_1,L_2$, have constant
+coefficients and $L_2$ is $m$-sparse (in such a case all points are
+$m$-points), or there are no $m$-points at all.
+\end{Lemma}
+{\em Proof:\/}
+It is obvious that if $L$ is an operator with constant
+coefficients then either every point is an $m$-point, or there is no
+$m$-point.  It is enough to investigate the point 0. It is easy to
+see that $L_0,...,L_{m-1}$ are $m$-sparse operators with constant
+coefficients. The operator $S=\rGCD(L_0,...,L_{m-1})$ is either a
+constant or an $m$-sparse operator with constant coefficients,
+$\ord S \ge 1$ (due to the Euclidean algorithm).  In the last case the
+difference operator ${\cal R}S$ is $m$-sparse.
+By Lemma \ref{srss} the point 0 will be
+an $m$-point of $Ly=0$.\qed
+
+Using the (right) Euclidean algorithm and, for instance, the
+differential resultant and subresultants \cite{Char91} we can
+construct a differential operator ${\bf S}_m(L)$ over
+$\complex [a,x]$ and a finite set ${\bf T}_m(L)\subset \complex$ (the
+set of {\em distinctive} values of the parameter $a$) such that  the
+substitution of any $a_0\notin {\bf T}_m(L)$ into ${\bf S}_m(L)$ for
+$a$ gives the operator $S^{a_0}= \rGCD(L_0^{a_0},...,L_{m-1}^{a_0})$
+with $\ord S^{a_0}=\ord {\bf S}_m(L)$.
+If $a_0\in {\bf T}_m(L)$ then either
+$ S^{a_0} \neq \rGCD(L_0^{a_0},...,L_{m-1}^{a_0})$
+or the leading coefficient of ${\bf S}_m(L)$ vanichs if $a=a_0$.
+If $L$ is irreducible then $\ord {\bf S}_m (L)=0$ due to
+(\ref{suma}).
+
+\begin{Theorem}
+\label{cfac}
+Let $L$ be a primitive
+differential operator. Then either the equation
+$Ly=0$ has only finite set of $m$-points or $L=L_1\o L_2$ where
+$L_2$ is an $m$-sparse operator with constant coefficients.
+\end{Theorem}
+{\em Proof:\/}
+Let $$S={\bf S}_m(L),\;T={\bf T}_m(L).$$
+If there exists only a finite set of
+$a_0$ which satisfy (\ref{21})
+(i.e. $\ord S=0$)
+then there is nothing to prove.
+Due to Theorem \ref{ncc}
+$\ord S =r$ iff $L$ is an $m$-sparse operator with constant
+coefficients. In such a case the theorem is true. Let
+\begin{equation}
+\label{30}
+1\le \ord S < r.
+\end{equation}
+Use induction on $r$.
+\begin{enumerate}
+\item $r=1$. The statement is true because~(\ref{30}) is not possible.
+\item $r>1$. Since $L^a=L_0^a+...+L_{m-1}^a$ then $L^a = U\circ S$,
+where $U$ is a differential operator with coefficients
+in $\complex (x,a)$.
+If
+$a_0 \notin  T$
+then by Corollary on the specialization we have that
+$\rGCD(L_0^{a_0},...,L_{m-1}^{a_0})$
+is equal to the operator $S^{a_0}$ which is the result of the
+substitution of $a_0$ in $S$ for $a$. It means that if the equation
+$L^{a_0}y=0$ has a solution in $\cS ^{(m)}$ then the equation
+$S^{a_0}y=0$ will have the same solution.  We can
+%clear denominators of the coefficients by multiplying the
+%equation by a polynomial $h(x)$ and then
+divide the equation by the polynomial $h(x)$ which is equal to gcd
+of the coefficients of the equation. We obtain the equation $S'y=0$,
+where $S'$ is a primitive operator
+with polynomial coefficients
+such that $\ord S'<r$.  By the inductive hypothesis the statement
+of the theorem is true for this last equation.  If the equation has a
+finite set of $m$-points $\{\alpha _0,\beta _0,...,\gamma _0\}$ then 
+due to $L^a$ is equal to (\ref{five}), all $m$-points of the original 
+equation are in
+\begin{equation}
+\label{31}
+T \cup \{\alpha _0-a_0,\beta _0-a_0,...,\gamma _0-a_0\}.
+\end{equation}
+In the case when $S'$ has a right $m$-sparse factor $C$ with constant
+coefficients (i.e. $S'=S''\o C$) the original operator $L$ has
+the same factor.  Indeed, denote by $U^{a_0}$ the result of the
+substitution of $a_0$ into $U$ for $a$. Then
+$$ L^{a_0}=U^{a_0}\o h \o S'= U^{a_0}\o
+h \o S''\o C, $$
+and $L^{a_0}=V\o C$, where $V$ is an operator with polynomial
+coefficients.  Let the substitution of $x-a_0$ for $x$ into $V$ gives
+$V'$. Then $L=V'\o C$.
+\end{enumerate} \qed
+
+This last Theorem provides us with an algorithm to find all
+$m$-points of the given equation. The process which was described
+recursively in the last Theorem gives either an $m$-sparse operator
+$C$ with constant coefficients (then all points are $m$-points) or
+a finite set of candidates (each of them can be investigated by
+the approach described in Section 2). Note that
+in the first case it is possible to obtain, together with $C$,
+a finite set of distinctive values collected on all the
+levels of the recursive process (shifted like we demonstrated in
+(\ref{31}). If the set is not empty then its
+elements are of special interest because the number of $m$-sparse
+linearly independent solutions can increase at those points.
+
+
+{\bf Algorithm}
+
+Input: a differential operator $L$;
+
+Output: a finite set of points $M$ and an $m$-sparse operator $C$ 
+with constant coefficients;
+
+{\bf 1.} If $\ord L=0$ then return
+$$the empty set,\; L;$$
+
+{\bf 2.} $S={\bf S}_m(L),\;T={\bf T}_m(L);$
+
+{\bf 3.} If $\ord S=\ord L$ then return
+$$T,\;L;$$
+
+{\bf 4.} Pick up a point $a_0\notin T$; construct $S'$ which is the 
+result of dividing $S^{a_0}$  by the greatest common divisor of its 
+coefficients; 
+
+{\bf 5.} Apply the algorithm recursvely to $S'$, let
+$$  \{\alpha ,\beta ,...,\gamma \}, C$$
+be the result of the recursive call;
+
+{\bf 6.} Return
+$$T \cup \{\alpha _0-a_0,\beta _0-a_0,...,\gamma _0-a_0\},\;C$$ \qed
+
+After this algorithm was applied we get a finite set of point $M$ and 
+an $m$-sparse linear differential operator $C$ with constant 
+coefficinets (it is possible that $\ord C=0$, i.e. $C=1$). All the 
+point belonging to $M$ must be investigated by the approach described 
+in Section 2.
+
+An irreducible operator $L$ can not have a right factor $S$ with
+(\ref{30}) and due to Theorems \ref{ncc}, \ref{cfac}
+we deduce the following Theorem.
+
+
+\begin{Theorem}
+Let $L$ be a primitive
+irreducible operator of the form~(\ref{two}), and
+there is $i, 0\leq i \leq r,$ such that
+$\deg p_i(x)>0$. Let
+$p_{s_1}(x),...,p_{s_k}(x)$ be all nonzero coefficients of $L$ and
+let $t_1,...,t_k$ be their degrees. Let $t=\deg p_r(x)$ and
+$u_{ji}(a)$ be the coefficient of $x^iD^j$ in $L^a$. Then we have the
+following necessary conditions.
+\begin{enumerate} \item If there
+exists an $m$-point of $Ly=0$ then $s_1-t_1=...=s_k-t_k \pmod m$.
+\item If 0 is an $m$-point of $Ly=0$ then
+$$
+\forall _{i,j}
+((x^iD^j\in L)\Rightarrow(j-i = r-t \pmod m)).
+$$
+\item If $a_0$ is an $m$-point of $Ly=0$ then
+$$
+\forall _{i,j}
+((x^iD^j\in L^a,j-i \ne r-t \pmod m)\Rightarrow( u_{ji}(a_0)=0)).
+$$
+\end{enumerate}
+If 0 or $a_0$ are non-singular points of the equation $Ly=0$ then
+the two last
+conditions are also sufficient conditions.
+\end{Theorem}
+{\em Proof:\/}
+Since $L$ is irreducible, it can not have a factor $S$ such that
+(\ref{30}) holds. Therefore if $a_0$ is an $m$-point then
+$\rGCD(L_0^{a_0},...,L_{m-1}^{a_0})=L^{a_0}$. In the case of a
+primitive $L$ it is possible only if one of
+$L_0^{a_0},...,L_{m-1}^{a_0}$
+is equal to $L^{a_0}$ and all others are equal to zero. Then $\cR
+L^{a_0}$ is $m$-sparse. This prove the necessity of condition 2, 3.
+In turn to prove the necessity of condition 1 we have additionaly to
+take into account that the leading coefficients of all polynomial
+coefficient of $L^{a_0}$ do not depend on the value of $a_0$. The
+suffciency of conditions 2, 3 in the case of ordinary point $a_0$
+follows from Lemma \ref{nsing}. \qed
+
+\noindent {\bf Example 2}. $y''+(x-1)y=0$. We have $2\le m\le 3$. The
+operator $L=D^2+(x-1)$ is irreducible over $\complex(x)$; $L^a=
+D^2+(x-a-1)$.
+
+$m=2$. The first of the necessary conditions formulated in Theorem 8 is not
+satisfied: $2-0\ne 0-1 \pmod 2$. The equation has no 2-points.
+
+$m=3$. the first the necessary conditions formulated in Theorem 8 is
+satisfied: $2-0=0-1 \pmod 3$; 0 is not an $m$-point because
+$2-0\ne 0-0 \pmod 3$. By the third condition $a_0=1$.
+This is a non-singular point,
+hence it is a 3-point.
+
+By Lemma (\ref{nsing})
+the given equation has two linearly independent 3-sparse solutions.
+In this case they can be taken as 3-hypergeometric:
+$$
+1+\sum_{n=1}^\infty \frac{(-1)^n(x-1)^{3n}}
+{2\cdot 3\cdot 5\cdot 6\dots (3n-1)\cdot 3n},
+$$
+$$
+(x-1)+\sum_{n=1}^\infty \frac{(-1)^n(x-1)^{3n+1}}
+{3\cdot 4\cdot 6\cdot 7\dots 3n\cdot (3n+1)}.
+$$
+
+\begin{thebibliography}{99}
+\bibitem{ABP}
+S.~Abramov, M.~Bronstein, M.~Petkov\v sek (1995):
+{\em On Polynomial Solutions of Linear Operator Equations}.
+Proc. ISSAC'95, 290-296.
+
+\bibitem{AP}
+S.~Abramov, M.~Petkov\v sek (1996):
+{\em Special Power Series Solutions of Linear Differential Equation}.
+Proc. FPSAC'96, 1-10.
+
+\bibitem{APR}
+S.~Abramov, M.~Petkov\v sek, A.~Ryabenko (1996):
+{\em Special Formal Series Solutions of Linear Operator Equations}.
+Submitted to Discret Math.
+
+\bibitem{Char91}
+M.~Chardin (1991):
+{\em Differential Resultants and Subresultants}.
+Lecture notes in computer science, {\bf 529}.
+
+\bibitem{PS}
+M.~Petkov\v sek, B.~Salvy (1993):
+{\em Finding All Hypergeometric Solutions of Linear Differential
+Equations}.  Proc. ISSAC'93, 27-33.
+
+\end{thebibliography}
+\end{document}
+
+

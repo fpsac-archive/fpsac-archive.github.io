@@ -1,0 +1,492 @@
+
+
+
+
+
+%% A LaTeX2e file for a 6 page document%%
+\documentclass[11pt]{article}
+
+\oddsidemargin .5cm
+\evensidemargin .5cm
+\textwidth=15.2truecm
+\textheight=21truecm
+\unitlength=1cm
+\parskip=3pt
+\baselineskip=15pt 
+
+\newtheorem{theo}{Theorem}[section]
+\newtheorem{propo}[theo]{Proposition} 
+\newtheorem{lema}[theo]{Lemma}
+\newtheorem{defi}[theo]{Definition}
+\newtheorem{example}[theo]{Example}  
+\newtheorem{coro}[theo]{Corollary}
+\newtheorem{guess}[theo]{Conjecture}
+\def\proof{{$\boldmath Proof.$}\hskip 0.3truecm}
+\def\endproof{\ \  $\Box$\vskip .2cm} 
+
+\def\A{\mbox{\boldmath $A$}}
+\def\B{\mbox{\boldmath $B$}} \def\Bo{{\cal B}}
+\def\C{\mbox{\boldmath $C$}}
+\def\D{\mbox{\boldmath $D$}}
+\def\E{\mbox{\boldmath $E$}}
+\def\G{\Gamma}
+\def\I{\mbox{\boldmath $I$}}
+\def\J{\mbox{\boldmath $J$}}
+\def\K{\mbox{\boldmath $K$}}
+\def\M{{\cal M}}
+\def\O{\mbox{\boldmath $O$}}
+\def\U{\mbox{\boldmath $U$}}
+\def\d{\partial}
+\def\dist{\mathop{\rm dist}\nolimits}
+\def\ecc{\mathop{\rm ecc}\nolimits}
+\def\exc{\mathop{\rm exc}\nolimits}
+\def\e{\mbox{\boldmath $e$}}
+\def\f{\mbox{\boldmath $f$}}
+\def\j{\mbox{\boldmath $j$}}        
+\def\u{{\mbox {\boldmath $u$}}}
+\def\v{{\mbox {\boldmath $v$}}}
+\def\w{{\mbox {\boldmath $w$}}}
+\def\x{\mbox{\boldmath $x$}}
+\def\z{\mbox{\boldmath $z$}}
+\def\vecphi{\mbox{\boldmath $\phi$}}
+\def\vecnu{\mbox{\boldmath $\nu$}}
+\def\vecrho{\mbox{\boldmath $\rho$}}
+\def\vec0{\mbox{\bf 0}}
+\def\ev{\mathop{\rm ev}\nolimits}
+\def\Ker{\mathop{\rm Ker}\nolimits}
+\def\sp{\mathop{\rm sp}\nolimits}
+\def\tr{\mathop{\rm tr}\nolimits}
+
+\begin{document}
+\title{Algebraic Characterizations  \\  
+of  Distance-Regular Graphs
+\thanks{ 
+{\it 11th Inter. Conf. on Formal Power Series and Algebraic
+Combinatorics, Barcelona, 1999.} 
+\newline
+ Work supported in part by the Spanish Research Council
+(Comisi\'on Interministerial de Ciencia y Tecnolog\'\i a, CICYT)
+     under projects  TIC 94-0592 and TIC 97-0963. 
+}}     
+\author{M.A. Fiol 
+\\ {\small Departament de Matem\`atica Aplicada i Telem\`atica} \\
+{\small Universitat Polit\`ecnica de Catalunya} \\ {\small Jordi
+Girona, 1--3 , M\`odul C3, Campus Nord }\\ {\small 08034 Barcelona,
+Spain; email: {\tt fiol@mat.upc.es}}   }
+\date{}
+\maketitle
+
+\begin{abstract}
+We survey some old and some new characterizations of
+distance-regular graphs, which depend on information retrieved
+from their adjacency matrix. 
+\end{abstract}
+Distance-regular graphs were introduced by Biggs around 1970,  by
+changing a symme\-try-type requirement, that of
+distance-transitivity, by a regularity-type condition concerning the
+cardinality of some vertex subsets. Thus, one  common
+way of looking at distance-regularity is to ``hang" the graph from
+a given vertex and  observe the resulting different layers;
+that is, the subsets of vertices at a given distance from the root.
+Then, if vertices in the same layer are ``indistinguishable" from
+each other, and the whole configuration does not depend on  the
+chosen vertex, the graph is said to be distance-regular.  More
+precisely, a (connected) graph
+$G=(V,E)$ with diameter $D$ is {\it distance-regular} if and only if,
+for any two vertices $u,v\in V$ at distance
+$\dist(u,v)=k$, $0\le k\le D$, the numbers $c_k$, $a_k$, $b_k$, of
+vertices which are adjacent to
+$v$, and at distance $k-1$, $k$, $k+1$ respectively  from $u$, do 
+not depend on the chosen vertices $u$ and $v$, but only on their
+distance $k$.
+
+Since their introduction, distance-regular graphs and
+their main  generalization, the association schemes, 
+have proved to be a key concept in algebraic combinatorics, having
+important connections with other branches of mathematics, such as
+geometry, coding theory, group theory, design theory, as well as
+to other areas of graph theory. As stated in the preface of the
+comprehensive textbook of Brouwer, Cohen and Neumaier
+\cite{bcn89}, this is because most finite objects bearing ``enough
+regularity"  are closely related to certain
+distance-regular graphs.
+Apart from the above definition, there are other well-known
+combinatorial characterizations of distance-regular, such as the
+following:
+\begin{itemize}
+\item[(a)]
+A graph $G$ with diameter $D$ is distance-regular if and only if, for 
+any pair of vertices $u,v\in V$ and integers $0\le i,j\le D$, the
+number of vertices which are at distance $i$ from $u$ and at
+distance $j$ from
+$v$ only depends on 
+$\dist(u,v)$. 
+\item[(b)]
+A graph $G$ is distance-regular if and only if for any integer $k\ge 0$, the
+number of walks of length $k$ between two vertices $u,v\in V$ only
+depends on $\dist(u,v)$. 
+\end{itemize}
+
+In this work, we aim to survey some characterizations  of
+distance-regular graphs which are of an algebraic nature. Such
+characterizations rely mainly on the adjacency matrix $\A$ of the
+graph and/or some of its invariants, such as its spectrum
+$$
+\sp G:=\sp \A=\{\lambda_0^{m_0},\lambda_1^{m_1},\ldots,
+\lambda_d^{m_d}\}
+$$
+where the eigenvalues $\lambda_l$, $0\le l\le d$ are in decreasing
+order and the superscripts denote multiplicities, or their
+corresponding eigenspaces
+$$
+{\cal E}_l:=\Ker(\A-\lambda_l\I)\qquad (0\le l\le d).
+$$
+
+Thus, as the number $a_{uv}^k$ of walks of length $k$ between
+vertices $u,v$ is no more than the $uv$-entry of the $k$-th
+power of $\A$, we can see (b) as a simple characterization in terms
+of the adjacency matrix of $G$. In fact,   it can be
+easily proved that we do not  need to impose the invariance
+condition on all such numbers of walks. For instance, if $G$ is
+regular we have the following result:
+\begin{itemize}
+\item[(c)]
+A  regular graph $G$ with diameter $D$ is distance-regular if and
+only if for any two vertices $u,v\in V$ at distance $\dist(u,v)=k$,
+$1\le k\le D$, the numbers of walks $a_{uv}^k$ and $a_{uv}^{k+1}$
+only depend on
+$k$.
+\end{itemize}
+
+Another characterization involving adjacency matrices states that
+a graph  $G$ with  diameter
+$D$ is   distance-regular if and only if, for any $k$, the {\it
+distance-$k$ matrix}
+$\A_k$ ---whose $uv$-entry is $1$ if $\dist(u,v)=k$ and $0$
+otherwise--- is a polynomial of degree $k$ in $\A$; that is:
+\begin{equation}
+\label{all-dist-pol}
+\A_k=p_k(\A)\qquad (0\le k\le D).
+\end{equation}
+Notice that the existence of such $p_0$ and $p_1$ is always
+guaranteed since $\A_0=\I$ and $\A_1=\A$. 
+In general, the polynomial
+$p_k$ is referred to as the {\it distance-$k$ polynomial} of the
+graph. See,  for instance, Biggs \cite{b93} or Brouwer et.al.
+\cite{bcn89}. In fact, if  every vertex $u\in V$ has the maximum
+possible eccentricity ``allowed by the spectrum"; that is, the number
+of distinct eigenvalues minus one: $\ecc(u)=d$, the existence of the
+highest degree distance polynomial suffices, and hence we 
+need only to require that
+\begin{equation}
+\label{D-dist-pol}
+ \A_D=p_D(\A).
+\end{equation}
+This was proved in the context of pseudo-distance-regularity
+---a generalization of distance-regularity that makes sense even for
+non-regular graphs--- by Garriga, Yebra and the author in
+\cite{fgy96-2}. 
+
+For each eigenvalue $\lambda_l$, $0\le l\le d$, let $\U_l$ be the
+matrix whose columns form an orthonormal basis of its eigenspace
+${\cal E}_l$. The {\it (principal) idempotents} of $\A$ are
+the matrices $\E_l:=\U_l\U_l^\top$  representing the orthogonal
+projections onto  ${\cal E}_l$. Accordingly, such matrices
+satisfy  $\E_0+\E_1+\cdots +\E_d=\I$ (as expected, since the sum of
+all orthogonal projections gives the original vector), and  the
+so-called {\it spectral decomposition theorem}
+$$
+\sum_{l=0}^d \lambda_l\E_l=\A
+$$
+(see for instance, Godsil \cite{g93}).
+Since both $\{\I,\A,\ldots,\A^d\}$ and 
+$\{\E_0,\E_1,\ldots,\E_d\}$ are basis of ${\cal A}(\A)$, the {\it
+adjacency\/} or {\it Bose-Mesner algebra} of  matrices
+which are polynomials in $\A$, it is not strange to have
+characterizations of distance-regularity in terms of the entries of
+the above idempotents. These numbers are called the {\it
+crossed $uv$-local multiplicities} of  $\lambda_l$, and  they
+are denoted by $m_{uv}(\lambda_l)$. Notice that, if $\z_{ul}$
+represents the orthogonal projection of the $u$-canonical vector
+$\e_u$ on ${\cal E}_l$, the crossed local multiplicities correspond
+to the scalar products:
+$$
+m_{uv}(\lambda_l):=(\E_l)_{uv}
+=\langle \E_l\e_u,\e_v\rangle=\langle
+\E_l\e_u,\E_l\e_v\rangle=\langle\z_{ul},\z_{vl}\rangle
+\qquad (u,v\in V).
+$$
+For instance, if the graph is regular, then the eigenvector
+of $\lambda_0$ is the all-$1$ vector $\j$, and the above gives
+$m_{uv}(\lambda_0)=\langle\frac{1}{n}\j,
+\frac{1}{n}\j\rangle =1/n$ for any $u,v\in V$.
+Moreover,  Godsil \cite{g88} proved that, if $G$ is distance-regular,
+then for any given eigenvalue $\lambda_l$, $0\le l\le d$, the crossed
+$uv$-local multiplicity $m_{uv}(\lambda_l)$  depends only on the
+distance $\dist(u,v)$, and it is not difficult to realize that the
+converse is also true. In fact, in the spirit of characterization (c),
+we can prove the following result (see \cite{f99}):
+\begin{itemize}
+\item[(d)]
+A regular graph $G$, with eigenvalues
+$\lambda_0>\lambda_1>\cdots>\lambda_d$ and diameter
+$D$, is distance-regular if and only if the crossed $uv$-local
+multiplicities 
+$m_{uv}(\lambda_1)$ and $m_{uv}(\lambda_d)$  depend only on the
+distance
+$\dist(u,v)=k$, for any $0\le k\le D$.
+\end{itemize}
+
+Of course, we may also ask for some characterizations involving
+only the spectrum. Then, the question would now be: {\it Can we see
+from the spectrum of a graph  whether it is distance-regular?}  In
+this context, it  has been known for a long time that the answer  is
+`yes' when $D\le 2$ and `not' if $D\ge 4$, whereas the case $D=3$
+was  undecided until recently, when Haemers \cite{ha96} gave also a
+negative answer.  Thus,  in general the spectrum is not sufficient to
+assure distance-regularity and, if we  want to go further,  we must
+require the graph to satisfy some additional conditions. In this
+direction, Van Dam and Haemers 
+\cite{vdh96} showed that, in the case $D=3$, such a condition could
+be the number $n_d(u)$ of vertices at ``extremal distance" $D=d$
+from each vertex $u\in V$. Then,  Garriga and the author
+\cite{fg97} solved the general case, characterizing distance-regular
+graphs as those regular graphs whose number of vertices at distance
+$d$ from each vertex is what it should be (a number that depends
+only on the spectrum of the graph).  
+To be more precise, they proved that a (connected) regular graph $G$
+with $n$ vertices and spectrum 
+$\sp G =\{\lambda_0^{m_0},\lambda_1^{m_1},\dots,
+\lambda_d^{m_d}\}$ is distance-regular if and only if  the 
+number of  vertices at distance $d$ from each vertex $u$ is
+\begin{equation}
+\label{numeric}
+n_{d}(u)
+=n\left(\sum_{l=0}^{d}\frac{\pi_0^2}{m_l\pi_l^2}\right)^{-1}
+\end{equation}
+where the $\pi_l's$ are moment-like parameters defined by
+$\pi_l :=\prod_{k=0,k\neq l}^{d} |\lambda_l-\lambda_k|$, $0\le l\le
+d$. In fact, since the  right-hand expression in (\ref{numeric}) is the
+value at $\lambda_0$ of a degree-$d$ polynomial,
+the characterization (\ref{D-dist-pol}) can now be seen as a
+corollary.
+
+Notice that the cases $d=1,2$  of the above result are trivial, in the
+sense that every (connected) regular graph $G$ with two or three 
+different eigenvalues is distance-regular ($G=K_n$ if $d+1=2$ and
+$G$ is strongly regular when $d+1=3$---see, for instance, Godsil
+\cite{g93}). As we have already mentioned, the first
+``non-trivial" case $d=3$ is due to Haemers and Van Dam
+\cite{vdh96},  while the  case $n_d(u)=1$ (that is,  $2$-antipodal
+graphs) was also studied  by Garriga, Yebra and the author in a
+previous paper \cite{fgy98}.
+In fact, in this case only the distinct
+eigenvalues matter, as their multiplicities can be deduced from
+them by the formulae $m_l=\pi_0/\pi_l$, $0\le l\le d$.
+Furthermore, in this case we do not need to require regularity  
+since it is  inferred by  condition (\ref{numeric}). Then it turns out
+that a graph $G$ with eigenvalues
+$\lambda_0>\lambda_1>\cdots>\lambda_d$ is a $2$-antipodal
+distance-regular graph if and only if
+\begin{equation}
+
+\label{2-antipodal}
+n_{d}(u)=n\left(\sum_{l=0}^{d}\frac{\pi_0}{\pi_l}\right)^{-1}=1
+\end{equation}
+for each  $u\in V$.
+The graphs satisfying the second equality of (\ref{2-antipodal}),
+that is $\sum_{l=0}^{d}(\pi_0/\pi_l)=n$, are called 
+{\it boundary graphs} since they  satisfy  an extremal property that
+arises from a bound for the diameter of a graph in terms of its 
+distinct eigenvalues. Namely, it was proved in \cite{fgy96-1} that, 
+if $G$ is regular and $\sum_{l=0}^{d}(\pi_0/\pi_l)>n$, then  
+$D\le d-1$. 
+
+From the result in (\ref{numeric}), some other spectral
+characterizations have been given for special classes of
+distance-regular graphs.  Thus, as a generalization of the above
+$2$-antipodal case, it was proved in
+\cite{f97} that  a regular graph $G$, with 
+eigenvalues $\lambda_0>\lambda_1>\cdots>\lambda_d$, is
+an $r$-antipodal distance-regular graph if and only if the distance
+graph $G_d$ (that is, the graph whose adjacency matrix is $\A_d$) is
+constituted by disjoint copies of the complete graph
+$K_r$, with $r$ satisfying an expression in terms of
+$n$ and the distinct eigenvalues. Namely, 
+\begin{equation} 
+\label{antipodal}
+r=2n\left(\sum_{l=0}^d\frac{\pi_0}{\pi_l}\right)^{-1}.
+\end{equation}
+Note that the case $r=2$ corresponds to (\ref{2-antipodal}). 
+
+Recall that a $\delta$-regular graph $G$ on $n$ vertices  is called
+{\it $(n,\delta;a,c)$-strongly regular} if every pair of adjacent
+(respectively, nonadjacent) vertices  $u,v$ have $a$ (respectively
+$c$) common neighbours. Thus, if connected, a strongly regular graph
+$G$ is the same as a distance-regular graph (with diameter
+two).  Otherwise, it is known that $G$ is constituted by several
+copies of $K_r$. Furthermore, a graph
+$G$ with diameter $D=d$ is called {\it $(n,\delta;a,c)$-strongly 
+distance-regular} if
+$G$ is distance-regular and its distance-$d$ graph $G_d$ is strongly
+regular with the indicated parameters.  Some known examples of
+such graphs are the connected strongly regular graphs, with
+$G_d=\overline G$ (the complement of $G$), and the $r$-antipodal
+distance-regular graphs with $G_d=mK_r$ so that they are
+$(n,\delta;r-1,0)$-strongly distance-regular graphs.  Hence, some
+spectral conditions for a (regular or distance-regular) graph to be
+strongly distance-regular have been already given above. In 
+particular, notice that $2$-antipodal distance-regular graphs
+characterized in (\ref{2-antipodal}) correspond to the case $a=c=0$.
+In this context, the more general case $a=c$ was dealt with in 
+\cite{fg99}, where one can find the following result. Let  $G$ be a
+regular graph on $n$ vertices, with distinct eigenvalues
+$\lambda_0>\lambda_1>\cdots>\lambda_d$, $d>1$.  Then $G$ is
+$(n,\delta; c,c)$-strongly distance-regular  if and only if
+\begin{equation}
+\label{a=c}
+n_{d}(u)=\frac{n(n-1)}{\left(\sum_{l=1}^{d}\frac{\pi_0}{\pi_l}
+\right)^2+n-1}
+\end{equation}
+for every vertex $u\in V$. Moreover, in such a case, the above
+parameters are $\delta=n_d:=n_{d}(u)$, $c=n_d(n_d-1)/(n-1)$, and
+the multiplicity of eigenvalue $\lambda_i$ is 
+\begin{equation}
+\label{mult-extrem-bound-graph}
+ m_i=\frac{\pi_0}{\pi_i}\sqrt{\frac{(n-1)n_d}{n-n_d}}
+ =(n-1)\frac{\frac{1}{\pi_i}}{\sum_{l=1}^d \frac{1}{\pi_l}}
+ \qquad (1\le i\le d). 
+\end{equation}
+
+The necessity of condition (\ref{a=c}) was proved by Van Dam
+\cite{vd98} using the Laplace matrix of $G$ and  Haemers' method
+of eigenvalue interlacing
+\cite{ha95}. He also proved that (\ref{a=c}) is sufficient to assure
+the strong regularity of
+$G_d$ and that, in the case $d=3$, it also implies the
+distance-regularity of $G$. In such a case, Van Dam also offered
+examples of graphs satisfying the result. Namely,  the odd graph
+$O_4$ (4-regular,
+$n=35$, $n_3=18$), and the generalized hexagons $GH(q,q)$, with $q$
+a prime power, ($(q+1)$-regular, $n=2(q+1)(q^4+q^2+1)$, $n_3=q^5$);
+for a description of these graphs, see for instance
+\cite{b93,bcn89}. On the other hand, notice that for the case
+$n_{d}(u)=1$, studied in \cite{fgy98}, the values in
+(\ref{numeric}) and (\ref{a=c}) coincide since, in
+both cases,  $G$ must be a 2-antipodal distance-regular graph. 
+
+Finally, for general values of $a$ and $c$, and $d=3$,
+the following characterization has been recently given in
+\cite{f98}.   A regular (connected) graph $G$, with $n$ vertices and
+distinct eigenvalues
+$\lambda_0>\lambda_1>\lambda_2>\lambda_3$, is strongly
+distance-regular if and only if
+$\lambda_2=-1$, and 
+\begin{equation}
+\label{main-theo}
+n_3(u)=\frac{(n-\lambda_0-1)[\pi_0/(\lambda_0+1)-n(\lambda_0
++\lambda_1\lambda_3)]}
+{\pi_0-n(\lambda_0+\lambda_1\lambda_3)}.
+\end{equation}
+for every vertex $u\in V$. (In this case, $a$ and $c$ satisfy also
+expressions in terms of the eigenvalues.)
+
+Although, up to now, we are not aware of any generalization of the
+above theorem for $d> 3$,  we neither know, if fact, of
+any example of strongly distance-regular graph with diameter
+greater  than three (apart from the $r$-antipodal ones). This
+suggests to end with the following conjecture: A  (connected)
+regular graph $G$, with $n$ vertices and distinct eigenvalues
+$\lambda_0>\lambda_1>\cdots>\lambda_d$, is strongly 
+distance-regular if and only if one of the three following conditions
+holds.
+\begin{enumerate}
+\item
+$G$ is strongly regular ($d=2$);  
+\item
+$d=3$, $\lambda_2=-1$, and $G_3$ is $k$-regular with
+degree 
+$k$ satisfying  (\ref{main-theo}); 
+\item
+$G_d$ is constituted by disjoint copies of  
+$K_r$ with $r$ satisfying (\ref{antipodal})  (that is, $G$ is an 
+antipodal distance-regular graph).
+\end{enumerate}
+
+\begin{thebibliography}{99}
+
+\bibitem{b93} 
+N. Biggs, {\it Algebraic Graph Theory.}  Cambridge
+University Press,  Cambridge, 1974; second edition: 1993.
+ 
+\bibitem{bcn89}  
+A.E. Brouwer, A.M. Cohen and A. Neumaier, {\it Distance-Regular
+Graphs.}  Springer-Verlag, Berlin, 1989.
+
+\bibitem{vd98} 
+E.R. van Dam,  Bounds on special subsets in graphs, eigenvalues and 
+association schemes, {\it J. Algebraic Combin.} {\bf 7} (1998),  no. 3, 
+321--332.
+
+\bibitem{vdh96} 
+E.R. van Dam and W.H. Haemers, A characterization
+of distance-regular  graphs with diameter three,  {\it J. Algebraic
+Combin.} {\bf 6} (1977), no. 3, 299--303.
+
+\bibitem{f97}
+M.A. Fiol, An eigenvalue characterization of antipodal
+distance-regular graphs.   {\it Electron. J. Combin.} {\bf 4} (1997), 
+no. 1, \#R30.
+
+\bibitem{f98}
+M.A. Fiol, Some spectral characterizations of strongly
+distance-regular graphs, submitted.
+
+\bibitem{f99}
+M.A. Fiol, 
+On pseudo-distance-regularity, submitted.
+
+\bibitem{fg97}  
+M.A. Fiol and E. Garriga, From local adjacency 
+polynomials to locally pseudo-distance-regular graphs, 
+{\it J.  Combin. Theory Ser. B} {\bf 71} (1997), 162--183.
+
+\bibitem{fg99}  
+M.A. Fiol and E. Garriga,
+Pseudo-strong regularity around a set, submitted. 
+
+\bibitem{fgy96-1} 
+M.A. Fiol,  E. Garriga, and J.L.A. Yebra,  On a class of polynomials and
+its relation with the  spectra and diameters of graphs,  {\it J. 
+Combin. Theory Ser. B} {\bf 67} (1996), 48--61.
+
+\bibitem{fgy96-2} 
+M.A. Fiol,  E. Garriga, and J.L.A. Yebra, Locally
+pseudo-distance-regular graphs,    {\it J.  Combin. Theory Ser. B} 
+{\bf 68} (1996), 179--205.
+
+\bibitem{fgy98} 
+M.A. Fiol, E. Garriga and J.L.A. Yebra, From regular
+boundary graphs to antipodal distance-regular graphs, 
+{\it J. Graph Theory} {\bf 27} (1998), no. 3, 123--140. 
+
+\bibitem{g88} 
+C.D. Godsil, Bounding the diameter of distance regular graphs, 
+{\it Combinatorica} {\bf 8} (1988),  333--343.
+
+\bibitem{g93}  
+C.D. Godsil, {\it Algebraic Combinatorics.}  Chapman and Hall, 
+New York, 1993.
+
+\bibitem{ha96}  
+W.H. Haemers, Distance-regularity and the spectrum
+of graphs, {\it Linear Algebra Appl.} {\bf 236} (1996), 265--278.
+
+\bibitem{ha95} 
+W.H. Haemers, Interlacing eigenvalues and graphs, 
+{\it Linear Algebra  Appl.} {\bf 227--228} (1995), 593--616.  
+
+\end{thebibliography} 
+  
+\end{document}
+

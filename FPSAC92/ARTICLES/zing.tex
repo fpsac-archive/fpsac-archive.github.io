@@ -1,0 +1,1509 @@
+\input amstex.tex
+\documentstyle{amsppt}
+\NoRunningHeads
+\nopagenumbers
+\catcode`\@=11
+\font@\twelverm=cmr10 scaled\magstep1
+\font@\twelveit=cmti10 scaled\magstep1
+\font@\twelvesl=cmsl10 scaled\magstep1
+\font@\twelvesmc=cmcsc10 scaled\magstep1
+\font@\twelvett=cmtt10 scaled\magstep1
+\font@\twelvebf=cmbx10 scaled\magstep1
+\font@\twelvei=cmmi10 scaled\magstep1
+\font@\twelvesy=cmsy10 scaled\magstep1
+\font@\twelveex=cmex10 scaled\magstep1
+\font@\twelvemsa=msam10 scaled\magstep1
+\font@\twelveeufm=eufm10 scaled\magstep1
+\font@\twelvemsb=msbm10 scaled\magstep1
+\newtoks\twelvepoint@
+\font@\fourteenrm=cmr10 scaled\magstep2
+\font@\fourteenit=cmti10 scaled\magstep2
+\font@\fourteensl=cmsl10 scaled\magstep2
+\font@\fourteensmc=cmcsc10 scaled\magstep2
+\font@\fourteentt=cmtt10 scaled\magstep2
+\font@\fourteenbf=cmbx10 scaled\magstep2
+\font@\fourteeni=cmmi10 scaled\magstep2
+\font@\fourteensy=cmsy10 scaled\magstep2
+\font@\fourteenex=cmex10 scaled\magstep2
+\font@\fourteenmsa=msam10 scaled\magstep2
+\font@\fourteeneufm=eufm10 scaled\magstep2
+\font@\fourteenmsb=msbm10 scaled\magstep2
+\newtoks\fourteenpoint@
+\def\fourteenpoint{\normalbaselineskip15\p@
+ \abovedisplayskip18\p@ plus4.3\p@ minus12.9\p@
+ \belowdisplayskip\abovedisplayskip
+ \abovedisplayshortskip\z@ plus4.3\p@
+ \belowdisplayshortskip10.1\p@ plus4.3\p@ minus5.8\p@
+ \textonlyfont@\rm\fourteenrm \textonlyfont@\it\fourteenit
+ \textonlyfont@\sl\fourteensl \textonlyfont@\bf\fourteenbf
+ \textonlyfont@\smc\fourteensmc \textonlyfont@\tt\fourteentt
+ \ifsyntax@ \def\big##1{{\hbox{$\left##1\right.$}}}%
+  \let\Big\big \let\bigg\big \let\Bigg\big
+ \else
+  \textfont\z@=\fourteenrm  \scriptfont\z@=\twelverm  
+\scriptscriptfont\z@=\tenrm
+  \textfont\@ne=\fourteeni  \scriptfont\@ne=\twelvei  
+\scriptscriptfont\@ne=\teni
+  \textfont\tw@=\fourteensy \scriptfont\tw@=\twelvesy 
+\scriptscriptfont\tw@=\tensy
+  \textfont\thr@@=\fourteenex \scriptfont\thr@@=\twelveex
+        \scriptscriptfont\thr@@=\twelveex
+  \textfont\itfam=\fourteenit \scriptfont\itfam=\twelveit
+        \scriptscriptfont\itfam=\twelveit
+  \textfont\bffam=\fourteenbf \scriptfont\bffam=\twelvebf
+        \scriptscriptfont\bffam=\tenbf
+  \setbox\strutbox\hbox{\vrule height12.2\p@ depth5\p@ width\z@}%
+  \setbox\strutbox@\hbox{\lower.72\normallineskiplimit\vbox{%
+        \kern-\normallineskiplimit\copy\strutbox}}%
+ \setbox\z@\vbox{\hbox{$($}\kern\z@}\bigsize@=1.7\ht\z@
+ \fi
+ \normalbaselines\rm\ex@.2326ex\jot4.3\ex@\the\fourteenpoint@}
+
+\font@\seventeenrm=cmr10 scaled\magstep3
+\font@\seventeenit=cmti10 scaled\magstep3
+\font@\seventeensl=cmsl10 scaled\magstep3
+\font@\seventeensmc=cmcsc10 scaled\magstep3
+\font@\seventeentt=cmtt10 scaled\magstep3
+\font@\seventeenbf=cmbx10 scaled\magstep3
+\font@\seventeeni=cmmi10 scaled\magstep3
+\font@\seventeensy=cmsy10 scaled\magstep3
+\font@\seventeenex=cmex10 scaled\magstep3
+\font@\seventeenmsa=msam10 scaled\magstep3
+\font@\seventeeneufm=eufm10 scaled\magstep3
+\font@\seventeenmsb=msbm10 scaled\magstep3
+\newtoks\seventeenpoint@
+\def\seventeenpoint{\normalbaselineskip18\p@
+ \abovedisplayskip21.6\p@ plus5.2\p@ minus15.4\p@
+ \belowdisplayskip\abovedisplayskip
+ \abovedisplayshortskip\z@ plus5.2\p@
+ \belowdisplayshortskip12.1\p@ plus5.2\p@ minus7\p@
+ \textonlyfont@\rm\seventeenrm \textonlyfont@\it\seventeenit
+ \textonlyfont@\sl\seventeensl \textonlyfont@\bf\seventeenbf
+ \textonlyfont@\smc\seventeensmc \textonlyfont@\tt\seventeentt
+ \ifsyntax@ \def\big##1{{\hbox{$\left##1\right.$}}}%
+  \let\Big\big \let\bigg\big \let\Bigg\big
+ \else
+  \textfont\z@=\seventeenrm  \scriptfont\z@=\fourteenrm  
+\scriptscriptfont\z@=\twelverm
+  \textfont\@ne=\seventeeni  \scriptfont\@ne=\fourteeni  
+\scriptscriptfont\@ne=\twelvei
+  \textfont\tw@=\seventeensy \scriptfont\tw@=\fourteensy 
+\scriptscriptfont\tw@=\twelvesy
+  \textfont\thr@@=\seventeenex \scriptfont\thr@@=\fourteenex
+        \scriptscriptfont\thr@@=\fourteenex
+  \textfont\itfam=\seventeenit \scriptfont\itfam=\fourteenit
+        \scriptscriptfont\itfam=\fourteenit
+  \textfont\bffam=\seventeenbf \scriptfont\bffam=\fourteenbf
+        \scriptscriptfont\bffam=\twelvebf
+  \setbox\strutbox\hbox{\vrule height14.6\p@ depth6\p@ width\z@}%
+  \setbox\strutbox@\hbox{\lower.86\normallineskiplimit\vbox{%
+        \kern-\normallineskiplimit\copy\strutbox}}%
+ \setbox\z@\vbox{\hbox{$($}\kern\z@}\bigsize@=2\ht\z@
+ \fi
+ \normalbaselines\rm\ex@.2326ex\jot5.2\ex@\the\seventeenpoint@}
+
+\newif\iftab@\tab@false
+\newif\ifvtab@\vtab@false
+\def\tab{\bgroup\tab@true\vtab@false\vst@bfalse\Strich@false%
+\def\\{\global\hline@@false%
+\ifhline@\global\hline@false\global\hline@@true\fi\cr}
+   \edef\l@{\the\leftskip}\ialign\bgroup\hskip\l@##\hfil&&##\hfil\cr}
+\def\endtab{\cr\egroup\egroup}
+\def\vtab{\vtop\bgroup\vst@bfalse\vtab@true\tab@true\Strich@false%
+   \bgroup\def\\{\cr}\ialign\bgroup&##\hfil\cr}
+\def\endvtab{\cr\egroup\egroup\egroup}
+\def\stab{\D@cke0.5pt\catcode`\^^I=4 
+ \bgroup\tab@true\vtab@false\vst@bfalse\Strich@true\Let@@\vspace@
+ \normalbaselines\offinterlineskip
+  \openup\spreadmlines@
+ \edef\l@{\the\leftskip}\ialign
+ \bgroup\hskip\l@##\hfil&&##\hfil\crcr}
+\def\endstab{\crcr\egroup
+ \egroup\catcode`\^^I=10 }
+\newif\ifvst@b\vst@bfalse
+\def\vstab{\D@cke0.5pt\catcode`\^^I=4 
+ \vtop\bgroup\tab@true\vtab@false\vst@btrue\Strich@true\bgroup\Let@@\vspace@
+ \normalbaselines\offinterlineskip
+  \openup\spreadmlines@\bgroup}
+\def\endvstab{\crcr\egroup\egroup
+ \egroup\tab@false\Strich@false\catcode`\^^I=10 }
+
+\newdimen\htstrut@
+\htstrut@8.5\p@
+\newdimen\htStrut@
+\htStrut@12\p@
+\newdimen\dpstrut@
+\dpstrut@3.5\p@
+\newdimen\dpStrut@
+\dpStrut@3.5\p@
+\def\openup{\afterassignment\@penup\dimen@=}
+\def\@penup{\advance\lineskip\dimen@
+  \advance\baselineskip\dimen@
+  \advance\lineskiplimit\dimen@
+  \divide\dimen@ by2
+  \advance\htstrut@\dimen@
+  \advance\htStrut@\dimen@
+  \advance\dpstrut@\dimen@
+  \advance\dpStrut@\dimen@}
+\def\Let@@{\relax\iffalse{\fi%
+    \def\\{\global\hline@@false%
+     \ifhline@\global\hline@false\global\hline@@true\fi\cr}%
+    \iffalse}\fi}
+\def\matrix{\null\,\vcenter\bgroup
+ \tab@false\vtab@false\vst@bfalse\Strich@false\Let@@\vspace@
+ \normalbaselines\openup\spreadmlines@\ialign
+ \bgroup\hfil$\m@th##$\hfil&&\quad\hfil$\m@th##$\hfil\crcr
+ \Mathstrut@\crcr\noalign{\kern-\baselineskip}}
+\def\endmatrix{\crcr\Mathstrut@\crcr\noalign{\kern-\baselineskip}\egroup
+ \egroup\,}
+\def\smatrix{\D@cke0.5pt\null\,
+ \vcenter\bgroup\tab@false\vtab@false\vst@bfalse\Strich@true\Let@@\vspace@
+ \normalbaselines\offinterlineskip
+  \openup\spreadmlines@\ialign
+ \bgroup\hfil$\m@th##$\hfil&&\quad\hfil$\m@th##$\hfil\crcr}
+\def\endsmatrix{\crcr\egroup
+ \egroup\,\Strich@false}
+\newdimen\D@cke
+\def\Dicke#1{\global\D@cke#1}
+\newtoks\tabs@\tabs@{&}
+\newif\ifStrich@\Strich@false
+\newif\iff@rst
+
+\def\Stricherr@{\iftab@\ifvtab@\errmessage{\noexpand\s not allowed
+     here. Use \noexpand\vstab!}%
+  \else\errmessage{\noexpand\s not allowed here. Use \noexpand\stab!}%
+  \fi\else\errmessage{\noexpand\s not allowed
+     here. Use \noexpand\smatrix!}\fi}
+\def\format{\ifvst@b\else\crcr\fi\egroup\iffalse{\fi\ifnum`}=0 \fi\format@}
+\def\format@#1\\{\def\preamble@{#1}%
+ \def\Str@chfehlt##1{\ifx##1\s\Stricherr@\fi\ifx##1\\\let\Next\relax%
+   \else\let\Next\Str@chfehlt\fi\Next}%
+ \def\c{\hfil\noexpand\ifhline@@\hbox{\vrule height\htStrut@%
+   depth\dpstrut@ width\z@}\noexpand\fi%
+   \ifStrich@\hbox{\vrule height\htstrut@ depth\dpstrut@ width\z@}%
+   \fi\iftab@\else$\m@th\fi\the\hashtoks@\iftab@\else$\fi\hfil}%
+ \def\r{\hfil\noexpand\ifhline@@\hbox{\vrule height\htStrut@%
+   depth\dpstrut@ width\z@}\noexpand\fi%
+   \ifStrich@\hbox{\vrule height\htstrut@ depth\dpstrut@ width\z@}%
+   \fi\iftab@\else$\m@th\fi\the\hashtoks@\iftab@\else$\fi}%
+ \def\l{\noexpand\ifhline@@\hbox{\vrule height\htStrut@%
+   depth\dpstrut@ width\z@}\noexpand\fi%
+   \ifStrich@\hbox{\vrule height\htstrut@ depth\dpstrut@ width\z@}%
+   \fi\iftab@\else$\m@th\fi\the\hashtoks@\iftab@\else$\fi\hfil}%
+ \def\s{\ifStrich@\ \the\tabs@\vrule width\D@cke\the\hashtoks@%
+          \fi\the\tabs@\ }%
+ \def\sa{\ifStrich@\vrule width\D@cke\the\hashtoks@%
+            \the\tabs@\ %
+            \fi}%
+ \def\se{\ifStrich@\ \the\tabs@\vrule width\D@cke\the\hashtoks@\fi}%
+ \def\cd{\hfil\noexpand\ifhline@@\hbox{\vrule height\htStrut@%
+   depth\dpstrut@ width\z@}\noexpand\fi%
+   \ifStrich@\hbox{\vrule height\htstrut@ depth\dpstrut@ width\z@}%
+   \fi$\dsize\m@th\the\hashtoks@$\hfil}%
+ \def\rd{\hfil\noexpand\ifhline@@\hbox{\vrule height\htStrut@%
+   depth\dpstrut@ width\z@}\noexpand\fi%
+   \ifStrich@\hbox{\vrule height\htstrut@ depth\dpstrut@ width\z@}%
+   \fi$\dsize\m@th\the\hashtoks@$}%
+ \def\ld{\noexpand\ifhline@@\hbox{\vrule height\htStrut@%
+   depth\dpstrut@ width\z@}\noexpand\fi%
+   \ifStrich@\hbox{\vrule height\htstrut@ depth\dpstrut@ width\z@}%
+   \fi$\dsize\m@th\the\hashtoks@$\hfil}%
+ \ifStrich@\else\Str@chfehlt#1\\\fi%
+ \setbox\z@\hbox{\xdef\Preamble@{\preamble@}}\ifnum`{=0 \fi\iffalse}\fi
+ \ialign\bgroup\span\Preamble@\crcr}
+\newif\ifhline@\hline@false
+\newif\ifhline@@\hline@@false
+\def\hlinefor#1{\multispan@{\strip@#1 }\leaders\hrule height\D@cke\hfill%
+    \global\hline@true\ignorespaces}
+\catcode`\@=\active
+\font\Bf=cmbx12
+\font\Rm=cmr12
+\def\LL{\leavevmode\setbox0=\hbox{L}\hbox to\wd0{\hss\char'40L}}
+\def\al{\alpha}
+\def\be{\beta}
+\def\ga{\gamma}
+\def\de{\delta}
+\def\ep{\varepsilon}
+\def\ze{\zeta}
+\def\et{\eta}
+\def\th{\theta}
+\def\vt{\vartheta}
+\def\io{\iota}
+\def\ka{\kappa}
+\def\la{\lambda}
+\def\rh{\rho}
+\def\si{\sigma}
+\def\ta{\tau}
+\def\ph{\varphi}
+\def\ch{\chi}
+\def\ps{\psi}
+\def\om{\omega}
+\def\Ga{\Gamma}
+\def\De{\Delta}
+\def\Th{\Theta}
+\def\La{\Lambda}
+\def\Si{\Sigma}
+\def\Ph{\Phi}
+\def\Ps{\Psi}
+\def\Om{\Omega}
+\def\row#1#2#3{#1_{#2},\ldots,#1_{#3}}
+\def\rowup#1#2#3{#1^{#2},\ldots,#1^{#3}}
+\def\x{\times}
+\def\crf{}            %used for crossreferencing, Tex should ignore.
+\def\rf{}             %used for refencing (section-numbers)
+\def\rfnew{}          %used for new-section numbers
+\def\P{{\Bbb P}}
+\def\R{{\Bbb R}}
+\def\X{{\Cal X}}
+\def\C{{\Bbb C}}
+\def\Mf{{\Cal Mf}}
+\def\FM{{\Cal F\Cal M}}
+\def\F{{\Cal F}}
+\def\G{{\Cal G}}
+\def\V{{\Cal V}}
+\def\T{{\Cal T}}
+\def\A{{\Cal A}}
+\def\N{{\Bbb N}}
+\def\Z{{\Bbb Z}}
+\def\Q{{\Bbb Q}}
+\def\ddt{\left.\tfrac \partial{\partial t}\right\vert_0}
+\def\dd#1{\tfrac \partial{\partial #1}}
+\def\today{\ifcase\month\or
+ January\or February\or March\or April\or May\or June\or
+ July\or August\or September\or October\or November\or December\fi
+ \space\number\day, \number\year}
+\def\nmb#1#2{#2} %zum Nummerieren
+\def\dfrac#1#2{{\displaystyle{#1\over#2}}}
+\def\tfrac#1#2{{\textstyle{#1\over#2}}}
+\def\iprod#1#2{\langle#1,#2\rangle}
+\def\pder#1#2{\frac{\partial #1}{\partial #2}}
+\def\iint{\int\!\!\int}
+\def\({\left(}
+\def\){\right)}
+\def\[{\left[}
+\def\]{\right]}
+\def\supp{\operatorname{supp}}
+\def\Df{\operatorname{Df}}
+\def\dom{\operatorname{dom}}
+\def\Ker{\operatorname{Ker}}
+\def\Tr{\operatorname{Tr}}
+\def\Res{\operatorname{Res}}
+\def\Aut{\operatorname{Aut}}
+\def\kgV{\operatorname{kgV}}
+\def\ggT{\operatorname{ggT}}
+\def\diam{\operatorname{diam}}
+\def\Im{\operatorname{Im}}
+\def\Re{\operatorname{Re}}
+\def\ord{\operatorname{ord}}
+\def\rang{\operatorname{rang}}
+\def\rng{\operatorname{rng}}
+\def\grd{\operatorname{grd}}
+\def\inv{\operatorname{inv}}
+\def\maj{\operatorname{maj}}
+\def\des{\operatorname{des}}
+\def\varmaj{\operatorname{\overline{maj}}}
+\def\vardes{\operatorname{\overline{des}}}
+\def\pvarmaj{\operatorname{\overline{maj}'}}
+\def\pmaj{\operatorname{maj'}}
+\def\ln{\operatorname{ln}}
+\def\der{\operatorname{der}}
+\def\Hom{\operatorname{Hom}}
+\def\tr{\operatorname{tr}}
+\def\Span{\operatorname{Span}}
+\def\grad{\operatorname{grad}}
+\def\div{\operatorname{div}}
+\def\rot{\operatorname{rot}}
+\def\Sp{\operatorname{Sp}}
+\def\sgn{\operatorname{sgn}}
+\def\liml{\lim\limits}
+\def\supl{\sup\limits}
+\def\bigcupl{\bigcup\limits}
+\def\bigcapl{\bigcap\limits}
+\def\limsupl{\limsup\limits}
+\def\liminfl{\liminf\limits}
+\def\intl{\int\limits}
+\def\suml{\sum\limits}
+\def\maxl{\max\limits}
+\def\minl{\min\limits}
+\def\prodl{\prod\limits}
+\def\tg{\operatorname{tan}}
+\def\ctg{\operatorname{cot}}
+\def\arctg{\operatorname{arctan}}
+\def\arccot{\operatorname{arccot}}
+\def\arcctg{\operatorname{arccot}}
+\def\tgh{\operatorname{tanh}}
+\def\ctgh{\operatorname{coth}}
+\def\arcsinh{\operatorname{arcsinh}}
+\def\arccosh{\operatorname{arccosh}}
+\def\arctgh{\operatorname{arctanh}}
+\def\arcctgh{\operatorname{arccoth}}
+\def\3{\ss}
+\catcode`\@=11
+\def\dddot#1{\vbox{\ialign{##\crcr
+      .\hskip-.5pt.\hskip-.5pt.\crcr\noalign{\kern1.5\p@\nointerlineskip}
+      $\hfil\displaystyle{#1}\hfil$\crcr}}}
+\catcode`\@=13
+
+
+
+\magnification1200
+\hsize15.6truecm
+\vsize22.8truecm
+\catcode`\@=11
+\def\iddots{\mathinner{\mkern1mu\raise\p@\hbox{.}\mkern2mu
+    \raise4\p@\hbox{.}\mkern2mu\raise7\p@\vbox{\kern7\p@\hbox{.}}\mkern1mu}}
+\catcode`\@=13
+\topmatter 
+\title Counting tableaux with row and column bounds
+\endtitle 
+\author C.~Krattenthaler\footnote"$\dagger$" {Institut f\"ur Mathematik der
+ Universit\"at Wien,
+Strudlhofgasse 4, A-1090 Wien, Austria.\newline \hbox{\hskip8pt{\it
+ E-mail\/}:
+KRATT\@PAP.UNIVIE.AC.AT}
+}\\S.~G.~Mohanty\footnote"$\ddagger$"{McMaster University,
+Hamilton, Ontario, Canada L8S\,4K1.\newline \hbox{\hskip8pt{\it E-mail\/}:
+MOHANTY\@MCMASTER.CA}}
+\endauthor 
+%\affil 
+%Institut f\"ur Mathematik der Universit\"at Wien,\\
+%Strudlhofgasse 4, A-1090 Wien, Austria.\\
+%\vskip6pt
+%McMaster University,\\
+%Hamilton, Ontario, Canada L8S\,4K1
+%\endaffil 
+%\email KRATT\@AWIRAP.BITNET\endemail
+%\dedicatory \enddedicatory
+%\date \enddate
+%\thanks \endthanks
+%\subjclass Primary 05A15;
+% Secondary 05A17, 05E10, 11P81.
+%\endsubjclass
+%\keywords tableaux, generating functions, plane partitions,
+%nonintersecting lattice paths\endkeywords
+\abstract It is well-known that the 
+generating function for tableaux
+of a given skew shape with $r$ rows where the parts in the $i$'th row are 
+bounded
+by some nondecreasing upper and lower bounds which 
+depend on $i$ can be written in form 
+of a
+determinant of size $r$. 
+We show that the generating function for tableaux of a given
+skew shape with $r$ rows and $c$ columns where the parts in the $i$'th row
+are bounded by nondecreasing upper and lower bounds which depend on $i$ 
+{\it and} the parts
+in the $j$'th column are bounded by nondecreasing upper and lower 
+bounds which
+depend on $j$ can also be given in determinantal form. The size of
+the determinant now is $r+2c$. We also show that determinants can be
+obtained when the nondecreasingness is dropped.
+Subsequently, analogous results are
+derived for $(\alpha
+,\beta
+)$-plane partitions.
+\endabstract
+\endtopmatter
+
+\newskip\Einheit \Einheit=0.5cm
+\newcount\xcoord \newcount\ycoord
+\newdimen\xdim \newdimen\ydim
+\long\def\LOOP#1\REPEAT{\def\BODY{#1}\ITERATE}
+\def\ITERATE{\BODY \let\next\ITERATE \else\let\next\relax\fi \next}
+\let\REPEAT=\fi
+\def\Punkt{\hbox{\raise-2pt\hbox to0pt{\hss$\ssize\bullet$\hss}}}
+\def\DickPunkt(#1,#2){\unskip
+  \raise#2 \Einheit\hbox to0pt{\hskip#1 \Einheit
+          \raise-4pt\hbox to0pt{\hss\fourteenpoint$\bullet$\hss}\hss}}
+\def\Kreis(#1,#2){\unskip
+  \raise#2 \Einheit\hbox to0pt{\hskip#1 \Einheit
+          \raise-4pt\hbox to0pt{\hss\fourteenpoint$\circ$\hss}\hss}}
+\def\Pfad(#1,#2),#3\endPfad{\unskip\leavevmode
+  \xcoord#1 \ycoord#2 \ZeichnePfad#3\endPfad}
+\def\ZeichnePfad#1{\ifx#1\endPfad\let\next\relax
+  \else\let\next\ZeichnePfad
+    \ifnum#1=1
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+         \vrule height0.5pt width1 \Einheit depth0.5pt\hss}%
+      \advance\xcoord by 1
+    \else
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+        \hbox{\hskip-1pt\vrule height1 \Einheit width1pt depth0pt}\hss}%
+      \advance\ycoord by 1
+    \fi
+  \fi\next}
+\def\Koordinatenachsen(#1,#2){\unskip
+ \hbox to0pt{\hskip-.5pt\vrule height#2 \Einheit width.5pt depth1 \Einheit}%
+ \hbox to0pt{\hskip-1 \Einheit \xcoord#1 \advance\xcoord by1
+    \vrule height0.25pt width\xcoord \Einheit depth0.25pt\hss}}
+\def\Gitter(#1,#2){\unskip \xcoord0 \ycoord0 \leavevmode
+  \LOOP\ifnum\ycoord<#2
+    \loop\ifnum\xcoord<#1
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit\Punkt\hss}%
+      \advance\xcoord by1
+    \repeat
+    \xcoord0
+    \advance\ycoord by1
+  \REPEAT}
+\def\Label#1#2(#3,#4){\unskip \xdim#3 \Einheit \ydim#4 \Einheit
+  \def\lo{\advance\xdim by-.5 \Einheit \advance\ydim by.5 \Einheit}%
+  \def\o{\advance\ydim by.5 \Einheit}%
+  \def\ro{\advance\xdim by.5 \Einheit \advance\ydim by.5 \Einheit}%
+  \def\l{\advance\xdim by-.5 \Einheit}%
+  \def\r{\advance\xdim by.5 \Einheit}%
+  \def\lu{\advance\xdim by-.5 \Einheit \advance\ydim by-.5 \Einheit}%
+  \def\u{\advance\ydim by-.5 \Einheit}%
+  \def\ru{\advance\xdim by.5 \Einheit \advance\ydim by-.5 \Einheit}%
+  #1\raise\ydim\hbox to0pt{\hskip\xdim
+     \vbox to0pt{\vss\hbox to0pt{\hss$#2$\hss}\vss}\hss}%
+}
+
+\document
+%\baselineskip24pt
+%\normalbaselineskip24pt
+
+\subheading{1. Introduction and Definitions}
+Let $\pmb\la=(\la_1,\dots,\la_r)$ and $\pmb\mu=(\mu_1,\dots,\mu_r)$ be
+$r$-tupels of integers satisfying $\la_1\ge\dots\ge\la_r$,
+$\mu_1\ge\dots\ge\mu_r$, and $\pmb \la\ge \pmb\mu$, meaning $\la_i\ge
+\mu_i$ for all $i$. A {\it  tableau of shape
+$\pmb\la/\pmb\mu$} is an array $\pi$
+$$\matrix 
+&&&\pi_{1,\mu_1+1}&\innerhdotsfor3\after\quad &\pi_{1,\la_1}\\
+&&\pi_{2,\mu_2+1}\quad \dots&\pi_{2,\mu_1+1}&\innerhdotsfor2\after\quad 
+&\pi_{2,\la_2}\\
+&\iddots&&\vdots&&\iddots\\
+\pi_{r,\mu_r+1}&\innerhdotsfor3\after\quad &\pi_{r,\la_r}
+\endmatrix\tag1.1$$
+of integers $\pi_{ij}$, $1\le i\le r$, $\mu_i+1\le j\le \la_i$,
+such that the rows are weakly and the columns are strictly increasing. 
+The number of entries in the tableau in (1.1) is
+$(\la_1-\mu_1)+\dots+(\la_r-\mu_r)$, for which we write
+$\vert\pmb\la-\pmb\mu\vert$. The entries will be called
+{\it parts} of the tableau. The sum of all parts of a tableau $\pi$
+is called the {\it norm}, in symbols $n(\pi)$, of the tableau. 
+
+In order to make $\pmb\la$ and $\pmb\mu$ unique, we always assume that
+$\mu_r=0$. Sometimes we will call $\la_1$ the {\it width}, and $r$
+the {\it depth} of a shape $\pmb\la/\pmb\mu$.
+If $\pmb\mu=0$ we shortly
+write $\pmb\la$ for the shape $\pmb\la/\pmb\mu$.
+
+The weight $w(\pi)$ of a tableau $\pi$ under consideration will be $\prod
+x_{\pi_{ij}}$ where the product is over all parts $\pi_{ij}$ of
+$\pi$.
+
+It is well-known (cf\. \cite{2,4,5,9}) that the generating function 
+$\sum _{} ^{}w(\pi)$
+summed over all tableaux $\pi$ of shape $\pmb\la/\pmb\mu$ where the parts
+in row $i$ are at most $a_i$ and at least $b_i$ for some $r$-tupels
+$\pmb a=(a_1,\dots,a_r)$ and $\pmb b=(b_1,\dots,b_r)$ satisfying
+$a_1\le a_2\le\dots\le a_r$, $b_1\le b_2\le\dots\le b_r$, and $\pmb
+a\ge \pmb b$, can be
+written in form of an $r\times r$-determinant,
+$$\det_{1\le s,t\le r}(h_{\la_s-s-\mu_t+t}(\pmb x;a_s,b_t))\ ,$$
+where  $h_n(\pmb x;A,B)$ is the complete homogenous symmetric
+functions of order $n$ in the variables $x_B,x_{B+1},\dots,x_A$,
+$$h_n(\pmb x;A,B):=\sum _{B\le i_1\le i_2\le\dots\le i_n\le
+A}x_{i_1}x_{i_2}\dotsb x_{i_n}\ .$$
+
+%\tracingmacros=2 \tracingcommands=2
+A natural generalization of this problem is to ask for the generating
+function $\sum _{} ^{}w(\pi)$
+for tableaux with row bounds {\it and} column
+bounds, to be precise, for the generating function
+for tableaux of shape $\pmb\la/\pmb\mu$ where
+the parts in row $i$ are at most $a_i$ and at least $b_i$, and the
+parts
+in column $j$ are at most $c_j$ and at least $d_j$, for some tupels
+$\pmb a=(a_1,\dots,a_r)$, $\pmb b=(b_1,\dots,b_r)$,
+$\pmb c=(c_1,\dots,c_{\la_1})$, and $\pmb d=(d_1,\dots,d_{\la_1})$ satisfying
+$a_1\le a_2\le\dots\le a_r$, $b_1\le b_2\le\dots\le b_r$,
+$c_1\le c_2\le\dots\le c_{\la_1}$, $d_1\le d_2\le\dots\le d_{\la_1}$, $\pmb
+a\ge\pmb b$, and $\pmb c\ge\pmb d$. In Theorem~1 we show that this generating
+function can also be written in form of a determinant whose entries are 
+complete
+homogenous symmetric functions. The size of the determinant is
+$r+2\la_1$, i.e\. it is the depth plus twice the width of the shape.
+Also in section~2, from this theorem we deduce determinant formulas
+for the norm generating function of $(\alpha
+,\beta
+)$-reverse 
+plane partitions
+(which are generalizations of tableaux, cf\. section~2 for the
+definition) with row and
+column bounds, thus obtaining Corollary~2. Finally, in section~3 we
+show how to get determinants if the monotonicity of the row and
+column bounds is dropped. Now in adverse choices of the shape and the
+row and column bounds, the size of the determinant might explode.
+\newpage
+
+
+
+\subheading{2. Monotone row and column bounds}
+ Recall
+(Gessel and Viennot \cite{3,4}) that a tableau $\pi$ of shape
+$\pmb\la/\pmb\mu$ with
+the parts in row $i$ being at most $a_i$ and at least $b_i$ can be
+bijectively mapped onto a family $(P_1,\dots,P_r)$ of nonintersecting
+lattice paths. ``Nonintersecting" in this context
+ means that each two paths of this family have no
+point in common. This correspondence maps the $i$-th row of $\pi$ to
+the $i$-th path $P_i$ in the family such that $P_i$ starts at
+$(\mu_i+r+1-i,b_i)$
+and terminates at $(\la_i+r+1-i,a_i)$, and such that the parts of 
+the $i$-th row can
+be read off the heights of the horizontal steps in $P_i$. 
+Figure~1 gives a simple example for $r=3$, $\pmb\la=(5,4,4)$,
+$\pmb\mu=(2,1,0)$,
+$\pmb a=(8,9,12)$, and $\pmb b=(1,3,6)$.
+
+$$
+\smatrix \format\r\s\c\s\c\s\c\s\c\s\c\s\l\\
+\omit&\omit&\omit&\omit&\omit&\hlinefor7\\
+1\le&\omit&\omit&\omit&\omit&&\hbox to10pt{\hss4\hss}&&%
+\hbox to10pt{\hss6\hss}&&\hbox to10pt{\hss6\hss}&&\le8\\
+\omit&\omit&\omit&\hlinefor9\\
+3\le&\omit&\omit&&5&&7&&9&&\omit&\omit&\le9\\
+\omit&\hlinefor9\\
+6\le&&\vphantom
+{g}\hbox to10pt{\hss6\hss}&&\hbox to10pt{\hss8\hss}&&9&&11&&\omit
+&\omit&\le12\\
+\omit&\hlinefor9
+\endsmatrix
+\quad \longleftrightarrow \quad 
+%
+\vcenter{\hsize4cm\leavevmode\Einheit0.4cm
+\Gitter(9,13)
+\Koordinatenachsen(10,13)
+\Pfad(5,1),2221221122\endPfad
+\Pfad(3,3),221221221\endPfad
+\Pfad(1,6),1221212212\endPfad
+\DickPunkt(5,1)
+\DickPunkt(3,3)
+\DickPunkt(1,6)
+\DickPunkt(8,8)
+\DickPunkt(5,12)
+\DickPunkt(6,9)
+\Label\lo{4}(6,4)
+\Label\lo{6}(7,6)
+\Label\lo{6}(8,6)
+\Label\lo{5}(4,5)
+\Label\lo{7}(5,7)
+\Label\lo{9}(6,9)
+\Label\lo{6}(2,6)
+\Label\lo{8}(3,8)
+\Label\lo{9}(4,9)
+\Label\lo{11}(5,11)
+\Label\r{P_1}(6,5)
+\Label\l{P_2}(3,4)
+\Label\l{P_3}(2,8)
+\par}$$
+\nobreak
+$$\text {\eightpoint Figure 1}$$
+
+The
+condition that $\pi$ has strictly increasing columns corresponds to
+the condition that the paths are nonintersecting. 
+In addition, this bijection is weight-preserving if we define the
+weight of a family $\Cal P=(P_1,\dots,P_r)$ of paths to be
+$$w(\Cal P)=\prod _{} ^{}x_{h}\ ,$$
+where the product is over the heights $h$ of all the horizontal steps
+of the paths.
+
+We want to compute the generating
+function $\sum _{} ^{}w(\pi)$ for tableaux $\pi$ of shape
+$\pmb\la/\pmb\mu$ where the parts in row $i$ are at most $a_i$ and at
+least $b_i$, $i=1,2,\dots,r$, and the parts in column $j$ are at most
+$c_j$ and at least $d_j$, $j=1,2,\dots,\la_1$. Note that we always
+assume $\mu_r=0$ so that there are lower and upper bounds for each
+column. To abbreviate the notation, for these tableaux we shall often use the
+terminology {\it tableaux which obey the row bounds $\pmb a,\pmb b$ and
+the column bounds $\pmb c, \pmb d\,$}, or even shorter {\it tableaux
+obeying $\pmb a,\pmb b,\pmb c,\pmb d\,$}, always assuming that $\pmb a$
+and $\pmb b$ are the upper and lower row bounds while $\pmb c$ and
+$\pmb d$ are the upper and lower column bounds, respectively.
+
+
+A simple trick enables us to use nonintersecting paths 
+for this generalized problem also. 
+This is accomplished by adding $2\la_1$ ``dummy paths"
+of length 0. In fact, tableaux $\pi$ of shape $\pmb\la/\pmb\mu$
+obeying $\pmb a,\pmb b,\pmb c,\pmb d$ bijectively
+correspond to families 
+$(P_1,\dots,P_r,\mathbreak P_{r+1},\dots,P_{r+2\la_1})$ of nonintersecting
+lattice paths where for $i=1,\dots,r$ by using the Gessel/Viennot bijection 
+the path $P_i$ is obtained from
+the $i$'th row of $\pi$ respecting the row bounds $\pmb a$ and $\pmb
+b$, $P_i:(\mu_i+r+1-i,b_i)\to(\la_i+r+1-i,a_i)$, while the paths $P_l$,
+$l=r+1,\dots,r+2\la_1$, are dummy paths of length 0, the
+starting and final points of which are given below.
+$$P_l:\ (l'+M(l'),d_{l'}-1)\to(l'+M(l'),d_{l'}-1)\quad \quad
+l=r+1,\dots,r+\la_1,\hphantom{\la_1+2}$$
+with $l'=l-r$, and
+$$P_{l}:\ (l''+\Lambda
+(l''),c_{l''}+1)
+\to(l''+\Lambda
+(l''),c_{l''}+1)\quad \quad
+l=r+\la_1+1,\dots,r+2\la_1,
+$$
+with $l''=l-r-\la_1$. The auxiliary functions $M$ and $\Lambda
+$ are
+defined by
+$$M(I)=\sum _{j=1} ^{r}\chi
+(I>\mu_j)\quad \text {and}\quad 
+\Lambda
+(I)=\sum _{j=1} ^{r}\chi
+(I>\la_j)\ ,$$
+where $\chi
+(\Cal A)$ is the usual truth function ($\chi
+(\Cal A)=1$ if
+$\Cal A$ is true, and $\chi
+(\Cal A)$=0 otherwise). Figure~2 gives an
+example for this correspondence with $r=4$, $\la=(8,6,4,3)$,
+$\mu=(3,2,0,0)$, $\pmb a=(10,12,13,13)$, $\pmb b=(1,1,2,3)$, $\pmb
+c=(6,6,9,10,11,11,12,12)$, $\pmb d=(2,2,3,3,3,4,6,7)$.
+\vskip-10pt
+\vbox {
+{%
+$$\gather
+\smatrix \format\r\s\c\s\c\s\c\s\c\s\c\s\c\s\c\s\c\s\l\\
+&\omit&2\le&\omit&2\le&\omit&3\le&\omit&3\le&\omit&3\le&\omit
+&4\le&\omit&6\le&\omit&7\le&\omit\\
+\omit&\omit&\omit&\omit&\omit&\omit&\omit&\hlinefor{11}&\omit\\
+1\le&\omit&\omit&\omit&\omit&\omit&\omit&&3&&4&&6&&7&&7&&\le10\\
+\omit&\omit&\omit&\omit&\omit&\hlinefor{13}&\omit\\
+1\le&\omit&\omit&\omit&\omit&&5&&5&&8&&9&&\omit&\omit&\omit&\omit
+&\le12\\
+\omit&\hlinefor{13}\\
+2\le&&2&&3&&6&&6&&\omit&\omit&\omit&\omit&\omit&\omit&\omit&\omit
+&\le13\\
+\omit&\hlinefor{9}\\
+3\le&&4&&5&&8&&\omit&\omit&\omit&\omit&\omit&\omit&\omit&\omit&\omit&\omit
+&\le13\\
+\omit&\hlinefor{7}\\
+&\omit&\le6&\omit&\le6&\omit&\le9&\omit&\le10&\omit&\le11&\omit&\le11
+&\omit&\le12&\omit&\le12
+\endsmatrix\\
+\updownarrow\\
+\Einheit0.4cm
+\Gitter(14,14)
+\Koordinatenachsen(14,14)
+\Pfad(7,1),22121221211222\endPfad
+\Pfad(5,1),222211222121222\endPfad
+\Pfad(2,2),121222112222222\endPfad
+\Pfad(1,3),2121222122222\endPfad
+\DickPunkt(7,1)
+\DickPunkt(5,1)
+\DickPunkt(2,2)
+\DickPunkt(1,3)
+\DickPunkt(3,1)
+\DickPunkt(4,1)
+\DickPunkt(6,2)
+\DickPunkt(8,2)
+\DickPunkt(9,2)
+\DickPunkt(10,3)
+\DickPunkt(11,5)
+\DickPunkt(12,6)
+\DickPunkt(12,10)
+\DickPunkt(9,12)
+\DickPunkt(6,13)
+\DickPunkt(4,13)
+\DickPunkt(1,7)
+\DickPunkt(2,7)
+\DickPunkt(3,10)
+\DickPunkt(5,11)
+\DickPunkt(7,12)
+\DickPunkt(8,12)
+\DickPunkt(10,13)
+\DickPunkt(11,13)
+\Label\lo{3}(8,3)
+\Label\lo{4}(9,4)
+\Label\lo{6}(10,6)
+\Label\lo{7}(11,7)
+\Label\lo{7}(12,7)
+\Label\lo{5}(6,5)
+\Label\lo{5}(7,5)
+\Label\lo{8}(8,8)
+\Label\lo{9}(9,9)
+\Label\lo{2}(3,2)
+\Label\lo{3}(4,3)
+\Label\lo{6}(5,6)
+\Label\lo{6}(6,6)
+\Label\lo{4}(2,4)
+\Label\lo{5}(3,5)
+\Label\lo{8}(4,8)
+\Label\r{P_{1}}(9,5)
+\Label\r{P_{2}}(7,7)
+\Label\l{P_{3}}(6,8)
+\Label\r{P_{4}}(3,7)
+\Label\u{\raise-15pt\hbox{$ P_{5}$}}(3,1)
+\Label\u{\raise-15pt\hbox{$ P_{6}$}}(4,1)
+\Label\u{\raise-15pt\hbox{$ P_{7}$}}(6,2)
+\Label\u{\raise-15pt\hbox{$ P_{8}$}}(8,2)
+\Label\ru{P_{9}}(9,2)
+\Label\ru{\hskip6ptP_{10}}(10,3)
+\Label\u{P_{11}}(11,5)
+\Label\u{P_{12}}(12,6)
+\Label\o{P_{13}\hskip8pt}(1,7)
+\Label\o{P_{14}}(2,7)
+\Label\l{P_{15}\hskip10pt}(3,10)
+\Label\o{P_{16}}(5,11)
+\Label\u{\raise-15pt\hbox{$ P_{17}$}}(7,12)
+\Label\u{\raise-15pt\hbox{$ \hskip5pt P_{18}$}}(8,12)
+\Label\u{\raise-15pt\hbox{$ P_{19}$}}(10,13)
+\Label\u{\raise-15pt\hbox{$\hskip5pt P_{20}$}}(11,13)
+\hskip6cm
+\endgather$$
+\vskip-20pt
+$$\text {\eightpoint Figure 2}$$}
+}
+
+One easily gets convinced that $P_{r+1},\dots,P_{r+\la_1}$ 
+force $P_1,\dots,P_r$
+to stay above them, and, analogously, that $P_{r+\la_1+1},\dots,P_{r+2\la_1}$
+force $P_1,\dots,P_r$ to stay below them; otherwise
+$(P_1,\dots,P_r,P_{r+1},\dots, P_{r+2\la_1})$ would not be
+nonintersecting. But that means that the corresponding tableau obeys
+the column bounds $\pmb d$ and $\pmb c$. 
+
+Now, since we have reduced our tableaux counting problem to the
+problem of counting families of nonintersecting paths, we may apply
+the main theorem of Gessel and Viennot.
+\proclaim{Proposition 1} (Gessel, Viennot \cite{4, sec.~2})
+The generating function $\sum w(\Cal P)$ for families $\Cal
+P=(P_1,\dots,P_n)$ of nonintersecting paths,
+where $P_i$ runs from $(C_i,D_i)$ to $(A_i,B_i)$ is given by
+$$\det_{1\le s,t\le n}(h_{A_s-C_t}(\pmb x;B_s,D_t))\ ,
+\tag1.2$$
+whenever the location of the points $(A_i,B_i)$, $(C_i,D_i)$,
+$i=1,\dots,n$, guarantees the following property: 
+Let the path $Q_i$, $i=1,\dots,n$,  
+start at $(C_i,D_i)$ and terminate at any of the points $(A_j,B_j)$,
+$j=1,\dots,n$. If $(Q_1,\dots,Q_n)$ is a family of
+{\rm nonintersecting} lattice paths, then for all $i=1,\dots,n$ the path
+ $Q_i$ terminates at $(A_i,B_i)$.\quad \quad \qed
+\endproclaim
+
+This yields the following theorem:
+\proclaim{Theorem~1}Let $\pmb a,\pmb b,\pmb c,\pmb d$ as above.
+The generating function $\sum w(\pi)$ for tableaux $\pi$ of shape 
+$\pmb\la/\pmb\mu$ where
+the parts in row $i$ are at most $a_i$ and at least $b_i$, and the parts
+in column $j$ are at most $c_j$ and at least $d_j$ is given by
+$$\det_{1\le s,t\le r+2\la_1}(h_{A_s-C_t}(\pmb
+x;B_s,D_t))\ ,\tag1.3$$
+where $A_i,B_i,C_i,D_i$ are displayed in the table 
+below.
+{\eightpoint
+$$\smatrix \format\c\s\c\s\c\s\c\\
+&&1\le i\le r&&r+1\le i\le r+\la_1&&r+\la_1+1\le i\le r+2\la_1\\
+&& &&i'=i-r&&i''=i-r-\la_1\\
+\hlinefor7\\
+A_i&&\la_i+r+1-i&&i'+M(i')&&i''+\Lambda
+(i'')\\
+B_i&&a_i&&d_{i'}-1&&c_{i''}+1\\
+C_i&&\mu_i+r+1-i&&i'+M(i')&&i''+\Lambda
+(i'')\\
+D_i&&b_i&&d_{i'}-1&&c_{i''}+1
+\endsmatrix$$
+\nobreak
+$$\text {\eightpoint Table 1}$$}
+\qed\endproclaim
+
+Setting $x_i=q^i$ for all $i$, we obtain as a corollary the norm
+generating function for tableaux with row and column bounds.
+\proclaim{Corollary 1}Let $\pmb a,\pmb b,\pmb c,\pmb d$ as in
+Theorem~1.
+The generating function $\sum q^{n(\pi)}$ for tableaux $\pi$ of shape
+$\pmb\la/\pmb\mu$ where
+the parts in row $i$ are at most $a_i$ and at least $b_i$, and the parts
+in column $j$ are at most $c_j$ and at least $d_j$ is given by
+$$\det_{1\le s,t\le r+2\la_1}\left(q^{D_t(A_s-C_t)}
+\left[\matrix A_s+B_s-C_t-D_t\\
+B_s-D_t\endmatrix\right]\right)\ ,\tag1.4$$
+where $A_i,B_i,C_i,D_i$ are displayed in Table~1. 
+The $q$-binomial coefficient is defined by
+$$\left[\matrix n\\k\endmatrix\right]=\frac
+{(1-q^n)(1-q^{n-1})\dotsb(1-q^{n-k+1})}
+{(1-q^k)(1-q^{k-1})\dotsb(1-q)}\ ,$$
+if $n\ge k\ge0$, and $0$ otherwise.\quad \quad \qed
+\endproclaim
+
+Applying this result to tableaux 
+of shape $(8,6,4,3)/(3,2,0,0)$
+obeying $\pmb a=(10,12,\mathbreak 13,13)$, $\pmb b=(1,1,2,3)$, $\pmb
+c=(6,6,9,10,11,11,12,12)$, and $\pmb d=(2,2,3,3,3,4,6,7)$, a 
+typical
+example of which is displayed in Figure~2, we obtain that the norm
+generating function for the 196.650.160 tableaux of this type is
+given by
+
+\NoBlackBoxes
+{\eightpoint
+$$\align
+\sssize{q^{63}} + &\sssize7\,{q^{64}} + 31\,{q^{65}} + 108\,{q^{66}} + 
+318\,{q^{67}} + 
+  830\,{q^{68}} + 1967\,{q^{69}}
+ + 4309\,{q^{70}} + 8825\,{q^{71}} + 
+  17054\,{q^{72}} + 31300\,{q^{73}} + 54857\,{q^{74}} + 92202\,{q^{75}}
+\\
+&\sssize+ 
+  149150\,{q^{76}} + 232896\,{q^{77}} + 351926\,{q^{78}} + 515736\,{q^{79}} 
++ 
+  734334\,{q^{80}} + 1017550\,{q^{81}} + 1374118\,{q^{82}} + 
+  1810680\,{q^{83}} + 2330671\,{q^{84}} \\
+&\sssize+ 2933374\,{q^{85}} + 
+  3613028\,{q^{86}} + 4358418\,{q^{87}} + 5152677\,{q^{88}} + 
+  5973797\,{q^{89}} + 6795371\,{q^{90}} + 7588103\,{q^{91}} + 
+  8321344\,{q^{92}} \\
+&\sssize+ 8965234\,{q^{93}} + 9492509\,{q^{94}} + 
+  9880603\,{q^{95}} + 10112996\,{q^{96}} + 10180583\,{q^{97}} + 
+  10081990\,{q^{98}} + 9823778\,{q^{99}} + 9419561\,{q^{100}} \\
+&\sssize+ 
+  8889120\,{q^{101}} + 8256606\,{q^{102}} + 7549054\,{q^{103}} + 
+  6794310\,{q^{104}} + 6019584\,{q^{105}} + 5249728\,{q^{106}} + 
+  4506378\,{q^{107}} + 3806938\,{q^{108}} \\
+&\sssize+ 3164499\,{q^{109}} + 
+  2587580\,{q^{110}} + 2080681\,{q^{111}} + 1644535\,{q^{112}} + 
+  1277020\,{q^{113}} + 973600\,{q^{114}} + 728280\,{q^{115}} + 
+  534013\,{q^{116}} \\
+&\sssize+ 383492\,{q^{117}} + 269382\,{q^{118}} + 
+  184885\,{q^{119}} + 123772\,{q^{120}} + 80708\,{q^{121}} + 
+  51140\,{q^{122}} + 31435\,{q^{123}} + 18679\,{q^{124}} + 10708\,{q^{125}}
+\\
+&\sssize+ 
+  5890\,{q^{126}} + 3102\,{q^{127}} + 1549\,{q^{128}} + 733\,{q^{129}} + 
+  322\,{q^{130}} + 132\,{q^{131}} + 48\,{q^{132}} + 16\,{q^{133}} + 
+  4\,{q^{134}} + {q^{135}}.
+\endalign$$\par}
+
+Corollary~1 can be generalized in the following way. Call an array
+$\overline{\pi}$ of
+the form (1.1) an {\it $(\alpha
+,\beta
+)$-reverse plane partition of shape
+$\pmb\la/\pmb\mu$} if 
+$$\align 
+&\overline{\pi}_{ij}+\alpha
+\le \overline{\pi}_{i,j+1}
+\quad \quad 1\le i\le r,\ \mu_i+1\le j<\la_i\\
+\text {and}&\tag1.5\\
+&\overline{\pi}_{ij}+\beta
+\le \overline{\pi}_{i+1,j}
+\quad \quad 1\le i< r,\ \mu_i+1\le j\le\la_{i+1}\ .
+\endalign$$
+This definition comprises several classes of reverse plane
+partitions. In particular, tableaux are $(0,1)$-reverse plane partitions. 
+
+Given a tableau $\pi$ of shape $\pmb\la/\pmb\mu$, the transformation
+$$\pi_{ij}\to \pi_{ij}+i(\beta
+-1)+j\alpha
+\ ,$$
+applied to every part $\pi_{ij}$ of $\pi$, maps $\pi$ to an
+$(\alpha
+,\beta
+)$-reverse plane partition. Clearly, this mapping is a
+bijection between tableaux and $(\alpha
+,\beta
+)$-reverse plane partitions.
+This bijection does not preserve $w(\pi)$ nor the norm $n(\pi)$. But
+for the norm we have the simple assertion that the norm of the
+$(\alpha
+,\beta
+)$-reverse plane partition which was obtained from a certain
+tableau under this transformation differs from the norm of this
+tableau by $\sum _{} ^{}\big(i(\beta
+-1)+j\alpha
+\big)$, where the sum is
+over all $i,j$ with $1\le i\le r$ and $\mu_i+1\le j\le\la_i$. This
+quantity only depends on the shape $\pmb\la/\pmb\mu$ and not on the
+tableau involved.
+Therefore, using this bijection
+ it is an easy task to transfer Corollary~1 to
+the more general case of $(\alpha
+,\beta
+)$-reverse plane partitions. One
+only has to find out how the row and column bounds change under this
+transformation.
+\proclaim{Corollary~2}
+Let $\pmb a,\pmb b$ be $r$-tupels and $\pmb c,\pmb d$
+be $\la_1$-tupels of integers satisfying
+$$\gather  a_i+\alpha
+(\la_{i+1}-\la_i)+(\beta
+-1)\le a_{i+1},\quad b_i+\alpha
+(\mu_{i+1}-\mu_i)+(\beta
+-1)\le b_{i+1}\tag1.6\\
+ c_i+(\beta
+-1)(\la'_{i+1}-\la'_i)+\alpha
+\le c_{i+1},\quad d_i+(\beta
+-1)(\mu'_{i+1}-\mu'_i)+\alpha
+\le d_{i+1}\ .\endgather$$
+The generating function $\sum q^{n(\overline{\pi})}$ for $(\alpha
+,\beta
+)$-reverse
+plane partitions $\overline{\pi}$ of shape $\pmb\la/\pmb\mu$ where
+the last part in row $i$ is at most $a_i$ and the first part in row
+$i$ is at least $b_i$, and where the down-most part
+in column $j$ is at most $c_j$ and the upper-most part in column $j$
+is at least $d_j$, is given by
+$$\multline
+q^{(\beta
+-1)\sum _{i=1} ^{r}i(\la_i-\mu_i)+\alpha
+\sum _{i=1}
+^{r}\left[\binom{\la_i+1}2-\binom{\mu_i+1}2\right]}\\
+\times\det_{1\le s,t\le r+2\la_1}\left(q^{D_t(A_s-C_t)}
+\left[\matrix A_s+B_s-C_t-D_t\\
+B_s-D_t\endmatrix\right]\right)\ ,
+\endmultline\tag1.7$$
+where $A_i,B_i,C_i,D_i$ are displayed in
+Table~2.
+{\eightpoint
+$$\smatrix \format\c\s\c\s\c\s\c\\
+&&1\le i\le r&&r+1\le i\le r+\la_1&&r+\la_1+1\le i\le r+2\la_1\\
+&& &&i'=i-r&&i''=i-r-\la_1\\
+\hlinefor7\\
+A_i&&\la_i+r+1-i&&i'+M(i')&&i''+\Lambda
+(i'')\\
+B_i&&a_i-(\beta
+-1)i-\alpha
+\la_i&&d_{i'}-(\beta
+-1)(\mu'_{i''}+1)-
+\alpha
+ i''-1&&c_{i''}-(\beta
+-1)\la'_{i''}-
+\alpha
+ i''+1\\
+C_i&&\mu_i+r+1-i&&i'+M(i')&&i''+\Lambda
+(i'')\\
+D_i&&b_i-(\beta
+-1)i-\alpha
+(\mu_i+1)&&d_{i'}-(\beta
+-1)(\mu'_{i''}+1)-
+\alpha
+ i''-1&&c_{i''}-(\beta
+-1)\la'_{i''}-
+\alpha
+ i''+1
+\endsmatrix$$
+\nobreak
+$$\text {\eightpoint Table 2}$$
+}
+$\pmb\la'/\pmb\mu'$ is the conjugate shape of $\pmb\la/\pmb\mu$.
+\qed\endproclaim
+
+\remark{Remarks}
+1) Theorem~1 and Corollary~2 immediately can be used for
+column-strict plane partitions and $(\alpha
+,\beta
+)$-plane
+partitions (cf\. \cite{5}), 
+respectively, since rotation by $180^\circ$ turns them
+into tableaux and $(\alpha
+,\beta
+)$-reverse plane partitions, respectively.
+
+2) Very often the size of the determinant can be reduced by ignoring
+superflous paths. (In Figure~2 $P_5,P_6,P_{17},P_{19},P_{20}$ are
+superflous.) Also, 
+the entries in the determinant can be reduced by
+replacing $a_i$ by $\min\{a_i,c_{\la_i}\}$, and $b_i$ by
+$\max\{b_i,d_{\mu_i+1}\}$. For a rectangular shape
+$(c^r)$ it is easily seen that after these manipulations $P_{r+1}$
+and $P_{r+2c}$ are always superflous so that in this case the
+size of the determinant in fact is at most $r+2c-2$.
+
+3) Reflection in the main diagonal turns an
+$(\alpha
+,\beta
+)$-reverse plane partition of shape $\pmb\la/\pmb\mu$ into an 
+$(\beta
+,\alpha
+)$-reverse plane partition of shape $\pmb\la'/\pmb\mu'$. 
+Therefore the
+norm generating function  for $(\alpha
+,\beta
+)$-reverse plane partitions of a
+given rectangular shape $(c^r)$ and with given row and column bounds can be
+computed in two different ways using Corollary~2. The first way is to
+use Corollary~2 directly, thus (by Remark~2) obtaining a determinant of size
+$(r+2c-2)$. Or, secondly, one could use the reflection which
+exchanges $\alpha
+$ and $\beta
+$, $r$ and $c$, $\pmb a$ and $\pmb c$, and
+$\pmb b$ and $\pmb d$, and then apply Corollary~2 with these new
+parameters. This time a determinant of size $(c+2r-2)$ is obtained.
+Therefore, in order to minimize the size of the determinant, one
+should first check whether $r\ge c$ or not, in the first case
+use Corollary~2 directly, in the latter Corollary~2 should be
+used only after first having performed the reflection.
+With a skew shape, in general Corollary~2 will not be 
+applicable in two ways as
+described above because after the reflection the new
+bounds might not satisfy (1.6). But as will be seen later, it is
+possible to give a determinant for the ``reflected" problem, also.
+
+4) Of course, our formula can also be used if there are bounds only on three
+sides. In fact, in this case the determinants in Theorem~1 or
+Corollaries~1,2 trivially reduce to determinants of size $r+\la_1$.
+It should be noted that three bound counting for rectangular shapes
+ has been
+considered earlier by Chorneyko and Zing \cite{1, 8, Theorems~1.2.1
+and 1.2.2}. Using the Narayana/Mohanty \cite{cf.~7} method of successively
+building up determinants, they derived determinants for the number of
+rectangular tableaux with bounds $\pmb a$, $\pmb b$, $\pmb c$ or 
+$\pmb a$, $\pmb b$, $\pmb d$, respectively. 
+However, Chorneyko and Zing's determinants slightly differ
+from our $q=1$-results. But they can also be explained by nonintersecting 
+lattice paths. 
+These determinants correspond to a slightly different choice of
+the dummy paths. For example, to obtain Chorneyko and Zing's
+ determinant in the
+$(\pmb a,\pmb b,\pmb d)$-case for a shape $(c^r)$ 
+\cite{8, Theorem~1.2.1}, one had to
+take the dummy paths $P_l:(l,b_{1}-1)\to (l,\max\{b_1,d_{l-r}\}-1)$,
+$l=r+1,\dots,r+c$, instead of $P_l:(l,d_{l-r}-1)\to (l,d_{l-r}-1)$.
+The corresponding picture of a typical
+example is given in the 
+figure below.
+$$
+\smatrix \format\r\s\c\s\c\s\c\s\c\s\l\\
+&\omit&2\le&\omit&4\le&\omit&4\le&\omit&5\le\\
+\omit&\hlinefor9\\
+1\le&&3&&4&&6&&7&&\le8\\
+\omit&\hlinefor9\\
+3\le&&5&&5&&7&&9&&\le9\\
+\omit&\hlinefor9\\
+6\le&&6&&8&&9&&11&&\le12\\
+\omit&\hlinefor9\\
+\endsmatrix
+\quad \longleftrightarrow \quad 
+%
+\vcenter{\hsize4cm\leavevmode\Einheit0.4cm
+\Gitter(9,14)
+\Koordinatenachsen(10,15)
+\Pfad(3,1),22121221212\endPfad
+\Pfad(2,3),2211221221\endPfad
+\Pfad(1,6),1221212212\endPfad
+\Pfad(4,0),2\endPfad
+\Pfad(5,0),222\endPfad
+\Pfad(6,0),222\endPfad
+\Pfad(7,0),2222\endPfad
+\DickPunkt(3,1)
+\DickPunkt(4,1)
+\DickPunkt(2,3)
+\DickPunkt(5,3)
+\DickPunkt(6,3)
+\DickPunkt(7,4)
+\DickPunkt(1,6)
+\DickPunkt(7,8)
+\DickPunkt(5,12)
+\DickPunkt(6,9)
+\DickPunkt(4,0)
+\DickPunkt(5,0)
+\DickPunkt(6,0)
+\DickPunkt(7,0)
+\Label\lo{3}(4,3)
+\Label\lo{4}(5,4)
+\Label\lo{6}(6,6)
+\Label\lo{7}(7,7)
+\Label\lo{5}(3,5)
+\Label\lo{5}(4,5)
+\Label\lo{7}(5,7)
+\Label\lo{9}(6,9)
+\Label\lo{6}(2,6)
+\Label\lo{8}(3,8)
+\Label\lo{9}(4,9)
+\Label\lo{11}(5,11)
+\Label\u{\raise-15pt\hbox{$ P_4$}}(4,0)
+\Label\u{\raise-15pt\hbox{$ P_5$}}(5,0)
+\Label\u{\raise-15pt\hbox{$ P_6$}}(6,0)
+\Label\u{\raise-15pt\hbox{$ P_7$}}(7,0)
+\Label\r{P_1}(5,5)
+\Label\l{P_2}(2,4)
+\Label\l{P_3}(2,8)
+\par}$$
+\nobreak
+$$\text {\eightpoint Figure 3}$$
+Clearly, the dummy paths in Figure~3 have just the same effect as
+those in Figure~2. We decided to take paths of length 0 because this
+choice causes the entries in the determinant to become smaller.
+ \quad \quad \qed
+\endremark
+\newpage
+
+\subheading{3. Unrestricted row and column bounds}
+It turns out that even if we drop the condition of the bounds being
+nondecreasing, the generating functions for tableaux
+ can be given in determinantal
+form. Let $\pmb a,\pmb b$ be arbitrary $r$-tupels of integers and
+$\pmb c,\pmb d$ be arbitrary $\la_1$-tupels of integers only
+satisfying
+$\pmb a\ge\pmb b$ and $\pmb c\ge\pmb d$. We want to compute the
+generating function for tableaux of shape $\pmb\la/\pmb\mu$ where
+the parts in row $i$ are at most $a_i$ and at least $b_i$, and the
+parts in column $j$ are at most $c_j$ and at least $d_j$. 
+Since now a formula for
+the entries of the resulting determinant would involve very clumsy
+expressions, it is more convenient to only give a rough description of the
+procedure which finally leads to the determinantal formula. Moreover,
+as will be seen later, it is better not to rigorously 
+stick to a formula because
+very often in the last step of this procedure the size of the
+determinant can be significantly reduced, which would not be observed
+when a general formula is directly used.
+
+
+Let us give a sketch of this procedure, which is performed in four steps.
+First, consider the case $\pmb\la=(5,4,3)$, $\pmb\mu=(2,0,0)$, $\pmb
+a=(14,10,13)$, $\pmb b=(4,1,4)$, $\pmb c=(6,8,16,15,12)$, $\pmb
+d=(2,7,1,7,5)$ which is illustrated on the left-hand side of Figure~4.
+
+{\eightpoint
+$$
+\smatrix \format\r\s\c\s\c\s\c\s\c\s\c\s\l\\
+&\omit&2\le&\omit&7\le&\omit&1\le&\omit&7\le&\omit&5\le&\omit&\\
+\omit&\omit&\omit&\omit&\omit&\hlinefor7\\
+4\le&\omit&&\omit&&&&&&&&&\le 14\\
+\omit&\hlinefor{11}\\
+1\le&&&&&&&&&& &\omit&\le10\\
+\omit&\hlinefor9\\
+4\le&&&&&&&&&\omit&&\omit&\le13\\
+\omit&\hlinefor7\\
+&\omit&\le6&\omit&\le8&\omit&\le16&\omit&\le15&\omit&\le12
+\endsmatrix
+%
+\overset\text {first step}\to\longrightarrow
+%
+\smatrix \format\r\s\c\s\c\s\c\s\c\s\c\s\l\\
+&\omit&2\le&\omit&7\le&\omit&4\le&\omit&7\le&\omit&7\le&\omit&\\
+\omit&\omit&\omit&\omit&\omit&\hlinefor7\\
+4\le&\omit&&\omit&&&&&&&&&\le 12\\
+\omit&\hlinefor{11}\\
+2\le&&&&&&&&&& &\omit&\le10\\
+\omit&\hlinefor9\\
+4\le&&&&&&&&&\omit&&\omit&\le13\\
+\omit&\hlinefor7\\
+&\omit&\le6&\omit&\le8&\omit&\le13&\omit&\le10&\omit&\le12
+\endsmatrix
+$$}
+\nopagebreak
+$$\text {\eightpoint Figure 4}$$
+
+Obviously, some entries in $\pmb a,\pmb b,\pmb c$, or $\pmb d$,
+respectively, could be replaced by greater respectively smaller
+ ones without changing the
+set of tableaux obeying these bounds. For example, $d_5=5$ could be
+replaced by $7$, $a_1=14$ by $12$, etc. Formally, we may replace
+$\pmb a$ by $\bar{\pmb a}$, $\pmb b$ by $\bar{\pmb b}$, \dots, where
+
+{\eightpoint
+$$\gather  \bar{a}_i=\cases \min\{a_i,a_{i+1},\dots,a_{\la'_{\la_i}}\}
+&\la_{i+1}=\la_i\\
+\min\{a_i,c_{\la_i}\}&\la_{i+1}<\la_i\endcases\ ,\quad 
+\bar{b}_i=\cases \max\{b_{\mu'_{\mu_i}+1},\dots,b_{i-1},b_i\}
+&\mu_{i-1}=\mu_i\\
+\max\{b_i,d_{\mu_i+1}\}&\mu_{i-1}>\mu_i\endcases\ ,\\
+\bar{c}_i=\cases \min\{c_i,c_{i+1},\dots,c_{\la_{\la'_i}}\}
+&\la'_{i+1}=\la'_i\\
+\min\{c_i,a_{\la'_i}\}&\la'_{i+1}<\la'_i\endcases\ ,\quad 
+\bar{d}_i=\cases \max\{d_{\mu_{\mu'_i}+1},\dots,d_{i-1},d_i\}
+&\mu'_{i-1}=\mu'_i\\
+\max\{d_i,b_{\mu'_i+1}\}&\mu'_{i-1}>\mu'_i\endcases\ .\endgather$$}
+In our example, this normalization of the bounds is displayed on the
+right-hand side of Figure~4.
+
+In the second step, tableaux of shape $\pmb\la/\pmb\mu$ obeying
+$\bar{\pmb a},\bar{\pmb b},\bar{\pmb c},\bar{\pmb d}$ are interpreted
+as families of lattice paths as was done before in order to prove
+Theorem~1.
+
+\newpage
+$$\gather
+\smatrix \format\r\s\c\s\c\s\c\s\c\s\c\s\l\\
+&\omit&2\le&\omit&7\le&\omit&4\le&\omit&7\le&\omit&7\le&\omit&\\
+\omit&\omit&\omit&\omit&\omit&\hlinefor7\\
+4\le&\omit&&\omit&&&4&&9&&9&&\le 12\\
+\omit&\hlinefor{11}\\
+2\le&&3&&7&&7&&10&& &\omit&\le10\\
+\omit&\hlinefor9\\
+4\le&&4&&8&&8&&&\omit&&\omit&\le13\\
+\omit&\hlinefor7\\
+&\omit&\le6&\omit&\le8&\omit&\le13&\omit&\le10&\omit&\le12
+\endsmatrix\hskip6cm
+\\
+\vphantom{fg}\\
+\downarrow\text {\eightpoint second step}\hskip4cm\\
+\endgather$$
+\nopagebreak
+\vskip-8pt
+\nopagebreak
+$$
+\vcenter{\hsize4cm\leavevmode\Einheit0.4cm
+\Gitter(9,15)
+\Koordinatenachsen(9,15)
+\Pfad(5,4),12222211222\endPfad
+\Pfad(2,2),212222112221\endPfad
+\Pfad(1,4),122221122222\endPfad
+\DickPunkt(5,4)
+\DickPunkt(2,2)
+\DickPunkt(1,4)
+\DickPunkt(3,1)
+\DickPunkt(4,6)
+\DickPunkt(6,3)
+\DickPunkt(7,6)
+\DickPunkt(8,6)
+\DickPunkt(1,7)
+\DickPunkt(2,9)
+\DickPunkt(3,14)
+\DickPunkt(4,13)
+\DickPunkt(5,11)
+\DickPunkt(6,10)
+\DickPunkt(7,13)
+\DickPunkt(8,12)
+\Label\lo{3}(3,3)
+\Label\lo{7}(4,7)
+\Label\lo{7}(5,7)
+\Label\lu{10}(6,10)
+\Label\lo{4}(6,4)
+\Label\lu{9}(7,9)
+\Label\lu{9}(8,9)
+\Label\lo{4}(2,4)
+\Label\lo{8}(3,8)
+\Label\lo{8}(4,8)
+}
+\overset\text {third step}\to\longrightarrow
+%
+\vcenter{\hsize4cm\leavevmode\Einheit0.4cm
+\Gitter(9,15)
+\Koordinatenachsen(9,15)
+\Pfad(5,4),12222211222\endPfad
+\Pfad(2,2),212222112221\endPfad
+\Pfad(1,4),122221122222\endPfad
+\DickPunkt(5,4)
+\DickPunkt(2,2)
+\DickPunkt(1,4)
+\DickPunkt(3,1)
+\DickPunkt(4,6)
+\DickPunkt(6,3)
+\DickPunkt(7,6)
+\DickPunkt(8,6)
+\DickPunkt(1,7)
+\DickPunkt(2,9)
+\DickPunkt(3,14)
+\DickPunkt(4,13)
+\DickPunkt(5,11)
+\DickPunkt(6,10)
+\DickPunkt(7,13)
+\DickPunkt(8,12)
+\DickPunkt(4,2)
+\DickPunkt(4,3)
+\DickPunkt(4,4)
+\DickPunkt(4,5)
+\DickPunkt(6,12)
+\DickPunkt(6,11)
+\Label\lo{3}(3,3)
+\Label\lo{7}(4,7)
+\Label\lo{7}(5,7)
+\Label\lu{10}(6,10)
+\Label\lo{4}(6,4)
+\Label\lu{9}(7,9)
+\Label\lu{9}(8,9)
+\Label\lo{4}(2,4)
+\Label\lo{8}(3,8)
+\Label\lo{8}(4,8)
+\Label\l{(}(3,1)
+\Label\r{)}(3,1)
+\Label\l{(}(4,2)
+\Label\r{)}(4,2)
+\Label\l{(}(4,3)
+\Label\r{)}(4,3)
+\Label\l{(}(4,4)
+\Label\r{)}(4,4)
+\Label\l{(}(6,11)
+\Label\r{)}(6,11)
+\Label\l{(}(7,13)
+\Label\r{)}(7,13)
+\Label\l{(}(3,14)
+\Label\r{)}(3,14)
+}$$
+\nopagebreak
+$$\text {\eightpoint Figure 5}$$
+
+But now there are not enough dummy paths to guarantee that every
+family of nonintersecting paths corresponds to a tableaux of the
+desired type. Therefore, in the third step we have to insert
+additional dummy paths to build up ``barriers" at some places. Let us
+consider the starting points $S_i,S_{i+1}$ of the paths $P_i,P_{i+1}$
+which correspond to the $i$'th and $(i+1)$'th row of
+the tableau, respectively. Depending on which of the relations 
+$\mu_i=\mu_{i+1}$,
+$\bar b_i\le\bar b_{i+1}$, $\bar d_{\mu_i}\le\bar b_i$ hold or not,
+we obtain four cases which schematically are described in Figure~6.
+$$
+\underset\text {Case~1: $\mu_i=\mu_{i+1}$, $\bar b_i\le\bar
+b_{i+1}$}\to
+{\vcenter{\hsize4cm\leavevmode\Einheit0.4cm
+\DickPunkt(0,5)
+\DickPunkt(1,0)
+\Pfad(0,5),121112\endPfad
+\Pfad(1,0),22211211\endPfad
+\Label\lu{S_{i+1}}(0,5)
+\Label\lu{S_{i}}(1,0)
+\vskip0.3cm}}
+\underset\text {Case~2: $\mu_i>\mu_{i+1}$, $\bar d_{\mu_i}>\bar b_i\le\bar
+b_{i+1}$}\to
+{\vcenter{\hsize4cm\leavevmode\Einheit0.4cm
+\DickPunkt(0,3)
+\DickPunkt(5,0)
+\Pfad(0,3),22221122212\endPfad
+\Pfad(5,0),22211221\endPfad
+\DickPunkt(1,2)
+\DickPunkt(2,5)
+\DickPunkt(3,8)
+\DickPunkt(4,10)
+\Kreis(2,3)
+\Kreis(2,4)
+\Kreis(3,6)
+\Kreis(3,7)
+\Kreis(4,9)
+\Label\lu{S_{i+1}}(0,3)
+\Label\lu{S_{i}}(5,0)
+\vskip10pt}}
+$$
+$$
+\underset\text {Case~3: $\bar d_{\mu_i}\le\bar b_i>\bar
+b_{i+1}$}\to
+{\vcenter{\hsize4cm\leavevmode\Einheit0.4cm
+\DickPunkt(0,0)
+\DickPunkt(4,10)
+\Pfad(0,0),222221222122\endPfad
+\Pfad(4,10),11\endPfad
+\Label\lu{S_{i+1}}(0,0)
+\Label\lo{S_{i}}(4,10)
+\DickPunkt(1,-1)
+\DickPunkt(2,3)
+\DickPunkt(3,6)
+\Kreis(2,0)
+\Kreis(2,1)
+\Kreis(2,2)
+\Kreis(3,4)
+\Kreis(3,5)
+\Kreis(4,7)
+\Kreis(4,8)
+\Kreis(4,9)
+}}
+\underset\text {Case~4: $\bar d_{\mu_i}>\bar b_i>\bar
+b_{i+1}$}\to
+{\vcenter{\hsize4cm\leavevmode\Einheit0.4cm
+\DickPunkt(0,0)
+\DickPunkt(5,5)
+\Pfad(0,0),222211222222112\endPfad
+\Pfad(5,5),21\endPfad
+\Label\lu{S_{i+1}}(0,0)
+\Label\lu{S_{i}}(5,5)
+\DickPunkt(1,-1)
+\DickPunkt(2,2)
+\DickPunkt(3,7)
+\DickPunkt(4,9)
+\Kreis(2,0)
+\Kreis(2,1)
+\Kreis(3,3)
+\Kreis(3,4)
+\Kreis(3,5)
+\Kreis(3,6)
+\Kreis(4,8)
+}}$$
+\nopagebreak
+$$\text {\eightpoint Figure 6}$$
+The boldface dots different from $S_i$ and $S_{i+1}$ indicate the
+dummy paths which were inserted during Step~2. The circles
+indicate the dummy paths which have to be added to build up barriers
+which prevent $P_{i+1}$ from going below $P_i$ or not obeying $\pmb
+d$, respectively. Only in Case~1 nothing has to be done. Considering
+the end points of $P_i$ and $P_{i+1}$, dummy paths are added in an
+analogous manner in order to guarantee that the corresponding tableau
+is of the desired type. The result of this third step applied to our
+example is the family of paths on the right-hand side of Figure~5.
+
+
+Finally, in the fourth step we look after paths which are superflous.
+These subsequently are dropped. In the right-hand side
+ family of lattice paths in Figure~5 the superflous paths are put
+into parentheses. (It should be observed that paths should only be
+dropped sequentially because the same path could be superflous with
+respect to some set of paths which already has been dropped but not
+superflous with respect to another set. There can be several
+different sets of paths which can be legitimately 
+dropped. One will choose that
+one which causes the corresponding determinant to become as ``small" as
+possible.)
+
+Now Proposition~1 can be applied thus again obtaining a determinant
+for the generating function. In our running example
+(Figures~4,5) this procedure yields that there are 17.163 tableaux of
+the desired type, the norm generating function of which is given by
+$$\align 
+\ssize
+{q^{62}} &
+\ssize+ 6\,{q^{63}} + 21\,{q^{64}} + 55\,{q^{65}} + 118\,{q^{66}} + 
+  221\,{q^{67}} + 372\,{q^{68}} + 572\,{q^{69}} + 812\,{q^{70}} + 
+  1072\,{q^{71}} + 1322\,{q^{72}} + 1530\,{q^{73}}\\
+& \ssize+ 1665\,{q^{74}} + 
+  1707\,{q^{75}} + 1650\,{q^{76}} + 1503\,{q^{77}} + 1290\,{q^{78}} + 
+  1041\,{q^{79}} + 789\,{q^{80}} + 561\,{q^{81}} + 373\,{q^{82}} + 
+  231\,{q^{83}} \\
+&\ssize+ 132\,{q^{84}} + 69\,{q^{85}} + 32\,{q^{86}} + 
+  13\,{q^{87}} + 4\,{q^{88}} + {q^{89}}.
+\endalign$$
+Of course, with the help of this procedure the norm generating function
+for $(\alpha
+,\beta
+)$-plane partitions or $(\alpha
+,\beta
+)$-reverse plane
+partitions of shape $\pmb\la/\pmb\mu$ which obey arbitrary $\pmb a,\pmb
+b,\pmb
+c,\pmb
+d,$ can also be computed by transforming the problem to the
+corresponding tableaux problem.
+
+\Refs
+\ref\no 1\by I. Z. Chorneyko, L. K. K. Zing
+\paper $K$-sample analogues of two-sample
+Kolmogorov--Smirnov stastistics\jour Selecta Statistica Canadiana\vol 6
+\yr 1982\pages 37--62\endref
+\ref\no 2\by W. Chu\paper Dominance method for plane partitions. IV:
+Enumeration of flagged skew tableaux\jour 
+Linear and Multilinear Algebra\vol 28\yr 1990\pages 185--191\endref
+\ref\no3\by Gessel, I., G. Viennot \paper Binomial
+determinants, paths, and hook length formulae\jour Adv\. in Math\. 
+\vol 58\yr 1985\pages 300--321\endref
+\ref\no 4\by I. Gessel, G. Viennot\paper Determinants, paths, and
+plane partitions\paperinfo preprint, 1989\endref
+\ref\no5\by C. Krattenthaler\paper   Generating functions for plane 
+partitions of  a  given 
+shape\jour  Manuscripta Math\.\vol 69\yr1990\pages 173--202\endref
+\ref\no 6 \by I. G. Macdonald \book Symmetric Functions and Hall 
+Polynomials \publ Oxford University Press\publaddr New 
+York/London\yr1979\endref
+\ref\no 7\by S.~G.~Mohanty\book Lattice path counting and
+applications\publ Academic Press\publaddr New York\yr 1979\endref
+\ref\no 8\by L. K. K. Zing\book $K$-sample analogues of
+Kolmogorov--Smirnov statistics and group tests
+\bookinfo Ph\. D. Thesis, McMaster University, 1978\endref
+\ref\no 9\by M.~Wachs\paper Flagged Schur functions, Schubert
+polynomials, and symmetrizing operators\jour 
+J. Combin\. Theory~A\vol 40\yr 1985\pages 276--289\endref
+\endRefs
+\vskip20pt
+
+\eightpoint\hangindent10pt\hangafter1\noindent
+1991 {\it Mathematics subject classifications}: Primary 05A15;
+ Secondary 05A17, 05E10, 11P81.
+
+\hangindent10pt\hangafter1\noindent
+{\it Keywords and phrases}: tableaux, generating functions, plane partitions,
+nonintersecting lattice\linebreak paths.
+
+\enddocument

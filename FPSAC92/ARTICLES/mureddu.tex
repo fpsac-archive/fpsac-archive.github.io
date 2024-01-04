@@ -1,0 +1,1361 @@
+\documentstyle[leqno]{article}
+\begin{document}
+\title{From algebraic sets to monomial linear bases
+\\ by means of combinatorial algorithms.}
+\author{L. Cerlienco 
+and M. Mureddu}
+\date{}
+\maketitle
+
+\newtheorem{prop}{Prop.}
+\newtheorem{cor}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newcommand{\prova}{\noindent {\bf Proof.} \indent }
+\ 
+
+\vskip .7in
+\noindent {\bf Summary.}\indent Let $K$ be a field; let ${\cal 
+P}\subset K^n$ be a finite set and let $\Im({\cal P})\subset 
+K[x_1,\ldots,x_n]$ be the ideal of ${\cal P}$. A purely 
+combinatorial algorithm to obtain a linear basis of the quotient 
+algebra $K[x_1,\ldots,x_n]/\Im({\cal P})$ is given. Such a basis 
+is represented by an $n$-dimensional Ferrers diagram of monomials 
+which is minimal with respect 
+to the inverse lexicographical order $\preceq_{i.l.}$. 
+It is also shown how this algorithm can be extended to the case in 
+which ${\cal P}$ is an 
+{\em algebraic multiset}. A few  applications  are  stated  (among 
+them,  how 
+to determine a reduced Gr\"obner basis  of  $\Im({\cal  P})$  with 
+respect to $\preceq_{i.l.}$ without using Buchberger's algorithm).
+\vskip .3in
+
+\noindent 
+\section{Introduction}
+\vskip .12in
+
+\noindent {\bf 1.1} \indent
+Let {\bf N} be the monoid  of   non-negative   integers.   Denote   by
+${\bf i}:=(i_1,\ldots ,i_n)$   an   arbitrary   element   in   the
+power
+${\bf N}^n$. The usual order on {\bf N}, as  well   as   the   partial
+order it induces on ${\bf N}^n$, will be denoted by $\leq$.
+
+Define an {\it n-dimensional Ferrers diagram} to be any finite ideal of
+the poset ${\bf N}^n$, i.e.\ any non-empty finite 
+subset ${\cal F}\subseteq {\bf N}^n$ such that  ${\bf j}<{\bf i}\in
+{\cal F}\Longrightarrow {\bf j}\in {\cal  F}$.
+An element
+${\bf i}=(i_1,\ldots,i_n)\not\in {\cal  F}$ is said to be a
+{\em co-minimal element}  for  the
+Ferrers diagram ${\cal  F}$ if it is a minimal element of the
+complementary filter ${\bf N}^n\setminus {\cal  F}$, i.e.\
+if $(i_1,\ldots,i_{r-1}, i_r-1,i_{r+1},\ldots,i_n)\in {\cal  F}$
+for each $r$ such that $i_r\geq 1$.
+Of course, ${\bf i}\not\in {\cal  F}$ is a co-minimal element iff
+${\cal  F'}:= \{{\bf i}\}\cup {\cal
+F}$ is a Ferrers diagram.
+
+We will write $\preceq$ for any {\it term-ordering} on
+${\bf N}^n$, i.e.\ a linear ordering which  is compatible with the
+monoid structure on ${\bf N}^n $:
+$$
+{\bf 0}\prec {\bf i} \indent \mbox{ for every }{\bf i}\neq {\bf 0}
+\mbox{ in }{\bf N}^n,
+$$
+$$
+{\bf i}\preceq{\bf j}\Longrightarrow {\bf i}+{\bf r}\preceq
+{\bf j}+{\bf r}
+ \indent \mbox{ for every } {\bf i},{\bf j},{\bf r}\in
+{\bf N}^n.
+$$
+It is well known that every term-ordering on ${\bf N}^n$ is also a
+well-ordering.
+\vskip .1in
+
+\noindent {\bf 1.2} \indent
+Let $K$ be a field and let
+$X:=\{x_1,x_2,\ldots ,x_n\}$
+be a given set
+ of indeter\-minates. Let us consider the usual polynomial algebra
+$K[X]:=K[x_1,\ldots ,x_n]$. Denote by $M_X\subseteq  K[X]$  the  free
+ abelian  monoid  on  $X$.  The  elements  of  $M_X$  (i.e.\  the
+monic  monomials) will  be called  {\it terms} of $K[X]$ and denoted
+by
+${\bf x^i}:=x_1^{i_1}\cdots x_n^{i_n}$ with
+${\bf i}:=(i_1,\ldots ,i_n)\in {\bf N}^n$. The orders $\leq$ and
+$\preceq$ on ${\bf N}^n$, as well as the notion of Ferrers diagram,
+extend to $M_X$ in an obvious way.
+
+An ideal $J$ of the algebra $K[X]$ is said to be {\it cofinite} if
+$$
+{\rm codim}(J):={\rm dim}\left(K[X]/J\right)<\infty.
+$$
+Given a finite set ${\cal P}:=\{P_1,\ldots ,P_N\}\subseteq  K^n$,  the
+ideal
+$$
+\Im({\cal P}):=\{p\in K[X]\mid (\forall P\in {\cal P})(p(P)=0)\}
+$$
+of the algebraic set ${\cal P}$ is cofinite. More generally, when $K$ is
+algebraically closed, from the {\it Nullstellensatz} it follows that
+an ideal $J\subseteq K[X]$ is a cofinite ideal iff the algebraic set
+of $J$, i.e.\
+$$
+{\cal V}(J):=\left\{ P\in K^n\mid (\forall p\in J)(p(P)=0)
+\right\},
+$$
+is finite. In this case we have
+$\#{\cal V}(J)={\rm codim}(\sqrt{J})\leq {\rm codim}(J)$ (cfr. [5] p.23).
+
+For a given ideal $J$, any linear basis ${\cal L}_J$ of the
+quotient algebra
+$K[X]/J$ whose elements are of the form $[{\bf x^i}]_J:={\bf x^i}+J$ 
+will be called a {\it monomial basis}. 
+If ${\cal L}_J=\{{\bf x^i}+J \mid {\bf i}\in L\subseteq {\bf N}^n\}$ 
+is a monomial basis, we shall say that 
+$\{{\bf x^i} \mid {\bf i}\in L\}$ is a 
+{\it system of representatives\/} for the monomial basis
+${\cal L}_J$. Obviously, if 
+${\cal L}_J=\{{\bf x^i}+J \mid {\bf i}\in L\}$  is  a 
+monomial basis  of  $K[X]/J$,  then  any  polynomial  $p\in  K[X]$  is 
+congruent modulo $J$ to exactly one polynomial of the form 
+$\sum_{{\bf i}\in L}a_{\bf i}{\bf x^i}$, $a_{\bf i}\in  K$.  Given  an 
+arbitrary term-ordering $\preceq$ on $M_X$, a  monomial  basis  
+${\cal L}_J= \{ {\bf x}^{{\bf i}_1}+J, \ldots, 
+{\bf x}^{{\bf i}_N}+J \}$ with 
+${\bf x}^{{\bf i}_1}\prec \ldots \prec {\bf x}^{{\bf i}_N}$ 
+is said to be {\it minimal} with respect to 
+$\preceq$ if for any other monomial basis 
+${\cal L'}_J= \{ {\bf x}^{{\bf i'}_1}+J,$ $\ldots,
+{\bf x}^{{\bf i'}_N}+J \}$ with 
+${\bf x}^{{\bf i'}_1}\prec \ldots \prec {\bf x}^{{\bf i'}_N}$ 
+we have ${\bf x}^{{\bf i}_j}\preceq {\bf x}^{{\bf i'}_j}$ 
+for $j=1,\ldots,N$. Equivalently, 
+${\cal L}_J= \{ {\bf x}^{{\bf i}_1}+J, \ldots, 
+{\bf x}^{{\bf i}_N}+J \}$, 
+${\bf x}^{{\bf i}_1}\prec \ldots \prec {\bf x}^{{\bf i}_N}$, 
+is  {\it minimal} with respect to $\preceq$ if every term 
+${\bf x}^{{\bf i}}$, such that 
+${\bf x}^{{\bf i}}\prec {\bf x}^{{\bf i}_j}$,
+ is linearly dependent (modulo $J$) on 
+${\bf x}^{{\bf i}_1}, \ldots,{\bf x}^{{\bf i}_{j-1}}$. 
+Of course, both ${\cal L}_J$ and 
+${\cal L'}_J$, 
+${\cal L}_J\neq {\cal L'}_J$,  could be  minimal  with  respect  to 
+different term-orderings. 
+It is not hard to prove that if
+${\cal L}_J=\{{\bf x}^{{\bf i}_j}+J \mid j=1,\ldots,N\}$  
+is  a  minimal  monomial 
+basis  then  
+$L=\{ {\bf i}_1,\ldots,{\bf i}_N\}\subseteq  {\bf  N}^n$  
+is  an  $n$-dimensional   Ferrers diagram. In fact, if 
+${\bf x^i}\not \in {\cal L}_J$, then 
+$$
+{\bf x^i} = \sum_{ {\bf x}^{{\bf i}_j} \prec {\bf x^i}} 
+\lambda_j {\bf x}^{{\bf i}_j} \indent {\rm modulo } \, J.
+$$
+Thus,
+$$
+{\bf x^{i+r}} = \sum_{ {\bf x}^{{\bf i}_j} \prec {\bf x^i}} 
+\lambda_j {\bf x}^{{\bf i}_j+{\bf r}} \indent {\rm modulo}\, J
+$$
+where ${\bf r}\in {\bf N}^n$ and 
+${\bf x}^{{\bf i}_j}\prec {\bf x}^{{\bf i}_j+{\bf r}}\prec 
+{\bf x^{i+r}}$ as $\preceq$ is a term-ordering. Since either 
+${\bf x}^{{\bf i}_j+{\bf r}}+J$ belongs to ${\cal L}_J$ or 
+${\bf x}^{{\bf i}_j+{\bf r}}+J$ is a linear combination  of  smaller 
+elements in ${\cal L}_J$, from the above congruence we deduce that 
+the same is true  for 
+${\bf x^{i+r}}+J$: 
+$$
+{\bf x^{i+r}} = \sum_{ {\bf x}^{{\bf i}_j} \prec {\bf x^{i+r}}} 
+\mu_j {\bf x}^{{\bf i}_j} \indent {\rm modulo} \, J.
+$$
+Hence, ${\bf i}\not\in L \Rightarrow {\bf i}+{\bf r}\not\in L$,
+i.e. ${\bf i}+{\bf r}\in L \Rightarrow {\bf i}\in L$; thus, $L$ is 
+a Ferrers diagram. 
+\vskip .1in
+
+\noindent {\bf 1.3} \indent
+In the search for a minimal monomial basis  ${\cal  L}_{\cal  P}$, 
+in the following section we  
+present a purely combinatorial algorithm to get it   
+from ${\cal  P}$. In fact, making use of the  {\bf  Algorithm  MB} 
+below, we associate  a Ferrers diagram 
+${\cal MB(P)}=\{ {\bf d}_1,\ldots ,{\bf d}_N\}\subseteq {\bf N}^n$
+to any finite set 
+${\cal P}:=\{P_1,\ldots ,P_N\}\subseteq  K^n$.
+The Ferrers diagram ${\cal MB(P)}$ 
+gives the monomial basis ${\cal L}_{\cal P}=\{{\bf x^d}+\Im({\cal 
+P}) \mid {\bf d}\in {\cal MB(P)}\}$ which is minimal with 
+respect to the inverse lexicographical ordering $\preceq_{i.l.}$ with
+$x_1\prec_{i.l.} x_2\prec_{i.l.} \ldots \prec_{i.l.} x_n$ .
+
+The implementation of  {\bf  Algorithm  MB}, as well  as  that  of 
+its applications described in section {\bf 4}, presents no serious 
+difficulties. 
+\vskip .17in
+
+\noindent 
+\section{The Algorithm MB}
+\vskip .12in
+
+\noindent {\bf 2.1} \indent Let 
+${\cal P}:=\{P_1,\ldots ,P_N\} \subseteq K^n $. For 
+$1\leq  j\leq N$ and for $0\leq  s\leq n$, put 
+
+$\underline{\cal P} :=(P_1,\ldots ,P_N)$;
+
+${\bf d}_j = (d_{j,1},\ldots,d_{j,n})\in {\bf N}^n$;
+
+$\pi_s \colon  K^n  \longrightarrow  K^s$, \indent
+$(x_1,\ldots, x_n)  \mapsto  (x_1,\ldots, x_s)$
+\indent ($\pi_0(P)$ is assumed to be 
+
+the empty sequence);
+
+$\pi^s \colon  K^n  \longrightarrow  K^{n-s+1}$, \indent 
+$(x_1,\ldots, x_n)  \mapsto  (x_s,\ldots, x_n)$. 
+\vskip .1in 
+
+\noindent Given a list $\underline{\cal P}:=(P_1,\ldots,P_N)$ of points, 
+we determine an ordered set 
+$\underline{\cal F}:=({\bf d}_1,\ldots,{\bf d}_N)$.
+\vskip .1in
+\begin{description}
+\item[MB1.][Initialize.] \\
+   Set ${\bf d}_1\leftarrow {\bf d}_2\leftarrow \ldots {\bf d}_N
+   \leftarrow  (0,\ldots, 0)$;   $i \leftarrow 1$.\\
+   ({\em In the beginning the coordinates of all the elements of 
+   $\underline{\cal F}$ are zero.}) 
+
+
+\item[MB2.][Put the first $i$ points of the  list 
+     $\underline{\cal  P}$  in $\cal Q$.] \\
+    Set ${\cal Q} \leftarrow \{P_j \mid 1\leq j\leq i\}$.
+
+\item[MB3.][Find which coordinate of ${\bf d}_{i+1}$ has to be 
+    changed, say  $ d_{i+1,s}$.] \\
+    Set $s \leftarrow \max \{k\geq 1 \mid
+    \pi_{k-1} (P_j) = \pi_{k-1}(P_{i+1})$, for some $P_j \in {\cal Q} \}$.\\
+    ({\em $s-1$ is the length of the longest initial segment 
+    shared 
+    by $P_{i+1}$ and some point $P_j \in  {\cal  Q}$.   If  $s>1$, 
+    then in successive steps this value decreases.})
+
+\item[MB4.][Find the points that determine 
+      the $s$-th coordinate of ${\bf d}_{i+1}$.]\\
+     Set ${\cal E} \leftarrow \{j \mid P_j \in {\cal Q}$, \, 
+     $\pi_{s-1} (P_j) = \pi_{s-1}(P_{i+1})$, \, 
+     $\pi^{s+1} ({\bf d}_j) = \pi^{s+1}({\bf d}_{i+1})\}$.\\
+({\em ${\cal E}$ contains the indices of the points of ${\cal Q}$ which have 
+the first $s-1$
+    coordinates equal to those of $P_{i+1}$ and whose 
+    corresponding 
+    elements in $\underline{\cal F}$ have the $n-s$ rightmost 
+    coordinates equal 
+    to those of ${\bf d}_{i+1}$. ${\cal E}$ is always non-empty}.)
+
+\item[MB5.][Assign the value to the $s$-th coordinate of 
+    ${\bf d}_{i+1}$.]\\
+    Set $d_{i+1,s} \leftarrow (1+ \max\{d_{j,s} \mid j\in {\cal E} \})$.
+
+\item[MB6.][Did you determine the first coordinate of
+         ${\bf d}_{i+1}$?]\\
+    If $s>1$
+\begin{description}
+\item[MB6.1.][Find the points that determine 
+     another coordinate of ${\bf d}_{i+1}$.]\\
+     Set 
+     $ {\cal Q} \leftarrow \{P_j \mid 1 \leq j \leq i, \, \pi^s({\bf d}_j)
+    = \pi^s({\bf d}_{i+1}) = (d_{i+1,s},\ldots,d_{i+1,n}) \}$.
+    ({\em ${\cal Q}$ contains the
+    points of $\underline{\cal P}$ different from $P_{i+1}$ whose 
+    corresponding elements in
+    $\underline{\cal F}$ have the $n-s+1$ rightmost coordinates 
+    equal to those of ${\bf d}_{i+1}$}.) 
+
+\item[MB6.2.][Is ${\cal Q}$ empty?]\\
+    If ${\cal Q} \not= \emptyset$, return to step {\bf MB3.}
+\end{description}
+
+\item[MB7.][Increase $i$.] \\
+    Set $i \leftarrow i+1$. If $i<N,$ return to step {\bf MB2.}
+\item[MB8.][Done.] Terminate the algorithm. 
+\end{description}
+\vskip .1in
+
+\noindent {\bf 2.2} \indent 
+Let $\underline{\cal P}:=(P_1,\ldots,P_N)$ 
+and $\underline{\cal F}:=({\bf d}_1,\ldots,{\bf d}_N)$ as in  {\bf 
+2.1}. 
+We put: \, ${\cal MB(P)}:=\{ {\bf d}_1,\ldots ,{\bf d}_N\}$; 
+$\delta_{\underline{\cal P}}\colon {\cal P}\to {\cal MB(P)}$, 
+$P_i\mapsto {\bf d}_i$. Notice  that  now  and  in  the  following 
+notations such as $\underline{\cal P}$  and  $\underline{\cal F}$ 
+always denote {\it ordered sets} whose underlying sets are ${\cal 
+P}$ and ${\cal F}$, respectively; 
+moreover, the order on $\underline{\cal F}$, as well as the map 
+$\delta_{\underline{\cal P}}$, depends on both the ordered set 
+$\underline{\cal P}$ and the {\bf Algorithm MB}. 
+One could think that  ${\cal MB(P)}$ is ill-defined, namely that 
+it depends on the order which has been used for arranging the 
+points $P_1,\ldots,P_N$ when starting {\bf Algorithm MB} (i.e.\ on 
+the list $\underline{\cal P}$) rather than on the set
+${\cal P}=\{ P_1,\ldots,P_N\}$ itself. Well, this is not true. In fact, 
+the following properties hold. 
+
+%Lemma 1
+\begin{lemma}
+Let $\underline{\cal P} :=(P_1,\ldots ,P_i,P_{i+1},\ldots ,P_N)$, 
+$\underline{\cal P'} :=(P_1,\ldots ,P_{i+1},P_i,\ldots ,P_N)$. 
+Let 
+$\underline{\cal F}:=({\bf d}_1,\ldots ,{\bf d}_i,
+{\bf d}_{i+1},\ldots ,{\bf d}_N)$ and 
+$\underline{\cal F'}:=({\bf d'}_1,\ldots ,{\bf d'}_i,
+{\bf d'}_{i+1},\ldots ,{\bf d'}_N)$ be the lists associated 
+by {\bf  Algorithm  MB} with $\underline{\cal P}$ and 
+$\underline{\cal P'}$ respectively. Then, 
+$\{ {\bf d}_1,\ldots ,{\bf d}_N\}=
+\{ {\bf d'}_1,\ldots, {\bf d'}_N\}$.
+\end{lemma}
+
+\prova 
+Consider 
+$$P_i=(a_{i,1},\ldots,a_{i,r-1},a_{i,r},\ldots,a_{i,n}),$$
+$$P_{i+1}=
+(a_{i+1,1},\ldots,a_{i+1,r-1},a_{i+1,r},\ldots,a_{i+1,n}),$$ 
+$${\bf d}_i=(d_{i,1},\ldots,d_{i,r-1},d_{i,r},\ldots,d_{i,n}),$$ 
+$${\bf d}_{i+1}=
+(d_{i+1,1},\ldots,d_{i+1,r-1},d_{i+1,r},\ldots,d_{i+1,n})$$ 
+where  $r$  is  such  that  $d_{i,r}\not   =d_{i+1,r},   d_{i,r+1} 
+=d_{i+1,r+1}, \dots, d_{i,n} =d_{i+1,n}$. It may happen that either 
+i) $(a_{i,1},\ldots,a_{i,r-1})\not =  
+(a_{i+1,1},\ldots,a_{i+1,r-1})$ 
+(in which case 
+${\bf d'}_{i} ={\bf d}_{i+1}$ and 
+${\bf d'}_{i+1} ={\bf d}_{i}$),
+\indent or 
+ii) $(a_{i,1},\ldots,a_{i,r-1}) =  
+(a_{i+1,1},\ldots,a_{i+1,r-1})$ 
+(in which case we have $a_{i,r}\not =a_{i+1,r}$, since otherwise 
+$d_{i,r+q}\not =d_{i+1,r+q}$ for some  $q\geq  1$.  From  this  we 
+deduce 
+${\bf d'}_{i} ={\bf d}_{i}$ 
+and 
+${\bf d'}_{i+1} ={\bf d}_{i+1}$).
+
+\noindent 
+First notice that obviously 
+${\bf d}_{1}={\bf d'}_{1}, \ldots,{\bf d}_{i-1}={\bf d'}_{i-1}$. 
+We prove that we  also have 
+${\bf d}_{i+2}={\bf d'}_{i+2},  \ldots,{\bf  d}_{N}={\bf  d'}_{N}$ 
+by  distinguishing the case i) from the case ii). 
+In the first case the proof is easy. In fact, when calculating 
+${\bf d}_{i+t}$  and/or  ${\bf  d'}_{i+t}$,  the  set  ${\cal  E}$ 
+defined in {\bf MB4} cannot contain both $i$ and $i+1$ since 
+$\pi^{s+1}({\bf d}_{i})\not = \pi^{s+1}({\bf d}_{i+1})$ 
+for every $s\leq r$ and 
+$\pi_{s-1}(P_{i})\not = \pi_{s-1}(P_{i+1})$ for every $s> r$. 
+
+\noindent
+In case ii), suppose that 
+${\bf   d}_{i+2}={\bf   d'}_{i+2},    \ldots,{\bf    d}_{N-1}={\bf 
+d'}_{N-1}$; consider 
+${\bf d}_N=(d_{N,1}, 
+\ldots,d_{N,t-1},d_{N,t}\not =0,d_{N,t+1}=0,\ldots,d_{N,n}=0
+)$, so that $(a_{N,1},\ldots,a_{N,t-1})$ is  the  longest  initial 
+segment of the coordinates that  $P_N$  shares  with  some  $P_j$, 
+$j<N$. By arguing separately in the three cases $t=r$,  $t<r$  and 
+$t>r$, it is not difficult to prove that ${\bf d'}_N={\bf d}_N$. 
+\hfill $\Box$ 
+\vskip .1in
+
+As a straightforward consequence of {\bf Lemma 1}  we  obtain  the 
+following proposition. 
+
+%Prop.1
+\begin{prop}
+Let $\underline{\cal P}$ and $\underline{\cal F}$ be  as  in  {\bf 
+Lemma 1}. 
+Let $\underline{\cal F'}:=({\bf d'}_1,\ldots ,{\bf d'}_N)$ 
+be the list associated  by {\bf  Algorithm  MB} with the list of points
+$\underline{\cal P'}=( P_{\sigma(1)},\ldots,P_{\sigma(N)})$, 
+where $\sigma\in S_N$. ($S_N$ is the symmetric group.) 
+Then,  for  some $\tau\in S_N$ we have 
+$({\bf d'}_1,\ldots ,{\bf d'}_N) =
+({\bf d}_{\tau(1)},\ldots ,{\bf d}_{\tau(N)})$. \hfill $\Box$
+\end{prop}
+
+%Cor.1
+\begin{cor} 
+If ${\cal P}\subseteq {\cal Q}$, then  ${\cal MB(P)}\subseteq 
+{\cal MB(Q)}$.  \hfill $\Box$
+\end{cor}
+
+%Prop.2
+\begin{prop}
+Let $\underline{\cal P}$ and $\underline{\cal F}$ be  as  in  {\bf 
+Lemma 1}. 
+It is possible to rearrange the points $ P_1,\ldots,P_N$ in a 
+suitable list $\underline{\cal P'}=( P_{\sigma(1)},\ldots,P_{\sigma(N)})$ 
+such that the elements in the corresponding list
+$\underline{\cal F'}=({\bf d}_{\tau(1)},\ldots $   
+$\ldots ,{\bf d}_{\tau(N)})$ 
+are in inverse lexicographical order 
+$\preceq_{i.l.}$: \, 
+$s<t \Rightarrow {\bf d}_{\tau(s)}\prec_{i.l.} {\bf d}_{\tau(t)}$. 
+\end{prop}
+
+\prova 
+Let 
+$P_j=(a_{j,1},\ldots,a_{j,r-1},a_{j,r},\ldots,a_{j,n})$, 
+${\bf d}_j=(d_{j,1},\ldots,d_{j,r-1},d_{j,r},$ $\ldots,d_{j,n})$, 
+$j=1,\ldots,N$. It suffices to observe that if, for some $i$, 
+${\bf d}_{i+1} := \delta_{\underline{{\cal P}}}(P_{i+1})
+\prec_{i.l.}{\bf d}_{i} := \delta_{\underline{{\cal P}}}(P_{i})$ (i.e. 
+$d_{i,r}>d_{i+1,r}, d_{i,r+1}=d_{i+1,r+1}, \ldots, 
+d_{i,n}=d_{i+1,n}$ for some $r\leq n$), then we have necessarily 
+the case i) considered in the proof of {\bf Lemma 1}.  
+\hfill $\Box$
+
+%Lemma 2
+\begin{lemma}
+Let $\underline{\cal P}$ and $\underline{\cal F}$ be  as  in  {\bf 
+Lemma 1}. 
+Let  ${\bf d}_N= (d_{N,1},\ldots, d_{N,n})$. If 
+$d_{N,i}\not = 0$, then there is some $k<N$ such that 
+${\bf d}_k= (d_{N,1},\ldots, d_{N,i-1}, d_{N,i}-1,$ $d_{N,i+1}, 
+\ldots, d_{N,n})$.
+\end{lemma}
+
+\prova  When calculating  the first $i-1$ coordinates
+$d_{N,1},\ldots, d_{N,i-1}$ of 
+${\bf d}_N=\delta_{\underline{\cal P}}(P_N)$, we have to consider 
+the set 
+$\{ P_{j_1}, \ldots, P_{j_s}, P_{j_{s+1}}=P_N\}\subseteq {\cal 
+P}$, 
+$j_1< \ldots < j_s < N$, of all points  
+$P_{j_r}\in {\cal P}$ such that $\pi^i(\delta_{\underline{\cal 
+P}}(P_{j_r}))=(d_{N,i},\ldots, d_{N,n})$. 
+Putting 
+$\underline{\tilde{\cal P}}:=( \pi_{i-1}(P_{j_1}), \ldots, 
+\pi_{i-1}(P_{j_s}), \pi_{i-1}(P_N))$, we have 
+$\pi_{i-1}(\delta_{\underline{\cal P}}(P_N))=
+\delta_{\underline{\tilde{\cal P}}}(\pi_{i-1}(P_N))= 
+(d_{N,1},\ldots, d_{N,i-1})$.
+For every 
+$r\in \{ 1,\ldots, s+1\}$, there is a point $P_{j'_r}\in {\cal P}$, 
+$j'_r<j_r$, such that 
+$d_{j'_r,i}= d_{j_r,i}-1=d_{N,i}-1, 
+d_{j'_r,i+1}=d_{j_r,i+1}=d_{N,i+1},\ldots, 
+d_{j'_r,n}=d_{j_r,n}=d_{N,n}$ and
+$\pi_{i-1}(P_{j'_r})=\pi_{i-1}(P_{j_r})$. 
+Up to a suitable rearrangement of the points in 
+$\underline{\cal P}$, we may 
+assume that $j'_1< \ldots < j'_{s+1}$. 
+In order to calculate 
+$\pi_{i-1}(\delta_{\underline{\cal P}}(P_{j'_{s+1}}))$ 
+we have to consider the set 
+${\cal Q}:=\{ P_l\in {\cal P}\mid l\leq j'_{s+1}, \, 
+\pi^i({\bf d}_l)=(d_{j'_{s+1},i},\ldots, d_{j'_{s+1},n})=
+(d_{N,i}-1,d_{N,i+1}\ldots, d_{N,n})\}$. Of course 
+$P_{j'_r}\in {\cal Q}$. Let 
+$\tilde{\cal Q}:=\{ \pi_{i-1}(P)\mid P\in {\cal Q}\}\subseteq
+K^{i-1}$; we have $\tilde{\cal P}\subseteq \tilde{\cal Q}$. 
+Hence ${\cal MB(}\tilde{{\cal P}}{\cal )}
+\subseteq {\cal MB(}\tilde{{\cal Q}}{\cal )}\subseteq 
+{\bf N}^{i-1}$; in particular 
+$(d_{N,1},\ldots, d_{N,i-1})\in {\cal MB(}\tilde{{\cal Q}}{\cal 
+)}$. It follows that there exists a point $P_k\in {\cal Q}$ such
+that 
+$\delta_{\underline{\cal P}}(P_k)=(d_{N,1},\ldots, d_{N,i-1},d_{N,i}-1, 
+d_{N,i+1}\ldots, d_{N,n})$. \hfill $\Box$
+\vskip .1in
+
+As a straightforward consequence of {\bf Lemma 2} we get: 
+
+%Prop.3 
+\begin{prop}
+The set  ${\cal MB(P)}$ is an $n$-dimensional Ferrers diagram. 
+\hfill $\Box$
+\end{prop}
+
+%Prop.4 
+\begin{prop}
+The set
+${\cal L}_{\cal  P}=\{{\bf x^d}+\Im({\cal P}) \mid {\bf d}\in 
+{\cal MB(P)}\}$ is a monomial  linear  basis  for 
+$K[X]/\Im({\cal P})$.
+\end{prop} 
+\prova 
+By induction on the dimension $n$ of $K^n$.
+
+For $n=1$, we have ${\cal P}=\{\rho_1,\ldots,\rho_N\}$, $\rho_i\in 
+K$, and $\Im({\cal P})=(g)$, with $g=\Pi_{i=1}^N  (x-\rho_i)$.  {\bf 
+Algorithm MB} gives ${\cal MB(P)}=\{0,1,\ldots,N-1\}$; hence 
+${\cal L}_{\cal  P}=\{{\bf x^d}+\Im({\cal P}) \mid 
+{\bf d}\in {\cal  MB(P)}\}=\{1+(g),x+(g),\ldots,x^{N-1}+(g)\}$, 
+which  is  a monomial basis for $K[X]/(g)$. 
+
+Suppose now that the statement is true for every finite subset  of 
+$K^{n'}$, $n'<n$, and prove it  for  ${\cal  P}=\{P_1,\ldots,P_N\} 
+\subset K^n$. As $\dim K[X]/\Im({\cal P})=N=\#{\cal  MB(P)}$, it
+remains to prove that the residue classes modulo $\Im({\cal P})$ of 
+the monomials ${\bf x^d}$, ${\bf d}\in {\cal  MB(P)}$, are 
+linearly independent over $K[X]/\Im({\cal P})$; in other words, we 
+have to prove that any polynomial 
+\begin{equation}
+p(x_1,\ldots,x_n)=\sum_{{\bf d}\in {\cal  MB(P)}} \alpha_{\bf d}
+x^{\bf d},  \indent \alpha_{\bf d}\in K
+\end{equation}
+belonging to $\Im({\cal P})$ is the zero polynomial. 
+
+Putting ${\cal F}:={\cal  MB(P)}$, 
+${\cal F}_r:=\{{\bf d}=(d_1,\ldots,d_n)\in {\cal F}\mid d_n=r\}$ and
+${\cal P}_r:=\{P\in {\cal P}\mid \delta_{\underline{\cal P}}(P) \in
+{\cal F}_r\}$, it is easy to check that
+
+\begin{equation}
+{\cal MB}(\pi_{n-1}({\cal P}_r))= \pi_{n-1}({\cal F}_r).
+\end{equation}
+Let us write polynomial (1) in the form
+\begin{equation}
+p(x_1,\ldots,x_n)=\sum_{r=0}^h p_r(x_1,\ldots,x_{n-1})x_n^r
+\end{equation}
+where $h=$max$\{ d_n\mid {\bf d}=(d_1,\ldots,d_n)\in {\cal F}\}$ and
+\begin{equation}
+p_r(x_1,\ldots,x_{n-1})=
+\sum_{(d_1,\ldots,d_{n-1})\in \pi_{n-1}({\cal F}_r)}
+\alpha_{(d_1,\ldots,d_{n-1},r)} x_1^{d_1}\cdots x_{n-1}^{d_{n-1}}.
+\end{equation}
+
+The polynomial $p(x_1,\ldots,x_n)\in \Im({\cal P})$ 
+has to vanish at every point in
+${\cal P}$. Consider a point $P=(a_1,\ldots, a_n)\in {\cal
+P}_h\subseteq {\cal P}$; because of {\bf MB5}, there exists in ${\cal P}$ 
+exactly $h+1$
+points that have the same first $n-1$ coordinates as
+$P=(a_1,\ldots, a_n)$. It follows that the polynomial
+$$
+p(a_1,\ldots,a_{n-1},x_n)=\sum_{r=0}^h p_r(a_1,\ldots,a_{n-1})x_n^r
+$$
+vanishes identically. In particular $p_h(a_1,\ldots,a_{n-1})=0$
+for every $(a_1,\ldots,a_{n-1})\in$ $\in {\cal Q}_h:=\pi_{n-1}({\cal
+P}_h)$. Hence
+\begin{equation}
+p_h(x_1,\ldots,x_{n-1})\in \Im({\cal Q}_h)\subseteq
+K[x_1,\ldots,x_{n-1}].
+\end{equation}
+By (2) and (4) we have
+\begin{equation}
+p_h(x_1,\ldots,x_{n-1})=
+\sum_{(d_1,\ldots,d_{n-1})\in {\cal MB}({\cal Q}_h)}
+\alpha_{(d_1,\ldots,d_{n-1},h)} x_1^{d_1}\cdots x_{n-1}^{d_{n-1}}.
+\end{equation}
+Because of the inductive hypothesis, the set
+$\{x_1^{d_1}\cdots x_{n-1}^{d_{n-1}} + \Im({\cal Q}_h)\mid
+(d_1,\ldots$ $\ldots, d_{n-1})\in {\cal MB}({\cal Q}_h)\}$
+is a monomial basis for $K[x_1,\ldots, x_{n-1}]/\Im({\cal Q}_h)$.
+>From this and from (5) we deduce that polynomial (6) vanishes
+identically. Hence
+
+\begin{equation}
+p(x_1,\ldots,x_n)=\sum_{r=0}^{h-1} p_r(x_1,\ldots,x_{n-1})x_n^r.
+\end{equation}
+
+Arguing for $r=h-1, h-2,\ldots, 1,0$ as for $r=h$, we conclude
+that $p_r(x_1,\ldots,x_{n-1})$ is the zero polynomial for every
+$r\in \{0,\ldots,h\}$.\hfill $\Box$
+
+%Prop.5 
+\begin{prop}
+The  monomial linear basis
+${\cal L}_{\cal  P}=\{{\bf x^d}+\Im({\cal P}) \mid {\bf d}\in 
+{\cal MB(P)}\}$  for $K[X]/\Im({\cal P})$ 
+is minimal with respect to inverse lexicographical order 
+$\preceq_{i.l.}$ on $M_X$.
+\end{prop}
+\prova
+Let $\underline{\cal P}=(P_1,\ldots,P_N)$, 
+$\underline{\cal F}:=\underline{\cal MB(P)}=({\bf d}_1,\ldots,{\bf d}_N)$; 
+${\bf d}_i = (d_{i,1},\ldots,$ $ d_{i,n})$, 
+$P_i=(a_{i,1},\ldots,a_{i,n})$ for $i = 1,\dots,N$.
+Assume that ${\bf d}_1\prec_{i.l.}\ldots\prec_{i.l.}{\bf d}_N$. 
+Let $N'\leq N$ and let ${\bf d} = 
+(d_{1},\ldots,d_{n})\prec_{i.l.}{\bf d}_{N'}$. 
+We have to prove that ${\bf x}^{\bf d}$ is linearly dependent 
+(modulo $\Im({\cal P})$) on 
+${\bf x}^{{\bf d}_1},\ldots,{\bf x}^{{\bf d}_{N'-1}}$, i.e. there 
+exists in $\Im({\cal P})$ a non-zero polynomial 
+$p(x_1,\ldots,x_n)$ of the form 
+%(8)
+\begin{equation}
+p(x_1,\ldots,x_n)=
+\sum_{i=1}^{N'-1}\alpha_i{\bf x}^{{\bf d}_i}+\alpha {\bf x^d}. 
+\end{equation}
+Obviously, we may assume that ${\bf d}_{N'-1}\prec_{i.l.}{\bf d}$. 
+Because of {\bf MB6.1} of   {\bf Algorithm MB}, 
+without loss of generality we may also assume that 
+$d_n<d_{N',n}$. Thus, $h:=d_{N',n}>0$ 
+and $d_{j,n}<h$ for every $j\in \{1,\ldots,N'-1\}$.
+
+
+Let us first prove that there is a polynomial of the form (8) 
+which belongs to $\Im({\cal P}')\supseteq\Im({\cal P})$,  where 
+${\cal P}'=\{P_1,\ldots,P_{N'}\}$. Equivalently, let us show that 
+the linear homogeneous system 
+%(9)
+\begin{equation}
+\sum_{i=1}^{N'-1}\alpha_i a_{s,1}^{d_{i,1}} \cdots a_{s,n}^{d_{i,n}}
++\alpha a_{s,1}^{d_1} \cdots a_{s,n}^{d_n} = 0, \indent \indent
+(s = 1,\ldots,N') 
+\end{equation}
+admits a non-zero solution 
+$(\alpha_1,\ldots,\alpha_{N'-1},\alpha)$. In fact the $N'$ by $N'$ 
+matrix $A$ whose $s-th$ row is
+$$
+a_{s,1}^{d_{1,1}} \cdots a_{s,n}^{d_{1,n}}
+\indent \ldots  \indent 
+a_{s,1}^{d_{N'-1,1}} \cdots a_{s,n}^{d_{N'-1,n}}\indent 
+a_{s,1}^{d_1} \cdots a_{s,n}^{d_n} 
+$$
+(that is, the evaluation at $P_s$ of the list of monomials 
+${\bf x}^{{\bf d}_1},\ldots,{\bf x}^{{\bf d}_{N'-1}},
+{\bf  x}^{\bf d}$) is a singular matrix.
+In order to prove this, consider the $h+1$ points 
+$P_{t_1},\ldots,P_{t_h}$ and $P_{t_{h+1}}=P_{N'}$ ($1\leq t_j\leq N'$) 
+which have the same $n-1$ first coordinates as $P_{N'}$ ({\bf MB5} 
+ensures that ${\cal P}$ contains $h+1$ such points). 
+Let $A'$ 
+be the $h+1$ by $N'$ submatrix of $A$ whose rows correspond to 
+these points. It is enough to show that $A'$ has rank less than 
+$h+1$. In fact, any $h+1$ by $h+1$ minor $C$ of $A'$ has 
+columns which correspond to monomials 
+${\bf x^i} = x_1^{i_1} \cdots x_{n-1}^{i_{n-1}} x_n^{i_n}$, 
+${\bf i}\in \{ {\bf d}_1,\ldots,{\bf d}_{N'-1},{\bf d}\}$, 
+so that $i_n$ may assume only the $h$ values $0,1,\ldots,h-1$; 
+since  the $(n-1)$-tuples $(a_{j,1},\ldots,a_{j,n-1})$ are always 
+the same for $j\in \{t_1,\ldots, t_{h+1}\}$, we conclude 
+that $C=0$. This completes the proof that there is a polynomial 
+$p(x_1,\ldots,x_n)$ of the form (8) which belongs to $\Im({\cal P'})$.
+
+Let us now prove that we have $p(P_l)=0$  for every 
+$P_l\in {\cal P}\setminus {\cal P'}$. Let 
+$P_l=(a_{l,1},\ldots,a_{l,n-1}, a_{l,n})$ be such a point; 
+consider the polynomial 
+$$
+q_l(x_n):= p(a_{l,1},\ldots,a_{l,n-1},x_n)=\sum_{s=0}^{h-1} 
+q_{l,s} x_n^s. 
+$$
+Since ${\bf d}_{N'}\prec_{i.l.} {\bf d}_l$, i.e. 
+$h= d_{N',n}\leq d_{l,n}$,
+there are in ${\cal P'}$ at least $h$ points which have the 
+same $n-1$ first coordinates as $P_l$; it follows that the 
+polynomial $q_l(x_n)$ 
+vanishes identically. Thus, $p(P_l)=0$. 
+\ \hfill $\Box$
+
+\vskip .1in
+
+\noindent {\bf 2.3} \indent 
+In the case where $n=2$ {\bf Algorithm MB} can be given the 
+following simplified form.
+
+Assume that 
+$$
+{\cal P}=\{(a_1,b_{1,1}), \ldots, (a_1,b_{1,h_1}),\ldots,
+(a_m,b_{m,1}), \ldots, (a_m,b_{m,h_m})\}
+$$
+with $h_1+\ldots +h_m=N$, $h_1\geq \ldots \geq h_m$ and 
+$i\not = j \Rightarrow a_i\not =a_j$. Then,
+$$
+{\cal MB(P)}=\{(p,q)\mid 0\leq p<m, \, 0\leq q<h_p\}.
+$$
+\vskip .17in
+
+\noindent 
+\section{Generalization to the algebraic multisets}
+\vskip .12in
+
+\noindent {\bf 3.1} \indent
+All that we have stated up to now can be generalized to what  we  might 
+call {\em algebraic multisets} in the following sense. 
+
+Consider the linear map 
+\begin{eqnarray*}
+{\bf D_i}\colon  K[X] & \longrightarrow &  K[X] \\
+{\bf x^h}  & \longmapsto & {{\bf h}\choose {\bf i}}{\bf x^{h-i}}
+\end{eqnarray*}
+where 
+${\bf h}=(h_1,\ldots,h_n)$, ${\bf i}=(i_1,\ldots,i_n)\in  {\bf  N}$ 
+and ${{\bf h}\choose  {\bf  i}}:={  h_1\choose   i_1}\cdot  \ldots
+\cdot { h_n\choose  i_n}$. We have the formula 
+%(10)
+\begin{equation}
+{\bf D_i}(fg)= \sum_{{\bf h}+{\bf  k}={\bf  i}} 
+{\bf  D_h}(f){\bf D_k}(g).
+\end{equation}
+
+\noindent Observe that when  the  field  $K$  has 
+characteristic zero, then 
+$$
+{\bf D_i}=\frac{1}{\bf i!}{\bf D^i}:=
+\frac{1}{\bf i!} 
+\frac{\partial^{i_1+\cdots +i_n}}{\partial x_1^{i_1}\cdots \partial
+x_n^{i_n}}
+$$
+where  ${\bf i!}:=i_1!\cdots i_n!$.
+
+\noindent Let $v_P$ be the evaluation map at the point $P$:
+\begin{eqnarray*}
+v_P\colon  K[X] & \longrightarrow &  K \\
+q  & \longmapsto & q(P).
+\end{eqnarray*}
+Define the linear map  $v^{\bf i}_P$ as the composition 
+$v_P\circ{\bf D_i}$, i.e.\ 
+\begin{eqnarray*}
+v^{\bf i}_P \colon K[X] & \longrightarrow &  K \\
+q  & \longmapsto & ({\bf D_i}q)(P).
+\end{eqnarray*}
+For every ideal $J$ of $K[X]$ and every 
+$P\in {\cal V}(J)$, put 
+$$
+{\cal F}_J(P):= \left\{
+{\bf i}\in  {\bf  N}^n\big|\; (\forall 
+p\in J)\left(v^{\bf i}_P(p)=0\right)\right\}. 
+$$
+
+%Prop.6 
+\begin{prop}
+i) ${\cal F}_J(P)$ is an $n$-dimensional Ferrers diagram;  ii)  if 
+$(g_1,\ldots ,g_s)$ is a system of generators of $J$, then 
+${\cal F}_J(P)$ is the largest $n$-dimensional 
+Ferrers diagram  contained  in  the 
+set 
+$$
+ \left\{{\bf i}\in  {\bf  N}^n\big|\;
+v^{\bf i}_P(g_j)=0
+\;  \mbox{for every}\; 1\leq j\leq s \right\}. 
+$$
+\end{prop}
+
+\prova 
+Let $P=(a_1,\ldots,a_n)$. Let ${\bf i}\in {\cal F}_J(P)$ and let 
+${\bf j}<{\bf i}$. Let us prove that ${\bf j}\in {\cal F}_J(P)$. 
+Let $f:=({\bf x}-P)^{{\bf i}-{\bf j}}= 
+(x_1-a_1)^{i_1-j_1}\cdots (x_n-a_n)^{i_n-j_n}$. We have 
+$v^{\bf h}_P(f)=({\bf D_h}f)(P)=\delta^{{\bf i}-{\bf j}}_{\bf h}$. 
+>From (10) we deduce that for every $g\in J$ we have 
+$$
+0=v^{\bf i}_P(fg)=
+\sum_{{\bf h}+{\bf  k}={\bf  i}} 
+v^{\bf h}_P(f) \cdot v^{\bf k}_P(g)= 
+v^{\bf j}_P(g).
+$$
+Hence ${\bf j}\in {\cal F}_J(P)$. 
+The second part of the statement is a straightforward  consequence 
+of i) and of (10). \hfill $\Box$
+
+
+We define a {\em  finite  $n$-dimensional  algebraic  multiset},  or 
+simply an  {\em  algebraic multiset}, to be  a set
+$\wp  :=\{(P_1,{\cal   F}_1),\ldots  ,(P_N,{\cal   F}_N)\}$;  each 
+element $(P_j,{\cal   F}_j)\in \wp$ consists of a point $P_j$ of  $K^n$ 
+together with an $n$-dimensional 
+Ferrers diagram ${\cal   F}_j\subset  {\bf  N}^n$, 
+which will be called the {\em  algebraic  diagram}  of  the  point 
+$P_j$. We shall freely make use of the notation $(P,{\bf i})\in  \wp$,  or 
+also $P\in \wp$, to mean that $P=P_j$ and ${\bf i}\in {\cal F}_j$
+for  some  $j\in \{1,\ldots,N\}$. To every algebraic multiset
+$\wp  =\{(P_1,{\cal    F}_1),\ldots   ,(P_N,{\cal    F}_N)\}$   we 
+associate the set 
+$$
+\Im(\wp):=\left\{ p\in K[X]\,\big|
+\;(\forall j)(\forall {\bf i}\in {\cal F}_j)\left(
+v^{\bf i}_{P_j}(p)=0\right)\right\}.
+$$
+It is not difficult to prove that $\Im(\wp)$ is a  cofinite  ideal 
+of  $K[X]$  and  that  ${\cal  F}_{\Im(\wp)}(P_j)={\cal  F}_j$ 
+for every $j\in \{1,\ldots,N\}$. Moreover, one can prove that 
+$$
+{\rm codim} \ \Im(\wp)=\#\wp:=\sum_{j=1}^N\#{\cal  F}_j .
+$$ 
+
+The question now is: how do we get a monomial linear basis for 
+$K[X]/\Im(\wp)$? Once more the problem can be solved by applying 
+a slightly modified version of {\bf Algorithm MB} (in fact 
+{\bf Algorithm MB} itself with a few obvious changes) to a suitable 
+set ${\cal R}(\wp)\subset (K\times {\bf N})^n$ associated with the 
+algebraic multiset $\wp$. The set ${\cal R}(\wp)$ will be called the  {\em
+canonical representation} of the algebraic multiset $\wp$. 
+To be precise, consider the bijection 
+\begin{eqnarray*}
+u\colon K^n\times {\bf N}^n \indent \indent & \longrightarrow &  
+\indent \indent (K\times {\bf N})^n \\
+((a_1,\ldots,a_n),(i_1,\ldots,i_n))      &      \longmapsto      & 
+((a_1,i_1),\ldots,(a_n,i_n)).
+\end{eqnarray*}
+Put
+$$
+{\cal R}={\cal R}(\wp):=\{u(P,{\bf  i})\mid (P,{\bf  i})\in \wp\}.
+$$
+and 
+$$
+{\cal MB}(\wp):={\cal MB}({\cal R}).
+$$
+It is  possible (though by no means trivial) to  prove 
+that ${\cal MB}(\wp)$ satisfies properties analogous to those of 
+${\cal MB}({\cal P})$; in particular, i) ${\cal MB}(\wp)$ is 
+an $n$-dimensional   Ferrers diagram and ii) the set
+${\cal L}_\wp :=\{{\bf x^i}+{\Im(\wp)}\mid {\bf i}\in {\cal 
+MB}(\wp)\}$  is a monomial linear basis of  $K[X]/\Im(\wp)$  which 
+is minimal with respect to the inverse lexicographical order. 
+\vskip .17in
+
+\noindent 
+\section{Applications}
+\vskip .12in
+
+Both  {\bf Algorithm MB} and its generalization may  come  in  
+handy  for  solving  various problems. Let us examine a few of 
+them.
+\vskip .05in 
+
+\noindent {\bf 4.1} \indent 
+First of all, let us see how  to  determine  a 
+system of generators $(\gamma_1,\ldots,\gamma_r)$ for the  ideal  $\Im(\wp)$ 
+of a finite algebraic multiset 
+$\wp  :=\{(P_1,{\cal   F}_1),\ldots   ,(P_N,{\cal    F}_N)\}$.  In 
+fact, the set $\{\gamma_1,\ldots,\gamma_r\}$ we shall obtain is  also  a  
+{\em reduced  Gr\"obner  basis}  of  $\Im(\wp)$ with respect to 
+$\preceq_{i.l.}$.  
+(The  notion  of 
+reduced Gr\"obner basis as well as related topics can be found  in 
+[1], [3], [8].) It  goes  without 
+saying that the  same  procedure  works  also  when  $\wp$  is  a  
+finite algebraic set. 
+
+Let 
+${\cal L}_\wp :=\{{\bf x^d}+{\Im(\wp)}\mid {\bf d}\in 
+{\cal MB}(\wp)\}=\{ {\bf x}^{{\bf d}_1},\ldots,{\bf x}^{{\bf d}_m} 
+\}$, 
+where $m=\# \wp={\rm codim}(\Im(\wp))$, 
+be the monomial linear basis obtained in {\bf 3.1} and let
+$\{ {{\bf r}_1},\ldots,{\bf r}_r \}$ 
+be the  set of the co-minimal elements of the Ferrers diagram 
+${\cal MB}(\wp)$. For each ${\bf r}_i$, $i=1,\ldots,s$, 
+define the polynomial $\gamma_i\in 
+K[X]$ to be the following determinant. The  
+first  row
+of $\gamma_i$ is the list 
+$({\bf x}^{{\bf d}_1},\ldots,{\bf x}^{{\bf d}_m}, 
+{\bf x}^{{\bf r}_i})$, 
+while the successive rows are lists of  the form 
+$(v^{\bf i}_{P_j}({\bf x}^{{\bf d}_1}),\ldots,
+v^{\bf i}_{P_j}({\bf x}^{{\bf d}_m}), 
+v^{\bf i}_{P_j}({\bf x}^{{\bf r}_i}))$, 
+one for each $(P_j,{\bf i})\in \wp$. It can easily be proved that the list 
+$(\gamma_1,\ldots,\gamma_r)$ 
+is a reduced Gr\"obner basis of $\Im(\wp)$ with respect to the inverse 
+lexicographical order. Once the basis $(\gamma_1,\ldots,\gamma_r)$ 
+has been found, a Gr\"obner basis with respect to  a  different 
+term-ordering may be computed by making use of the  methods  given 
+in [4].
+\vskip .1in
+
+\noindent {\bf 4.2} \indent 
+Consider  a  linear  form  $f\in  K[X]^{\ast}\cong 
+K[[X]]$. If Ker$(f)$ contains a cofinite ideal $J$ of $K[X]$, then
+$f$ is said to be an {\em $n$-linearly recursive function}  and  $J$ 
+is called a {\em characteristic ideal} of  $f$.  This  notion  has 
+been introduced in [2] as a generalization of that of {\em
+linearly  recursive 
+sequence},  to  which  it  reduces  when  $n=1$. 
+An $n$-linearly recursive function $f$ is uniquely determined by 
+its {\em characteristic ideal} $J$ and by its {\em initial 
+values}, which are the values assumed by $f$ on a system of 
+representatives of a linear basis of $K[X]/J$. 
+The set of $n$-linearly recursive functions may   also   be 
+regarded as  the dual bialgebra of the usual polynomial 
+bialgebra on $K[X]$. When working on these subjects, it may  happen 
+that examples (perhaps, {\em suitable} examples) of 
+$n$-linearly recursive functions are needed. How to construct  them? 
+It is convenient to divide the answer to this  question  into  two 
+parts. 
+
+\noindent (A) Let us first suppose that we know a system of generators 
+$(g_1,\ldots,g_s)$ of the characteristic ideal $J$ of the
+$n$-linearly recursive functions we are considering. In this case we 
+may calculate a reduced Gr\"obner basis 
+$G_{\preceq}:= RGB(g_1,\ldots,g_s)$ 
+of $(g_1,\ldots,g_s)$ 
+with respect to some term-ordering $\preceq$ on $M_X$.
+Let $G_{\preceq}=(\gamma_1,\ldots,\gamma_r)$,     $\gamma_j\in
+K[X]$, and let ${\bf y}_j\in M_X$ be the leading term (with  respect  to 
+$\preceq$) of the polynomial $\gamma_j$. Then the set 
+$\{ {\bf x^d} + J\mid {\bf x^d}\in B \}$, where 
+$B=M_X\setminus \cup_{j=1}^r {\bf y}_j\cdot M_X$,  is  a  monomial 
+linear basis for $K[X]/J$, which is minimal with respect to  
+$\preceq$. It follows that any $n$-linearly recursive function whose 
+characteristic ideal is $J$ is uniquely determined by the set 
+of  its  {\em  initial values} 
+$\{f({\bf x^d})\mid {\bf x^d}\in  B\}$, all the other values 
+$f({\bf x^i})$, ${\bf x^i}\not \in B$, 
+being calculated by making use of the polynomials 
+$\gamma_j\in G_{\preceq}$ as {\em scales of recurrence}. 
+
+\noindent (B) If instead  the  characteristic ideal is  not 
+given, we are quite unlikely to obtain one of them (remember it 
+must be cofinite!) just choosing at random  a  set  of  generators: 
+most of the time we would  get  a  non-cofinite ideal  or,  when 
+cofinite, a trivial one. The  correct  way  to  do  this  consists 
+instead in choosing a finite algebraic multiset (possibly, a finite
+algebraic set) $\wp$ and then determining both the monomial linear
+basis ${\cal L}_\wp$ of $K[X]/\Im(\wp)$ and  a set of generators for 
+$\Im(\wp)$ by means of the machinery described above.
+\vskip .1in 
+
+\noindent {\bf 4.3} \indent 
+Lastly, consider the following  interpolation 
+problem. Given a finite $n$-dimensional algebraic multiset 
+$\wp  :=\{(P_1,{\cal   F}_1),\ldots   ,(P_N,{\cal    F}_N)\}$  and 
+a set of values $\{\alpha_{j,{\bf i}}\mid j=1,\ldots,N\, {\rm and} \; 
+{\bf i}\in {\cal F}_j\}\subset K$ determine the {\em unique} 
+polynomial $p$ of the form
+$\sum_{{\bf x^i}\in B}a_{\bf i}{\bf x^i}$ ($a_{\bf  i}\in  K$  and 
+$B$ is a system of representatives of a monomial linear basis of 
+$K[X]/\Im(\wp)$) such that 
+$v^{\bf i}_{P_j}(p)=\alpha_{j,{\bf i}}$. 
+
+This problem appears to be an $n$-dimensional natural generalization  of 
+the unidimensional one which is solved by means of  
+the Lagrange-Hermite  interpolation
+formula.
+Once  more,  the 
+key point for solving this problem is to  determine  the  monomial
+basis ${\cal L}_\wp$. Let 
+${\cal L}_\wp=
+\{ {\bf x}^{{\bf d}_1}+\Im(\wp),\ldots,{\bf x}^{{\bf d}_m}+\Im(\wp) \}$ 
+and let 
+${\cal A}$ be the $m\times m$ matrix whose rows are of the form 
+$(v^{\bf i}_{P_j}({\bf x}^{{\bf d}_1}),\ldots,
+(v^{\bf i}_{P_j}({\bf x}^{{\bf d}_m}))$, 
+one for each $(P_j,{\bf i})\in  \wp$.  Since  ${\cal  L}_\wp$ is  a 
+linear  basis  of  $K[X]/\Im(\wp)$,  the  matrix  ${\cal  A}$   is 
+non-singular. Consider the vector 
+$\overline{\alpha}$ whose components are the values 
+$\alpha_{j,{\bf i}}=v^{\bf i}_{P_j}(p)$ (arranged according to the 
+order that has been used for the rows of ${\cal A}$). The components of
+the vector $\overline{\beta}:={\cal A}^{-1}\cdot \overline{\alpha}$ 
+are the coefficients of the desired polynomial. 
+\vskip .2in 
+
+\noindent {\bf Appendix.}
+\vskip .2in
+
+\noindent 1) Example of {\bf Algorithm  MB}  for  a  4-dimensional 
+set.
+
+$$
+\begin{array}{ccc}
+{\cal  P}&\indent   \longleftrightarrow   &\indent 
+{\cal  F}={\cal MB(P)}\\ 
+\ &\ &\ \\
+P_{1}=(2,3,9,4)&\indent\longleftrightarrow&\indent {\bf d}_{1}=(0,0,0,0)\\
+P_{2}=(2,5,7,3)&\indent\longleftrightarrow&\indent {\bf d}_{2}=(0,1,0,0)\\
+P_{3}=(2,3,3,2)&\indent\longleftrightarrow&\indent {\bf d}_{3}=(0,0,1,0)\\
+P_{4}=(2,5,5,1)&\indent\longleftrightarrow&\indent {\bf d}_{4}=(0,1,1,0)\\
+P_{5}=(6,1,1,3)&\indent\longleftrightarrow&\indent {\bf d}_{5}=(1,0,0,0)\\
+P_{6}=(2,3,3,6)&\indent\longleftrightarrow&\indent {\bf d}_{6}=(0,0,0,1)\\
+P_{7}=(8,3,4,0)&\indent\longleftrightarrow&\indent {\bf d}_{7}=(2,0,0,0)\\
+P_{8}=(6,5,6,3)&\indent\longleftrightarrow&\indent {\bf d}_{8}=(1,1,0,0)\\
+P_{9}=(4,7,6,6)&\indent\longleftrightarrow&\indent {\bf d}_{9}=(3,0,0,0)\\
+P_{10}=(4,1,7,7)&\indent\longleftrightarrow&\indent {\bf d}_{10}=(2,1,0,0)\\
+P_{11}=(2,5,7,8)&\indent\longleftrightarrow&\indent {\bf d}_{11}=(0,1,0,1)\\
+P_{12}=(4,3,0,3)&\indent\longleftrightarrow&\indent {\bf d}_{12}=(0,2,0,0)\\
+P_{13}=(1,1,2,5)&\indent\longleftrightarrow&\indent {\bf d}_{13}=(4,0,0,0)\\
+P_{14}=(2,1,9,0)&\indent\longleftrightarrow&\indent {\bf d}_{14}=(1,2,0,0)\\
+P_{15}=(4,1,7,6)&\indent\longleftrightarrow&\indent {\bf d}_{15}=(1,0,0,1)\\
+P_{16}=(8,1,8,0)&\indent\longleftrightarrow&\indent {\bf d}_{16}=(3,1,0,0)\\
+P_{17}=(2,1,7,6)&\indent\longleftrightarrow&\indent {\bf d}_{17}=(0,2,1,0)\\
+P_{18}=(4,3,3,3)&\indent\longleftrightarrow&\indent {\bf d}_{18}=(1,0,1,0)\\
+P_{19}=(4,1,1,0)&\indent\longleftrightarrow&\indent {\bf d}_{19}=(1,1,1,0)\\
+P_{20}=(8,1,2,4)&\indent\longleftrightarrow&\indent {\bf d}_{20}=(2,0,1,0)\\
+P_{21}=(6,3,4,8)&\indent\longleftrightarrow&\indent {\bf d}_{21}=(2,2,0,0)\\
+P_{22}=(2,9,6,7)&\indent\longleftrightarrow&\indent {\bf d}_{22}=(0,3,0,0)\\
+P_{23}=(2,3,7,1)&\indent\longleftrightarrow&\indent {\bf d}_{23}=(0,0,2,0)\\
+P_{24}=(2,1,7,5)&\indent\longleftrightarrow&\indent {\bf d}_{24}=(0,2,0,1)\\
+P_{25}=(4,1,1,2)&\indent\longleftrightarrow&\indent {\bf d}_{25}=(0,0,1,1)\\
+P_{26}=(2,7,6,5)&\indent\longleftrightarrow&\indent {\bf d}_{26}=(0,4,0,0)\\
+P_{27}=(2,5,5,4)&\indent\longleftrightarrow&\indent {\bf d}_{27}=(1,0,1,1)\\
+P_{28}=(2,3,7,7)&\indent\longleftrightarrow&\indent {\bf d}_{28}=(0,1,1,1)\\
+P_{29}=(2,3,0,2)&\indent\longleftrightarrow&\indent {\bf d}_{29}=(0,0,3,0)\\
+P_{30}=(2,1,1,1)&\indent\longleftrightarrow&\indent {\bf d}_{30}=(0,1,2,0)\\
+P_{31}=(4,3,3,7)&\indent\longleftrightarrow&\indent {\bf d}_{31}=(1,1,0,1)\\
+P_{32}=(8,5,6,4)&\indent\longleftrightarrow&\indent {\bf d}_{32}=(3,2,0,0)\\
+P_{33}=(4,5,5,2)&\indent\longleftrightarrow&\indent {\bf d}_{33}=(1,3,0,0)\\
+P_{34}=(2,1,1,8)&\indent\longleftrightarrow&\indent {\bf d}_{34}=(0,2,1,1)\\
+P_{35}=(8,1,1,1)&\indent\longleftrightarrow&\indent {\bf d}_{35}=(1,0,2,0)\\
+P_{36}=(4,5,5,5)&\indent\longleftrightarrow&\indent {\bf d}_{36}=(1,2,0,1)\\
+P_{37}=(6,1,8,8)&\indent\longleftrightarrow&\indent {\bf d}_{37}=(3,0,1,0)\\
+P_{38}=(2,7,8,4)&\indent\longleftrightarrow&\indent {\bf d}_{38}=(0,3,1,0)
+\end{array}
+$$
+\vskip .2in
+
+
+The system of representatives for the corresponding monomial basis
+is given in the following table. 
+\vskip .2in
+\noindent \begin{tabular}{|c|cccccc|cccc} \hline
+\multicolumn{11}{|c}{} \\
+\cline{2-6}  \cline{8-11}
+\ & \ & \ & \ & \ & \  & \ & \ & \ & \ & \  \\
+
+ & $1$ & $x_1$ & $x_1^2$ & $x_1^3$ & $x_1^4$ &
+          & $x_3$ & $x_1x_3$ & $x_1^2x_3$ & $x_1^3x_3$ \\
+\ & \ & \ & \ & \ & \  & \ & \ & \ & \ & \  \\
+
+ & $x_2$ & $x_1x_2$ & $x_1^2x_2$ & $x_1^3x_2$ & &
+                   & $x_2x_3 $ & $x_1 x_2 x_3$ &  & \\
+\ & \ & \ & \ & \ & \  & \ & \ & \ & \ & \  \\
+
+ & $x_2^2$ & $x_1x_2^2$ & $x_1^2x_2^2$ & $x_1^3x_2^2$ &  &
+                                   & $x_2^2 x_3$ &  &  & \\
+\ & \ & \ & \ & \ & \  & \ & \ & \ & \ & \  \\
+
+
+ & $x_2^3$ & $x_1 x_2^3 $ &  &  &  &  & $x_2^3 x_3$ &  &  & \\
+\ & \ & \ & \ & \ & \  & \ & \ & \ & \ & \  \\
+
+ & $x_2^4 $ &  &  &  &  &  &  &  &  &  \\
+
+ &  &  &  &  &  &  &  &  &  &   \\
+\multicolumn{11}{|c}{} \\
+\multicolumn{11}{|c}{} \\
+\cline{2-6}  \cline{8-11}
+ &  &  &  &  &  &  &  &  &  &   \\
+
+ & $x_3^2$ & $x_1 x_3^2$ &  &  &  &  & $x_3^3$ &  &  & \\
+\ & \ & \ & \ & \ & \  & \ & \ & \ & \ & \  \\
+
+ & $x_2 x_3^2$ &  &  &  &  &  &  &  &  &  \\
+
+ &  &  &  &  &  &  &  &  &  & \\
+\multicolumn{11}{|c}{} \\
+\multicolumn{11}{}{} \\
+\multicolumn{11}{}{} \\
+\hline
+\multicolumn{11}{|c}{} \\
+\cline{2-6}  \cline{8-11}
+ &  &  &  &  &  &  &  &  &  &   \\
+ & $x_4$ & $x_1 x_4$ &  &  &  &  & $x_3 x_4$ & $x_1x_3x_4$ &  & \\
+
+ \ & \ & \ & \ & \ & \  & \ & \ & \ & \ & \  \\
+
+ & $x_2x_4$ & $x_1x_2x_4$ &  &  &  &  & $x_2x_3x_4$ &  &  &  \\
+ \ & \ & \ & \ & \ & \  & \ & \ & \ & \ & \  \\
+
+
+ & $x_2^2x_4$ & $x_1 x_2^2x_4 $ &  &  &  &  &  $x_2^2 x_3x_4$ &  &  & \\
+
+ &  &  &  &  &  &  &  &  &  &   \\
+\multicolumn{11}{|c}{}
+\end{tabular}
+
+\eject
+\noindent 2) Example of {\bf Algorithm MB} for a 3-dimensional
+algebraic multiset.
+\vskip .2in
+
+Consider the algebraic multiset $\wp$ given by
+$$
+\begin{array}[t]{llll}
+P_1=(0,0,0)\;
+&
+{\cal F}_1=
+\left[
+\begin{array}{ccc}
+(0,0,0)& (1,0,0)&\ \\
+(0,1,0)& \ &\
+\end{array}
+\right.
+&
+\left.
+\begin{array}{c}
+(0,0,1) \\
+\
+\end{array}
+\right]
+&
+\
+\\
+\ & \ & \ & \ \\
+P_2=(0,0,1)\;
+&
+{\cal F}_2=
+\left[
+\begin{array}{ccc}
+(0,0,0)& (1,0,0)& (2,0,0)
+\end{array}
+\right.
+&
+\left.
+\begin{array}{cc}
+(0,0,1)& (1,0,1)
+\end{array}
+\right]
+&
+\
+\\
+\ & \ & \ & \ \\
+P_3=(1,1,0)\;
+&
+{\cal F}_3=
+\left[
+\begin{array}{ccc}
+(0,0,0)& (1,0,0)& \ \\
+(0,1,0)& (1,1,0)& \
+\end{array}
+\right.
+&
+\begin{array}{cc}
+(0,0,1)& (1,0,1) \\
+(0,1,1) & \
+\end{array}
+&
+\left.
+\begin{array}{c}
+(0,0,2) \\
+(0,1,2)
+\end{array}
+\right]
+\\
+\ & \ & \ & \ \\
+P_4=(1,1,1)\;
+&
+{\cal F}_4=
+\left[
+\begin{array}{c}
+(0,0,0)\\
+(0,1,0)
+\end{array}
+\right]
+&
+\
+&
+\
+\end{array}
+$$
+
+The canonical representation   ${\cal  R}={\cal  R}(\wp)$  of  $\wp$
+(whose elements are intentionally arranged at random)
+as well as the  corresponding $3$-dimensional Ferrers diagram  ${\cal  
+MB}({\cal  R})$  are as follows. 
+
+$$
+\begin{array}{ccccc}
+\wp &\;   \longleftrightarrow   &\;
+{\cal  R}&\;   \longleftrightarrow   &\;
+{\cal F}={\cal  MB}({\cal  R})\\
+\ &\ &\ &\ &\ \\
+(1,1,0),(0,0,2)
+&\;   \longleftrightarrow   &\;
+R_1=(10,\; 10,\; 02)&\; \longleftrightarrow &\;
+{\bf d}_1=(0,\;  0,\; 0)\\
+(1,1,0),(0,1,2)
+&\;   \longleftrightarrow   &\;
+R_2=(10,\; 11,\; 02)&\; \longleftrightarrow &\;
+{\bf d}_2=(0,\; 1,\; 0)\\
+(0,0,1),(1,0,1)
+&\;   \longleftrightarrow   &\;
+R_3=(01,\; 00,\; 11)&\; \longleftrightarrow &\;
+{\bf d}_3=(1,\; 0,\; 0)\\
+(1,1,0),(1,0,1)
+&\;   \longleftrightarrow   &\;
+R_4=(11,\; 10,\; 01)&\; \longleftrightarrow &\;
+{\bf d}_4=(2,\; 0,\; 0)\\
+(0,0,1),(0,0,1)
+&\;   \longleftrightarrow   &\;
+R_5=(00,\; 00,\; 11)&\; \longleftrightarrow &\;
+{\bf d}_5=(3,\; 0,\; 0)\\
+(1,1,0),(0,0,1)
+&\;   \longleftrightarrow   &\;
+R_6=(10,\; 10,\; 01)&\; \longleftrightarrow &\;
+{\bf d}_6=(0,\; 0,\; 1)\\
+(0,0,1),(2,0,0)
+&\;   \longleftrightarrow   &\;
+R_7=(02,\; 00,\; 10)&\; \longleftrightarrow &\;
+{\bf d}_7=(4,\; 0,\; 0)\\
+(0,0,0),(1,0,0)
+&\;   \longleftrightarrow   &\;
+R_8=(01,\; 00,\; 00)&\; \longleftrightarrow &\;
+{\bf d}_8=(1,\; 0,\; 1)\\
+(1,1,0),(0,0,0)
+&\;   \longleftrightarrow   &\;
+R_9=(10,\; 10,\; 00)&\; \longleftrightarrow &\;
+{\bf d}_9=(0,\; 0,\; 2)\\
+(0,0,0),(0,1,0)
+&\;   \longleftrightarrow   &\;
+R_{10}=(00,\; 01,\; 00)&\; \longleftrightarrow &\;
+{\bf d}_{10}=(1,\; 1,\; 0)\\
+(0,0,0),(0,0,0)
+&\;   \longleftrightarrow   &\;
+R_{11}=(00,\; 00,\; 00)&\; \longleftrightarrow &\;
+{\bf d}_{11}=(2,\; 0,\; 1)\\
+(0,0,0),(0,0,1)
+&\;   \longleftrightarrow   &\;
+R_{12}=(00,\; 00,\; 01)&\; \longleftrightarrow &\;
+{\bf d}_{12}=(1,\; 0,\; 2)\\
+(1,1,0),(0,1,0)
+&\;   \longleftrightarrow   &\;
+R_{13}=(10,\; 11,\; 00)&\; \longleftrightarrow &\;
+{\bf d}_{13}=(0,\; 1,\; 1)\\
+(1,1,0),(1,0,0)
+&\;   \longleftrightarrow   &\;
+R_{14}=(11,\; 10,\; 00)&\; \longleftrightarrow &\;
+{\bf d}_{14}=(3,\; 0,\; 1)\\
+(0,0,1),(0,0,0)
+&\;   \longleftrightarrow   &\;
+R_{15}=(00,\; 00,\; 10)&\; \longleftrightarrow &\;
+{\bf d}_{15}=(0,\; 0,\; 3)\\
+(1,1,0),(0,1,1)
+&\;   \longleftrightarrow   &\;
+R_{16}=(10,\; 11,\; 01)&\; \longleftrightarrow &\;
+{\bf d}_{16}=(0,\; 1,\; 2)\\
+(1,1,0),(1,1,0)
+&\;   \longleftrightarrow   &\;
+R_{17}=(11,\; 11,\; 00)&\; \longleftrightarrow &\;
+{\bf d}_{17}=(2,\; 1,\; 0)\\
+(0,0,1),(1,0,0)
+&\;   \longleftrightarrow   &\;
+R_{18}=(01,\; 00,\; 10)&\; \longleftrightarrow &\;
+{\bf d}_{18}=(2,\; 0,\; 2)\\
+(1,1,1),(0,1,0)
+&\;   \longleftrightarrow   &\;
+R_{19}=(10,\; 11,\; 10)&\; \longleftrightarrow &\;
+{\bf d}_{19}=(1,\; 0,\; 3)\\
+(1,1,1),(0,0,0)
+&\;   \longleftrightarrow   &\;
+R_{20}=(10,\; 10,\; 10)&\; \longleftrightarrow &\;
+{\bf d}_{20}=(0,\; 1,\; 3)
+\end{array}
+$$
+Therefore, a monomial linear basis of  $K[X]/\Im(\wp)$ consists  of
+the equivalence classes (modulo $\Im(\wp)$) of the following monomials
+
+\noindent \begin{tabular}{|cccccc|cccc}
+\cline{1-5}  \cline{7-10}
+ \ & \ & \ & \ & \  & \ & \ & \ & \ & \  \\
+
+ $1$ & $x_1$ & $x_1^2$ & $x_1^3$ & $x_1^4$ &
+          & $x_3$ & $x_1x_3$ & $x_1^2x_3$ & $x_1^3x_3$ \\
+ \ & \ & \ & \ & \  & \ & \ & \ & \ & \  \\
+
+ $x_2$ & $x_1x_2$ & $x_1^2x_2$ &  & &
+                   & $x_2x_3 $ &  & & \\
+ \ & \ & \ & \ & \  & \ & \ & \ & \ & \  \\
+\multicolumn{10}{}{} \\
+\multicolumn{10}{}{} \\
+\cline{1-5}  \cline{7-10}
+ \ & \ & \ & \ & \  & \ & \ & \ & \ & \  \\
+
+$x_3^2$ & $x_1x_3^2$ & $x_1^2x_3^2$ & & & & $x_3^3$ & $x_1x_3^3$ &  &  \\
+ \ & \ & \ & \ & \  & \ & \ & \ & \ & \  \\
+
+ $x_2x_3^2$ &  &  &  & & & $x_2x_3^3 $ &  & & \\
+
+  &  &  &  &  &  &  &  &  &
+  \end{tabular}
+
+\vskip .05in
+The  reduced  Gr\"obner  basis  of  $\Im(\wp)$  with  respect  to 
+$\preceq_{i.l}$ consists of the following polynomials: 
+\vskip .02in
+$g_1 = x^5-2x^4+x^3$; 
+
+$g_2 = x^3y-2x^2y+xy$; 
+
+$g_3 = y^2+2x^2y-4xy-3x^4+4x^3$; 
+
+$g_4 = x^4z-2x^3z+x^2z-x^4+2x^3-x^2$; 
+
+$g_5 = xyz -yz -x^3z+x^2z-x^4+2x^3-x^2$; 
+
+$g_6 = x^3z^2-x^2z^2+x^4-2x^3+x^2$; 
+
+$g_7 = x^2z^3-xz^3-2x^2z^2+2xz^2-x^3z+2x^2z-xz-x^4+2x^3-x^2$; 
+
+$g_8 = z^4+xz^3-2z^3+x^2z^2-2xz^2+z^2+x^3z-2x^2z+xz+x^4-2x^3+x^2$. 
+\vskip .2in
+
+
+\noindent {\bf Acknowledgements}
+\vskip .1in
+
+The authors thank T.Mora, O.Murru, F.Piras and R.Pirastu for their 
+advice during several discussions. We are  also  indebted  to  the 
+referees of the ``Acts the 4th Conference {\it Formal Power Series 
+and Algebraic Combinatorics}, Montreal, 1992'' for  a  few  useful 
+suggestions. 
+
+
+
+
+
+
+\vskip .3in \noindent
+
+\begin{thebibliography}{99}
+
+\bibitem{[1]}  B.~Buchberger,  {\em  An  Algorithmic   Method   in
+Polynomial Ideal Theory}, in ``N.~K.~Bose (ed): Recent  Trends  in
+Multidimensional  System  Theory'',  D.~Reidel  Publishing   Co.~, 
+Dordrecht-Boston, 1985,
+pp. 184-232
+\bibitem{[2]}  L.~Cerlienco, F.~Piras, {\em  On the Continuous Dual of a
+Polynomial Bialgebra},  Communications in Algebra, 19(10),
+2707--2727 (1991)
+\bibitem{[3]}   D.~Cox,  J.~Little,  D.~O'Shea,     {\em   Ideals, 
+Varieties and   Algorithms}, Springer-Verlag, New York,  1992 
+\bibitem{[4]}  J.C.~Faug\`ere,  P.~Gianni, D.~Lazar,  T.~Mora, 
+{\em  Efficient computation  of  zero-dimensional-Gr\"obner  bases 
+by  change  of ordering}, Submitted to J.~Symb.~Comp.~Technical 
+Report LITP 89-52 (1989)
+\bibitem{[5]}   W.~Fulton,    {\em    Algebraic    curves},    The  
+Benjamin/Cummings, Reading, Mass.,  1981
+\bibitem{[6]}  M.G.~Marinari,  H.M.~M\"oller,  T.~Mora,  {\em Gr\"obner 
+bases of ideals defined by  functionals  with  an  application  to 
+ideals of projective points}, J.~Appl.~Alg.~4 (1993), 1-43
+\bibitem{[7]} H.M.~M\"oller, B.~Buchberger,  {\em The  construction
+of multivariate polynomials with preassigned zeros}, in
+``Computer Algebra (Marseille, 1982)'',  Lecture  Notes  in 
+Comp.~Sci., 144, Springer, Berlin-New York, 1982, pp.24-31
+\bibitem{[8]}L.~Robbiano,     {\em     Introduzione     all'algebra
+computazionale.} Appunti per il corso INDAM. (Roma 1986/87)
+
+\end{thebibliography}
+
+\vskip 1in
+
+
+
+\vskip .3in    \noindent
+Authors address:
+
+Luigi Cerlienco, Marina Mureddu
+
+Dipartimento di Matematica.
+
+Via Ospedale 72 --- I-09124 Cagliari (Italy)
+
+Tel. 0039-070-6758529/36 --- Fax 0039-070-6758511
+
+e-mail: 
+
+CERLIENCO@VAXCA1.UNICA.IT
+
+MUREDDU@VAXCA1.UNICA.IT
+
+\end{document}

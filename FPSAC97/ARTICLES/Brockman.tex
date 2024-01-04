@@ -1,0 +1,798 @@
+\documentclass[12pt]{article}
+\pagestyle{empty}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{latexsym}
+%\usepackage{amstex}
+%\usepackage{amssymb}
+\textwidth15.6truecm
+\textheight22.8truecm
+\hoffset-1.73truecm
+\voffset-1.3truecm
+%\usepackage{amscd,amssymb}
+\usepackage{amsthm}
+% Final version commands--no notes!
+\newcommand{\note}[1]{}
+%\reversemarginpar
+% Other commands
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\isom}{\cong}
+\newcommand{\la}{{\lambda}}
+\newcommand{\al}{\alpha}
+\newcommand{\ptn}{\vdash}
+\newcommand{\size}[1]{\left|#1\right|}
+\newcommand{\Klm}{K_{\la \mu}}
+\newcommand{\Klmt}{\tilde{K}_{\la \mu}}
+\newcommand{\Klt}[1]{\tilde{K}_{\la {#1}}}
+\newcommand{\KK}{\tilde{K}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\var}[2]{{#1}_{1},\dots,{#1}_{#2}}
+\newcommand{\Ind}{\text{Ind}}
+\newcommand{\Ch}{\text{Ch}}
+\newcommand{\charge}{c}
+\newcommand{\cocharge}{\hat{c}}
+\newcommand{\chg}{\charge}
+\newcommand{\ccg}{\cocharge}
+\newcommand{\meet}{\wedge}
+\newcommand{\join}{\vee}
+\newcommand{\bigmeet}{\bigwedge}
+\newcommand{\bigjoin}{\bigvee}
+\newcommand{\inject}{\hookrightarrow}
+\newcommand{\compose}{\circ}
+\newcommand{\stdzn}[2][{}]{\theta_{#2}^{#1}}
+%\newcommand{\n}{n}
+%\newcommand{\l}{l}
+\newcommand{\nmu}{n(\mu)}
+\newcommand{\CSlm}{\text{CS}(\la,\mu)}
+\newcommand{\CSl}[1]{\text{CS}(\la,#1)}
+\newcommand{\CSm}{\text{CS}(\mu)}
+\newcommand{\CS}[1]{\text{CS}(#1)}
+\newcommand{\schur}[1]{s_{#1}(\x)}
+\newcommand{\mon}[1]{m_{#1}(\x)}
+\newcommand{\homog}[1]{h_{#1}(\x)}
+\newcommand{\HL}[2][q]{P_{#2}(\x;#1)}
+\newcommand{\Symm}[2][n]{\Lambda_{#1}(#2)}
+\newcommand{\dsum}{\oplus}
+\newcommand{\bigdsum}{\bigoplus}
+\newcommand{\LS}{Lascoux and Sch\"{u}tzenberger}
+\newcommand{\I}{{\mathcal{I}}}
+\newcommand{\A}{{\mathcal{A}}}
+\renewcommand{\L}{{\mathcal{L}}}
+\newcommand{\Sn}{S_{n}}
+\newcommand{\GLn}{{GL}_{n}}
+\newcommand{\gln}{{\mathfrak{gl}}_{n}}
+\newcommand{\n}{{\mathcal{N}}}
+\newcommand{\Cmu}{C_{\mu}}
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\restrict}[1]{\overline{#1}}
+\newcommand{\Cbar}[1]{\closure{C_{#1}}}
+\newcommand{\Cmubar}{\Cbar{\mu}}
+%\newcommand{\nmu}{\Cbar{\mu}}
+\newcommand{\Rmu}{R_{\mu}}
+\newcommand{\Rmuhat}{\hat{R}_{\mu}}
+\newcommand{\Jmu}{J_{\mu}}
+\newcommand{\Imu}{I_{\mu}}
+\renewcommand{\t}{{\mathfrak{t}}}
+\newcommand{\ideal}{\I}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Mor}{\operatorname{Mor}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\mult}{\operatorname{mult}}
+\newcommand{\qmult}{\operatorname{mult}_{q}}
+\newcommand{\blank}{\underline{\quad}}
+\newcommand{\tensor}{\otimes}
+\newcommand{\opp}[1]{{#1}^{*}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\Char}{\operatorname{char}}
+\newcommand{\isomto}{\stackrel{\isom}{\to}}
+% New environments
+% \newenvironment{proof}{{\em Proof.\/}}{\quad\rule{1ex}{1ex}}
+% Equation numbering
+\numberwithin{equation}{section}
+% Theorem-like environments 
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{cor}[theorem]{Corollary}
+\theoremstyle{definition}
+%{\theorembodyfont{\rmfamily}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{prob}[theorem]{Problem}
+\newtheorem{rmk}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+% Title info
+\title{Nilpotent orbit varieties and the atomic decomposition of the $q$-Kostka polynomials}
+%\subjclass{Primary: 05E15. Secondary: 05E10, 14L35, 20G05}
+%\keywords{$q$-Kostka polynomials.  Atomic decomposition.  Nilpotent conjugacy classes.  Nilpotent orbit varieties.}
+\author{William Brockman\thanks{Supported by the U. S. Department of Education GAANN Fellowship.}\and 
+Mark Haiman\thanks{Supported in part by N.S.F. Mathematical Sciences grant
+DMS-9400934.}}
+%\thanks{Produced on \today}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+%\vspace{-0.4in}
+\begin{abstract}
+We study the coordinate rings~$R_{\mu}$ of scheme-theoretic
+intersections of nilpotent orbit closures with the diagonal matrices.
+de Concini and Procesi \cite{deConcini&Procesi} proved a conjecture of
+Kraft \cite{Kraft} that these rings are isomorphic to the cohomology
+rings of the varieties constructed by Springer
+\cite{Springer76,Springer78}.  The famous $q$-Kostka
+polynomial~$K_{\lambda\mu}(q)$ is the Hilbert series for the
+multiplicity of the irreducible symmetric group representation indexed
+by~$\lambda$ in the ring $R_\mu$.  \LS~\cite{L&S:Plaxique,Lascoux} gave
+combinatorially a decomposition of~$K_{\lambda \mu}(q)$ as a sum of
+``atomic'' polynomials with non-negative integer coefficients, and
+Lascoux proposed a corresponding decomposition in the cohomology model.
+
+Our work provides a geometric interpretation of the atomic
+decomposition.  The Frobenius-splitting results of Mehta and van der
+Kallen \cite{Mehta&vanderKallen} imply a direct-sum decomposition of
+the ideals of nilpotent orbit closures, arising from the inclusions of
+the corresponding sets.  We carry out the restriction to the diagonal
+using a recent theorem of Broer \cite{Broer}.  This gives a direct-sum
+decomposition of the ideals yielding the~$R_{\mu}$, and a new proof of
+the atomic decomposition of the $q$-Kostka polynomials.
+
+\begin{center}
+{\bf R\'esum\'e}
+\end{center}
+
+Nous \'etudions l'anneau de coordonn\'ees
+$R_{\mu}$ d'intersection (au sens des faisceaux) des cl\^otures
+d'orbites nilpotents avec les matrices diagonales.  
+de Concini et Procesi \cite{deConcini&Procesi} ont demontr\'e une
+conjecture de Kraft \cite{Kraft} disant que ces anneaux sont
+isomorphes aux anneaus de cohomologie des vari\'et\'es construites par
+Springer \cite{Springer76,Springer78}.  Les c\'el\`ebres
+$q$-polyn\^omes de Kostka $K_{\lambda\mu}(q)$ sont les s\'eries de
+Hilbert pour la multiplicit\'e de la repr\'esentation irr\'eductible
+du groupe sym\'etrique index\'ee par $\lambda$ dans l'anneau $R_\mu$.
+Lascoux et Sch\"utzenberger \cite{L&S:Plaxique,Lascoux} ont donn\'e
+une d\'ecomposition de $K_{\lambda\mu}(q)$ comme somme de polyn\^omes
+``atomiques'' \`a coefficients entiers non-negatifs et Lascoux avait
+propos\'e une d\'ecomposition correspondante dans le mod\`ele
+cohomologique.
+
+Notre travail fournit une interpr\'etation g\'eom\'etrique
+de cette  d\'ecom\-po\-si\-tion atomique.
+Les r\'esultats de Mehta et van der Kallen \cite{Mehta&vanderKallen} sur la
+d\'ecomposition de Frobenius impliquent une d\'ecomposition en
+somme directe des id\'eaux de cl\^otures d'orbites nilpotents qui
+viennent de l'inclusion des ensembles correspondants.
+Nous explicitons la restriction \`a la diagonale en utilisant
+un th\'eor\`eme r\'ecent de Broer \cite{Broer}.
+On obtient ainsi une d\'ecomposition en somme directe des
+id\'eaux constituant les $R_\mu$, ainsi qu'une nouvelle
+d\'emonstration de la d\'ecomposition atomique des $q$-polyn\^omes
+de Kostka.
+\end{abstract}
+%\tableofcontents
+\section{Introduction and Overview}
+
+The {\it $q$-Kostka polynomials} $K_{\lambda \mu }(q)$ have been
+central to numerous developments over the last two decades at the
+crossroads of combinatorics, algebra, and geometry.  
+Defined through the expansion
+\begin{equation}\label{e:definition}
+s_{\lambda }(\x) = \sum _{\mu } K_{\lambda \mu }(q) P_{\mu }(\x;q)
+\end{equation}
+expressing the Schur function $s_{\lambda }(\x)$ as a linear
+combination of Hall-Littlewood polynomials $P_{\mu }(\x;q)$, they are
+polynomials in $q$ which specialize upon setting $q=1$ to the ordinary
+Kostka numbers $K_{\lambda \mu }$. 
+
+Foulkes \cite{Foulkes}, remarking that computations suggested that the
+polynomials $K_{\lambda \mu }(q)$ have non-negative integer
+coefficients, conjectured that they could be interpreted
+combinatorially.  Lascoux and Sch\"utzenberger \cite{Schutzenberger78}
+proved the Foulkes conjecture by expressing $K_{\lambda \mu }(q)$ as a
+sum
+\begin{equation}\label{e:chargeformula}
+K_{\lambda \mu }(q) = \sum _{T\in CS(\lambda ,\mu )} q^{\chg(T)},
+\end{equation}
+in which $T$ varies over the set $CS(\lambda ,\mu )$ of column-strict
+tableaux of shape $\lambda $ containing $\mu _{1}$ ones, $\mu _{2}$
+twos, etc., and $\chg(T)$, the {\it charge} of $T$, is a certain
+intricate combinatorial statistic.  Their result and subsequent work
+\cite{L&S:Croissance,L&S:Plaxique,Lascoux} reveal the remarkable
+combinatorial structures underlying the $q$-Kostka polynomials.
+ 
+Several other algebraic and geometric interpretations of $K_{\lambda
+\mu }(q)$ have been given.  Hotta and Springer \cite{Hotta&Springer}
+identified $K_{\lambda \mu }(q)$ as the Poincar\'e series for the
+multiplicities of the irreducible symmetric group representation
+$V_{\lambda }$ in the cohomology groups of a certain algebraic variety
+$X_{\mu }$.  Lusztig \cite{Lusztig81, Lusztig83} described $K_{\lambda
+\mu }(q)$ as the local intersection homology Poincar\'e series of a
+nilpotent orbit variety, as an affine Kazhdan-Lusztig polynomial, and
+as a $q$-analog of weight multiplicities.  Our concern here will be
+with one further interpretation, introduced by Kraft and de
+Concini-Procesi \cite{Kraft,deConcini&Procesi}, and recently given a
+simple and purely elementary treatment by Garsia and Procesi
+\cite{Garsia&Procesi}, which we now pause to describe.
+
+In brief, Garsia and Procesi take as their starting point a family of
+rings described by \cite{Kraft,deConcini&Procesi},
+\begin{equation}\label{e:R1n}
+R_{(1^{n})} = Q[x_{1},\ldots,x_{n}]/(e_{1}(\x),\ldots,e_{n}(\x)),
+\end{equation}
+where $e_{k}(\x)$ is the $k$-th elementary symmetric function, and 
+\begin{equation}\label{e:Rmu}
+R_{\mu } = R_{(1^{n})}/I_{\mu } \qquad \text{$\mu$ a partition of $n$.}
+\end{equation}
+Here $I_{\mu }$ is an $S_{n}$-invariant ideal, generated by certain
+completely explicit {\it Tanisaki generators} \cite{Tanisaki}.  Then
+setting
+\begin{equation}\label{e:Ktilde}
+\KK_{\lambda \mu }(q) = q^{n(\mu )} K_{\lambda \mu }(1/q),
+\end{equation}
+with $n(\mu ) = \sum _{i}(i-1)\mu _{i}$, they prove that
+\begin{equation}\label{e:Kinterpretation}
+\KK_{\lambda \mu }(q) = \sum _{d} \mult (\chi ^{\lambda }, (R_{\mu
+})_{d}) q^{d},
+\end{equation}
+where $(R_{\mu })_{d}$ denotes the homogeneous component of degree
+$d$, and $\mult(\chi ^{\lambda }, V)$ denotes the multiplicity of the
+irreducible character $\chi ^{\lambda }$ in the character of an
+$S_{n}$ module $V$.  It happens that $R_{\mu }$ is isomorphic to the
+cohomology ring of the Hotta--Springer variety $X_{\mu }$, but in the
+Garsia--Procesi treatment there is no need for recourse to this
+information.
+
+
+The ideals $I_{\mu }$ satisfy
+%\begin{equation}\label{e:Idominance}
+$I_{\mu }\subseteq I_{\nu } %\qquad
+\text{whenever }\mu \leq \nu$,
+%\end{equation}
+with $\leq$ the dominance partial order on partitions.  Thus
+the Garsia--Procesi interpretation immediately yields the
+coefficientwise {\it monotonicity}
+\begin{equation}\label{e:monotonicity}
+\KK _{\lambda \nu }(q) \leq \KK _{\lambda \mu }(q) \qquad
+\text{whenever }\mu \leq \nu 
+\end{equation}
+first described by \LS\ \cite{L&S:Plaxique}.
+In fact, much more holds: there is an {\it atomic decomposition}
+\begin{equation}\label{e:atomic}
+\KK _{\lambda \mu }(q) = \sum _{\nu \geq \mu } R_{\lambda \nu }(q)
+\end{equation}
+in which the {\it atom polynomials} $R_{\lambda \nu }(q)$ themselves
+have non-negative coefficients.  Lascoux and Sch\"utzenberger
+\cite{L&S:Plaxique,Lascoux} originally obtained this atomic
+decomposition combinatorially, using certain co-charge preserving
+embeddings
+\begin{equation}\label{e:embedding}
+\theta \colon CS(\lambda ,\mu )\hookrightarrow ST(\lambda ),
+\end{equation}
+where $ST(\lambda ) = CS(\lambda ,1^{n})$ is the set of standard
+Young tableaux of shape $\lambda $, and the {\it co-charge}
+$\ccg(T)$ of a tableau $T$ of weight $\mu$ is merely $n(\mu )-\chg(T)$.  
+
+In this paper we interpret the atomic decomposition \eqref{e:atomic}
+in the Garsia--Procesi setting, thus proving anew the non-negativity
+of the atom polynomials $R_{\lambda \nu }$.  More precisely, we
+show (Theorem~\ref{thm:Main}) that there is a direct-sum decomposition
+\begin{equation}\label{e:directsum}
+R_{(1^{n})} = \bigoplus_{\nu} A_{\nu }
+\end{equation}
+of graded $S_{n}$-modules, such that for all $\mu $,
+\begin{equation}\label{e:Imusum}
+I_{\mu } = \bigoplus_{\nu \not \geq \mu } A_{\nu }.
+\end{equation}
+From this it is immediate that \eqref{e:atomic} holds with
+\begin{equation}\label{e:Rpolinterp}
+R_{\lambda \nu }(q) = \sum _{d} \mult (\chi ^{\lambda }, (A_{\nu
+})_{d}) q^{d}.
+\end{equation}
+Lascoux \cite[Thm 6.5]{Lascoux} anticipated our Theorem~\ref{thm:Main}
+by stating, without proof, a similar algebraic version of the atomic
+decomposition, in the setting of the cohomology ring of the flag
+variety.
+
+Our proof departs from the purely elementary spirit of Garsia and
+Procesi, relying fairly heavily upon algebraic geometry.  For us the
+relevant geometric interpretation is that of Kraft, de Concini and
+Procesi, wherein $\operatorname{Spec} R_{\mu }$ is recognized as the
+{\em scheme-theoretic intersection} of the diagonal matrices with a
+{\em nilpotent orbit variety} (the Zariski closure of a conjugacy
+class of nilpotent matrices).  We describe this setting in detail in
+sections \ref{sec:nilpotentorbits}~and~\ref{sec:intersectdiagonal},
+while section~\ref{sec:mainthm} outlines the proof of our main
+results.  Using a Frobenius-splitting result of Mehta and van der
+Kallen we deduce (Theorem~\ref{thm:MainUpstairs}) that there is a
+decomposition analogous to \eqref{e:directsum}--\eqref{e:Imusum}
+for the nilpotent orbit varieties $\Cmubar$ in the nullcone, $\n$:
+\begin{equation}
+k[\n] = \bigdsum_{\nu\ptn n} \hat{A}_{\nu}
+\qquad\text{with }
+\I(\Cmu)=\bigdsum_{\nu\not\geq\mu}\hat{A}_{\nu}\qquad\forall\ \mu\ptn n.
+\end{equation}
+This decomposition holds in prime characteristics and hence also in
+characteristic zero.  Then, a recent result of Broer (intended by him
+for quite different purposes) enables us to carry the decomposition
+down to the diagonal matrices and complete the proof of
+Theorem~\ref{thm:Main}.
+
+\subsection{Acknowledgments} We thank Bram Broer, Adriano Garsia, and Mark
+Shimozono for several valuable conversations, and the referee for very
+helpful comments.
+ 
+\section{The $q$-Kostka polynomials}
+\label{combinatorialsection}
+Our notation for partitions, tableaux, symmetric functions, and
+related objects will generally be compatible with
+Macdonald~\cite{Macdonald}.  In particular, we write ``$\lambda$ is a
+partition of $n$'' as $\la\ptn n$, and put our partitions in
+decreasing order, $\la=(\la_1\geq\dots\geq\la_n\geq0)$.  The only
+order on $P_{n}$, the set of partitions of $n$, that we will use is
+the ``natural'' or {\em dominance} partial order
+\cite[I.1]{Macdonald}, defined by $\mu \leq \la$ if and only if
+\begin{equation}
+\mu_1 + \mu_2 + \dots + \mu_i \leq \la_1+\la_2+\dots+\la_i \qquad 
+1\leq i \leq n.
+\end{equation}
+Thus the smallest partition of $n$ in dominance is
+$(1,1,\dots,1)=(1^n)$ while the largest is $(n)$.  In fact $P_{n}$ is
+a lattice under the dominance order \cite[p. 11]{Macdonald}.
+
+Tableaux always have entries drawn from $\set{1,\dots,n}$ and are {\em
+column-strict}, i.e.\ weakly increasing in the rows, strictly in the
+columns.  The {\em weight} of a tableau is the vector giving the
+number of occurrences of each integer in the tableau; a {\em standard}
+tableau is one of weight $(1,1,\dots,1)$.  The set of column-strict
+tableaux of shape $\la$ and weight $\mu$ is written $\CSlm$, for
+$\la\ptn n$ and $\mu$ a composition of $n$.  We will also need the set
+$\CSm$ of column-strict tableaux of weight $\mu$ and any shape,
+i.e. $\CSm = \bigcup_{\la\ptn n} \CSlm$.  Combinatorially, the {\em
+Kostka number} $\Klm$ is the cardinality of $\CSlm$;
+see~\cite[I.6]{Macdonald}.  
+
+The {\em Hall-Littlewood polynomials} $\set{\HL{\mu}}_{\mu\ptn n}$ are
+a remarkable basis for the symmetric polynomials in $\x=\set{\var
+xn}$, over $\Q(q)$; see~\cite[Chapter~III]{Macdonald} for their
+definition.  The structure constants of this basis give the {\em Hall
+polynomials} \cite[III.3]{Macdonald}, while, more important for our
+purposes, the {\em $q$-Kostka polynomials} $\Klm(q)$ are the entries
+of the transition matrix from the Schur polynomials
+$\set{\schur{\la}}$ to this basis \cite[III.6]{Macdonald}:
+\begin{equation}
+\schur{\la} = \sum_{\mu\ptn \size{\la}}\Klm(q) \HL{\mu}.
+\end{equation}
+The specialization $q\to1$ gives~\cite[III.2]{Macdonald}
+$\schur{\la}=\sum_{\mu\ptn n}\Klm(1)\mon{\mu}$,
+the defining relation for the Kostka numbers, 
+so $\Klm(q)$ is indeed a $q$-analog of $\Klm$.
+
+>From the definition above it follows that $\Klm(q)$ is a polynomial
+with integer coefficients.  Computing $\Klm(q)$ for small $n$, one
+finds the coefficients are non-negative. Several different proofs of
+this fact appear in the literature.  We will be especially concerned
+with those of \LS~\cite{Schutzenberger78,L&S:Plaxique} and of Garsia and
+Procesi \cite{Garsia&Procesi}.
+
+\section{Cocharge and atoms}
+\label{KlmtSubSec}
+\LS\ \cite{Schutzenberger78,L&S:Plaxique, L&S:Croissance} obtain
+$\Klm(q)$ combinatorially, by $q$-counting the column-strict tableaux
+of shape $\la$ and content $\mu$:
+\begin{equation}
+\Klm(q) = \sum_{T\in \CSlm}q^{\chg(T)}.
+\end{equation}
+The {\em charge} statistic $\chg(T)$ is computed directly from the
+tableau $T$ by a somewhat complicated combinatorial process
+\cite[p.242]{Macdonald}.  One sees that $\chg(T)\leq \nmu$
+for $T\in \CSm$, where $\nmu=\sum_{i=1}^{n}(i-1)\mu_{i}$; and 
+in many ways the {\em
+cocharge} $\ccg(T) = \nmu-\chg(T)$ is in fact more natural than
+charge.  For instance, in~\cite{L&S:Plaxique}, \LS\ define a ranked
+poset on the column-strict tableaux of weight $\mu$ in which the rank
+of a tableau is its cocharge.  
+
+Using this poset and other tools, \LS~\cite{L&S:Croissance,
+Lascoux} have explored the remarkable structure of the
+$q$-Kostka polynomials, or more precisely of their ``cocharge''
+variants
+\begin{equation}
+\Klmt(q) = q^{n(\mu)} \Klm(q^{-1}) = \sum_{T\in \CSlm}q^{\ccg(T)}.
+\end{equation}
+First, $\Klmt(q)$ is a monotonically decreasing function of $\mu$:
+\begin{theorem}[\LS]  
+$\Klmt(q)-\Klt{\nu}(q)$ has non-negative integer coefficients for all
+partitions $\nu\geq\mu$.
+\end{theorem}
+The proof is combinatorial, by construction of a shape- and
+cocharge-preserving injection $\stdzn[\mu]{\nu}:\CS{\nu}\inject\CSm$
+for every $\nu\geq\mu$.  In particular, there is such a map into the
+standard tableaux for every $\nu\ptn n$.  We will abbreviate this {\em
+standardization} map as $\stdzn{\nu}:\CS{\nu}\inject\CS{(1^n)}$.
+(Note that this map is not the same as the standardization map of
+Schensted \cite{Schensted61}.)
+
+\LS\ \cite{L&S:Plaxique,Lascoux} further strengthen the monotonicity result 
+by studying the details of the standardization more closely.  
+By construction the injections are compatible: if $\la\geq\mu\geq\nu$
+then $\stdzn[\nu]{\mu}\compose \stdzn[\mu]{\la} =
+\stdzn[\nu]{\la}$.  Thus if $\la\geq\mu$, then 
+$\stdzn{\la}\CS{\la}\subseteq\stdzn{\mu}\CSm$. 
+Furthermore, 
+\begin{equation}
+(\stdzn{\mu} \CSm) \cap (\stdzn{\nu}\CS{\nu})
+= \stdzn{\mu\join\nu}\CS{\mu\join\nu}.
+\end{equation}
+So we may think of a ``contribution from $\mu$'' which is disjoint
+from the contribution from any $\nu\neq\mu$.  Formally, the {\em atom}
+associated with $\mu$ is
+\begin{equation}
+	A(\mu)=\stdzn{\mu}\CSm-\bigcup_{\nu>\mu}\stdzn{\nu}\CS{\nu}.
+	\label{Latom}
+\end{equation}
+These results allow an ``atomic decomposition'' of $\CS{(1^n)}$ as a
+disjoint union of the atoms.  The standardization maps are
+shape-preserving, so we may define 
+\begin{equation}
+A(\la,\mu)=\stdzn{\mu}\CSlm-\bigcup_{\nu>\mu}\stdzn{\nu}\CSl{\nu}.
+\end{equation}
+Since the standardization maps also preserve cocharge, we now have:
+\begin{theorem}[\LS]
+\begin{equation}\label{eq:AtomDecompKlmt}
+\Klmt(q) = \sum_{\nu\geq\mu} R_{\la\mu}(q), \qquad\text{where }
+R_{\la\mu}(q) = \sum_{T\in A(\la,\mu)}q^{\ccg(T)}.
+\end{equation}
+Note $R_{\la\mu}(q)$ is also a polynomial with non-negative integer
+coefficients.
+\end{theorem}
+
+\begin{example}\label{ex:Atompolys321}
+The lattice of partitions $P_n$ is a chain for $n\leq 5$, in which
+case the atomic decomposition reduces to the monotonicity result.
+Consider, therefore, partitions of 6; Table~\ref{table:Atompolys321}
+gives $\Klmt(q)$ and $R_{\la\mu}(q)$ for the partitions
+$\la,\mu\geq(321)$.  Note that the only incomparable pair in this set
+is $(411,33)$.
+\end{example}
+
+\begin{table}
+\begin{tabular}{r@{}r|cccccc}
+&&\multicolumn{6}{c}{$\Klmt(q)$}\\
+& & 6 & 51 & 42 & 411 & 33 & 321 \\
+\hline
+&6 & 1 & 1 & 1 & 1 & 1 & 1 \\
+&51 & & $q$ & $q$ & $q+q^2$ & $q$ & $q+q^2$ \\
+&42 & & & $q^2$ & $q^2$ & $q^2$ & $q^2+q^3$ \\
+\raisebox{1.5ex}[0cm][0cm]{\makebox[0cm][r]{$\lambda\ $}}
+&411 & & & & $q^3$ & 0 & $q^3$ \\
+&33 & & & & & $q^3$ & $q^3$ \\
+&321 & & & & & & $q^4$ \\
+\end{tabular}
+\hfill
+\begin{tabular}{r@{}r|cccccc}
+&&\multicolumn{6}{c}{$R_{\la\mu}(q)$}\\
+& & 6 & 51 & 42 & 411 & 33 & 321 \\
+\hline
+&6 & 1 & 0 & 0 & 0 & 0 & 0 \\
+&51 & & $q$ & 0 & $q^2$ & 0 & 0 \\
+&42 & & & $q^2$ & 0 & 0 & $q^3$ \\
+\raisebox{1.5ex}[0cm][0cm]{\makebox[0cm][r]{$\lambda\ $}}
+&411 & & & & $q^3$ & 0 & 0 \\
+&33 & & & & & $q^3$ & 0 \\
+&321 & & & & & & $q^4$ \\
+\end{tabular}
+\caption{$\Klmt(q)$ and $R_{\la\mu}(q)$, for $\la,\mu\geq(321)$.}
+\label{table:Atompolys321}
+\end{table}
+
+\section{Nilpotent orbit varieties}
+\label{sec:nilpotentorbits}
+Our approach to the atomic decomposition of the $q$-Kostka polynomials
+is based on the nilpotent orbit varieties, one of several geometric
+constructions of these polynomials.  Aspects of this construction are
+discussed by a number of authors, including Kostant
+\cite{Kostant}, Steinberg \cite{Steinberg},
+Spaltenstein \cite{Spaltenstein}, Springer \cite{Springer76,
+Springer78}, Hotta and Springer
+\cite{Hotta&Springer}, Kraft \cite{Kraft}, de
+Concini and Procesi \cite{deConcini&Procesi}, Garsia and Procesi
+\cite{Garsia&Procesi}, Bergeron and Garsia \cite{Bergeron&Garsia},
+and Carrell \cite{Carrell86}. 
+
+Let $k$ be an algebraically closed field.  We consider the variety of
+$n$ by $n$ matrices $\gln(k)$ and its associated ring of polynomial
+functions $k[\gln] = k[x_{11},x_{12},\dots,x_{nn}]$.  Write $\X$ for
+the $n$ by $n$ matrix of indeterminates ${x_{ij}}$.  Denote by $\n$
+the variety of nilpotent matrices in $\gln(k)$, i.e.\ those matrices
+with sole eigenvalue 0.  The ideal of $\n$ in $\gln(k)$ is generated
+\cite{Kostant} by the coefficients of the characteristic polynomial
+$\det(tI-\X)$, i.e.
+\begin{equation}
+k[\n]=k[\gln]/\ideal(\n)=k[\X]/(E_{1}(\X),E_{2}(\X),\dots,E_{n}(\X)).
+\end{equation}
+
+\label{CmuSubSec}
+$\GLn(k)$ acts on $\gln(k)$ by conjugation (the {\em adjoint action}),
+and $\n$ is stable under this action.  Thus $\n$ is a union of
+$\GLn$-conjugacy classes.  Since the only eigenvalue appearing is 0,
+each conjugacy class is determined by
+its Jordan block structure: Let $\Cmu\subset\n$ be the set of
+matrices with Jordan block form $\mu'_{1}$, $\mu'_{2}$, \dots,
+$\mu'_{n}$, where $\mu'$ is the {\em conjugate partition} to $\mu$.
+Equivalently,
+\begin{equation}
+\Cmu=\set{N\in\n:\rank N^{i}=\mu_{i+1}+\dots+\mu_{n}}.
+\end{equation}
+
+We will be particularly concerned with the ideal of $\Cmu$, denoted 
+$\I(\Cmu) \subseteq k[\gln]$.  
+Since $\Cmu$ is a $\GLn$-conjugacy class, $\I(\Cmu)$ is $\GLn$-stable
+as well, under the natural extension of the action to $k[\gln]$.  The
+ideals $\I(\Cmu)$ were studied by Kraft \cite{Kraft}, de Concini and
+Procesi \cite{deConcini&Procesi}, and Tanisaki \cite{Tanisaki}; Weyman
+\cite{Weyman} found an explicit generating set for $\I(\Cmu)$, and also
+confirmed the conjectured generators of \cite{deConcini&Procesi} and
+\cite{Tanisaki}.
+
+It is a standard fact that the Zariski closure $\Cmubar$, the variety
+cut out by $\I(\Cmu)$, is exactly
+\begin{equation}\label{eq:containCmu}
+\Cmubar = \bigcup_{\nu\geq\mu}C_{\nu}.
+\end{equation}
+Thus we have 
+\begin{equation}\label{eq:domCmu}
+\nu\geq\mu \iff \Cbar{\nu}\subseteq \Cmubar \iff
+\I(C_{\nu})\supseteq \I(\Cmu).
+\end{equation}
+The smallest of these {\em nilpotent orbit varieties} is
+${C_{(n)}}$, which is closed and contains only the zero matrix, while
+the largest is
+%\begin{equation}
+$\Cbar{(1^{n})} = \bigcup_{\nu\ptn n}C_{\nu} = \n$.
+%\end{equation}
+Since all the $\Cmubar$ are contained in $\n$, the ideals $\I(\Cmu)$
+are essentially interchangeable with the ideals $\Jmu=\I(\Cmu)/\I(\n)
+\subset k[\n]$.
+
+
+\section{Intersecting with the diagonal}
+\label{sec:intersectdiagonal}
+Set-theoretically, the intersection of the nilpotent orbit variety
+$\Cmubar$ with the diagonal matrices $\t\subset\gln$ contains only the
+zero matrix.  However, the {\em scheme-theoretic intersection} of
+$\Cmubar$ with $\t$ forms an interesting zero-dimensional scheme,
+$\Spec k[\Cmubar\cap\t]$, where 
+\begin{equation}
+k[\Cmubar\cap\t]= k[\gln]/(\ideal(\Cmu)+\ideal(\t)).
+\end{equation}
+The coordinate ring $k[\Cmubar\cap\t]$ has finite $k$-dimension, since
+$\Spec k[\Cmubar\cap\t]$ has only one underlying point.  Furthermore,
+it carries an action of the {\em Weyl group} of $\GLn$, the symmetric
+group $S_n$, as follows.  We view $\Sn\subset\GLn$ as the subgroup of
+permutation matrices.  While the $\GLn$ action by conjugation does not
+preserve $\t$, the restriction of this action to $\Sn$ does.
+Likewise, $\I(\t)$ is $\Sn$-stable, as are the $\GLn$-stable sets
+$\Cmu$ and $\I(\Cmu)$; so the ideal $\I(\Cmu)+\I(\t)$, the quotient
+ring $k[\Cmubar\cap\t]$, and the scheme $\Spec k[\Cmubar\cap\t]$ all
+carry $\Sn$-actions.
+
+Since each ideal $\I(\Cmu)+\I(\t)$ contains the ideal
+$\ideal(\t)=(x_{ij}: i\neq j)$ and the ideal
+$\ideal(\n)=(E_{1}(\X),E_{2}(\X),\dots,E_{n}(\X))$, we lose nothing by
+working in the quotient ring $k[\n\cap\t]=k[\X]/(\I(\n)+\I(\t))$.  Of course,
+$k[\X]/\I(\t)\isom k[x_{11},x_{22},\dots,x_{nn}]$, and we may identify
+the surviving variables $x_{ii}$ with $x_i$; as in
+section~\ref{combinatorialsection}, we use $\x$ to represent the
+variables $\set{\var xn}$.  In $k[\x]$, the polynomial $E_i(\X)$ becomes the
+elementary symmetric function $e_i(\x)$.  Define the ring $R$ by: 
+\begin{equation}
+k[\X]/(\I(\n)+\I(\t)) \isom k[\x]/(e_{1}(\x), \dots, e_{n}(\x)) = R,
+\end{equation}
+and let the ideal $\Imu$ be the image of $\I(\Cmu)+\I(\t)$ in $R$.
+(Explicit sets of generators for $I_{\mu}$ appear in
+\cite{deConcini&Procesi, Tanisaki, Garsia&Procesi}.)  As described in
+\eqref{e:Rmu}, we define $\Rmu=R/\Imu$; we will tend to consider the
+isomorphism $\Rmu\isom k[\Cmubar\cap\t]$ an equality.  Note
+also that $I_{(1^n)}=(0)$ and $R_{(1^n)}=R$.
+
+At this point we should remark that all of the ideals $\I(\Cmu)$ and 
+$\ideal(\t)$ are {\em homogeneous} ideals---generated by homogeneous 
+polynomials---and thus the quotients $k[\Cmubar]$, $k[\t]$, 
+and $\Rmu$ are {\em graded} rings.  (Equivalently, we are noting that 
+the $k^{*}$-action on $\gln$ stabilizes $\Cmu$ and $\t$.)  So we 
+have, in particular, $\Rmu=\dsum_{d\geq0}(\Rmu)_{d}$ for all $\mu\ptn
+n$, where $(R_{\mu })_{d}$ denotes the homogeneous component of degree
+$d$.
+
+Now de Concini and Procesi \cite{deConcini&Procesi} proved that
+$R_{\mu}$ is isomorphic as an $\Sn$ module to $\Ind_{S_{\mu}}^{\Sn}
+1$, and by Young's rule the character of ${\Ind_{S_{\mu}}^{\Sn}1}$ is
+$\sum_{\la\ptn n}\Klm \chi^{\la}$.  So, recording the multiplicity of
+the irreducible $\chi^{\la}$ in each degree $(R_{\mu})_{d}$ as the
+coefficient of $q^d$, one has
+\begin{equation}
+\sum _{d} \mult (\chi ^{\lambda }, (\Rmu)_{d}) q^{d} = \Klmt(q),
+\end{equation}
+wherein the $\Klmt(q)$ must be some $q$-analogs of the Kostka numbers
+$\Klm$.   In
+fact, the polynomials $\Klmt(q)$ are the same polynomials introduced
+in section~\ref{KlmtSubSec}: 
+%\begin{equation}\label{eq:CharacRmu}
+$\Klmt(q) = q^{n(\mu)} \Klm(q^{-1})$.
+%\end{equation}
+This identification follows from the work of Kraft, de
+Concini, Procesi, Hotta, and Springer 
+\cite{Kraft, deConcini&Procesi, Springer76, Springer78, Hotta&Springer}.
+
+Garsia and Procesi give an elementary proof of this connection between
+the ideals $\Imu$ and the $q$-Kostka polynomials in
+\cite{Garsia&Procesi}, which makes completely explicit several
+combinatorial properties of the $q$-Kostka polynomials.  In
+particular, their monotonicity is immediate
+\cite[p. 103]{Garsia&Procesi}: Let $\mu$ and $\nu$ be partitions with
+$\nu\geq\mu$.  As noted in section~\ref{CmuSubSec}, we have
+$\I(C_{\nu})\supseteq \I(\Cmu)$, and hence $I_{\nu}\supseteq \Imu$.  (One
+can also compute directly from the Tanisaki generators for $\Imu$ that
+$I_{\nu}\supseteq \Imu$.)  Thus $R_{\mu}/I_{\nu}\isom R_{\nu}$, and
+the surjection of $\Sn$-modules gives $\Klmt(q)\geq\Klt{\nu}(q)$.  This
+surjection is an algebraic analog of Lascoux's injection
+$\CS{\nu}\inject\CSm$. 
+
+\subsection{Atoms}
+One important property which is not seen immediately from the
+Garsia-Procesi point of view is the atomic decomposition
+$\Klmt=\sum_{\nu} R_{\la\nu}$ with $R_{\la\nu}$ a polynomial with
+non-negative integer coefficients.  Since $\Klmt(q)$ is obtained from
+the graded character of the $\Sn$-module $R_{\mu}$, we seek an
+isomorphism of graded $\Sn$-modules
+\begin{equation}\label{eq:RmuDecomp}
+R_{\mu}\isom\bigdsum_{\nu\geq\mu}A_{\nu}.
+\end{equation}  
+Where can we find these modules $A_{\nu}$?  They most naturally live in $R$.
+We must decompose $R$ as 
+\begin{equation} \label{decompR}
+R = \bigdsum_{\nu\ptn n} A_{\nu}			    
+\qquad\text{so that }
+I_{\mu} = \bigdsum_{\nu\not\geq\mu} A_{\nu}\quad \text{for all }
+\mu\ptn n.
+%\label{decompImu}
+\end{equation}
+Then we shall have immediately from \eqref{eq:RmuDecomp} and
+\eqref{eq:AtomDecompKlmt} that 
+\begin{equation}
+\sum _{d} \mult (\chi ^{\lambda },
+(A_{\nu })_{d}) q^{d} = R_{\la\nu}(q).
+\end{equation}
+
+\begin{example}
+Using Macaulay 2 \cite{Macaulay2}, we found bases of the spaces
+$A_\nu\subset R$ whose characters are described by the atomic
+polynomials $R_{\la\nu}$ of example~\ref{ex:Atompolys321}.  These
+bases are too large to present here; instead in
+Table~\ref{table:Atoms321} we give one vector in each irreducible
+$S_n$-representation.  Note that this example is somewhat trivial,
+since there are only two incomparable partitions, and thus the
+corresponding lattice is automatically distributive; in addition, the
+multiplicity of representations in the graded components of the atoms
+never exceeds 1.  The example would have to be significantly larger
+($n=10$) to avoid these failings.
+\end{example}
+
+\begin{table}
+\begin{center}
+\begin{tabular}{rr|cccccc}
+&&\multicolumn{6}{c}{$A_{\nu}(q)$}\\
+& & 6 & 51 & 42 & 411 & 33 & 321 \\
+\hline
+&6 & 1 & 0 & 0 & 0 & 0 & 0 \\
+&51 & & $x_6$ & 0 & $x_6^2$ & 0 & 0 \\
+&42 & & & $x_5x_6$ & 0 & 0 & $e_3(x_3,x_4,x_5,x_6)$ \\
+\raisebox{1.5ex}[0cm][0cm]{$\lambda$}
+&411 & & & & $x_5x_6^2$ & 0 & 0 \\
+&33 & & & & & $x_4x_5x_6$ & 0 \\
+&321 & & & & & & $x_4x_5x_6^2$ \\
+\end{tabular}
+\end{center}
+\caption{Generators of irreducibles of type $\la$ in $A_{\nu}(q)$, for $\nu\geq(321)$.}
+\label{table:Atoms321}
+\end{table}
+
+\section{Main theorems}
+\label{sec:mainthm}
+\begin{theorem}\label{thm:MainUpstairs}
+Let $k$ be an algebraically closed field.  There exists a direct-sum
+decomposition of the coordinate ring of $\gln$,
+\begin{equation}
+k[\gln] = \bigdsum_{\nu\ptn n} \hat{A}_{\nu}
+\end{equation}
+compatible with the ideals of the conjugacy classes $\Cmu$:
+\begin{equation}
+\I(\Cmu)=\bigdsum_{\nu\not\geq\mu}\hat{A}_{\nu}\qquad\forall\ \mu\ptn n.
+\end{equation}
+\end{theorem}
+\begin{theorem}[Atomic decomposition]\label{thm:Main}
+There exists a direct-sum decomposition of $k[\n\cap\t]\isom R$,
+\begin{equation}
+R = \bigdsum_{\nu\ptn n} A_{\nu} \qquad\text{such that }
+I_{\mu} = \bigdsum_{\nu\not\geq\mu} A_{\nu} \quad \text{for all }\mu\ptn n.
+\end{equation}
+%such that 
+%\begin{equation}
+%\end{equation}  
+Thus we obtain the ``atom polynomial,''
+\begin{equation}
+R_{\la\nu}(q) = \sum _{d} \mult (\chi ^{\lambda }, (A_{\nu})_{d}) q^{d}.
+\end{equation}
+\end{theorem}
+We only sketch the proofs in this extended abstract.  First we show
+that the decomposition exists if and only if the ideals
+$\set{\Imu:\mu\ptn n}$ generate a distributive sublattice of the
+lattice of all ideals in $R$.  Similarly, there is such a
+decomposition of $k[\n]$ if and only if the lattice generated by the
+ideals of orbit varieties $\set{\I(\Cmu):\mu\ptn n}$ is distributive.
+Geometrically the latter property is natural: we expect that the
+lattice generated by the $\I(\Cmu)$ is the dual of the lattice
+generated by the orbit varieties $\Cmubar$ under the set operations.
+
+We show that the lattice generated by $\set{\I(\Cmu):\mu\ptn n}$ is 
+distributive by showing that every 
+element of the lattice is radical.  This fact is a consequence 
+of a recent geometric result:
+\begin{theorem}[Mehta and van der Kallen \cite{Mehta&vanderKallen}]
+\label{MvdKthm}
+Let $k$ be an algebraically closed field of positive characteristic.
+There is a Frobenius splitting $\phi$ of $\gln$ such that every
+nilpotent orbit variety $\Cmubar$ is compatibly Frobenius split.
+\end{theorem}
+
+Since the distributivity is proved in positive characteristic, we must
+make a standard technical argument to extend the result to
+characteristic~0.  This proves
+Theorem~\ref{thm:MainUpstairs}.  Finally, we
+address the intersection with the diagonal.  Essentially, we show that
+the lattice generated by the $\I(\Cmu)$ together with $\I(\t)$ is
+still distributive, even though its elements are no longer radical.
+
+This argument relies on a result of Broer, who in
+\cite{Broer} extends Chevalley's restriction theorem to modules of
+covariants.  His theorem holds in great generality, but we will need
+it only for the Lie group $\GLn$ and Lie algebra $\gln$.  (We view
+$\gln$ as the algebraic variety of all $n$ by $n$ matrices over $k$.)
+Let $T\subset\GLn$ be the subgroup of invertible diagonal matrices,
+and $\t\subset\gln$ its Lie algebra.  Any $\GLn$-module $M$ has a
+representation of the Weyl group $S_n$ on the fixed-point set $M^T$ of
+the $T$-action.  Broer's theorem applies to {\em small}
+$\GLn$-modules: those which do not have the $T$-weight $2\phi$, where
+$\phi$ is the highest root of $\GLn$.
+\begin{theorem}[Broer \cite{Broer}] \label{Broerthm}
+Let $k$ be an algebraically closed field of characteristic zero, and
+let $M$ be a small $\GLn$-module.  For any nilpotent orbit variety
+$\Cmubar$, the map
+\begin{equation}
+\Hom_{\GLn}(M,k[\Cmubar])\to \Hom_{\Sn}(M^T,k[\Cmubar\cap\t])
+\end{equation}
+induced from the restriction $k[\Cmubar]\to k[\Cmubar\cap\t]$ is an
+isomorphism of graded vector spaces.
+\end{theorem}
+
+\bibliographystyle{abbrv}
+\bibliography{newmain}
+{\sc Dept.\ of Mathematics, Michigan State University, East Lansing,
+MI, 48824-1027}
+
+{\sc Dept.\ of Mathematics, UCSD, La Jolla, CA, 92093-0112}
+
+{\em E-mail address: {\tt brockman@math.msu.edu, mhaiman@macaulay.ucsd.edu}}
+
+\end{document}
+
+

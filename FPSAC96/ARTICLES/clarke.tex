@@ -1,0 +1,1033 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Latex-file of extended abstract of the paper
+%%% "New Euler-Mahonian statistics on permutation and words"
+%%% by R.J. Clarke, E. Steingrimsson and J. Zeng
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentstyle[12pt]{article}
+\oddsidemargin 6mm %4.0mm          %DIN A4
+\evensidemargin 2mm %4.0mm         %DIN A4
+\textheight 220.0mm %236.4mm       %DIN A4
+\textwidth 150mm                   %DIN A4
+\topmargin -5mm %.25in
+\setlength{\parskip}{4pt}
+
+\newcommand\mb{\boldmath}
+\newcommand\mn{\rm}
+\newcommand\mc{\cal}
+
+\newcommand\dummy{ }
+
+\def\disp{\displaystyle}
+\def\+{\; + \;}
+\def\-{\; - \;}
+\def\ra{\rightarrow}
+\def\vecn#1{(#1_1,\ldots,#1_n)}
+\def\permn#1{#1_1\cdots #1_n}
+\def\cl#1{{\mc #1}}
+
+\newcommand\ch{\choose} %Binomial coefficients
+\newcommand\st{\; | \;} %Bar in a set with extra space around
+\newcommand\clS{{\mc S}}        %Symmetric group
+\newcommand\sn{\mbox{${\mc S}_n$}}        %Symmetric group
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Eulerian stats %%%%%%%%%%%%%%%%%%%%%%
+\newcommand\des{\mathop{\mn des}}
+\newcommand\exc{\mathop{\mn exc}}
+\newcommand\eul{\mathop{\mn eul}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Mahonian stats %%%%%%%%%%%%%%%%%%%%%%
+\newcommand\inv{\mathop{\mbox{\sc inv}}\nolimits}
+
+\newcommand\invmv{\mathop{\mbox{\sc
+      inv}}_{\mbox{$\mn\scriptscriptstyle MV$}}\nolimits}
+\newcommand\expinv{\mathop{\mbox{$\mn\scriptscriptstyle INV$}}}
+\newcommand\env{\mathop{\mbox{\sc env}}\nolimits}
+\newcommand\maj{\mathop{\mbox{\sc maj}}\nolimits}
+\newcommand\expmaj{\mathop{\mbox{$\mn\scriptscriptstyle MAJ$}}}
+\newcommand\imaj{\mathop{\mbox{\sc imaj}}\nolimits}
+\newcommand\mad{\mathop{\mbox{\sc mad}}\nolimits}
+\newcommand\expmad{\mathop{\mbox{$\mn\scriptscriptstyle MAD$}}}
+\newcommand\mak{\mathop{\mbox{\sc mak}}\nolimits}
+\newcommand\madl{\mathop{\mbox{\sc madl}}\nolimits}
+\newcommand\makl{\mathop{\mbox{\sc makl}}\nolimits}
+\newcommand\den{\mathop{\mbox{\sc den}}\nolimits}
+\newcommand\mah{\mathop{\mbox{\sc mah}}\nolimits}
+\newcommand\sist{\mathop{\mbox{\sc sist}}\nolimits}
+\newcommand\lag{\mathop{\mbox{\sc lag}}\nolimits}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Partial stats %%%%%%%%%%%%%%%%%%%%%%
+\def\emb#1{e_#1}
+\newcommand\rsg{\mathop{\mn Res}}
+\newcommand\res{\mathop{\mn Res}}
+\newcommand\les{\mathop{\mn Les}}
+\newcommand\dtop{\mathop{\mn Dtop}}
+\newcommand\etop{\mathop{\mn Etop}}
+\newcommand\dbot{\mathop{\mn Dbot}\nolimits}
+\newcommand\ebot{\mathop{\mn Ebot}}
+\newcommand\ddiff{\mathop{\mn Ddif}\nolimits}
+\newcommand\ddif{\mathop{\mn Ddif}}
+\newcommand\ediff{\mathop{\mn Edif}}
+\newcommand\edif{\mathop{\mn Edif}}
+\newcommand\imv{\mathop{\mn Imv}}
+\newcommand\ine{\mathop{\mn Ine}}
+\newcommand\run{\mathop{\mn Run}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Miscellaneous %%%%%%%%%%%%%%%%%%%%%%
+\def\EXC#1{#1_{\mbox{$\mn\scriptscriptstyle E$}}}
+\def\NEX#1{#1_{\mbox{$\mn\scriptscriptstyle N$}}}
+\def\inve#1{\inv #1_{\mbox{\sc e}}}
+\def\imve#1{\imv #1_{\mbox{\sc e}}}
+\def\invn#1{\inv #1_{\mbox{\sc n}}}
+\def\phiw{\mbox{$\Phi_{\mbox{$\mn\scriptscriptstyle W$}}$}}
+\newcommand\op{\mbox{\sc o}}
+\newcommand\clo{\mbox{\sc c}}
+\newcommand\imversion{\mbox{i\kern -.15mm{\em m}\kern .15mm version}}
+\newcommand\imversions{\mbox{i\kern -.15mm{\em m}\kern .15mm versions}}
+\newcommand\iimversion{\mbox{i\kern .23mm{\em m}\kern -.23mm version}}
+\newcommand\iimversions{\mbox{i\kern .23mm{\em m}\kern -.23mm versions}}
+\def\NE{{\mn N}}
+\def\SE{{\mn S}}
+\def\sE{{\mn E}}
+\def\dE{{\mn dE}}
+\newcommand{\mpg}{\marginpar}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\lbiw#1#2#3{\pmatrix{
+#1_1\; #1_2\;\cdots #1_#3\; \cr
+#2_1\; #2_2\;\cdots #2_#3\; \cr
+}}
+
+\def\biw#1#2{\pmatrix{
+#1\cr
+#2\cr
+}}
+
+\def\bbiw#1#2{\pmatrix{
+\mb #1\cr
+\mb #2\cr
+}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\wt{\mbox{$\widetilde{w}$}}
+\newcommand\piti{\mbox{$\widetilde{\pi}$}}
+\newcommand\w{\mbox{$w$}}
+\newcommand\p{\mbox{$\pi$}}
+\newcommand\pp{\mbox{$\pi'$}}
+\newcommand\ta{\mbox{$\tau$}}
+\newcommand\wb{\mbox{$\overline{w}$}}
+\newcommand\pib{\mbox{\it id}}
+\newcommand\ol{\overline}
+\newcommand\e{\mbox{$\epsilon$}}
+\newcommand\ep{\mbox{$\epsilon(\pi)$}}
+\newcommand\eep{\mbox{$\epsilon^2(\pi)$}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Structure of Thms. etc.  %%%%%%%%%%%%%%
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{defn}{Definition}
+\newtheorem{defns}[defn]{Definitions}
+\newtheorem{eg}{Example}
+\newtheorem{egs}[eg]{Examples}
+\newtheorem{remark}{Remark}
+\newtheorem{fact}[remark]{Fact}
+\newtheorem{blank}[remark]{$\!\!$}
+\newtheorem{porism}[thm]{Porism}
+\newtheorem{conj}{Conjecture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\pf}{{\bf Proof: \/}}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+%%% \qed produces a square at the end of the line.
+\def\qed{\nobreak\quad\raise -2pt\hbox{\vrule\vbox to 10pt{\hrule width 4pt
+\vfill\hrule}\vrule}\par\vspace{2ex}}
+%The following variation is useful if you don't want a \par or \vspace after.
+\def\qel{\nobreak\quad\raise -2pt\hbox{\vrule\vbox to 10pt{\hrule width 4pt
+\vfill\hrule}\vrule}}
+
+\hyphenation{mac-mahon}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\pagestyle{empty}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+%\renewcommand{\thefootnote}{\arabic{footnote}}
+
+\begin{center}{\LARGE New Euler--Mahonian permutation statistics}\\[24pt]
+\end{center}
+
+
+Robert J. Clarke%
+\footnote[1]{This work was carried out while the
+  author was Visiting
+  Professor at the Universit\'e Louis-Pasteur in Strasbourg during
+  summer and autumn of 1995.}\hspace*{13mm}
+Einar Steingr{\'\i}msson%
+\footnote[2]{Partially supported by a grant from The Icelandic Council of
+  Science and partially supported by the EU Network in Algebraic
+  Combinatorics while visiting Universit\'e
+  Louis-Pasteur in Strasbourg.}\hspace*{7mm}
+Jiang Zeng%
+\footnote[3]{Partially supported by the EU Network in Algebraic
+  Combinatorics.}
+
+%\vspace*{-15pt}
+%{\small
+%\begin{tabbing}
+%lllla\=aaaaaaaaaaaaaaaaaaaallaaa\=aaaaaaaaaaaaaaaaaaaaaaaa\=aaaaaaaaaaa\kill
+%\>University of Adelaide\>CTH and GU \> Universit\a'e Louis-Pasteur\\
+%\>Adelaide, Australia\> G\a"oteborg, Sweden\> Strasbourg, France
+%\end{tabbing}
+%}
+
+\bigskip
+\centerline{(All correspondence to Einar Steingr\'{\i}msson)}
+\bigskip
+
+
+
+
+\centerline{\bf Abstract}
+\noindent{\small
+  We define or redefine new Mahonian permutation statistics, called
+  $\mad$, $\mak$ and $\env$.  Of these, $\env$ is shown to equal the
+  classical $\inv$, that is the number of inversions, while $\mak$ has
+  been defined in a slightly different way by Foata and Zeilberger.
+  It is shown that the triple statistics $(\des,\mak,\mad)$ and
+  $(\exc,\den,\env)$ are equidistributed over \sn. Here $\den$ is
+  Denert's statistic.  In particular, this implies the
+  equidistribution of $(\exc,\inv)$ and $(\des,\mad)$. These
+  bistatistics are not equidistributed with the classical
+  Euler-Mahonian statistic ($\des$,$\maj$).  The proof of the main
+  result is by means of a bijection which is essentially equivalent to
+  several bijections in the literature (or inverses of these).  These
+  include bijections defined by Foata and Zeilberger, by Fran\c con
+  and Viennot and by Biane, between the symmetric group and sets of
+  weighted Motzkin paths.  These bijections are used to give a
+  continued fraction expression for the generating function of
+  $(\exc,\inv)$ or $(\des,\mad)$ on the symmetric group.  All of the
+  main results extend to the rearrangement class of an arbitrary word
+  with repeated letters. }
+
+
+\medskip
+\noindent
+({\em The entire paper can be obtained at}\/ {\tt
+http://www.math.chalmers.se/\~{}einar/})
+
+%\end{document}
+
+
+\section{Introduction}
+The subject of permutation statistics, it is frequently claimed, dates
+back at least to Euler \cite{euler}.  However, it was not until
+MacMahon's extensive study \cite{macmahon} at the turn of the century
+that this became an established discipline of mathematics, and it was
+to take a long time before it developed into the vast field that it is
+today.
+
+%%ES added reference galwhite (Galovich and White) below.
+
+In the last three decades or so much progress has been made in
+discovering and analyzing new statistics.  See for example \cite{foa1,
+  foa2, FS1, FS2, FZ, galwhite, ra, simstan1, stanley}.  Inroads have
+also been made in connecting permutation statistics to various
+geometric structures and to the classical theory of hypergeometric
+functions, as in \cite{fla, fravie, garges, medvie, simstan1}.
+
+MacMahon considered four different statistics for a permutation \p:
+The number of descents ($\des \p$), the number of excedances ($\exc
+\p$), the number of inversions ($\inv \p$), and the major index ($\maj
+\p$).  These are defined as follows: A descent in a permutation $\pi =
+a_1 a_2\cdots a_n$ is an $i$ such that $a_i>a_{i+1}$, an excedance is
+an $i$ such that $a_i>i$, an inversion is a pair $(i,j)$ such that
+$i<j$ and $a_i>a_j$, and the major index of \p\ is the sum of the
+descents in \p. In fact, MacMahon studied these statistics in greater
+generality, namely over the rearrangement class of an arbitrary word
+\w\ with possibly repeated letters.  All of our present results except
+those of section \ref{motzkin} can be generalized to words, and this
+will be done in a subsequent publication \cite{CSZ}.  In this abstract
+we mention these generalizations, but the presentation is centered on
+permutations.  Moreover, there is a further generalization, to words
+in which the letters are divided into two classes, small and large.
+This is treated in a forthcoming paper \cite{kmad}.
+
+%%ES added a sentence above
+
+
+In the present paper, we define some new Mahonian statistics and
+redefine many of the existing ones, with an eye to illuminating their
+common properties and thus also their differences.  Doing this allows
+us to recover some of the known instances of equidistribution among
+Euler-Mahonian pairs, and to prove the equidistribution of two new
+pairs introduced, as well as that of some similiar, but not equal,
+pairs of bistatistics.  We do this simultaneously for all the
+statistics involved, by means of a single, simply described bijection.
+
+All of our constructions, and some of our statistics, have appeared
+previously, in the work of several authors and in many different
+guises.  They have involved Motzkin paths, binary trees, and even more
+exotic structures. As we will show, the bijections in the literature
+pertaining to these statistics, those of Foata--Zeilberger, Fran\c
+con--Viennot \cite{fravie}, de M\'edicis--Viennot \cite{medvie},
+Simion--Stanton \cite{simstan1} and Biane \cite{biane}, defined in
+different ways and for different purposes, are all essentially the
+same, or inverses of each other. These bijections are equivalent to
+the bijection of this paper, but their relationships with each other
+have not before been elucidated.  Moreover, the extensions of the
+above statistics and bijections to words have not appeared before.
+
+Perhaps the most interesting fact to emerge is the equidistribution of
+the two bistatistics $(\des,\mad)$ and $(\exc,\inv)$, where $\mad$ is
+one of our new statistics. The latter bistatistic, whose components
+are classical, is {\em not} equidistributed with $(\des,\maj)$ and
+might therefore, together with its equidistributed mates, be
+classified as an ``Euler-Mahonian pair of the second kind.''
+
+\pagestyle{plain}
+
+\section{Definitions and main results}\label{defns}
+
+We consider the set $\cal S_A$ of all permutations $\pi = a_1
+a_2\cdots a_n$ on a totally ordered alphabet $\cl A$. Although it is
+not necessary, we always take $\cl A$ to be the interval $[n] =
+\{1,2,\ldots,n\}$.  Thus, we consider permutations in \sn.
+
+The {\em biword associated to} a permutation \p\ is $\piti = \biw \pib
+\p$, where \pib\ is the identity permutation $\pib=123\cdots n$.  In what
+follows, \piti\ will always have this meaning.
+
+\begin{defn}
+  Let $\p\in\sn$. A {\em descent} in \p\ is an integer $i$ with $1\le
+  i<n$ such that $a_i>a_{i+1}$.  Here $a_i$ is called the {\em descent
+    top\/} and $a_{i+1}$ is called the {\em descent bottom\/}.  An
+  {\em excedance} in \w\ is an integer $i$ with $1\le i\le n$ such
+  that and $a_i>i$.  Here $a_i$ is called the {\em excedance top\/}.
+  The {\em number of descents in} \p\ is denoted by $\des\pi$, and the
+  {\em number of excedances} is denoted by $\exc\pi$.
+
+  The {\em descent set of \p \/}, $D(\pi)$, is the set of descents.
+  The {\em excedance set of \p \/}, $E(\pi)$, is the set of
+  excedances.
+\end{defn}
+
+Given a permutation $\pi = a_1a_2\cdots a_n$, we separate \p\ into its
+{\em descent blocks} by putting in dashes between $a_i$ and $a_{i+1}$
+whenever $a_i\le a_{i+1}$.  A maximal contiguous subword of \p\ which
+lies between two dashes is a descent block.  A descent block is an
+{\em outsider}\/ if it has only one letter, otherwise it is a {\em
+  proper} descent block. The leftmost letter of a proper descent block
+is its {\em closer} and the rightmost letter is its {\em opener}. A
+letter which lies strictly inside a descent block is an {\em insider}.
+For example, the permutation $1\ 8\ 5\ 2\ 6\ 7\ 9\ 3\ 4$ has descent
+block decomposition $1-8\ 5\ 2-6-7-9\ 3-4$, with closers 8, 9,
+corresponding openers 2, 3, outsiders 1, 6, 7, 4 and insider 5.
+
+Let $B$ be a proper descent block of the permutation \p\ and let
+$\clo(B)$ and $\op(B)$ be the closer and opener, respectively, of $B$.
+If $a$ is a letter of \w, we say that $a$ {\em is embraced by} $B$ if
+$\clo(B)> a > \op(B)$.
+
+\begin{defn}\label{e numbers}
+  Let $\pi=a_1a_2\cdots a_n$ be a permutation.  The {\em (right)
+    embracing numbers\/} of \p\ are the numbers $e_1,e_2, \ldots,
+  e_n$, where $e_i$ is the number of descent blocks in \p\ that are
+  strictly to the right of $a_i$ and that embrace $a_i$.  The {\em
+    right embracing sum} of \p, denoted by $\res\pi$, is defined by
+$$\res\pi = e_1+e_2+\cdots+e_n.$$
+\end{defn}
+For instance, the embracing numbers of $\pi=4\ 1-7-8\ 2-5-6\ 3$ are
+$2\ 0-1-0\ 0-1-0\ 0$, so $\res w = 4$.
+
+\medskip
+\begin{defn}%
+  The {\em descent bottoms sum} of a permutation $\pi = a_1a_2\cdots
+  a_n$, denoted by $\dbot\pi$, is the sum of the descent bottoms of
+  \p. The {\em descent tops sum} of \p, denoted $\dtop \pi$, is the
+  sum of the descent tops of \p. The {\em descent difference} of \p\
+  is
+$$ \ddiff\pi=\dtop\pi-\dbot\pi.$$
+\end{defn}
+Otherwise expressed, $\ddiff \pi$ is the sum of closers minus the sum
+of openers of descent blocks.  As an example, for $\pi =4\ 1-2-6\ 5\
+3-7$, $\dbot w=1+5+3=9$, $\dtop w= 4+6+5=15$ and $\ddiff w =
+15-9=(4+6)-(1+3)=6$.
+
+\begin{defn}
+  The {\em excedance bottoms sum} of a permutation $\pi = a_1a_2\cdots
+  a_n$, denoted by $\ebot\pi$, is the sum of the excedances of \p. The
+  {\em excedance tops sum} of \p, denoted $\etop w$, is the sum of the
+  excedance tops of \p.  The {\em excedance difference} of \p\ is
+  $$
+  \ediff\pi= \etop\pi-\ebot\pi. $$
+  The {\em excedance subword of
+    \p\/}, denoted by $\EXC\p$, is the permutation consisting of all
+  the excedance tops of \p, in the order induced by \p. The {\em
+    non-excedance subword of \p\/}, denoted by $\NEX\p$, consists of
+  those letters of \p\ that are not excedance tops.
+\end{defn}
+For example, let $\pi = 6\ 5\ 4\ 3\ 7\ 1\ 2$, so $\wt
+=\pmatrix{1&2&3&4&5&6&7 \cr 6&5&4&3&7&1&2 \cr }$; then $\EXC\pi= 6\ 5\
+4\ 7$ and $\NEX\pi= 3\ 1\ 2$.  Also, $\ebot\pi=1+2+3+5=11$,
+$\etop\pi=6+5+4+7=22$ and $\ediff\pi=22-11=11$.
+\begin{defn}
+  An {\em inversion} in a permutation $\pi = a_1 a_2\cdots a_n$ is a
+  pair $(i,j)$ such that $i<j$ and $a_i>a_j$.  The {\em number of
+    inversions in} \p\ is denoted by $\inv\pi$.
+\end{defn}
+The reason we spell $\inv$ with all capital letters is that $\inv$ is
+a Mahonian statistic. We do this consistently throughout the paper,
+that is, all Mahonian statistics are spelled with uppercase letters.
+The two Eulerian statistics, $\exc$ and $\des$, are spelled with
+lowercase letters, while ``partial statistics'' (such as $\res$), used
+in the definitions of Mahonian statistics, are merely capitalized.
+
+\begin{defn}\label{invno}
+  Let $\pi = a_1 a_2\cdots a_n$ be a permutation and $i$ an excedance
+  in \p.  We say that {\em $a_i$ is the bottom of $d$ inversions\/} if
+  there are exactly $d$ letters in \p\ to the left of $a_i$ that are
+  greater than $a_i$, and we call $d$ the {\em inversion bottom number
+    of $i$\/}. Similarly, if $i$ is a non-excedance in \p\ and there
+  are exactly $d$ letters smaller than $a_i$ and to the right of $a_i$
+  in \p, then we say that $d$ is the {\em inversion top number of
+    $i$.} The {\em side number of $i$ in \p\/} is the inversion bottom
+  number or the inversion top number of $i$ in \p, according as $i$ is
+  an excedance or not in \p. The {\em sequence of side numbers of\/}
+  \p\ is the sequence $s_1,s_2,\ldots, s_n$ where $s_i$ is the side
+  number of $i$.
+\end{defn}
+For example, let $\pi = 6\ 5\ 4\ 3\ 7\ 1\ 2$ as before, with $\EXC\pi=
+6\ 5\ 4\ 7$ and $\NEX\pi= 3\ 1\ 2$. Then the inversion bottom numbers
+of the excedances in \p\ are 0, 1, 2, 0 and the inversion top numbers
+of the non-excedances in \p\ are 2, 0, 0.  Hence the sequence of side
+numbers of \p\ is 0, 1, 2, 2, 0, 0, 0.
+
+Note that if $i$ is an excedance of the permutation \p, then any
+letter in \p\ that is to the left of $a_i$ and greater than $a_i$ must
+also be an excedance.  Hence, the sum of the inversion bottom numbers
+of the letters in $\EXC{w}$ equals the total number of inversions in
+$\EXC{w}$, that is, $\inv\EXC{w}$.  Similarly, the sum of the
+inversion top numbers of the letters in $\NEX{w}$ equals
+$\inv\NEX{w}$.
+
+\begin{defn}\label{ine}
+Let $\pi$ be a permutation. Then\/ $\ine\pi=\inv\EXC\pi+\inv\NEX\pi.$
+\end{defn}
+Hence, from the remark preceding definition \ref{ine}, we have
+\begin{equation}
+\ine w=s_1+\cdots+s_n.
+\end{equation}
+
+\newcommand\kk{\kern 6pt}
+
+We now define the four Mahonian statistics central to this paper.
+\begin{defn}
+\hspace*{23mm}$\mak\pi\kk = \kk \dbot\pi \+ \res\pi.$
+\end{defn}
+
+
+\vspace*{-12mm}
+
+\begin{eqnarray*}
+\mad\pi&=&\ddiff\pi \+ \res\pi.\\
+\den\pi&=&\ebot\pi \+ \ine\pi.\\
+\env\pi&=&\ediff\pi \+ \ine\pi.
+\end{eqnarray*}
+
+
+As it turns out, our statistic $\env$ equals the classical $\inv$. It
+may seem superfluous to redefine $\inv$ in this way, but it turns out
+that $\env$'s similarity in definition to $\mad$ is crucial in proving
+our main results.
+
+\begin{thm}\label{envinv}
+  For any permutation $\pi= a_1a_2\cdots a_n$, we have
+  $\env\pi=\inv\pi$.
+\end{thm}
+
+We now describe the main results of the paper, the proofs of which are
+omitted in this abstract.
+
+%\end{document}
+
+
+In section \ref{bijperm} we will define a mapping $\Phi$ on \sn\ and
+prove the following result.
+\begin{prop}\label{phistat}
+For any permutation \p, we have
+\begin{eqnarray*}
+(\des,\dbot,\ddiff,\res)\ \pi&=&(\exc,\ebot,\ediff,\ine)\ \Phi(\pi),\\
+(\des,\mad,\mak)\ \pi&=&(\exc,\inv,\den)\ \Phi(\pi).
+\end{eqnarray*}
+\end{prop}
+By showing that $\Phi$ is a bijection, we deduce the following theorem.
+\begin{thm}\label{masterperm}
+The quadristatistics
+$$(\des, \dbot, \ddiff, \res)\quad\mbox{and}\quad
+(\exc, \ebot,\ediff, \ine)$$
+are equidistributed over the symmetric group \sn. That is,
+$$\sum_{\pi\in\cl S_n}{t^{\des\p}x^{\dbot\p}y^{\ddiff\p}q^{\res\p}}
+=\sum_{\pi\in\cl S_n}{t^{\exc\p}x^{\ebot\p}y^{\ediff\p}q^{\ine\p}}.$$
+Hence the triple $(\des, \mad, \mak)$ is equidistributed with $(\exc, \inv,
+\den)$ over $\cl S_n$.
+\end{thm}
+
+In section \ref{motzkin}, we shall make evident the relation between
+our bijection $\Phi$ and some well-known bijections between the
+symmetric group \sn\ and weighted Motzkin paths.  As a
+by-product, we will obtain a continued fraction expansion
+(equation \ref{dfrac}) for the ordinary generating function of
+$$D_n(x,q)=\sum_{\pi\in{\clS}_n}x^{\des\p}q^{\mad\p}.$$
+
+%\newpage
+\section{The bijection $\Phi$}\label{bijperm}
+
+We now describe the construction of a bijection $\Phi: \sn \ra \sn$
+which takes a permutation \p\ to a permutation \ta\ such that the set
+of descent tops in \p\ equals the set of excedance tops in \ta\ and
+the set of descent bottoms in \p\ equals the set of excedances in \ta.
+Moreover, the embracing numbers of \p\ are preserved in a way that we
+now describe.
+
+Observe that, since the letters of a permutation are distinct, we can
+refer to the $i$-th embracing number $e_i$ of the permutation \p\ as
+the embracing number of the {\em letter} $a_i$ in \p, and we will then
+denote $e_i$ by $e(a_i)$.  Similarly, we may if we wish denote the
+$i$-th side number of \p\ by $d(a_i)$.
+
+We will construct $\ta = \Phi(\pi)$ in such a way that the embracing
+number of a letter $a_i$ in \p\ is the side number of $a_i$ in \ta.
+
+Given a permutation \p, we first construct two biwords, $\biw f {f'}$ and
+$\biw g
+{g'}$, and then form the biword $\tau'=\biw {f\; g} {f'\; g'}$ by concatenating
+$f$ and $g$, and $f'$ and $g'$, respectively. The permutation $f$ is defined as
+the subword of descent bottoms in \p, ordered increasingly, and $g$ is
+defined as the subword of non-descent bottoms in \p, also ordered
+increasingly. The permutation $f'$ is the subword of descent tops in \p,
+ordered so that the inversion bottom number of a letter $a$ in $f'$ is the
+embracing number of $a$ in \p, and $g'$ is the subword of non-descent tops
+in \p, ordered so that the inversion top number of a letter $b$ in $g'$ is the
+embracing number of $b$ in \p. Rearranging the columns of $\tau'$, so that the
+top row is in increasing order, we obtain the permutation $\ta=\Phi(\pi)$
+as the
+bottom row of the rearranged biword.
+
+\begin{eg}
+{\rm Let $\pi = 4\ 1-2-7-9\ 6\ 5-8\ 3$, with embracing numbers 1, 0, 0,
+2, 0, 1, 1, 0, 0.  Then
+$$ \biw f {f'} = \biw {1\ 3\ 5\ 6}{8\ 4\ 6\ 9},\,\,\,\, \biw g {g'} = \biw
+{2\ 4\ 7\ 8\ 9}{1\ 2\ 7\ 5\ 3},\,\,\,\, \tau'= \biw {1\ 3\ 5\ 6\ 2\ 4\ 7\ 8\ 9}
+{8\ 4\ 6\ 9\ 1\ 2\ 7\ 5\ 3} $$
+and thus $\Phi(\p)=\tau=8\ 1\ 4\ 2\ 6\ 9\ 7\ 5\ 3$. It is easily checked
+that the
+descent tops and descent bottoms in \p\ are the excedance tops and
+excedances in
+\ta, respectively, and that the embracing number of each letter in \p\ is the
+side number of the same letter in \ta. }
+\end{eg}
+
+\noindent
+{\bf Remark} In the case of words with repeated letters, presented in
+\cite{CSZ}, the definitions of $\ddif,\edif,\;\res$ and $\ine$ are
+slightly modified.  A word $w$ is then ``coded'' into a permutation
+\p\ by replacing the occurrences of equal letters with distinct
+integers in an increasing order from left to right. (As an example,
+the word 2\,3\,2\,2\,1\,3\,1\,2 is coded into 3\,7\,4\,5\,1\,8\,2\,6).
+Then $\Phi$ is applied to \p\ and the resulting permutation
+``decoded'' to obtain a word $w'$ such that $(\des,\dbot,\ddiff,\res)\
+w=(\exc,\ebot,\ediff,\ine)\ w'$.  This map is a bijection, which
+proves the equidistribution of $(\des,\mad,\mak)$ and
+$(\exc,\inv,\den)$ over the rearrangement class of an arbitrary word
+\w.
+
+%(\des,\mad,\mak)\ w = (\exc,\inv,\den)\ w'$.
+
+%\newpage
+\section{Motzkin paths and a continued fraction expansion} \label{motzkin}
+In this section we shall make evident the relation between our
+bijection $\Phi$ and some well-known bijections between the symmetric
+group \sn\  and weighted Motzkin paths. As a by-product we get the
+continued fraction expansion for the generating function of \sn\
+with respect to some of our statistics.
+
+Informally, a {\em Motzkin path} is a connected sequence of $n$ line
+segments, or ``steps,'' in the first quadrant of ${\mbox{\bf R}}^2$,
+starting out from the origin in ${\mbox{\bf R}}^2$ and ending at
+$(0,n)$ (see Figure 1 for an example).
+%XXX Just a note to myself (Einar) to fix R^2
+
+
+\begin{defn}
+A {\em Motzkin path} is a word $w=c_1c_2\cdots c_n$ on the alphabet $\{\NE,
+\SE,
+\sE, \dE \}$ such that for each $i$ the {\em level $h_i$ of the $i$-th step},
+defined by
+$$h_i=\#\{j|j<i, c_j=\NE\}-\#\{j|j<i, c_j=\SE\}, $$
+is non-negative, and equal to zero if $i=n$.
+\end{defn}
+
+\begin{defn}
+A {\em weighted Motzkin path of length $n$} is a pair $(c,d)$, where
+$c=c_1\cdots
+c_n$ is a Motzkin path of length $n$, and $d=(d_1,\ldots, d_n)$ is a
+sequence of
+integers such that
+$$ 0\leq d_i\leq \cases{h_i& if $c_i\in\{\NE,\sE\}$,\cr
+h_i-1& if $ c_i\in\{\SE,\dE\}$.\cr }$$
+The set of weighted Motzkin paths of length $n$ is denoted by $\Gamma_n$.
+\end{defn}
+
+Fran\c con and Viennot \cite{fravie} gave the first bijection $\Psi_{\mn FV}$
+between \sn\  and $\Gamma_n$. Here we describe one {\sl variant} of this
+bijection.
+
+\begin{defn}%
+Let $\p =a_1\cdots a_n\in \cl S_n$ and set $a_0=0$ and $a_{n+1}=n+1$. For
+$1\leq
+i\leq n$ we say that $a_i$ is a
+\begin{itemize}\vspace*{-3mm}
+\item {\em linear double ascent} (outsider) if
+  $a_{i-1}<a_i<a_{i+1}$;\vspace*{-3mm}
+\item {\em linear double descent} (insider) if $a_{i-1}> a_i>
+  a_{i+1}$;\vspace*{-3mm}
+\item {\em linear peak} (closer) if $a_{i-1}<a_i>a_{i+1}$;\vspace*{-3mm}
+\item {\em linear valley} (opener) if $a_{i-1}>a_i<a_{i+1}$.
+\end{itemize}\vspace*{-3mm}
+\end{defn}
+
+\bigskip
+\centerline {\sc The bijection $\Psi_{\mn FV}$ of Fran\c con and Viennot}
+\bigskip
+
+\noindent
+Given a permutation $\p \in \cl S_n$, determine the right embracing
+number $e_i$ for each $i\in [n]$. Form the weighted Motzkin path
+$(c,d)=\Psi_{\mn FV}(\p )$ by setting $d_i=e_i$ and by defining $c_i$
+as follows:
+\begin{itemize}\vspace*{-3mm}
+\item if $i$ is a linear double descent, then
+  $c_i=\dE$;\vspace*{-3mm}
+\item if $i$ is a linear double ascent then $c_i=\sE$;\vspace*{-3mm}
+ \item
+if $i$ is a linear peak then $c_i=\SE$;\vspace*{-3mm}
+\item if $i$ is a linear valley then $c_i=\NE$.
+\end{itemize}\vspace*{-3mm}
+
+\begin{figure}
+{ \setlength{\unitlength}{0.6pt}
+\begin{picture}(420,170)
+\put(150,5)
+{\begin{picture}(400,170)
+\thicklines
+\put(241,106){\dashbox{5}(35,0){}}
+\put(134,135){\dashbox{5}(35,0){}}
+\put(29,58){\line(4,3){105}}
+\thinlines
+\put(346,55){\circle*{7}}
+\put(312,81){\circle*{7}}
+\put(276,106){\circle*{7}}
+\put(240,106){\circle*{7}}
+\put(133,136){\circle*{7}}
+\put(168,136){\circle*{7}}
+\put(203,136){\circle*{7}}
+\put(98,109){\circle*{7}}
+\put(63,82){\circle*{7}}
+\put(27,55){\circle*{7}}
+\thicklines
+\put(27,4){\vector(0,1){170}}
+\put(98,107){\line(0,-1){103}}
+\put(133,136){\line(0,-1){132}}
+\put(168,135){\line(0,-1){132}}
+\put(204,136){\line(0,-1){133}}
+\put(240,107){\line(0,-1){103}}
+\put(276,107){\line(0,-1){103}}
+\put(205,136){\line(6,-5){36}}
+\put(276,107){\line(4,-3){71}}
+\put(346,52){\line(0,-1){50}}
+\put(311,82){\line(0,-1){78}}
+\put(63,82){\line(0,-1){78}}
+\put(1,2){\line(1,0){345}}
+\put(0,25){\line(1,0){345}}
+\put(1,54){\vector(1,0){399}}
+\put(10,33){$i$}
+\put(45,33){\scriptsize 1}
+\put(78,33){\scriptsize 2}
+\put(113,33){\scriptsize 3}
+\put(149,33){\scriptsize 4}
+\put(183,33){\scriptsize 5}
+\put(219,33){\scriptsize 6}
+\put(255,33){\scriptsize 7}
+\put(290,33){\scriptsize 8}
+\put(327,33){\scriptsize 9}
+\put(45,8){\scriptsize 0}
+\put(78,8){\scriptsize 0}
+\put(112,8){\scriptsize 0}
+\put(150,8){\scriptsize 1}
+\put(183,8){\scriptsize 1}
+\put(218,8){\scriptsize 2}
+\put(255,8){\scriptsize 1}
+\put(291,8){\scriptsize 1}
+\put(328,8){\scriptsize 0}
+\put(3,8){$d_i$}
+\put(168,136){\line(1,0){35}}
+\end{picture}}
+\end{picture}}
+
+\medskip
+\centerline {Figure 1}
+\end{figure}
+%\vspace{-18pt}
+
+\noindent
+For example, if $\p =6\ 1-8\ 7\ 4\ 2-5-9\ 3$, then the corresponding
+weighted Motzkin path $\Psi_{\mn FV}(\p )=(c,d)$ is shown in Figure 1.
+
+
+\newpage%
+\centerline {\sc The bijection $\Psi_{\mn FZ}$ of Foata and Zeilberger}
+\medskip
+\noindent
+In \cite{FZ} Foata and Zeilberger gave another bijection from \sn\ to
+$\Gamma_n$, which can be described by the following example.  Let
+$\pi= 9\ 4\ 7\ 6\ 1\ 2\ 8\ 5\ 3$, so
+%
+$$
+\piti=\biw {1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9} {9\ 4\ 7\ 6\ 1\ 2\ 8\ 5\ 3}.
+$$
+%
+As in section \ref{bijperm}, separate \piti\ into two biwords
+corresponding to $\p_E$ and $\p_N$ to get
+$$ \biw f {f'}=\left(\matrix{1&2&3&4&7\cr9&4&7&6&8\cr}\right),\quad \biw g {g'}
+=\left(\matrix{5&6&8&9\cr 1&2&5&3\cr}\right).$$
+Form the weighted Motzkin path $(c,d)=\Psi_{\mn FZ}(\pi)$ as follows: Let
+$s_1,s_2,\ldots,s_n$ be the sequence of side numbers of \p\ (see Definition
+\ref{invno}) and put
+\begin{equation}\label{pnumbers}
+d_{\pi(i)}=s_i \mbox{ for } i=1,2,\ldots,n.
+\end{equation}
+ Let
+$$c_i=\cases{\dE, & if $i\in F\cap F'$,\cr
+\sE, & if $i\in G\cap G'$,\cr
+\SE, & if $i \in F'\cap G$, \cr
+\NE, & if $i\in F\cap G'$.\cr}$$
+Here we have $d=(0,\,0,\,0,\,1,\,1,\,2,\,1,\,1,\,0)$ and
+$$F\cap F'=\{4,\, 7\},\quad G\cap G'=\{5\}, \quad F'\cap G=\{6,\, 8,\,9\},
+\quad F\cap G'=\{1,\, 2,\, 3\}. $$
+\begin{defn}
+For $\p \in \cl S_n$ and $i\in [n]$, we say that $i$ is a
+\begin{itemize}\vspace*{-3mm}
+\item {\em cyclic double ascent} if $\p ^{-1}(i)<i<\p(i)$;\vspace*{-3mm}
+\item {\em cyclic double descent} if $\p ^{-1}(i)\geq i\geq
+  \p(i)$;\vspace*{-3mm}
+\item {\em cyclic peak} if $\p ^{-1}(i)<i>\p(i)$;\vspace*{-3mm}
+\item {\em cyclic valley} if $\p ^{-1}(i)>i<\p(i)$.
+\end{itemize}
+\end{defn}\vspace*{-3mm}
+
+Note that the four sets $F\cap F'$, $G\cap G'$, $F'\cap G$ and $F\cap G'$
+correspond respectively to cyclic double ascents, cyclic double descents,
+cyclic
+peaks and cyclic valleys of $\p $. The corresponding weighted Motzkin path
+is the
+same as in Figure 1. We note that $\Psi_{\mn FV}=\Psi_{\mn FZ}\circ \Phi$.
+
+\bigskip
+\centerline {\sc Biane's bijection}
+\bigskip
+
+\noindent In \cite{biane}, Biane gave a bijection similar to $\Psi_{\mn FZ}$
+which we now describe.
+\begin{defn}
+A {\em labeled path of length $n$} is a pair $(c, \xi)$, where $c=c_1\cdots
+c_n$
+is a Motzkin path of length $n$, and $\xi=(\xi_1, \ldots,\xi_n)$ is a sequence
+such that
+$$\xi_i\in \cases{\{\Delta\},& if $c_i = \NE$,\cr
+\{0, \ldots,h_i\},& if $c_i = \dE$ or $\sE$,\cr
+\{0, \ldots, h_i-1\}^2,& if $c_i = \SE$.\cr }$$
+\end{defn}
+Biane's bijection is from the labeled paths of length $n$ to
+\sn\ .  Using the same notation as in the description of $\Psi_{\mn
+  FZ}$, the inverse of Biane's bijection can be summarized as follows.
+Let $d_1,d_2,\ldots,d_n$ be the sequence of numbers calculated using
+equation (\ref{pnumbers}) from the side numbers of \p.  Note that
+Biane gave a recursive algorithm to compute these numbers but did not
+point out that they are actually the side numbers of $\pi$, that is
+the inversion bottom and inversion top numbers in $f'$ and $g'$
+respectively.  Form the labeled path $(c, \xi)$ thus:
+\begin{itemize}\vspace*{-3mm}
+\item if $i\in F\cap G'$ (valley), let $c_i=\NE$ and
+  $\xi_i=\Delta$;\vspace*{-3mm}
+\item if $i\in F\cap F'$ (double ascent), let $c_i=\dE$ and
+  $\xi_i=d_{i}$;\vspace*{-3mm}
+\item if $i\in G\cap G'$ (double descent), let $c_i=\sE$ and
+  $\xi_i=d_{\p(i)}$;\vspace*{-3mm}
+\item if $i\in F'\cap G$ (peak), let $c_i=\SE$ and $\xi_i=(d_{\p(i)},
+  d_i)$.
+\end{itemize}\vspace*{-3mm}
+The path is the same as for $\Psi_{\mn FZ}$, the only difference being
+the distribution of the side numbers associated to each step of the
+path.
+%If we apply Biane's bijection to the permutation $\p$ above, we get
+%the labeled path in Figure 3.
+
+%\begin{figure}
+%{ \setlength{\unitlength}{0.6pt}
+%\begin{picture}(410,202)
+%\put(150,5)
+%{\begin{picture}(400,192)
+%\thicklines
+%\put(241,106){\dashbox{5}(35,0){}}
+%\put(134,135){\dashbox{5}(35,0){}}
+%\put(29,58){\line(4,3){105}}
+%\thinlines
+%\put(346,55){\circle*{7}}
+%\put(312,80){\circle*{7}}
+%\put(276,106){\circle*{7}}
+%\put(240,106){\circle*{7}}
+%\put(133,136){\circle*{7}}
+%\put(168,135){\circle*{7}}
+%\put(203,136){\circle*{7}}
+%\put(97,108){\circle*{7}}
+%\put(63,83){\circle*{7}}
+%\put(27,55){\circle*{7}}
+%\thicklines
+%\put(27,4){\vector(0,1){188}}
+%\put(98,107){\line(0,-1){103}}
+%\put(133,136){\line(0,-1){132}}
+%\put(168,135){\line(0,-1){133}}
+%\put(204,136){\line(0,-1){133}}
+%\put(240,107){\line(0,-1){103}}
+%\put(276,107){\line(0,-1){103}}
+%\put(205,136){\line(6,-5){36}}
+%\put(276,107){\line(4,-3){71}}
+%\put(347,52){\line(0,-1){50}}
+%\put(311,82){\line(0,-1){78}}
+%\put(63,82){\line(0,-1){78}}
+%\put(1,2){\line(1,0){345}}
+%\put(0,25){\line(1,0){345}}
+%\put(1,54){\vector(1,0){399}}
+%\put(10,33){$i$}
+%\put(45,33){\scriptsize 1}
+%\put(78,33){\scriptsize 2}
+%\put(112,33){\scriptsize 3}
+%\put(149,33){\scriptsize 4}
+%\put(183,33){\scriptsize 5}
+%\put(218,33){\scriptsize 6}
+%\put(255,33){\scriptsize 7}
+%\put(290,33){\scriptsize 8}
+%\put(327,33){\scriptsize 9}
+%\put(42,7){$\tiny \Delta$}
+%\put(76,7){$\tiny \Delta$}
+%\put(111,7){$\tiny \Delta$}
+%\put(150,8){\scriptsize 1}
+%\put(183,8){\scriptsize 0}
+%\put(207,8){\scriptsize (0,2)}
+%\put(255,8){\scriptsize 1}
+%\put(278,8){\scriptsize (1,1)}
+%\put(315,8){\scriptsize (0,0)}
+%\put(3,8){$\xi_i$}
+%\put(168,136){\line(1,0){35}}
+%\end{picture}}
+%\end{picture}}
+
+%\medskip
+%\centerline {Figure 3}
+%\end{figure}
+
+In \cite{FZ}, Foata and Zeilberger's purpose with the bijection $\Psi_{\mn FZ}$
+was to code the $\den$ statistic by weighted Motzkin paths, in order to
+show that
+$(\exc,\den)$ was equidistributed with $(\des,\maj)$. That $\Psi_{\mn FZ}$ also
+keeps track of the $\inv$ statistic was first remarked by de M\'edicis and
+Viennot \cite[Proposition 5.2]{medvie}. They proved that
+\begin{eqnarray}
+\inv\pi=\sum_{i=1}^nh_i+\sum_{i=1}^nd_i. \label{inveq}
+\end{eqnarray}
+In Biane's bijection, on the other hand, the $\inv$ statistic is seen
+to satisfy
+%
+$$
+\inv\p=\sum_{i=1}^n(h_i+|\xi_i|),
+$$
+%
+where $|\xi|=x+y$ if $\xi=(x,y)$ and $|\xi|=0$ if $\xi=\Delta$. This
+is clearly equivalent to (\ref{inveq}).
+
+The proof of (\ref{inveq}) given in \cite{medvie} was based on a new definition
+of $\inv$, similar to that of $\env$. This statistic of de M\'edicis and
+Viennot's, which we denote $\invmv$ can be defined in our notation by
+\begin{eqnarray}
+\invmv \p =\inv \p_E&+&\inv \p_N +\#\{(i,j)|i\leq j<\p(i),\,
+\p(j)> j\}\label{invbis}\cr &+&\#\{(i,j)|\p(i)<\p(j)\leq i, \, \p(j)\leq j\}.
+\end{eqnarray}
+However, their proof that $\inv$ equals $\invmv$ is fairly
+complicated, and can be compared to that of the equivalence of the two
+definitions of $\den$ given in \cite{FZ}. In \cite{clarke}, Clarke
+gave a short proof of the equivalence of the two definitions of
+$\den$. Actually, the identity proved in \cite{clarke} can also be
+used to prove the equivalence of the three definitions of $\inv$
+mentioned above.
+
+
+Using the connections between Motzkin paths and permutations we have
+described, we now give a continued fraction expansion for the
+generating function $D_n(x, q)=\sum_{\p \in \cl
+  S_n}{x^{\des\p}q^{\expmad\p}}$.
+
+
+
+
+%%%%%
+
+For $n\geq 0$ let $[n]_q=1+q+\cdots +q^{n-1}$ and let $\disp f_n(x, p,
+q)=\sum_{\p\in \cl S_n}x^{\exc \p }q^{\edif \p }p^{\ine \p }. $ Then,
+by Theorem \ref{masterperm}, we also have $\disp f_n(x, p, q)=\sum_{\p
+  \in \cl S_n}x^{\des \p}q^{\ddif \p }p^{\res \p }. $ The following
+theorem now follows by applying a result of Flajolet \cite[Theorem
+1]{fla}.
+
+\begin{thm}
+The ordinary generating function of $f_n(x, p, q)$ has the following Jacobi
+continued fraction expansion:
+$$ \sum_{n\geq 0}f_n(x,p, q)t^n={1\over\displaystyle 1-b_0t- {\strut
+\lambda_1t^2\over\displaystyle 1-b_1t- {\strut
+\lambda_2t^2\over\displaystyle {}
+{\strut \ddots\over\displaystyle 1-b_nt- {\strut
+\lambda_{n+1}t^2\over\displaystyle \ddots }}}}}, $$
+where $b_n=q^n(x[n]_p+[n+1]_p)$ and $\lambda_{n+1}=xq^{2n+1}([n+1]_p)^2$
+for $n\geq 0$.
+\end{thm}
+
+\begin{cor}\label{Stieltjes}  We have
+\begin{eqnarray}
+\sum_{n\geq 0}f_n(x,p,q)t^n={1\over\displaystyle 1- {\strut t\over\displaystyle
+1- {\strut xqt\over\displaystyle {} {\strut \ddots\over\displaystyle 1- {\strut
+q^{n-1}[n]_pt\over\displaystyle 1- {\strut xq^n[n]_pt\over\displaystyle \ddots
+}}}}}}.
+\end{eqnarray}
+%
+In particular, if $\disp D_n(x, q)= \sum_{\p \in \cl S_n}
+{x^{\des\p}q^{\expmad\p}}$, then it follows from Corollary
+\ref{Stieltjes}, by putting $p=q$ in the above equation, that
+\begin{eqnarray}
+\sum_{n\geq 0}D_n(x,q)t^n= {1\over\displaystyle 1- {\strut
+t\over\displaystyle 1-
+{\strut xqt\over\displaystyle {} {\strut \ddots\over\displaystyle 1- {\strut
+q^{n-1}[n]_qt\over\displaystyle 1- {\strut xq^n[n]_qt\over\displaystyle \ddots
+}}}}}}.\qel\label{dfrac}
+\end{eqnarray}
+\end{cor}
+
+
+Note that the continued fraction expansion of the generating function
+of\\ $\sum_{\p \in \cl S_n}x^{\des \p}q^{\inv \p}$ can also be derived
+from \cite[Theorem 6.5]{medvie}.
+%EINAR spelled out Theorem in reference above.
+
+\begin{cor} For $0\leq k\leq n-1$ and $0\leq m\leq {n(n-1)\over 2}$ we have
+\begin{eqnarray}
+[x^kq^{k+m}]D_n(x,q)=[x^{n-1-k}q^{n-1-k+m}]D_n(x,q),\label{dualitycor}
+\end{eqnarray}
+where $[x^kq^m]D_n(x,q)$ is the coefficient of $x^kq^m$ in the polynomial
+$D_n(x,q)$.
+\end{cor}
+
+\begin{thebibliography}{99}
+\bibitem{biane}P. Biane: Permutations suivant le type d'exc\'edance et
+  le nombre d'inversions et interpr\'etation combinatoire d'une
+  fraction continue de Heine, Europ. J. Combinatorics {\bf 14} (1993),
+  277--284.
+
+\bibitem{clarke} R. J. Clarke: A short proof of a result of Foata and
+Zeilberger,
+Adv. Appl. Math. {\bf 16} (1995), 129--131.
+
+\bibitem{kmad} R. J. Clarke, E. Steingr\'{\i}msson and J. Zeng: The
+  $k$-extensions of some new Mahonian statistics,
+  Europ. J. Combinatorics, to appear.
+
+\bibitem{CSZ} R. J. Clarke, E. Steingr\'{\i}msson and J. Zeng: New
+  Euler-Mahonian statistics on permutations and words, Adv. Appl.
+  Math., to appear.
+
+\bibitem{euler} L. Euler: Institutiones calculi differentialis, in {\em Opera
+Omnia, Series Prima}, vol. X, Verlag von B.G. Teubner, Leipzig, 1913.
+
+\bibitem{fla} P. Flajolet: Combinatorial aspects of continued fractions, Disc.
+Math. {\bf 41} (1982), 145--153.
+
+\bibitem{foa1} D. Foata: Distribution Eul\'eriennes et Mahoniennes sur
+  le groupe des permutations, in M. Aigner (ed.), {\em Higher
+  Combinatorics}, 27--49, D. Reidel, Boston, Berlin Combinatorics
+  Symposium, 1976.
+%EINAR Italicized Higher Combinatorics above
+
+\bibitem{foa2} D. Foata: Rearrangements of words, in M. Lothaire, {\em
+    Combinatorics on Words}, (ed.) G.-C. Rota, Vol. 17, Encyclopedia
+  of Math.  and its Appl., Addison-Wesley Publishing Company, 1983.
+%EINAR Changed Words to lower case above
+
+
+\bibitem{FS1} D. Foata and M.-P. Sch\"utzenberger: {\em Th\'eorie
+g\'eom\'etriques des poly-n\^omes eul\'eriens},
+Lecture Notes in Math., vol. 138, Springer-Verlag, Berlin, 1970.
+
+\bibitem{FS2} D. Foata and M.-P. Sch\"utzenberger: Major index and inversion
+number of permutations, Math. Nachr. {\bf 83} (1978), 143--159.
+
+\bibitem{FZ} D. Foata and D. Zeilberger: Denert's permutation statistic is
+indeed
+Euler-Mahonian, Studies in Appl. Math. {\bf 83} (1990), 31--59.
+
+\bibitem{fravie} J. Fran\c con and X. G. Viennot: { Permutations selon
+    les pics, creux, doubles mont\'ees, doubles descentes, nombres
+    d'Euler, nombres de Genocchi}, Disc. Math. {\bf 28} (1979),
+  21--35.
+
+\bibitem{galwhite} J. Galovich and D. White:  Recursive statistics on
+  words, Preprint,
+
+\bibitem{garges} A. M. Garsia and I. M. Gessel: Permutations statistics and
+partitions, Adv. in Math. {\bf 31} (1979), 288--305.
+
+
+\bibitem{macmahon} P.A. MacMahon: {\em Combinatory Analysis}, vols. 1 and 2.
+Cambridge Univ. Press, Cambridge, 1915 (reprinted by Chelsea, New York, 1955).
+
+\bibitem{medvie} A. de M\'edicis and X. G. Viennot: Moments des $q$-Polyn\^omes
+de Laguerre et la bijection de Foata-Zeilberger, Adv. Appl. Math. {\bf 15}
+(1994), 262--304.
+
+\bibitem{ra} D. Rawlings: Permutation and multipermutation statistics, Europ.
+J. Comb., {\bf 2} (1981), 67-78.
+
+\bibitem{simstan1} S. Simion and D. Stanton: Specializations of generalized
+Laguerre polynomials, SIAM J. Math. Anal. {\bf 25} (1994), 712--719.
+
+\bibitem{stanley} R. Stanley: Binomial posets, M\" {o}bius inversion
+  and permutation enumeration, J. Comb. Theory, {\bf A, 20} (1976),
+  712--719.
+\end{thebibliography}
+
+\bigskip
+
+{\small
+
+\noindent
+Clarke: Pure Mathematics Department, University of Adelaide,
+  Adelaide, South Australia 5005.
+
+\noindent
+Steingr\'{\i}msson: Matematiska institutionen, CTH \& GU, 412 96
+G\"oteborg, Sweden.
+
+\noindent
+Zeng: D\'epartement de math\a'ematique,Universit\'e Louis-Pasteur,
+67084 Strasbourg Cedex, France
+}
+
+\end{document}

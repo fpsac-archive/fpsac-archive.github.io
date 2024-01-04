@@ -1,0 +1,708 @@
+
+%Latest version:30/11/98
+%modified in September 1999
+
+\documentclass[12pt, a4paper]{article}
+%\usepackage{uwamaths}
+\usepackage{amsmath}
+%\usepackage{eufrak}
+\usepackage{latexsym}
+%\usepackage{graphicx, float}
+
+\marginparwidth 0pt
+\oddsidemargin 0pt
+\evensidemargin 0pt
+\topmargin 0pt
+\textheight 21.0 truecm
+\textwidth 16.0 truecm
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{comment}[theorem]{Comment}
+
+ 
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{lemma}{Lemma}
+%\newtheorem{corollary}{Corollary}
+%\newtheorem{proposition}{Proposition}
+%\newtheorem{definition}{Definition}
+%\newtheorem{problem}{Problem}
+%\newtheorem{example}{Example}
+%\newtheorem{construction}{Construction}
+%\newtheorem{conjecture}{Conjecture}
+%\newtheorem{remark}{Remark}
+%\newtheorem{question}{Question}
+%\newtheorem{algorithm}{Algorithm}
+%\newtheorem{comment}{Comment}
+
+\input amssym.def
+\input amssym.tex
+
+\def\proof{\par\noindent{\bf Proof~~}}
+%\def\proof{\medskip\noindent\emph{Proof.}\quad}
+\def\qed{\ifmmode\square\else\nolinebreak\hfill$\square$\fi\par\vskip12pt}
+%\def\qed{\quad\emph{qed}\bigskip}
+
+\newcommand{\prop}{{\mathfrak{p}}}
+\newcommand{\nat}{{f}}
+\newcommand{\cV}{{\cal V}}
+\newcommand{\cE}{{\cal E}}
+\newcommand{\adj}{\sim}
+%\newcommand{\qed}{{\bf Proof}}
+%\newcommand{\qed}{{$\Box$}}
+%\newcommand{\Sym}{\mathrm{Sym}}
+ 
+\newcommand{\partition}{{\cal P}}
+\newcommand{\tx}{\tilde{x}}
+\newcommand{\Fr}{\mathfrak{F}}
+\newcommand{\Fvt}{{\cal F}}
+\newcommand{\tu}{\tilde{\mu}}
+\newcommand{\ledge}{\epsilon}
+\newcommand{\edge}{{\cal E}}
+\newcommand{\tv}{\tilde{\nu}}
+\newcommand{\ta}{\tilde{\alpha}}
+\newcommand{\tb}{\tilde{\beta}}
+\newcommand{\ty}{\tilde{y}}
+\newcommand{\te}{\tilde{e}}
+\newcommand{\tG}{\tilde{\Gamma}}
+\newcommand{\graphA}{\Delta}
+\newcommand{\graphB}{\Xi}
+ 
+ 
+ 
+ 
+ 
+\def\ov{\overline} 
+\def\l{\langle} 
+\def\r{\rangle} 
+\def\tr{{\rm tr}}
+\def\div{\,\Big|\,} 
+\def\notdiv{\,{\not\Big|}\,}
+
+\def\FFF{\Bbb F} 
+\def\ZZZ{\Bbb Z}
+\def\NNN{\Bbb N}
+
+\def\PP{{\cal P}}
+\def\GG{{\cal G}} 
+\def\BB{{\cal B}}
+\def\FB{{\cal LQ}}
+ 
+ 
+\def\C{{\bf C}}
+\def\N{{\bf N}}
+\def\Z{{\bf Z}} 
+\def\O{{\bf O}} 
+
+\def\Q{{\rm Q}} 
+\def\D{{\rm D}} 
+\def\A{{\rm A}}
+\def\S{{\rm S}}
+\def\L{{\rm L}}
+ 
+\def\Ga{\Gamma}
+\def\G{\Gamma}
+\def\a{\alpha} 
+\def\b{\beta} 
+\def\d{\delta}
+\def\g{\gamma} 
+\def\s{\sigma}
+\def\t{\tau} 
+\def\ve{\varepsilon} 
+\def\vp{\varphi}
+\def\d{\delta}
+
+\def\Sym{{\rm Sym}} 
+\def\Inn{{\rm Inn}} 
+\def\Out{{\rm Out}}
+\def\Cay{{\rm Cay}}
+\def\Aut{{\rm Aut}}
+\def\soc{{\rm soc}} 
+\def\wr{{\rm\,wr\,}}
+\def\Diag{{\rm Diag}}
+\def\Syl{{\rm Syl}}
+ 
+\def\PSL{{\rm PSL}}
+\def\PGL{{\rm PGL}} 
+\def\SL{{\rm SL}} 
+\def\GL{{\rm GL}} 
+\def\AGL{{\rm AGL}} 
+\def\GammaL{{\rm\Gamma L}} 
+\def\AGammaL{{\rm A\Gamma L}} 
+\def\U{{\rm U}} 
+\def\PSp{{\rm PSp}} 
+\def\Sp{{\rm Sp}} 
+\def\PO{{\rm P\Omega}} 
+\def\POmega{{\rm P\Omega}}
+\def\E{{\rm E}}%
+\def\F{{\rm F}}
+%\def\G{{\rm G}}
+\def\Sz{{\rm Sz}} 
+\def\Ree{{\rm Ree}}
+
+\def\M{{\rm M}} 
+\def\J{{\rm J}} 
+\def\McL{{\rm McL}} 
+\def\Ru{{\rm Ru}} 
+\def\Ly{{\rm Ly}} 
+\def\Co{{\rm Co}} 
+\def\Fi{{\rm Fi}} 
+\def\Th{{\rm Th}} 
+\def\BM{{\rm BM }} 
+\def\ON{{\rm O'N}} 
+\def\HS{{\rm HS}} 
+\def\Suz{{\rm Suz}} 
+\def\He{{\rm He}} 
+\def\HN{{\rm HN}}
+\def\HA{{\rm HA}}
+\def\AS{{\rm AS}}
+\def\TW{{\rm TW}}
+\def\PA{{\rm PA}}
+ 
+  
+ 
+
+\title{Analysing group actions on finite arc-transitive graphs}
+\author{ Cheryl E.~Praeger\\
+        Department of Mathematics and Statistics\\
+        The University of Western Australia\\
+        Nedlands, Perth, WA 6907, Australia}
+        
+        
+\date{}        
+\begin{document}         
+\openup 1.0\jot
+\maketitle 
+
+\begin{abstract}
+An approach to studying certain families of finite 
+connected arc-transitive graphs is described. 
+This involves identifying some of the graphs in the families
+as basic, and describing arbitrary graphs in the families
+as covers, or multicovers, of the basic graphs. 
+This was motivated by the successful study of finite
+distance-transitive graphs, and has been successful in analysing the 
+structure of finite $s$-arc-transitive graphs ($s\geq 2$), 
+locally-primitive graphs, and locally-quasiprimitive graphs. 
+For other families of finite arc-transitive graphs, where less
+symmetry is present, extra information of a geometrical nature 
+can be helpful in analysing the graph structure; an alternative 
+approach due to Gardiner and the author is then available. 
+These two approaches will be discussed, and compared.
+Some applications and open problems are given.
+\end{abstract}
+
+
+\section{Locally quasiprimitive graphs}
+
+One of the most successful uses of group theory in analysing a class 
+of finite graphs is that leading to the
+classification of the finite distance transitive graphs, which is
+now approaching completion, see~\cite{ivanov}. The suggestion that
+this classification might indeed be feasible comes from early work
+of Biggs and Smith~\cite{biggs, smith} which in a sense reduced the
+problem to the case of vertex-primitive distance transitive graphs.
+Applying the O'Nan-Scott Theorem for finite primitive permutation groups
+further reduced the vertex-primitive classification to the case
+where the automorphism group is almost simple or affine, see~\cite{psy}. 
+
+However, for many other interesting families of finite arc-transitive 
+graphs, it is not possible to describe the structure of arbitrary
+graphs in the family in terms of vertex-primitive graphs in the family.
+In order to describe  such families of graphs, it is not sufficient 
+to focus on the vertex-primitive members.
+
+Happily it turns out that some families of arc-transitive graphs 
+possess a weaker property which allows certain members of the 
+family, which we call ``basic"  members, to play a similar role to
+that of the vertex-primitive distance-transitive graphs. That is to say,
+the structure of an arbitrary graph in the family may be described in 
+terms of some of the  basic graphs.
+One of the largest families of finite arc-transitive graphs which 
+possesses one such property is the family $\FB$  
+of finite, locally-quasiprimitive, arc-transitive graphs.
+
+\medskip
+\noindent\textbf{Some notation:}\quad 
+A {\em graph} $\Gamma = (V,E)$ consists of a set $V$ of vertices and a
+subset $E$ of unordered pairs from $V$, called edges.
+A group $G$ of permutations of a set $\Delta$ is said to be {\em quasiprimitive}
+if each non-trivial normal subgroup of $G$ is transitive on $\Delta$.
+For a graph $\Gamma$, and a group $G$ acting as a group of automorphisms
+of $\Gamma$ (not necessarily faithfully), we say that $\Gamma$ is 
+$G$-{\em arc-transitive} if $G$
+acts transitively on the arcs of $\Gamma$ ({\em arcs} being ordered
+pairs of vertices joined by an edge of $\Gamma$), and
+$G$-{\em locally-quasiprimitive} if, for each vertex $\alpha$, the
+stabiliser
+$G_{\alpha}$ is quasiprimitive in its action on the set
+$\Gamma(\alpha)=\{\beta: \{\a,\b\}\in E\}$ of {\em neighbours} of
+$\alpha$ in $\Gamma$.
+
+ 
+\begin{definition}
+\label{defn:F}{\rm
+Let $\FB$ be the family of those graphs $\Ga$ which are
+$G$-vertex-transitive and $G$-locally-quasiprimitive for 
+some $G \leq \Aut(\Ga)$. In such a
+case we say that $\Ga \in \FB$ \emph{with respect to} $G$. }
+\end{definition}
+
+If one forms a quotient graph of a distance-transitive graph, with respect to a
+partition of the vertex-set which is invariant under the action of the given
+distance-transitive group, then the quotient graph is (``usually'') both
+distance-transitive and vertex-primitive.  This is an over-simplification but it
+fairly accurately describes one of two combinatorial processes which are at the
+heart of the distance-transitive analysis.  However, if one forms such quotients
+with a locally-quasiprimitive graph, then the quotient graph obtained is still
+arc-transitive, but in general is not locally-quasiprimitive.  A fundamental
+observation about the class $\FB$ of finite locally-quasiprimitive,
+arc-transitive graphs is that it is closed under the formation of a very special
+type of quotient graph.
+
+\medskip
+\noindent\textbf{Some more notation:}\quad
+For ${\cal P}$ a partition of the vertex set $V$ of a graph $\Gamma$,
+we define the {\em quotient graph} $\Gamma_{\cal P}$ of $\Gamma$ relative to
+${\cal P}$ as the graph with vertex set ${\cal P}$ such that two
+parts $P,P'$ form an edge if and only if there is at least one edge
+of $\Gamma$ joining a vertex of $P$ and a vertex of $P'$. If ${\cal P}$
+is $G$-{\em invariant} for some group $G$ of automorphisms of $\Gamma$
+(that is, $G$ permutes the parts of ${\cal P}$ setwise), then the
+action of $G$ on $\Gamma$ induces a natural action of $G$ as 
+a group of automorphisms of
+$\Gamma_{\cal P}$. In this case, although the property of
+arc-transitivity is preserved, more restrictive local properties, such
+as local quasiprimitivity, are not in general inherited by the action of
+$G$ on the quotient graph. However, local quasiprimitivity is inherited
+by quotients relative to normal partitions. We call a partition
+${\cal P}$ of vertices $G$-{\em normal relative to} $N$ if
+$N$ is a normal subgroup of $G$ and ${\cal P}$ is the set of $N$-orbits
+in $V$; for such partitions we write $\mathcal{P}=\mathcal{P}_N$, 
+and we write the quotient graph $\Gamma_{\cal P}$ as $\Gamma_N$, 
+and call $\Gamma_N$ a {\em normal quotient}, or a $G$-{\em normal quotient}, of $\Gamma$. 
+Not only is $\Gamma_N$ \, a $G$-locally-quasiprimitive graph, but also $\Gamma$ is 
+a multicover of $\Gamma_N$ and $N$ is semiregular on 
+vertices. (A graph $\G$ is said to be a {\em multicover} of its quotient 
+graph $\Gamma_{\cal P}$ if, for each edge $\{ P,P'\}$ of $\Gamma_{\cal P}$
+and each $\alpha \in P$, the cardinality $|\Gamma(\alpha) \cap P'| >0$.
+A permutation group $N$ on a set $V$ is \emph{semiregular} on $V$ if
+the only element of $N$ which fixes a point of $V$ is the identity.
+If a group $G$ has an action on a set $V$ then $G^V$ denotes the 
+permutation group induced by $G$ on $V$.)
+
+ 
+\begin{theorem}[{\cite[Section~1]{cep:p1}}]
+\label{thm:normal}
+Let $\G=(V,E)$ be a finite connected $G$-vertex-transit\-ive, 
+$G$-locally-quasiprimitive graph of valency
+$v$, and let $N$ be a normal 
+subgroup of $G$ with more than $2$ orbits on $V$. Then 
+ $\Ga_N=(\mathcal{P}_N,E_N)$ 
+is a connected $G$-arc-transitive, $G$-locally-quasiprimitive graph of 
+valency $v/k$ where, 
+for each $\{P,P'\}\in E_N$ and each $\a\in P$, $|\Ga(\a)\cap P'|=k$, 
+and $\Ga$ is a multicover of $\Ga_N$. Moreover,
+\begin{description}
+\item [(i)]$N$ is semiregular on $V$ and is the kernel 
+of the action of $G$ on $\mathcal{P}_N$;  
+\item[(ii)]if $P\in\mathcal{P}_N$  and $\a\in  P$, then
+$G_{\a}^{\Ga(\a)}$ acts faithfully on the partition ${\cal P}(\a)
+:=\{\Ga(\a)\cap P'\, |\, \{ P,P'\}\in E_N\}$ of $\Ga(\a)$, and the 
+permutation groups $G_{\a}^{\mathcal{P}(\a)}$ and 
+$G_P^{\Ga_N(P)}$ are permutationally
+isomorphic;
+\item [(iii)] if moreover $\Ga$ is $G$-locally-primitive
+then $\Ga$ is a cover of $\Ga_N$ (that is $k=1$) and $\Ga_N$ 
+is $G$-locally-primitive.
+\end{description}
+\end{theorem}
+
+The proof of this result may be found in \cite[Lemmas~1.1, 1.4(p), 
+1.5 and 1.6]{cep:p1}. 
+Theorem~\ref{thm:normal} allows us to identify certain
+graphs in $\FB$ as `basic'.
+These are  graphs for which the action of the group $G$ on vertices is
+`close' to being quasiprimitive. 
+They are obtained by taking the normal subgroup $N$ in 
+Theorem~\ref{thm:normal} to be maximal in some sense.
+
+We say that a group $G$ acting on a set $V$ is \emph{bi-quasiprimitive} if
+(i)\ $G$ is transitive on $V$, (ii)\ each normal subgroup of $G$ which 
+acts non-trivially on $V$ has at most two orbits in $V$, and (iii)\
+there exists a normal subgroup of $G$ with two orbits in $V$.
+A bi-quasiprimitive group $G$ on $V$ has a  system of imprimitivity
+consisting of two blocks of size $|V|/2$, and hence has a subgroup $G^+$
+of index 2 which fixes the two blocks setwise. 
+Moreover, provided that $G\not\cong Z_2\times Z_2$ (acting regularly
+on a set of four points), then $G^+$ is the unique subgroup 
+with these properties.
+A bipartite graph $\Ga=(V,E)$ is said to be $G$-\emph{bi-quasiprimitive} if $G$ acts
+as a group of automorphisms of $\Ga$ and $G$ is bi-quasiprimitive on $V$.
+
+\begin{theorem}[\cite{lpvz}]
+\label{thm:basic}
+Let $\Ga=(V,E)$ be a finite connected graph of valency $v$ which is 
+$G$-vertex-transitive and $G$-locally-quasiprimitive, and let $N$ be a normal 
+subgroup of $G$ which is maximal subject to having more than 
+two orbits in $V$. Then one of the following holds for the quotient
+$\Ga_N$.
+\begin{description}
+\item [(a)] $\Ga_N$ is $G$-quasiprimitive; or
+\item [(b)] $\Ga$ and $\Ga_N$ are both bipartite, $N\le G^+$, and 
+$\Ga_N$ is $G$-bi-quasiprimitive. Moreover, either $\Ga=K_{v,v}$,
+or $G^+$ acts faithfully on each part of the bipartition.
+\end{description}
+\end{theorem}
+
+We define a $G$-vertex-transitive, $G$-locally-quasiprimitive graph 
+  to be \emph{$G$-basic} if it is not a
+ multicover of any of its proper $G$-normal quotients. By 
+ Theorem~\ref{thm:normal}, every graph in $\FB$ has at least one 
+ basic
+ normal quotient, and by Theorem~\ref{thm:basic}, the basic graphs in 
+ $\FB$, apart from complete bipartite graphs, 
+ arise in three broad categories.
+ 
+ 
+ \begin{corollary}[\cite{lpvz}]\label{cor:basic}
+ Let $\Ga=(V,E)$ be a connected $G$-vertex-transitive, 
+$G$-locally-quasi\-primit\-ive graph of valency $v$, and suppose 
+that $\Ga$ is $G$-basic.
+ Then either $\Ga=K_{v,v}$, or one of the following holds.
+ \begin{description} 
+ \item[(a)]$\Ga$ is $G$-quasiprimitive; 
+ \item[(b)]$\Ga$ is bipartite, $G$-bi-quasiprimitive, and $G^+$ is faithful 
+ on each part of the bipartition. Moreover, either
+        \begin{description}
+        \item[(i)] $G^+$ is quasiprimitive on each part of the bipartition, or 
+        \item[(ii)] $G^+$ has distinct minimal normal subgroups, 
+ $M_1$ and $M_2$, which are semiregular on $V$ with more than two orbits in $V$, 
+ and are interchanged by $G$.
+\end{description}
+ \end{description}
+ \end{corollary}
+
+
+
+The class $\FB$ was first investigated in~\cite{cep:p2}. 
+However it was not until 1993 that a systematic analysis was made of
+the structure of quasiprimitive permutation groups in \cite{cep}, 
+enabling a detailed description of the structure of the quasiprimitive 
+$2$-arc transitive graphs (an important subclass of $\FB$)
+to be made. In \cite{cep} an `O'Nan-Scott Theorem' for quasiprimitive groups, 
+ which described the possible 
+ structures of finite quasiprimitive permutation groups, was proved.
+  Describing the bipartite members of $\FB$, or the bipartite
+ $2$-arc transitive graphs, is not so easy, and is still an open problem.
+ 
+  Complete bipartite graphs
+ $K_{v,v}$ were singled out in~\cite[Lemma 1.1]{cep:p2}. These certainly
+ arise as examples  in Theorem~\ref{thm:basic}~(b) as can be seen by taking
+ $G=S_v\wr S_2$. It would be interesting to 
+ 
+ 
+ ;;;;;;
+ 
+ A natural problem arising from these results is the
+problem of constructing finite locally-quasiprimitive graphs as multicovers
+of a given locally-quasiprimitive graph. A universal construction method
+for such multicovers was given in \cite[Section 3]{lpvz}. It is a development
+of the covering graph construction of Biggs in~\cite{biggs}. 
+
+\section{Imprimitive arc-transitive graphs}
+
+The class of finite arc-transitive graphs is so large that information about
+a vertex-primitive, arc-transitive quotient graph of a general arc-transitive
+graph $\G$ is unlikely to be sufficient to give a good understanding of 
+the structure of $\G$. Something extra is required. The approach described here was first
+proposed in~\cite{Gardiner-Praeger95}.
+
+If $\G$ is a connected $G$-arc-transitive graph, and if $\mathcal{P}$ is 
+a $G$-invariant partition of the vertex set, then the  subset of vertices in
+a block $B$ of $\mathcal{P}$ is an independent set, that is, it contains 
+no edges. It is possible, however, to define certain geometric objects
+based on the blocks of $\mathcal{P}$.
+For each vertex $\alpha$ of a $G$-arc-transitive graph $\Gamma$, we let
+$B(\alpha)$ denote the block of $\mathcal{P}$ containing $\alpha$. 
+
+For a block $B \in \mathcal{P}$, we denote by $\Gamma(B)$ the set of vertices of
+$\Gamma$ adjacent to at least one vertex in $B$, and if $B, C$ are adjacent in
+$\G_\mathcal{P}$ we denote by $\Gamma[B, C]$ the induced bipartite subgraph of
+$\Gamma$ with $\Gamma (C) \cap B$ and $\Gamma (B) \cap C$ as the parts of the
+bipartition.  Then $\Gamma[B, C]$ is $(G_{B \cup C})$-arc-transitive, where
+$G_{B \cup C}$ is the setwise stabilizer of $B \cup C$ in $G$.  Up to
+isomorphism $\Gamma[B, C]$ is independent of the choice of adjacent blocks $B,
+C$.  In particular, if $\Gamma[B, C]$ is a \emph{perfect matching} between the
+vertices of $B$ and $C$ (that is, each vertex of $B$ is joined to exactly one
+vertex of $C$, and vice versa), then $\Gamma$ is a {\em cover} of
+$\Gamma_{\mathcal{P}}$.
+
+In a similar way, for each block $B$, we denote by $\Gamma_{\mathcal{P}}(B)$ 
+the set of blocks of $\mathcal{P}$ that are adjacent to $B$ in 
+$\Gamma_{\mathcal{P}}$; and we define $\mathcal{D}(B)$
+as the design with point set $B$ and blocks $\Gamma (C) \cap B$  
+(with possible repetitions) for $C \in \Gamma_{\mathcal{P}}(B)$.
+We emphasize that $\mathcal{D}(B)$ may have repeated blocks
+since we may have 
+$\Gamma (C_1) \cap B = \Gamma (C_2) \cap B$
+for distinct $C_1,C_2 \in \Gamma_{\mathcal{P}}(B)$. 
+Set $k : = |\Gamma (B) \cap C|$ for adjacent blocks
+$B, C$ and $r : = |\Gamma_{\mathcal{P}}(\alpha)|$ for a vertex $\alpha$, 
+where $\Gamma_{\mathcal{P}}(\alpha) 
+:= \{B \in {\mathcal{P}}: B \cap \Gamma(\alpha) \neq \emptyset\}$. 
+Let $v : = |B|$ be the size of the blocks in $\mathcal{P}$ and
+$b : = {\rm val}(\Gamma_{\mathcal{P}}) = |\Gamma_{\mathcal{P}}(B)|$ be 
+the valency of $\Gamma_{\mathcal{P}}$.
+Then $vr = bk$ and $\mathcal{D}(B)$ is a 1-$(v, k, r)$ design with $b$ 
+blocks (see \cite{Biggs-White} for terminology on designs).
+Again, since $\Gamma$ is $G$-arc-transitive,  
+the 1-design $\mathcal{D}(B)$ is, up to isomorphism, independent of the 
+choice of the block $B$.
+
+It was suggested in \cite{Gardiner-Praeger95} that, in studying
+a $G$-arc-transitive graph $\Gamma$ with a  
+nontrivial $G$-invariant partition $\mathcal{P}$ of the vertex set, 
+the triple $(\Gamma_\mathcal{P}, \Gamma[B, C], \mathcal{D}(B))$
+provides a useful collection of geometric structures for analysing
+the structure of $\Gamma$. The initial  investigation in 
+\cite{Gardiner-Praeger95} was extended  in \cite{Gardiner-Praeger98,
+Gardiner-Praeger98a} to analyse arc-transitive graphs with complete 
+quotients, and in \cite{lpz} to studying the special case ``$k=v-1$''
+where the bipartite graph $\Gamma[B, C]$ involves most, but not 
+necessarily all the vertices of $B\cup C$. These preliminary 
+investigations suggest that this geometrical approach  may be
+an effective way to gain insights into the structure of 
+arc-transitive graphs.
+
+
+\section{Problems}
+
+Finally we state a few open problems,  which were first given 
+in \cite{lpvz}. The family ${\cal F}$ of 
+finite graphs which admit a group acting transitively and
+locally-quasiprimitively on vertices deserves further study. 
+First more detailed information
+about the basic locally-quasiprimitive graphs in ${\cal F}$ would be
+useful. 
+
+\begin{problem}
+\label{prob:structure}  
+Analyse further the structure of finite $G$-basic, $G$-arc-transitive,
+$G$-locally-quasiprimitive graphs.
+\end{problem}  
+
+The most 
+important tool currently available for this investigation is the `O'Nan-Scott' 
+Theorem~\cite{cep}
+for finite quasiprimitive permutation groups.
+This can be used to analyse the non-bipartite $G$-basic graphs.
+Some work has commenced on this problem by  Akshay Venkatesh and the
+author in the case where
+the group $G$ is of affine type. Much more detailed work has
+been undertaken already for the
+subfamily of non-bipartite $G$-basic graphs  which are $(G,2)$-arc
+transitive, and a survey 
+of these results is given in~\cite{bcc}.
+However we are lacking a similar group theoretic result for analysing the
+bipartite examples.
+
+\begin{problem}
+\label{prob:bi-quasiprimitive}  
+Describe the finite bi-quasiprimitive permutation groups (in a manner 
+similar to the O'Nan-Scott Theorem). Use this description to study
+bipartite $G$-basic, $G$-arc-transitive, $G$-locally-quasiprimitive graphs.
+\end{problem}  
+
+
+The problem of reconstructing $\Gamma$
+from information about all its basic normal quotient graphs $\Gamma_{N_i}$,
+($i=1,\ldots,r$, say) remains open, and of fundamental importance. The
+maximum amount of information we could expect to retrieve about $\Gamma$
+from these quotients would relate only to the graph $\Gamma_N$ where
+$N: = \cap_{i=1}^r N_i$.
+
+\begin{problem}\label{prob:rec}
+Suppose that $\Gamma$ is a finite graph which is $G$-vertex-transitive
+and $G$-locally-quasiprimitive, and that
+$\Gamma_{N_1},\ldots,\Gamma_{N_r}$ are
+ quotients relative to normal subgroups $N_i$ of $G$ such that
+$\cap_{i=1}^r N_i = 1$. What extra information is needed in order to
+reconstruct $\Ga$ from these  normal quotients? In particular, what is
+required  if the graphs $\Ga_{N_i}$ are $G$-basic?
+\end{problem}
+
+A preliminary result was given in \cite{lpvz} for
+the case $r=2$. 
+We need a more complete solution to Problem \ref{prob:rec} above, 
+or to the following natural extension of it.
+
+\begin{problem}
+Suppose that $\Gamma$ is a finite graph which is $G$-vertex-transitive
+and $G$-local\-ly-quasiprim\-it\-ive, with $G$-normal quotient $\Gamma_N$. What
+extra
+information is needed to reconstruct $\Gamma$ from $\Gamma_N$? For
+example, under what circumstances is $\Gamma$ determined by $\Gamma_N$
+together with the bipartite graph induced on the union of two adjacent
+$N$-orbits?
+\end{problem}
+
+Since quasiprimitivity is not necessarily inherited by
+overgroups, we need to address the following problem.
+
+\begin{problem}
+Under what circumstances can we guarantee that a graph $\Ga \in {\cal F}$ 
+is $\mbox{\rm Aut}(\Ga)$-locally-quasiprimitive?
+In particular, when is this true for the
+basic graphs in ${\cal F}$?
+\end{problem}
+
+\begin{problem}
+Suppose $\Ga \in {\cal F}$ with respect to $G$, and $\Ga$ is $G$-basic.
+Under what circumstances is $\Ga$ also $\Aut(\Ga)$-basic? 
+\end{problem}
+
+This problem has already received some attention in the case of 2-arc
+transitive graphs (see~\cite{li}) and almost simple locally-primitive graphs
+(see~\cite{fp, fhp}). Finally we note the following conjecture.
+
+\begin{conjecture} 
+There is a function $f$ on the natural numbers such that,
+for a natural number $k$, if $\Gamma \in {\cal F}$ and $\Gamma$ has
+valency $k$, then the cardinality of a vertex stabilizer in $\mbox{\rm Aut}(\Gamma)$
+is at most $f(k)$.
+\end{conjecture}
+ 
+This conjecture is analogous to one made by Weiss for
+finite locally-primitive graphs, and the task of proving Weiss's
+conjecture for non-bipartite graphs has been reduced in~\cite{clp} to
+proving it in the case 
+where $\mbox{\rm Aut}(\Gamma)$ is an almost simple group 
+(that is, $T \leq \mbox{\rm Aut}(\Gamma)
+\leq \mbox{\rm Aut} T$ for some nonabelian simple group $T$).
+Using the approach suggested here for describing graphs in ${\cal F}$,
+it may be possible to reduce the proofs of both this conjecture and
+the Weiss Conjecture to the case
+where $\mbox{\rm Aut}(\Gamma)$ is almost simple (whether or not the
+graphs are bipartite).
+Certainly one need only consider basic graphs $\Ga$, by Theorem~\ref{thm:basic}.
+
+
+
+
+\begin{thebibliography}{99}
+
+
+
+\bibitem{biggs}
+Norman Biggs, {\it Algebraic Graph Theory}, Cambridge University Press, 
+Cambridge, (1993).
+
+\bibitem{Biggs-White}
+{\sc N.~L.~Biggs} and {\sc A.~T.~White}. 
+{\em Permutation Groups and Combinatorial Structures}.
+London Math. Soc. Lect. Note Series No.~33
+(Cambridge University Press, 1979).
+
+\bibitem{clp} 
+M.~D.~Conder, Cai Heng Li and Cheryl E.~Praeger, On the Weiss
+conjecture for finite locally-primitive graphs, {\em Proc. Edinburgh
+Math. Soc.}, {\em submitted}.
+
+\bibitem{fp}
+Xin Gui Fang and Cheryl E.~Praeger,
+On graphs admitting arc-transitive actions of almost simple groups, 
+{\em J.~Algebra} {\bf 205} (1998), 37--52. 
+
+\bibitem{fhp}
+Xin Gui Fang, George Havas and Cheryl E.~Praeger,
+On the automorphism groups of quasiprimitive
+almost simple graphs, {\em submitted}.
+
+\bibitem{Gardiner-Praeger95}
+{\sc A.~Gardiner} and {\sc Cheryl E.~Praeger}. A geometrical approach to
+imprimitive graphs.
+{\em Proc. London Math. Soc.} (3){\bf 71}(1995), 524-546.
+
+\bibitem{Gardiner-Praeger98}
+{\sc A.~Gardiner} and {\sc Cheryl E.~Praeger}. 
+Topological covers of complete graphs. 
+{\em Math. Proc. Cambridge Phil. Soc.} {\bf 123}(1998), 549-559.
+
+\bibitem{Gardiner-Praeger98a}
+{\sc A.~Gardiner} and {\sc Cheryl E.~Praeger}. 
+Symmetric graphs with complete quotients,
+{\em submitted}.   
+
+\bibitem{ivanov}
+A.~A.~Ivanov, Distance-transitive graphs and their classification, in: 
+{\it Investigations in the Algebraic Theory of Combinatorial Objects}
+(eds. I.A.Faradzev et al), Kluwer, Dordrecht (1994), 
+pp.~283--378.
+
+\bibitem{li}
+Cai Heng Li, A family of quasiprimitive $2$-arc transitive graphs 
+which have non-quasiprimitive full automorphism groups, 
+{\em European J. Combin.} {\bf 19} (1998), 499--502.
+
+ 
+ \bibitem{lpvz}
+ Cai Heng Li, Cheryl E. Praeger, Alshay Venkatesh, and Sanming Zhou,
+ Finite locally quasiprimitive graphs, preprint, 1998.
+
+\bibitem{lpz}
+Cai Heng Li, Cheryl E.~Praeger and Sanming Zhou, A class of finite 
+symmetric graphs with  2-arc transitive quotients, {\em submitted}.
+\bibitem{cep:p1}
+Cheryl E.~Praeger, Imprimitive symmetric graphs, 
+\emph{Ars Combinatoria}
+\textbf{19A} (1985), 149--163.
+
+ 
+\bibitem{cep:p2}
+Cheryl E.~Praeger, On automorphism groups of imprimitive symmetric graphs, 
+\emph{Ars Combinatoria}
+\textbf{23A} (1987), 207--224.
+
+%labelled ``cep:p3" 
+\bibitem{cep}
+Cheryl E.~Praeger, An O'Nan-Scott Theorem for finite quasiprimitive
+permutation groups and an application to 2-arc transitive graphs, 
+{\it J. London Math. Soc. (2)} {\bf 47} (1993), 227--239. 
+
+\bibitem{bcc}
+Cheryl E.~Praeger, Finite quasiprimitive graphs, 
+in: {\it London Math. Soc. Lecture Note Ser.} {\bf 241}, 
+Cambridge Univ.~Press, 1997, pp.~65--85.
+
+\bibitem{psy}
+Cheryl E.~Praeger, J.~Saxl and K.~Yokohama, Distance transitive graphs and
+finite simple groups, {\it Proc. London Math. Soc. (3)} {\bf 55} (1987), 
+1--21 .
+
+
+\bibitem{smith}
+D.~H.~Smith, Primitive and imprimitive graphs, 
+{\it Quart. J. Math. Oxford (2)} {\bf 22} (1971), 551--557.
+
+
+
+\end{thebibliography}
+\end{document}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

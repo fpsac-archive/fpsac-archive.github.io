@@ -1,0 +1,2013 @@
+\documentstyle[11pt]{article}
+
+\newcommand{\vanish}[1]{}
+\newcommand{\al}{{\bf \alpha}}
+\newcommand{\pr}{{\bf patt}}
+\newcommand{\rev}{{\bf rev}}
+\newcommand{\flip}{{\bf flip}}
+\newcommand{\df}{\stackrel{\mbox{\rm\tiny\, def }}{=}}
+\newcommand{\qed}{\hfill\mbox{$\Box$}\vspace{\baselineskip}}
+\newcommand{\rest}[2] { { \left. {#1} \right|_{#2} } }
+\newcommand{\scri}{\scriptstyle}
+
+\newcommand{\Zzz}{\hbox{\Cp Z}}
+
+\newenvironment{proof}{\noindent {\em Proof:}}{{\qed}}
+
+\newtheorem{define}{Definition}    %defines Definition
+\newtheorem{prop}{Proposition}     %defines Proposition
+\newtheorem{theorem}{Theorem}      %defines Theorem
+\newtheorem{corollary}{Corollary}  %defines Corollary
+\newtheorem{lemma}{Lemma}          %defines Lemma
+\newtheorem{example}{Example}          %defines Example
+
+
+\font\Sc=cmcsc10 scaled\magstep1
+\font\Cp = msbm10 scaled\magstep1
+
+
+\textwidth 6.5 in
+\oddsidemargin -.05 in
+\topmargin -0.1 in
+\textheight 8.3 in
+
+
+
+
+\begin{document}
+
+\title{Permutation Trees and Variation Statistics}
+
+\author{{\Sc G\'abor Hetyei\thanks{On leave from the Mathematical
+Institute of the Hungarian Academy of Sciences} and Ethan
+Reiner\thanks{Current address: INSERM U-436, Universit\'e Paris VI, 91, bd de l'H\^opital, 75013 PARIS}\ \thanks{The research of this author was
+supported by the UQAM Foundation}}\\
+{ LaCIM, D\'epartment de math\'ematiques}\\
+{ Universit\'e du Qu\'ebec \`a Montr\'eal}\\
+{ C.P.  8888, succ. Centre-Ville}\\
+{ Montr\'eal  (Qu\'ebec)}\\
+{ CANADA  H3C 3P8}\\}
+
+\date{Submitted to the European Journal of Combinatorics}
+
+\maketitle
+
+\begin{abstract}
+In this paper we exploit binary tree representations of permutations
+to give a combinatorial proof of Purtill's result \cite{pur} that
+$$
+\rest{\sum_{\delta \in {\cal A}_n} v_{cd}(\delta)}
+{\begin{array}{l} \scri c = a+b\\[-4pt] \scri d = ab+ba\\
+\end{array}}= 
+\sum_{\sigma \in S_n}v_{ab}(\sigma),
+$$
+where ${\cal A}_n$ is the set of Andr\'e permutations,
+$v_{cd}(\sigma)$ is the $cd$-statistic of an Andr\'e permutation
+and $v_{ab}(\sigma)$ is the $ab$-statistic of a permutation.
+Using Purtill's proof as a motivation we introduce a new 
+``Foata--Strehl-like'' action on permutations.  This $\Zzz
+_2^{n-1}$-action allows us to give an elementary proof of Purtill's
+theorem and a bijection between Andr\'e permutations of the first kind and
+alternating permutations starting with a descent. A modified version of
+our group action leads to a new class of Andr\'e-like permutations
+with structure similar to that of simsun permutations.
+\end{abstract}
+
+\section*{Introduction}
+
+Andr\'e permutations  and similarly defined classes of permutations
+occur in three different areas: in the study of descent statistics of
+the symmetric group, in the description of the action of the symmetric
+group on the maximal chains of partition lattices, and in $cd$-index
+formulas for simplicial and cubical posets. These permutations were
+first studied by Foata, Strehl, and Sch\"utzenberger in a series of
+papers. In particular, Foata and Strehl defined in
+\cite{Foata-Strehl1} and \cite{Foata-Strehl2} a $\Zzz_2^n$-action on
+$S_n$ where each  orbit contains a unique   Andr\'e permutation  of the first kind as a representative.   
+
+ More recently, S. Sundaram and R. Simion (\cite[p.\ 267]{Sundaram})
+discovered a closely related class of permutations, called {\em simsun}
+permutations, which play an essential role in the description of the
+action of the symmetric group on the maximal chains of partition lattices.
+Almost at the same time, Purtill expressed in \cite{pur} the
+$cd$-index of a Boolean algebra in terms of $cd$-variation monomials of
+Andr\'e permutations of the first kind. Using $R$-labeling arguments, 
+Purtill reduced the problem to that of establishing a relationship between 
+the $ab$-variation of all permutations and the
+$cd$-variation of Andr\'e permutations. He then proceeded to
+give a recursive a decomposition of all permutations into equivalence 
+classes such that the total $ab$-variation of all permutations in a
+given class equals the $cd$-variation of the unique Andr\'e
+permutation of the first kind contained in the class.
+\footnote{Purtill's theorem does have simpler proofs. A simpler $R$-labeling
+argument is indicated by Ehrenborg and Readdy in \cite[Section
+3]{Ehrenborg-Readdy}, and a direct inductive proof avoiding the notion
+of $R$-labeling is given in \cite{Hetyei}. These proofs may be easily
+modified to obtain analogous results about Andr\'e permutations of the
+second kind, augmented simsun permutations, etc.}
+ 
+The main goal of this paper is to introduce a ``Foata--Strehl like''
+$\Zzz_2^{n-1}$-action on the symmetric group $S_n$ such that the orbits
+are exactly the equivalence classes recursively defined by Purtill.
+To accomplish this, we define the $\min-\max$ tree representation of
+permutations  as well as a group action on these trees. This group
+action allows not only to give an elementary proof of Purtill's formula,
+but also to establish a bijection between Andr\'e permutations of the
+first kind and alternating permutations starting with a descent.
+
+A modified version of our tree-representation, $\min_1-\min_2$
+trees, suggests another $\Zzz_2^{n-1}$-action on $S_n$. Under
+this action we find two sets of possible distinguished
+orbit representatives: Andr\'e permutations of the second kind
+and a new class of permutations which we call ``forgotten Andr\'e
+permutations''. Like simsun permutations, forgotten Andr\'e permutations
+are closed under the removal of the largest letter. 
+
+In the preliminary Section \ref{s_words} we introduce most of our
+notation, and two fundamental ways of representing permutations by
+labeled binary trees: decreasing tree representations and
+$\min-\max$ tree representations. In Section \ref{s_Fn} we describe  
+our Foata--Strehl like action on permutations. In Section \ref{s_var} we show
+how $\min-\max$ trees and our group-action may be used to give a
+noninductive proof of Purtill's formula. In Section \ref{s_compare} we
+show that our group action and the Foata--Strehl group action are not
+permutation isomorphic. It turns out, that the two actions together generate a
+transitive action on $S_n$. Finally, in Section \ref{s_alt} we discuss a
+few analogues of decreasing tree and of $\min-\max$ tree
+representations. Generally we find that the most interesting
+distinguished orbit representatives may be obtained from Andr\'e
+permutations of the first kind via trivial transformations, such as
+reversing or {\em flipping} the words. In the case of $\min_1-\min_2$
+trees, however, we obtain a genuinely new class of Andr\'e-like
+permutations, which is studied in greater detail.  
+
+Our work inspires several open problems.
+\begin{enumerate}
+\item Find group actions to prove analogues of Purtill's theorem
+where Andr\'e permutations are replaced by Andr\'e-like
+permutations.
+
+\item Find a combinatorial proof to explain why all but one of the
+involutions defined on min-max trees move exactly $n!/3$ permutations.
+
+\item Find a simple characterization of forgotten Andr\'e permutations
+in the spirit of the definition of simsun permutations.
+\end{enumerate} 
+
+\section{Words and Tree Representations}
+\label{s_words}
+
+In this paper we shall define new group actions on permutations.
+Our work will involve the manipulation of both words (on ordered alphabets)
+and trees.
+We thus begin by introducing the required notation in a rather general
+context which we shall specialize in later sections.
+Let $w$ be a word with $n$ distinct letters from an ordered
+alphabet ${\cal A} = \{ a_1 < a_2 < \cdots < a_n\}$. 
+Every subword  $w^\prime$ of $w$   of length $1 \le k \le n$  can be
+uniquely written in the following way 
+$$
+w^\prime = a_{i_{\sigma_1}}a_{i_{\sigma_2}}\cdots a_{i_{\sigma_k}}
+$$ 
+for appropriate 
+$ \{ a_{i_1} < a_{i_2} < \cdots < a_{i_k} \} \subseteq {\cal A}$
+and $\sigma \in S_k$.
+We call $\sigma$ the  {\em underlying pattern} of a $w^\prime$ and write
+$\pr(w^\prime) = \sigma$.
+
+\begin{example}
+{\em Let $w = a_4 a_3 a_5 a_6 a_1 a_2 a_7$ and 
+$w^\prime = a_5 a_6 a_1$ then $\pr(w^\prime) = 231$.}
+\end{example}
+ 
+
+Next, suppose that $\rho \in S_k$.  For $i\leq \mbox{length} (w)-k$ we define 
+the {\em action
+of $\rho$ at position $i+1$ of $w$}, written
+$ \rho_{[i+1]}w$, in the following way.
+First write
+$w = u w^\prime v$ where 
+$
+w^\prime = a_{i_{\mu_1}}a_{i_{\mu_2}}\cdots a_{i_{\mu_k}}
+$ is the subword of length $k$
+starting at position $i+1$.
+Then $ \rho_{[i+1]} w  =   u
+ a_{i_{\rho(\mu_1)}} \cdots a_{i_{\rho(\mu_k)}}v$.
+
+\begin{example} {\em Let $w = a_7 a_4 a_8 a_1 a_{10} a_2 a_5 a_3 a_6 a_9$ 
+and $\rho = 43512 \in S_5$.   Then 
+    $$ \rho_{[3]} w  =  a_7 a_4 a_1 a_8 a_2 a_5 a_{10} a_3 a_6 a_9 $$
+and trivially,
+$w  = \sigma_{[0]}a_1\,a_2\cdots a_{10}$ where
+$\sigma =7\, 4\, 8\, 1\, 10\, 2\, 5\, 3\, 6\,  9$.}
+\end{example}
+
+The following lemma says essentially that if the  words $u$ and $w$ 
+have the same  underlying pattern then the words 
+$ \rho_{[i+1]} w $ and $ \rho_{[i+1]} u $ also have the same underlying
+pattern.
+
+\begin{lemma}\label{ugly} Let $w = a_{\sigma_1} a_{\sigma_2} \cdots a_{\sigma_n}$
+and $u = b_{\sigma_1} b_{\sigma_2} \cdots b_{\sigma_n}$.
+Suppose $\rho \in S_k$ with $k \le n$ and $1 \le i \le n-k$.
+Then $\pr( \rho_{[i+1]} w ) = \pr( \rho_{[i+1]}  u).$
+\end{lemma}
+\noindent {\em Proof:} 
+Suppose that $w = x w^\prime y$ where
+$w^\prime = a_{i_{\lambda_1}}\cdots a_{i_{\lambda_k}}$ 
+with $a_{i_{\lambda_j}}= a_{\sigma_{i+j}}$.
+Similarly, let $v = r v^\prime s$ where $v^\prime = b_{i_{\lambda_1}}\cdots b_{i_{\lambda_k}}$ 
+with $b_{i_{\lambda_j}}= b_{\sigma_{i+j}}$.
+By definition,
+$$
+ \rho_{[i+1]} w  =x \,a_{i_{\rho({\lambda_1})}}\cdots a_{i_{\rho({\lambda_k})}} \,y
+$$
+and 
+$$
+ \rho_{[i+1]} u  =  r\,b_{i_{\rho({\lambda_1})}}\cdots b_{i_{\rho({\lambda_k})}}\,s.
+$$
+One now sees that 
+$$\hspace*{1.27cm}\pr( \rho_{[i+1]} w ) = \pr( \rho_{[i+1]}u)=
+\sigma_1\cdots \sigma_i \sigma_{i +\lambda^{-1}(\rho(\lambda_1))}\cdots \sigma_{i+\lambda^{-1}(\rho(\lambda_k))}
+\sigma_{i+k+1}\cdots \sigma_n.\hspace*{1.27cm}\Box$$
+
+Let $w = w_{\lambda_1} \cdots w_{\lambda_n}$ be  any word on an ordered alphabet.
+For each binary tree $T$ on $n$ nodes we associate a unique labeled tree $T_{w}$
+whose left-first order reading yields the permutation $w$.
+This is done as follows. Traverse $T$ in a left-first manner and label
+the nodes in the order that they are visited with the 
+letters $w_{\lambda_1}$, $w_{\lambda_2}$, \ldots, $w_{\lambda_n}$
+
+\newpage
+\begin{example} {\em For  $\sigma = 5\,2\,1\,4\,6\,3$ and 
+\vspace*{-1cm}
+
+\begin{figure}[h]
+\begingroup\makeatletter
+% extract first six characters in \fmtname
+\def\x#1#2#3#4#5#6#7\relax{\def\x{#1#2#3#4#5#6}}%
+\expandafter\x\fmtname xxxxxx\relax \def\y{splain}%
+\ifx\x\y   % LaTeX or SliTeX?
+\gdef\SetFigFont#1#2#3{%
+  \ifnum #1<17\tiny\else \ifnum #1<20\small\else
+  \ifnum #1<24\normalsize\else \ifnum #1<29\large\else
+  \ifnum #1<34\Large\else \ifnum #1<41\LARGE\else
+     \huge\fi\fi\fi\fi\fi\fi
+  \csname #3\endcsname}%
+\else
+\gdef\SetFigFont#1#2#3{\begingroup
+  \count@#1\relax \ifnum 25<\count@\count@25\fi
+  \def\x{\endgroup\@setsize\SetFigFont{#2pt}}%
+  \expandafter\x
+    \csname \romannumeral\the\count@ pt\expandafter\endcsname
+    \csname @\romannumeral\the\count@ pt\endcsname
+  \csname #3\endcsname}%
+\fi
+\endgroup
+\begin{center}
+\setlength{\unitlength}{0.011250in}%
+\begin{picture}(360,82)(60,737)
+\thicklines
+\put( 80,740){\circle*{6}}
+\put(140,740){\circle*{6}}
+\put(200,740){\circle*{6}}
+\put(170,770){\circle*{6}}
+\put(110,770){\circle*{6}}
+\put(140,800){\circle*{6}}
+\put(355,800){\circle*{6}}
+\put(325,770){\circle*{6}}
+\put(295,740){\circle*{6}}
+\put(355,740){\circle*{6}}
+\put(385,770){\circle*{6}}
+\put(415,740){\circle*{6}}
+\put( 80,740){\line( 1, 1){ 60}}
+\put(140,800){\line( 1,-1){ 60}}
+\put(110,770){\line( 1,-1){ 30}}
+\put(295,740){\line( 1, 1){ 60}}
+\put(355,800){\line( 1,-1){ 60}}
+\put(325,770){\line( 1,-1){ 30}}
+\put( 60,760){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}$T=$}}}
+\put(290,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}5}}}
+\put(320,780){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}2}}}
+\put(350,810){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}4}}}
+\put(380,780){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}6}}}
+\put(350,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}1}}}
+\put(410,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}3}}}
+\put(205,760){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}we have $T_{\sigma}=$}}}
+\put(420,760){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}.}}}
+\end{picture}
+\end{center}
+\end{figure}}
+\end{example}
+
+>From the construction it is clear that the left-first order reading 
+of $T_{w}$ yields the word $w$.
+We also remark that the set ${\cal T}(w)$ of distinct labeled binary trees constructed
+in this manner  for each $w$ is of cardinality $C_n$,  the $n$th Catalan
+number. 
+
+Two particular binary tree representations will be of fundamental
+interest in this paper. (All others, discussed in Section \ref{s_alt}, are
+analogous to one of these two.) We describe them by giving the recursive
+algorithms for their construction. 
+
+\begin{description}
+\item[{\bf 1.} {\em Decreasing trees:}]
+
+\noindent
+Let $\sigma = u\,m\,v$ where $m$ is the minimum letter of $\sigma$,
+$u$ is the subword preceding $m$  and $v$ is the subword that follows $m$.
+The {\bf decreasing tree} $T^D_\sigma$ has $m$ as its root.  The right
+subtree of $T^D_\sigma$ is obtained by applying the definition
+recursively to $v$. 
+Similarly, the left subtree of $T^D_\sigma$ is obtained by applying the
+definition recursively to $u$. 
+
+\item[{\bf 2.} {\em Minimum-maximum trees:}]
+
+\noindent
+Let $\sigma = u\,m\,v$ where $m$ is the leftmost of the minimum and maximum
+letters of $\sigma$,
+$u$ is the subword preceding $m$  and $v$ is the subword  following 
+$m$.
+The {\bf minimum-maximum ($\min-\max$) tree} $T^m_\sigma$ has $m$ as its
+root.  The right subtree of $T^m_\sigma$ is obtained by applying the
+definition recursively to $v$. 
+Similarly, the left subtree of $T^m_\sigma$ is obtained by applying the
+definition recursively to $u$. 
+\end{description}
+
+\begin{example}{\em Figure \ref{F_imm} shows the increasing tree and the
+$\min-\max$ tree, respectively, associated with $\sigma = 5\,2\,1\,4\,6\,3$. 
+
+\begin{figure}[h]
+\begingroup\makeatletter
+% extract first six characters in \fmtname
+\def\x#1#2#3#4#5#6#7\relax{\def\x{#1#2#3#4#5#6}}%
+\expandafter\x\fmtname xxxxxx\relax \def\y{splain}%
+\ifx\x\y   % LaTeX or SliTeX?
+\gdef\SetFigFont#1#2#3{%
+  \ifnum #1<17\tiny\else \ifnum #1<20\small\else
+  \ifnum #1<24\normalsize\else \ifnum #1<29\large\else
+  \ifnum #1<34\Large\else \ifnum #1<41\LARGE\else
+     \huge\fi\fi\fi\fi\fi\fi
+  \csname #3\endcsname}%
+\else
+\gdef\SetFigFont#1#2#3{\begingroup
+  \count@#1\relax \ifnum 25<\count@\count@25\fi
+  \def\x{\endgroup\@setsize\SetFigFont{#2pt}}%
+  \expandafter\x
+    \csname \romannumeral\the\count@ pt\expandafter\endcsname
+    \csname @\romannumeral\the\count@ pt\endcsname
+  \csname #3\endcsname}%
+\fi
+\endgroup
+\begin{center}
+\setlength{\unitlength}{0.0112500in}%
+\begin{picture}(388,112)(15,707)
+\thicklines
+\put( 60,740){\circle*{6}}
+\put( 90,770){\circle*{6}}
+\put(120,800){\circle*{6}}
+\put(150,770){\circle*{6}}
+\put(120,740){\circle*{6}}
+\put(150,710){\circle*{6}}
+\put(240,770){\circle*{6}}
+\put(300,800){\circle*{6}}
+\put(280,740){\circle*{6}}
+\put(320,740){\circle*{6}}
+\put(360,770){\circle*{6}}
+\put(400,740){\circle*{6}}
+\put( 60,740){\line( 1, 1){ 60}}
+\put(120,800){\line( 1,-1){ 30}}
+\put(150,770){\line(-1,-1){ 30}}
+\put(120,740){\line( 1,-1){ 30}}
+\put(280,740){\line(-4, 3){ 40}}
+\put(240,770){\line( 2, 1){ 60}}
+\put(300,800){\line( 2,-1){ 60}}
+\put(360,770){\line(-4,-3){ 40}}
+\put(360,770){\line( 4,-3){ 40}}
+\put( 55,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}5}}}
+\put( 85,780){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}2}}}
+\put(115,810){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}1}}}
+\put(115,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}4}}}
+\put(145,780){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}3}}}
+\put(145,720){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}6}}}
+\put( 15,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}$T_{\sigma}^D=$}}}
+\put(190,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}$T_{\sigma}^m=$}}}
+\put(235,780){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}5}}}
+\put(275,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}2}}}
+\put(295,810){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}1}}}
+\put(315,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}4}}}
+\put(355,780){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}6}}}
+\put(395,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}3}}}
+\end{picture}
+\end{center}
+\caption{Decreasing tree and $\min-\max$ tree associated with $\sigma = 5\,2\,1\,4\,6\,3$.}
+\label{F_imm}
+\end{figure}
+}
+\end{example}
+
+
+Our work will require  the following notation:
+
+\begin{enumerate}
+\item If $T$ is a binary tree with $k$ nodes 
+$\al(T) = \{ a_1 < a_2 < \cdots < a_k\}$ is the ordered set of labels 
+of $T$.
+\item $w(T)$ is the word obtained by traversing $T$ in a left-first 
+manner.
+\item $T^m_{\sigma,i}$ is the subtree of $T^m_\sigma$ formed 
+by all the right descendants of the label $i$.
+\item For convenience, we shall write $\pr(T^m_{\sigma,i})$
+for $\pr(w(T^m_{\sigma,i}))$.
+\item We say that an interior node in $T_\sigma^m$ is a {\em min} node
+(resp. {\em max}) if it is the minimum letter (resp. maximum) among
+all its descendants.
+\end{enumerate}
+
+
+\section{The Group ${\cal F}_n$}
+\label{s_Fn}
+
+We recall from \cite{Foata-Strehl2} the definition of the $x$-factorization of
+a permutation using the notation of Viennot \cite{vien1}.
+
+\begin{define}
+Let $\sigma = \sigma_1 \sigma_2 \cdots \sigma_n$ and let $x = \sigma_i$.
+The {\bf $x$-factorization} of $\sigma$ is given by $\sigma = u\,\lambda(x)\,x\,\rho(x)\,v$ where
+\begin{enumerate}
+\item $\lambda(x) = \sigma_j\cdots\sigma_{i-1}$ with $\sigma_l > x$
+for $j \le l \le i-1$, $u = \sigma_1\cdots\sigma_{j-1},$ and $\sigma_{j-1} < x$.
+\item $\rho(x) = \sigma_{i+1}\cdots\sigma_{k}$ with $\sigma_l > x$
+for $i+1 \le l \le k$,$v = \sigma_{k+1}\cdots\sigma_n$, and $\sigma_{k+1}<x$.
+\end{enumerate}
+Note that above any of $u, \lambda(x), \rho(x)$ and $v$ can be the 
+empty word.
+\end{define}
+
+\begin{example}
+{\em Let $\sigma = 8\,7\,2\,4\,1\,9\,10\,5\,3\,11\,6\,2\,12$.
+The $3$-factorization of $\sigma$ is:
+
+$$
+\underbrace{8\,7\,2\,4\,1}_{u}
+\underbrace{9\,10\,5}_{\lambda(3)}3\underbrace{11\,6}_{\rho(3)}
+\underbrace{2\,12}_{v}
+$$
+The $5$-factorization is:
+$$
+\underbrace{8\,7\,2\,4\,1}_{u}
+\underbrace{9\,10}_{\lambda(5)}5
+\underbrace{3\,11\,6\,2\,12}_{v}
+$$
+with $\rho(5) = \emptyset$.}
+\end{example}
+
+We can now define Andr\'e permutations.
+\begin{define} $\sigma \in S_n$ is an Andr\'e permutation of the first kind if 
+\begin{enumerate}
+\item $\sigma$ has 
+no double descents $($i.e. $\sigma_i > \sigma_{i+1} > \sigma_{i+2})$.
+\item
+Each  $x$-factorization $u\,\lambda(x)\,x\,\rho(x)\,v$ of $\sigma$,  
+has the
+property 
+\begin{enumerate}
+ \item[$(i)$]$\lambda(x) = \emptyset$ if $\rho(x) = \emptyset$,    \item[$(ii)$]$\max(\lambda(x)) < \max(\rho(x))$    if $\rho(x) \neq \emptyset$ and
+$\lambda(x) \neq \emptyset$.
+\end{enumerate}
+$\sigma$ is an Andr\'e permutation of the second kind if we replace condition
+$($ii$)$ by $$\min(\rho(x)) < \min(\lambda(x)).$$
+\end{enumerate}
+\end{define}
+
+The list of Andr\'e permutations of the first kind for $n\leq 4$ is
+given in Table \ref{T_andre}. 
+
+\begin{table}[top]
+\begin{center}
+\begin{tabular}{lllllll}
+n = 2 &:& 12   &      &      &       &     \\
+n = 3 &:& 123  & 213  &      &       &     \\
+n = 4 &:& 1234 & 2134 & 3124 &  1324 & 2314\\
+\end{tabular}
+\end{center}
+\caption{Andr\'e permutations of the first kind}
+\label{T_andre}
+\end{table}
+
+With $\min-\max$ trees one has an easy way of detecting Andr\'e
+permutations of the first kind.
+\begin{prop}\label{minandre}
+$\lambda \in S_n$ is an Andr\'e permutation of the first kind $\Leftrightarrow$
+all interior nodes of $T_\lambda^m$ are min nodes.
+\end{prop} 
+\begin{proof} ($\Rightarrow$)  Suppose that $\lambda$ is an Andr\'e
+permutation of the first kind and that $T^m_\lambda$ contains a max node.
+Take $x$ to be the largest among all max nodes of the tree.
+Let 
+$u\,x\,v$ be the subword of $\sigma$ obtained by reading in left-first
+order the subtree that has $x$ as it root. Since every interior node
+in a $\min-\max$ tree must have a right child, one has $v \neq \emptyset$.
+Let $i$ be the left-most letter of $v$.
+If $\rho(i) =\emptyset$ then   $\sigma$ cannot be an Andr\'e 
+permutation of the first kind since $x \in \lambda(i) \neq \emptyset$.  If 
+on the other hand, $\rho(i) \neq \emptyset$ then $\max (\rho(i)) < x$
+because $x$ was chosen as the largest of all max nodes.
+Hence, once again $\sigma$ is not an Andr\'e permutation of the first kind.
+
+
+\noindent
+($\Leftarrow$) Suppose all interior nodes of $T_\sigma^m$ are min nodes.
+It follows easily from the definition of $\min-\max$ trees that every node is larger
+than its parent. Thus for each  node $x$ in this tree, we get the subword $\lambda(x) x \rho(x)$
+by reading the subtree whose root is $x$  in left-first order.
+We have three cases to check:
+\begin{enumerate}
+\item $x$ is an interior node and $\rho(x) = \emptyset$.
+This is impossible since every interior 
+node in a $\min-\max$  tree must have a right child.
+\item $x$ is an interior node and $\rho(x) \neq \emptyset$.
+We must have $\max(\lambda(x)) < \max (\rho(x))$ for otherwise 
+$\max(\lambda(x))$ would have been  the root of this subtree.
+\item  $x$ is a leaf.  Here we have $\lambda(x) = \rho(x) = \emptyset$.
+\end{enumerate}
+This verifies that $\sigma$ is an Andr\'e permutation of the first kind.
+\end{proof}
+
+
+For the main result of this work we define a new set  of
+operators $\{ \psi_1, \psi_2, \ldots, \psi_{n-1} \}$ on $S_n$, motivated
+by the work Purtill \cite{pur}. We shall define 
+$\psi_i(\sigma)\df w(\psi_i(T_\sigma^m))$.
+To determine  $\psi_i(T_\sigma^m)$ consider the subtree
+ of $T_\sigma^m$ that has $\sigma_i$ as a root and let 
+$\alpha(T^m_{\sigma,\sigma_i}) = \{ a_1 < a_2 < \cdots < a_s \}$.  
+If $\sigma_i < a_1$  we
+relabel the tree according to the permutation
+$$
+\left(
+\begin{array}{cccccl}
+\sigma_i & a_1 &  a_2  & a_3    & \cdots & a_s   \\
+a_s      & a_i &  a_1  & a_2    & \cdots & a_{s-1}
+\end{array}\right).
+$$
+If $a_s < \sigma_i$  we
+relabel the tree according to the permutation
+$$
+\left(
+\begin{array}{ccclc}
+a_1 &  a_2        & \cdots & a_s       & \sigma_i \\
+a_2 &  a_3        & \cdots & a_{s-1}   & a_1
+\end{array}\right).
+$$
+
+\begin{example}{\em Let $\sigma = 3\,6\,7\,1\,5\,2\,10\,4\,9\,8$.
+Then the $\min-\max$ trees $T_{\sigma}^m$,
+$\psi_7\left(T_{\sigma}^m\right)$, and $\psi_6\left(T_{\sigma}^m\right)$
+are represented in the following three figures. 
+
+
+%%%$\min-\max$ tree
+
+\begin{figure}[h]
+\begingroup\makeatletter
+% extract first six characters in \fmtname
+\def\x#1#2#3#4#5#6#7\relax{\def\x{#1#2#3#4#5#6}}%
+\expandafter\x\fmtname xxxxxx\relax \def\y{splain}%
+\ifx\x\y   % LaTeX or SliTeX?
+\gdef\SetFigFont#1#2#3{%
+  \ifnum #1<17\tiny\else \ifnum #1<20\small\else
+  \ifnum #1<24\normalsize\else \ifnum #1<29\large\else
+  \ifnum #1<34\Large\else \ifnum #1<41\LARGE\else
+     \huge\fi\fi\fi\fi\fi\fi
+  \csname #3\endcsname}%
+\else
+\gdef\SetFigFont#1#2#3{\begingroup
+  \count@#1\relax \ifnum 25<\count@\count@25\fi
+  \def\x{\endgroup\@setsize\SetFigFont{#2pt}}%
+  \expandafter\x
+    \csname \romannumeral\the\count@ pt\expandafter\endcsname
+    \csname @\romannumeral\the\count@ pt\endcsname
+  \csname #3\endcsname}%
+\fi
+\endgroup
+\begin{center}
+\setlength{\unitlength}{0.011250in}%
+\begin{picture}(378,122)(105,677)
+\thicklines
+\put(160,760){\circle*{6}}
+\put(240,780){\circle*{6}}
+\put(320,760){\circle*{6}}
+\put(280,740){\circle*{6}}
+\put(200,740){\circle*{6}}
+\put(240,720){\circle*{6}}
+\put(360,740){\circle*{6}}
+\put(400,720){\circle*{6}}
+\put(440,700){\circle*{6}}
+\put(480,680){\circle*{6}}
+\put(160,760){\line( 4, 1){ 80}}
+\put(240,780){\line( 4,-1){ 80}}
+\put(320,760){\line( 2,-1){160}}
+\put(320,760){\line(-2,-1){ 40}}
+\put(160,760){\line( 2,-1){ 80}}
+\put(155,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}3}}}
+\put(235,790){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}1}}}
+\put(315,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}2}}}
+\put(275,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}5}}}
+\put(105,740){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}$T_{\sigma}^m=$}}}
+\put(195,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}6}}}
+\put(235,730){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}7}}}
+\put(355,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}10}}}
+\put(395,730){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}4}}}
+\put(435,710){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}9}}}
+\put(475,690){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}8}}}
+\end{picture}
+\end{center}
+\caption{$T_{\sigma}^m$ for $\sigma = 3\,6\,7\,1\,5\,2\,10\,4\,9\,8$}
+\end{figure}
+
+\begin{figure}[h]
+\begingroup\makeatletter
+% extract first six characters in \fmtname
+\def\x#1#2#3#4#5#6#7\relax{\def\x{#1#2#3#4#5#6}}%
+\expandafter\x\fmtname xxxxxx\relax \def\y{splain}%
+\ifx\x\y   % LaTeX or SliTeX?
+\gdef\SetFigFont#1#2#3{%
+  \ifnum #1<17\tiny\else \ifnum #1<20\small\else
+  \ifnum #1<24\normalsize\else \ifnum #1<29\large\else
+  \ifnum #1<34\Large\else \ifnum #1<41\LARGE\else
+     \huge\fi\fi\fi\fi\fi\fi
+  \csname #3\endcsname}%
+\else
+\gdef\SetFigFont#1#2#3{\begingroup
+  \count@#1\relax \ifnum 25<\count@\count@25\fi
+  \def\x{\endgroup\@setsize\SetFigFont{#2pt}}%
+  \expandafter\x
+    \csname \romannumeral\the\count@ pt\expandafter\endcsname
+    \csname @\romannumeral\the\count@ pt\endcsname
+  \csname #3\endcsname}%
+\fi
+\endgroup
+\begin{center}
+\setlength{\unitlength}{0.011250in}%
+\begin{picture}(378,122)(105,677)
+\thicklines
+\put(160,760){\circle*{6}}
+\put(240,780){\circle*{6}}
+\put(320,760){\circle*{6}}
+\put(280,740){\circle*{6}}
+\put(200,740){\circle*{6}}
+\put(240,720){\circle*{6}}
+\put(360,740){\circle*{6}}
+\put(400,720){\circle*{6}}
+\put(440,700){\circle*{6}}
+\put(480,680){\circle*{6}}
+\put(160,760){\line( 4, 1){ 80}}
+\put(240,780){\line( 4,-1){ 80}}
+\put(320,760){\line( 2,-1){160}}
+\put(320,760){\line(-2,-1){ 40}}
+\put(160,760){\line( 2,-1){ 80}}
+\put(155,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}3}}}
+\put(235,790){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}1}}}
+\put(315,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}2}}}
+\put(275,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}5}}}
+\put(80,740){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}$\psi_7\left(T_{\sigma}^m\right)=$}}}
+\put(195,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}6}}}
+\put(235,730){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}7}}}
+\put(355,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}4}}}
+\put(395,730){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}8}}}
+\put(435,710){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}10}}}
+\put(475,690){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}9}}}
+\end{picture}
+\end{center}
+\caption{$\psi_7\left(T_{\sigma}^m\right)$ for $\sigma = 3\,6\,7\,1\,5\,2\,10\,4\,9\,8$}
+\end{figure}
+
+\begin{figure}[h]
+\begingroup\makeatletter
+% extract first six characters in \fmtname
+\def\x#1#2#3#4#5#6#7\relax{\def\x{#1#2#3#4#5#6}}%
+\expandafter\x\fmtname xxxxxx\relax \def\y{splain}%
+\ifx\x\y   % LaTeX or SliTeX?
+\gdef\SetFigFont#1#2#3{%
+  \ifnum #1<17\tiny\else \ifnum #1<20\small\else
+  \ifnum #1<24\normalsize\else \ifnum #1<29\large\else
+  \ifnum #1<34\Large\else \ifnum #1<41\LARGE\else
+     \huge\fi\fi\fi\fi\fi\fi
+  \csname #3\endcsname}%
+\else
+\gdef\SetFigFont#1#2#3{\begingroup
+  \count@#1\relax \ifnum 25<\count@\count@25\fi
+  \def\x{\endgroup\@setsize\SetFigFont{#2pt}}%
+  \expandafter\x
+    \csname \romannumeral\the\count@ pt\expandafter\endcsname
+    \csname @\romannumeral\the\count@ pt\endcsname
+  \csname #3\endcsname}%
+\fi
+\endgroup
+\begin{center}
+\setlength{\unitlength}{0.011250in}%
+\begin{picture}(378,122)(105,677)
+\thicklines
+\put(160,760){\circle*{6}}
+\put(240,780){\circle*{6}}
+\put(320,760){\circle*{6}}
+\put(280,740){\circle*{6}}
+\put(200,740){\circle*{6}}
+\put(240,720){\circle*{6}}
+\put(360,740){\circle*{6}}
+\put(400,720){\circle*{6}}
+\put(440,700){\circle*{6}}
+\put(480,680){\circle*{6}}
+\put(160,760){\line( 4, 1){ 80}}
+\put(240,780){\line( 4,-1){ 80}}
+\put(320,760){\line( 2,-1){160}}
+\put(320,760){\line(-2,-1){ 40}}
+\put(160,760){\line( 2,-1){ 80}}
+\put(155,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}3}}}
+\put(235,790){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}1}}}
+\put(315,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}10}}}
+\put(275,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}5}}}
+\put(80,740){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}$\psi_6\left(T_{\sigma}^m\right)=$}}}
+\put(195,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}6}}}
+\put(235,730){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}7}}}
+\put(355,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}9}}}
+\put(395,730){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}2}}}
+\put(435,710){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}8}}}
+\put(475,690){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}4}}}
+\end{picture}
+\end{center}
+\caption{$\psi_6\left(T_{\sigma}^m\right)$ for $\sigma = 3\,6\,7\,1\,5\,2\,10\,4\,9\,8$}
+\end{figure}
+}
+\end{example}
+
+An important property of these operators is the following:
+\begin{prop}\label{minmax}
+Let $\lambda = \psi_i(\sigma)$.  If 
+$\sigma_i$ is a min node (resp. max) in $T_{\sigma}^m$ then $\lambda_i$ is a max node (resp. min)  in $T_{\lambda}^m$.  All other nodes in $T_\lambda^m$
+are min (resp. max) iff the corresponding nodes in $T_\sigma^m$ are min (resp. max).
+\end{prop}
+\begin{proof}
+We prove the case when $\sigma_i=a_{s+1}$ is a max (for $\sigma_i$ a min
+one has an analogous proof).  Let $\alpha(T_{\sigma,\sigma_i}^m) = \{a_1
+< \cdots < a_s\}$. 
+By the definition of $\psi_i$, $\lambda_i = a_1$. Let us consider the
+other nodes of $T_{\lambda}^m$.  Clearly, we are only concerned with
+those interior nodes in $T_\lambda^m$ which correspond to the labels $\{ a_2 < \cdots < a_{s+1} \}$ in $T_\sigma^m$ (other nodes are unaffected by $\psi_i$). Suppose the
+node labeled with $a_j$   
+(for $2 \le j \le s+1$) is a $\max$ node in $T_\sigma^m$.  Then its children in
+$T_\sigma^m$
+must be among the set $\{a_1 < a_2 < \cdots < a_{j-1} \}$. Under 
+$\psi_i$ we have $a_1 \rightarrow a_2, \ldots, a_{j-1} \rightarrow a_j,
+a_j \rightarrow a_{j+1}$.  Thus, the node labeled $a_j$ in $T_\sigma^m$
+is labeled $a_{j+1}$ in $T_{\lambda}^m$ and all its children bear
+smaller labels. When $a_j$ is a $\min$, the proof is similar.
+\end{proof}
+
+\vskip .2 in 
+
+The action of the group ${\cal F}_n$ generated by $\psi_1,\ldots,\psi_{n-1}$
+is  commutative.  To prove this 
+we shall need two lemmas which establish situations under which the
+function $\pr$ is invariant under the action of $\psi_i$.
+
+\begin{lemma}\label{pr1}
+Suppose  $\sigma \in S_n$ and  
+$\psi_i(\sigma_1\cdots\sigma_i\cdots\sigma_n)=
+\lambda_1\cdots\lambda_i\cdots\lambda_n$.
+Then 
+$$\pr(T^m_{\sigma,\sigma_i}) = \pr(T^m_{\lambda,\lambda_i}).$$
+\end{lemma}
+\begin{proof}
+Let $\pr(T^m_{\sigma, \sigma_i}) = \rho_1\cdots\rho_s$ and
+ $\al(T^m_{\sigma, \sigma_i}) = \{a_1 < \cdots < a_s \}$.
+Without loss of generality, we may suppose that $a_s < \sigma_i = a_{s+1}$.
+By definition, the effect of $\psi_i$ on $T^m_\sigma$ is given
+by
+$$
+\left(
+\begin{array}{ccclclc}
+a_1 &  a_2  & \cdots & a_i     & \cdots & a_s& a_{s+1}   \\
+a_2 &  a_3  & \cdots & a_{i+1} & \cdots & a_{s+1}    & a_1   
+\end{array}\right).
+$$
+Thus, $\al(T^m_{\lambda, \lambda_i}) = \{a_2 < \cdots < a_{s+1}\}$
+and so $w(T^m_{\lambda, \lambda_i}) = a_{\rho_1+1} a_{\rho_2+1} \cdots a_{\rho_s+1}$.
+Setting $i_1 = 2, i_2 = 3, \ldots, i_s = s+1$ one has
+$w(T^m_{\lambda, \lambda_i}) = a_{i_{\rho_1}} a_{i_{\rho_2}} \cdots a_{i_{\rho_s}}$
+and $\pr(T^m_{\lambda, \lambda_i}) = \rho_1 \rho_2\cdots \rho_s$.
+\end{proof}
+
+
+ 
+\begin{lemma}\label{pr2}
+Let $\sigma, \delta \in S_n$ such that $T^m_{\sigma,\sigma_i}$ and $T^m_{\delta,\delta_i}$ have the same shape as binary trees.
+Furthermore  suppose $\pr(T^m_{\sigma,\sigma_i}) = \pr(T^m_{\delta,\delta_i})$
+with $\sigma_j$ a descendant of $\sigma_i$ and $\delta_j$ is a descendant of $\rho_i$.
+Suppose $\psi_j(\sigma) = \sigma^\prime$
+and $\psi_j(\delta) = \delta^\prime$
+then $\pr(T^m_ {\sigma^\prime,\sigma_i^\prime}) =
+ \pr(T^m_{\delta^\prime,\delta_i^\prime})$.
+\end{lemma}
+\begin{proof}
+We 
+observe that $w(T^m_{\sigma,\sigma_j})$ and 
+$w(T^m_{\delta,\delta_j})$
+are subwords of the same length and position within $w(T^m_{\sigma,\sigma_i})$ and 
+$w(T^m_{\rho,\rho_i})$, respectively.  The effect of $\psi_j$ is 
+to permute these subwords according to the same rule within
+$w(T^m_{\sigma,\sigma_i})$ and 
+$w(T^m_{\delta,\delta_i})$. Thus, Lemma \ref{ugly} applies and the 
+result follows.
+\end{proof}
+
+\begin{theorem}
+\label{thcomm}
+The action of $\psi_1,\ldots, \psi_n$ on $S_n$ is commutative.
+That is, for all $\sigma\in S_n$ we have
+$\psi_j(\psi_i(\sigma)) = \psi_i(\psi_j(\sigma))$ which is equivalent to
+
+$$
+\psi_j(\psi_i(T_\sigma^m)) = \psi_i(\psi_j(T^m_\sigma))
+$$
+\end{theorem}
+\begin{proof}
+When $\sigma_j$ is not a right descendant of $\sigma_i$
+(nor vice versa) then $\psi_j$ and $\psi_i$ permute different
+sets of labels of $T_\sigma^m$ and the commutativity is clear.
+Thus we suppose without loss of generality that:
+\begin{enumerate}
+\item $\sigma_j$ is a right descendant of $\sigma_j$.
+\item $\alpha(T^m_{\sigma,\sigma_i}) = \{a_1 < a_2 < \cdots < a_s\}$
+with $a_s < \sigma_i=a_{s+1}$.
+\end{enumerate}
+The following diagram will be a guide throughout proof.
+$$
+\sigma \stackrel{\psi_j}{\longrightarrow}   \gamma
+\stackrel {\psi_i}{\longrightarrow} \gamma^\prime
+$$
+$$
+\sigma \stackrel{\psi_i}{\longrightarrow}\delta  \stackrel{\psi_j}{\longrightarrow} \delta^\prime
+$$
+
+We need to show that $\delta^\prime = \gamma^\prime$.
+Let $\pr(T_{\sigma,\sigma_i}^m) =  \tau $,
+and $\pr(T_{\gamma,\gamma_i}^m) = \kappa$.
+By Lemma \ref{pr1} we have that 
+$\pr(T^m_{\gamma^\prime,\gamma^\prime_i}) = \pr(T^m_{\gamma,\gamma_i})=\kappa$.
+On the other hand we now have 
+$\alpha(T^m_{\gamma^\prime,\gamma_i})=\alpha(T^m_{\gamma,\gamma_i})= \{a_2 < \cdots < a_s < a_{s+1} \}$.
+We resume our calculations so far:
+$\psi_i(\psi_j(T_{\sigma}^m)) = T^m_{\gamma^\prime}$, the label in the 
+$i^{th}$ position of $T_{\delta^\prime}^m$ is $a_1$ and
+\begin{equation}
+w(T_{\delta,\delta_i}^m) = a_{i_{\kappa_1}}\cdots  a_{i_{\kappa_s}}
+\end{equation}
+where, $a_{i_{\kappa_j}} = a_{\kappa_j+1}$.
+
+We now consider $\psi_j(\psi_i(T^m_{\sigma}))$.
+By Lemma \ref{pr1}, $\pr(T^m_{\sigma,\sigma_i}) = \pr(T^m_{\delta,\delta_i})=
+\tau$. Combining this  with the fact that $\psi_i$ permutes the labels 
+according to
+$$\left(
+\begin{array}{ccccc}
+a_1 & a_2 & \cdots & a_s & \sigma_i \\
+a_2 & a_3 & \cdots & \sigma_i & a_1
+\end{array}\right)
+$$
+one has $w(T^m_{\delta,\delta_i}) = a_{i_{\tau_1}}\cdots a_{i_{\tau_s}}$
+where $a_{i_{\tau_k}} = a_{\tau_k+1}$. We use the fact 
+that $\pr(T^m_{\sigma,\sigma_i}) = \pr(T^m_{\delta,\delta_i})$
+and  Lemma \ref{pr2} to get $\pr(T^m_{\delta^\prime,\delta^\prime_i})=
+\pr(T^m_{\gamma,\gamma^\prime_i}) = \kappa$.
+Furthermore, $\alpha(T^m_{\delta^\prime,\delta^\prime_i})
+=\alpha(T^m_{\delta,\delta_i})=\alpha(T^m_{\gamma^\prime,\gamma^\prime_i})$.
+This forces $w(T^m_{\delta^\prime,\delta_i^\prime}) =
+a_{i_{\kappa_1}}\cdots a_{i_{\kappa_s}}$. Finally, we note that the
+$i^{th}$ position in $T_{\delta^\prime}^m$ has the label $a_1$. Hence
+$T^m_{\delta^\prime} =T^m_{\gamma^\prime}$ and the proof is complete.
+\end{proof} 
+
+We can now proceed to show one of the most important properties of the
+action of the group ${\cal F}_n$. 
+\begin{corollary}
+The action of ${\cal F}_n$ partitions $S_n$ into disjoint orbits
+each with a unique Andr\'e permutation of the first kind as representative.
+\end{corollary}
+\begin{proof} We first note that every permutation belongs to the orbit of
+some Andr\'e permutation of the first kind. If $\sigma$ is an
+arbitrary permutation then we find the corresponding Andr\'e permutation
+in the following way. 
+Let $\sigma_{m_1},\sigma_{m_2},\ldots,\sigma_{m_k}$ be the max nodes
+of $T_\sigma^m$. By Proposition \ref{minmax}, applying
+$\psi_{m_1} \psi_{m_2} \cdots \psi_{m_k} $ to $\sigma$ changes all the max
+nodes to $\min$ nodes and leaves the $\min$ nodes unchanged.
+The result is then a tree with all min nodes and by Proposition
+\ref{minandre} the corresponding permutation is an Andr\'e permutation
+of the first kind.
+
+Suppose that $\kappa$ and $\gamma$ are two Andr\'e permutations  of the
+first kind that belong to the same orbit. Then we have
+$$
+\psi_{j_1}\cdots \psi_{j_s}\kappa = \gamma.
+$$ 
+By the commutativity of the $\psi_i$ we may assume that there are no repetitions among the $\psi_{j_k}$.  Now since each $\psi_{j_k}$
+transforms a min node into a max node $T_\gamma^m$ must have some
+max nodes. But this contradicts the fact that $\gamma$ is an Andr\'e
+permutation of the first kind.  Thus, $\gamma = \kappa$.\end{proof}
+
+
+
+We terminate this section with a bijection between Andr\'e permutations
+of the first kind and alternating permutations starting with a descent.
+\begin{prop}
+Each ${\cal F}_n$ orbit ${\cal K}_\delta$ associated to an Andr\'e
+permutation of the first kind $\delta$ contains exactly two alternating
+permutations, one starting with an ascent the other with a descent.
+\end{prop}
+{\noindent \em Proof:} The required permutations are given by the following equations:
+$$ \hspace*{4.57 cm}
+ \left(\prod_{{{1 \le i \le n-1}\atop {i {\ \rm odd}}}} \psi_i 
+\right )\delta
+\hspace{.2 in}
+\mbox{ and }
+\hspace{.2 in} \left(\prod_{{2 \le i \le n-1}\atop{i {\ \rm even}}} \psi_i 
+\right)\delta. \hspace*{4.57 cm} \Box
+$$
+
+\section{Variation Statistics}
+\label{s_var}
+
+In this section we simplify the proof of Purtill's formula, using the
+action ${\cal F}_n$. We recall the $ab$-variation
+of a permutation originally introduced by Foata and Sch\"utzenberger in
+\cite{Foata-Schut2}. \footnote{Originally, Foata and Sch\"utzenberger
+used letters $+,-,s$ and $t$ instead of $a,b,c$ and $d$
+respectively. It was Purtill who changed the notation in \cite{pur}, in
+order to bring it closer to the standard notation used in the study of
+$cd$-indices of Eulerian posets. His example was followed by virtually
+all subsequent authors in the subject.}
+
+For $\sigma = \sigma_1\sigma_2\cdots\sigma_n \in S_n$ and
+$2 \le i \le n$,
+$$
+v_{ab,i}(\sigma) = 
+\left\{\begin{array}{lr}
+a & \mbox{ if } \sigma_i > \sigma_{i-1}  \\
+b & \mbox{ if } \sigma_i < \sigma_{i-1} 
+\end{array}\right.
+$$
+One then sets $v_{ab}(\sigma) = w_{ab,2}(\sigma)w_{ab,3}(\sigma)\cdots w_{ab,n}(\sigma)$.
+
+
+\begin{example}{\em Let $\sigma = 9\, 1\, 3\, 5\, 6\, 8\, 4\, 2\, 7$,
+$w_{ab}(\sigma) = b a a a a b b a$.
+
+
+\begin{figure}[h]
+\begingroup\makeatletter
+% extract first six characters in \fmtname
+\def\x#1#2#3#4#5#6#7\relax{\def\x{#1#2#3#4#5#6}}%
+\expandafter\x\fmtname xxxxxx\relax \def\y{splain}%
+\ifx\x\y   % LaTeX or SliTeX?
+\gdef\SetFigFont#1#2#3{%
+  \ifnum #1<17\tiny\else \ifnum #1<20\small\else
+  \ifnum #1<24\normalsize\else \ifnum #1<29\large\else
+  \ifnum #1<34\Large\else \ifnum #1<41\LARGE\else
+     \huge\fi\fi\fi\fi\fi\fi
+  \csname #3\endcsname}%
+\else
+\gdef\SetFigFont#1#2#3{\begingroup
+  \count@#1\relax \ifnum 25<\count@\count@25\fi
+  \def\x{\endgroup\@setsize\SetFigFont{#2pt}}%
+  \expandafter\x
+    \csname \romannumeral\the\count@ pt\expandafter\endcsname
+    \csname @\romannumeral\the\count@ pt\endcsname
+  \csname #3\endcsname}%
+\fi
+\endgroup
+\begin{center}
+\setlength{\unitlength}{0.011250in}%
+\begin{picture}(218,142)(135,677)
+\thicklines
+\put(140,800){\circle*{6}}
+\put(200,780){\circle*{6}}
+\put(260,760){\circle*{6}}
+\put(320,740){\circle*{6}}
+\put(350,710){\circle*{6}}
+\put(290,710){\circle*{6}}
+\put(260,680){\circle*{6}}
+\put(230,710){\circle*{6}}
+\put(200,740){\circle*{6}}
+\put(140,800){\line( 3,-1){120}}
+\put(260,760){\line(-3,-1){ 60}}
+\put(260,760){\line( 3,-1){ 60}}
+\put(320,740){\line(-1,-1){ 30}}
+\put(320,740){\line( 1,-1){ 30}}
+\put(200,740){\line( 1,-1){ 60}}
+\put(255,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}8}}}
+\put(195,790){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}1}}}
+\put(135,810){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}9}}}
+\put(315,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}2}}}
+\put(195,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}3}}}
+\put(225,720){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}5}}}
+\put(255,690){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}6}}}
+\put(285,720){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}4}}}
+\put(345,720){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}7}}}
+\end{picture}
+\end{center}
+\caption{$T_{\sigma}^m$ for $\sigma=9\, 1\, 3\, 5\, 6\, 8\, 4\, 2\, 7$}
+\end{figure}
+}
+\end{example}
+
+\vskip 0.1 in
+
+
+Using the $\min-\max$ tree representation of permutations, one has another way
+of obtaining the $ab$ statistic of a permutation.
+We relabel each node of $T_\sigma^m$ to obtain   $T_\sigma^{ab}$ in the following way:
+a node with no descendants is labeled with $\emptyset$ (the empty word);
+a node with only  right descendants is  labeled with $b$ if it's greater 
+than its descendants and with $a$, otherwise;
+a node with left and right descendants is labeled with with $ba$
+if it's the maximum of its subtrees, if it's a minimum it is labeled with
+$ab$. The left-first reading of  $T_\sigma^{ab}$  gives the $ab$
+variation of $\sigma$. 
+
+
+The second statistic we consider, the $cd$-variation, is defined for
+Andr\'e permutations of the first kind only.
+Given an Andr\'e permutation of the first kind $\delta$ we first
+find $v_{ab}(\delta)$.
+Next, every consecutive pair $ba$ is replaced by the letter $d$ and
+each remaining $a$ is replaced by the letter $c$. 
+
+\begin{example}{\em Let $\delta = 5\, 8\, 2\, 6\, 7\, 9\, 1\, 3\, 4\, 10 $, 
+$v_{ab}(\delta) =a b a a a b a a a $ and $v_{cd}(\delta) =c d   c c d
+c c $.}
+\end{example}
+
+Once again, the $\min-\max$ tree representation of permutations provides
+ another way
+of obtaining the $cd$ statistic of an Andr\'e permutation of the first kind.
+We relabel each node of $T_\sigma^m$  to obtain  $T_\sigma^{cd} $ in the following way:
+a node with no descendants is labeled with $\emptyset$ (the empty word);
+a node with only  right descendants is  labeled with $d$;
+a node with left and right descendants is labeled with with $c$. The left-first reading of  $T_\sigma^{cd}$  gives the $cd$ variation of $\sigma$.
+
+
+
+\begin{theorem}[Purtill]
+Let ${\cal A}_n\subset S_n$ be the subset of Andr\'e permutations of the
+first kind. Then
+$$
+\rest{\sum_{\sigma \in {\cal A}_n}v_{cd}(\sigma)}
+{\begin{array}{l}\scri c = a+b\\[-4pt]\scri d = ab+ba\end{array}}=
+\sum_{\sigma \in S_n}v_{ab}(\sigma).
+$$
+\end{theorem}
+
+\begin{proof}
+Let  $\delta \in {\cal A}_n$, and ${\cal K}_{\delta}$ be the
+orbit of $\delta$ under the action of $\psi_1, \ldots, \psi_{n-1}$.
+Since one can decompose $S_n$ as a disjoint union
+$$ S_n = \bigcup_{\delta \in {\cal A}_n}{\cal K}_{\delta},$$ 
+it is enough to show that 
+$$
+\rest{v_{cd}(\delta)}
+{\begin{array}{l}\scri c = a+b\\[-4pt] \scri d = ab+ba\end{array}}=
+\sum_{\sigma \in {\cal K}_\delta}v_{ab}(\sigma).
+$$
+Consider first the set of trees $S$ obtained from $T_\delta^{cd}$
+when $c$ is replaced by $ab$ or $ba$ and $d$ by  
+$a$ or $b$. The monomials obtained by the left-first reading of this set
+of trees are clearly the monomials of $\rest{v_{cd}(\delta)}
+{\begin{array}{l}\scri c = a+b\\[-4pt] \scri d = ab+ba\end{array}}$. 
+We now note that applying the operator $\psi_j$ to a permutation
+$\sigma$ affects $T_\sigma^{ab}$ by changing the node corresponding
+to  $\sigma_j$ in one of the following four ways:
+$ab \rightarrow ba$, $ba \rightarrow ab$, $a \rightarrow b$ or
+$b \rightarrow a$. All other nodes remain unchanged.
+Thus we conclude that  $S =\{\, T_\sigma^{ab} \mid \sigma \in {\cal
+K}_\delta\,\}$.\end{proof}
+
+
+\section{Comparison of ${\cal F}_n$ and the Foata--Strehl group action}
+\label{s_compare}
+
+Foata and Strehl (\cite{Foata-Strehl2}) introduce a group ${\cal G}_m$
+generated by a set of operators $\{\,\varphi_1, \varphi_2,\ldots\varphi_{n-1}\,\}$ which act on $S_n$ as follows.
+Let $\sigma \in S_n$ and $\sigma = u\,\lambda(i)\,i\,\rho(i)\,v$ the
+$i$-factorization of $\sigma$. Then 
+$$
+\varphi_i(\sigma) = u\,\rho(i)\,i\,\lambda(i)\,v.
+$$
+We remark that this action may be realized by considering the 
+decreasing tree of a permutation $T_\sigma^D$.  More precisely,
+$\varphi_i(T_\sigma^D)$ is obtained by exchanging the right and
+left subtrees of the node $i$.  The permutation corresponding
+to the decreasing tree $\varphi_i(T_\sigma^D)$ is $\varphi_i(\sigma)$.
+It is shown in \cite{Foata-Strehl2} that there is a unique Andr\'e permutation
+of the first kind for each $S_n$ orbit under the action of ${\cal G}_m$.
+
+The group ${\cal F}_n$ generated by $\psi_1,\ldots, \psi_{n-1}$ partitions $S_n$ into 
+the same number of orbits as the group ${\cal G}_n$ of
+Foata and Strehl.  This is so because in both cases each orbit has a
+unique Andr\'e permutation of the first kind as orbit representative. 
+Moreover, if $\delta$ is an Andr\'e permutation of the first kind then
+$T_\delta^m$ and  
+$T_\delta^D$ are the same.  Let $N$ be the number of interior nodes
+in $T_\delta^m=T_\delta^D$. It is not difficult to show that  the orbit
+of $\rho$ under both actions contains $2^N$ elements.
+  
+Thus, one might guess that these  $\Zzz _2^{n-1}$-actions are
+isomorphic. In this section, we 
+shall prove that this is not the case. The main idea
+underlying this result is that $\psi_{n-1}$ has no fixed
+points and $\psi_i$ has ${n!} \over{3}$ 
+fixed points, for $i \le n-2$. The number of fixed points of $\varphi_i$,
+on the other hand is $(n-2)!(i-1)i$.  This suffices 
+ since the fixed points  sets
+of the generators $\{ \psi_ i\::\: 1\leq i\leq n-1\}$ and $\{ \phi_
+i\::\: 1\leq i\leq n-1\}$ of ${\cal F}_n$ and ${\cal G}_n$
+respectively are maximal elements in the respective fixed point set
+lattices of the two groups. 
+
+To count the number of fixed points of $\psi_i$ we first
+introduce an algorithm which takes a word of length
+$n$ and recursively builds up a tree, reading the word from
+right to left.
+
+{\noindent}{\bf Insertion Algorithm} Input: $\sigma = \sigma_1\cdots \sigma_n$,
+a word on an ordered alphabet 
+$\longrightarrow$ Output: a tree $I(\sigma_1\cdots \sigma_n)$ whose
+left-first reading gives $\sigma$. 
+
+\begin{enumerate}
+\item $I(\sigma_n) = \bullet \sigma_n$
+\item Given $I(\sigma_{i+1}\sigma_{i+2}\cdots \sigma_{n})$,
+$I(\sigma_{i}\sigma_{i+1}\cdots \sigma_{n})$ is constructed as follows.
+Let $a_{i_1},a_{i_2},\ldots,a_{i_k}$ be the sequence of labels
+on the {\em left backbone of  $I(\sigma_{i+1}\sigma_{i+2}\cdots \sigma_{n})$};
+that is, the root, its left son, the left son of its left son, etc.
+\begin{enumerate}
+\item[(i)]
+If there exists a least $j$ such that 
+$$
+a_i = \min \left(\{a_i\} \cup \{a_{i_j}\} \cup \{\mbox {descendants of } a_{i_j}\}\right)
+$$
+or
+$$
+a_i = \max \left(\{a_i\} \cup \{a_{i_j}\} \cup \{\mbox {descendants of } a_{i_j}\}\right)
+$$
+then $a_{i_j}$ is replaced by $a_i$ in the tree and the subtree formed by 
+$a_{i_j}$ and all its descendants becomes the right subtree of
+$a_i$.
+\item[(ii)]
+If no such $j$ exists, then $a_i$ becomes the left son of $a_{i_k}$.
+\end{enumerate}
+\end{enumerate}
+
+\begin{example}{\em 
+Figure \ref{F_ins} shows the insertion algorithm for $\sigma =
+5\,2\,1\,4\,6\,3$. Below each arrow, we indicate whether a step of
+type (i) or of type (ii) was used.
+\begin{figure}
+\begingroup\makeatletter
+% extract first six characters in \fmtname
+\def\x#1#2#3#4#5#6#7\relax{\def\x{#1#2#3#4#5#6}}%
+\expandafter\x\fmtname xxxxxx\relax \def\y{splain}%
+\ifx\x\y   % LaTeX or SliTeX?
+\gdef\SetFigFont#1#2#3{%
+  \ifnum #1<17\tiny\else \ifnum #1<20\small\else
+  \ifnum #1<24\normalsize\else \ifnum #1<29\large\else
+  \ifnum #1<34\Large\else \ifnum #1<41\LARGE\else
+     \huge\fi\fi\fi\fi\fi\fi
+  \csname #3\endcsname}%
+\else
+\gdef\SetFigFont#1#2#3{\begingroup
+  \count@#1\relax \ifnum 25<\count@\count@25\fi
+  \def\x{\endgroup\@setsize\SetFigFont{#2pt}}%
+  \expandafter\x
+    \csname \romannumeral\the\count@ pt\expandafter\endcsname
+    \csname @\romannumeral\the\count@ pt\endcsname
+  \csname #3\endcsname}%
+\fi
+\endgroup
+\begin{center}
+\setlength{\unitlength}{0.011250in}%
+\begin{picture}(513,197)(55,627)
+\thicklines
+\put(265,760){\circle*{6}}
+\put(305,800){\circle*{6}}
+\put(345,760){\circle*{6}}
+\put(265,760){\line( 1, 1){ 40}}
+\put(305,800){\line( 1,-1){ 40}}
+\put(260,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}4}}}
+\put(300,810){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}6}}}
+\put(340,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}3}}}
+\put(425,805){\circle*{6}}
+\put(445,745){\circle*{6}}
+\put(485,775){\circle*{6}}
+\put(525,745){\circle*{6}}
+\put(425,805){\line( 2,-1){ 60}}
+\put(485,775){\line(-4,-3){ 40}}
+\put(485,775){\line( 4,-3){ 40}}
+\put(420,815){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}1}}}
+\put(440,755){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}4}}}
+\put(480,785){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}6}}}
+\put(520,755){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}3}}}
+\put( 80,780){\vector( 1, 0){ 40}}
+\put( 80,790){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}insert 6}}}
+\put( 95,760){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}(i)}}}
+\put( 85,660){\vector( 1, 0){ 40}}
+\put( 85,670){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}insert 2}}}
+\put( 95,640){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}(ii)}}}
+\put(145,660){\circle*{6}}
+\put(205,690){\circle*{6}}
+\put(225,630){\circle*{6}}
+\put(265,660){\circle*{6}}
+\put(305,630){\circle*{6}}
+\put(145,660){\line( 2, 1){ 60}}
+\put(205,690){\line( 2,-1){ 60}}
+\put(265,660){\line(-4,-3){ 40}}
+\put(265,660){\line( 4,-3){ 40}}
+\put(200,700){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}1}}}
+\put(220,640){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}4}}}
+\put(260,670){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}6}}}
+\put(300,640){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}3}}}
+\put(140,670){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}2}}}
+\put(405,660){\circle*{6}}
+\put(465,690){\circle*{6}}
+\put(445,630){\circle*{6}}
+\put(485,630){\circle*{6}}
+\put(525,660){\circle*{6}}
+\put(565,630){\circle*{6}}
+\put(445,630){\line(-4, 3){ 40}}
+\put(405,660){\line( 2, 1){ 60}}
+\put(465,690){\line( 2,-1){ 60}}
+\put(525,660){\line(-4,-3){ 40}}
+\put(525,660){\line( 4,-3){ 40}}
+\put(400,670){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}5}}}
+\put(440,640){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}2}}}
+\put(460,700){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}1}}}
+\put(480,640){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}4}}}
+\put(520,670){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}6}}}
+\put(560,640){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}3}}}
+\put( 60,780){\circle*{6}}
+\put(140,800){\circle*{6}}
+\put(180,760){\circle*{6}}
+\put(140,800){\line( 1,-1){ 40}}
+\put(200,780){\vector( 1, 0){ 40}}
+\put(370,780){\vector( 1, 0){ 40}}
+\put(340,660){\vector( 1, 0){ 40}}
+\put( 55,790){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}3}}}
+\put(135,810){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}6}}}
+\put(175,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}3}}}
+\put(200,790){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}insert 4}}}
+\put(215,760){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}(ii)}}}
+\put(385,760){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}(i)}}}
+\put(370,790){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}insert 1}}}
+\put(355,640){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}(i)}}}
+\put(340,670){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{13.2}{rm}insert 5}}}
+\end{picture}
+\end{center}
+\caption{Insertion algorithm for $\sigma = 5\,2\,1\,4\,6\,3$}
+\label{F_ins}
+\end{figure}
+}
+\end{example}
+
+
+\begin{prop}\label{prp:Isig}
+$T_\sigma^m = I(\sigma)$.
+\end{prop}
+\begin{proof} We show by induction on the length of $\sigma$ that 
+$I(\sigma)$ has the following property: Let $\sigma_i$ be the 
+left-most among the minimum and the maximum of $\sigma_1 \cdots \sigma_n$.
+Then $\sigma_i$ is the root of $I(\sigma)$, its left subtree
+is $I(\sigma_1\cdots \sigma_{i-1})$ and its right subtree is
+$I(\sigma_{i+1}\cdots \sigma_n)$. Since $T_\sigma^m$ satisfies the
+same properties, we may deduce  that $T_\sigma^m = I(\sigma)$.
+
+When $|\sigma| = 1$, there is nothing to prove.  Suppose then  
+the property is established for all $|\sigma| < n$.
+Let $\sigma_s$ be the left-most among the minimum and maximum 
+of $\sigma_2 \cdots \sigma_n$.  By induction,
+ $\sigma_s$ is the root of $I(\sigma_2\cdots \sigma_n)$,
+its left subtree is $I(\sigma_s\cdots \sigma_{s-1})$ and its
+right subtree is $I(\sigma_{s+1}\cdots \sigma_n)$.
+
+Now, if $\sigma_1$ is the min or max letter of $\sigma$ then 
+$\sigma_1 = \min \left(\{\sigma_1\} \cup \{\sigma_s\} \cup 
+\{ \mbox{descendants of } \sigma_s\}\right)$ or
+$\sigma_1 = \max \left(\{\sigma_1\} \cup \{\sigma_s\} \cup 
+\{ \mbox{descendants of } \sigma_s\}\right)$, respectively.
+Thus, the insertion algorithm gives that 
+$I(\sigma_2 \cdots  \sigma_n)$ becomes the right subtree of $\sigma_1$
+and the claim is proved.
+
+Otherwise, if $\sigma_1$ is neither the min or the max of $\sigma$ then $\sigma_s$ is.
+Furthermore, $\sigma_1$ is inserted into $I(\sigma_2,\ldots,\sigma_{s-1})$
+according to the insertion algorithm. Hence we have, 
+$I(\sigma_1, \ldots, \sigma_{s-1})$ as the left subtree of 
+$a_s$ and $I(\sigma_{s+1}\cdots\sigma_n)$ as its right subtree. \end{proof}
+
+\begin{lemma}\label{lem:Isig}
+$\sigma_i$ has  a child in 
+$I(\sigma_1\cdots \sigma_n)$ if and only if $\sigma_i$ has a child
+in $I(\sigma_i\cdots \sigma_n)$
+\end{lemma}
+\begin{proof} $(\Leftarrow)$ Suppose $\sigma_i$ has a child in $I(\sigma_i\cdots
+\sigma_n)$.  According to the insertion algorithm, successive insertions 
+either leave $\sigma_i$ and its descendants untouched or $\sigma_i$ and
+it's descendants become the right subtree of one of $\sigma_1, \ldots, \sigma_{i+1}$. In either case, the children of $\sigma_i$ are unaffected
+by these insertions.
+
+\noindent
+$(\Leftarrow)$ Suppose that $\sigma_i$ has a child in
+$I(\sigma_1\cdots \sigma_n)$.  Assume contrary to
+hypothesis that $\sigma_i$ has no children in $I(\sigma_i\cdots \sigma_n)$
+and that $j < i$ is the largest index such that $\sigma_j$ is 
+a child of $\sigma_i$.  For this to happen we must have that $\sigma_i$ is the left most node on the left 
+backbone of $I(\sigma_{j+1}\cdots \sigma_n)$ and that it has 
+no children in $I(\sigma_{j+1}\cdots \sigma_n)$.
+By the insertion algorithm, $\sigma_j$ is compared to every node  and its subtree on the left backbone of 
+$I(\sigma_{j+1}\cdots \sigma_n)$.
+It may be inserted as a left son of $\sigma_i$ only if it is not
+the 
+min or max of in any of these comparisons.  But even if all the other 
+comparisons fail we must have either $\sigma_j < \sigma_i$ or $\sigma_j > \sigma_i$.  Hence, $\sigma_i$ becomes the right child of $\sigma_j$
+and we have a contradiction. \end{proof}
+
+The following proposition resumes the importance of the previous two results:
+
+ \begin{prop}\label{prp:fixp}
+ $\sigma$ is a fixed point of $\psi_i$ if and only if 
+ $\pr(\sigma_i\cdots \sigma_n)$ is a fixed point of $\psi_1$.
+ \end{prop}
+{\em Proof:}  We have the following list of implications:
+
+$\sigma$   is a fixed point of  $\psi_i$
+$$
+ \begin{array}{clllr}
+ \hspace*{0.99 cm} &   \Leftrightarrow  &  \sigma_i  \mbox{ has no children in }  T^m_\sigma  & (\mbox{clear from the definition of } \psi_i)  & \\
+\hspace*{0.99 cm} & \Leftrightarrow & \sigma_i \mbox{ has no children  in } I(\sigma) & (\mbox{by Proposition \ref{prp:Isig} })  &\\
+\hspace*{0.99 cm} &  \Leftrightarrow  &  \sigma_i  \mbox{ has no children in }  I(\sigma_i\sigma_{i+1}\cdots \sigma_n)  & (\mbox{by Lemma \ref{lem:Isig}})  &\\
+\hspace*{0.99 cm} &  \Leftrightarrow &  \pr(\sigma_i\sigma_{i+1}\cdots \sigma_n)  \mbox{ is a fixed point of }  \psi_1  & (\mbox{clear from the definition of }  \psi_1 ). 
+& \hspace*{0.99 cm} \Box \end{array}
+$$ 
+
+We now proceed to find 
+$${\rm fix}_n\psi_i \df |\{\sigma \in S_n \mid \psi_i \sigma = \sigma \,\}|.$$
+By Proposition \ref{prp:fixp}, one has
+$$
+{\rm fix}_n\psi_i = {{n} \choose{i-1}}(i-1)! \, {\rm fix}_{n-i+1}\psi_1.
+$$
+So we have reduced the problem to finding  $f(k) \df {\rm fix}_k\psi_1$.
+To this end, we count the numbers of $\min-\max$ 
+trees $T_\sigma^m$ such that $\sigma_1$ has no children.
+We observe immediately that $f(1) = 1, f(2) = 0$ and $f(3) = 2$.
+For $k >3$ we note that if $\sigma_1$ has no children in $T_{\sigma}^m$ then:
+\begin{enumerate}
+\item
+One of $1$ or $n$ is the root of $T_\sigma^m$  the
+other is in the right subtree of the root (by definition).
+\item The root of $T^m_\sigma$ has two children for otherwise
+the left-first reading of $T_\sigma^m$ will yield that the $\sigma_1$ is
+the root (which has children).
+\end{enumerate}
+Thus, we may arbitrarily choose which $j$ elements  ($j >1$)
+to place in the left subtree of the root. For each left subtree of the 
+root such that $\sigma_1$ has no children we have  
+all $(n-1-j)!$ permutations on the remaining letters in the right 
+subtree of the root.  
+This gives rise to the  recursion
+$$
+f(k) = 2 
+\sum_{j=1}^{k-2} {k-2 \choose j}f(j)(k-1-j)! .
+$$
+
+Setting $$H(x) = \sum_{k\ge 1}{f(k) \over k!} x^k$$
+We have
+\begin{eqnarray}
+H^{\prime\prime}(x) & = &  \sum_{k\ge 2}{f(k) \over (k-2)!} x^{k-2} \\  
+& = & 2\sum_{k\ge 2}\sum_{j = 1}^{k-2}{f(j) \over j!} x^k(n-j-1)\\ 
+& = & 2\sum_{k\ge 2}\sum_{j = 1}^{k-2}{f(j) \over j!} x^j(n-j-1)x^{n-j-2}\\
+& = & 2\sum_{k\ge 1}{f(j) \over j!} x^j\sum_{j \ge 2}(j-1)x^{j-2}\\
+& = & 2\sum_{k\ge 1}{f(j) \over j!} x^j {d \over dx}
+                    \left\{ {1 \over 1-x} \right\}\\
+& = & {2\,H(x) \over{(1-x)^2}} \label{Heq}
+\end{eqnarray}
+We look for a solution for this differential equation of the form 
+$H(x) = S(\ln(1-x))$.
+>From Eq. (\ref{Heq}) one has 
+$$
+H^{\prime\prime}(x) = {2\,S(\ln(1-x)) \over (1-x)^2}
+$$
+and by direct computation
+$$
+H^{\prime\prime}(x)  =  S^{\prime\prime}(\ln(1-x))\left({1 \over 1-x}\right)^2
+-S^\prime(\ln(1-x))\left({1 \over 1-x}\right)^2.
+$$
+Combining these last two, we have
+$$S^{\prime\prime}-S^\prime-2\,S =0,$$
+whose general solution is 
+$$
+S(y) = a\,e^{2y} +b\,e^{-y}.
+$$
+Upon setting $y = \ln(1-x)$,
+$$ H(x) = a\,(1-x)^2+ b\,{1 \over 1-x}. $$ 
+The initial conditions on $f$ then give $a=-{1 \over 3}$ and $b = {1 \over 3}$.
+Thus, 
+$$H(x) = x+ \sum_{k \ge 3}{1 \over 3}x^k.$$
+Hence $f(k) = {k! \over 3}$.
+Therefore we have
+$$
+fix_n\psi_i = {n \choose i-1}(i-1)! f(n-i+1) = 
+\left\{
+\begin{array}{cl}
+{n! \over 3} & \mbox{if } 1\le i < n-1    \\
+0 & \mbox{if } i = n-1. 
+\end{array}\right.
+$$
+
+{\bf\noindent Remark}
+Obtaining such a simple formula after a long calculation is quite
+surprising. One would hope to find a simple combinatorial explanation for this
+phenomenon. Note also that the uniformity of the fixed point set
+size suggests that ${\cal F}_n$ might be used in certain random
+algorithms on permutations. 
+
+\bigskip 
+The computation of the number of fixed points of the generators of the
+Foata--Strehl action is rather straightforward. From the definition of
+this action we see that $\sigma$ is fixed under $\varphi_i$ if
+$\sigma_{\sigma^{-1}_{i}+1} < i$ and $\sigma_{\sigma^{-1}_{i}-1} < i$;
+for then $\rho(i) = \lambda(i)=\emptyset$. 
+Thus, when $i=\sigma_k$ and $1 < k <n$ we have $i-1$ choices for $\sigma_{\sigma^{-1}_{i-1}}$, $i-2$ choices for $\sigma_{\sigma_{i+1}^{-1}}$ and
+$(n-3)!$ ways of distributing the remaining letters.
+ $$
+ \begin{array}{ccccc}
+ & _{i-1} & _{n-2} & _{i-2} & \\
+ & \downarrow & \downarrow & \downarrow & \\
+\sigma = \underbrace{\sigma_1 \cdots}_{\mbox{\tiny arbitrary}} &
+ \sigma_{\sigma^{-1}_{i}-1} & i & 
+\sigma_{\sigma^{-1}_{i}+1} &  \underbrace{\cdots \sigma_n}_{\mbox{\tiny arbitrary}}
+ \end{array}
+ $$
+When $i= \sigma_1$ or $\sigma_n$, we have 
+$i-1$ choices for $\sigma_2$ or $i-1$ choices for $\sigma_{n-1}$, respectively, and
+$(n-2)!$ ways of distributing the remaining letters.
+$$
+\begin{array}{ccc }
+  & _{ i-1} &   \\
+  & \downarrow &     \\
+\sigma = i & \sigma_2 &
+\underbrace{\sigma_3 \cdots \sigma_n}_{\mbox{\tiny arbitrary}} 
+\end{array}
+\hspace{.2 in}\mbox{ or } \hspace{.2 in}
+ \begin{array}{ccc }
+  & _{i-1} &   \\
+  & \downarrow &     \\
+\sigma = \underbrace{\sigma_1 \cdots \sigma_{n-2}}_{\mbox{\tiny arbitrary}} &
+ \sigma_{n-1} & i  \end{array}
+ $$
+
+Therefore, we have
+\begin{eqnarray*}
+fix_{n}\varphi_i & = & | \{ \, \sigma \in S_n  \mid \phi_i(\sigma) = \sigma \,\}|\\
+& = & (n-2)(i-1)(i-2)(n-3)! + 2(i-1)(n-2)! \\
+& = & (n-2)!(i-1)i.
+\end{eqnarray*}
+
+
+\begin{theorem}  The action of ${\cal C}_n$, the group generated by ${\cal F}_n \cup {\cal G}_n$, on $S_n$ is transitive.  That is, given $\sigma, \tau \in S_n$ there
+exists $f \in {\cal C}_n$ such that $\sigma = f \tau$.
+\end{theorem}
+
+{\em Proof:} It  suffices to show that for any $\sigma$ we can find $f_\sigma \in {\cal C}_n$ such that $f_\sigma \sigma = id$.
+Let $\sigma \in S_n, n > 1$ and assume by induction that for every $k < n$
+if $\kappa, \gamma \in S_k$ then we can find $g \in {\cal C}_k$ such 
+that $\kappa = g \tau$.
+Now, let
+$$
+\sigma = u \, 1 \,v$$
+with the letter $n$ in $v$ (we can assume that this is so for if not, we apply
+$\psi_{\sigma_1^{-1}}$ to $\sigma$).
+Let $|v| = m$. By induction, we may find an operator $g_1 \in {\cal C}_m$
+such that $$g \,\pr(v) = m\, m-1 \cdots 1.$$  This means that there is an 
+element $h_1 \in {\cal C}_n$ (involving only $\psi_i$ with $i \ge |u|+2$ and
+$\varphi_i$ with $ i \in \{ \, n ,\,v_1, \, v_2, \ldots, v_{m-1}\}$ and thus not
+affecting the first $|u|+1$ letters of $\sigma$) such that $h_1 \sigma = u \, 1 \, n \,v_1 \, v_2 \cdots v_{m-1}$, where
+$v_1 > v_2 > \cdots >v_{m-1}$.
+Now, since $1$ is the root of $T_{h_1 \sigma}^m$ and the letters 
+of $v$ are in its right subtree, we have 
+$$\psi_{\sigma_1^{-1}} (h_1 \sigma) = u \,n \, v_1 \, v_2 \cdots  v_{m-1} \,1$$
+and $$\varphi_1 \psi_{\sigma_1^{-1}} (h_1 \sigma)
+= 1\, u \,n \, v_1 \, v_2 \cdots v_{m-1} = 1\, w.$$
+Next we can apply the inductive hypothesis to find $g_2 \in {\cal C}_{n-1}$
+such that $g_2 \pr(w) = 1\,2\cdots n-1$.  Hence, we can find an element
+$h_2 \in {\cal C}_n$ that gives
+$$ \hspace*{6.1105 cm}
+h_2 \psi_{\sigma_1^{-1}} (h_1 \sigma) = 
+1\,2 \cdots n.  \hspace*{6.1105 cm} \Box$$ 
+
+
+\section{Alternative Tree Representations and Group Action}
+\label{s_alt}
+
+In this section we look at some alternative tree representations of 
+permutations and corresponding group actions.  We will see that each such
+representation together with its action yields a partition
+of $S_n$ into orbits with distinguished representatives. In all
+cases but one the distinguished representatives are clearly Andr\'e-like
+permutations. The exceptional case will lead us to a new class of
+permutations. 
+
+\begin{description}
+
+\item[{\bf 1.} {\em Increasing trees:}]
+
+Let $\sigma = a \,m \,b$ where $m$ is the maximum letter of $\sigma$.
+The  {\bf increasing tree} $T^I_\sigma$ of $\sigma$ has $m$ as its root.
+We apply the definition recursively to obtain $T_{a}^{I}$ and 
+$T^{I}_b$ as the left  and right children of $m$, respectively.
+
+\item[{\bf 2.} {\em Modified $\min-\max$ trees:}]
+
+Let $\sigma = a \,m \,b$ where $m$ is the right most of the minimum and
+maximum letters of  $\sigma$.
+The  {\bf modified $\min-\max$ tree} $\tilde{T}^m_\sigma$ of $\sigma$ has
+$m$ as its root. We apply the definition recursively to obtain
+$\tilde{T}_{a}^{m}$ and  $\tilde{T}^{m}_b$ as the left  and right
+children of $m$, respectively. 
+
+\item[{\bf 3.} {\em $\min_1-\min_2$ trees:}]
+
+Let $\min_1(\sigma)$ the smallest and $\min_2(\sigma)$ the second
+smallest letter of $\sigma$.
+Next write $\sigma = a\,m\,b$ where $m$ is the leftmost of $\min_1(\sigma)$ and $\min_2(\sigma)$. $T^{mm}_{\sigma}$ has $m$ as its 
+root.  We apply the definition recursively to obtain $T_{a}^{mm}$ and 
+$T^{mm}_b$ as the left  and right children of $m$, respectively.
+\end{description}
+
+\begin{define} Let $\sigma = \sigma_1\cdots \sigma_n$ be a permutation.
+\begin{enumerate}
+\item The  {\em reverse} of $\sigma$
+is the permutation $\sigma_n \cdots \sigma_1$.
+\item  The {\em flip} of $\sigma$ is the permutation $\lambda
+= \lambda_1 \cdots \lambda_n$, where $\lambda_i = n-\lambda_i+1$. 
+\end{enumerate}
+We denote the reverse and the flip of $\sigma$ respectively by $\rev
+(\sigma)$ and $\flip (\sigma)$ respectively.
+\end{define}
+
+Similarly, for a labeled binary tree $T$ we call the {\em reverse} of
+$T$ the tree obtained by exchanging left and right
+subtrees at every interior node, and the {\em flip} of $T$ the tree
+obtained by replacing the every label $\ell$ by $n-\ell+1$. 
+We denote the reverse and the flip of $T$ respectively by $\rev (T)$
+$\flip (T)$,  respectively.
+
+Increasing trees are intimately related to decreasing trees in the
+following way. We have 
+$$T^I_\sigma=\flip \left( T^D_{\flip(\sigma)}\right),$$
+i.e., the increasing tree of $\sigma$ may be obtained by flipping the
+decreasing tree of $\flip(\sigma)$. Hence, we may define a group action
+${\cal G}_n^\star$ on increasing trees analogous to the Foata-Strehl
+action ${\cal G}_n$ on decreasing trees. One remarks that ${\cal
+G}_n^\star$ is permutation isomorphic to ${\cal G}_n$. Table \ref{tab_g}
+presents group actions and corresponding distinguished orbit
+representatives when reversal of trees and permutations is allowed. 
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|c|l|c|c|}
+\hline
+Tree type & Group action & Interior nodes& \multicolumn{2}{|l|}{Orbit
+representatives for which each}\\ 
+& &of distinguished&\multicolumn{2}{|l|}{interior node has the
+other extreme}\\ 
+\cline{4-5}
+&&tree reps & in its right subtree& in its left subtree\\
+\hline
+\hline
+Decreasing & ${\cal G}_n$ &min& Andr\'e I & reverse Andr\'e I\\ 
+\hline
+Increasing & ${\cal G}_n^*$&max& flip Andr\'e I & flip-reverse Andr\'e I\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Distinguished orbit representatives for the actions ${\cal G}_n$
+and ${\cal G}^*_n$} 
+\label{tab_g}
+\end{table}
+
+\newpage 
+In analogy with the case of increasing and decreasing trees, modified
+$\min-\max$ trees are closely related to $\min-\max$ trees. In fact, for every
+permutation $\sigma$ we have 
+$$\tilde{T}^m_\sigma= \rev\left(T^m_{\rev(\sigma)}\right),$$
+i.e., the modified $\min-\max$ tree of a permutation $\sigma$ is the reverse
+of the $\min-\max$ tree of $\rev(\sigma)$. Hence the group action
+${\cal F}_n^*$ defined on modified $\min-\max$ trees, in analogy
+with the action of ${\cal F}_n$ on $\min-\max$ trees, is
+permutation-isomorphic to ${\cal F}_n$. Table \ref{tab_f} gives the choices of
+orbit representatives for these two actions. 
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|c|c|c| }
+\hline
+Tree type &Group Action &\multicolumn{2}{|l|}{Orbit
+representatives for which}\\
+&&\multicolumn{2}{|l|}{each interior node has type}\\
+\cline{3-4}&&min&max\\
+\hline
+\hline 
+$\min-\max$  & ${\cal F}_n$&Andr\'e I&flip Andr\'e I\\ 
+\hline
+Modified $\min-\max$ & ${\cal F}_n^*$& reverse Andr\'e I  & flip-reverse Andr\'e I\\ 
+\hline
+\end{tabular}
+\end{center}
+\caption{Distinguished orbit representatives for the actions ${\cal F}_n$
+and ${\cal F}^*_n$}
+\label{tab_f}
+\end{table}
+
+
+Observe that whenever we choose the same class of distinguished
+orbit representatives from Table \ref{tab_g} and from Table \ref{tab_f}, the
+{\em same labeled binary tree is associated to the same permutation in
+both situations.} 
+
+\bigskip
+
+Let us take a closer look at $\min_1-\min_2$ trees. As with
+$\min-\max$ and modified $\min-\max$ trees, these trees suggest
+another $\Zzz_2^{n-1}$-action on $S_n$.
+This action is  denoted by ${\cal H}_n$ and is generated by $\eta_1, \ldots, \eta_{n-1}$ where
+$\eta_i(T_{\sigma}^{mm})$ is the tree obtained from $T^{mm}_\sigma$ by 
+permuting $\sigma_i \leftrightarrow \min(w(T_{\sigma,\sigma_i}^{mm}))$
+and
+$$\eta_i(\sigma) \df w(\eta_i(T_{\sigma}^{mm})).$$
+
+\begin{example}
+{\em Let $\sigma = 3\,6\,7\,1\,5\,2\,10\,4\,9\,8$.
+Then the $\min_1-\min_2$ trees $T_{\sigma}^{mm}$ and
+$\eta_6\left(T_{\sigma}^{mm}\right)$ are represented in Figures \ref{F_mm1}
+and \ref{F_mm2}. 
+
+\begin{figure}[h]
+\begingroup\makeatletter
+% extract first six characters in \fmtname
+\def\x#1#2#3#4#5#6#7\relax{\def\x{#1#2#3#4#5#6}}%
+\expandafter\x\fmtname xxxxxx\relax \def\y{splain}%
+\ifx\x\y   % LaTeX or SliTeX?
+\gdef\SetFigFont#1#2#3{%
+  \ifnum #1<17\tiny\else \ifnum #1<20\small\else
+  \ifnum #1<24\normalsize\else \ifnum #1<29\large\else
+  \ifnum #1<34\Large\else \ifnum #1<41\LARGE\else
+     \huge\fi\fi\fi\fi\fi\fi
+  \csname #3\endcsname}%
+\else
+\gdef\SetFigFont#1#2#3{\begingroup
+  \count@#1\relax \ifnum 25<\count@\count@25\fi
+  \def\x{\endgroup\@setsize\SetFigFont{#2pt}}%
+  \expandafter\x
+    \csname \romannumeral\the\count@ pt\expandafter\endcsname
+    \csname @\romannumeral\the\count@ pt\endcsname
+  \csname #3\endcsname}%
+\fi
+\endgroup
+\begin{center}
+\setlength{\unitlength}{0.012500in}%
+\begin{picture}(338,102)(105,697)
+\thicklines
+\put(160,760){\circle*{6}}
+\put(240,780){\circle*{6}}
+\put(320,760){\circle*{6}}
+\put(280,740){\circle*{6}}
+\put(200,740){\circle*{6}}
+\put(240,720){\circle*{6}}
+\put(360,740){\circle*{6}}
+\put(320,720){\circle*{6}}
+\put(400,720){\circle*{6}}
+\put(440,700){\circle*{6}}
+\put(160,760){\line( 4, 1){ 80}}
+\put(240,780){\line( 4,-1){ 80}}
+\put(320,760){\line( 2,-1){ 40}}
+\put(320,760){\line(-2,-1){ 40}}
+\put(160,760){\line( 2,-1){ 80}}
+\put(360,740){\line( 2,-1){ 80}}
+\put(360,740){\line(-2,-1){ 40}}
+\put(155,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}3}}}
+\put(235,790){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}1}}}
+\put(315,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}2}}}
+\put(275,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}5}}}
+\put(105,740){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}$T_{\sigma}^{mm}=$}}}
+\put(195,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}6}}}
+\put(235,730){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}7}}}
+\put(315,730){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}10}}}
+\put(355,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}4}}}
+\put(395,730){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}9}}}
+\put(435,710){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}8}}}
+\end{picture}
+\end{center}
+\caption{$T_{\sigma}^{mm}$ for $\sigma = 3\,6\,7\,1\,5\,2\,10\,4\,9\,8$}
+\label{F_mm1}
+\end{figure}
+
+\newpage 
+
+\begin{figure}[h]
+\begingroup\makeatletter
+% extract first six characters in \fmtname
+\def\x#1#2#3#4#5#6#7\relax{\def\x{#1#2#3#4#5#6}}%
+\expandafter\x\fmtname xxxxxx\relax \def\y{splain}%
+\ifx\x\y   % LaTeX or SliTeX?
+\gdef\SetFigFont#1#2#3{%
+  \ifnum #1<17\tiny\else \ifnum #1<20\small\else
+  \ifnum #1<24\normalsize\else \ifnum #1<29\large\else
+  \ifnum #1<34\Large\else \ifnum #1<41\LARGE\else
+     \huge\fi\fi\fi\fi\fi\fi
+  \csname #3\endcsname}%
+\else
+\gdef\SetFigFont#1#2#3{\begingroup
+  \count@#1\relax \ifnum 25<\count@\count@25\fi
+  \def\x{\endgroup\@setsize\SetFigFont{#2pt}}%
+  \expandafter\x
+    \csname \romannumeral\the\count@ pt\expandafter\endcsname
+    \csname @\romannumeral\the\count@ pt\endcsname
+  \csname #3\endcsname}%
+\fi
+\endgroup
+\begin{center}
+\setlength{\unitlength}{0.012500in}%
+\begin{picture}(338,102)(105,697)
+\thicklines
+\put(160,760){\circle*{6}}
+\put(240,780){\circle*{6}}
+\put(320,760){\circle*{6}}
+\put(280,740){\circle*{6}}
+\put(200,740){\circle*{6}}
+\put(240,720){\circle*{6}}
+\put(360,740){\circle*{6}}
+\put(320,720){\circle*{6}}
+\put(400,720){\circle*{6}}
+\put(440,700){\circle*{6}}
+\put(160,760){\line( 4, 1){ 80}}
+\put(240,780){\line( 4,-1){ 80}}
+\put(320,760){\line( 2,-1){ 40}}
+\put(320,760){\line(-2,-1){ 40}}
+\put(160,760){\line( 2,-1){ 80}}
+\put(360,740){\line( 2,-1){ 80}}
+\put(360,740){\line(-2,-1){ 40}}
+\put(155,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}3}}}
+\put(235,790){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}1}}}
+\put(315,770){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}4}}}
+\put(275,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}5}}}
+\put(80,740){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}$\eta_6\left(T_{\sigma}^{mm}\right)=$}}}
+\put(195,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}6}}}
+\put(235,730){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}7}}}
+\put(315,730){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}10}}}
+\put(355,750){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}2}}}
+\put(395,730){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}9}}}
+\put(435,710){\makebox(0,0)[lb]{\smash{\SetFigFont{11}{14.4}{rm}8}}}
+\end{picture}
+\end{center}
+\caption{$\eta_6\left(T_{\sigma}^{mm}\right)$ for $\sigma = 3\,6\,7\,1\,5\,2\,10\,4\,9\,8$}
+\label{F_mm2}
+\end{figure}
+Hence $\eta_6(\sigma) = 3\,6\,7\,1\,5\,4\,10\,2\,9\,8$.
+}
+\end{example}
+
+Most proofs of Section \ref{s_Fn} may be easily transcribed into results
+on ${\cal H}_n$. This way we obtain the following analogues of
+Propositions \ref{minandre} and \ref{minmax}.
+
+\begin{prop}
+$\lambda \in S_n$ is an Andr\'e permutation of the second kind
+$\Leftrightarrow$ all interior nodes of $T_\lambda^{mm}$ are $\min_1$ nodes.
+\end{prop}
+
+\begin{prop}
+Let $\lambda = \eta_i(\sigma)$.  If 
+$\sigma_i$ is a $\min_1$ node (resp. $\min_2$) in $T_{\sigma}^{mm}$ then
+$\lambda_i$ is a  $\min_2$ node (resp. $\min_1$)  in $T_{\lambda}^{mm}$.  All other nodes in $T_\lambda^{mm}$
+are  $\min_1$ (resp. $\min_2$) iff the corresponding nodes in $T_\sigma^{mm}$ are $\min_1$ (resp. $\min_2$).
+\end{prop}
+
+Denoting by $T^{mm}_{\sigma,i}$ the subtree of $T^{mm}_\sigma$ formed 
+by all the right descendants of the label $i$, we have the following
+analogues of the Lemmas \ref{pr1} and \ref{pr2}.
+
+\begin{lemma}
+Suppose  $\sigma \in S_n$ and  
+$\eta_i(\sigma_1\cdots\sigma_i\cdots\sigma_n)=
+\lambda_1\cdots\lambda_i\cdots\lambda_n  $.
+Then 
+$$\pr(T^{mm}_{\sigma,\sigma_i}) = \pr(T^{mm}_{\lambda,\lambda_i}).$$
+\end{lemma}
+
+\begin{lemma}
+Let $\sigma, \delta \in S_n$ such that $T^{mm}_{\sigma,\sigma_i}$ and $T^{mm}_{\delta,\delta_i}$ have the same shape as binary trees.
+Furthermore  suppose $\pr(T^{mm}_{\sigma,\sigma_i}) =
+\pr(T^{mm}_{\delta,\delta_i})$ with $\sigma_j$ a descendant of $\sigma_i$ and $\delta_j$ is a descendant of $\rho_i$.
+Suppose $\eta_j(\sigma) = \sigma^\prime$
+and $\eta_j(\delta) = \delta^\prime$
+then $\pr(T^{mm}_ {\sigma^\prime,\sigma_i^\prime}) =
+ \pr(T^{mm}_{\delta^\prime,\delta_i^\prime})$.
+\end{lemma}
+Using these lemmas we may transcribe the proof of Theorem
+\ref{thcomm} into the following.
+
+\begin{prop}
+The action of $\eta_1,\ldots, \eta_n$ on $S_n$ is commutative.
+\end{prop} 
+
+\begin{corollary}
+The action of ${\cal H}_n$ partitions $S_n$ into disjoint orbits
+each with a unique Andr\'e permutation of the second kind as representative.
+\end{corollary}
+
+As in the case of $\min-\max$ trees
+and modified $\min-\max$ trees, passing from $\min_1-\min_2$ trees to {\em modified
+$\min_1-\min_2$ trees} involves reversing all trees, all permutations,
+and all distinguished orbit representatives. 
+
+The list of obvious analogies ends here. ${\cal H}_n$ does not
+seem to be usable in an analogous way to ${\cal F}_n$ to prove
+
+$$
+\rest{\sum_{\sigma \in {\cal A}^{II}_n}v_{cd}(\sigma)}
+{\begin{array}{l}\scri c = a+b\\[-4pt]\scri d = ab+ba\end{array}}=
+\sum_{\sigma \in S_n}v_{ab}(\sigma),
+$$
+where ${\cal A}^{II}_n$ denotes the set of Andr\'e permutations of the
+second kind in $S_n$. (This formula is true, as it is implicitly noted in
+\cite{Stanley}.)   
+
+We  remark another essential difference between $\min-\max$
+and $\min_1-\min_2$ trees. Analogously  to the $\min-\max$ case
+one would expect that applying flip to Andr\'e permutations of the second 
+kind should yield $\min_1-\min_2$ trees with $\min_2$ interior nodes (i.e.
+the distinguished orbit reps). 
+This in fact does not happen and instead we get a new class of permutations.
+
+
+\begin{define}
+We call a permutation $\sigma$ a {\em forgotten Andr\'e permutation}, if
+every interior node of $T_{\sigma}^{mm}$ is $\min_2$.
+\end{define}
+
+Forgotten Andr\'e permutations have the following recursive description:
+\begin{itemize}
+\item[--] the second smallest letter precedes the smallest letter;
+\item[--] the letters preceding the second smallest letter form a forgotten
+Andr\'e permutation;
+\item[--] the letters following the second smallest letter form a forgotten
+Andr\'e permutation.  
+\end{itemize}
+
+Surprisingly, forgotten Andr\'e permutations share a common property
+with {\em simsun permutations}, a class which properly contains Andr\'e
+permutations of the second kind. Simsun permutations were defined by S.
+Sundaram and R. Simion in \cite{Sundaram}, as follows. A permutation
+$\sigma\in S_n$ is a simsun permutation if for
+all $i\in\{0,1,\ldots, n\}$, after removing the $i$ largest letters from
+$\sigma$, the remaining word has no double descents. In particular, the
+class of simsun permutations is closed under removal of the largest
+letter. The same holds for forgotten Andr\'e permutations.
+
+\begin{theorem}
+\label{T_del}
+Let $\sigma\in S_n$ be a forgotten Andr\'e permutation. Then $\tau\in
+S_{n-1}$, obtained from $\sigma$ by removing the letter $n$, is also a
+forgotten Andr\'e permutation.
+\end{theorem}  
+
+This theorem is the consequence of the following two lemmas.
+
+\begin{lemma}
+\label{L_n}
+Let $\sigma\in S_n$. Then the letter $n$ is either the label of a leaf,
+or the label of an internal node with only one descendant in
+$T_{\sigma}^{mm}$.  
+\end{lemma}
+In fact, if $n$ is not a leaf, then it cannot be a $\min_1$ node, for it
+is the largest letter. If $n$ is a $\min_2$ node then it has exactly one
+descendant.  
+
+\begin{lemma}
+\label{L_del}
+Let $\sigma\in S_n$, and let $\tau\in S_{n-1}$ be the permutation obtained
+by removing the letter $n$ from $\sigma$. 
+\begin{enumerate}
+\item If $n$ is a leaf, then $T_{\tau}^{mm}$ may be obtained from
+$T_{\sigma}^{mm}$ by removing the leaf $n$. 
+\item If $n$ is an interior node with only child $j$ and $n$ is the right
+child of $i$, then $T_{\tau}^{mm}$ may be obtained from $T_{\sigma}^{mm}$ by
+contracting $n$, (i.e., by removing the node $n$, and attaching the node
+$j$ to the node $i$ at the place of $n$). 
+\item An interior node of $T_{\tau}^{mm}$ is $\min_1$ if and only if,
+the same interior node of $T_{\sigma}^{mm}$ is $\min_1$.
+\end{enumerate}
+\end{lemma}
+{\em Proof: }
+By Lemma \ref{L_n}, $n$ is either a leaf or a node with only one
+descendant in $T_{\sigma}^{mm}$. 
+\begin{description}
+\item{{\em 1. $n$ is a leaf:}} After removing $n$,
+the minimum and the second minimum element remain unchanged in every subtree,
+with only one possible exception: $n$ may be the second smallest
+element in the subtree of its parent, which we denote by $i$. But then $n$
+must be the only descendant of $i$, and $i$ becomes a leaf. Hence we obtained a
+$\min_1-\min_2$ tree which encodes $\tau$. By the uniqueness of the
+construction of $\min_1-\min_2$ trees, we have obtained
+$T_{\tau}^{mm}$.
+\item{{\em 2. $n$ has one child:}} Let $j$ be the only child of $n$, and
+$i$ the parent of $n$. Whether $n$ is a right or left child of $i$,
+contracting it does not change the minimum nor the second minimum
+element in the subtree of $i$. The same holds for all other subtrees.
+\hfill$\Box$
+\end{description}
+
+{\em\noindent Proof of Theorem \ref{T_del}:}
+Let $\sigma\in S_n$ be a forgotten Andr\'e permutation. By definition,
+all interior nodes of $T_{\sigma}^{mm}$ are $\min_2$. Let $\tau$ be the
+permutation obtained by removing the letter $n$. By Lemma \ref{L_del},
+every interior node of $T_{\sigma}^{mm}$ is $\min_2$. Hence $\tau$ is a
+forgotten Andr\'e permutation. \qed
+
+{\bf\noindent Remark} Lemmas \ref{L_n} and \ref{L_del} may also be used
+to give a new proof of the fact that the class of Andr\'e permutations
+of the second kind is closed under removal of the largest letter.
+
+Theorem \ref{T_del} suggests that forgotten Andr\'e permutations might
+have a characterization which is similar to the definition of simsun
+permutations. More precisely, it might suffice to add a restriction analogous to
+the prohibition of double descents to the requirement of closure under
+removal of the largest letter. We leave this as an open question to the
+interested reader.  
+
+\begin{thebibliography}{1}
+
+\bibitem{Ehrenborg-Readdy} R.\ Ehrenborg and M.\ Readdy,
+The ${\bf r}$-cubical lattice and a  generalization of the ${\bf
+cd}$-index, {\it European Journal of Combinatorics} {\bf 17} (1996),
+709--725. 
+
+\bibitem{foat1} D.\ Foata and M.P.\ Sch\"{u}tzenberger,
+Nombres d'Euler et permutations alternantes, manuscript, University of
+Florida, Gainesville, 1971.
+
+\bibitem{Foata-Schut2} D.\ Foata and M.P.\ Sch\"{u}tzenberger,
+Nombres d'Euler et permutations alternantes. In: J.N. Srivastava et al.,
+{\it A Survey of Combinatorial Theory}, Amsterdam, North--Holland,
+1973 (pp.\ 173--187).
+
+\bibitem{Foata-Strehl1} D.\ Foata and V.\ Strehl, Rearrangements of the
+Symmetric Group and Enumerative Properties of the Tangent and Secant
+Numbers {\it Math. Z.} {\bf 137} (1974), 257--264.
+
+\bibitem{Foata-Strehl2} D.\ Foata and V.\ Strehl, Euler numbers and
+variations of permutations.  In: {\it Colloquio Internazionale sulle Teorie
+Combinatorie 1973}, Tome I  (Atti Dei Convegni Lincei
+{\bf 17}, 119--131), Accademia Nazionale dei Lincei 1976.
+
+\bibitem{Hetyei} G.\ Hetyei, On the $cd$-variation polynomials of
+Andr\'e and simsun permutations, {\it Discrete Comput.\ Geom.} {\bf 16}
+(1996) 259--275.
+
+\bibitem{pur} M.\ Purtill, Andr\'e permutations, lexicographic
+shellability, and the $cd$--index of a convex polytope, {\it Trans.\
+Amer.\ Math.\ Soc.} {\bf 338} 1 (1993), 77--104.
+
+\bibitem{Stanley}
+R.P.\ Stanley, Flag $f$-vectors and the $cd$-index, {\em Math.\ Z.}
+{\bf 216} (1994), 483--499.
+
+\bibitem{Sundaram}
+S.\ Sundaram, The Homology Representations of the Symmetric Group on
+Cohen-Macaulay Subposets of the Partition Lattice, {\em Adv. Math.}
+{\bf 104} (1994), 225-296.
+
+\bibitem {vien1}
+G. Viennot, Interpr\'etations combinatoires des nombres d'Euler et
+de Genocchi, unpublished manuscript, (1981/82).
+\end{thebibliography}
+  
+ 
+
+\end{document}
+
+

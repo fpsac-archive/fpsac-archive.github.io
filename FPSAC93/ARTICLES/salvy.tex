@@ -1,0 +1,1265 @@
+\documentstyle[fullpage]{article}
+\input{amssym.def}
+\input{amssym}
+\def\Q{{\Bbb Q}}
+\def\R{{\Bbb R}}
+\def\C{{\Bbb C}}
+\def\N{{\Bbb N}}
+\def\Z{{\Bbb Z}}
+\def\geq{\,{\Bbb\geqslant}\,}
+\def\ge{\,{\Bbb\geqslant}\,}
+\def\leq{\,{\Bbb\leqslant}\,}
+\def\le{\,{\Bbb\leqslant}\,}
+\newenvironment{proof}%
+        {\par\noindent{\bf Proof.}}%
+        {{\hfill{\Large$\Box$}}\smallskip}
+\newtheorem{proposition}{Proposition}
+\newtheorem{alg}{Algorithm}
+\newtheorem{property}{Proposition}
+\newtheorem{nota}{Notation}
+\def\thenota{}
+\newtheorem{task}{Task}
+\newtheorem{th}{Theorem}
+
+\title{\Large\bf Effective Asymptotics of Linear Recurrences\\ with
+Rational Coefficients}
+\author{\large\sl Xavier Gourdon$^{*}$\\{\normalshape\tt
+Xavier.Gourdon@inria.fr}
+\and\large\sl Bruno Salvy\thanks{Algorithms Project, INRIA, 78153 Le
+Chesnay Cedex, France.}\\{\normalshape\tt Bruno.Salvy@inria.fr}}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+We give algorithms to compute the asymptotic expansion of solutions
+of linear recurrences with rational coefficients and rational initial
+conditions in polynomial time in the order of the recurrence.
+\end{abstract}
+
+\section*{Introduction}
+We investigate sequences defined by a recurrence of the form
+\begin{equation}\label{recurrence}
+  a_ku_{n+k}+a_{k-1}u_{n+k-1}+\cdots+a_0u_n=0,
+\end{equation}
+where the   coefficients~$a_k$  and the   initial    conditions belong
+to~$\Q$. This is probably the most simple type  of recurrence  one may
+encounter.  Recurrences of this type are ubiquitous  in many fields of
+applications~(see~\cite{CeMiPi87}   for numerous examples   and
+references).   Among    the  approximately~2300  sequences    listed
+in Sloane's book~\cite{Sloane73}, one can estimate that  about 13\%
+are of this 
+type~\cite{Plouffe92}. In  the rest of   this paper ``linear
+recurrence'' always  means 
+``linear recurrence with rational   coefficients'' and we shall  refer
+to~$u_n$ as a ``linear recurrent sequence''.
+
+Surprisingly, some   problems related  to linear recurrences
+remain   open~\cite{CeMiPi87},    and  specially problems   related to
+effectivity.  Our aim in this paper is  to describe an  algorithm that
+computes    an    asymptotic        expansion    of    a      sequence
+obeying~(\ref{recurrence}) in polynomial time in the order~$k$ of the
+recurrence.   It is  quite simple to find the 
+asymptotic expansion of 
+Fibonacci numbers with traditional  tools, but these  tools break down
+for ill-conditioned recurrences.   The  algorithm we
+describe works without any limitation on  the value of~$k$ or those of
+the coefficients.
+
+Given a recurrence such as~(\ref{recurrence}), one usually computes
+its general term as a sum of {\em exponential polynomials\/} of the
+form~$\sum_{k=0}^N{p_kn^k}\lambda^n$,
+where~$\lambda$ is an algebraic number. In Section~1 we shall describe
+an algorithm computing the coefficients~$p_k$ {\em without factoring
+any polynomial}. This general term does not solve the problem of
+asymptotic behaviour. To form a proper asymptotic expansion one has to
+order the moduli of the algebraic numbers~$\lambda$ occurring in the
+general terms. The problem which will occupy most of this paper is:
+How can one perform such an ordering {\em exactly}, i.e. we prove that
+the algorithms we propose work on the whole class of
+recurrences~(\ref{recurrence}).
+We shall  use techniques from    computer algebra to free   ourselves  from
+problems  of ill-conditioning related  to  the use   of floating-point
+values.    The  result is  an  algorithm   which,  given   a  positive
+integer~$p$  and  a linear recurrence~(\ref{recurrence})  together
+with its initial   conditions---or    equivalently     a    rational
+function in~$\Q(x)$~(see below)---outputs the~$p$ first exponential
+polynomials of the asymptotic expansion of  the solution~$u_n$
+of~(\ref{recurrence}) as~$n$ tends to infinity.
+
+As an example consider the recurrence
+\begin{equation}\label{example1}
+14448 u_{n}+15136 u_{n+1}-5761 u_{n+2} -990 u_{n+3}+315u_{n+4}=0.
+
+\end{equation}
+Its characteristic polynomial has four simple roots:
+$$\alpha_1={3\over 2} + \sqrt{53\over 12},\quad 
+\alpha_2={3\over 2} - \sqrt{53\over 12}, \quad
+\alpha_3=\sqrt{454\over 35},\quad \alpha_4=-\alpha_3.$$
+To compute the asymptotic behaviour of~$u_n$, it is necessary to
+decide which roots have the largest modulus. In this example the roots
+are given explicitly and this make it possible (but not trivial) to
+sort them by modulus. The techniques we develop do not require an explicit
+expression of the roots.
+
+We describe two essentially different decision procedures to
+compute the asymptotic expansion. The first approach, purely algebraic,
+completely avoids factorizations. It is made expensive by the increase
+of degrees due to resultant computations. Currently this is the most
+natural computer algebra approach to the problem, and the most easily
+implemented. However, as soon as~$p\ge2$,
+its cost becomes potentially exponential in the order of the recurrence.
+
+The second approach is perhaps more natural: it consists in using
+numerical approximations. In our example, the approximations
+$$\alpha_1=3.601586702\ldots,\alpha_2=- 0.601586702\ldots,
+\alpha_3=3.601586951\ldots$$
+make it possible to conclude. This example also shows that these
+numerical approximations may require a lot of precision. To avoid
+ill-conditioning, we use {\em 
+guaranteed \/} numerical approximations and we show that this can be
+done in polynomial time in the order of the recurrence. Numerical
+approximations have long been banned from computer algebra because of
+the reluctance inherited from fixed precision routines. However, with
+the arbitrary precision provided by most computer algebra systems, we
+feel that it is time for floating point numbers to be rehabilitated in
+computer algebra. 
+
+The first step  of the algorithm  is  to  compute  a suitable  partial
+fraction decomposition of the generating function of~$u_n$.  Since
+factorization of polynomials is
+known to be polynomial-time but depressingly expensive, we shall avoid
+factorization  and rely instead on  a recent decomposition
+algorithm~\cite{BrSa92}.  This is described  in Section~1.  In 
+Section~2 and~3,  we  address the problem  of comparing  the moduli
+of  the
+singularities~(corresponding to  the   roots   of the   characteristic
+polynomial).  As opposed to what happens usually in
+most algorithms involving algebraic numbers, we have to distinguish
+between roots of a given polynomial.
+A first method is described in Section~2, based
+on  an algorithm~\cite{CoRo88} for comparing real  algebraic numbers.
+At this stage, we 
+can produce the desired asymptotic expansion. Section~3 describes a
+numerical alternative to the algebraic algorithms of Section~2, where 
+we show how to get exact information from numerical values. We
+prove that this can be done with a cost that is lower than that of
+the algebraic method.
+ In Section~4, we study optimizations  that can be applied to subparts
+of our algorithm in practical cases. In  particular  we show there how
+rough numerical  estimates can be used fruitfully.   We   conclude in
+Section~5 with a few examples taken from classical combinatorics.
+
+\section{Outline of the algorithm}
+\subsection{Generating function}
+
+One can
+translate~(\ref{recurrence})  into the rational   generating
+function~$\sum{u_nz^n}$ with~$O(k^2)$  rational   operations:  the
+generating function  of   the
+sequence~(\ref{recurrence}) is
+\[{\sum_{i=0}^k{a_i\sum_{j=0}^{i-1}{u_jz^{k-i+j}}}\over
+\sum_{i=0}^k{a_{k-i}z^i}}.\] The  reciprocal  conversion is also easy.
+
+>From the asymptotic point of view,  the generating function approach
+enables us to use tools from complex analysis, like residue
+computation, which prove very effective. Because of 
+the  low cost of    the conversion from   a linear  recurrence to  the
+generating function, from now on  we shall  be concerned with rational
+functions   only. Thus   the    input    of   our   algorithm   is   a
+function~$f\in\Q(z)$ regular  at the  origin, together with a positive
+integer~$p$,  and its output  consists of  the  first~$p$ terms of the
+asymptotic expansion  of~$[z^n]f(z)$---the~$n$th  Taylor coefficient
+of~$f$   at the origin---as~$n$ tends to infinity.
+
+\subsection{Exact formula}
+
+In this section, we derive an exact formula
+for~$[z^n]f(z)$, based on a partial fraction decomposition that does
+not require factorization. This allows for both an efficient
+implementation and possible future extensions to rational functions
+with parameters or non-rational coefficients.
+
+\begin{alg}[Exact formula]\label{exact}
+Let $f(z)=P(z)/Q(z) \in \Q(z)$, with $P$ and $Q$ two relatively prime
+polynomials and $\deg(P) < \deg(Q)$. To compute~$[z^n]f(z)$,
+\begin{enumerate}
+\item Compute $Q=D_1D_2^2\cdots D_n^n$ the square-free decomposition
+of $Q$. (Each~$D_i$ is a square-free polynomial.)
+\item Using the decomposition algorithm~\cite{BrSa92}, compute
+polynomials $P_{i,j}\in\Q[z]$ such that
+\begin{equation}\label{decomposition}
+f(z)={P(z) \over Q(z)}=\sum_{i=1}^n\sum_{j=1}^i
+\sum_{D_i(\alpha)=0} 
+{P_{i,j}(\alpha) \over (z-\alpha)^j},
+\end{equation}
+ with $\deg(P_{i,j})<\deg(D_i)$. This requires only gcd computations.
+\item For each~$(i,j)$ such that $\gcd(P_{i,j},D_i)\neq1$, write
+$D_i=G_i\,H_i$, where 
+$G_i=\gcd(P_{i,j},D_i)$ and rewrite all terms in~(\ref{decomposition}) involving the polynomial $D_i$ as
+$$ \sum_{D_i(\alpha)=0} {P_{i,j}(\alpha) \over
+(z-\alpha)^j} =
+\sum_{G_i(\alpha)=0} {A_{i,j}(\alpha) \over
+(z-\alpha)^j} +
+\sum_{H_i(\alpha)=0} {B_{i,j}(\alpha) \over
+(z-\alpha)^j} $$
+where $A_{i,j}$ and $B_{i,j}$ are obtained by Euclidian
+division of $P_{i,j}$ by $G_i$ and $H_i$.
+Repeat this process until all gcd's are units. This gives
+a factorization of each $D_i$ in the form $D_i=D_{i,1}\cdots D_{i,n_i}$
+and the partial  fraction decomposition has the form
+\begin{equation}\label{decomp}
+f(z)=\sum_{i=1}^n \sum_{j=1}^{n_i}\sum_{k=1}^i 
+\sum_{D_{i,j}(\alpha)=0} {P_{i,j,k}(\alpha) \over
+(z-\alpha)^k},
+\end{equation}
+each $P_{i,j,k}$ being a polynomial with rational coefficients,
+$\deg(P_{i,j,k})<\deg(D_{i,j})$.
+\item From this we get the value of~$[z^n]f(z)$:
+\begin{equation}\label{expansion}
+[z^n]f(z)=\sum_{i=1}^n \sum_{j=1}^{n_i}\sum_{k=1}^i
+\sum_{D_{i,j}(\alpha)=0} 
+{ (n+1) \cdots (n+k-1) \over (k-1)!} \cdot {P_{i,j,k}(\alpha) \over
+\alpha^{n+k}}.
+\end{equation} 
+\end{enumerate}
+\end{alg}
+
+Step 1 is computed by repetitively differentiating and computing
+gcd's. Step 3  guarantees that each
+$P_{i,j,k}(\alpha)$ in~(\ref{decomp}) is non zero. Step 4 is a
+consequence of the usual series expansion of~$(\alpha-z)^{-k}$.
+It is clear that Algorithm~1 runs in polynomial time. We do
+not worry about its complexity since the following algorithms are much
+more expensive.
+
+\noindent{\bf Example} Let~$f(z)$ be the following input 
+$${z^2+2 \over (1-z)^2(1+z-2z^2-z^3-2z^5)}.$$
+In this case, the square-free decomposition of the denominator~$Q$
+of~$f$ is given by~$D_2=1-z$, $D_1=1+z-2z^2-z^3-2z^5$~(note that~$D_1$
+is not irreducible). Step~(2) of the algorithm then produces the
+following decomposition
+\[f(z)=-{1\over(1-z)^2}-{14/3\over1-z}+\sum_{D_2(\alpha)=0}{h(\alpha)\over
+\alpha-z},\]
+where~$h(\alpha)=
+(11530\alpha^4-7778\alpha^3+11325\alpha^2+3889\alpha-8080)/93$.
+Since~$h$ and~$D_2$ are relatively prime, Step~3 does not do
+anything, and then Step~4 produces the result:
+\[[z^n]f(z)=-(n+1)-{14\over3}+\sum_{D_2(\alpha)=0}{h(\alpha)\alpha^{-n-1}}.\]
+To get an asymptotic expansion from this, we have to sort the
+moduli of the roots of~$D_2$ and compare them to~1. This is addressed
+in the following sections.
+
+\subsection{Specification of the algorithm}
+
+As already mentioned, the asymptotic expansion is governed by the
+successive ``layers'' of singularities of the rational function,
+sorted by increasing moduli. We shall need several ways to describe
+these moduli.
+
+\begin{nota} For $P(z)\in\Q[z]$, we note~$\rho_1(P) <
+\rho_2(P) < \cdots < \rho_k(P)$ the \/{\em distinct} moduli of the roots of
+$P$ in increasing order. When there is no ambiguity, we simply denote
+these numbers~$\rho_m$, $1\le m\le k$. We also note~$Z_m(P)$ the set of zeroes
+of~$P$ whose modulus is~$\rho_m(P)$, and~$Z_m^+(P)$ the subset
+of~$Z_m(P)$ whose elements have positive imaginary part.
+\end{nota}
+
+We first state the form of the output on the example of~$f(z)$ from
+our previous section.
+The first four terms of the asymptotic expansion of $[z^n]f(z)$
+as given
+by our algorithm are
+\begin{eqnarray*}
+&&\left[ (-1)^{n+1} h(-\rho_1) \right] {1 \over \rho_1^{n+1}} + 
+\left[h(\rho_2) + (-1)^{n+1} h(-\rho_2) \right] {1 \over
+\rho_2^{n+1}} 
++ \left[ {-(n+1) \over \rho_3 } - {14 \over 3} \right] {1 \over
+\rho_3^{n+1}}\\ 
+&&\quad\quad +
+\Bigl[ \sum_{\beta\in Z_3^+(D_2)}
+\left( h(\beta)+h(\overline{\beta}) \right)
+\cos[(n+1)\arg(\beta)] \Bigr] {1 \over \rho_4^{n+1}}
++o\!\left({1\over\rho_4^n}\right) , 
+\end{eqnarray*}
+together with the following information
+$\rho_1=\rho_1(D_2)$, $\rho_2=\rho_2(D_2)$, $\rho_3=1$, $\rho_4=\rho_3(D_2)$
+and $|Z_3^+(D_2)|=1$.
+If requested, we can also give numerical approximations of the
+$\rho_i$ and $\beta$.
+
+All the features of the general case are present in this example. We
+now state precisely the specification of the algorithm, which we encourage
+the casual reader to skip. The input of our algorithm consists
+of~$f(z)=P(z)/Q(z)\in\Q(z)$ and an 
+integer~$p\geq1$.
+The output is the following asymptotic expansion
+of $[z^n]f(z)$: 
+\begin{equation}\label{output}
+[z^n]f(z) = \sum_{\ell=1}^p {c_\ell(n)\over\rho_\ell^n}+
+o\!\left({1\over\rho_p^n}\right),
+\end{equation}
+where
+\[
+c_\ell(n)=H_{\ell,0}(n) + (-1)^n H_{\ell,1}(n) +
+\sum_{j\geq 2} 
+\sum_{\beta\in Z_{n_{\ell,j}}^+(D_{\ell,j})}
+\sum_k{H_{\ell,j,k}(n)\over\rho_\ell^k}
+\cos[(n+k)\arg (\beta)]
+\]
+and explicit values are given for the coefficients of the
+polynomials~$H_{\ell,0}$ and~$H_{\ell,1}$~(in~$\Q(\rho_\ell)[z]$),
+$D_{\ell,j}$~(in~$\Q[z]$)
+and~$H_{\ell,j,k}$~(in~$\Q(\beta,\overline{\beta})[z]$), as well
+as for the number of elements of the~$Z^+$ involved and a definition
+of~$\rho_\ell$ either explicit or
+as~$\rho_{\ell}=\rho_{\ell'}(D_{i,j})$ for some divisor of~$Q$.
+
+In practice, the program will be able to give numerical
+approximations of the moduli and the roots implicitly defined.
+Note that, because of the trigonometric functions involved in the
+coefficients, the expansion~(\ref{output}) is not of Poincar\'e type.
+Instead, we resort to the extended definition of
+Schmidt~\cite{Schmidt36}~(see also~\cite{Dieudonne68}), according to
+which an
+asymptotic expansion is a sum of the form
+\begin{equation}\label{asympt}
+f(x)=\sum_{k=1}^p a_k(n) \cdot  f_k(n) + r(n)
+\end{equation}
+where as~$n$ tends to infinity $f_{k+1}(n)=o\left[f_k(n)\right]$,
+($1\le k\le p-1$); $r(n)=o\left[f_p(n)\right]$; and $a_k(n)$ are bounded
+functions of~$n$ that do not tend to 
+zero.
+
+
+\subsection{Main algorithm}
+Starting from the partial fraction decomposition~(\ref{decomp}),
+we need to order
+the moduli of the roots of the $D_{i,j}$ in~(\ref{expansion}) and
+find those roots that are purely real along with their signs. 
+Our algorithm is based on the resolution of the two following
+computational problems. 
+\begin{task}[Ordering the moduli] 
+Given $Q=\prod_{i,j} D_{i,j}^i$ a square-free decomposition of $Q \in
+\Q[z]$ and $p$ a non-negative integer, compute for each~$(i,j)$ and for each $k$, $1 \leq k \leq
+p$, the number of roots of $D_{i,j}$ of modulus $\rho_k(Q)$.
+\end{task}
+
+\begin{task}[Real roots and their signs]
+Given $P \in \Q[z]$ a square-free polynomial and $k$ a non-negative
+integer, compute the number $p \in \{ 0,1 \}$~(resp. $n
+\in \{ 0,1 \}$) of positive~(resp. negative) real roots of $P$ of
+modulus $\rho_k(P)$.
+\end{task}
+
+Most of the rest of this paper is devoted to algorithmic solutions to
+these tasks. Based on these, our main algorithm is as follows.
+
+\begin{alg}[Main algorithm]\label{total}
+Let $f(z)=P(z)/Q(z) \in \Q(z)$ be a rational function, with $\deg(P)<
+\deg(Q)$. Let $p$ be a non-negative integer. To compute the $p$ first
+terms of the asymptotic expansion of the coefficients of $f(z)$,
+\begin{enumerate}
+\item Compute the partial fraction decomposition~(\ref{decomp}) by Algorithm~\ref{exact}.
+\item Perform Task 1 to compute, for each~$(i,j)$ and for each $\ell, 1
+\leq \ell \leq p$ , the number $m_{i,j,\ell}$ of roots of $D_{i,j}$ of modulus
+$\rho_\ell=\rho_\ell(Q)$.
+\item Select those terms in the expansion~(\ref{decomp}) for which
+$|\alpha|\in\{\rho_1,\ldots,\rho_p\}$, and
+rewrite~(\ref{decomp}) in the form
+\begin{equation}\label{partial}
+[z^n]f(z)=\sum_{\ell=1}^p\sum_{(i,j) \atop m_{i,j,\ell} \not=0}
+\sum_{D_{i,j}(\alpha)=0 \atop |\alpha|=\rho_\ell}\sum_{k=1}^i
+{n+k-1 \choose n}
+{P_{i,j,k}(\alpha) \over 
+\alpha^{n+k}} + o\!\left({1 \over \rho_p^n} \right).
+\end{equation}
+\item Perform Task 2 to compute, for each~$(i,j)$ and for each $\ell$, $1
+\leq \ell \leq p$, the number $p_{i,j,\ell} \in \{ 0,1 \}$ (resp.
+$n_{i,j,\ell}$) of positive~(resp. negative) real roots of $D_{i,j}$ of modulus $\rho_\ell$.
+\item Rewrite relation~(\ref{partial}) in the following form which is
+exactly the sought expansion~(\ref{output}):
+\begin{eqnarray*}
+&&\hskip-1cm\sum_{\ell=1}^p
+\Biggl\{ \sum_{(i,j) \atop m_{i,j,\ell} \not=0} \biggl[
+p_{i,j,\ell}\sum_{k=1}^i
+{n+k-1 \choose n}{P_{i,j,k}(\rho_\ell)\over\rho_\ell^k}
++(-1)^nn_{i,j,\ell}\sum_{k=1}^i 
+{n+k-1 \choose n}
+{P_{i,j,k}(-\rho_\ell)\over(-\rho_\ell)^k}\\
+&&\hskip-0.5cm+\sum_{D_{i,j}(\rho_\ell e^{i \theta})=0 \atop \sin\theta>0}
+\biggl( \sum_{k=1}^i 
+{n+k-1 \choose n}
+\left( P_{i,j,k}(\rho_\ell e^{i\theta}) + P_{i,j,k}(\rho_\ell e^{-i \theta}) 
+\right)
+{\cos[(n+k)\theta]\over\rho_\ell^k}\biggr)\biggr] \Biggr\}
+{1 \over \rho_\ell^n} 
++o\!\left({1 \over \rho_p^n}
+\right).
+\end{eqnarray*}
+\end{enumerate}
+\end{alg}
+
+\section{The algebraic method}
+To complete our main algorithm, there still remains to exhibit
+algorithms that perform Tasks~1 and~2. We describe in this section how
+this can be done purely algebraically. We rely principally on three
+tools:
+\begin{itemize}
+
+\item[(1)] a method to order real algebraic numbers due to M.~Coste
+and M.-F.~Roy~\cite{CoRo88}, based on Sturm sequences;
+
+\item[(2)] a resultant computation that, given two polynomials~$P$ and~$Q$
+produces a polynomial~$P\otimes Q$ whose
+roots are the pairwise products of the roots of~$P$ and~$Q$. In
+particular the smallest non-negative real root of~$P\otimes P$ is the square
+of~$\rho_1(P)$ the smallest modulus of the roots of~$P$;
+
+\item[(3)] the Graeffe process: ${\cal G}_k(P)$ has for roots
+the~$k$th power of the roots of~$P$;
+
+\item[(4)] the construction of a polynomial~${\cal P}_k(P)$ whose
+roots are the products~$\alpha_{i_1}\cdots\alpha_{i_k}$
+for~$i_1<\cdots<i_k$, the~$\alpha_i$'s being the roots of~$P$.
+\end{itemize}
+
+Using~(1) and~(2) we can compare the smallest moduli~$\rho_1(P)$
+and~$\rho_1(Q)$ of the roots of two polynomials~$P$ and~$Q$. This will
+be done in Section~\ref{2.1.1}. Using~(2) and~(3), we can produce the
+polynomials~${\cal P}_k(P)$ the modulus of the smallest root of which
+is~$|\alpha_1|\cdots|\alpha_k|$. This in turn enables
+us to compare any pair of moduli~$\rho_i(P)$ and~$\rho_j(Q)$ as will
+be shown in Section~\ref{2.1.2}.
+
+Note that other methods than Coste-Roy's algorithm are known to
+compare real algebraic numbers~(see, e.g.~\cite{Rioboo92}). One of the
+reasons for our choice is that the complexity of Coste-Roy's algorithm
+is known~\cite{RoSz88}.
+
+The polynomials mentioned above are computed by the formulas:
+\[P\otimes Q(y)=\hbox{Resultant}_z\!\left(P(z),z^{\deg(Q)}Q(y/z)
+\right),\quad
+{\cal G}_k(P)(z^k)=\prod_{j=0}^{k-1} P(e^{2ij\pi/k}z),\]
+\begin{equation}\label{pk}
+\forall k,\ 1\leq k\leq n,\qquad \left[ {\cal P}_k(P) \right]^k = { \displaystyle{
+\prod_{i=0}^{\lfloor (k-1)/2 \rfloor} {\cal P}_{k-(2i+1)}(P)
+\otimes {\cal G}_{2i+1} (P)} \over \displaystyle{
+\prod_{i=1}^{\lfloor k/2 \rfloor} {\cal P}_{k-2i}(P)
+\otimes {\cal G}_{2i} (P)}},
+\end{equation}
+where by convention we set~${\cal P}_0(P)(z)=z-1$. Apart from
+the last one, these polynomials are well known. That the last
+polynomial has the roots we expect is not
+difficult to check. All these polynomials have coefficients in the
+same field as~$P$ and~$Q$.
+
+\subsection{Sorting the moduli}
+Given the polynomial~$Q$, its factors~$D_{i,j}$ and an integer $p$, we
+need to determine the number of roots of each factor belonging
+to~$Z_k(Q)$, $1\le k\le p$. To simplify our description, we first
+concentrate on the case $p=1$, corresponding to the first order
+estimate of the asymptotic expansion.
+\subsubsection{First order estimate}
+\label{2.1.1}
+In this case~($p=1$), our task can be
+performed in polynomial time in the degree of~$Q$ by 
+Algorithm~\ref{smallest} below~(which is an extension of an
+algorithm communicated to us by~M.-F.~Roy, taking into account
+multiplicities). We first describe an algorithm to compute the number
+of roots of smallest modulus of a polynomial.
+
+\begin{alg}[Number of roots of smallest modulus]\label{algo3}
+Let $P \ \in \ \Q[z]$.
+\begin{enumerate}
+\item\label{step1} Compute~$P_1P_2^2 \cdots P_n^n$ the square-free
+decomposition of~$P\otimes P$.
+\item Using Coste-Roy's algorithm, find $i_0$ such that $P_{i_0}$ has the
+smallest non-negative real root.
+\item Then $|Z_1(P)|=i_0$.
+\end{enumerate}
+\end{alg}
+\begin{proof}
+By construction, the smallest non-negative real root of $P\otimes P(z)$ is
+$\rho_1^2(P)$. Moreover, its order of multiplicity is
+the number of roots of $P$ of smallest modulus.
+Computing  square-free decompositions in Step~\ref{step1} ensures that
+only one of the polynomials $P_i$ has the smallest non
+negative real root.
+\end{proof}
+
+\begin{alg}[Smallest moduli comparison]\label{smallest}
+Let $P$ and $Q \in \Q[X]$. 
+\begin{enumerate}
+\item Compute $P_{i_0}$ and~$Q_{j_0}$ as in Algorithm~\ref{algo3}.
+Their smallest non-negative real roots are~$\rho_1^2(P)$
+and~$\rho_1^2(Q)$.
+\item Applying Coste-Roy's algorithm to~$P_{i_0}$ and~$Q_{j_0}$,
+compare~$\rho_1^2(P)$
+and~$\rho_1^2(Q)$.
+\item  The number of roots of~$P$~(resp. $Q$) of
+modulus~$\rho_1(PQ)=\min(\rho_1(P),\rho_1(Q))$ is given by $i_0$
+(resp. $j_0$) if~$\rho_1(PQ)$ is equal to~$\rho_1(P)$
+(resp.~$\rho_1(Q)$), and 0 otherwise.
+\end{enumerate}
+\end{alg}
+\begin{proof} This algorithm works for the same reason as
+Algorithm~\ref{algo3}.
+\end{proof}
+
+Applying this algorithm to the polynomials $D_{i,j}$ and~$Q$ gives the
+result we are after. Task 1 is therefore solved for $p=1$. 
+>From the complexity estimates in~\cite{RoSz88}, it follows that
+the complexity of Algorithm~\ref{smallest}
+is~$O(n^{20}(n+\log|P|+\log|Q|)^2)$, where $n = \max(\deg(P), \deg(Q))$
+and
+$|P|$ denotes the sum of the absolute values of the coefficients
+of the polynomial~$P$.
+
+\subsubsection{Ordering the $p$ smallest moduli}
+\label{2.1.2}
+
+We now want to compute for each~$k$, $1\le k\le p$ and each~$(i,j)$,
+the number of roots of~$D_{i,j}$ of modulus~$\rho_k(Q)$.
+Although all the
+$|\alpha_i|^2$ are roots of $P\otimes P$, Algorithm~\ref{smallest}
+does not generalize well because in
+general~$P\otimes P$  has other non-negative real roots.
+We first give a generalization of Algorithm~\ref{algo3}.
+
+\begin{alg}[Number of roots of a given modulus]\label{algo4}
+Let $P \in \Q[z]$. Given an integer~$q\ge1$, and~$m_i=|Z_i(P)|$,
+for~$1\le i\le q$, such that~$m_1+\cdots+m_q<\deg(P)$, 
+ to compute~$m_{q+1}=|Z_{q+1}(P)|$, apply Algorithm~\ref{algo3} to the
+polynomial~$\widehat{P}={\cal P}_{m_1+\cdots+m_q+1}(P)$.
+\end{alg}
+\begin{proof}
+If $P(z)=\prod_i (z-\alpha_i)$, then by~(\ref{pk}) we have
+$\widehat{P}=\prod_{i_1<\cdots<i_{k+1}}(z-\alpha_{i_1}\cdots\alpha_{i_{k+1}})$,
+where $k=m_1+m_2+\cdots+m_q$. Since~$|\alpha_1|=\cdots=|\alpha_{m_1}|<
+|\alpha_{m_1+1}|=\cdots=|\alpha_{m_1+m_2}|< \cdots
+<|\alpha_{k+1}|=\cdots=|\alpha_{k+m_{q+1}}| < \cdots$,
+the roots of smallest modulus of~$\widehat{P}(z)$ 
+are
+$\alpha_{k+j}\prod_{i=1}^k \alpha_i$, $1 \leq j \leq
+m_{q+1}$.
+\end{proof}
+
+\noindent We can now give the generalization of Algorithm~\ref{smallest}:
+\begin{alg}[$(q+1)${st} smallest moduli comparison]\label{algo5}
+Let $P$ and $Q$ $\in\ \Q[z]$. Given an integer~$q\ge1$ and~$m_i$
+(resp.~$n_i$) the number of roots of~$P$ (resp.~$Q$) of
+modulus~$\rho_i(PQ)$ for~$1\le i\le q$, such
+that~$(m_1+\cdots+m_q)+(n_1+\cdots+n_q)<\deg(P)+\deg(Q)$, 
+to find the number $m_{q+1}$ (resp. $n_{q+1}$) of
+roots of $P$ (resp. $Q$) of modulus $\rho_{q+1}(PQ)$,
+\begin{itemize}
+\item[--] If $m_1+\cdots+m_q=\deg(P)$ (resp.
+$n_1+\cdots+n_q=\deg(Q)$), then $m_{q+1}$ (resp. $n_{q+1}$) is~0 and
+$n_{q+1}$ (resp. $m_{q+1}$) is
+given by Algorithm~\ref{algo4}.
+\item[--] Otherwise, these values are obtained by applying
+Algorithm~\ref{smallest} to
+$\widetilde{P}=
+{\cal P}_{m_1+\cdots+m_q+1}(P)\otimes{\cal P}_{n_1+\cdots+n_q}(Q)$
+and $\widetilde{Q}=
+{\cal P}_{n_1+\cdots+n_q+1}(Q)\otimes{\cal P}_{m_1+\cdots+m_q}(P)$.
+\end{itemize}
+\end{alg}
+\begin{proof}
+The first part is obvious. Denote by~$\alpha_i$ the roots of~$P$ and
+by~$\beta_j$ the roots of~$Q$. Let~$M_p$ be the number of roots of~$P$ whose
+modulus is the smallest~$\rho_i(P)$ strictly greater than~$\rho_q(PQ)$
+and define similarly~$M_q$. The second part follows from noticing that
+the polynomial~$\widetilde{Q}$ has been built so that it has $M_q$ roots
+of smallest modulus, namely
+$\beta_k\prod_{i=1}^{m_1+\cdots+m_q}{\alpha_i}
+\prod_{j=1}^{n_1+\cdots+n_q}{\beta_j}$,
+$n_1+\cdots+n_q+1 \leq k \leq n_1+\cdots+n_q+M_q$. Writing similarly
+the~$M_p$ roots of smallest modulus of~$\widetilde{P}$, one deduces the result.
+\end{proof}
+
+By induction on $p \geq 1$, using Algorithm~\ref{algo5}, it is now easy to
+find for each~$(i,j)$ 
+the number of roots of $D_{i,j}$ of modulus $\rho_1(Q), \rho_2(Q),
+\ldots \rho_p(Q)$ with $Q=\prod_{i,j} D_{i,j}^i$. Task 1 is thus solved.
+
+Because $k=m_1+\cdots+m_q$ can take any value between $1$ and
+$n$, and since the degree of ${\cal P}_{m_1+\cdots+m_q}$ is~$n \choose k$,
+ Algorithm~\ref{algo5} runs in exponential time as soon as
+$p \geq 2$.
+\subsection{Finding the real roots}
+We now attack Task 2: given an integer $k$, $1 \leq k \leq p$,
+we want to find for 
+each $D_{i,j}$ the number and the sign of the real roots of $D_{i,j}$
+of modulus $\rho_k(Q)$. The following algorithm solves this problem.
+
+\begin{alg}[Real roots and their sign]\label{algo6}
+Let $P \in \Q[z]$ be a square-free polynomial. 
+Given an integer $q$, the number~$m_i=|Z_i(P)|$ and  the number
+$n_i \in \{ 0,1 \}$ of real negative 
+roots of $P$ of modulus $\rho_i(P)$ for $1\le i\le q$, with
+$m_1+\cdots+m_q<\deg(P)$; to compute the number $p_{q+1} \in
+\{ 0,1\}$ (resp. $n_{q+1}$) of real positive (resp. negative) roots of
+$P$ of modulus $\rho_{q+1}(P)$,
+\begin{enumerate}
+\item Compute the polynomial $\widehat{P}= {\cal
+P}_{m_1+\cdots+m_q+1}(P)$ and $m_{q+1}$ by Algorithm~\ref{algo4}.
+\item If $m_{q+1}$ is odd, then $P$ has exactly one real root of
+modulus $\rho_{q+1}$. To find its sign, compare the smallest positive
+real roots $r$ of $\widehat{P}(z)$ and $\rho$ of $\widehat{P}(-z)$ by
+Coste-Roy's algorithm. If~$r>\rho$ or if $\widehat{P}(z)$ has no 
+positive real roots, then $p_{q+1} \equiv n_1+\cdots+n_q \pmod{2}$
+and $n_{q+1} \equiv 1+n_1+\cdots+n_q \pmod{2}$. Otherwise, either~$\rho>r$ or 
+$\widehat{P}(-z)$ has no positive real roots, and then $p_{q+1} \equiv
+1+n_1+\cdots+n_q \pmod{2}$ and $n_{q+1} \equiv n_1+\cdots+n_q
+\pmod{2}$.
+\item If $m_{q+1}$ is even, compute
+$R(z^2)=\gcd(\widehat{P}(z),\widehat{P}(-z))$. If its degree is~0 then
+$p_{q+1}=n_{q+1}=0$, otherwise use Coste-Roy's algorithm to compare
+the smallest positive real roots $r$ of $R$ and $\rho$ of $\widehat{P}
+\otimes \widehat{P}$.
+If $R$ has no positive real roots, then
+$p_{q+1}=n_{q+1}=0$.
+If $r=\rho$ then $p_{q+1}=n_{q+1}=1$.
+Otherwise we must have $r > \rho$ and so
+$p_{q+1}=n_{q+1}=0$.
+\end{enumerate} 
+\end{alg}
+\begin{proof} First, note that $P$ being square-free, $p_{q+1} \in \{
+0,1 \}$ and $n_{q+1} \in \{ 0,1 \}$.
+Let $P=\prod_i(z-\alpha_i)$. 
+The roots of $P$ being either real or coming by pairs of conjugates, the number
+$M=\prod_{i=1}^{m_1+\cdots+m_q} \alpha_i$ is real and its sign
+is the sign of~$(-1)^{n_1+\cdots+n_q}$. The polynomial~$\widehat{P}$
+has $m_{q+1}$ 
+roots of smallest modulus, namely
+\begin{equation}\label{smallestr}
+M \cdot \alpha_i, \qquad  m_1+\cdots+m_q+1 \leq i \leq
+m_1+\cdots+m_q+m_{q+1},
+\end{equation}
+so that if $m_{q+1}$ is odd, then $P$ has exactly one real root of
+modulus $\rho_{q+1}(P)$ and $\widehat{P}(z)$  has
+only one real root of smallest modulus. Step 2 is now obvious.
+
+When $m_{q+1}$ is even, either $p_{q+1}=n_{q+1}=0$ or
+$p_{q+1}=n_{q+1}=1$ for conjugacy reasons. The roots of
+$R(z^2)$ are the roots $\alpha$ of $\widehat{P}$ such that
+$-\alpha$ is also a root of $\widehat{P}$. Thus
+if $\deg(R)=0$ we cannot have $p_{q+1}=n_{q+1}=1$ because
+of~(\ref{smallestr}) . Otherwise, 
+the smallest positive real root of $R$ is the square of the smallest
+real root $\beta$ of $\widehat{P}$ such that $-\beta$ is also a root
+of $\widehat{P}$. The
+smallest positive real root of $\widehat{P}\otimes\widehat{P}$ being the
+square of the moduli of the roots~(\ref{smallestr}), Step~3 is
+now clear.
+\end{proof}
+
+For the same reasons as
+Algorithm~\ref{algo5}, Algorithm~\ref{algo6} runs in exponential time
+as soon as $p \geq 2$.
+
+Tasks 1 and~2 have been solved, and we are now able to give the
+asymptotic expansion of the coefficients of a rational function by
+Algorithm~\ref{total}. 
+
+\section{The numerical method}
+In the last section, we solved Tasks~1 and~2 
+using only algebraic tools, which is currently the most natural
+solution to our problem from the computer algebra point of view.
+We shall now present an alternative method showing that numerical
+tools can be used reliably to perform our task in polynomial time.
+We only need to order the moduli of the roots of a polynomial and find
+which of them are real. Although there exists algorithms which achieve these
+tasks~(for instance, we could use Graeffe's method to approximate the
+moduli of the roots  of $Q$),
+it is cheaper to find directly all the roots of $Q$ with a
+sufficiently sharp bound on their errors.
+Our numerical method will depend on a
+complex root finding algorithm, that we first describe briefly.
+
+\subsection{A root finding algorithm}
+We want to find the complex roots of a polynomial with rational
+coefficients with arbitrary precision. Numerous algorithms exist to achieve
+this task, but only few of them are reliable. Newton's method does
+not always converge; Traub and Jenkins' method~\cite{JeTr70}, usually
+used for root finding in computer algebra systems, converges
+theoretically but it turns out that
+precision control is badly handled in practical implementations.
+Besides, its complexity is not known to be polynomial. We 
+present here a root finding algorithm for which the
+precision control has been carefully studied. 
+In the following,
+$|P|=\sum_i |a_i|$ denotes the norm of the polynomial
+$P=a_0+\cdots+a_n z^n$.
+An immediate consequence of a theorem from~\cite{Pan87} is
+the following result.
+\begin{proposition}[Pan]\label{Pan}
+Let $P \in \C[z]$ be a monic polynomial, $n=\deg(P)>0$. All the
+zeros of $P$ can be computed with absolute error $\epsilon>0$
+using $O\left[n^2 \log n (n \log(n) + \log(|P|/\epsilon)) \right]$
+arithmetic operations.
+\end{proposition}
+Unfortunately, the constant term in front of the time bound is very high
+and therefore the result seems to be only of theoretical importance.
+For instance, this 
+algorithm relies on FFT techniques, which makes it efficient only for very
+large degrees.
+
+\subsection{Necessary precision}
+The reason why we can rely on numerical methods to solve our task is that
+two different roots of a polynomial with integer coefficients cannot
+be too close. The
+following result~\cite{Mahler64} makes this precise.
+\begin{proposition}[Mahler]
+Let $P(z)=a_0+a_1 z+\cdots +a_n z^n =a_n \prod_{i=1}^n (z-\alpha_i)$
+be a polynomial of degree $n>0$ with integer coefficients. 
+Then 
+$$\alpha_i \not = \alpha_j\quad\Longrightarrow\quad|\alpha_i-\alpha_j| \geq \sqrt{3} n^{-(n+2)/2}
+M(P)^{1-n},$$
+where $M(P)=|a_n| \prod_{i=1}^n \max(1,|\alpha_i|)$.
+\end{proposition}
+>From this we deduce the following theorem.
+\begin{th}\label{th1}
+Let $P(z)$ be a polynomial with integer coefficients, $n=\deg(P)>0$ and
+$\alpha_1,\ldots,\alpha_n$  its roots. Define~$\kappa(P)$ to be
+the following quantity
+\begin{equation} \label{kappa}
+\kappa(P)= { \sqrt{3} \over 2} \left[ n(n+1)/2 \right]^{- [ n(n+1)/4
++1 ]} \cdot M(P)^{-n(n^2+2n-1)/2},
+\end{equation}
+then
+$|\alpha_i| \not= |\alpha_j|\Longrightarrow\bigl|
+|\alpha_i|-|\alpha_j| \bigr| \geq \kappa(P)$ and
+$|\Im(\alpha_i)|$ is either 0 or larger than $\kappa(P)$.
+\end{th}
+\begin{proof}
+Let $C$ be the leading coefficient of $P$. We first prove that
+the polynomial $Q(z)=C^{n+1} \prod_{i \leq j} (z-\alpha_i \alpha_j)$ has
+integer coefficients. We can suppose that the polynomial $P$ is
+primitive, i.e. the gcd of its coefficients is~1. The polynomial
+$P\otimes P$ has for roots $\alpha_i \alpha_j$, $1
+\leq i,j \leq n$, its coefficients are integers, and from classical
+results on the resultant algorithm, 
+its leading coefficient is 
+$C^{2n}$. Since the polynomial ${\cal G}_2(P)(z)=C^2\prod_i
+(z-\alpha_i^2)$ has integer coefficients, 
+is primitive and divides $P\otimes P$, we deduce
+that the quotient $C^{2(n-1)} \prod_{i \not = j} (z-\alpha_i
+\alpha_j)=[C^{n-1}\prod_{i<j}(z-\alpha_i \alpha_j)]^2$ has integer
+coefficients and therefore, so has its square root.
+Finally~$Q(z)$ is the product of this polynomial by~${\cal G}_2(P)(z)$
+which implies it
+has integer coefficients.
+
+Next, let $x$ and $y$ be two distinct roots of $Q$. Since~$M(Q)\le
+M(P)^{n+1}$, Mahler's
+result applied to~$Q$ yields
+\begin{equation}\label{minoration}
+|x-y| \geq \gamma=\sqrt{3} \left[ n(n+1)/2 \right]^{-[n(n+1)/4 +1]}
+M(P)^{(n+1)(1-n(n+1)/2)}.
+\end{equation}
+\par If $\alpha_i$ and $\alpha_j$ are roots of $P$ with distinct
+moduli, then $|\alpha_i|^2$ and $|\alpha_j|^2$ are two distinct
+roots of $Q$ and we have $\bigl||\alpha_i|^2-|\alpha_j|^2\bigr| \geq \gamma$,
+hence $\bigl||\alpha_i|-|\alpha_j|\bigr| \geq
+\gamma/(|\alpha_i|+|\alpha_j|)$. As $|\alpha_i|$ and $|\alpha_j|$ are
+smaller than $M(P)$, we finally deduce
+$$ \bigl||\alpha_i| -|\alpha_j|\bigr|  \geq {\gamma \over 2
+M(P)}=\kappa(P).$$
+The last part of the theorem can be derived analogously from
+the inequality $|\alpha_i \overline{\alpha_i} - \alpha_i^2| \geq \gamma$.
+\end{proof}
+
+A sharper lower bound on $|\Im(\alpha_i)|$ can be derived
+by considering only the polynomial $P$. We do not need this sharper bound
+since we need to compute the roots with an absolute error $\kappa(P)$
+to sort their moduli.
+
+\subsection{Numerical algorithm}
+Using these results, we now give an algorithm
+which performs reliably  Tasks~1 and~2 by purely numerical methods.
+
+\begin{alg}[Numerical] \label{numerical}
+Let $Q=\prod_{i,j} D_{i,j}^i$ be a square-free decomposition of the
+polynomial $Q$. Our aim
+is to compute, for each~$(i,j)$ and for each $q$
+the number of roots of $D_{i,j}$ of modulus $\rho_q(Q)$ and
+the number of these that are real
+along with their signs.
+\begin{enumerate}
+\item For each~$(i,j)$, compute the number $\gamma_{i,j}= \inf_{(k,\ell)
+\not=(i,j)} \gamma(D_{i,j}D_{k,\ell})$ where $\gamma(D_{i,j}D_{k,\ell})$ is
+defined by $$\gamma(D_{i,j}D_{k,\ell})={\sqrt{3} \over 2}
+[d(d+1)/2]^{-[d(d+1)/4+1]}\cdot |Q|^{-d(d^2+2d-1)/2},$$
+with $d=\deg(D_{i,j})+\deg(D_{k,\ell})$. (Take~$D_{k,\ell}=1$ if~$D_{i,j}$ is
+the only polynomial).
+\item Using Pan's Algorithm~\cite{Pan87}, compute for each~$(i,j)$ the roots of the polynomial $D_{i,j}$ with an absolute error
+$\epsilon_{i,j} = \gamma_{i,j}/4$.
+\item Let $\alpha$ be a root of $D_{i,j}$, $\beta$ a root of
+$D_{k,\ell}$, $\hat{\alpha}$
+and $\hat{\beta}$ their approximations found at Step 2. If
+$\bigl||\hat{\alpha}|-|\hat{\beta}|\bigr|< \gamma_{i,j}/2$, then 
+$|\alpha|=|\beta|$, else the inequality between $|\alpha|$ and $|\beta|$ is
+given by the inequality between $|\hat{\alpha}|$ and $|\hat{\beta}|$. 
+This way, all the moduli of the roots of $Q$ are sorted.
+\item Let $\alpha$ be a root of some $D_{i,j}$. If its approximation
+$\hat{\alpha}$ satisfies $|\Im(\hat{\alpha})| > \gamma_{i,j}/2$, then
+$\alpha$ is not real. Otherwise $\alpha$ is real, and its sign is given
+by the sign of $\Re({\hat{\alpha}})$.
+\end{enumerate} 
+\end{alg}
+\begin{proof}
+The validity of this algorithm results from Theorem~\ref{th1} applied to each
+of the polynomials $D_{i,j}D_{k,\ell}$ and $D_{i,j}$, and from the inequalities:
+$$(i,j)\not =(k,\ell)\quad\Longrightarrow\quad  M(D_{i,j}D_{k,\ell}) \leq M(Q) \leq |Q|,$$
+$$\forall (i,j),\qquad M(D_{i,j}) \leq M(Q) \leq |Q|.$$ 
+ The inequality $M(Q) \leq |Q|$ is due to Mahler~\cite{Mahler60}.
+In Step 4, the fact that the sign of $\alpha$ (when $\alpha$ is real) is
+the sign of $\Re(\hat{\alpha})$ results from the inequality 
+$|\alpha| \geq \gamma_{i,j}$. (This latter inequality can be derived,
+for example, from the inequality $|\alpha| \geq 1/ M(D_{i,j})$ which
+is easily proved).
+\end{proof}
+\begin{property}\label{complexity}
+Algorithm~\ref{numerical} runs in time $ O\left[ n^5 \log n  \log |Q|  \right]$
+where $n$ is the degree of $Q$.
+\end{property}
+\begin{proof}
+Apply Theorem~\ref{th1} to each of the polynomials $D_{i,j}$
+with $\epsilon=\epsilon_{i,j}$.
+\end{proof}
+
+\section{Optimizations} 
+In the last two sections, we presented two methods that achieve Tasks~1
+and~2. In practice, these two methods are awfully expensive. We
+present here another algorithm, which works on most
+of the rational functions, and which is  much quicker. Another
+advantage of this new algorithm is that we can know whether it works
+or not. When it does
+not, then we can revert  to one of the previous methods.
+This method is essentially numerical. We  compute approximations of
+the roots of $Q(z)$ using a root finding algorithm, with a relatively crude
+absolute error~(compared to what it was in the previous section). In
+most cases though, everything can be deduced from these estimates.
+
+In~\cite{Schonhage82}, A.~Sch\"onhage gave a root finding algorithm and
+demonstrated the following result.
+\begin{th}[Sch\"onhage] Let $P \in \C[z]$ be a monic polynomial,
+$n=\deg(P)$, and
+$\epsilon>0$. We can compute $n$ complex numbers $v_1,\cdots,v_n$ such
+that
+\begin{equation} \label{Sch}
+|P-(z-v_1)\cdots (z-v_n)|<\epsilon
+\end{equation}
+within the time bound of $O\left[ (n^3\log(n)+\log(|P|/\epsilon) n^2)
+\log(n \log(|P|/\epsilon)) \log \log(n \log(|P|/\epsilon))\right].$
+\end{th}
+Although this bound seems slightly weaker than the previous one in
+Proposition~\ref{Pan}, this one is in terms of bit complexity.
+Note that this algorithm does not approach directly
+the roots with an absolute precision $\epsilon$. But from
+inequality~(\ref{Sch}) one can  derive absolute error bounds on the
+roots of $P$. This algorithm was optimized by Gourdon~\cite{Gourdon92} who
+implemented 
+it in {\sc Maple}; the program gives the right result in a reasonable
+time. We shall rely on this method to approximate roots of
+polynomials.
+\par Let $Q(z)=\prod_{i,j} D_{i,j}^i$ be a
+square-free decomposition of the polynomial $Q$.
+Using Sch\"onhage's algorithm, we compute for each~$(i,j)$
+approximations $\hat\alpha_1,\ldots,\hat\alpha_p$ of the roots of
+$D_{i,j}$ such that $|D_{i,j}(z)-\prod_k (z-v_k)|<\epsilon$ (we
+can assume $D_{i,j}$ monic), with $\epsilon=10^{-n}$, where
+$n=\deg(Q)$.
+We have already seen that from this we can compute for each root $\alpha_k$ of
+$D_{i,j}$ an absolute error bound $\tau_k>0$ such that
+$|\hat\alpha_k -\alpha_k|<\tau_k$.  Suppose that 
+ the absolute  bounds $\tau_k$ determine
+which roots are conjugates, which roots are real and what their sign is.
+To achieve Tasks~1 and~2, it then remains to compare the moduli of the
+non-conjugate roots. If again, the absolute error bounds $\tau_k$
+make it possible to decide these comparisons, then we have finished. Otherwise,
+we have a certain number of couples of non-conjugates and distinct
+roots~$(\alpha,\beta)$ of $Q$ such that, if $\hat{\alpha}$ and
+$\hat{\beta}$ are the approximations of $\alpha$ and $\beta$ found and
+$\tau$ and $\tau'$ the absolute error bounds found for these
+approximations, $\bigl||\hat{\alpha}|-|\hat{\beta}|\bigr|<\tau+\tau'$. We call
+these couples candidates. In this case, we use 
+Algorithm~\ref{test}~(see below) to test the equality of the moduli of the
+candidates. If all the candidates have the same modulus~(this is often the
+case), then we have solved Tasks~1 and~2. Else, this algorithm
+failed and we use one of the previous methods discussed in Sections~2
+and~3. The underlying idea is that it is very unlikely that two
+non-real roots of distinct moduli have the same argument.
+
+\begin{alg}[Equality of candidates]\label{test}
+Let $P=\prod_{i=1}^n (z-\alpha_i)$ be a
+square-free polynomial $\in \Q[z]$.
+We are given
+approximations $\hat\alpha_i$,
+absolute error bounds $\tau_i$ such that  
+$|\hat\alpha_i-\alpha_i|<\tau_i$,
+and for each~$j$, $1 \leq j \leq n$, the number~$s_j$ of elements of the set
+$ \Gamma_j=\left\{ i,
+\bigl||\hat\alpha_i|-|\hat\alpha_j|\bigr|<\tau_i+\tau_j\right\}$.
+\begin{enumerate}
+\item Compute the square-free decomposition
+$P\otimes P=P_1P_2^2\cdots P_r^r$.
+\item By Sturm sequences~\cite{Sturm35}, compute for each $k$ the
+number $m_k$ of non-negative real roots of $P_k$.
+\item If (a) $m_1+2m_2+\cdots+rm_r=n$, (b) for all~$(i,j)$, either
+$\Gamma_i \cap \Gamma_j=\varnothing$ 
+or $\Gamma_i = \Gamma_j$, (c) for all $\ell$, $\ell m_\ell=
+\left|\cup_{s_i=\ell} \Gamma_i \right|$,
+then for all~$j$, all the elements of\/ $\Gamma_j$ have the same modulus.
+\end{enumerate}
+\end{alg}
+\begin{proof} Since $P\otimes P=\prod_{i,j} (z-\alpha_i
+\alpha_j)$, the $|\alpha_i|^2$ are roots of it. If
+$m_1+2m_2+\cdots+rm_r=n$, then these are its only positive roots. The
+result is now obvious.
+\end{proof}
+
+\section{Examples}
+
+\paragraph{Denumerants}~\cite[p.~108]{Comtet74}: the  number of ways to make~$n$
+francs  with coins of~1, 2,   5,   and 10 francs  has  for  generating
+function      \[f(z)={1\over(1-z)(1-z^2)(1-z^5)(1-z^{10})}.\]     The
+ten singularities have  the same  modulus,  but~1 being a
+singularity of order~4 is isolated in the decomposition~(\ref{decomp})
+produced by Algorithm~\ref{exact}:
+\begin{eqnarray*}
+&&{1/100\over(1-z)^4}+{7/100\over(1-z)^3}+{91/400\over(1-z)^2}+
+{21/50\over1-z}+\sum_{\beta^4-\beta^3+\beta^2-\beta+1=0}{
+4\beta^3-3\beta^2+2\beta-6\over100(\beta-z)}\\
+&&\quad+\sum_{\alpha^5+2\alpha^4+2\alpha^3+2\alpha^2+2\alpha+1=0}{
+{17\alpha^4+9\alpha^3+17\alpha^2+\alpha+1\over2000(z-\alpha)^2}+
+{\alpha^4-27\alpha^3-14\alpha^2-33\alpha+3\over500(z-\alpha)}}.
+\end{eqnarray*}
+>From this we deduce easily the first terms of the asymptotic expansion
+of~$[z^n]f(z)$:
+$${n^3 \over 600}+{9n^2\over200}+
+\left({421\over1200}+{(-1)^n\over80}-
+\!\!\!\!\sum_{\alpha\in Z_1^+(z^4+z^3+z^2+z+1)}\!\!\!\!{\alpha^3+
+\overline\alpha^3+2(\alpha+\overline\alpha)+4\over250}
+\cos[(n+2)\arg(\alpha)]\right)n+O(1).$$
+
+\paragraph{Sum of powers of Fibonacci numbers} Since
+rational  functions~(when they  are  regular at  infinity)  are closed
+under  Hadamard  product, and  the sum of  a sequence  is obtained  by
+multiplying its generating function by~$1/(1-z)$, many operations that
+can be applied  to a  linear recurrent  sequence  yield another linear
+recurrent sequence.  We consider here~$\sum_{k=1}^n{F_k^p}$. It is not
+difficult~(tedious, rather) to   show  that  the  generating  function
+of~$F_n^p$ has the following expression for fixed~$p$:
+\begin{eqnarray*}
+  &&5^{1-p\over2}\sum_{k=0}^{p-1\over2}{{p\choose k}F_{p-2k}z\over
+    1-(-1)^kL_{p-2k}z-z^2},\quad\hbox{if $p$ is odd;}\\
+  &&5^{-p/2}\left[\sum_{k=0}^{{p\over2}-1}{{p\choose k}(-1)^k{
+      2-(-1)^kL_{p-2k}z\over1-(-1)^kL_{p-2k}z+z^2}+
+    {(-1)^{p/2}{p\choose p/2}\over1-(-1)^{p/2}z}}\right],
+  \quad\hbox{if $p$ is even;}
+\end{eqnarray*}
+where~$L_n$ denote the   Lucas  numbers.  From this  we  construct the
+generating function of  the sum  of  the tenth powers of the Fibonacci
+numbers, which we give in compact form to our algorithm: 
+\begin{small}
+\[\frac{z^9-87\,z^8-4047\,z^7+42186\,z^6+205690\,z^5+42186\,z^4-4047\,
+z^3-87\,z^2+z}{z^{11}\!-\!89z^{10}\!-\!4895z^9\!+\!83215z^8\!+\!582505z^7\!-\!
+1514513z^6\!-\!1514513z^5\!+\!582505z^4\!+\!83215z^3\!-\!4895z^2\!-\!89z\!+\!1}.\]
+\end{small}
+The first stage of the algorithm produces the decomposition 
+$f(z)=\sum_{Q(\alpha)=0}{P(\alpha)/(\alpha-z)}$,
+where~$Q$ is the denominator of~$f$ and~$P$ is the following polynomial:
+\begin{small}
+\begin{eqnarray*}
+P(z)=&&
+-{\frac {1088331670771}{46065550781250000}}
++{\frac {147618897967}{128854687500000}}\,z
++{\frac {25161090223051}{98535937500000}}\,z^2
++{\frac {473498073791}{4692187500000}}\,z^3\\
+&&-{\frac {48654728411}{541406250000}}\,z^4
++{\frac {178616503}{8789062500}}\,z^5
+-{\frac {2060862361}{541406250000}}\,z^6
+-{\frac {4685959559}{ 4692187500000}}\,z^7\\
+&&+{\frac {383607377}{7579687500000}}\,z^8
++{\frac {1645213621}{1675110937500000}}\,z^9
+-{\frac {496515521}{46065550781250000}}\,z^{10}.
+\end{eqnarray*}
+\end{small}
+This decomposition implies that all the singularities are simple
+poles. The next stage of the 
+algorithm is to determine the number of real and complex roots of each
+modulus for the first moduli of the roots. This is done by a numerical
+evaluation of the roots with error bound~$10^{-4}$ which shows that
+all the roots 
+are real, and yields their signs. For instance, the three first terms
+of the expansion are
+$$[z^n]f(z)= {P(\rho_1)\over  \rho_1^{n+1}} + (-1)^{n+1}{ P(-\rho_2)
+\over \rho_2^{n+1}} + {P(\rho_3) \over \rho_3^{n+1}} + o \left( {1
+\over \rho_3^n }\right),$$
+with~$\rho_1\simeq0.00812$, $\rho_2\simeq0.0212$
+and~$\rho_3\simeq0.0753$.
+
+\paragraph{A large problem} This combinatorial problem was considered
+in~\cite{Conway87}.  Starting with~1, we write down a sequence of
+words  by counting the  number  of contiguous identical digits  in the
+previous word.  Thus the second word  is~11 because there  is one~1 in
+``1''.   Then we have two~1s,  hence the third word  is 21, and so on.
+The  first   few words are:   1,  11,    21,   1211,   111221, 312211,
+13112221,\,\ldots  We then consider the  sequence  of lengths of these
+words: 1, 2,  2, 4, 6, 6, 6,  8,\,\ldots\,.  What happens is that this
+sequence   is   rational    of     degree~72!    From   the      table
+in~\cite[pp.~177--178]{Conway87}, it is possible to compute this
+fraction by solving a linear system. The numerator is found to be
+\begin{small}
+\begin{eqnarray*} 
+&&\hskip-0.5cm P(z)=1 + z - z^2 - z^3 - z^4 + z^5 - 5z^7 + 6z^9
+ + 8z^{10} - 10z^{12} - 5z^{13} + z^{14} + 4z^{15} + z^{16} + 
+4z^{17} + 7z^{18} \\ 
+&&\quad+ 9z^{19} - 4z^{20} - 22
+z^{21} - 39z^{22} + 4z^{23} + 52z^{24} + 38z^{25} + 17z^{26}
+ - 68z^{27} - 28z^{28} + 22z^{29} -12z^{30}\\ 
+&&\quad
+ + 13z^{31} - 37z^{32} + 45z^{33} + 54z^{34} - 12z^{35} - 34
+z^{36} - 82z^{37} + 17z^{38} + 89z^{39}+13z^{40}-34z^{42} - 89z^{43} \\ 
+&&\quad+ 73z^{44} + z^{45} + 26z^{46}
+ + 31z^{47} - 128z^{48} - 14z^{49} + 49z^{50} + 56z^{51}
++ 74z^{52} - 99z^{53} - 20z^{54} - 43z^{55} \\ 
+&&\quad + 33z^{56} + 47z^{57} - 41z^{58} + 18z^{59} + 50z^{60} - 10
+z^{61} - 13z^{62} - 9z^{63} - 17z^{64} + 38
+z^{65}- 42z^{66} + 37z^{67}\\ 
+&&\quad  + 8z^{68} - 4z^{69} - 29z^{70
+} - 19z^{71} + 28z^{72}+ 30z^{73} - 22z^{74
+} - 18z^{76} + 12z^{77},
+\end{eqnarray*}
+\end{small}
+and the denominator is
+\begin{small}
+\begin{eqnarray*}
+\hskip-.5cm&& Q(z)=1 - z - z^2 - z^3 + z^4 + 3z^5 - z^7 - 2z^8
+ + 3z^{13} + 3z^{14} - 2z^{15} - 5z^{16} - 8z^{17} + 7z^{
+18} + z^{19} + 8z^{20}\\ 
+\hskip-2cm&&\quad\mbox{}  - 5z^{22} + 8z^{23} - 
+12z^{24} - 4z^{25} - z^{26} + 18z^{28} - 4z^{29} + 2z^{30}
+ - 13z^{31} - 7z^{32} + 19z^{33} - 14z^{34}
+ + 14z^{35}\\ 
+\hskip-2cm&&\quad\mbox{}  - 6z^{36} - 4z^{37} + 13z^{38} -
+9z^{39} - 7z^{40} + 4z^{41} - 8z^{42} + 7z^{43} + 5z^{44}
++ 7z^{45}- 12z^{46} + 17z^{47} - 22z^{48} 
+ \\ 
+\hskip-2cm&&\quad\mbox{} + 8z^{49}
+ - 7z^{50} + 16z^{51} - 6z^{52} - 7z^{53} - 6z^{54} + 3z^{
+55} + 19z^{56} - 5z^{57} - 5z^{58} - 14z^{59
+} + 8z^{60}  + 2z^{61} \\ 
+\hskip-2cm&&\quad\mbox{}  + 7z^{62} - 5z^{63} + z^{64}
+- 8z^{65} + 14z^{66} - 11z^{67} + 16z^{68} - 18z^{69}
+ + 9z^{70} - 9z^{71} + 6z^{72}.
+\end{eqnarray*}
+\end{small}
+ One  of   the  nice theorems  in~\cite{Conway87}  states   that  this
+denominator is actually independent  of the starting  string, provided
+it different from ``22''. Thus in   the    leading  term of the  asymptotic
+expansion, only  the  constant factor depends on the initial string.
+
+Despite the  large degree of  this  denominator, it turns out that the
+asymptotic expansion is not too difficult to find. For the sequence we
+consider, the decomposition of~$P/Q$ is
+\[{P(z)\over Q(z)}=R(z)+\sum_{Q(\alpha)=0}{F(\alpha)\over z-\alpha},\]
+where~$R$ is a polynomial induced by the first terms, and $F$ is a
+polynomial  of degree~71 with 250-digit rational coefficients. This
+means that all the singularities are simple poles. If one is only
+interested in the first order estimate, it then remains to determine
+the number of roots of smallest modulus. As expected since the
+coefficients of the generating function are positive, one of these roots is
+a positive real number. Using the program of X.~Gourdon based on
+A.~Sch\"onhage's algorithm~\cite{Gourdon92}, we get that the two
+smallest moduli are
+approximately~$0.767$ and~$0.861$, with error bounds of the
+order~$10^{-40}$, which shows that the root of smallest modulus is
+alone~(and therefore real). Thus,
+$ [z^n]f(z) \sim {F(\rho_1) \rho_1^{-n-1}}$,
+$\rho_1\simeq0.767119$ and~$F(\rho_1)\simeq1.566$. All the 72 moduli
+belong to the interval~(0.767,1.151), showing the need for caution
+with numerical estimates.
+
+\section*{Conclusion}
+
+   Algorithm~\ref{numerical} should
+not be implemented blindly. Although its complexity is polynomial, the
+constant implied in the~$O()$ of Proposition~\ref{complexity} is very
+large. Thus in our last example above, the precision needed to compute
+the roots would be approximately~522000 digits. Instead, one should
+use this algorithm as an upper bound in an adaptative program based on
+a good numerical program such as~\cite{Gourdon92} and
+Algorithm~\ref{test}, increasing the precision if necessary.
+
+   Note also that we have never used the fact that in combinatorial
+contexts, the generating functions have only positive coefficients and
+thus by Pringsheim's theorem~(see~\cite{Titchmarsh39}), one of their
+singularities of smallest modulus is real positive, the other ones
+having arguments commensurable with~$\pi$. The computation of the
+first-order estimate could take advantage of this extra information.
+
+   This very simple problem of linear
+recurrences with rational coefficients is not yet completely solved.
+It would be useful in practice to have some control over the
+periodicities that may occur in the asymptotic expansions. This
+problem  is  exemplified with the following generating 
+function:     \[{z^2+2z-2\over(1-2z^2)(1-z)^2},\]  or     equivalently
+$u_n=2u_{n-1}+u_{n-2}-4u_{n-3}+2u_{n-4}$,
+$u_0=u_1=2,u_2=5,u_3=4$. The first few terms are~2, 2, 5, 4, 9, 6, 15,
+8, 25,  10, \dots.  The  first-order asymptotic approximation obtained
+from this generating function is~$(1+\cos n\pi)2^{n-1}+o(2^n)$. What
+happens is that although  valid for  all positive~$n$, this expression
+reduces to~$o(2^n)$ when~$n$ is odd.  Better precision necessitates to
+look for further terms in the expansion. The ideal algorithm outputs a
+list of asymptotic expansions depending on arithmetic properties
+of~$n$.  Cancellation in this context
+is not a  trivial problem. For  instance, no
+algorithm  is known  to determine  whether a linear recurrent
+sequence takes the value~0  for
+some  index. It is known that when such a sequence cancels infinitely
+often, the indices where it cancels asymptotically form a finite union
+of arithmetic progressions that can be computed~\cite{BeMi76}, but our
+problem is different since we are only 
+concerned with indefinite cancellation of the dominant part, which
+does not satisfy a linear recurrence in general.
+
+\subsection*{Acknowledgement}
+This work was supported in part by the ESPRIT~III
+Basic Research Action Programme of the
+E.C. under contract ALCOM~II (\#7141).
+
+\begin{thebibliography}{10}
+\begin{small}
+\itemsep=0pt
+\parskip=0pt
+\bibitem{BeMi76}
+J. Berstel and M. Mignotte,
+Deux propri{\'e}t{\'e}s d{\'e}cidables des suites r{\'e}currentes
+  lin{\'e}aires,
+Bulletin de la Soci{\'e}t{\'e} Math{\'e}matique de France 104
+  (1976) 175--184.
+
+\bibitem{BrSa92}
+M. Bronstein and B. Salvy,
+Full partial fraction decomposition of rational functions, in: M.
+Bronstein, ed., ISSAC'93 (ACM Press, 1993) 157--160. Proceedings
+ISSAC'93, Kiev, Ukraine, July 1993.
+
+\bibitem{CeMiPi87}
+L. Cerlienco, M. Mignotte and F. Piras,
+Suites r{\'e}currentes lin{\'e}aires. {P}ropri{\'e}t{\'e}s
+  alg{\'e}briques et arithm{\'e}tiques,
+L'Enseignement Math{\'e}matique XXXIII Fascicule 1-2 (1987) 67--108.
+
+\bibitem{Comtet74}
+L. Comtet,
+Advanced Combinatorics,
+(Reidel, Dordrecht, 1974).
+
+\bibitem{Conway87}
+J.H. Conway,
+The weird and wonderful chemistry of audioactive decay,
+in: T.M. Cover and B. Gopinath, eds., Open Problems in Communication
+and Computation (Springer-Verlag, 1987) 173--188.
+
+\bibitem{CoRo88}
+M. Coste and M.-F. Roy,
+Thom's lemma, the coding of real algebraic numbers and the topology
+  of semi-algebraic sets,
+Journal of Symbolic Computation 5 (1988) 121--129.
+
+\bibitem{Dieudonne68}
+J. Dieudonn{\'e},
+Calcul Infinit{\'e}simal,
+(Hermann, Paris, 1968).
+
+\bibitem{Gourdon92}
+X. Gourdon,
+Algorithmique du th\'eor\`eme fondamental de l'alg\`ebre,
+Tech. rep. 1852, Institut National de Recherche en Informatique et en
+  Automatique, (February 1993).
+
+\bibitem{JeTr70}
+M.A. Jenkins and J.F. Traub,
+A three-stage variable-shift iteration for polynomial zeros and its
+  relation to generalized {R}ayleigh iteration,
+Numerische Mathematik 14 (1970) 252--263.
+
+\bibitem{Mahler60}
+K. Mahler,
+An application of {J}ensen's formula to polynomials,
+Mathematika 7 (1960) 98--100.
+
+\bibitem{Mahler64}
+K. Mahler,
+An inequality for the discriminant of a polynomial,
+Michigan Mathematical Journal 11 (1964) 257--262.
+
+\bibitem{Pan87}
+V. Pan,
+Algebraic complexity of computing polynomial zeros,
+Computers and Mathematics with Applications 14 (1987)
+  285--304.
+
+\bibitem{Plouffe92}
+S. Plouffe,
+Approximations de s{\'e}ries g{\'e}n{\'e}ratrices et quelques
+  conjectures,
+Master's thesis, Universit{\'e} du Qu{\'e}bec {\`a} Montr{\'e}al,
+Sept. 1992.
+Also available as Research Report 92-61, Laboratoire Bordelais de
+  Recherche en Informatique, Bordeaux, France.
+
+\bibitem{Rioboo92}
+R. Rioboo,
+Real algebraic closure of an ordered field. {I}mplementation in
+  {A}xiom,
+in: P.S. Wang, ed., Symbolic and Algebraic Computation (ACM Press,
+1992) 130--137.
+Proceedings of ISSAC'92, Berkeley, July 1992.
+
+\bibitem{RoSz88}
+M.F. Roy and A. Szpirglas,
+Complexity of the computation with real algebraic numbers,
+Journal of Symbolic Computation 10 (1990) 39--51..
+
+\bibitem{Schmidt36}
+H. Schmidt,
+Beitr{\"a}ge zu einer {T}heorie der allgemeinen asymptotischen
+  {D}arstellungen,
+Mathematische Annalen 113 (1936) 629--656.
+
+\bibitem{Schonhage82}
+A. Sch{\"o}nhage,
+The fundamental theorem of algebra in terms of computational
+  complexity,
+Tech. rep., Mathematisches Institut der Universit{\"a}t T{\"u}bingen,
+  1982.
+Preliminary report.
+
+\bibitem{Sloane73}
+N.J.A. Sloane,
+A Handbook of Integer Sequences,
+(Academic Press, 1973).
+
+\bibitem{Sturm35}
+C. Sturm,
+M{\'e}moire sur la r{\'e}solution des {\'e}quations num{\'e}riques,
+Institut de France de Sciences Math{\'e}matiques et Physiques
+  6 (1835) 271--318.
+
+\bibitem{Titchmarsh39}
+E.C. Titchmarsh,
+The Theory of Functions, second~ed.,
+(Oxford University Press, 1939).
+\end{small}
+\end{thebibliography}
+
+\end{document}
+
+

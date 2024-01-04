@@ -1,0 +1,105 @@
+\documentclass[12pt,leqno,bbold]{article}
+
+\topmargin=-0.2in
+\textheight=9in
+\oddsidemargin=0.1in
+\textwidth=6in
+
+\usepackage{amssymb}
+\newtheorem{condition}{Condition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newcommand{\proofstart}{{\bf Proof\hspace{2em}}}
+\newcommand{\proofend}{\hspace*{\fill}\mbox{$\Box$}}
+\newcommand{\react}[2]{\mbox{ \raisebox{-2ex} %reversible reaction arrows
+{$\stackrel   %3 on top of 1
+{\stackrel   %2 on top of 1
+{ \stackrel{  \mbox{\raisebox{0.4ex}{ ${\scriptstyle #1}$ }} }
+{\textstyle \rightleftharpoons } }{#2 } }{}$} }}
+%\newcommand{\<>}{\hspace{0.1in}^{>}\!\!\!\!_{<}\hspace{0.1in}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bm}[1]{\mbox{\boldmath$ #1 $}}
+\newcommand{\no}{\noindent}
+\def\Z{\mathbb{Z}}
+\def\Ker{\rm Ker}
+\def\A{\mathcal A}
+\def\F{\mathcal F}
+\def\L{\mathcal L}
+\def\>~{ \mbox{\raisebox{-.9ex}{$\stackrel{\textstyle >}{\sim}$}} }
+\def\<~{ \mbox{\raisebox{-.9ex}{$\stackrel{\textstyle <}{\sim}$}} }
+
+\title{Counting Polynomials for Channel Assignments, 
+Hypergraph Colouring and Lattice Point Enumeration}
+\author{Dominic Welsh\\ University of Oxford}
+\date{22 March 1999}
+
+\begin{document}
+
+\maketitle
+
+\begin{center} {\bf Abstract} \end{center}
+
+I shall present the results of some recent work with Geoffrey Whittle on a
+problem which originated in trying to extend classical theory of the Tutte
+polynomial of a graph to wider classes of structures.  This we do by focusing
+on an equivalent version of the Tutte polynomial --- what we call the {\it bad
+colouring polynomial} of a graph, and denote by $B(G;\lambda, s)$.  It is
+defined by
+        \[B(G;\lambda,s)=\sum^{|E|}_{k=0}b_k(G,\lambda)s^k\]
+where $b_k(G,\lambda)$ denotes the number of ways of colouring $G$ with
+$\lambda$-colours so that exactly $k$ edges are {\it bad}, that is have their
+end points the same colour.  Equivalently, $B(G;\lambda,s)$ is recognisable as
+a mildly distorted version of the partition function $Z$ of the standard
+$Q$-state Potts
+model on $G$.  The correspondence being obtained by the substitution
+$\lambda\rightarrow Q$,
+$s$ to inverse temperature.
+
+Instead of the usual delete/contract recursion of the Tutte polynomial, the bad
+colouring polynomials $b_k(G;\lambda)$ satisfy for all $k\geq 1$, the recursion
+     \[b_k(G;\lambda)=b_k(G^\prime_e;\lambda)-b_k(G^{\prime\prime}_e;\lambda)+b_{k-1}(G^{\prime\prime}_e,\lambda).\]
+Here $G^\prime_e,G^{\prime\prime}_e$ have their usual meaning of $G$ delete
+(respectively contract) $e$.  We realised that this relation, which we
+call the {\it 3-term recurrence} is satisfied by several other naturally occurring
+counting functions.  We develop such a theory for the very general concept of a
+{\it configuration} $Q$.  This is just a pair $(E,f)$ with $E$ a finite set and
+$f:2^E\rightarrow{\mathbb Z}$ satisfying
+\begin{enumerate}
+\item[(i)] $f(\emptyset)=0$,
+\item[(ii)] $f(A)\leq f(B)$ whenever $A\subseteq B$.
+\end{enumerate}
+
+Much of the standard theory goes through and applications include:
+\begin{enumerate}
+\item[a)] Counting the number of lattice points belonging to exactly $j$
+members of an arrangement of subspaces in $AG(n,q)$.
+\item[b)] Extending the theory of the Tutte polynomial from graphs to general hypergraphs.
+\item[c)] Developing further the theory of the classical critical problem developed
+by Crapo and Rota 1970.
+\end{enumerate}
+
+At the same time as we were working on these purely abstract
+problems we were also considering the highly applicable problem of assigning
+radio channel frequencies.  This is a problem of huge commercial significance,
+which has received a great deal of interest over the last few years.  
+One of the nicer
+applications of the theory that we have developed is to a
+counting problem in this area.  
+
+\begin{center} {\bf Reference} \end{center}
+
+\begin{enumerate}
+\item[[1.]]  Dominic Welsh and Geoffrey Whittle, Arrangements, Channel
+Assignments and Associated Polynomials, {\it Advances in Applied Mathematics},
+1999 (to appear).
+\end{enumerate}
+
+
+\end{document}
+
+
+
+
+

@@ -1,0 +1,651 @@
+
+\documentstyle[fullpage,12pt]{article}
+\newcommand {\cRp} {{\cal R}_q}
+\newcommand {\ord}{\mathop{\rm ord}}
+\newcommand {\lcm}{\mathop{\rm lcm}}
+\newcommand {\lc}{\mathop{\rm lc}}
+\newcommand {\qed}{\hfill$\Box$\par\medskip}
+\newtheorem{Theorem}{Theorem}
+%\newtheorem{Proposition}{Proposition}
+\newtheorem{Lemma}{Lemma}
+\def\o{\circ}
+\def\wt{\widetilde}
+\title{\Large\bf
+Rational Solutions of
+First Order Linear $q$-Difference Systems
+}
+
+\author{\large\sl S.~A.~Abramov
+\thanks{Supported in part by
+the RFBR and INTAS under Grant 95-IN-RU-412
+and by French-Russian Lyapunov institute
+under Grant 98-03.}
+\\
+\normalsize Computer Center of\\
+\normalsize the Russian Academy of Science, \\
+\normalsize Vavilova 40, Moscow 117967, Russia \\
+\normalsize {\tt abramov@ccas.ru}\\
+\normalsize {\tt sabramov@cs.msu.su}
+}
+
+\begin{document}
+
+\date{}
+
+\maketitle
+
+\begin{abstract}
+We propose an algorithm to compute rational
+function solutions for a first order system
+of linear $q$-difference equations
+with rational coefficients.
+We make use of the fact
+that $q$-difference equations bear similarity with
+differential equations at the point 0 and with difference equations
+at other points. This allows combining known algorithms for the
+differential and the difference cases.
+This algorithm does not require
+preliminary uncoupling of the given system.
+\begin{center}
+\bf R\'esum\'e
+\end{center}
+
+Nous proposons un algorithme calculant les fonctions rationnelles
+solutions d'un syst\`eme  du premier ordre d'\'equations aux
+$q$-diff\'erences lin\'eaires \`a coefficients rationnels. Nous
+utilisons le fait que les \'equations aux $q$-diff\'erences ont des
+similarit\'es avec les \'equations diff\'erentielles au point 0 et
+les \'equations aux diff\'erences aux autres points. Cela permet
+de combiner les algorithmes connus pour ces deux types d'\'equations.
+Cet algorithme ne requiert pas un d\'ecouplage
+ pr\'ealable du
+syst\`eme donn\'e.
+\end{abstract}
+\section{Introduction}\label{introd}
+Let $K$ be a computable field of characteristic zero,
+$q\in K$ a nonzero element which is not a root of unity,
+and $x$ transcendental over $K$.
+%Denote by $Q$
+%the unique authomorphism of $K(x)$ which fix $K$ and
+%satisfies $Qx=qx$.
+
+A system of first order linear $q$-difference equations
+with rational coefficients over the field $K$ is a system of the form~:
+\newpage
+$$
+p_1(x)y_1(qx)=a_{11}(x)y_1(x)+\cdots
++a_{1m}(x)y_m(x)+b_1(x)
+$$
+\begin{eqnarray}\label{sys}
+\cdots\end{eqnarray}
+$$
+p_m(x)y_m(qx)=a_{m1}(x)y_1(x)+\cdots
++a_{mm}(x)y_m(x)+b_m(x).
+$$
+%with polynomial coefficients $p_i(x),a_{ij}(x),b_j(x)$ over
+%the field $K$.
+We will assume
+the coefficients $p_i(x),a_{ij}(x),b_j(x)$ to be
+polynomials
+over
+the field $K$.
+
+
+$q$-Calculus and the theory and algorithms
+for linear $q$-difference equations are of interest in
+combinatorics, especially in the theory of partitions
+(\cite{And,q-series}).
+In this paper we solve the problem
+of computing all the rational solutions
+$y(x) =(y_1(x),\dots ,y_m(x)) \in K(x)^m$
+of (\ref{sys}).
+Algorithms for solving this problem in the scalar case (that is
+the case of a single scalar linear
+$q$-difference equation of arbitrary order)
+have been proposed in \cite{ABP,Aprog}.
+%abramovp, A89, Amon,Aprog, ABP}.
+The algorithmic study of systems is, generally, less well-developed.
+
+
+The traditional computer algebra approach to solve
+linear functional systems
+is via the cyclic vector method, or other similar elimination
+methods~\cite{BP96,AZ}, that convert
+the systems to scalar equations (such a procedure is called
+the {\em uncoupling}).
+Gr\"obner bases technique also can be used to reduce a recurrent
+system to the uncoupled form \cite{ChyzGB}.
+The major, and well-known, problem of this approach
+is the increasing size of the coefficients of
+equations, that makes those
+approaches applicable only to systems of very small dimension.
+In this paper we propose an alternative
+approach (a direct method) to solve the problem for the
+$q$-difference case.
+
+It should be noted that there is some progress in solving
+the analogous problem in the differential  and the
+difference cases: direct methods have been
+proposed
+in \cite{Bar97} and in
+\cite{AB98,vh98}.
+The methods \cite{AB98,vh98} are applicable to the
+$q$-difference case, excepting the situation where the
+denominators of some of $y_i(x)$ are divisible by $x$.
+
+We will show below that by combining
+both
+differential and difference approaches
+it is possible
+to solve completely the problem in
+the $q$-difference case.
+A characteristic feature of
+$q$-difference equations is that they are similar to differential
+equations near the point 0 and are similar to difference equations
+near other points. It was used in the scalar case in \cite{Aprog}.
+
+Similarly to the differential and difference cases the construction
+proceeds in two steps. In the first step we construct a
+{\em universal denominator}. We mean a polynomial $U(x) \in K[x]$
+such that: for all $y(x) \in K(x)^m$, if $y(x)$ is a solution of
+(\ref{sys}), then $U(x)y(x)$ is a polynomial vector. Then the
+substitution
+\begin{equation}
+\label{subs}
+y(x)=\frac 1 {U(x)}z(x)
+\end{equation}
+into (\ref{sys}) reduces
+the problem to finding polynomial solutions of a system in $z(x)$ of
+the same type as (\ref{sys}).  The second step of our method deals
+with this last problem.
+
+{}From time to time we will need to find the largest
+non-negative $n$
+such that $q^n$ is a root of a given polynomial with
+coefficients in $K$.  Therefore we assume that $K$ is a {\em
+$q$-suitable field}, meaning that there exists an algorithm which
+given $p\in K[x]$ finds all
+non-negative integer $n$ such that $p(q^n)=0$.  For
+instance, if $K=k(q)$ where $q$ is transcendental over $k$ we can
+proceed as follows: Let $p(x)=\sum_{i=0}^d c_i x^i$ where $c_i\in
+k[q]$. Compute $s = \min\{i;\ c_i\ne 0\}$ and $t = \max\{j;\ q^j
+\,|\, c_s\}$. Then $p(q^n)=0$ only if $n\le t$, and the set of all
+such $n$ can be found by testing the values $n=t,t-1,\ldots,0$
+(\cite{fpsac}).
+
+\section{Universal Denominators}
+\label{unden}
+
+%Let a system of $q$-difference equations (\ref{sys})
+%be given.
+
+\subsection{Factors other than $x$}
+\label{othx}
+Here we demonstrate
+the $q$-modification of the algorithm \cite{AB98}.
+The algorithm \cite{vh98} also allows such a modification.
+In this paper we do not compare  the algorithms \cite{AB98} and
+\cite{vh98}, and take the former because its description
+is shorter.
+
+We can assume the matrix
+\begin{equation}
+\label{matr}
+ \left(
+ \matrix{
+  a_{11}       & \ldots    & a_{1m}      \cr
+ \vdots     &            & \vdots \cr
+  a_{m1}   & \ldots   & a_{mm} }
+ \right),
+\end{equation}
+which corresponds to (\ref{sys}) and whose elements
+are polynomials over $K$, to be invertible
+(otherwise either the system is incompatible
+or the number of unknowns can be reduced).
+
+We name the
+modification ${\rm qUD}$.  First of all we set
+$A(x)$ to be equal to
+$$\lcm (p_1(q^{-1}x),\dots ,p_m(q^{-1}x))$$
+and compute $B(x)$ as $\lcm$ of denominators
+of the elements of the matrix inverse of (\ref{matr}). Then compute
+${\rm qUD}(A,B)$, considering the polynomial $V(x)$ as the result
+of the computation:\\
+\verb|    |$V(x):=1$;\\
+\verb|    |$R(n):=Res_x(A(x),B(q^nx))$;\\
+\verb|    if |$R(n)$ has some nonnegative integer roots \verb|then|\\
+\verb|       |$N:=$ the largest nonnegative integer root of $R(n);$\\
+\verb|       for |$i=N,N-1,\dots ,0$ \verb| do|\\
+\verb|         |$d(x):=gcd(A(x),B(q^ix));$\\
+\verb|         |$A(x):=A(x)/d(x);$\\
+\verb|         |$B(x):=B(x)/d(q^{-i}x);$\\
+\verb|         |$V(x):=V(x)d(x)d(q^{-1}x)\cdots d(q^{-i}x)$\\
+\verb|       od|\\
+\verb|    fi.|\\
+
+If rational functions $F_1(x),\dots ,F_m(x)$ are such that
+$$p_1(x)F_1(qx)-a_{11}(x)F_1(x)-\cdots -a_{1m}(x)F_m(x)$$
+\begin{equation}
+\label{exprs}
+\dots
+\end{equation}
+$$p_m(x)F_m(qx)-a_{m1}(x)F_1(x)-\cdots -a_{mm}(x)F_m(x)$$
+are polynomials and $A(x),B(x)$ are not divisible by $x$ then
+the denominators of
+$F_1(x)$, $\dots $, $F_m(x)$ (taken in the reduced form) divide
+$V(x)$.
+
+The proof is similar to the proof of Theorems 1, 2 in \cite{AB98}.
+All arguments that
+were given in \cite{AB98} will hold if we replace the shifts
+$$x\rightarrow x+i,\; x\rightarrow x-i,$$
+where $i$ is a nonnegative integer, by
+$$x\rightarrow q^ix,\; x\rightarrow q^{-i}x,$$
+and if we ignore the factor $x$ when considering irreducible
+factors of polynomials. The factor $x$ has to be considered
+separately since the polynomial $x$ and $qx$ are not relatively prime
+over $K$, though any other irreducible polynomial $r(x)$ is
+relatively prime with $r(qx)$.
+
+\subsection{A bound for the exponent of $x$}
+\label{x}
+
+In the general case the components of
+any rational solution $y(x)=(y_1(x),\dots ,y_m(x))$ of
+(\ref{sys}) can be represented in the form
+\begin{equation}
+\label{ratss}
+y_i(x)=\frac{f_i(x)}{g_i(x)}
++\frac{l_{i1}}{x}
++\frac{l_{i2}}{x^2}
++\cdots
++\frac{l_{ih_{i}}}{x^{h_i}},\;g_i(0)\neq 0,
+\end{equation}
+$i=1,\dots ,m$. The substitutions of
+$$F_i^{(1)}(x)=\frac{f_i(x)}{g_i(x)}$$
+and
+$$F_i^{(2)}(x)=
+\frac{l_{i1}}{x}
++\frac{l_{i2}}{x^2}
++\cdots
++\frac{l_{ih_{i}}}{x^{h_i}}$$
+into expressions (\ref{exprs}) for $F_i,\,i=1,\dots m$,
+give for each of those expressions two rational functions with
+the relatively primes denominators. Thereby the rational functions
+are polynomials. Freeing  $A(x)$ and $B(x)$
+from the factor $x$ (denote the result by ${\wt A}(x),{\wt B}(x)$)
+we compute
+${\rm qUD}({\wt A}(x),{\wt B}(x))$
+and get $V(x)$ which is
+divisible by all $g_i(x),\,i=1,\dots ,m$.
+
+Now it is sufficient
+to find an upper bound $H$ for all $h_1,\dots ,h_m$ and then it will
+be possible to use $U(x)=x^HV(x)$ as a universal denominator for all
+rational solutions of (\ref{sys}).
+To obtain such a bound one can use the technique of indicial
+equations. (This technique is well known in the theory of linear
+ordinary differential equations.) The main computational problem
+connected with the construction of the indicial equation
+in the differential case is
+reducing the given system to  the super-irreducible form
+(\cite{HW87,Bar89}). To the author's knowledge,
+the super-irreducible form
+for  $q$-difference systems
+has not been considered yet. But in any case we can use a universal
+approach which called $EG$-{\em eliminations} (\cite{EG}). This
+approach allows one, in particular, to construct the indicial
+equations for differential and $q$-difference equations.
+
+In other words, any rational solution
+(\ref{ratss}) of system (\ref{sys}) can be considered as a
+solution in the class of Laurent series:  $F_i^{(1)}(x)$ and
+$F_i^{(2)}(x)$, $i=1,\dots ,m$, are, resp., regular and singular
+parts of the Laurent solution. Thus an upper bound for
+its pole order
+at $x=0$ can be taken as $H$.  $EG$-eliminations allow one to find
+such a bound.
+
+The general scheme of using $EG$-method is the following
+(see \cite{EG} for details). Rewrite
+system (\ref{sys}) in the operator form:
+\begin{equation}
+\label{opform}
+ \left(
+ \matrix{
+  p_1Q-a_{11} & -a_{12} & \ldots & -a_{1m} \cr
+  -a_{21}& p_2Q-a_{22} & \ldots & -a_{2m} \cr
+ \vdots     & \vdots & & \vdots  \cr
+  -a_{m1} &-a_{m2}&\ldots &p_mQ-a_{mm} }
+ \right)y(x)=b(x),
+\end{equation}
+where the operator $Q$ is such that $Qf(x)=f(qx)$ for any
+function $f(x)$.
+Consider $y_i(x),b_i(x)$, $i=1,\dots ,m$, as Laurent series.
+Let $z_i(n),c_i(n)$, $i=1,\dots, m$, be the  sequences of
+coefficients of
+these series, $-\infty <n< \infty $ .
+Consider the mapping $\cRp :
+K[x,Q] \rightarrow K[q^n,E^{-1}]$ defined by
+\begin{equation}
+\label{e37'}
+\cRp Q=q^n,\;\;\cRp x= E^{-1},
+\end{equation}
+where the operator $E$ is such that $Ef(x)=f(x+1)$ for any
+function $f(x)$.
+(In \cite{APR} it has been shown that $\cRp$ is an isomorphism from $K[x,Q]$
+onto $K[q^n,E^{-1}]$.) Applying $\cRp$ to the elements of the
+operator matrix of (\ref{opform}) we get the operator matrix of the
+recurrent system for the column of sequences $z(n)=(z_1(n),\dots
+,z_m(n))^T$.  This system can be rewritten in the form
+%a recurrent system $S$
+\begin{equation} \label{e38}
+P_lz(n+l)+P_{l-1}z(n+l-1)+\cdots +P_tz(n+t)=c(n),
+\end{equation}
+where $l,t$ are integer, $l\geq t$;
+$c(n)=(c_1(n),\dots ,c_m(n))^T$;
+$P_l,\dots,P_t$ are $m\times m$-matrices over $K[n]$
+with $P_l$ and $P_t$ (the
+{\em leading} and {\em trailing}  matrices of
+the system) being nonzero but the determinants of $P_l,P_t$
+can vanish for all $n$.
+The process of $EG$-eliminations
+in the {\em explicit} matrix $P=(P_l|P_{l-1}|\dots |P_t)$
+allows one to transform
+(\ref{e38})
+into an equivalent system $S$ with nonsingular leading (or
+analogously, trailing) matrix.
+Suppose that using $EG$-eliminations
+we constructed the corresponding system $S$
+of the form (\ref{e38}) with non-singular $P_l(n)$. Then $\det
+P_l(n)=0$ is the indicial equation  for (\ref{sys}) at the point 0.
+The following theorem can be easily proven
+in the usual way.
+\begin{Theorem}
+\label{l5}
+Let $p(n)=\det P_l(n)$ be a nonzero polynomial in $q^n$.
+Let $n_0$ be the smallest integer root of $p(n)=0$ if
+such roots exist and $n_0=1$ otherwise.
+Then
+the pole orders of a Laurent series solution $y(x)=(y_1(x),\dots ,
+y_m(x))$  of (\ref{sys}) do not exceed
+$\vert \min \{ n_0+l, 0 \} \vert .$
+\end{Theorem}
+{\bf Proof \/}: All $z_i(n)$ are equal to 0 for all negative integer
+$n$ with large enough $\vert n \vert$. Besides, $c_i(n)=0$ for
+all negative $n$, $i=1,\dots ,m$. The matrix $P_l(n)$ is invertible
+for all $n<n_0$ and we can use the recurrence (\ref{e38}) to
+get $z_i(n)=0$, $i=1,\dots ,m$, for all $n<n_0+l$. \qed
+
+\section{Polynomial solutions}
+\label{psol}
+After substitution (\ref{subs}) and
+cleaning denominators we have to solve
+the problem of finding polynomial solutions of a system of the form
+(\ref{sys}). It is sufficient to find an upper bound for degrees
+of all $y_1(x),\dots ,y_m(x)$. Then all polynomial solutions of
+(\ref{sys}) can be found by the method of undetermined coefficients
+(the problem can be reduced to a system of linear algebraic
+equations). Less costly approaches such as those proposed
+for difference system
+in  \cite{AB98}
+are also possible.
+
+We can construct the corresponding recurrent system for (\ref{sys}).
+Suppose that using $EG$-eliminations
+we transformed the recurrent system to the  system $S$
+of the form (\ref{e38}) with non-singular $P_t(n)$. Then $\det
+P_t(n)=0$ is the indicial equation  for (\ref{sys}) at $\infty $.
+The following theorem can be easily proven
+in the usual way.
+\begin{Theorem}
+\label{l6}
+Let $p(n)=\det P_t(n)$ be a nonzero polynomial in $q^n$.
+Let $n_1$ be the largest integer root of $p(n)=0$ if
+such roots exist and $n_1=-1$ otherwise. Let
+$d=\max _{i=1}^m \deg b_i$ for (\ref{sys}).
+Then the
+degrees of
+the components of polynomial solution $y(x)=(y_1(x),\dots ,
+y_m(x))$  of (\ref{sys}) do not exceed
+$ \max \{ n_1+t, d+t \} .$
+\end{Theorem}
+{\bf Proof \/}: For polynomial solutions all
+$z_i(n)$ are equal to 0 for all large enough
+$n$. Besides, $c_i(n)=0$ for
+all $n>d$, $i=1,\dots ,m$. The matrix $P_t(n)$ is invertible
+for all $n>n_1$ and we can use the recurrence (\ref{e38}) to
+get $z_i(n)=0$, $i=1,\dots ,m$, for all
+$n> \max \{ n_1+t, d+t \}$. \qed
+\section{Example}
+
+Let's consider the following system of $q$-difference equations:
+$$
+\begin{array}{ll}
+( -qx + q^{3}x)\,y_1(qx) + (x- q^{4}x)y_1(x) +
+(q^{4}x + 100q^{4} - q^{2}x - 100q^{2})y_2(x)=0 \\
+(qx + 100)y_2(qx) - xy_1(x)=0.\\
+\end{array}
+$$
+Here
+$$p_1(x)=- qx + q^{3}x,\;p_2(x)= x\,q + 100$$
+and corresponing matrix (\ref{matr}) is
+$$
+\left(
+{\begin{array}{cc}
+x - q^{4}x & q^{4}x + 100q^{4} - q^{2}x - 100q^{2} \\
+ - x & 0
+\end{array}}
+ \right).
+$$
+The inverse matrix is
+$$
+\left(
+{\begin{array}{cc}
+0 &  - {\frac {1}{x}}  \\ [2ex]
+{ \frac {1}{q^{2}(q^{2}x + 100q^{2} - x - 100)
+}}  &  - { \frac {q^{2} + 1}{(x + 100)q^{2}}}
+\end{array}}
+ \right).
+$$
+Thus
+$$
+A(x) = q^{4}x^{2} + 100q^{4}x - q^{2}x^{2} - 100q^{
+2}x,\;
+B(x) =  - q^{2}x^{2} - 100xq + q^{4}x^{2} + 100q^{3
+}x.
+$$
+Freeing from the factor $x$:
+$$
+{\wt A}(x) = q^{2}(q^{2}x + 100q^{2} - x - 100),\;
+{\wt B}(x) = q(q^{3}x - xq - 100 + 100q^{2})
+$$
+we get
+$V={\rm qUD}({\wt A}(x),{\wt B}(x))=x + 100$.
+
+Now we should find the
+exponent of $x$ in the universal denominatior.
+The corresponding recurrent system has the explicit matrix
+$$
+\left(
+{\begin{array}{rccc}
+0 & q^{2}(100q^{2} - 100) & q^{n +2} - q^n
+- q^{4} +1& q^{2}(q^{2} - 1) \\
+0 & 100\,q^{n} & -1 & q^n
+\end{array}}
+ \right)$$
+with
+$l=0$, $t=-1$. $EG$-eliminations lead to the system with
+the following leading matrix:
+$$
+\left(
+{\begin{array}{cccc}
+  100(q^{2n + 4} - q^{2n + 2} + q^{n + 1} - q^{n + 5} +
+q^{4} - q^{2}) &
+  0  \\
+ 0 & 100(q^{4}-q^{2})
+%& q^{(n + 2)} -
+%q^{n} + 1 - q^{4} & q^{4}-q^{2}
+\end{array}}
+ \right).$$
+The equation
+$10000(q^{2n + 4} - q^{2n + 2} + q^{n + 1} - q^{n + 5} +
+q^{4} - q^{2})(q^{4}-q^{2})=0$
+has the integer roots
+$-1, \,1$.
+So the degree of the pole is
+$\leq \vert -1+l\vert =1$
+and the universal denominator is $$ U(x) =xV(x)=
+x(x + 100). $$ After the substitution of the found
+denominator the system is $$ \begin{array}{ll}
+((q^{2}- 1)x^2 + 100(q^{2} - 1)x)z_1(qx)
+- (q(q^{4} + 1)x^2 + 100(1 -q^4)x)z_1(x)
+- \\  (q^{3}(1 + q^{2})x^2- 100q^{2}((q^3+q^2-1)x
++ 100q^2 -
+100)z_2(x)=0  \\
+(x+100)z_2(qx) - qxz_1(x) =0.
+\end{array}
+$$
+The corresponding recurrent system has the explicit matrix
+$$\left(\matrix {0&0\cr
+q^2(10000q^2 - 10000)&100q^n\cr
+100q^{n + 1} - 100q^{n - 1} - 100q^{4}+100& -q\cr
+q^2(100q^{3}
++100q^2 -100q-100
+)&q^{n - 1}\cr
+- q^{5} + q +  q^n - q^{n - 2}&0\cr
+q^2(q^3 - q)&0}\right )^T.
+$$
+with
+$l=0$, $t=-2$.
+$EG$-eliminations lead to the system with
+the following trailing matrix:
+$$
+ \left(\matrix
+  {
+0&q^{2n-2}-q^{2n-4}-q^{n+3}+q^{n-1}+q^6-q^4 \cr
+- q& q^{n - 2} } \right)
+.
+$$
+The polynomial
+$-q(q^{2n-2}-q^{2n-4}-q^{n+3}+q^{n-1}+q^6-q^4)$
+has the integer roots
+$3,\; 5$.
+So the polynomial solutions of the system has the degree
+$\leq 5+t=3$.
+It leads us to the following solution of the system
+for finding numerator
+
+$$
+ \left[  100\,
+{\_c_{1}} + x\,\_c_{1} + x^{2}\,\_c_{2}
+   + { \frac {x^{3}\,\_c_{2}}{100}} ,
+\\
+   x\, \_c_{1}  + {\frac {1}{100}}
+\,{ \frac {x^{3}\,\_c_{2}}{q^{2}}}
+\right]
+$$
+and correspondingly to the solution of the given system
+$$
+[{\frac {x^{2}\,{
+{\it \_c}_{2}} + 100\,{{\it \_c}_{1}}}{x}} , \,
+{\frac {100\,{{\it \_c}_{1}}\,q^{
+2} + x^{2}\,{{\it \_c}_{2}}}{(x + 100)\,q^{2}}} ].
+$$
+\section{Implementation}
+This algorithm is implemented in Maple V by D.Khmelnov.
+\section*{Acknowledgement} I would like to thank D.Khmelnov
+and H.Q.Le who provided me with useful comments.
+\begin{thebibliography}{99}
+
+\bibitem{Aprog}
+S.A.~Abramov (1995):
+Rational solutions of li\-near dif\-fe\-ren\-ce and
+$q$-dif\-fe\-ren\-ce  eq\-ua\-ti\-ons with polynomial coefficients.
+{\em Programming and Comput.\ Software\/} {\bf 21}, No 6, 273--278.
+Transl.\
+from {\em Programmirovanie}, No 6, 3--11.
+
+\bibitem{EG}
+S.A.~Abramov (1998):
+$EG$-eliminations. {\em Journal of
+Difference Equations and Applications}, to appear.
+
+\bibitem{AB98}
+S.A.~Abramov, M.A.~Barkatou (1998):
+Rational solutions of first order difference systems.
+{\em Proc.~ISSAC'98}, 124--131.
+
+\bibitem{ABP} S.A. Abramov, M. Bronstein and M. Petkovsek (1995):
+ On polynomial solutions of linear
+operators equations.
+{\em Proc.\ ISSAC'95}, 290--295.
+
+\bibitem{fpsac} S.A. Abramov, M. Petkov\v sek (1995): Finding all
+$q$-hypergeometric solutions of $q$-difference equations.
+{\em Proc. FPSAC'95}, Universite de Marne - la  Valle, 1--10.
+
+\bibitem{APR}
+S.~Abramov, M.~Petkov\v sek, A.~Ryabenko (1996):
+Special formal series solutions of linear operator equations.
+{\em Discret Math.}, to appear.
+
+
+\bibitem{AZ}
+S.A.~Abramov, E.V.~Zima (1997):
+A Universal Program to Uncouple Linear Systems.
+{\em Proc.~of CMCP'96 (International Conference on Computational Modeling
+and Computing in Physics, Dubna, Russia, Sept.~16-21, 1996)}, 16--26.
+
+\bibitem{And}
+G.E.~Andrews (1976): {The Theory of Partitions}. {\em Encyclopedia of
+Mathematics and its Applications}, Vol.\ 2, Addison-Wesley, Reading,
+Mass.
+
+\bibitem{q-series}
+G.E.~Andrews (1986): {
+$q$-Series: Their Development and Application in Analysis, Number
+Theory, Combinatorics, Physics, and Computer Algebra}.
+{\em CBMS Regional Conference Series}, No. 66, AMS, R.I.
+
+\bibitem{Bar89}
+M.A. Barkatou (1989):
+{Contribution \`a l'\'etude des
+\'equations diff\'erentielles et aux diff\'erences dans le champ
+complexe}.
+{\em Th\`ese soutenue le 6 juin 1989  \`a l'institut
+national polytechnique de Grenoble (France).}
+
+\bibitem{Bar97}
+M.A. Barkatou (1998):
+{On rational solutions of systems
+of linear differential equations}.
+{\em Journal of Symbolic Computation}, to appear.
+
+\bibitem{BP96}
+M.~Bronstein, M.~Petkov\v sek (1996):
+An introduction to pseudo--linear algebra.
+{\em Theoretical Computer Science~}{\bf 157}, 3--33.
+
+\bibitem{ChyzGB}
+F.~Chyzak (1998):
+Gr\"obner bases, symbolic summation and symbolic integration.
+In: {\em Gr\"obner Bases and Applications}, B.~Buchberger and
+F.~Winkler, Eds., London Mathematical Society Lecture Note Series
+251, Cambridge University Press, Cambridge UK, 1998, 32--60.
+
+\bibitem{HW87}
+A. Hilali, A. Wazner (1987):
+{Formes super-irr\'eductibles
+des syst\`emes diff\'erentiels lin\'eaires}.
+{\em Num. Math.\/} {\bf 50}, 429-449.
+
+\bibitem{vh98}
+M.~van Hoeij (1998):
+Rational solutions of linear difference equations.
+{\em Proc.~ISSAC'98},120--123.
+
+\end{thebibliography}
+
+\end{document}
+

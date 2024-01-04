@@ -1,0 +1,326 @@
+\documentstyle[12pt]{article}
+
+\setlength{\textheight}{200mm}
+\setlength{\textwidth}{145mm}
+\setlength{\unitlength}{2mm}
+\setcounter{footnote}{1}
+%\newfont{\msa}{msam10}
+\newsavebox{\squarebar}
+\newsavebox{\blacksquarebar}
+\savebox{\squarebar}{\framebox(1,1){}}
+\savebox{\blacksquarebar}{\rule{\unitlength}{1.1\unitlength}}
+
+\def\phi{\varphi}
+\def\rank{{\rm rank}\,}
+\def\cha{{\rm char}\,}
+\def\Ad{{\rm Ad}\,}
+\def\ad{{\rm ad}\,}
+\def\Ker{{\rm Ker}}
+\def\Orb{{\rm Orb}}
+\def\Aut{{\rm Aut}}
+\def\id{{\rm id}}
+\def\thepage{}
+
+\makeatletter
+
+
+\def\Let@{\relax\iffalse{\fi\let\\=\cr\iffalse}\fi}
+\def\vspace@{\def\vspace##1{\noalign{\vskip##1\relax}}}
+\def\multilimits@{\bgroup\vspace@\Let@
+ \baselineskip\fontdimen10 \scriptfont\tw@
+ \advance\baselineskip\fontdimen12 \scriptfont\tw@
+ \lineskip\thr@@\fontdimen8 \scriptfont\thr@@
+ \lineskiplimit\thr@@\fontdimen8 \scriptfont\thr@@
+ \vbox\bgroup\ialign\bgroup$\scriptstyle{##}$\hfil\cr}
+\def\Sb{_\multilimits@}
+\def\endSb{\cr\egroup\egroup\egroup}
+
+
+
+
+%\def\seq#1#2{#1_1,\ldots,#1_{#2}}
+\def\seq#1#2{#1_1,\ldots,#1_{#2}}
+\def\pa#1#2{{\textstyle\partial #1\over\textstyle\partial #2}}
+\def\subst#1#2{\hbox{$#1$}
+               \hbox{\vphantom{$\hbox{$#1$}\Sb #2 \endSb$}\vline\,}
+               \hbox{\vphantom{$\hbox{$#1$}$}}\Sb #2 \endSb}
+\def\pp#1{\mbox{$#1$-}}
+\def\asprod#1#2{\mathop{\prod\nolimits^*_{#2}}\limits_{#1}}
+
+
+\def\ut{\widetilde{u}}
+
+\def\epsilon{\varepsilon}
+
+\def\seq#1#2{#1_1,\ldots,#1_{#2}}
+\def\pp#1{\mbox{$#1$-}}
+
+\makeatother
+\def\blacksquare{\usebox{\blacksquarebar}}
+
+\def\finishsymb#1{{\unskip\nobreak\hfil\penalty50
+    \hskip2em\hbox{}\nobreak\hfil{#1}
+    \parfillskip=0pt \finalhyphendemerits=0 \par}}
+
+\newenvironment{proof}{\rm \trivlist
+    \item[\hskip \labelsep{\bf Proof}\hskip 2mm]}{
+    \finishsymb\blacksquare\endtrivlist}
+
+
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{problem}{Problem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{question}{Question}
+\newtheorem{cor}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+\def\thecor{}
+\def\thetheorem{}
+\def\theexample{}
+\def\theproposition{}
+
+
+  \begin{document}
+  
+  \newcommand{\msachoice}[1]{{\mathchoice
+    {\mbox {\tenmsa \char #1}}{\mbox {\tenmsa \char #1}}%
+    {\mbox {\sevenmsa \char #1}}{\mbox {\sevenmsa \char #1}}}}
+  \newcommand{\kd}{\mbox{$\scriptstyle\blacksquare$}}
+  \newcommand {\df}{\mbox{-}\nolinebreak\hspace{0pt}}
+
+  %\setcounter{footnote}{1}
+  
+  \author{\mbox{\begin{tabular}{c}
+  G\'erard Duchamp ~and~ Alexander A.~Mikhalev
+   \end{tabular}}}
+
+  \title{Graded shuffle algebras\protect\\
+  over fields of prime characteristic}
+  \date{}
+
+\maketitle
+
+
+\vspace{1cm}
+
+{\bf Abstract}.~ We describe
+the structure of
+the free associative algebra over a field of prime characteristic
+with the new multiplication given by the super shuffle product.
+
+ \vspace{1cm}
+
+{\bf R\'esum\'e}.~ Nous d\'ecrivons
+la structure de l'alg\`ebre libre
+sur un corps de caract\'eristique premi\`ere quand elle est munie 
+de la nouvelle multiplication donn\'ee par le super produit de shuffle.
+
+
+\vspace{2cm}
+
+\section{Preliminaries}
+
+
+Let $G$ be an abelian monoid, $K$ a commutative associative ring
+with identity element, $char K\neq 2$, $U(K)$ the group of  invertible
+elements of $K$,
+$\epsilon : G\times G \rightarrow  U(K)$ a skew symmetric bilinear form
+(a bicharacter), that is
+$$\epsilon (g_{1}+g_{2},h)=\epsilon (g_{1},h) \epsilon (g_{2},h), \, \,
+\epsilon (g,h_{1}+h_{2})=\epsilon (g,h_{1}) \epsilon (g,h_{2}),$$
+$$\epsilon (g,h) \epsilon (h,g) =1, \, \, \epsilon (g,g)=\pm 1$$ for all
+$g, g_{1}, g_{2}, h, h_{1}, h_{2} \in G$,
+$$G_{-} = \{ g \in G \mid \epsilon (g,g)=-1 \}, \, \,
+G_{+} = \{ g \in G \mid \epsilon (g,g)=+1 \}.$$
+
+Let $X=\cup_{g\in G}X_g$ be a  $G$-graded  set,  i.e.  $X_g\cap  X_f=
+\emptyset$ for $g\not=f,\ d(x)=g$ for $x\in X_g$; let also
+$S(X)$  be  the  free monoid
+of associative words on $X$.
+For $u=x_1\dots x_n\in  S(X)$,  $x_i\in  X$,  we
+consider the word length $l(u)=n$, and set $d(u)=\sum_{i=1}^nd(x_i)\in G$,
+$S(X)_g=\{u\in S(X) \mid d(u)=g\}$.
+Let $A(X)_g$ ($g\in G$) be  the  $K$-linear  spans  of  the  subsets
+$S(X)_g$ in the free associative algebra $A(X)$. Then
+$A(X)=\oplus_{g\in  G}A(X)_g$ is the free $G$-graded associative $K$-algebra
+on $X$.
+
+Suppose that the set $X=\cup_{g\in G}X_g$ is totally ordered  and  the
+set $S(X)$ is ordered lexicographically, i.e.  for  $u=x_1\dots  x_r$
+and $v=y_1\dots y_m$ where $x_i,y_j\in X$  we  have  $u<v$  if  either
+$x_i=y_i$  for  $i=0,1,\dots,t-1$  and  $x_t<y_t$  or  $x_i=y_i$   for
+$i=1,2,\dots,m$ and $r>m$.
+
+A word $u \in S(X)$ is said to be {\it regular\/} if $u \ne 1$ and it follows
+from $u=ab, a,b \in S(X), a,b \ne 1$, that $u=ab>ba$ (this condition
+is equivalent to the condition $u=ab>b$). A word $w \in S(X)$ is said to be
+$s$-{\it regular\/} if either $w$ is a regular word, or $w=uu$ with $u$ a
+regular word, $d(u) \in G_-.$
+Let $p$ be a prime number not equal to $2$. A word $w\in S(X)$ is said to be
+$ps$-regular if it is either an $s$-regular word, or $w=u^{p^t}$ with
+$t\in {\bf N}$, $u$ an $s$-regular word, $d(u)\in G_+$.
+
+Shuffle algebras were introduced by R.~Ree in \cite{Ree1,Ree2}. Details of
+applications of shuffle algebras to free Lie algebras may be found in
+\cite{Reut}.
+
+Let $V$ abd $Z$ be $G$-graded sets, $V\cap Z= \emptyset$, $v_1, \ldots , v_k$
+pairwise distinct elements of $V$, $z_1 \ldots , z_l$ pairwise distinct
+elements
+of $Z$. We say that a word $w\in S(V\cup Z) \setminus 1$ is a
+shuffle word of the words
+$v_1 \cdots v_k$ and $z_1 \cdots z_l$ if   $w$ has the multidegree
+$$m(w)= v_1 + \cdots  + v_k  + z_1 \cdots z_l$$ and
+$$\subst{w}{z_1=1,  \ldots , z_l=1}= v_1 \cdots  v_k;
+\, \, \subst{w}{v_1=1, \ldots , v_k=1}= z_1 \cdots z_l.$$
+The parity $\sigma (w)$ of a shuffle word $w$ of the words
+$v_1 \cdots v_k$ and $z_1 \cdots z_l$ is the sum of all
+$\varepsilon (z_i , v_j)$
+such that $z_i$ is situated before $v_j$ in $w$.
+
+Let $X$ be a $G$-graded set.
+For
+$x_{i_1}, \ldots x_{i_k}, x_{j_1} , \ldots , x_{j_l} \in X$
+we define the shuffle product $(x_{i_1} \cdots  x_{i_k}) * (x_{j_1}
+\cdots x_{j_l})$
+as the following linear combination of words of multidegree
+$x_{i_1} + \ldots + x_{i_k} + x_{j_1}  \ldots + x_{j_l}$:
+$$(x_{i_1} \cdots  x_{i_k}) * (x_{j_1} \cdots x_{j_l})=
+\subst{\sum_w \sigma (w) w}{v_s = x_{i_s}, s=1, \ldots , k;
+z_t = x_{j_t}, t=1, \ldots , l}$$
+where $w$ is running through all shuffle words of the words
+$v_1 \cdots v_k$
+and $z_1 \cdots z_l$ with $d(v_s)=d(x_{i_s}), d(z_t)=d(x_{j_t})$.
+Taking $1 * u = u * 1 = u$ for all
+$u\in S(X)\setminus 1$ and
+extending $*$ on  the free $G$-graded associative algebra $A(X)$
+on $X$ over
+a commutative associative ring $K$ with the identity element
+by linearity, we define the shuffle product $*$ on
+$A(X)$. Then $A(X)$ with this product is an $\varepsilon$-commutative and
+associative algebra (see \cite{Ree2}).
+
+
+One can
+define the shuffle product $*$ on $A(X)$ in the following way:
+$$1*u=u*1=u; \, \, \, \, \, (xu)*(yv) = x(u*(yv)) + \varepsilon(y,x)
+\varepsilon(y,u)y((xu)*v)$$
+for all $x,y \in X, \, u,v \in S(X)\setminus 1$
+(with the extension $*$ on $A(X)$ by linearity).
+
+If we consider $A(X)$ as the universal enveloping algebra of the free
+color Lie superalgebra $L(X)$, then $*$ is the adjoint
+of coproduct $\delta$ of $A(X)$.
+
+In fact, for this definition (and associativity of this law),
+$\varepsilon$ need only be bilinear and (see \cite{NCSF3}) is the
+unique law for which $1$ is neutral and the operators
+$(x^{-1})_{x\in X}$ (i.e. the adjoints of the multiplication by
+letters) are superderivations.
+
+Let $Y$ be a $G$-graded set,
+and let $J$ be the two-sided ideal of the free $G$-graded
+associative algebra $A (Y)$
+generated by the $G-$homogeneous elements
+$$ab-\varepsilon (d(a),d(b))ba,$$ where $a,b$ are
+elements of $ S ( Y )$, and
+$K_{\varepsilon}[Y]=A(Y)/J$. Then the algebra $K_{\varepsilon}[Y]$ is the
+free $\varepsilon$-commutative associative $K$-algebra with the set
+$Y$ of free generators.
+If $G_- =\emptyset$, then  $K_{\varepsilon}[Y]$   is the algebra of quantum
+polynomials. If $\varepsilon\equiv 1$, then  $K_{\varepsilon}[Y]$  is
+the usual polynomial algebra. In general case the algebra
+$K_{\varepsilon}[Y]$  is the universal enveloping algebra of a
+Abelian color Lie superalgebra
+(see \cite{BMPZ}, \cite{MZBook}).
+
+
+\section{Main result}
+
+D. Radford in \cite{Radford} proved that in the case of trivial grading group
+the free associative algebra as a shuffle algebra is the free commutative
+associative algebra with a set of free generators consisting of Lyndon words
+(see also \cite{Reut}).
+A.~A.~Mikhalev and A.~A.~Zolotykh showed in \cite{MiZo1,MiZo2}
+that if $K$ is a ${\bf Q}$-algebra, then $A(X)$ with the shuffle product
+$*$ is the free $\varepsilon$-commutative algebra with a set of free
+generators consisting of $s$-regular words.
+
+We consider the case where $K$ is a field, $char K = p>2$.
+Let $R(X)$ be the set of $ps$-regular words of $S(X)$, $R(X)=R_+ \cup R_-$,
+where
+$$R_+=\{ r\in R(X) \mid d(r)\in G_+ \}, \, \, \,
+R_-=\{ r\in R(X) \mid d(r)\in G_- \}.$$
+
+By $K_{\varepsilon}[R(X)]$ we denote the free $\varepsilon$-commutative
+$K$-algebra generated by the set $R(X)$.
+
+\begin{theorem}
+Let
+$K$ be a field, $char K = p>2$. Then the free $G$-graded associative
+algebra $A(X)$ with the new
+multiplication given by the shuffle product $*$ is isomorphic to the
+factor algebra $K_{\varepsilon}[R(X)]/I$, where
+$I$ is the ideal of $K_{\varepsilon}[R(X)]$ generated by the set
+$\{ u^p \mid u\in R_+ \}$.
+In particular, if $G=\{ e \}$, then the algebra
+$A(X)$ with the shuffle multiplication is isomorphic to the algebra of
+$p$-reduced polynomials on regular (or on Lyndon) words.
+\end{theorem}
+
+
+\begin{thebibliography}{99999}
+
+  \bibitem[BMPZ]{BMPZ}
+  Yu.~A.~Bahturin, A.~A.~Mikhalev, V.~M.~Petrogradsky, and M.~V.~Zaicev,
+  {\it Infinite Dimensional Lie Superalgebras\/}. Walter de Gruyter Publ.,
+  Berlin--New York, 1992.
+
+\bibitem[DKKT]{NCSF3}  G.~Duchamp, A.~Klyachko, D.~Krob, and J.-Y.~Thibon,
+{\it Noncommutative symmetric functions III: Deformation of Cauchy and
+convolution algebras\/}.
+Disc. Math. and Th. Comp. Sci. {\bf 1} (1997), \hbox{159--216}.
+
+\bibitem[MZ1]{MiZo1}
+A.~A.~Mikhalev and A.~A.~Zolotykh,
+{\it Natural basis for $\epsilon$-shuffle algebras\/}.
+7th Conf. {\sl Formal Power Series and
+Algebraic Combinatorics\/},
+Univ. Marne-la-Vall\'ee, 1995,
+\hbox{423--426}.
+
+\bibitem[MZ2]{MiZo2}
+A.~A.~Mikhalev and A.~A.~Zolotykh,
+{\it Bases of free super shuffle algebras\/}.
+Uspekhi  Matem. Nauk {\bf 50} (1995), no.~1, \hbox{199--200}.
+English translation: Russian Math. Surveys {\bf 50} (1995), no.~1,
+\hbox{225--226}.
+
+ \bibitem[MZ3]{MZBook}
+  A.~A.~Mikhalev and A.~A.~Zolotykh, {\it Combinatorial Aspects
+  of  Lie Superalgebras\/}. CRC Press, Boca Raton, New York, 1995.
+
+\bibitem[Rad]{Radford}
+D.~E.~Radford, {\it A natural ring basis for the shuffle algebra and an
+application to group schemes\/}. J.~Algebra {\bf 58} (1979),
+\hbox{432--454}.
+
+\bibitem[Ree1]{Ree1}
+R.~Ree, {\it Lie elements and an algebra associated with shuffles\/}.
+Annals of Math. {\bf 68} (1958), \hbox{210--220}.
+
+\bibitem[Ree2]{Ree2}
+R.~Ree, {\it Generalized Lie elements\/}. Canadian J. Math. {\bf 12}
+(1960), \hbox{493--502}.
+
+
+\bibitem[Reu]{Reut}
+Ch.~Reutenauer, {\it Free Lie Algebras\/}. Clarendon Press, Oxford,
+1993.
+
+\end{thebibliography}
+
+\end{document}
+

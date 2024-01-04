@@ -1,0 +1,262 @@
+\magnification=\magstep1
+\input amstex
+\input pictex
+\documentstyle{amsppt}
+
+\hsize=5in
+\vsize=7.5in
+\leftheadtext{George E. Andrews}
+\rightheadtext{Stacked Lattice Boxes and Theorems}
+\def\c{\cite}
+\def\fr{\frac}
+\def\call{\Cal L}
+
+\topmatter
+\title
+        Stacked Lattice Boxes and Theorems of Liouville,
+        Bell and MacMahon
+\endtitle
+\author
+by \\
+\ \ \\
+George E. Andrews
+\endauthor
+\endtopmatter
+
+\document
+\baselineskip 20pt
+
+This is a brief summary of the work presented in \c1 together
+with some comments about more recent work.
+
+Arithmetically we are considering $L_k(n)$, the number of
+solutions of
+$$
+        n = x_1 x_2 + x_2 x_3 + x_3 x_4 + \cdots + x_k x_{k+1}
+\tag1
+$$
+in positive integers $x_i$.  In the mid-nineteenth century,
+Liouville developed a mysterious method for studying such
+problems.  I say ``mysterious'' because he stated all his
+central theorems without proof.  However numerous mathematicians
+(most notably Humbert, Pepin and Bell) managed to find proofs
+of the Liouville Theorems.  The theorems apparently have their
+genesis in the theory of elliptic functions (as Humbert \c6
+observed); however, Pepin \c9 was able to develop elementary
+methods to prove many of Liouville's results.
+
+According to Bell \c4, the last result of Liouville \c7 to
+be proved was equivalent to the assertion that
+$$
+        L_4(n) = D_2(n) - n \,D_0(n) - D_{0,0}(n)\,,
+\tag2
+$$
+where
+$$
+        D_{i_1 i_2\dots i_r}(n) = \sum_{\Sb j_1 + j_2 +\cdots +
+        j_r = n  \\ j_1,\dots,j_r \geqq 1 \endSb}
+        D_{i_1}(j_1) D_{i_2}(j_2) \cdots D_{i_r} (j_r)\,,
+\tag3
+$$
+and
+$$
+        D_i(n) = \sum_{j|n} j^i\,.
+\tag4
+$$
+
+The phrase ``stacked lattice boxes'' derives from the fact
+that a solution of (1) may be viewed as yielding $n$ as the area
+of the following figure
+$$
+\hbox{{\hskip -2in}
+\vbox{\vskip .3in{Figure 1}}
+\hbox{{\hskip -3.5in} 
+\putrule from -.3 0 to 3 0
+\setcoordinatesystem units <.75in,.75in>
+\putrule from 0 -.3 to 0 2.4
+%\linethickness=1pt 
+\putrule from -.3 0 to 3 0
+\putrectangle corners at 0 .3 and .75 0
+\putrectangle corners at 0 .3 and .75 1
+\putrectangle corners at .75 1 and 1.75 .3
+\putrectangle corners at .75 1.3 and 1.75 .3
+\putrectangle corners at 1.75 1.3 and 2.5 1
+\put {$x_1\Big\{$} at -.15 .15 
+\put {$x_3\Bigg\{$} at -.15 .65
+\put {$x_5\Big\{$} at .6 1.15  
+\put {$\undersetbrace{x_2}\to{\ \ \ \ \ \ \ \ \ \ \ }$} at .4 -.15  
+\put {$\undersetbrace{x_6}\to{\ \ \ \ \ \ \ \ \ \ \ \; }$} at 2.15 .85
+\put {$\undersetbrace{x_4}\to{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }$} at 1.25 .15  }}
+$$
+
+In addition to (2), Liouville's ``last'' theorem, one can derive
+fairly easily (with a little help from MacMahon \c8), that
+$$
+        L_1 (n) = D_0(n)
+\tag5
+$$
+$$
+        L_2 (n) = D_1 (n) - D_0 (n)
+\tag6
+$$
+$$
+        L_3(n) = \fr12 D_{0,0}(n) + \fr12 D_0(n) - \fr12 
+        D_1(n)\,.
+\tag7
+$$
+
+Our approach to these questions is to use $q$-series extensively
+following the ideas of W. N. Bailey \c3.  This allows us to prove
+$$
+\align
+        L_5(n) & = \fr16 D_{0,0,0}(n) + D_{0,0}(n) + \fr12
+        D_{0,1}(n)
+        \\
+        & \qquad \left(2n - \fr16\right) D_0(n) - \fr{11}{6} D_2(n)\,.
+        \tag8
+\endalign
+$$
+
+These discoveries dovetail interestingly with the study 
+(begin in \c2) of the $q$-series:
+$$
+        M_k(q) = \sum_{n=1}^{\infty}
+        \fr{(-1)^{n-1} q^{\binom{n+1}{2}}}{(1 - q)(1 - q^2)
+        \cdots (1 - q^{n-1})(1 - q^n)^{k+1}}\;.
+\tag9
+$$
+
+Let us denote the generating function for $L_k(n)$ by $\call_k(q)$.
+
+Using the methods of \c2, we can show that
+$$
+\align
+        M_1(q) & = \call_1(q)    \tag10  \\
+        M_2(q) & = \call_1(q) + \call_2(q) + \call_3(q)\,,
+        \tag11
+\endalign
+$$
+and
+$$
+        M_3 (q) = \call_1(q) + 2\call_2(q) + 3\call_3(q) + 2\call_4(q)
+        + \call_5(q)\,.
+\tag12
+$$
+
+The table of coefficients in these identities, namely
+$$
+\gathered
+        1  \\
+        1\quad 1\quad 1  \\
+        1 \quad 2\quad 3\quad 2\quad 1
+\endgathered
+$$
+
+suggests the trinomial coefficients \c{5; p. 78}.  However
+if we examine the next suggested identity we find instead
+$$
+\align
+        M_4(q) = & \call_1(q) + 3\call_2(q) + 6 \call_3(q)
+        + 7 \call_4(q)
+        \\
+        & + 6 \call_5(q) + 3\call_6(q) + \call_7(q)   \\
+        & - (q^7 + 2q^8 + 6q^9 + 11q^{10} + 22q^{11} 
+        + 33q^{12} + 57 q^{13} + \dots )  \tag13
+\endalign
+$$
+
+So having surveyed the world of the mysterious Liouville 
+identities, we are led to a new ``Liouville mystery.''
+
+\Refs
+\ref
+  \no 1
+  \by G. E. Andrews
+  \paper Stacked lattice boxes
+  \jour Annals of combinatorics
+  \finalinfo (to appear)
+\endref
+\ref
+  \no 2
+  \by G. E. Andrews, D. Crippa, K. Simon
+  \paper $q$-Series arising from the study of random graphs
+  \jour S.I.A.M. J. Discr. Math.
+  \vol 10
+  \yr 1997
+  \pages 41--56
+\endref
+
+\ref
+  \no 3
+  \by W. N. Bailey
+  \paper An algebraic identity
+  \jour J. London Math. Soc.
+  \vol 11
+  \yr 1936
+  \pages 156--160
+\endref
+
+
+\ref
+  \no 4
+  \by E. T. Bell
+  \paper The form $wx + xy + yz + zu$
+  \jour Bull. Amer. Math. Soc.
+  \vol 42
+  \yr 1936
+  \pages 377--380
+\endref
+
+\ref
+  \no 5
+  \by L. Comtet
+  \paper Advanced Combinatorics
+  \paperinfo Reidel, Dordrecht, 1974
+\endref
+
+\ref
+  \no 6
+  \by G. Humbert
+  \paper D\'emonstration analytique d'une formule de Liouville
+  \jour Bull. des Sc. Math (2)
+  \vol 34
+  \yr 1910
+  \pages 29--31
+\endref
+
+
+\ref
+  \no 7
+  \by J. Liouville
+  \paper $x_1 x_2 + x_2 x_3 + x_3 x_4 + x_4 x_5$
+  \paperinfo Comptes Rendus, 62 (1866), 714 and Journal de
+                Math\;ematiques (2), 12 (1867), 47--48
+\endref
+
+
+\ref
+  \no 8
+  \by P. A. MacMahon
+  \paper Divisors of numbers and their continuations in the theory
+        of partitions
+  \jour Proc. London Math. Soc.
+  \finalinfo (1919), 75--113 (Reprinted: The Collected Papers
+        of P. A. MacMahon, Vol. II, G. E. Andrews ed., M.I.T.
+        Press, Cambridge, 198  
+\endref
+
+\ref
+  \no 9
+  \by T. Pepin
+  \paper Sur quelques formules d'Analyse utiles dans la The'orie
+        des nombres
+  \jour J. de Math. Pures et Appl.
+  \vol 4
+  \yr 1888
+  \pages 83--127
+\endref
+
+\endRefs
+\enddocument
+
+

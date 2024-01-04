@@ -1,0 +1,941 @@
+\input a4new
+\magnification=1200
+\overfullrule=0pt
+\def\boxit#1#2{\setbox1=\hbox{\kern#1{#2}\kern#1}%
+\dimen1=\ht1 \advance\dimen1 by #1 \dimen2=\dp1 \advance\dimen2 by #1
+\setbox1=\hbox{\vrule height\dimen1 depth\dimen2\box1\vrule}%
+\setbox1=\vbox{\hrule\box1\hrule}%
+\advance\dimen1 by .4pt \ht1=\dimen1
+\advance\dimen2 by .4pt \dp1=\dimen2 \box1\relax}
+\def\tab#1{\boxit{1pt}{$\matrix{#1}$}}
+\def\bitab#1{\boxit{1pt}{\boxit{1pt}{$\matrix{#1}$}}}
+\def\bo#1{\boxit{1pt}{$#1$}}
+\def\bol#1{\boxit{4pt}{$#1$}}
+\def\bop#1{\boxit{3pt}{$#1$}}
+\def\he{\hskip 1mm}
+\def\th{\noalign{\smallskip}\noalign{\hrule}\noalign{\smallskip}}
+\def\tvi{\vrule height 1pt depth 0pt width 0pt}
+\font\petcap=cmcsc10
+\font\tpetcap=cmcsc8
+\font\petit=cmti7
+\font\twelvebf=cmbx12
+\centerline{\twelvebf POWERS OF STAIRCASE SCHUR FUNCTIONS}
+\centerline{\twelvebf AND SYMMETRIC ANALOGUES OF BESSEL POLYNOMIALS}
+\vskip 1cm
+\centerline{Bernard LECLERC \footnote{$\dagger$}{
+\sevenrm Institut Gaspard Monge, 
+Universit\'e de Marne-la-Vall\'ee, 2 rue de la Butte-Verte 93160 
+Noisy-le-Grand Cedex France}}
+\vskip 1cm
+{\sevenbf Abstract. }{\sevenrm  We present several identities involving 
+staircase Schur functions. These identities are then interpreted in terms of 
+a sequence of orthogonal polynomials in one variable ${\scriptstyle x}$, with 
+coefficients in the ring of symmetric functions. By an appropriate 
+specialization these polynomials reduce to Bessel polynomials. This leads to 
+a new determinantal expression for Bessel polynomials and suggests that their 
+combinatorics might be linked to Young tableaux or shifted Young 
+tableaux.}\bigskip 
+
+\bf1  Introduction
+\rm\medskip
+Schur functions $S_I$ and skew Schur functions $S_{I/J}$ are indexed by 
+partitions $I$ or skew partitions $I/J$, which are visualized graphically by 
+a diagram of boxes. Several families of Schur functions associated with 
+special diagrams are known to satisfy particular identities. Thus, Lascoux 
+and Pragacz provided a determinantal expression of Schur functions and skew 
+Schur functions in terms of ribbon functions, which generalizes the classical 
+decomposition into hook functions given by Giambelli \bf[LP]\rm.
+\smallskip
+In this paper we are interested in Schur functions whose diagram is 
+a staircase. 
+% like 
+%\smallskip
+%$$\matrix{
+%\bol{}& \bol{}& & & & & & \cr
+%\bol{}&\bol{}&\bol{}& \bol{}& & & &\cr
+%\bol{}&\bol{}&\bol{}&\bol{}&\bol{}&\bol{}& &\cr
+%\bol{}&\bol{}&\bol{}&\bol{}&\bol{}&\bol{}&\bol{}&\bol{}\cr
+%}\ \ .$$
+%\medskip
+Our starting point is the following formula for the square of a staircase
+Schur function
+$$S_{12\ldots n}^2=S_{12\ldots n+1/1}S_{12\ldots n-1} 
+- S_{12\ldots n+1}S_{12\ldots n-1/1}\ ,$$
+which first arose in the context of the Korteweg-de-Vries equation {\bf[AM]}.
+It shows that the polynomials $\theta_d$ constructed by Adler and Moser
+to represent the rational solutions of the KdV equation are, up to
+normalization, nothing but staircase Schur functions 
+\footnote{*}{\sevenrm We thank D. Svrtan
+for pointing out this fact to us and kindly providing references on
+this subject.}.
+In a recent article Goulden has provided a combinatorial proof of this identity 
+\bf[Go]\rm. We shall 
+present more general formulae, expressing any power of a staircase Schur 
+function.
+\smallskip
+An interpretation of these formulae in terms of orthogonal polynomials is then given. 
+Indeed, it is shown that the family of staircase Schur functions $S_{12\ldots 
+n}({\bb{E}}+x),\ n\geq0$, is a family of orthogonal polynomials in the variable $x$, 
+which may be seen as a symmetric analogue of the family of Bessel 
+polynomials. This provides a new determinantal expression for Bessel 
+polynomials. It also shows that the powerful machinery of symmetric functions 
+might be of some help in the study of this sequence of polynomials. Thus, 
+using the fact that staircase $S$-functions are special cases of Schur $Q$-functions, 
+Thibon and the author derived from a recent multiplication formula
+due to Worley the computation of the linearization coefficients \bf[LT]\rm which 
+had been conjectured by Favreau \bf[Fa]\rm.  
+\smallskip
+Finally, we show that our formulae are also linked to an old problem first 
+studied by Borchardt \bf[Bo] \rm and Laguerre \bf[La]\rm, and further investigated by 
+numerous authors including P\'olya \bf[Po] \rm and Foulkes \bf[Fo]\rm. The problem is to 
+express any symmetric polynomial of $n$ indeterminates as a rational function 
+of the power sums of odd degree. Set ${\bb{X}}=\{x_1,\ldots ,x_n\}$. The expression 
+given by Polya and Foulkes for the $k^{th}$ elementary symmetric polynomial 
+$\Lambda_k({\bb{X}})$ is the coefficient of $(-x)^{n-k}$ in the ratio $S_{12\ldots 
+n}({\bb{X}}-x)/S_{12\ldots n-1}({\bb{X}})$. We obtain a similar expression 
+for the complete 
+symmetric polynomial $S_k({\bb{X}})$. 
+\bigskip
+\bf2  Schur functions and minors identities
+\rm\medskip
+In this section we shall define our notations and recall some basic facts 
+about Schur functions and minors identities. General references are \bf[LS]\rm, 
+\bf[Mc] \rm and \bf[Le]\rm.
+\smallskip
+Let ${\bb{E}}$ denote a set of indeterminates or \it alphabet\rm. The 
+\it complete symmetric 
+functions \rm$S_i({\bb{E}})$ and the \it elementary symmetric functions 
+\rm$\Lambda_i({\bb{E}})$ are 
+defined by means of the generating series
+$$\sum_iS_i({\bb{E}})t^i = \prod_{e\in{\bb{E}}}(1-te)^{-1}\ ,\eqno (1)$$
+$$\sum_i\Lambda_i({\bb{E}})t^i = \prod_{e\in{\bb{E}}}(1+te)\ .\eqno (2)$$
+When there is no danger of confusion we shall omit the mention of the 
+alphabet. For $I=(i_1,\ldots ,i_n)\in{\bb{N}}^n$, the \it Schur function \rm$S_I$ 
+is defined 
+by Jacobi--Trudi identity
+$S_I={\rm det}[S_{i_l+l-k}]_{1\leq k,l\leq n}\ .$
+In other words, denoting by $\bf S\rm$ the infinite Toeplitz matrix 
+$[S_{j-i}]_{i,j\geq0}$ where $S_k=0$ for $k<0$, $S_I$ is the minor of $\bf S\rm$ taken 
+on the lines $0,\ 1,\ldots ,\ n-1$ and the columns $i_1,\ i_2+1,\ldots ,\ 
+i_n+n-1$. More generally, given $J=(j_1,\ldots,\ j_n)\in{\bb{N}}^n$ one defines the 
+\it skew Schur function \rm$S_{I/J}$ as the minor of $\bf S\rm$ taken on the lines 
+$j_1,\ j_2+1,\ldots ,\ j_n+n-1$ and the columns $i_1,\ i_2+1,\ldots ,\ i_n+n-1$
+, \it i. e. \rm 
+$S_{I/J}={\rm det}[S_{i_l+l-j_k-k}]_{1\leq k,l\leq n}\ .$
+Note that this definition makes sense even if the sequences $I$ and $J$ are 
+not arranged in increasing order. However, by permutation of columns and rows 
+one can always assume that  $I$ and $J$ are \it partitions \rm i.e. weakly 
+\it increasing 
+\rm sequences of nonnegative integers. A partition $I$ is represented by a 
+\it diagram \rm of boxes having $i_1$ boxes on its first 
+row, $i_2$ boxes on its second row, etc.. $|I|=i_1+\ldots +i_n$ is called the 
+\it weight \rm of $I$. The \it skew diagram \rm associated with $S_{I/J}$ 
+is the complement 
+of the diagram $J$ in the diagram $I$.
+\smallskip
+Schur functions may also be expressed in terms of elementary symmetric 
+functions $\Lambda_i$. Indeed, defining by analogy the functions $\Lambda_{I/J}$ by
+$\Lambda_{I/J}={\rm det}[\Lambda_{i_l+l-j_k-k}]_{1\leq k,l\leq n}\ ,$
+one has the relation 
+$$\Lambda_{I/J}=S_{I^{\sim}/J^{\sim}},\eqno (3)$$
+where $I^{\sim}$ denotes the \it conjugate partition \rm of $I$ i.e. the partition 
+whose diagram is obtained by interchanging the rows and columns of the 
+diagram of $I$.
+\smallskip
+Suppose ${\bb{F}}$ is a second alphabet and denote by ${\bb{E}}+{\bb{F}}$ the 
+union of ${\bb{E}}$ and 
+${\bb{F}}$. It follows from (1), (2) that
+$$S_n({\bb{E}}+{\bb{F}})=\sum_{0\leq i\leq n}S_i({\bb{E}})S_{n-i}({\bb{F}})\ ,\eqno (4)$$
+$$\Lambda_n({\bb{E}}+{\bb{F}})=\sum_{0\leq i\leq n}\Lambda_i
+({\bb{E}})\Lambda_{n-i}({\bb{F}})\ .\eqno (5)$$
+We shall also define the difference ${\bb{E}}-{\bb{F}}$ by setting
+$$\sum_iS_i({\bb{E}}-{\bb{F}})t^i = {\prod_{f\in{\bb{F}}}(1-tf)\over 
+\prod_{e\in{\bb{E}}}(1-te)}\ ,
+\qquad \sum_i\Lambda_i({\bb{E}}-{\bb{F}})t^i = {\prod_{e\in{\bb{E}}}(1+te)\over 
+\prod_{f\in{\bb{F}}}(1+tf)}\ ,$$
+so that in particular 
+$$\Lambda_i({\bb{E}}) = (-1)^i S_i(-{\bb{E}})\ ,\eqno (6)$$
+which is another way of expressing the duality between complete and 
+elementary symmetric functions. This yields a compact expression for the 
+polynomial whose set of zeros is the alphabet ${\bb{A}}$ of cardinality $n$
+$$\prod_{a\in{\bb{A}}} (x-a) = \sum_ix^{n-i}(-1)^i\Lambda_i({\bb{A}}) 
+= \sum_iS_{n-i}(x)S_i(-{\bb{A}}) = 
+S_n(x-{\bb{A}})=(-1)^n\Lambda_n({\bb{A}}-x)\ .$$
+\smallskip
+Taking different alphabets ${\bb{E}}_1,\ldots ,\ {\bb{E}}_n$ in the columns of the 
+determinant of Jacobi--Trudi formula, one gets a \it multi-Schur function
+\rm$S_I({\bb{E}}_1,\ldots ,\ {\bb{E}}_n)=
+{\rm det}[S_{i_l+l-k}({\bb{E}}_l)]_{1\leq k,l\leq n}\ .$
+An example of multi-Schur function considered in this paper is the $n^{th}$ 
+orthogonal polynomial associated with the linear functional $\mu$ of moments 
+$\mu(x^i)=S_i({\bb{E}})$. (Note that, since the $S_i$ are algebraically independent, 
+one may always define a formal alphabet ${\bb{E}}$ by assigning to each $S_i$ a 
+given value $S_i({\bb{E}})$ in a commutative ring.) Indeed this polynomial 
+$p_n(x)$ has, up to a constant factor, the expression 
+$$p_n(x)=S_{n^n0}({\bb{E}},{\bb{E}},\ldots ,{\bb{E}},x)=
+\left|\matrix{
+S_n({\bb{E}})& S_{n+1}({\bb{E}})& \ldots & S_{2n-1}({\bb{E}})& x^n\cr
+S_{n-1}({\bb{E}})& S_n({\bb{E}})& \ldots & S_{2n-2}({\bb{E}})& x^{n-1}\cr
+\vdots&\vdots&      & \vdots&\vdots\cr
+S_0({\bb{E}})&S_1({\bb{E}})&\ldots&S_{n-1}({\bb{E}}) & 1\cr
+ }\right|\ ,\eqno (7)$$
+(see \bf[Sz] \rm p.27). By subtraction of lines in the determinant, this polynomial 
+may also be written as an ordinary Schur function on the alphabet ${\bb{E}}-x$. 
+Indeed, one has  
+$p_n(x)=S_{n^n}({\bb{E}}-x)\ .$
+This is a consequence of the following important lemma.
+\smallskip
+{\petcap Lemma 2.1} {\it Let $m,\ n$ be two integers $m\leq n$, ${\bb{F}}$ an alphabet 
+of cardinality $m$, and $I=(i_1,\ldots ,\ i_n)$ a partition. Then}
+$$S_I({\bb{E}}_1,\ldots ,{\bb{E}}_n)=
+\left|\matrix{
+S_{i_1}({\bb{E}}_1-{\bb{F}})&\ldots &S_{i_n+n-1}({\bb{E}}_n-{\bb{F}})\cr
+\vdots& &\vdots\cr
+S_{i_1-n+m+1}({\bb{E}}_1-{\bb{F}})&\ldots &S_{i_n+m}({\bb{E}}_n-{\bb{F}})\cr
+S_{i_1-n+m}({\bb{E}}_1)&\ldots &S_{i_n+m-1}({\bb{E}}_n)\cr
+\vdots & &\vdots\cr
+S_{i_1-n+1}({\bb{E}}_1)&\ldots &S_{i_n}({\bb{E}}_n)\cr
+}\right|\ .$$
+\smallskip
+\it Proof. \rm By (4), we have 
+$S_k({\bb{E}}_j-{\bb{F}})=
+S_k({\bb{E}}_j)+S_{k-1}({\bb{E}}_j)S_1(-{\bb{F}})+\ldots +S_k(-{\bb{F}})\ .$
+But $S_k(-{\bb{F}})=(-1)^k\Lambda_k({\bb{F}})=0$ if $k>m$. Thus, the 
+transformation consists in 
+adding to each of the first $n-m$ rows a linear combination of the next $m$ 
+rows.\quad $\qed$
+\medskip
+The Jacobi--Trudi formula expresses Schur functions as minors of the matrix 
+$\bf S\rm$ of complete symmetric functions $S_i$. This shows that many algebraic 
+relations for Schur functions may be obtained by merely specializing the 
+numerous identities satisfied by minors of a generic matrix. We have shown 
+elsewhere [{\bf Le}] that a great number of these identities are easily derived from a 
+single one by Turnbull. We shall briefly recall this identity for the convenience
+of the reader. We first need some appropriate notations.
+\smallskip
+Let $M$ be a $n \times \infty$ matrix. We shall be interested in identities 
+satisfied by maximal minors of $M$. Let $a,b,\ldots,c$ be $n$ column vectors 
+of $M$. The maximal minor of $M$ taken on these $n$ columns will be denoted 
+by either a bracket or a one--line tableau
+$$[ab\ldots c] = \tab{a &b &\ldots &c\cr}\he .$$
+\smallskip
+A product of $p$ minors of $M$ will be designated by a $p \times n$ tableau
+$$[ab\ldots c].[de\ldots f].[gh\ldots i] = 
+\tab{
+a &b &\ldots &c\cr\th
+d &e &\ldots &f\cr\th
+g &h &\ldots &i\cr
+}\he.$$
+To denote certain alternating sums of products of minors, we shall use 
+tableaux with boxes enclosing some particular vectors. They are defined in 
+the following way.
+\smallskip
+Let $T$ be a $p \times n$ tableau and $A$ a subset of elements of $T$. Given 
+a permutation $\sigma$ of the elements of $A$, denote by $\sigma(T)$ the tableau in 
+which the elements of $A$ are permuted by $\sigma$. Now, boxing in $T$ the 
+elements of $A$, we get a new tableau $\tau$ which will represent the 
+alternating sum of all the tableaux $\sigma(T)$, taking into account the fact that 
+a permutation of elements of the same row gives a trivial action. More 
+precisely, 
+$\tau=\sum_\sigma sign(\sigma).\sigma(T) \he ,$
+where $\sigma$ runs through the cosets of the symmetric group ${\goth{S}}(A)$ modulo the 
+subgroup of the permutations which leave unchanged the rows of $T$.\par
+Let $i_k,\ k=1,\ldots p$ denote the number of elements of $A$ lying in the 
+$k^{th}$ row of $\tau$. The number of terms in this sum will be $(i_1+\ldots 
++i_p)!/i_1!\ldots i_p!$. In particular, if all the enclosed elements of $\tau$ 
+lie in the same row, it reduces to the single tableau $T$.
+\smallskip
+To illustrate these notations, let us write a well--known minor identity 
+(Pl\"ucker's relations) and then its transcription with tableaux.
+\smallskip
+Let $M$ be the matrix 
+$$M=\pmatrix{
+a_1 &b_1 &c_1 &d_1 &e_1 &f_1 &\ldots\cr
+a_2 &b_2 &c_2 &d_2 &e_2 &f_2 &\ldots\cr
+a_3 &b_3 &c_3 &d_3 &e_3 &f_3 &\ldots\cr
+ }\he .$$
+We have
+$$\displaylines{\qquad\left|\matrix{
+a_1 &b_1 &c_1\cr
+a_2 &b_2 &c_2\cr
+a_3 &b_3 &c_3\cr
+}\right| .
+\left|\matrix{
+d_1 &e_1 &f_1\cr
+d_2 &e_2 &f_2\cr
+d_3 &e_3 &f_3\cr
+}\right|\he -\he
+\left|\matrix{
+e_1 &b_1 &c_1\cr
+e_2 &b_2 &c_2\cr
+e_3 &b_3 &c_3\cr
+}\right| .
+\left|\matrix{
+d_1 &a_1 &f_1\cr
+d_2 &a_2 &f_2\cr
+d_3 &a_3 &f_3\cr
+}\right|\hfill\cr
+\hfill -\he
+\left|\matrix{
+f_1 &b_1 &c_1\cr
+f_2 &b_2 &c_2\cr
+f_3 &b_3 &c_3\cr
+}\right| .
+\left|\matrix{
+d_1 &e_1 &a_1\cr
+d_2 &e_2 &a_2\cr
+d_3 &e_3 &a_3\cr
+}\right|
+\he =\he\left|\matrix{
+a_1 &e_1 &f_1\cr
+a_2 &e_2 &f_2\cr
+a_3 &e_3 &f_3\cr
+}\right| .
+\left|\matrix{
+d_1 &b_1 &c_1\cr
+d_2 &b_2 &c_2\cr
+d_3 &b_3 &c_3\cr
+}\right|\he .\qquad\cr}$$
+\smallskip
+Denoting the column vectors of $M$ by $a,b,c,d,e,f$, this identity written 
+using tableaux takes the following form
+\smallskip
+$$\tab{
+\bo{a} &b &c\cr\th
+d &\bo{e} &\bo{f}\cr
+}\he = \he 
+\tab{
+a &e &f\cr\th
+d &b &c\cr
+}\he .$$
+\smallskip
+It is readily deduced from Turnbull's identity, that we shall now state.
+\smallskip
+Let $\tau$ be a tableau and denote by $A$ the set of its boxed elements. Let 
+$B$ be the set of elements of a given row, for example the first one, which 
+do not belong to $A$. Finally let $C$ denote the set of all other elements of 
+$\tau$. One can build another tableau $\upsilon$ equal to $\tau$ 
+by merely exchanging the 
+roles of $A$ and $B$ as shown by the following diagram:
+\setbox3=\hbox{$\vcenter{\offinterlineskip\cleartabs
+\def\cc#1{\hfill#1\hfill}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\tvi\vrule}
+\def\th{\vrule height 0.4pt width 2em}
+\+ \th&\th&\th&\th&\th&\th&\cr
+\+ \tv&\tv&   &   &\cc{B}& &\tv\cr
+\+ &\th&\th&\th&\th&\th&\cr
+\+ \tv&\cc{\bf A\rm} &\tv&&&&\tv\cr
+\+ &\th&   &   &   &   &\cr
+\+ \tv&\tv&&&\cc{C}&&\tv\cr
+\+ \th&\th&\th&\th&\th&\th&\cr
+}$}
+\setbox4=\hbox{ = }
+\setbox5=\hbox{$\vcenter{\offinterlineskip\cleartabs
+\def\cc#1{\hfill#1\hfill}
+\def\tvi{\vrule height 12pt depth 5pt width 0pt}
+\def\tv{\tvi\vrule}
+\def\th{\vrule height 0.4pt width 2em}
+\+ \th&\th&\th&\th&\th&\th&\cr
+\+ \tv&   &\cc{A} &   &\tv &\cc{\bf B\rm} &\tv\cr
+\+ \th&\th&\th&\th&\th&\th&\cr
+\+ \tv&\cc{\bf B\rm} &\tv&&&&\tv\cr
+\+ &\th&   &   &   &   &\cr
+\+ \tv&\tv&&&\cc{C}&&\tv\cr
+\+ \th&\th&\th&\th&\th&\th&\cr
+}$}
+$$\line{\hfill{$\tau =$}\box3\box4\box5 {$= \nu$}\hfill}$$
+More precisely, we have
+\medskip\
+{\petcap Theorem} 2.1. {\it (Turnbull's identity, \bf[Tu]\rm, p.209.)}
+\smallskip
+{\it Let $k$ be the number of elements of $A$.}
+\smallskip
+(i) {\it If  $k>n, \he \tau = 0.$}
+\smallskip
+(ii) {\it If  $k\leq n$, and $\upsilon$ is built by}\par
+\hskip 1cm \bf a\rm. {\it exchanging each element of $A$ which does not belong to 
+the first row, with any element of $B$;}\par
+\hskip 1cm \bf b\rm. {\it boxing the elements of $B$;}\par
+\hskip 1cm \bf c\rm. {\it removing the boxes of the elements of $A$;}\par
+{\it then $\tau=\upsilon$.}
+\smallskip
+For instance, taking $n=6,\ k=4,\ A=\{ a, b, c, d \},\ B=
+\{ \alpha,\beta,\gamma,\delta,\varepsilon\},$ one 
+has
+$$\tau=\tab{
+\bo{ a}& \alpha& \beta& \gamma& \delta& \varepsilon\cr\th
+\bo{ b}& \bo{ c}& f& g&h& i\cr\th
+\bo{ d}& j& k& l& m& o\cr
+} =
+\tab{
+{ a}& { b}& { c}& { d}& \bo{\delta}& \bo{\varepsilon}\cr\th
+\bo{\alpha}& \bo{\beta}& f& g& h& i\cr\th
+\bo{\gamma}& j& k& l& m& o\cr
+}=\upsilon\ .$$
+\smallskip
+We shall now deduce from this identity some formulae for the power of 
+a staircase Schur function.
+\bigskip
+\bf3  Powers of a staircase Schur function and symmetric analogues of Bessel 
+polynomials
+\rm\medskip
+Let $\rho(k,m)$ denote the staircase partition $(m,\ 2m,\ldots ,\ km)$. The 
+$n^{th}$ power of $S_{\rho(k,m)}$ admits the following expression:
+\medskip
+{\petcap Theorem 3.1. }
+$$(S_{\rho(k,m)})^n=\sum_{I\subset\rho(n-1,m)}(-1)^{|\rho(n-1,m)|-|I|}\ 
+S_{\rho(n+k-1,m)/I}\ 
+\Delta_I\ ,$$
+{\it where $\Delta_I$ is the minor taken on the lines $i_1+1,\ i_2+2,\ldots 
+,\ i_{n-1}+n-1$ of the following $(m+1)(n-1)\times (n-1)$ matrix:}
+$$M=\pmatrix{
+S_{\rho(k-1,m)/1^m}& S_{\rho(k-1,m)/1^{2m+1}}&\ldots& S_{\rho(k-1,m)/1^{(n-1)m+n-2}}
+\cr
+S_{\rho(k-1,m)/1^{m-1}}& S_{\rho(k-1,m)/1^{2m}}&\ldots& S_{\rho(k-1,m)/1^{(n-1)m+n-3}}
+\cr
+\vdots&\vdots&&\vdots\cr
+S_{\rho(k-1,m)}& S_{\rho(k-1,m)/1^{m+1}}&\ldots& S_{\rho(k-1,m)/1^{(n-2)(m+1)}}
+\cr
+0& S_{\rho(k-1,m)/1^{m}}&\ldots& S_{\rho(k-1,m)/1^{(n-2)m+n-3}}
+\cr
+0& S_{\rho(k-1,m)/1^{m-1}}&\ldots& S_{\rho(k-1,m)/1^{(n-2)m+n-4}}
+\cr
+\vdots& \vdots& & \vdots\cr
+0& S_{\rho(k-1,m)}&\ldots& S_{\rho(k-1,m)/1^{(n-3)(m+1)}}
+\cr
+0& 0&\ldots& S_{\rho(k-1,m)/1^{(n-3)m+n-4}}\cr
+\vdots& \vdots& &\vdots\cr
+0& 0&\ldots& S_{\rho(k-1,m)}\cr
+}\ .$$
+Note that we allow the first parts of $I$ to be zero. Before proving the 
+theorem, let us illustrate it by a few examples.
+\medskip
+{\petcap Example 3.2. } We take $n=3$, $m=1$ and $k=4$. The theorem states 
+that
+$$(S_{1234})^3=\sum_{I\subset12}(-1)^{3-|I|}\ S_{123456/I}\ \Delta_I\ ,$$
+where $I$ runs over the set $\{00,\ 01, \ 02,\ 11,\ 12\}$ and $\Delta_I$ is the 
+minor taken on the lines $i_1+1$, $i_2+2$ of the $4\times 2$ matrix:
+$$M=\pmatrix{
+S_{123/1}& S_{123/1^3}\cr
+S_{123}& S_{123/1^2}\cr
+0& S_{123/1}\cr
+0& S_{123}\cr
+}\ 
+=\ \pmatrix{
+S_{1234/1112}& S_{1234/1114}\cr
+S_{1234/1111}& S_{1234/1113}\cr
+S_{1234/1110}& S_{1234/1112}\cr
+S_{1234/111(-1)}& S_{1234/1111}\cr
+}\ .$$
+The second expression of $M$ shows more clearly the regularity of its columns 
+(we recall that for any partition $J$, the determinants $S_{J/1110}$ and 
+$S_{J/111(-1)}$ are null having two identical rows). Expanding this sum and 
+the determinants $\Delta_I$ yields the following relation:
+$$\displaylines{\quad
+(S_{1234})^3=S_{123456}\ S_{123}\ S_{123/111}-S_{123456}\ S_{123/1}
+\ S_{123/11}+S_{123456/1}\ S_{123/1}\ S_{123/1}\hfill\cr
+\hfill -S_{123456/11}\ S_{123}\ S_{123/1}-
+S_{123456/2}\ S_{123}\ S_{123/1}+S_{123456/12}\ S_{123}\ S_{123}\ .\quad\cr}$$
+\medskip
+{\petcap Example 3.3. } We take $n=2$, so that theorem 3.1 reads
+$$(S_{\rho(k,m)})^2=\sum_{0\leq i\leq m}(-1)^{m-i}\ S_{\rho(k+1,m)/i}\ 
+S_{\rho(k-1,m)/1^{m-i}}\ 
+,$$
+which is the formula investigated by Goulden \bf[Go] \rm for the square of a 
+staircase Schur function. 
+\medskip
+{\it Proof of Theorem} 3.1. We shall apply Turnbull's identity 2.1. Set 
+$N=k+(n-1)(m+1)$ and consider the $N\times \infty$ matrix 
+$$M=\pmatrix{
+S_0 &S_1 &S_2 &S_3 &\ldots &1 &0 &0 &\ldots &0\cr
+0   &S_0 &S_1 &S_2 &\ldots &0 &1 &0 &\ldots &0\cr
+0   &0   &S_0 &S_1 &\ldots &0 &0 &1 &\ldots &0\cr
+\vdots&\vdots&\vdots& \vdots&&\vdots&\vdots &\vdots &\ddots &\vdots\cr
+0   &0   &0   &0   &\ldots &0 &0 &0 &\ldots &1\cr 
+ }\he \it.\rm$$
+Let $0,\ 1,\ 2,\ 3,\ldots $ denote the column vectors of the left part of 
+$M$, and $1^*,\ 2^*,\ 3^*,\ldots N^*,$ denote the last $N$ column vectors of 
+$M$. For brevity we shall write $m_p=pm+p-1$. The Schur function $S_{\rho(k,m)}$ 
+may be expressed as a maximal minor of $M$ in $n$ different ways
+$$\eqalign{
+S_{\rho(k,m)} &=[m_1\ m_2\ \ldots \ m_k\ (k+1)^*\ (k+2)^*\ \ldots \ N^*]\cr
+&=[0\ 1\ \ldots \ (m_1-1)\ m_1\ m_2\ \ldots \ m_{k+1}\ 
+(k+m_1+1)^*\ (k+m_1+2)^*\ \ldots \ N^*]\cr
+&\vdots\cr
+&= [0\ 1\ 2\ \ldots \ (m_{n-1}-1)\ m_{n-1}\ m_n\ \ldots \ 
+m_{k+n-1}]\ ,\cr
+}$$
+so that its $n^{th}$ power is equal to the product of these $n$ minors
+$$\displaylines{
+(S_{\rho(k,m)})^n= \hfill\cr
+\hfill\tab{
+m_1&\ldots &m_k    &(k+1)^*&\ldots & & &\ldots &N^*\cr\th
+0  &\ldots &(m_1-1)& m_1   &\ldots &m_{k+1}& (k+m_1+1)^*& \ldots & N^*\cr\th
+\vdots& &&&\vdots &&& &\vdots\cr\th
+0 &\ldots& & & \ldots &(m_{n-1}-1)&m_{n-1}& \ldots &m_{k+n-1}\cr
+}\ .\cr
+}$$
+Now, recalling that a tableau having two equal letters on the same row is 
+equal to zero, we may box the letters $m_1,\ m_2,\ \ldots, m_k$ in the first 
+row, the letter $m_{k+1}$ in the second row, $\ldots $, the letter 
+$m_{k+n-1}$ in the $n^{th}$ row, and apply Turnbull's identity. This yields
+$$\displaylines{
+(S_{\rho(k,m)})^n\hfill\cr
+\hfill =\ \tab{
+\bo{m_1}&\ldots &\bo{m_k}    &(k+1)^*&\ldots & & &\ldots &N^*\cr\th
+0  &\ldots &(m_1-1)& m_1   &\ldots &\bo{m_{k+1}}& (k+m_1+1)^*& \ldots & 
+N^*\cr\th
+\vdots& &&& \vdots&&& &\vdots\cr\th
+0 &\ldots& & &\ldots &(m_{n-1}-1)&m_{n-1}& \ldots &\bo{m_{k+n-1}}\cr
+}\ \ \cr
+\ \cr
+\hfill =\ \tab{
+m_1&\ldots &m_k    &m_{k+1}&\ldots &m_{k+n-1} &\bo{(k+n)^*} &\ldots 
+&\bo{N^*}\cr\th
+0  &\ldots &(m_1-1)& m_1   &\ldots &\bo{(k+1)^*}& (k+m_1+1)^*& \ldots & 
+N^*\cr\th
+\vdots& &&& \vdots&&& &\vdots\cr\th
+0 &\ldots& & &\ldots &(m_{n-1}-1)&m_{n-1}& \ldots &\bo{(k+n-1)^*}\cr
+}\ .\cr
+}$$
+This last tableau represents a sum of products of Schur functions of the 
+following type
+$$\pm S_{\rho(n+k-1,m)/I}\ S_{\rho(k-1,m)/1^{j_1}}\ldots \ S_{\rho(k-1,m)/1^{j_{n-1}}} 
+\ .$$
+The coefficient of a given $S_{\rho(n+k-1,m)/I}$ in this sum is in fact a 
+tableau having $n-1$ rows with only one letter boxed in each row, that is a 
+determinant of order $n-1$. There is no difficulty in recognizing this 
+determinant as the minor $\Delta_I$ defined above. $\qed$
+\medskip
+The formula for the square of $S_{\rho(k,1)}$ may be presented as the 
+computation of a determinant of Schur functions
+$$\left|\matrix{
+S_{\rho(k-1,1)}& S_{\rho(k+1,1)}\cr
+S_{\rho(k-1,1)/1}& S_{\rho(k+1,1)/1}\cr
+}\right|
+=(S_{\rho(k,1)})^2\ .\eqno (8)$$
+The same may be done for theorem 3.1, which has also a determinantal 
+formulation. We shall write for brevity $\rho(k)$ in place of $\rho(k,1)$.
+\medskip
+{\petcap Theorem 3.4.} 
+$$\left|\matrix{
+S_{\rho(k-1)}& 0& \ldots & 0& \ldots & 0& S_{\rho(k+1)}\cr
+S_{\rho(k-1)/1}& 0& \ldots & 0& \ldots & S_{\rho(k+2)}& S_{\rho(k+1)/1}\cr
+S_{\rho(k-1)/1^2}& S_{\rho(k,1)}& \ldots & 0& \ldots & S_{\rho(k+2)/1}& 
+S_{\rho(k+1)/1^2}\cr
+\vdots & \vdots & & \vdots & & \vdots &\vdots\cr
+S_{\rho(k-1)/1^{2n-3}}& S_{\rho(k-1)/1^{2n-5}}&\ldots &  S_{\rho(k+n-1)/1^{n-1}}& 
+\ldots & S_{\rho(k+2)/1^{2n-4}}& S_{\rho(k+1)/1^{2n-3}}\cr
+}\right|$$
+$$=(S_{\rho(k)})^n\ S_{\rho(k+1)}\ S_{\rho(k+2)}\ldots S_{\rho(k+n-2)}\ .$$
+\medskip
+{\petcap Example 3.5.} For $n=3$ and $k=4$ one has
+$$\left|\matrix{
+S_{123}& 0& 0& S_{12345}\cr
+S_{123/1}& 0&S_{123456}& S_{12345/1}\cr
+S_{123/1^2}& S_{123}& S_{123456/1}& S_{12345/1^2}\cr
+S_{123/1^3}& S_{123/1}& S_{123456/1^2}& S_{12345/1^3}\cr
+}\right|
+=(S_{1234})^3\ S_{12345}\ .$$
+\medskip
+{\petcap Example 3.6.} For $n=4$ and $k=6$ one has
+$$\left|\matrix{
+S_{12345}    &0        &0  & 0& 0& S_{1234567}\cr
+S_{12345/1}  &0        &0  & 0&S_{12345678}& S_{1234567/1}\cr
+S_{12345/1^2}&S_{12345} &0  &S_{123456789}& S_{12345678/1}& S_{1234567/1^2}\cr
+S_{12345/1^3}&S_{12345/1} &0 &S_{123456789/1}&S_{12345678/1^2}& 
+S_{1234567/1^3}\cr
+S_{12345/1^4}&S_{12345/1^2}&S_{12345}&S_{123456789/1^2}&S_{12345678/1^3}&
+S_{1234567/1^4}\cr
+S_{12345/1^5}&S_{12345/1^3}&S_{12345/1}&S_{123456789/1^3}&S_{12345678/1^4}&
+S_{1234567/1^5}\cr
+}\right|$$
+$$=(S_{123456})^4\ S_{1234567}\ S_{12345678}\ .$$
+\medskip
+{\it Proof.} The proof of this last example will illustrate enough the 
+principle of our computation. We consider the $12\times 30$ matrix
+$$M=\pmatrix{
+S_0 &S_1 &S_2 &S_3 &\ldots &S_{17}&1 &0 &0 &\ldots &0\cr
+0   &S_0 &S_1 &S_2 &\ldots &S_{16}&0 &1 &0 &\ldots &0\cr
+0   &0   &S_0 &S_1 &\ldots &S_{15}&0 &0 &1 &\ldots &0\cr
+\vdots&\vdots&\vdots& \vdots&&\vdots&\vdots &\vdots &\ddots &\vdots\cr
+0   &0   &0   &0   &\ldots &S_6&0 &0 &0 &\ldots &1\cr 
+ }\he ,$$
+whose column vectors are denoted $0,\ 1,\ 2,\ldots 17,\ 1^*,\ 2^*,\ldots\ 
+12^*$. The determinant $D$ of example 3.6 is represented by the following 
+tableau
+$$D=
+\tab{
+0& 1& 3& 5& 7&  9& 11& \bo{7^*}& 9^*& 10^*& 11^*& 12^*\cr\th
+0& 1& 2& 3& 5&  7&  9&  11     &  13& \bo{ 8^*}& 11^*& 12^*\cr\th
+0& 1& 2& 3& 4&  5&  7&   9&  11&   13&   15& \bo{9^*} \cr\th
+1& 3& 5& 7& 9& 11& 13&  15&  17& \bo{10^*}& 11^*& 12^*\cr\th
+1& 3& 5& 7& 9& 11& 13&  15&  17&    0& \bo{11^*}& 12^*\cr\th
+1& 3& 5& 7& 9& 11& 13&  15&  17&    0&    2& \bo{12^*}\cr
+}\ .$$
+Now we transform this tableau by Turnbull's identity and note that all boxes 
+may be removed because of the presence of identical letters
+$$D=
+\tab{
+0& 1& 3& 5& 7&  9& 11& \bo{13}& 9^*& 10^*& 11^*& 12^*\cr\th
+0& 1& 2& 3& 5&  7&  9&  11     &  13& \bo{15}& 11^*& 12^*\cr\th
+0& 1& 2& 3& 4&  5&  7&   9&  11&   13&   15& \bo{17} \cr\th
+1& 3& 5& 7& 9& 11& 13&  15&  17& \bo{0}& 11^*& 12^*\cr\th
+1& 3& 5& 7& 9& 11& 13&  15&  17&    0& \bo{2}& 12^*\cr\th
+1& 3& 5& 7& 9& 11& 7^*&  8^*&  9^*&  10^*& 11^*& 12^*\cr
+}$$
+$$=\tab{
+0& 1& 3& 5& 7&  9& 11& 13& 9^*& 10^*& 11^*& 12^*\cr\th
+0& 1& 2& 3& 5&  7&  9&  11     &  13& 15& 11^*& 12^*\cr\th
+0& 1& 2& 3& 4&  5&  7&   9&  11&   13&   15& 17 \cr\th
+1& 3& 5& 7& 9& 11& 13&  15&  17& 0& 11^*& 12^*\cr\th
+1& 3& 5& 7& 9& 11& 13&  15&  17&    0& 2& 12^*\cr\th
+1& 3& 5& 7& 9& 11& 7^*&  8^*&  9^*&  10^*& 11^*& 12^*\cr
+}$$
+$$=(S_{123456})^4\ S_{1234567}S_{12345678}\qquad \qed$$
+\medskip
+%{\it Remark.} For convenience we limited ourself to staircases of type 
+%$\rho(k,1)$ in the statement of theorem 3.4. However a similar formula holds for 
+%general staircases $\rho(k,m),\ m\geq1$, and it may be easily induced from the 
+%following example:
+%$$\left|\matrix{
+%S_{24}    &0        &0  & 0& 0& S_{1357}\cr
+%S_{24/1}  &0        &0  & 0&S_{2468}& S_{1357/1}\cr
+%S_{24/1^2}&0        &0  &S_{13579}& S_{2468/1}& S_{1357/1^2}\cr
+%S_{24/1^3}&S_{24} &S_{2468.10} &S_{13579/1}&S_{2468/1^2}& S_{1357/1^3}\cr
+%S_{24/1^4}&S_{24/1}&S_{2468.10/1}&S_{13579/1^2}&S_{2468/1^3}&S_{1357/1^4}\cr
+%S_{24/1^5}&S_{24/1^2}&S_{2468.10/1^2}&S_{13579/1^3}&S_{2468/1^4}&
+%S_{1357/1^5}\cr
+%}\right|$$
+%$$=(S_{246})^3\ S_{1357}\ S_{2468}\ S_{13579}\ .$$
+%\medskip
+We shall end this section with an interpretation of theorem 3.4 in terms of 
+orthogonal polynomials. First we shall give an immediate generalization of 
+formula (8).
+\medskip
+{\petcap Proposition 3.7. }{\it For $1\leq p\leq k+1$ we have}
+$$\left|\matrix{
+S_{\rho(k-1)}& S_{\rho(k+1)}\cr
+S_{\rho(k-1)/1^p}& S_{\rho(k+1)/1^p}\cr
+}\right|
+=S_{\rho(k)}\ S_{\rho(k)/1^{p-1}}\ ,$$
+{\it where $\rho(k)$ is short for the partition $12\ldots k$.}
+\smallskip
+{\it Proof. } This is an instance of Pl\"ucker relations. We consider again 
+the matrix $M$ of the proof of theorem 3.1, taking $N=k+2$. The determinant 
+to be computed is then represented by the $2\times (k+2)$ tableau
+$$(-1)^p\ \tab{
+0 &1 &3 &5 &\ldots &2k-1 &\bo{N^*}\cr \th
+1 &3 &5 &7 &\ldots &2k+1 &\bo{(N-p)^*}\cr
+}\ .$$
+Applying Turnbull's identity, this tableau is transformed into
+$$(-1)^p\ \tab{
+0 &1 &3 &5 &\ldots &2k-1 &\bo{2k+1}\cr \th
+\bo{1} &\bo{3} &\bo{5} &\bo{7} &\ldots &N^* &(N-p)^*\cr
+}$$
+$$=\ (-1)^p\ \tab{
+0 &1 &3 &5 &\ldots &2k-1 &2k+1\cr \th
+1 &3 &5 &7 &\ldots &N^* &(N-p)^*\cr
+}
+=S_{\rho(k)}\ S_{\rho(k)/1^{p-1}}\ .\qquad \qed$$
+\smallskip
+>From this proposition we deduce the following result:
+\medskip
+{\petcap Theorem 3.8. }{\it Let ${\bb{E}}$ be an alphabet and let us denote by $\pi_k$ 
+the polynomial of degree $k$ in $x$ with coefficients in the ring of symmetric functions
+of ${\bb{E}}$:
+$\pi_k(x)=S_{\rho(k)}({\bb{E}}-x)$.
+Then $\pi_k$ satisfies the three term recurrence relationship $(k\geq1)$
+$$S_{\rho(k-1)}({\bb{E}})\pi_{k+1}(x)+xS_{\rho(k)}({\bb{E}})\pi_{k}(x)-
+S_{\rho(k+1)}({\bb{E}})\pi_{k-1}(x)=0\ .$$
+In other words $\big(\pi_k(x)\big)_{k\geq0}$ is a family of orthogonal 
+polynomials. }
+
+\medskip
+{\it Proof. } The expansion of $\pi_k$ is obtained by considering it as a 
+multi-Schur function and expanding this determinant along its last column. 
+Indeed, by lemma 2.1,
+$$\pi_k(x)=S_{12\ldots k0}({\bb{E}},\ldots ,{\bb{E}},x)=\sum_{0\leq i\leq k}S_{12\ldots 
+k/1^i}({\bb{E}})(-x)^i\ .$$
+By linearity we deduce from proposition 3.7 that
+$$\left|\matrix{
+S_{\rho(k-1)}& S_{\rho(k+1)}\cr
+\pi_{k-1}(x)& \pi_{k+1}(x)\cr
+}\right|
+=-xS_{\rho(k)}\ \pi_k(x)\ ,$$
+which is the required relationship.
+\ \quad $\qed$
+\smallskip
+Thus, theorem 3.8 states that the elimination of $x^0$ between $\pi_{k-1}(x)$ 
+and $\pi_{k+1}(x)$ produces a polynomial proportional to $x\pi_k(x)$. As a 
+consequence the elimination of $x^0,\ x^1,\ x^2$ between $\pi_{k-1}(x),\ 
+\pi_{k+1}(x),\ x\pi_{k+2}(x),\ x^2\pi_{k-1}(x)$ will produce a polynomial 
+proportional to $x^3\pi_k(x)$. This elimination is expressed by the following 
+formula
+$$\left|\matrix{
+S_{\rho(k-1)}& 0& 0& S_{\rho(k+1)}\cr
+S_{\rho(k-1)/1}& 0&S_{\rho(k+2)}& S_{\rho(k+1)/1}\cr
+S_{\rho(k-1)/1^2}& S_{\rho(k-1)}& S_{\rho(k+2)/1}& S_{\rho(k+1)/1^2}\cr
+\pi_{(k-1)}(x)&x^2\pi_{k-1}(x)& -x\pi_{k+2}(x)& \pi_{k+1}(x)\cr
+}\right|
+=-(S_{\rho(k)})^2\ S_{\rho(k+1)}\ x^3\pi_k(x).$$
+Picking up the coefficient of $x^3$ on each side we find again the case $n=3$ 
+of theorem 3.4. And this process may clearly be carried out for larger values 
+of $n$.
+\medskip
+The computation of the moments of the sequence of orthogonal polynomials 
+$\big(\pi_k(x)\big)_{k\geq0}$ will result from the following identity. We shall 
+denote by $\rho(n)+m$ the partition $(1,\ 2,\ldots ,\ n-1,\ n+m)$.
+\medskip
+{\petcap Theorem 3.9. }{\it Let k, n be integers such that $1\leq k\leq n$. There 
+holds:
+$$\left|\matrix{
+S_{\rho(k)/1^{k-1}}& S_{\rho(k+1)/1^{k-1}}& \ldots & S_{\rho(n)/1^{k-1}}\cr
+S_{\rho(k)/1^k}& S_{\rho(k+1)/1^k}& \ldots & S_{\rho(n)/1^k}\cr
+\vdots&\vdots&&\vdots \cr
+S_{\rho(k)/1^{n-1}}& S_{\rho(k+1)/1^{n-1}}& \ldots & S_{\rho(n)/1^{n-1}}\cr
+}\right|
+=S_{\rho(k-1)}P_{\rho(k)+(n-k+1)}S_{\rho(k+1)}S_{\rho(k+2)}\ldots S_{\rho(n-1)}\ ,$$
+where $P_{\rho(k)+(n-k+1)}=\sum_{0\leq2i\leq n-k+1}\Lambda_{\rho(k)+2i}S_{n-k+1-2i}$.}
+\medskip
+{\petcap Example 3.10. } For $n=6,\ k=3$ one has
+$$\left|\matrix{
+S_{123/1^2}& S_{1234/1^2}& S_{12345/1^2} & S_{123456/1^2}\cr
+S_{123/1^3}& S_{1234/1^3}& S_{12345/1^3} & S_{123456/1^3}\cr
+S_{123/1^4}& S_{1234/1^4}& S_{12345/1^4} & S_{123456/1^4}\cr
+S_{123/1^5}& S_{1234/1^5}& S_{12345/1^5} & S_{123456/1^5}\cr
+}\right|
+=S_{12}P_{127}S_{1234}S_{12345}\ ,$$
+where $P_{127}=\Lambda_{123}S_4+\Lambda_{125}S_2+\Lambda_{127}$.
+\smallskip
+\it Proof. \rm The proof is similar to the proof of theorem 3.4, the only difference 
+being that one has to apply Turnbull's identity several times in order to 
+obtain the required factorization.
+\medskip
+{\petcap Corrolary 3.11. }{\it The $n^{th}$ moment of the sequence of 
+orthogonal polynomials $\big(\pi_k(x)\big)_{k\geq0}$ is the sum of all hook Schur 
+functions of weight $n+1$:}
+$\mu(x^n)=\sum_{0\leq i\leq n}S_{1^i(n+1-i)}({\bb{E}})\ .$
+\smallskip
+\it Proof. \rm Let $q_k(x)$ denote the monic polynomial 
+$q_k(x)=S_{\rho(k)}({\bb{E}}-x)/(-1)^kS_{\rho(k-1)}({\bb{E}})$. 
+Theorem 3.9 may be seen as the 
+resolution of the linear system in the unknown $a_{nk}$:
+$$ x^n = \sum_k a_{nk}q_k(x)\ . \eqno (9)$$
+The result is that 
+$a_{nk}=P_{\rho(k+1)+n-k}({\bb{E}})/ S_{\rho(k+1)}\ .$
+Denote by $Sym({\bb{E}})$ the ring of symmetric functions of the alphabet
+${\bb{E}}$ and let $\mu$ be the functional on $Sym({\bb{E}})[x]$ associated 
+with the sequence of 
+orthogonal polynomials $\big(\pi_k(x)\big)_{k\geq0}$. In fact $\mu$ is defined up to 
+a constant factor, so that we can add the condition $\mu(1)=S_1({\bb{E}})$. Then, 
+recalling that by definition $\mu(q_k(x))=0,\ k\geq1$ and applying $\mu$ to the 
+equality (9), one obtains that 
+$\mu(x^n)=P_{n+1}({\bb{E}})=\sum_{0\leq i\leq n}S_{1^i(n+1-i)}({\bb{E}})\ ,$
+the last equality resulting easily from Pieri rule for the multiplication of 
+a Schur function by an elementary symmetric function. $\ \qed$
+\medskip
+\it Remarks. (i) \rm It can be shown that the symmetric function 
+$$\sum_{0\leq2i\leq n-k+1}\Lambda_{\rho(k)+2i}S_{n-k+1-2i}$$
+is nothing but the Schur $P$-function $P_{\rho(k)+n-k+1}$, hence the notation
+used above. More generally it has been shown in [{\bf LLT}] that there 
+exists for every Schur $P$-function a similar quadratic expansion in terms of 
+ordinary Schur $S$-functions.
+\smallskip
+\it(ii) \rm It is easily checked that $S_{\rho(n)/1^m}=S_{\rho(n)/m}$. 
+It follows that the 
+polynomials $\phi_k(x)=S_{\rho(k)}({\bb{E}}+x)$ are equal to the polynomials $\pi_k(-x)$, 
+and therefore also satisfy a three term recurrence relationship: 
+$$S_{\rho(k-1)}({\bb{E}})\phi_{k+1}(x)-xS_{\rho(k)}({\bb{E}})\phi_{k}(x)-
+S_{\rho(k+1)}({\bb{E}})\phi_{k-1}(x)=0\ .$$
+They are orthogonal for the moments 
+$\nu(x^n)=(-1)^n\sum_{0\leq i\leq n}S_{1^i(n+1-i)}({\bb{E}})\ .$
+\medskip
+We must now emphasize on the differences between the two Schur function 
+expressions of orthogonal polynomials hitherto encountered. As recalled in 
+section 2, the family of orthogonal polynomials associated with a given 
+functional $\mu$ may \it always \rm be represented up to a constant factor by the 
+sequence of rectangle Schur functions $S_{n^n}({\bb{E}}-x),\ n\geq0,$ 
+where ${\bb{E}}$ is the 
+alphabet formally defined by $S_k({\bb{E}})=\mu(x^k),\ k\geq0$. In contrast Schur 
+functions of the type $S_{12\ldots n}({\bb{E}}-x),\ n\geq0$ or 
+$S_{12\ldots n}({\bb{E}}+x),\ 
+n\geq0$ represent only particular families of orthogonal polynomials. Indeed, 
+the recurrence relationship of theorem 3.8 is not generic, for the 
+coefficient of $\pi_n(x)$ in this relationship is of the type $\alpha_nx$ while the 
+general form of this coefficient is $\alpha_nx+\beta_n$. The following example shows 
+that these polynomials may be seen as symmetric analogues of Bessel 
+polynomials.
+\medskip
+{\petcap Example 3.12.}
+\smallskip
+Let ${\cal{E}}$ be the alphabet formally defined by 
+$S_k({\cal{E}})=1/ k!,\ k\geq0.$
+It is a classical result that for any partition $I$ of weight $n$, 
+there holds $S_I({\cal{E}})=f_I/n!$, where $f_I$ is the number of standard Young 
+tableaux of shape $I$, \it i.e. \rm the dimension of the irreducible representation 
+of ${\goth{S}}_n$ indexed by $I$. It follows that the moments associated to the 
+sequence $\big(\phi_k(x)\big)_{k\geq0}$ are equal to
+$\nu(x^n)=(-2)^n/ (n+1)!\ ,$
+that is, are equal to the moments of Bessel polynomials (see for example 
+\bf[Ch])\rm.
+The corresponding polynomials (suitably normalized) 
+$$y_n(x)=S_{12\ldots n}({\cal{E}}+x)/S_{12\ldots n}({\cal{E}}),\quad n\geq0,\eqno (10)$$
+are therefore the \it Bessel polynomials\rm. The first ones are
+$$\eqalign{
+y_0(x)=&1,\cr
+y_1(x)=&1+x,\cr
+y_2(x)=&1+3x+3x^2,\cr
+y_3(x)=&1+6x+15x^2+15x^3,\cr
+y_4(x)=&1+10x+45x^2+105x^3+105x^4.\cr
+}$$
+Formula (10) provides the following determinantal expression
+$$y_n(x)=\prod_{1\leq i\leq n}(2(n-i)+1)^i
+\left|\matrix{
+{1/1!}& {1/3!}& {1/5!}& \ldots & {1/(2n-1)!}& (-x)^n\cr
+{1/0!}& {1/2!}& {1/4!}& \ldots & {1/(2n-2)!}& (-x)^{n-1}\cr
+0& {1/1!}& {1/3!}& \ldots & {1/(2n-3)!}& (-x)^{n-2}\cr
+\vdots&\vdots &\vdots &&\vdots&\vdots \cr
+0 & &    &  & {1/n!}& -x\cr
+0 & &    &  & {1/(n-1)!}& 1\cr
+}\right|\ .$$
+
+There exists a fairly extensive literature devoted to these polynomials. For 
+a detailed account up to 1978, the interested reader is referred to \bf[Gr]\rm. We 
+shall also mention the recent work of Dulucq and Favreau who have presented a 
+combinatorial model for these polynomials, based upon weighted involutions 
+\bf[DF]\rm.
+\smallskip
+Note that our point of view provides at once a q-analogue for Bessel 
+polynomials, by merely replacing ${\cal{E}}$ by the alphabet ${\cal{E}}_q=\{1,\ q,\ 
+q^2,\ldots \}$. More precisely, setting $v=x/(1-q)$ we define 
+$$y_n(x,q)=q^{n\choose 2}S_{12\ldots n}({\cal{E}}_q+v)/S_{12\ldots n}({\cal{E}}_q).$$
+The $y_n(x,q)$ are orthogonal polynomials in $x$, whose coefficients are 
+polynomials in $q$. The first ones are
+$$\eqalign{
+y_0(x,q)=&1,\cr
+y_1(x,q)=&1+x,\cr
+y_2(x,q)=&q+(1+q+q^2)x+(1+q+q^2)x^2,\cr
+y_3(x,q)=&q^3+q(1+q^2)(1+q+q^2)x+(1+q+q^2)(1+q+q^2+q^3+q^4)x^2\cr
+&\hfill +(1+q+q^2)(1+q+q^2+q^3+q^4)x^3.\cr
+}$$
+These $q$-analogues are equal to those obtained by Dulucq by means of the 
+combinatorial model of
+Dulucq and Favreau {\bf [D]}.
+\bigskip
+\bf4 Expression of a symmetric polynomial in terms of the power sums of odd 
+degree
+\rm\medskip
+Let ${\bb{X}}$ denote a finite set of variables ${\bb{X}}=\{x_1,\ldots ,x_n\}$. 
+It is well 
+known that any symmetric polynomial $F({\bb{X}})$ may be expressed as a polynomial 
+function of the power sums $\psi_k({\bb{X}})=\sum_{x\in{\bb{X}}}x^k,\ k=1,2\ldots n$. 
+It was 
+shown in the last century that $F({\bb{X}})$ may also be expressed as a rational 
+function of $\psi_k({\bb{X}}),\ k=1,3,5,\ldots 2n-1$ (\bf[Bo]\rm, \bf[La]\rm). 
+P\'olya \bf[Po] \rm and 
+Foulkes \bf[Fo]\rm, among others, have proposed explicit expressions for some 
+particular symmetric polynomials $F({\bb{X}})$. For instance
+\medskip
+{\petcap Proposition 4.1.} {\it The $k^{th}$ elementary symmetric function is 
+equal to
+$\Lambda_k({\bb{X}})=S_{\rho(n)/1^{n-k}}({\bb{X}})/ S_{\rho(n-1)}({\bb{X}})\ \it,\rm$
+the right-hand side being a rational function of the power sums of odd 
+degree.}
+\smallskip
+\it Proof. \rm For sake of completeness we sketch the proof. It is known that
+$S_{\rho(n-1)}({\bb{X}})=\prod_{i<j}(x_i+x_j)\ .$
+Taking an additionnal variable z we have also
+$$S_{\rho(n)}({\bb{X}}+z)=\prod_{i<j}(x_i+x_j)\prod_i(x_i+z)
+=S_{\rho(n-1)}({\bb{X}})\sum_kz^{n-k}\Lambda_k({\bb{X}})
+\ .$$
+Thus, comparing the coefficients of $z^{n-k}$, we get
+$\Lambda_k({\bb{X}})=S_{\rho(n)/{n-k}}({\bb{X}})/ S_{\rho(n-1)}({\bb{X}})
+=S_{\rho(n)/1^{n-k}}({\bb{X}})/ S_{\rho(n-1)}({\bb{X}})\ .$
+Finally, we recall that the staircase Schur function $S_{\rho(n)}$ and all its 
+derivatives $S_{\rho(n)/I}$ depend only on the odd power sums $\psi_{2p+1}$, that 
+is, belong to the subring generated by $\psi_1,\ \psi_3,\ \psi_5,\ldots $. $\ \qed$
+\medskip
+Now theorem 3.9 provides at once a similar expression for the complete 
+symmetric functions $S_k({\bb{X}})$.
+\medskip
+{\petcap Proposition 4.2.} {\it The $k^{th}$ complete symmetric function is 
+equal to
+$$S_k({\bb{X}})={\sum_{0\leq2i\leq k}
+\Lambda_{\rho(n-1)+2i}({\bb{X}})S_{k-2i}({\bb{X}})\over S_{\rho(n-1)}({\bb{X}})}\ ,$$
+the right-hand side being a rational function of the power sums of odd 
+degree.}
+\smallskip
+\it Proof. \rm Theorem 3.9 shows that the function $
+\sum_{0\leq2i\leq k}\Lambda_{\rho(n-1)+2i}S_{k-2i}$ may be expressed in terms of Schur 
+functions of the type $S_{\rho(m)/1^p}$, which all belong to 
+${\bb{Z}}[\psi_1,\psi_3,\psi_5,\ldots ]$. On the other hand, since ${\bb{X}}$ 
+is finite of 
+cardinality $n$, $\Lambda_{\rho(n-1)+2i}({\bb{X}})=0$ for all $i>0$. $\ \qed$
+\bigskip
+\centerline{\petcap References}
+\bigskip
+\bf[AM] \rm\hskip 5mm {\petcap M. Adler and J. Moser}, {\it On a class of polynomials
+connected with the Korteweg-de-Vries equation}, Commun. math. Phys. 61, (1978), 1--30.
+\medskip
+\bf[Bo] \rm\hskip 5mm {\petcap C.W. Borchardt}, {\it  \"Uber eine Eigenschaft der 
+Potenzsummen ungerader Ordnung}, Monastber. Akad. Berlin 1857, 301--311.
+\medskip
+\bf[Ch]\rm\hskip 5mm {\petcap T.S. Chihara}, {\it  Introduction to Orthogonal 
+Polynomials}, Gordon and Breach, New-York, 1978.
+\medskip
+\bf[D] \rm\hskip 5mm {\petcap S. Dulucq}, {\it Un q-analogue des polyn\^omes de Bessel},
+Actes du 25-\`eme S\'eminaire Lotharingien de Combinatoire, 1990.
+\medskip
+\bf[DF] \rm\hskip 5mm {\petcap S. Dulucq and L. Favreau}, \it Un mod\`ele combinatoire 
+pour les polyn\^omes de Bessel\rm, Actes du 25-\`eme S\'eminaire Lotharingien 
+de Combinatoire, 1990.
+\medskip
+\bf[Fa]\rm\hskip 5mm {\petcap L. Favreau}, {\it  Combinatoire des tableaux 
+oscillants et des polyn\^omes de Bessel}, Publ. L.A.C.I.M., U.Q.A.M., 
+Montr\'eal, 1991.
+\medskip
+\bf[Fo]\rm\hskip 5mm {\petcap H.O. Foulkes}, {\it  Theorems of P\'olya and Kakeya 
+on power-sums}, Math. Zeitschr. 65, 345--352, 1956.
+\medskip
+\bf[Go] \rm\hskip 5mm {\petcap I. P. Goulden}, \it Quadratic forms of skew Schur 
+functions\rm, Europ. J. Combinatorics (1988) \bf9\rm, 161--168.
+\medskip
+\bf[Gr] \rm\hskip 5mm {\petcap E. Grosswald}, \it Bessel Polynomials\rm, Springer, 1978.
+\medskip
+\bf[La]\rm\hskip 5mm {\petcap E. Laguerre}, {\it  Sur un probl\`eme d'alg\`ebre}, 
+Bull. Soc. Math. France 5, 26--30, 1877.
+\medskip 
+\bf[LLT]\rm\hskip 5mm {\petcap A. Lascoux, B. Leclerc et J.Y. Thibon}, {\it  Une 
+nouvelle expression des fonctions $P$ de Schur}, C. R. Acad. Sci. Paris, t. 
+316, S\'erie I, 221-224, 1993.
+\medskip
+\bf[LT]\rm\hskip 5mm {\petcap B. Leclerc et J.Y. Thibon}, {\it  Analogues 
+sym\'etriques des polyn\^omes de Bessel}, C. R. Acad. Sci. Paris, t. 315, S\'erie 
+I, 527--530, 1992.
+\medskip
+\bf[LP] \rm\hskip 5mm {\petcap A. Lascoux and P. Pragacz}, \it Ribbon Schur functions, 
+\rm Europ. J. Combinatorics (1988) \bf9\rm, 561--574.
+\medskip
+\bf[LS] \rm\hskip 5mm {\petcap A. Lascoux and M.P. Sch\"utzenberger}, \it Formulaire 
+raisonn\'e de fonctions sym\'etriques\rm, Publ. Math. Univ. Paris 7, 1985.
+\medskip
+\bf[Le] \rm\hskip 5mm {\petcap B. Leclerc}, \it On identities satisfied by minors of a 
+matrix\rm, Adv. in Math., 100, (1993), 101-132.
+\medskip
+\bf[Mc] \rm\hskip 5mm {\petcap I. G. Macdonald}, \it Symmetric functions and Hall 
+polynomials\rm, Oxford Math. Monographs, 1979.
+\medskip
+\bf[Po]\rm\hskip 5mm {\petcap G. P\'olya}, {\it  Remarques sur un probl\`eme 
+d'alg\`ebre \'etudi\'e par Laguerre}, J. Math. Pur. Appl. 31, 37--47, 1951.
+\medskip
+\bf[Sz]\rm\hskip 5mm {\petcap G. Szeg\"o}, {\it  Orthogonal polynomials}, 
+A.M.S. Colloquium Publications, Vol. 23, Providence, RI, 1975.
+\medskip
+\bf[Tu]\rm\hskip 5mm {\petcap H.W. Turnbull}, {\it  The irreducible concomitants 
+of the quadratics in n variables}, Transac. Cambridge Philos. Soc., xxi pp. 
+197--240, 1909.
+\medskip
+\bye
+

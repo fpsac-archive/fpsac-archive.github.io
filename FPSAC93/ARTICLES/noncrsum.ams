@@ -1,0 +1,1857 @@
+\input amstex
+\documentstyle{amsppt}
+\magnification1200
+\hsize15.6truecm
+\vsize22.8truecm
+
+\font\Bf=cmbx12
+\font\Rm=cmr12
+\def\LL{\leavevmode\setbox0=\hbox{L}\hbox to\wd0{\hss\char'40L}}
+\def\al{\alpha}
+\def\be{\beta}
+\def\ga{\gamma}
+\def\de{\delta}
+\def\ep{\varepsilon}
+\def\ze{\zeta}
+\def\et{\eta}
+\def\th{\theta}
+\def\vt{\vartheta}
+\def\io{\iota}
+\def\ka{\kappa}
+\def\la{\lambda}
+\def\rh{\rho}
+\def\si{\sigma}
+\def\ta{\tau}
+\def\ph{\varphi}
+\def\ch{\chi}
+\def\ps{\psi}
+\def\om{\omega}
+\def\Ga{\Gamma}
+\def\De{\Delta}
+\def\Th{\Theta}
+\def\La{\Lambda}
+\def\Si{\Sigma}
+\def\Ph{\Phi}
+\def\Ps{\Psi}
+\def\Om{\Omega}
+\def\row#1#2#3{#1_{#2},\ldots,#1_{#3}}
+\def\rowup#1#2#3{#1^{#2},\ldots,#1^{#3}}
+\def\x{\times}
+\def\crf{}            %used for crossreferencing, Tex should ignore.
+\def\rf{}             %used for refencing (section-numbers)
+\def\rfnew{}          %used for new-section numbers
+\def\P{{\Bbb P}}
+\def\R{{\Bbb R}}
+\def\X{{\Cal X}}
+\def\C{{\Bbb C}}
+\def\Mf{{\Cal Mf}}
+\def\FM{{\Cal F\Cal M}}
+\def\F{{\Cal F}}
+\def\G{{\Cal G}}
+\def\V{{\Cal V}}
+\def\T{{\Cal T}}
+\def\A{{\Cal A}}
+\def\N{{\Bbb N}}
+\def\Z{{\Bbb Z}}
+\def\Q{{\Bbb Q}}
+\def\ddt{\left.\tfrac \partial{\partial t}\right\vert_0}
+\def\dd#1{\tfrac \partial{\partial #1}}
+\def\today{\ifcase\month\or
+ January\or February\or March\or April\or May\or June\or
+ July\or August\or September\or October\or November\or December\fi
+ \space\number\day, \number\year}
+\def\nmb#1#2{#2} %zum Nummerieren
+\def\dfrac#1#2{{\displaystyle{#1\over#2}}}
+\def\tfrac#1#2{{\textstyle{#1\over#2}}}
+\def\iprod#1#2{\langle#1,#2\rangle}
+\def\pder#1#2{\frac{\partial #1}{\partial #2}}
+\def\iint{\int\!\!\int}
+\def\({\left(}
+\def\){\right)}
+\def\[{\left[}
+\def\]{\right]}
+\def\supp{\operatorname{supp}}
+\def\Df{\operatorname{Df}}
+\def\dom{\operatorname{dom}}
+\def\Ker{\operatorname{Ker}}
+\def\Tr{\operatorname{Tr}}
+\def\Res{\operatorname{Res}}
+\def\Aut{\operatorname{Aut}}
+\def\kgV{\operatorname{kgV}}
+\def\ggT{\operatorname{ggT}}
+\def\diam{\operatorname{diam}}
+\def\Im{\operatorname{Im}}
+\def\Re{\operatorname{Re}}
+\def\ord{\operatorname{ord}}
+\def\rang{\operatorname{rang}}
+\def\rng{\operatorname{rng}}
+\def\grd{\operatorname{grd}}
+\def\inv{\operatorname{inv}}
+\def\maj{\operatorname{maj}}
+\def\des{\operatorname{des}}
+\def\varmaj{\operatorname{\overline{maj}}}
+\def\vardes{\operatorname{\overline{des}}}
+\def\pvarmaj{\operatorname{\overline{maj}'}}
+\def\pmaj{\operatorname{maj'}}
+\def\ln{\operatorname{ln}}
+\def\der{\operatorname{der}}
+\def\Hom{\operatorname{Hom}}
+\def\tr{\operatorname{tr}}
+\def\Span{\operatorname{Span}}
+\def\grad{\operatorname{grad}}
+\def\div{\operatorname{div}}
+\def\rot{\operatorname{rot}}
+\def\Sp{\operatorname{Sp}}
+\def\sgn{\operatorname{sgn}}
+\def\liml{\lim\limits}
+\def\supl{\sup\limits}
+\def\bigcupl{\bigcup\limits}
+\def\bigcapl{\bigcap\limits}
+\def\limsupl{\limsup\limits}
+\def\liminfl{\liminf\limits}
+\def\intl{\int\limits}
+\def\suml{\sum\limits}
+\def\maxl{\max\limits}
+\def\minl{\min\limits}
+\def\prodl{\prod\limits}
+\def\tg{\operatorname{tan}}
+\def\ctg{\operatorname{cot}}
+\def\arctg{\operatorname{arctan}}
+\def\arccot{\operatorname{arccot}}
+\def\arcctg{\operatorname{arccot}}
+\def\tgh{\operatorname{tanh}}
+\def\ctgh{\operatorname{coth}}
+\def\arcsinh{\operatorname{arcsinh}}
+\def\arccosh{\operatorname{arccosh}}
+\def\arctgh{\operatorname{arctanh}}
+\def\arcctgh{\operatorname{arccoth}}
+\def\3{\ss}
+\catcode`\@=11
+\def\dddot#1{\vbox{\ialign{##\crcr
+      .\hskip-.5pt.\hskip-.5pt.\crcr\noalign{\kern1.5\p@\nointerlineskip}
+      $\hfil\displaystyle{#1}\hfil$\crcr}}}
+
+\newif\iftab@\tab@false
+\newif\ifvtab@\vtab@false
+\def\tab{\bgroup\tab@true\vtab@false\vst@bfalse\Strich@false%
+   \def\\{\global\hline@@false%
+     \ifhline@\global\hline@false\global\hline@@true\fi\cr}
+   \edef\l@{\the\leftskip}\ialign\bgroup\hskip\l@##\hfil&&##\hfil\cr}
+\def\endtab{\cr\egroup\egroup}
+\def\vtab{\vtop\bgroup\vst@bfalse\vtab@true\tab@true\Strich@false%
+   \bgroup\def\\{\cr}\ialign\bgroup&##\hfil\cr}
+\def\endvtab{\cr\egroup\egroup\egroup}
+\def\stab{\D@cke0.5pt\null 
+ \bgroup\tab@true\vtab@false\vst@bfalse\Strich@true\Let@@\vspace@
+ \normalbaselines\offinterlineskip
+  \openup\spreadmlines@
+ \edef\l@{\the\leftskip}\ialign
+ \bgroup\hskip\l@##\hfil&&##\hfil\crcr}
+\def\endstab{\crcr\egroup
+ \egroup}
+\newif\ifvst@b\vst@bfalse
+\def\vstab{\D@cke0.5pt\null
+ \vtop\bgroup\tab@true\vtab@false\vst@btrue\Strich@true\bgroup\Let@@\vspace@
+ \normalbaselines\offinterlineskip
+  \openup\spreadmlines@\bgroup}
+\def\endvstab{\crcr\egroup\egroup
+ \egroup\tab@false\Strich@false}
+
+\newdimen\htstrut@
+\htstrut@8.5\p@
+\newdimen\htStrut@
+\htStrut@12\p@
+\newdimen\dpstrut@
+\dpstrut@3.5\p@
+\newdimen\dpStrut@
+\dpStrut@3.5\p@
+\def\openup{\afterassignment\@penup\dimen@=}
+\def\@penup{\advance\lineskip\dimen@
+  \advance\baselineskip\dimen@
+  \advance\lineskiplimit\dimen@
+  \divide\dimen@ by2
+  \advance\htstrut@\dimen@
+  \advance\htStrut@\dimen@
+  \advance\dpstrut@\dimen@
+  \advance\dpStrut@\dimen@}
+\def\Let@@{\relax\iffalse{\fi%
+    \def\\{\global\hline@@false%
+     \ifhline@\global\hline@false\global\hline@@true\fi\cr}%
+    \iffalse}\fi}
+\def\matrix{\null\,\vcenter\bgroup
+ \tab@false\vtab@false\vst@bfalse\Strich@false\Let@@\vspace@
+ \normalbaselines\openup\spreadmlines@\ialign
+ \bgroup\hfil$\m@th##$\hfil&&\quad\hfil$\m@th##$\hfil\crcr
+ \Mathstrut@\crcr\noalign{\kern-\baselineskip}}
+\def\endmatrix{\crcr\Mathstrut@\crcr\noalign{\kern-\baselineskip}\egroup
+ \egroup\,}
+\def\smatrix{\D@cke0.5pt\null\,
+ \vcenter\bgroup\tab@false\vtab@false\vst@bfalse\Strich@true\Let@@\vspace@
+ \normalbaselines\offinterlineskip
+  \openup\spreadmlines@\ialign
+ \bgroup\hfil$\m@th##$\hfil&&\quad\hfil$\m@th##$\hfil\crcr}
+\def\endsmatrix{\crcr\egroup
+ \egroup\,\Strich@false}
+\newdimen\D@cke
+\def\Dicke#1{\global\D@cke#1}
+\newtoks\tabs@\tabs@{&}
+\newif\ifStrich@\Strich@false
+\newif\iff@rst
+
+\def\Stricherr@{\iftab@\ifvtab@\errmessage{\noexpand\s not allowed
+     here. Use \noexpand\vstab!}%
+  \else\errmessage{\noexpand\s not allowed here. Use \noexpand\stab!}%
+  \fi\else\errmessage{\noexpand\s not allowed
+     here. Use \noexpand\smatrix!}\fi}
+\def\format{\ifvst@b\else\crcr\fi\egroup\iffalse{\fi\ifnum`}=0 \fi\format@}
+\def\format@#1\\{\def\preamble@{#1}%
+ \def\Str@chfehlt##1{\ifx##1\s\Stricherr@\fi\ifx##1\\\let\Next\relax%
+   \else\let\Next\Str@chfehlt\fi\Next}%
+ \def\c{\hfil\noexpand\ifhline@@\hbox{\vrule height\htStrut@%
+   depth\dpstrut@ width\z@}\noexpand\fi%
+   \ifStrich@\hbox{\vrule height\htstrut@ depth\dpstrut@ width\z@}%
+   \fi\iftab@\else$\m@th\fi\the\hashtoks@\iftab@\else$\fi\hfil}%
+ \def\r{\hfil\noexpand\ifhline@@\hbox{\vrule height\htStrut@%
+   depth\dpstrut@ width\z@}\noexpand\fi%
+   \ifStrich@\hbox{\vrule height\htstrut@ depth\dpstrut@ width\z@}%
+   \fi\iftab@\else$\m@th\fi\the\hashtoks@\iftab@\else$\fi}%
+ \def\l{\noexpand\ifhline@@\hbox{\vrule height\htStrut@%
+   depth\dpstrut@ width\z@}\noexpand\fi%
+   \ifStrich@\hbox{\vrule height\htstrut@ depth\dpstrut@ width\z@}%
+   \fi\iftab@\else$\m@th\fi\the\hashtoks@\iftab@\else$\fi\hfil}%
+ \def\s{\ifStrich@\ \the\tabs@\vrule width\D@cke\the\hashtoks@%
+          \fi\the\tabs@\ }%
+ \def\sa{\ifStrich@\vrule width\D@cke\the\hashtoks@%
+            \the\tabs@\ %
+            \fi}%
+ \def\se{\ifStrich@\ \the\tabs@\vrule width\D@cke\the\hashtoks@\fi}%
+ \def\cd{\hfil\noexpand\ifhline@@\hbox{\vrule height\htStrut@%
+   depth\dpstrut@ width\z@}\noexpand\fi%
+   \ifStrich@\hbox{\vrule height\htstrut@ depth\dpstrut@ width\z@}%
+   \fi$\dsize\m@th\the\hashtoks@$\hfil}%
+ \def\rd{\hfil\noexpand\ifhline@@\hbox{\vrule height\htStrut@%
+   depth\dpstrut@ width\z@}\noexpand\fi%
+   \ifStrich@\hbox{\vrule height\htstrut@ depth\dpstrut@ width\z@}%
+   \fi$\dsize\m@th\the\hashtoks@$}%
+ \def\ld{\noexpand\ifhline@@\hbox{\vrule height\htStrut@%
+   depth\dpstrut@ width\z@}\noexpand\fi%
+   \ifStrich@\hbox{\vrule height\htstrut@ depth\dpstrut@ width\z@}%
+   \fi$\dsize\m@th\the\hashtoks@$\hfil}%
+ \ifStrich@\else\Str@chfehlt#1\\\fi%
+ \setbox\z@\hbox{\xdef\Preamble@{\preamble@}}\ifnum`{=0 \fi\iffalse}\fi
+ \ialign\bgroup\span\Preamble@\crcr}
+\newif\ifhline@\hline@false
+\newif\ifhline@@\hline@@false
+\def\hlinefor#1{\multispan@{\strip@#1 }\leaders\hrule height\D@cke\hfill%
+    \global\hline@true\ignorespaces}
+\def\Item "#1"{\par\noindent\hangindent2\parindent%
+  \hangafter1\setbox0\hbox{\rm#1\enspace}\ifdim\wd0>2\parindent%
+  \box0\else\hbox to 2\parindent{\rm#1\hfil}\fi\ignorespaces}
+\def\ITEM #1"#2"{\par\noindent\hangafter1\hangindent#1%
+  \setbox0\hbox{\rm#2\enspace}\ifdim\wd0>#1%
+  \box0\else\hbox to 0pt{\rm#2\hss}\hskip#1\fi\ignorespaces}
+\def\item"#1"{\par\noindent\hang%
+  \setbox0=\hbox{\rm#1\enspace}\ifdim\wd0>\the\parindent%
+  \box0\else\hbox to \parindent{\rm#1\hfil}\enspace\fi\ignorespaces}
+\let\plainitem@\item
+
+\font@\twelverm=cmr10 scaled\magstep1
+\font@\twelveit=cmti10 scaled\magstep1
+\font@\twelvebf=cmbx10 scaled\magstep1
+\font@\twelvei=cmmi10 scaled\magstep1
+\font@\twelvesy=cmsy10 scaled\magstep1
+\font@\twelveex=cmex10 scaled\magstep1
+
+\newtoks\twelvepoint@
+\def\twelvepoint{\normalbaselineskip15\p@
+ \abovedisplayskip15\p@ plus3.6\p@ minus10.8\p@
+ \belowdisplayskip\abovedisplayskip
+ \abovedisplayshortskip\z@ plus3.6\p@
+ \belowdisplayshortskip8.4\p@ plus3.6\p@ minus4.8\p@
+ \textonlyfont@\rm\twelverm \textonlyfont@\it\twelveit
+ \textonlyfont@\sl\twelvesl \textonlyfont@\bf\twelvebf
+ \textonlyfont@\smc\twelvesmc \textonlyfont@\tt\twelvett
+%ErgÑnzung des fetten Small-Capitals-Fonts:
+%
+ \ifsyntax@ \def\big##1{{\hbox{$\left##1\right.$}}}%
+  \let\Big\big \let\bigg\big \let\Bigg\big
+ \else
+  \textfont\z@=\twelverm  \scriptfont\z@=\tenrm  \scriptscriptfont\z@=\sevenrm
+  \textfont\@ne=\twelvei  \scriptfont\@ne=\teni  \scriptscriptfont\@ne=\seveni
+  \textfont\tw@=\twelvesy \scriptfont\tw@=\tensy \scriptscriptfont\tw@=\sevensy
+  \textfont\thr@@=\twelveex \scriptfont\thr@@=\tenex
+        \scriptscriptfont\thr@@=\tenex
+  \textfont\itfam=\twelveit \scriptfont\itfam=\tenit
+        \scriptscriptfont\itfam=\tenit
+  \textfont\bffam=\twelvebf \scriptfont\bffam=\tenbf
+        \scriptscriptfont\bffam=\sevenbf
+  \setbox\strutbox\hbox{\vrule height10.2\p@ depth4.2\p@ width\z@}%
+  \setbox\strutbox@\hbox{\lower.6\normallineskiplimit\vbox{%
+        \kern-\normallineskiplimit\copy\strutbox}}%
+ \setbox\z@\vbox{\hbox{$($}\kern\z@}\bigsize@=1.4\ht\z@
+ \fi
+ \normalbaselines\rm\ex@.2326ex\jot3.6\ex@\the\twelvepoint@}
+
+\font@\fourteenrm=cmr10 scaled\magstep2
+\font@\fourteenit=cmti10 scaled\magstep2
+\font@\fourteensl=cmsl10 scaled\magstep2
+\font@\fourteensmc=cmcsc10 scaled\magstep2
+\font@\fourteentt=cmtt10 scaled\magstep2
+\font@\fourteenbf=cmbx10 scaled\magstep2
+\font@\fourteeni=cmmi10 scaled\magstep2
+\font@\fourteensy=cmsy10 scaled\magstep2
+\font@\fourteenex=cmex10 scaled\magstep2
+\font@\fourteenmsa=msam10 scaled\magstep2
+\font@\fourteeneufm=eufm10 scaled\magstep2
+\font@\fourteenmsb=msbm10 scaled\magstep2
+\newtoks\fourteenpoint@
+\def\fourteenpoint{\normalbaselineskip15\p@
+ \abovedisplayskip18\p@ plus4.3\p@ minus12.9\p@
+ \belowdisplayskip\abovedisplayskip
+ \abovedisplayshortskip\z@ plus4.3\p@
+ \belowdisplayshortskip10.1\p@ plus4.3\p@ minus5.8\p@
+ \textonlyfont@\rm\fourteenrm \textonlyfont@\it\fourteenit
+ \textonlyfont@\sl\fourteensl \textonlyfont@\bf\fourteenbf
+ \textonlyfont@\smc\fourteensmc \textonlyfont@\tt\fourteentt
+%ErgÑnzung des fetten Small-Capitals-Fonts:
+%
+ \ifsyntax@ \def\big##1{{\hbox{$\left##1\right.$}}}%
+  \let\Big\big \let\bigg\big \let\Bigg\big
+ \else
+  \textfont\z@=\fourteenrm  \scriptfont\z@=\twelverm  \scriptscriptfont\z@=\tenrm
+  \textfont\@ne=\fourteeni  \scriptfont\@ne=\twelvei  \scriptscriptfont\@ne=\teni
+  \textfont\tw@=\fourteensy \scriptfont\tw@=\twelvesy \scriptscriptfont\tw@=\tensy
+  \textfont\thr@@=\fourteenex \scriptfont\thr@@=\twelveex
+        \scriptscriptfont\thr@@=\twelveex
+  \textfont\itfam=\fourteenit \scriptfont\itfam=\twelveit
+        \scriptscriptfont\itfam=\twelveit
+  \textfont\bffam=\fourteenbf \scriptfont\bffam=\twelvebf
+        \scriptscriptfont\bffam=\tenbf
+  \setbox\strutbox\hbox{\vrule height12.2\p@ depth5\p@ width\z@}%
+  \setbox\strutbox@\hbox{\lower.72\normallineskiplimit\vbox{%
+        \kern-\normallineskiplimit\copy\strutbox}}%
+ \setbox\z@\vbox{\hbox{$($}\kern\z@}\bigsize@=1.7\ht\z@
+ \fi
+ \normalbaselines\rm\ex@.2326ex\jot4.3\ex@\the\fourteenpoint@}
+
+\font@\seventeenrm=cmr10 scaled\magstep3
+\font@\seventeenit=cmti10 scaled\magstep3
+\font@\seventeensl=cmsl10 scaled\magstep3
+\font@\seventeensmc=cmcsc10 scaled\magstep3
+\font@\seventeentt=cmtt10 scaled\magstep3
+\font@\seventeenbf=cmbx10 scaled\magstep3
+\font@\seventeeni=cmmi10 scaled\magstep3
+\font@\seventeensy=cmsy10 scaled\magstep3
+\font@\seventeenex=cmex10 scaled\magstep3
+\font@\seventeenmsa=msam10 scaled\magstep3
+\font@\seventeeneufm=eufm10 scaled\magstep3
+\font@\seventeenmsb=msbm10 scaled\magstep3
+\newtoks\seventeenpoint@
+\def\seventeenpoint{\normalbaselineskip18\p@
+ \abovedisplayskip21.6\p@ plus5.2\p@ minus15.4\p@
+ \belowdisplayskip\abovedisplayskip
+ \abovedisplayshortskip\z@ plus5.2\p@
+ \belowdisplayshortskip12.1\p@ plus5.2\p@ minus7\p@
+ \textonlyfont@\rm\seventeenrm \textonlyfont@\it\seventeenit
+ \textonlyfont@\sl\seventeensl \textonlyfont@\bf\seventeenbf
+ \textonlyfont@\smc\seventeensmc \textonlyfont@\tt\seventeentt
+%ErgÑnzung des fetten Small-Capitals-Fonts:
+%
+ \ifsyntax@ \def\big##1{{\hbox{$\left##1\right.$}}}%
+  \let\Big\big \let\bigg\big \let\Bigg\big
+ \else
+  \textfont\z@=\seventeenrm  \scriptfont\z@=\fourteenrm  \scriptscriptfont\z@=\twelverm
+  \textfont\@ne=\seventeeni  \scriptfont\@ne=\fourteeni  \scriptscriptfont\@ne=\twelvei
+  \textfont\tw@=\seventeensy \scriptfont\tw@=\fourteensy \scriptscriptfont\tw@=\twelvesy
+  \textfont\thr@@=\seventeenex \scriptfont\thr@@=\fourteenex
+        \scriptscriptfont\thr@@=\fourteenex
+  \textfont\itfam=\seventeenit \scriptfont\itfam=\fourteenit
+        \scriptscriptfont\itfam=\fourteenit
+  \textfont\bffam=\seventeenbf \scriptfont\bffam=\fourteenbf
+        \scriptscriptfont\bffam=\twelvebf
+  \setbox\strutbox\hbox{\vrule height14.6\p@ depth6\p@ width\z@}%
+  \setbox\strutbox@\hbox{\lower.86\normallineskiplimit\vbox{%
+        \kern-\normallineskiplimit\copy\strutbox}}%
+ \setbox\z@\vbox{\hbox{$($}\kern\z@}\bigsize@=2\ht\z@
+ \fi
+ \normalbaselines\rm\ex@.2326ex\jot5.2\ex@\the\seventeenpoint@}
+
+\catcode`\@=13
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Input-Datei zum Erzeugen von Gitterpunktwegen.%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Pfad-Eingabe: 
+%  \Pfad(x-Koordinate des Anf.Punkts,y-Koordinate des Anf.Punkts),Pfad
+%  als 1-2-Wort\endPfad
+%(1=Schritt in x-Richtung, 2=Schritt in y-Richtung)
+%
+%Koordinatenachsen:
+%  \Koordinatenachsen(LÑnge der x-Achse, LÑnge der y-Achse)
+%
+%Gitter:
+%  \Gitter(Anzahl der Punkte in x-Richtung, Anzahl der Punkte in x-Richtung)
+%
+%Bezeichnung von Punkten:
+%  \Label[wo?]{[Bezeichnung]}(x-Koordinate,y-Koordinate)
+%wobei:
+%  [wo?]=\l,\lo,\lu,\r,\ro,\ru,\o,\u
+%und l=links, r=rechts, u=unten, o=oben.
+%
+%Die Einheit kann durch Eingabe von
+%  \Einheit=?cm
+%verÑndert werden.
+%
+%Die Dicke der Pfade kann durch Eingabe von
+%     \PfadDicke{?cm}
+%verÑndert werden.
+%
+%Es stehen die folgenden Punktgrî·en zur VerfÅgung:
+%\DuennPunkt, \NormalPunkt, \DickPunkt. Eingabe:
+%  \DickPunkt(x-Koordinate,y-Koordinate), etc.
+%
+%Weiters steht mit \Kreis ein Kreis zur VerfÅgung. Eingabe:
+%  \Kreis(x-Koordinate,y-Koordinate)
+%
+\catcode`\@=11
+\newskip\Einheit \Einheit=0.5cm
+\newcount\xcoord \newcount\ycoord
+\newdimen\xdim \newdimen\ydim \newdimen\PfadD@cke \newdimen\Pfadd@cke
+\PfadD@cke1pt \Pfadd@cke0.5pt
+\def\PfadDicke#1{\PfadD@cke#1 \divide\PfadD@cke by2 \Pfadd@cke\PfadD@cke
+ \multiply\PfadD@cke by2}
+\long\def\LOOP#1\REPEAT{\def\BODY{#1}\ITERATE}
+\def\ITERATE{\BODY \let\next\ITERATE \else\let\next\relax\fi \next}
+\let\REPEAT=\fi
+\def\Punkt{\hbox{\raise-2pt\hbox to0pt{\hss$\ssize\bullet$\hss}}}
+\def\DuennPunkt(#1,#2){\unskip
+  \raise#2 \Einheit\hbox to0pt{\hskip#1 \Einheit
+          \raise-2.5pt\hbox to0pt{\hss$\bullet$\hss}\hss}}
+\def\NormalPunkt(#1,#2){\unskip
+  \raise#2 \Einheit\hbox to0pt{\hskip#1 \Einheit
+          \raise-3pt\hbox to0pt{\hss\twelvepoint$\bullet$\hss}\hss}}
+\def\DickPunkt(#1,#2){\unskip
+  \raise#2 \Einheit\hbox to0pt{\hskip#1 \Einheit
+          \raise-4pt\hbox to0pt{\hss\fourteenpoint$\bullet$\hss}\hss}}
+\def\Kreis(#1,#2){\unskip
+  \raise#2 \Einheit\hbox to0pt{\hskip#1 \Einheit
+          \raise-4pt\hbox to0pt{\hss\fourteenpoint$\circ$\hss}\hss}}
+\def\Pfad(#1,#2),#3\endPfad{\unskip\leavevmode
+  \xcoord#1 \ycoord#2 \ZeichnePfad#3\endPfad}
+\def\ZeichnePfad#1{\ifx#1\endPfad\let\next\relax
+  \else\let\next\ZeichnePfad
+    \ifnum#1=1
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+         \vrule height\Pfadd@cke width1 \Einheit depth\Pfadd@cke\hss}%
+      \advance\xcoord by 1
+    \else
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+        \hbox{\hskip-1pt\vrule height1 \Einheit width\PfadD@cke
+ depth0pt}\hss}%
+      \advance\ycoord by 1
+    \fi
+  \fi\next}
+\def\Koordinatenachsen(#1,#2){\unskip
+ \hbox to0pt{\hskip-.5pt\vrule height#2 \Einheit width.5pt depth1 \Einheit}%
+ \hbox to0pt{\hskip-1 \Einheit \xcoord#1 \advance\xcoord by1
+    \vrule height0.25pt width\xcoord \Einheit depth0.25pt\hss}}
+\def\Koordinatenachsen(#1,#2)(#3,#4){\unskip
+ \hbox to0pt{\hskip-.5pt \ycoord-#4 \advance\ycoord by1
+    \vrule height#2 \Einheit width.5pt depth\ycoord \Einheit}%
+ \hbox to0pt{\hskip-1 \Einheit \hskip#3\Einheit 
+    \xcoord#1 \advance\xcoord by1 \advance\xcoord by-#3 
+    \vrule height0.25pt width\xcoord \Einheit depth0.25pt\hss}}
+\def\Gitter(#1,#2){\unskip \xcoord0 \ycoord0 \leavevmode
+  \LOOP\ifnum\ycoord<#2
+    \loop\ifnum\xcoord<#1
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit\Punkt\hss}%
+      \advance\xcoord by1
+    \repeat
+    \xcoord0
+    \advance\ycoord by1
+  \REPEAT}
+\def\Gitter(#1,#2)(#3,#4){\unskip \xcoord#3 \ycoord#4 \leavevmode
+  \LOOP\ifnum\ycoord<#2
+    \loop\ifnum\xcoord<#1
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit\Punkt\hss}%
+      \advance\xcoord by1
+    \repeat
+    \xcoord#3
+    \advance\ycoord by1
+  \REPEAT}
+\def\Label#1#2(#3,#4){\unskip \xdim#3 \Einheit \ydim#4 \Einheit
+  \def\lo{\advance\xdim by-.5 \Einheit \advance\ydim by.5 \Einheit}%
+  \def\o{\advance\ydim by.5 \Einheit}%
+  \def\ro{\advance\xdim by.5 \Einheit \advance\ydim by.5 \Einheit}%
+  \def\l{\advance\xdim by-.5 \Einheit}%
+  \def\r{\advance\xdim by.5 \Einheit}%
+  \def\lu{\advance\xdim by-.5 \Einheit \advance\ydim by-.5 \Einheit}%
+  \def\u{\advance\ydim by-.5 \Einheit}%
+  \def\ru{\advance\xdim by.5 \Einheit \advance\ydim by-.5 \Einheit}%
+  #1\raise\ydim\hbox to0pt{\hskip\xdim
+     \vbox to0pt{\vss\hbox to0pt{\hss$#2$\hss}\vss}\hss}%
+}
+\catcode`\@=13
+
+
+%\showthe\abovedisplayskip
+\def\WachAA{32}
+\def\VienAA{31}
+\def\SunaAA{30}
+\def\SulaAE{29}
+\def\StemAE{28}
+\def\SaStAA{27}
+\def\RobyAA{26}
+\def\ProcAD{25}
+\def\ProcAB{24}
+\def\MacdAA{23}
+\def\LiMiAB{22}
+\def\KulkAB{21}
+\def\KulkAC{20}
+\def\KrSuAA{19}
+\def\KratAP{18}
+\def\KnutAA{17}
+\def\GustPR{16}
+\def\GustAA{15}
+\def\GoulAD{14}
+\def\GordAA{13}
+\def\GeViAB{12}
+\def\GessAL{11}
+\def\GessAH{10}
+\def\GaRaAA{9}
+\def\FomiAB{8}
+\def\CoHeAA{7}
+\def\ChGoAA{6}
+\def\BurgAA{5}
+\def\AndrAK{4}
+\def\AndrAJ{3}
+\def\AndrAF{2}
+\def\AbhyAB{1}
+\hsize14cm
+\vsize20cm
+\hoffset-.6truecm
+%\magnification1000
+%\NoPageNumbers
+\TagsOnRight
+\def\lab#1{\raise6pt\hbox to20pt{\hskip-2pt\eightpoint$#1$\hss}}
+\def\labr#1{\raise6pt\hbox to20pt{\hss\eightpoint$#1$\hskip-2pt}}
+\def\labu#1{\raise-6pt\hbox to20pt{\hskip-2pt\eightpoint$#1$\hss}}
+\def\P{{\Cal P}}
+\def\x{{\bold x}}
+\def\y{{\bold y}}
+\def\z{{\bold z}}
+\def\oddrows{\operatorname{oddrows}}
+\def\oddcolumns{\operatorname{oddcolumns}}
+
+\topmatter 
+\title Non-crossing two-rowed arrays and summations for Schur
+functions\\
+\tenpoint (Summary)
+\endtitle 
+\author C.~Krattenthaler
+\endauthor 
+\affil 
+Institut f\"ur Mathematik der Universit\"at Wien,\\
+Strudlhofgasse 4, A-1090 Wien, Austria.\\
+e-mail: KRATT\@PAP.UNIVIE.AC.AT
+\endaffil 
+%\address Institut f\"ur Mathematik der Universit\"at Wien,
+%Strudlhofgasse 4, A-1090 Wien, Austria.
+%\endaddress
+\email KRATT\@Pap.Univie.Ac.At (In), KRATT\@AWIRAP (Bitnet)\endemail
+%\dedicatory \enddedicatory
+%\date \enddate
+%\thanks \endthanks
+\subjclass Primary 05E05;
+ Secondary 05A10, 05A15, 05A17, 05A30, 05E10, 33D20.
+\endsubjclass
+\keywords Tableaux, plane partitions, symmetric functions, Schur
+functions, generating functions,
+skew Knuth-correspondence, basic hypergeometric series in $U(n)$ and
+$Sp(n)$, basic hypergeometric series for $A_l$ and $C_l$\endkeywords
+\abstract
+In the first part of this paper (sections~1,2) we give combinatorial
+proofs for determinantal formulas for sums of Schur functions ``in a strip" that
+were originally obtained by Gessel, respectively Goulden, using
+algebraic methods. The combinatorial analysis involves
+certain families of two-rowed arrays, asymmetric
+variations of Sagan and Stanley's skew
+Knuth-correspondence, and variations of
+one of Burge's correspondences.
+In the third section we specialize the
+parameters in these determinants to compute norm generating functions
+for tableaux in a strip. In case we can get rid of the determinant we
+obtain multifold summations that are basic hypergeometric series for
+$A_r$ and $C_r$ respectively. In some cases these sums can be evaluated. Thus in
+particular, an alternative proof for refinements of the Bender-Knuth
+and MacMahon \hbox{(ex-)}Conjectures, which were first obtained in another
+paper by the author, is provided. Although there are some parallels
+with the original proof, perhaps this proof is easier accessible.
+Finally, in section~4, we record further applications of our methods
+to the enumeration of paths with respect to weighted turns.
+\endabstract
+\endtopmatter
+\rightheadtext{Non-crossing two-rowed arrays}
+
+\document
+\abovedisplayskip=6pt plus2pt minus 4pt
+\belowdisplayskip=6pt plus2pt minus 4pt
+
+\subheading{1. Generating functions for non-crossing two-rowed arrays}
+We consider two-rowed arrays $P=(p\mid q)$ of the form
+$$\matrix p_{-a}&p_{-a+1}&\hdots&p_{-1}&p_1&\hdots &p_k\\
+&&&&q_1&\hdots &q_k&q_{-1}&\hdots&q_{-b+1}&q_{-b}\endmatrix\ ,\tag1.1$$
+where $a,k,b$ are some nonnegative integers and where 
+the entries $p_i,q_i$ are positive integers such that both rows
+of the array are weakly increasing. (To be precise, 
+if $k=0$, i.e\. the ``middle
+part" of the array is empty, for a $c\le \min\{a,b\}$ 
+we also allow the entries
+$p_{-1},\dots,p_{-c}$ and $q_{-1},\dots,q_{-c}$ to be ``empty".) 
+We say that $P$ is {\it of the 
+type} $(a,b)$ and {\it of the shape} $(a,k,b)$. If both rows of $P$
+are strictly increasing then we call $P$ a {\it strict} two-rowed
+array. Given an array $P_1=(p^{(1)}\mid q^{(1)})$ of the shape
+$(a_1,k_1,b_1)$ and an array $P_2=(p^{(2)}\mid q^{(2)})$ of the shape
+$(a_2,k_2,b_2)$, we say that $P_1$ {\it dominates} (resp\. {\it
+strictly dominates}) $P_2$ if the following three conditions hold:
+\roster
+\item "(D1)" $a_1\le a_2$ and $p_l^{(1)}\le p_l^{(2)} $ (resp\. $p_l^{(1)}<
+ p_l^{(2)} $) for all $l=-1,-2,\dots,-\min\{a_1,a_2\}$. 
+(By convention, these inequalities are
+also violated if $p_l^{(1)}$ should be an ``empty" entry.)
+\item "(D2)" $b_1\le b_2$ and $q_l^{(1)}\ge q_l^{(2)} $ (resp\. $q_l^{(1)}>
+ q_l^{(2)} $) for all $l=-1,-2,\dots,-\min\{b_1,b_2\}$. 
+(By convention, these inequalities are
+also violated if $q_l^{(1)}$ should be an ``empty" entry.)
+\item "(D3)" For each $m$, $1\le m\le k_2$, there is an $l$, $1\le
+l\le k_1$, such that $p_l^{(1)}\le p_m^{(2)}$ and $q_l^{(1)}\ge
+q_m^{(2)}$ (resp\. $p_l^{(1)}< p_m^{(2)}$ and $q_l^{(1)}>
+q_m^{(2)}$).
+\endroster
+Let $\al=(\al_r,\al_{r-1},\dots,\al_1)$ and $\be=(\be_r,\be_{r-1},\dots,\be_1)$
+be $r$-tupels of nonnegative integers. A family $\P=(P_1,\dots,P_r)$ of 
+two-rowed arrays is called {\it of the type}
+$(\al,\be)$ if $P_i$ is of the type $(\al_i,\be_i)$, $i=1,2,\dots,r$.
+$\P$ is called {\it strict} if all $P_i$, $i=1,\dots,r$, are
+strict. The family $\P$ is called {\it non-crossing}
+(resp\. {\it strictly non-crossing}) if $P_i$
+dominates (resp\. strictly dominates) $P_{i+1}$, $i=1,\dots,r-1$.
+
+Our objects of interest are non-crossing strict families of two-rowed
+arrays (see the example in section~2) and strictly non-crossing (ordinary) 
+two-rowed arrays. If 
+$\al$ and $\be$ are partitions, the most convenient way to look at a
+non-crossing strict family $\P=(P_1,\dots,P_r)=((p^{(1)}\mid
+q^{(1)}),\dots,(p^{(r)}\mid q^{(r)}))$ of the type $(\al,\be)$ is by
+rephrasing the three conditions (D1)--(D3) of dominance in terms of
+the following three properties:
+\roster
+\item"(NS1)" The {\it front part}, the array $(p_{-i}^{(r-j+1)})_{i,j\ge 1}$ is a 
+column-strict plane partition of shape $\al'/\nu$. 
+\item"(NS2)" The {\it tail}, the array $(q_{-i}^{(r-j+1)})_{i,j\ge 1}$ is a
+tableau of shape $\be'/\nu$. $\nu$ is the same partition as in (NS1).
+\item"(NS3)" The {\it middle part} of $\P$, interpreted as multiset
+$\{(p_j^{(i)},q_j^{(i)}):1\le i\le r,\ 1\le j\le k_i\}$, can be
+viewed as a family of $r$ pairwise non-crossing lattice paths in
+$\Z^2$ consisting of unit horizontal and vertical steps in the
+positive direction, all of which starting at $(0,0)$ and ending with
+an infinite horizontal part. (Thus the final points of the paths might
+be considered to be of the form $(\infty,y_i)$, for some nonnegative
+integers $y_i$.) This is seen as follows: For fixed $i$ consider the
+points $(p_j^{(i)},q_j^{(i)})$, $j=1,\dots,k_i$. Now to these points
+apply Viennot's \cite{\VienAA} light and shadow procedure (with the sun
+being located in the North-West). For each $i$ this yields a lattice
+path of the described type. The condition (D3) (ordinary dominance)
+simply says that these $r$ paths are pairwise non-crossing (from here
+we are lead to call the arrays under consideration ``non-crossing"), 
+the first
+path lying ``avove" the second, the second ``above" the third, etc.
+\endroster
+
+\NoBlackBoxes
+A similar interpretation holds for strictly non-crossing (ordinary)
+families $\P=(P_1,\dots,P_r)$. This time the conditions (D1)--(D3)
+can be rephrased in the following way.
+\roster
+\item"(SN1)" The {\it front part}, the array $(p_{-j}^{(r-i+1)})_{i,j\ge 1}$ is a 
+column-strict plane partition of shape $\al/\nu$. 
+($\nu$ is allowed to differ from $0$
+only if the middle part (see (SN3)) of $\Cal P$ is empty.)
+\item"(SN2)" The {\it tail}, the array $(q_{-j}^{(r-i+1)})_{i,j\ge 1}$ is a
+tableau of shape $\be/\nu$. $\nu$ is the same partition as in (SN1).
+($\nu$ is allowed to differ from $0$
+only if the middle part (see (SN3)) of $\Cal P$ is empty.)
+\item"(SN3)" 
+The {\it middle part} of $\P$, interpreted as multiset
+$\{(p_j^{(i)},q_j^{(i)}):1\le i\le r,\ 1\le j\le k_i\}$, can be
+viewed as a family of $r$ pairwise non-touching path-like objects,
+which were called {\it pathoids} by Kulkarni \cite{\KulkAB}. This is done
+in the same way as before. We omit the details.
+\endroster
+Finally let $\x=(x_1,x_2,\dots)$ and $\y=(y_1,y_2,\dots)$ be two
+infinite sequences of indeterminates. We define the {\it weight}
+$w_{\x,\y}(P)$ of an array $P$ of the form (1.1) to be the product
+$\prod x_\ep\prod y_\et$ where $\ep$ runs over all elements of the
+first row of $P$ and $\et$ runs over all elements of the second row
+of $P$. The weight $w_{\x,\y}(\P)$ of a family $\P=(P_1,\dots,P_r)$
+is defined to be the product over the weights of all arrays of $\P$,
+$\prod _{i=1} ^{r}w_{\x,\y}(P_i)$.
+
+\BlackBoxes
+Now we are in the position to formulate the main theorems of this
+section.
+\proclaim{Theorem 1}Let $\al,\be$ be partitions. The generating
+function $\sum w_{\x,\y}(\P)$ for non-crossing strict families $\P$
+of the type $(\al,\be)$ is
+$$\det_{1\le s,t\le r}(f_{\al_s+s-\be_t-t}(\x,\y)),\tag1.2$$
+where $f_m(\x,\y)=\sum _{k} ^{}e_{k+m}(\x)e_k(\y)$ with 
+$e_n(\z)$ being the elementary symmetric function of order $n$ in
+the variables $z_1,z_2,\dots$. 
+
+The generating function $\sum w_{\x,\x}(\P)$ for non-crossing strict
+families $\P$ of the type $(\al,\be)$ with the additional property
+$p_j^{(i)}\ge q_j^{(i)}$, $i=1,\dots,r$ and $j=1,\dots,k_i$, is
+$$\det_{1\le s,t\le r}(f_{\al_s+s-\be_t-t}(\x,\x)-
+f_{\al_s+s+\be_t+t}(\x,\x)).\tag1.3$$
+\endproclaim
+\proclaim{Theorem 2}Let $\al,\be$ be partitions. The generating
+function $\sum w_{\x,\y}(\P)$ for strictly non-crossing families $\P$
+of the type $(\al,\be)$ is
+$$\det_{1\le s,t\le r}(g_{\al_s+s-\be_t-t}(\x,\y)),\tag1.4$$
+where $g_m(\x,\y)=\sum _{k} ^{}h_{k+m}(\x)h_k(\y)$ with 
+ $h_n(\z)$ being the complete homogenous symmetric function of order $n$ in
+the variables $z_1,z_2,\dots$. 
+
+The generating function $\sum w_{\x,\x}(\P)$ for strictly non-crossing 
+families $\P$ of the type $(\al,\be)$ with the additional property
+$p_j^{(i)}> q_j^{(i)}$, $i=1,\dots,r$ and $j=1,\dots,k_i$, is
+$$\det_{1\le s,t\le r}(g_{\al_s+s-\be_t-t}(\x,\x)-
+g_{\al_s+s+\be_t+t}(\x,\x)).\tag1.5$$
+\endproclaim
+\demo{Sketch of Proof} We imitate the usual procedure with
+nonintersecting lattice paths (\cite{\GeViAB}, see also
+\cite{\StemAE, section~1}. For the proof of (1.2) we
+consider strict families $\P=(P_1,\dots,P_r)$ of two-rowed arrays
+where $P_i$ is of the type $(a_{\si(i)}+\si(i)-i,\be_i)$,
+$i=1,2,\dots,r$, for some
+permutation $\si\in\frak S_r$. As with nonintersecting lattice paths
+we set up a weight-preserving involution on the crossing families of
+two-rowed arrays (where ``crossing" means a violation against one of
+the conditions (D1)--(D3)), such that the corresponding permutations
+differ only by a transposition. After having observed that for
+$\si\ne \text {id}$ there are no non-crossing strict families of the
+above type, the usual arguments lead to (1.2).
+
+In order to prove (1.3) we consider strict families
+$\P=(P_1,\dots,P_r)$ of two-rowed arrays where $P_i$ is of the type
+$(\et_i(\al_{\si(i)}+\si(i))-i,\be_i)$, $i=1,2,\dots,r$,
+for some permutation $\si\in
+\frak S_r$ and $\et_i\in\{-1,1\}$, $i=1,\dots,r$. Also here we give a
+weight-preserving involution on the crossing families (where
+``crossings of the main diagonal", i.e\. violations against
+$p_j^{(i)}\ge q_j^{(i)}$, have to be considered, too) such that
+either the corresponding permutations differ by a transposition and
+the corresponding $\et_i$'s are identical, or the corresponding
+permutations are identical and exactly one of the corresponding 
+$\et_i$'s changes its sign.
+
+The proofs for (1.4) and (1.5) are similar. Only at all places the
+roles of weak and strict order have to be exchanged.
+
+The bijections of this section are inspired by ideas from
+\cite{\KratAP}.
+\quad \quad \qed
+\enddemo
+
+\subheading{2. Summations for Schur functions ``in a strip"}
+In this section we relate Theorems~1 and 2 to summations for Schur
+functions. In the following given a partition $\mu$ the symbol $\mu'$
+denotes the conjugate of $\mu$, as usual. The number of odd parts of
+$\mu$ is denoted by $\oddrows(\mu)$, the number of odd parts of $\mu'$
+is denoted by $\oddcolumns(\mu)$. (This terminology stems from
+visualizing partitions as Ferrer's boards.)
+\proclaim{Theorem 3} Let $\al,\be$ be partitions.
+$$\gather
+\sum _{\la,\la_1\le r} ^{}s_{\la/\be'}(\x) s_{\la/\al'}(\y)=
+\det_{1\le s,t\le r}(f_{\al_s+s-\be_t-t}(\x,\y))\tag2.1\\
+\sum _{\la,\la_1\le c,\oddrows(\la)=p} ^{}s_\la(\x)= 
+\cases \det\limits_{1\le s,t\le r}(f_{p\cdot\ch(s=r)+s-t}(\x,\x)\\
+\hskip1.8cm -f_{p\cdot\ch(s=r)+s+t}(\x,\x))&c=2r\\
+e_p(\x)\det\limits_{1\le s,t\le r}(f_{s-t}(\x,\x)
+ -f_{s+t}(\x,\x))&c=2r+1\endcases\\\tag2.2\\
+\sum _{\la,\ell(\la)\le r} ^{}s_{\la/\be}(\x) s_{\la/\al}(\y)=
+\det_{1\le s,t\le r}(g_{\al_s+s-\be_t-t}(\x,\y))\tag2.3\\
+\sum _{\la,\ell(\la)\le c,\oddcolumns(\la)=p} ^{}s_\la(\x)= 
+\cases \det\limits_{1\le s,t\le r}(g_{p\cdot\ch(s=r)+s-t}(\x,\x)\\
+\hskip1.8cm -g_{p\cdot\ch(s=r)+s+t}(\x,\x))&c=2r\\
+h_p(\x)\det\limits_{1\le s,t\le r}(g_{s-t}(\x,\x)
+-g_{s+t}(\x,\x))&c=2r+1\endcases\\\tag2.4
+\endgather$$
+where $\ch$ is the usual truth function, $\ch(\Cal A)=1$ if $\Cal A$
+is true and $\ch(\Cal A)=0$ otherwise.
+\endproclaim
+\remark{Remark} Identity (2.3) is due to Gessel \cite{\GessAH, Theorem~16,
+cf\. the paragraph just before Theorem~16}, while (2.4)
+is due to Goulden \cite{\GoulAD, Theorems~2.4 and 2.6}. Clearly (2.1) and
+(2.2) follow from (2.3) and (2.4), respectively, by application of
+the homomorphism on symmetric functions that interchanges the roles
+of elementary and complete homogenous symmetric functions (cf\.
+\cite{\MacdAA, pp.~14/15}). However, it is our goal to give {\it combinatorial} proofs for
+{\it all} of these identities.
+\endremark
+\demo{Sketch of Proof} For a proof of (2.1) 
+we set up a ``part"-preserving bijection
+between non-crossing strict families $\P=(P_1,\dots,P_r)$ of the type
+$(\al,\be)$ and pairs $(\pi,\ta)$ of a column-strict plane partition
+$\pi$ of shape $\la/\be'$ and a tableaux $\ta$ of shape $\la/\al'$,
+with $\la$ being a partition with $\la_1\le r$. (Of course ``part"-preserving
+means that the multiset of the elements in $P_1,\dots,P_r$ is
+identically with the multiset of parts in $\pi$ and $\ta$.) This
+bijection is a variation of Sagan and Stanley's \cite{\SaStAA} skew Knuth
+correspondence. In the explanation of the bijection we refer to the
+Fomin--Roby \cite{\RobyAA, section~4.1; \FomiAB} description of the skew Knuth correpondence.
+
+The bijection is best explained with a running example.
+Consider the family $\P^{(0)}=(P_1^{(0)},P_2^{(0)},P_3^{(0)})$ where
+$$P_1^{(0)}=\matrix 1\ 3\ \hphantom{1}\\3\ 5\ 6\endmatrix\ ,\quad 
+P_2^{(0)}=\matrix 2\ 4\ 5\ \hphantom{2\ 2}\\\hphantom{1}\ 1\ 2\ 3\
+5\endmatrix\ ,\quad 
+P_3^{(0)}=\matrix 1\ 2\ 4\ 5\ \hphantom{1\ 1}\\
+\hphantom{1\ 1\ 1}\ 2\ 3\ 4\endmatrix\ .$$
+It is a non-crossing strict family of the type
+$(\al^{(0)},\be^{(0)})=((3,1,0),(2,2,1))$. Now, given a non-crossing strict family
+interpret the front part as column-strict plane partition $\tilde \pi$
+of shape $\al'/\nu$ and the tail as tableau $\tilde \ta$ of shape $\be'/\nu$ 
+as explained in (NS1) and (NS2), respectively, where $\nu$ is some
+partition. In our
+example the front part $\tilde\pi^{(0)}$ and the tail $\tilde\ta^{(0)}$ are
+as follows,
+$$\tilde\pi^{(0)}=\smatrix\format\sa\c\s\c\se\\\hlinefor5\\
+& 4&&2&\\\hlinefor5\\&2&\\\hlinefor3\\&1&\\\hlinefor3\endsmatrix
+\quad \text {and}\quad 
+\tilde\ta^{(0)}=\smatrix\format\sa\c\s\c\s\c\se\\\hlinefor7\\
+& 3&&3&&6&\\\hlinefor7\\&4&&5&\\\hlinefor5\endsmatrix.$$
+Next write $\tilde\pi$ and $\tilde\ta$ as multichains in Young's lattice,
+i.e\. as sequences of partitions,
+the length of the sequences being determined by $m+1$, where $m$ is
+the largest element in $\P$. For the tableau $\tilde\ta$ this is
+standard (cf\. \cite{\MacdAA, pp.~4/5; \RobyAA, pp.~12/13}), for the column-strict plane partition
+$\tilde\pi$ the $i$-th partition in the sequence, $i$ running from $0$
+to $m$,
+corresponds to the shape of the column-strict plane partition
+that results from $\tilde\pi$ by deleting the numbers
+$\{1,2,\dots,m-i\}$ in $\tilde\pi$. So in our example the sequence for
+$\tilde\pi^{(0)}$ is $0,0,0,1,1,21,211$, while
+the sequence for $\tilde\ta^{(0)}$ is
+$0,0,0,2,21,22,32$. (Here we use a short
+notation for partitions. For instance, $211$ is short for $(2,1,1)$,
+$0$ is short for the empty partition.)
+\vskip10pt
+\vbox{\noindent
+$$\smatrix \format\r\s\l\s\l\s\l\s\l\s\l\s\l\s\l\\
+\labu{3^32^21}\hskip-4pt&\omit&\hskip20pt&\omit&\labu{3^22^3}&\omit& \labu{3^22^2}&\omit& 
+\labu{32^3}&\omit&
+\labu{322}&\omit& \labu{32}&\omit&\\
+\omit&\hlinefor{13}\\
+\vphantom{\vtop to20pt{e\vss}}
+&&\vphantom{f}&&\vphantom{f}&&\vphantom{f}&&\vphantom{f}&&\vphantom{f}&&
+\vphantom{f}&& \lab{32}\\
+\omit&\hlinefor{13}\\
+\labr{3^22^31}&&\vphantom{\vtop to20pt{e\vss}}&&&&&&
+\hskip-19pt\vtop to5pt{\vss\noindent\hsize14pt$1$}&&&&&& \lab{22}\\
+\omit&\hlinefor{13}\\
+\labr{32^31^2}&&\vphantom{\vtop to20pt{e\vss}}&&&&&&&&&&&& \lab{21}\\
+\omit&\hlinefor{13}\\
+\labr{32^31}&&\vphantom{\vtop to20pt{e\vss}}&&
+\hskip-19pt\vtop to5pt{\vss\noindent\hsize14pt$1$}&&&&&&&&&& \lab{2}\\
+\omit&\hlinefor{13}\\
+\labr{2^31}&&\vphantom{\vtop to20pt{e\vss}}&&&&&&&&&&
+\hskip-19pt\vtop to5pt{\vss\noindent\hsize14pt$2$}&& \lab{0}\\
+\omit&\hlinefor{13}\\
+\labr{221}&&\vphantom{\vtop to20pt{e\vss}}&&&&&&&&
+\hskip-19pt\vtop to5pt{\vss\noindent\hsize14pt$1$}&&&& \lab{0}\\
+\omit&\hlinefor{13}\\
+\labr{211}&\omit&&\omit& \lab{21}&\omit& \lab{1}&\omit& \lab{1}&\omit& 
+\lab{0}&\omit& \lab{0}&\omit& \lab{0}
+\endsmatrix
+\quad \quad 
+\pi^{(0)}=\smatrix \format\sa\c\s\c\s\c\se\\
+\hlinefor7\\
+&\vphantom{fg}&&&&&\\
+\hlinefor7\\
+&&&&&3&\\
+\hlinefor7\\
+&5&&5&&1&\\
+\hlinefor7\\
+&4&&4&\\
+\hlinefor5\\
+&2&&2&\\
+\hlinefor5\\
+&1&\\
+\hlinefor3
+\endsmatrix,
+\quad 
+\ta^{(0)}=\smatrix \format\sa\c\s\c\s\c\se\\
+\hlinefor7\\
+&&&&&3&\\
+\hlinefor7\\
+&&&1&&5&\\
+\hlinefor7\\
+&&&2&&6&\\
+\hlinefor7\\
+&2&&3&\\
+\hlinefor5\\
+&3&&5&\\
+\hlinefor5\\
+&4&\\
+\hlinefor3
+\endsmatrix$$
+\centerline{\eightpoint Figure 1}
+}
+\vskip10pt
+Now we are able to fill the appropriate Fomin--Roby picture.
+The lower border corresponds to $\tilde\pi$, the right border to
+$\tilde\ta$, the $(s,t)$-entry in the matrix corresponds to the number
+of pairs $(p_j^{(i)},q_j^{(i)})$ in the middle part of $\P$ that
+equal $(s,t)$. The left-hand diagram in Figure~1 shows the
+Fomin--Roby picture corresponding to our running example. The
+subdivision of rows and columns that contain ``multiple entries" is
+done in direction South-East, (and not in direction North-East
+as in \cite{\RobyAA, section~4.1}).
+Figure~1a contains the ``subdivided"
+Fomin--Roby picture that corresponds to the diagram in Figure~1.
+Also, in the diagram we are working upwards and to the left (and
+not upwards and to the right as in \cite{\RobyAA, section~4.1}). The rules for the
+algorithm are the same as in \cite{\RobyAA, Example~2.6.3}.
+From the upper border, in the same way as explained above,
+we read a column-strict plane partition $\pi$ of
+shape $\la/\be'$, from the left border a tableau $\ta$ of shape
+$\la/\al'$, where $\la$ is some partition. Examining the properties
+of this mapping it is not too difficult to see that thus we indeed
+obtain a part-preserving bijection between 
+non-crossing strict families $\P=(P_1,\dots,P_r)$ of the type
+$(\al,\be)$ and pairs $(\pi,\ta)$ where $\pi$ is a column-strict plane partition
+of shape $\la/\be'$ and $\ta$ is a tableaux of shape $\la/\al'$,
+with $\la$ being a partition with $\la_1\le r$.
+The pair $(\pi^{(0)},\ta^{(0)})$ resulting from our example
+is exhibited in Figure~1.
+
+It is well-known that the skew Schur function $s_{\la/\be'}$ can be
+either defined as generating function for tableaux of shape $\la/\be'$
+or as generating function for column-strict plane partitions of shape
+$\la/\be'$. (There is also a bijection basing on jeu de taquin which
+settles this equivalence of definitions for the Schur function.) Thus
+the above bijection by (1.2) proves (2.1).
+\vskip10pt
+\vbox{\noindent
+$$\smatrix \format\sa\l\s\l\s\l\s\l\s\l\s\l\s\l\s\l\s\l\s\l\s\l\\
+\hlinefor{21}\\
+&\vphantom{\vtop to20pt{e\vss}}\lab{3^32^21}&&\lab{3^22^31}&&\lab{3^22^3}&&\lab{3^22^21}&&\lab{3^22^2}
+&&\lab{32^3}&&\lab{32^21}&&\lab{32^2}&&\lab{321}&&\lab{32}&&
+\lab{32}\\
+\hlinefor{21}\\
+&\vphantom{\vtop to20pt{e\vss}}\lab{3^22^31}&& \lab{32^41}&&
+\lab{32^4}&& \lab{32^31}&&
+\lab{32^3}\hskip-16pt\vtop to8pt{\vss\noindent\hsize14pt\seventeenpoint$\times$}&& 
+\lab{2^4}&& \lab{2^31}&&
+\lab{2^3}&& \lab{2^21}&& \lab{22}&& \lab{22}\\
+\hlinefor{21}\\
+&\vphantom{\vtop to20pt{e\vss}}\lab{32^41}&& \lab{2^51}&& \lab{2^5}&&
+\lab{2^41}&& \lab{2^4}&& \lab{2^4}&& \lab{2^31}&& \lab{2^3}&&
+\lab{2^21}&& \lab{22}&& \lab{22}\\
+\hlinefor{21}\\
+&\vphantom{\vtop to20pt{e\vss}}\lab{32^31^2}&& \lab{2^41^2}&&
+\lab{2^41}&& \lab{2^31^2}&& \lab{2^31}&& \lab{2^31}&& 
+\lab{2^21^2}&& \lab{2^21}&&
+\lab{21^2}&& \lab{21}&& \lab{21}\\
+\hlinefor{21}\\
+&\vphantom{\vtop to20pt{e\vss}}\lab{32^31}
+\hskip-16pt\vtop to8pt{\vss\noindent\hsize14pt\seventeenpoint$\times$}
+&& \lab{2^41}&& \lab{2^4}&&
+\lab{2^31}&& \lab{2^3}&& \lab{2^3}&& \lab{2^21}&& \lab{22}&&
+\lab{21}&& \lab{2}&& \lab{2}\\
+\hlinefor{21}\\
+&\vphantom{\vtop to20pt{e\vss}}\lab{2^41}&& \lab{2^41}&& \lab{2^4}&&
+\lab{2^31}&& \lab{2^3}&& \lab{2^3}&&
+ \lab{2^21}&& \lab{22}&& \lab{21}&& \lab{2}&&
+\lab{2}\\
+\hlinefor{21}\\
+&\vphantom{\vtop to20pt{e\vss}}\lab{2^31^2}&& \lab{2^31^2}&&
+\lab{2^31}&& \lab{2^21^2}&& \lab{2^21}&& \lab{2^21}&&
+\lab{21^2}&& \lab{21}&& \lab{11}&& \lab{1}&& \lab{1}\\
+\hlinefor{21}\\
+&\vphantom{\vtop to20pt{e\vss}}\lab{2^31}&& \lab{2^31}&& \lab{2^3}&&
+\lab{2^21}&& \lab{22}&& \lab{22}&& \lab{21}&& \lab{2}
+\hskip-16pt\vtop to8pt{\vss\noindent\hsize14pt\seventeenpoint$\times$}
+&& \lab{1}&&
+\lab{0}&& \lab{0}\\
+\hlinefor{21}\\
+&\vphantom{\vtop to20pt{e\vss}}\lab{2^21^2}&& \lab{2^21^2}&&
+\lab{2^21}&& \lab{21^2}&& \lab{21}&& \lab{21}&& \lab{11}&& \lab{1}&&
+\lab{1}\hskip-16pt\vtop to8pt{\vss\noindent\hsize14pt\seventeenpoint$\times$}
+&& \lab{0}&& \lab{0}\\
+\hlinefor{21}\\
+&\vphantom{\vtop to20pt{e\vss}}\lab{2^21}&& \lab{2^21}&& \lab{22}&&
+\lab{21}&& \lab{2}&& \lab{2}
+\hskip-16pt\vtop to8pt{\vss\noindent\hsize14pt\seventeenpoint$\times$}
+&& \lab{1}&& \lab{0}&& \lab{0}&&
+\lab{0}&& \lab{0}\\
+\hlinefor{21}\\
+\omit&\vphantom{\vtop to20pt{e\vss}}\lab{211}&\omit& \lab{211}&\omit& 
+\lab{21}&\omit&
+\lab{11}&\omit& \lab{1}&\omit& \lab{1}&\omit& \lab{1}&\omit& \lab{0}&\omit& 
+\lab{0}&\omit&
+\lab{0}&\omit& \lab{0}
+\endsmatrix$$
+\centerline{\eightpoint Figure 1a}
+}
+\vskip10pt
+
+\medskip
+For the $c=2r$ case of (2.2) we use a bijection due to Choi and
+Gouyou--Beauchamps \cite{\ChGoAA, proof of Th\'eor\`eme~3} (cf\. \cite{\KratAP,
+Proposition~32} for a detailed description)
+between tableaux with $p$ odd rows and with at most $2r$ columns, and
+pairs $(\P,S)$, where $\P=(P_1,\dots,P_r)$ is a non-crossing strict
+family of $r$ two-rowed arrays of the shape $(0,0)$,
+and $S$ is a $p$-subset of $\{1,2,\dots,h-1\}$ where $h$ is the
+smallest element of the first row of $P_r$. (Also here $0$ denotes
+the empty partition. But in this context of course it means that it
+is coded by the $r$-tuple $(0,0,\dots,0)$.) Clearly $S$ can be put at
+the beginning of the first row of $P_r$ thus forming an array of the
+type $(p,0)$. Thus one obtains a bijection between tableaux with $p$
+odd rows and at most $2r$ columns and non-crossing strict families of
+the shape $((p,0,\dots,0),0)$. Use of (1.3) with this shape
+establishes the $c=2r$ case of (2.2).
+
+For the $c=2r+1$ case of (2.2) we use a bijection (cf\.
+\cite{\KratAP, proof of Theorem~21, last paragraph})
+between tableaux with $p$ odd rows and with at most $2r+1$ columns
+and pairs $(\P,S)$ where $\P$ is a non-crossing strict family of $r$
+two-rowed arrays of the shape $(0,0)$ and $S$ is a
+$p$-subset of the positive integers. By (1.3) with $\al=\be=0$
+this yields the $c=2r+1$ case of (2.2), where $S$ produces
+$h_p(\x)$ and $\P$ produces the determinant.
+
+The bijections for establishing (2.2) base on one of Burge's
+\cite{\BurgAA, p.~22}
+variations of the Knuth correspondences \cite{\KnutAA}.
+
+The arguments for proving (2.3) and (2.4) are similar.\quad \quad
+\qed
+\enddemo
+Also (1.3) and (1.5), for generic $\al,\be$, have interesting
+interpretations in terms of tableaux generating functions. 
+For example, we can prove the following theorem.
+\proclaim{Theorem 4}The generating function $\sum _{\ta} ^{}w(\ta)$
+over all oscillating semistandard tableaux $\ta=(\ta^{(i)})$,
+$\ta:\be\to\al$ (cf\. \cite{\SunaAA,
+\GessAL, \RobyAA}), with at most $r$ rows equals (1.5).
+The weight $w(\ta)$ is defined by $\prod _{} ^{}x_i^{
+\vert\ta^{(2i-1)}-\ta^{(2i)}\vert+\vert\ta^{(2i-1)}-\ta^{(2i-2)}\vert}$.
+\endproclaim
+
+\subheading{3. Norm generating functions for tableaux}
+Given a tableau $\ta$ we define the {\it norm}, $n(\ta)$, of $\ta$ to
+be the sum of all the entries of $\ta$. In this section we list
+several results for norm generating functions that are obtained from
+(2.1)--(2.4) by specializing the indeterminates $\x$ and $\y$.
+Clearly, whenever we set $x_i=q^{M_i}$ and $y_i=q^{N_i}$ in
+(2.1)--(2.4) we obtain a determinant for the norm generating function
+for some family of tableaux (resp\. pairs of tableaux). However, the
+cases of interest are only those where the determinant simplifies.
+For the simplification of the determinants we use special cases of
+the following lemma from \cite{\KratAP, Lemma~34}.
+\proclaim{Lemma 5}Let $X_1,X_2,\dots,X_r,A_2,A_3,\dots,A_r,C$ be
+indeterminates. If $p_0,p_1,\dots, p_{r-1}$ are Laurent polynomials with
+$\deg p_j\le j$ and $p_j(C/X)=p_j(X)$ for $j=0,1,\dots,r-1$, then
+$$\multline \det_{1\le s,t\le r}\big((A_r+X_s)\dotsb(A_{t+1}+X_s)
+(A_r+C/X_s)\dotsb(A_{t+1}+C/X_s)\cdot p_{t-1}(X_s)\big)\\
+=\prodl _{1\le i<j\le r} ^{}(X_i-X_j)(1-C/X_iX_j)\prodl _{i=1}
+^{r}A_i^{i-1}\prodl _{i=1} ^{r}p_{i-1}(-A_i)\ ,
+\endmultline\tag 3.1
+$$
+with the convention that empty products (like
+$(A_r+X_t)\dotsb(A_{s+1}+X_t)$ for $s=r$) are equal to 1. (The
+indeterminate $A_1$, which occurs at the right-hand side of (5.5.1),
+in fact is superflous since it occurs in the argument of a constant
+polynomial.) A {\it Laurent polynomial} is a series $p(X)=\sum _{i=M}
+^{N}a_ix^i$, $M,N\in \Z$, $a_i\in \R$.  Provided $a_N\ne0$ the {\it
+degree} of $p$ is defined by $\deg p:=N$.\quad \quad \qed
+
+\endproclaim
+By this lemma we arrive at multifold sums. They are basically basic
+hypergeometric series for $A_r$ respectively $C_r$. Sometimes even
+these series can be evaluated. These computations are very similar to
+those in \cite{\KratAP}.
+
+From (2.1) we derive the following results.
+\proclaim{Theorem 6}Let $\al$ be a fixed partition.
+The generating function $\sum q^{n(\ta_1)+\ta_2}$
+for pairs $(\ta_1,\ta_2)$ of tableaux where $\ta_1$ is of shape $\la$
+and $\ta_2$ is of shape $\la/\al'$ with $\la$ being some partition
+with $\la_1\le r$, and where the parts of $\ta_1$ are $\equiv m_1\pmod
+a$ and between $m_1$ and $m_1+(M_1-1)a$, and where 
+the parts of $\ta_2$ are $\equiv m_2\pmod
+a$ and between $m_2$ and $m_2+(M_2-1)a$, is
+$$%\multline 
+\sum _{\la,\la_1\le r}
+^{}s_\la(q^{m_1},q^{m_1+a},\dots,q^{m_1+(M_1-1)a})
+s_{\la/\al'}(q^{m_2},q^{m_2+a},\dots,q^{m_2+(M_2-1)a})=\hskip2cm$$
+$$\multline
+=q^{a\sum _{i=1} ^{r}\(\binom {\al_i}2+m_1\al_i/a\)}\sum
+_{k_1,\dots,k_r\ge0} ^{}\prod _{i=1} ^{r}q^{ak_i(k_i+\al_i+\mu-1)}
+\bmatrix -\mu+1\\k_i\endbmatrix_{q^a}%\hskip1.5cm
+\\
+\frac {(q^{a(M_2+\mu+\al_i+k_i+i-1)};q^a)_{M_1-\al_i-k_i}}
+{(q^a;q^a)_{M_1+r-\al_i-k_i-i}}\prod _{1\le i<j\le r}
+^{}[\al_j+k_j+j-\al_i-k_i-i]_{q^a},
+\endmultline\tag3.2$$
+where $\mu:=(m_1+m_2)/a$, $(A;q)_n:=(A;q)_\infty/(Aq^n;q)_\infty$
+with $(A;q)_\infty=\prod _{i=0} ^{\infty}(1-Aq^i)$,
+and $[n]_{q}:=(1-q^n)$, by definition.
+An alternative expression for the right-hand side of (3.2) is
+$$\multline
+q^{a\sum _{i=1} ^{r}\(\binom {\al_i}2+m_1\al_i/a\)}
+\sum _{k_1,\dots,k_r\ge0} ^{}\prod _{i=1}
+^{r}q^{ak_i(k_i+\al_i+\mu-1)}\bmatrix M_2\\k_i\endbmatrix_{q^a}\\
+\frac {[M_1+i-1]_{q^a}!}
+{[M_1+r-\al_i-k_i-i]_{q^a}!\,[\al_i+k_i+i-1]_{q^a}!}
+\prod _{1\le i<j\le r}
+^{}[\al_j+k_j+j-\al_i-k_i-i]_{q^a}\ .
+\endmultline\tag3.3$$
+If $m_1+m_2=a$ the identities (3.2) (respectively (3.3)) reduce to
+$$\multline \sum _{\la,\la_1\le r}
+^{}s_\la(q^{m_1},q^{m_1+a},\dots,q^{m_1+(M_1-1)a})
+s_{\la/\al'}(q^{a-m_1},q^{2a-m_1},\dots,q^{M_2a-m_1})\\
+=q^{a\sum _{i=1} ^{r}\(\binom{\al_i}2 +m_1\al_i/a\)}
+\prod _{i=1} ^{r}\frac {[M_1+M_2+i-1]_{q^a}!}
+{[M_2+\al_i+i-1]_{q^a}!\,[M_1+r-\al_i-i]_{q^a}!}
+\prod _{1\le i<j\le r} ^{}[\al_j+j-\al_i-i]_{q^a}.
+\endmultline\tag3.4$$
+In particular, for $\al=0$ this can be written as
+$$\multline \sum _{\la,\la_1\le r}
+^{}s_\la(q^{m_1},q^{m_1+a},\dots,q^{m_1+(M_1-1)a})
+s_{\la}(q^{a-m_1},q^{2a-m_1},\dots,q^{M_2a-m_1})\\
+=\prod _{1\le i\le M_1,1\le j\le M_2} ^{}\frac {[r+i+j-1]_{q^a}}
+{[i+j-1]_{q^a}}.
+\endmultline\tag3.5$$
+\endproclaim
+\remark{Remark} The special cases $a=1$, $m_1=m_2=1$, $M_1=M_2$ of
+(3.2) and $a=2$, $m_1=1$, $M_1=M_2$ of (3.5) first appeared in
+\cite{\KratAP, Theorems~20, 9}.
+\endremark
+\demo{Sketch of Proof} In (2.1) set $x_i=q^{m_1+(i-1)a}$ for
+$i=1,\dots,M_1$, $x_i=0$ for $i>M_1$, and $y_i=q^{m_2+(i-1)a}$ for
+$i=1,\dots,M_2$, $y_i=0$ for $i>M_2$. With these specializations the
+elementary symmetric functions
+reduce to $q$-binomial coefficients times some power of $q$ (cf.
+\cite{\MacdAA, p.~19, Ex.~3}). Next to each of the entries (which are $q$-binomial
+summations) of the determinant one of Heine's
+$_2\phi_1$-transformations \cite{\GaRaAA, Appendix (III.2)} is applied.
+In the resulting determinant we use the linearity in the
+rows to take out the summations, thus arriving at a multifold sum of
+determinants. The determinants are evaluated by taking some factors
+out of the determinants and then applying Lemma~5 with $C\to0$,
+$X_s=-q^{-a(k_s+\al_s+s)}$, $A_t=q^{-a(M_1+t)}$, $p_{i-1}(X)=\prod
+_{j=2} ^{i}(q^{a(M_2+\mu-j)}+X)$. This
+gives (3.2) after some simplification. 
+The expression in (3.3) results from the
+following $A_r$ analogue of one of Heine's
+$_2\phi_1$-transformations \cite{\GaRaAA, Appendix (III.2)}, 
+newly discovered by Gustafson
+\cite{\GustPR},\NoBlackBoxes
+$$%\multline
+\sum _{k_1,\dots,k_r\ge0} ^{}\left(\prod _{i=1} ^{r}q^{k_i(1-i)}
+Z^{k_i}\frac {(A)_{k_i}\,(BX_i)_{k_i}}
+{(q)_{k_i}\,(CX_i)_{k_i}}\right)\prod _{1\le i<j\le r} ^{}\frac {1-\frac
+{X_j} {X_i}q^{k_j-k_i}} {1-\frac
+{X_j} {X_i}}=\hskip2cm$$
+$$\multline
+=\prod _{i=1} ^{r}\frac {(Cq^{i-r}/B)_\infty\,(BZX_i)_\infty}
+{(Zq^{i-r})_\infty\,(CX_i)_\infty}\hskip7cm\\
+\sum _{k_1,\dots,k_r\ge0} ^{}\left(\prod _{i=1} ^{r}q^{k_i(1-i)}
+\(\frac {C} {B}\)^{k_i}\frac {(ABZ/C)_{k_i}\,(BX_i)_{k_i}}
+{(q)_{k_i}\,(BZX_i)_{k_i}}\right)\prod _{1\le i<j\le r} ^{}\frac {1-\frac
+{X_j} {X_i}q^{k_j-k_i}} {1-\frac
+{X_j} {X_i}}.\endmultline$$
+
+If $m_1+m_2=a$, i.e\. $\mu=1$, due the $q$-binomial coefficient the
+series in (3.2) only consists of the term for $k_1=\dots=k_r=0$. This
+immediately gives (3.4). For $\al=0$ the product can be written in
+the form (3.5).\quad \quad \qed
+\enddemo
+Now we turn to implications of (2.2).
+\proclaim{Theorem 7}The generating function $\sum q^{n(\ta)}$
+for tableaux $\ta$ with $p$ odd rows, with at most $c$ columns,
+and with parts $\equiv m\pmod a$ and between $m$ and $m+(M-1)a$, 
+for $c=2r$ is
+$$\multline \sum _{\la,\la_1\le 2r,\oddrows(\la)=p}
+^{}s_\la(q^m,q^{m+a},\dots,q^{m+(M-1)a})\\
+=q^{a\binom p2+mp}\sum _{k_1,\dots,k_r\ge0} ^{}\prod _{i=1}
+^{r}q^{ak_i(k_i-1+p\cdot\ch(i=r)+\mu)}\bmatrix
+-\mu+1\\k_i\endbmatrix_{q^a}\hskip5cm\\
+\frac {(q^{a(M+r+p\cdot\ch(i=r)+k_i+i+\mu)};q^a)
+_{M-r-p\cdot\ch(i=r)-k_i+i-1}} {(q^a;q^a)_{M+r-p\cdot\ch(i=r)-k_i-i}}\\
+\prod _{1\le i<j\le r}
+^{}[p\cdot\ch(j=r)+k_j+j-p\cdot\ch(i=r)-k_i-i]_{q^a}\\
+\prod _{1\le i\le j\le r} ^{}
+[p\cdot\ch(j=r)+k_j+j+p\cdot\ch(i=r)+k_i+i+\mu-1]_{q^a},
+\endmultline\tag3.6a$$
+where $\mu=2m/a$, and for $c=2r+1$
+$$\multline \sum _{\la,\la_1\le 2r+1,\oddrows(\la)=p}
+^{}s_\la(q^m,q^{m+a},\dots,q^{m+(M-1)a})\\
+=q^{a\binom p2+mp}\bmatrix M\\p\endbmatrix_{q^a}
+\sum _{k_1,\dots,k_r\ge0} ^{}\prod _{i=1}
+^{r}q^{ak_i(k_i-1+\mu)}\bmatrix
+-\mu+1\\k_i\endbmatrix_{q^a}\frac {(q^{a(M+r+k_i+i+\mu)};q^a)
+_{M-r-k_i+i-1}} {(q^a;q^a)_{M+r-k_i-i}}\\
+\prod _{1\le i<j\le r}
+^{}[k_j+j-k_i-i]_{q^a}
+\prod _{1\le i\le j\le r} ^{}
+[k_j+j+k_i+i+\mu-1]_{q^a},
+\endmultline\tag3.6b$$
+
+ In case $2m=a$ the identities (3.6a,b) reduce to
+$$\multline \sum _{\la,\la_1\le 2r,\oddrows(\la)=p}
+^{}s_\la(q,q^3,\dots,q^{2M-1})=
+q^{p^2} \frac {[2r+2p]_{q^2}\,[r]_{q^2}}
+{[2r+p]_{q^2}\,[r+p]_{q^2}}\bmatrix M\\p\endbmatrix_{q^2}
+\frac {\bmatrix M+2r\\M\endbmatrix_{q^2}\,} {\bmatrix
+M+2r+p\\M\endbmatrix_{q^2}}\\
+\times\prod _{i=1} ^{M}\frac {[r+i]_{q^2}} {[i]_{q^2}}
+\prod _{1\le i<j\le M} ^{}\frac {[2r+i+j]_{q^2}} {[i+j]_{q^2}}
+\endmultline\tag3.7a$$
+and
+$$\sum _{\la,\la_1\le 2r+1,\oddrows(\la)=p}
+^{}s_\la(q,q^3,\dots,q^{2M-1})=
+q^{p^2}\bmatrix M\\p\endbmatrix_{q^2}
+\prod _{i=1} ^{M}\frac {[r+i]_{q^2}} {[i]_{q^2}}
+\prod _{1\le i<j\le M} ^{}\frac {[2r+i+j]_{q^2}} {[i+j]_{q^2}}
+\tag3.7b$$
+where without loss of generality we let $a=2$.
+
+In case $m=a$ the identities (3.6a,b) simplify to
+$$\multline \sum _{\la,\la_1\le 2r,\oddrows(\la)=p}
+^{}s_\la(q,q^2,\dots,q^M)\\=
+q^{\binom {p+1}2}\frac {[2r]_q} {[2r+p]_q}\bmatrix M\\p\endbmatrix_q
+\frac {\dsize \bmatrix M+2r\\M\endbmatrix_q} {\dsize\bmatrix 
+M+2r+p\\M\endbmatrix_q}\prod _{1\le i\le j\le M} ^{}\frac {[2r+i+j]_q}
+{[i+j]_q}\endmultline\tag3.8a$$
+and
+$$\sum _{\la,\la_1\le 2r+1,\oddrows(\la)=p}
+^{}s_\la(q,q^2,\dots,q^M)=
+q^{\binom{p+1}2}\bmatrix M\\p\endbmatrix_q\prod _{1\le i\le j\le M} ^{}
+\frac {[2r+i+j]_q} {[i+j]_q},
+\tag3.8b$$
+where without loss of generality we let $a=1$.
+\endproclaim
+\demo{Sketch of Proof} To prove (3.6a) we do the same as before in
+the proof of (3.2). The only difference is that now Lemma~5 with
+$C=1$, $X_s=q^{a(p\cdot\ch(s=r)+k_s+s+\mu/2-1/2)}$,
+$A_t=-q^{a(-M-\mu/2+1/2-t)}$, 
+$
+p_{i-1}(X):=\Big(\prod _{j=1} ^{i}(1/A_j+1/X)
+\prod _{j=-i+2} ^{0}(A_j+X)
+-\prod _{j=1} ^{i}(1/A_j+X)
+\prod _{j=-i+2} ^{0}(A_j+1/X)\Big)\bigg/\(X-\frac {1} {X}\)
+$
+has to be applied. Obviously, the $p=0$ case of (3.6a) immediately
+yields (3.6b). For $m=2a$, i.e\. $\mu=2$, due to the $q$-binomial
+coefficient the sums in (3.6a,b) reduce to the
+respective terms for $k_1=\dots=k_r=0$. This leads to (3.7a,b). For
+$m=a$, i.e\. $\mu=1$, the sums in (3.6a,b) can be evaluated by a
+special case of Gustafson's \cite{\GustAA, Theorem~5.1} 
+$C_r$ $_6\ps_6$ summation (see also \cite{\LiMiAB; \KratAP,
+subsection~5.6}). After some simplification
+one arrives at (3.8a,b).\quad \quad \qed
+\enddemo
+
+\remark{Remark} Identity (3.7) is a refinement of the MacMahon
+(ex-)Conjecture which was first proved in
+another paper of the author \cite{\KratAP, Theorem~11}. (The MacMahon Conjecture was
+proved by Andrews \cite{\AndrAK},
+Macdonald \cite{\MacdAA, pp.~51/52, Ex.~16,17}, and Proctor \cite{\ProcAD,
+Proposition~7.3}.) Likewise, identity (3.8) is a
+refinement of the Bender--Knuth (ex-)Conjecture 
+which the author also first proved in the same
+paper \cite{\KratAP, Theorem~21}. (The Bender--Knuth Conjecture was proved by 
+Andrews \cite{\AndrAJ}, Gordon \cite{\GordAA}, Macdonald
+\cite{\MacdAA, pp.~51--53, Ex.~16,18},
+and Proctor \cite{\ProcAD, Proposition~7.2}.) As was remarked in
+\cite{\KratAP} by summing the
+expressions in (3.7) respectively (3.8) with respect to $p$ we get
+new proofs of the MacMahon respectively the Bender--Knuth Conjecture. We
+formulate the MacMahon Conjecture in an equivalent form. The original
+formulation is in terms of symmetric plane partitions.
+\proclaim{Corollary 8}The generating function for
+tableaux with at most $c$ columns,
+and with only odd parts which lie between $1$ and $2M-1$, is given by
+$$\sum _{\la,\la_1\le c}
+^{}s_\la(q,q^3,\dots,q^{2M-1})=
+\prod _{i=1} ^{M}\frac {[c+2i-1]_q} {[2i-1]_q}
+\prod _{1\le i<j\le M} ^{}\frac {[c+i+j-1]_{q^2}} {[i+j-1]_{q^2}}\ .
+\tag {MacMahon Conjecture}$$
+The generating function for
+tableaux with at most $c$ columns,
+and with parts which lie between $1$ and $M$, is given by
+$$\prod _{1\le i\le j\le M} ^{}\frac {[c+i+j-1]_q} {[i+j-1]_q}\ .\tag
+{Bender--Knuth Conjecture}$$
+
+\endproclaim
+\demo{Sketch of Proof} In order to obtain the MacMahon Conjecture the
+sum over all $p$ of the expressions in (3.7a) is evaluated by a
+special case of the very well-poised $_6\phi_5$-summation (cf\.
+\cite{\GaRaAA, Appendix (II.21)}) while the sum over all $p$ of the expressions in (3.7b) is
+evaluated by the $q$-binomial summation (cf\. \cite{\AndrAF, (3.3.7)}). Similarly,
+in order to obtain the Bender--Knuth Conjecture the sum over all $p$
+of the expressions in (3.8a) is evaluated by the $q$-Kummer summation
+(cf\. \cite{\GaRaAA, Appendix (II.9)}), while the sum over all $p$ of the expressions in (3.8b)
+is again evaluated by the $q$-binomial summation.\quad \quad \qed
+\enddemo
+\endremark
+
+\bigskip
+Finally we turn to the implications of (2.3) and (2.4). In the same
+special cases as before we can get rid of the determinants thus
+arriving at $A_r$- respectively $C_r$-type sums. But unfortunately
+here it does not seem to be possible to find any nontrivial cases in
+which these sums can be evaluated to result into closed forms. But it
+should be noted that these sums are {\it finite}.
+\proclaim{Theorem 9}Let $\al$ be a fixed partition.
+The generating function $\sum q^{n(\ta_1)+\ta_2}$
+for pairs $(\ta_1,\ta_2)$ of tableaux where $\ta_1$ is of shape $\la$
+and $\ta_2$ is of shape $\la/\al$ with $\la$ being some partition
+with $\ell(\la)\le r$, and where the parts of $\ta_1$ are $\equiv m_1\pmod
+a$ and between $m_1$ and $m_1+(M_1-1)a$, and where 
+the parts of $\ta_2$ are $\equiv m_2\pmod
+a$ and between $m_2$ and $m_2+(M_2-1)a$, for $M_1\ge r-\al_1$ is
+$$\multline \sum _{\la,\ell(\la)\le r}
+^{}s_\la(q^{m_1},q^{m_1+a},\dots,q^{m_1+(M_1-1)a})
+s_{\la/\al}(q^{m_2},q^{m_2+a},\dots,q^{m_2+(M_2-1)a})\\
+=\frac {q^{m_1\sum _{i=1} ^{r}\al_i}}
+{(q^a;q^a)_{M_1-1}^r\,(q^{m_1+m_2};q^a)_{M_2}^r}\hskip8cm\\
+\sum _{k_1,\dots,k_r\ge0} ^{}\prod _{i=1} ^{r}q^{ak_i(M_1+\al_i)}\frac
+{(q^{a(1-M_1)};q^a)_{k_i}\,(q^{m_1+m_2};q^a)_{k_i}}
+{(q^a;q^a)_{k_i}\,(q^{aM_2+m_1+m_2};q^a)_{k_i}}\prod _{1\le i<j\le
+r} ^{}(1-q^{a(k_j-k_i)}).
+\endmultline\tag3.9$$
+
+\endproclaim
+\BlackBoxes
+
+\remark{Remark} The restriction $M_1\ge r-\al_1$ actually is not a
+serious restriction. Obviously the tableaux $\ta_1$ have at most $M_1$
+rows. Therefore, if $M_1<r$ we may replace $r$ by $M_1$ and then
+apply (3.9). 
+\endremark
+\demo{Sketch of Proof} We proceed in analogy with the proof of
+Theorem~6. In (2.3) set $x_i=q^{m_1+(i-1)a}$ for
+$i=1,\dots,M_1$, $x_i=0$ for $i>M_1$, and $y_i=q^{m_2+(i-1)a}$ for
+$i=1,\dots,M_2$, $y_i=0$ for $i>M_2$. With these specializations the
+complete homogenous symmetric functions
+reduce to $q$-binomial coefficients times some power of $q$ (cf.
+\cite{\MacdAA, p.~19, Ex.~3}). This time a limiting case of another one of Heine's
+$_2\phi_1$-transformations \cite{\GaRaAA, Appendix (III.1)} is applied. 
+In the resulting determinant we use the linearity in the
+rows to take out the summations thus arriving at a multifold sum of
+determinants. Upon taking some factors out of these determinants,
+they reduce to Vandermonde determinants and are therefore easily
+evaluated.\quad \quad \qed
+\enddemo
+\proclaim{Theorem 10}The generating function $\sum q^{n(\ta)}$
+for tableaux $\ta$ with $p$ odd columns, with at most $c$ rows,
+and with parts $\equiv m\pmod a$ and between $m$ and $m+(M-1)a$, 
+for $c=2r$ and $M\ge r$ is
+$$\multline \sum _{\la,\ell(\la)\le 2r,\oddcolumns(\la)=p}
+^{}s_\la(q^m,q^{m+a},\dots,q^{m+(M-1)a})\\
+=\frac {q^{mp}} {(q^a;q^a)_{M-1}^r\,(q^{2m};q^a)_M^r}\sum
+_{k_1,\dots,k_r\ge0} ^{}\prod _{i=1} ^{r}q^{ak_i(M+p\cdot\ch(i=r))}
+\frac {(q^{a(1-M)};q^a){k_i}\,(q^{2m};q^a)_{k_i}}
+{(q^a;q^a)_{k_i}\,(q^{aM+2m})_{k_i}}\\
+\times\prod _{1\le i<j\le r} ^{}(1-q^{a(k_j-k_i)})\prod _{1\le i\le j\le
+r} ^{}(1-q^{a(k_i+k_j)+2m}),
+\endmultline\tag3.10a$$
+and for $c=2r+1$ and $M\ge r$
+$$\multline \sum _{\la,\ell(\la)\le 2r+1,\oddcolumns(\la)=p}
+^{}s_\la(q^m,q^{m+a},\dots,q^{m+(M-1)a})\\
+=\frac {q^{mp}} {(q^a;q^a)_{M-1}^r\,(q^{2m};q^a)_M^r}
+\bmatrix M+p-1\\p\endbmatrix_{q^a}
+\sum_{k_1,\dots,k_r\ge0} ^{}\prod _{i=1} ^{r}q^{ak_iM}
+\frac {(q^{a(1-M)};q^a){k_i}\,(q^{2m};q^a)_{k_i}}
+{(q^a;q^a)_{k_i}\,(q^{aM+2m})_{k_i}}\\
+\times\prod _{1\le i<j\le r} ^{}(1-q^{a(k_j-k_i)})\prod _{1\le i\le j\le
+r} ^{}(1-q^{a(k_i+k_j)+2m}).
+\endmultline\tag3.11a$$
+
+\endproclaim
+
+\remark{Remark} Again the restriction $M\ge r$ is not serious since
+if $M< r$ we may replace $r$ by $\lceil\frac {M} {2}\rceil$.
+\endremark\demo{Sketch of Proof} We do the same as before in the proof of
+Theorem~9. Here the determinants which have to be computed are
+$$\det_{1\le s,t\le r}(q^{-at(m+k_s)}-q^{at(m+k_s)}).$$
+This is done by using Lemma~5 with $C=1$, $X_s=q^{-a(m+k_s)}$, $A_t\to0$,
+$p_{i-1}(X)=(X^{i}-1/X^{i})/(X-1/X)$ (see also \cite{\ProcAB,
+p.~10, (I)}).\quad \quad \qed
+\enddemo
+
+\subhead 4. ``Flagged" non-crossing two-rowed arrays and enumeration
+of nonintersecting lattice paths with given number of turns\endsubhead
+Theorems~1 and 2 can be generalized to ``flagged" families of non-crossing
+two-rowed arrays by using the same proof. By ``flagged" we mean that the 
+entries in the $i$-th two-rowed array $P_i$ of a family $\Cal P$ are
+bounded by different lower and upper bounds. (This resembles the
+definition for flagged Schur functions (cf\. e.g\. \cite{\WachAA}) in
+terms of tableaux with different lower and upper bounds on the
+entries in each row of the tableaux.)
+We do not have the space to write down the results. Instead, we
+record three interesting applications of these results in the enumeration
+of nonintersecting lattice paths with a given number of turns. These
+results are related to the computation of Hilbert polynomials of
+determinantal ideals (cf\. \cite{\KulkAC, \CoHeAA}). Similar results
+can be derived for the path-like objects that were called pathoids
+in \cite{\KulkAB}. For the interested reader we remark that
+enumeration results for pairs of nonintersecting lattice paths with a
+given number of EN-corners (see the definition below) of the ``upper"
+path and a given number of NE-corners (see the definition below) of
+the ``lower" path are given in \cite{\SulaAE, \KrSuAA}.
+
+As in \cite{\KratAP} a point $X$ of a lattice path is called {\it
+NE-corner}, if $X$ is the end point of a step in North direction and
+at the same time starting point of a step in East direction. Analogously, 
+$X$ is called {\it EN-corner}, if $X$ is the end point of a step in East 
+direction and at the same time starting point of a step in North direction.
+\proclaim{Theorem 11} Let $\Cal A\sb
+i=(A\sb
+1\sp
+{(i)},A\sb
+2\sp
+{(i)})$ and $\Cal E\sb
+i=(E\sb
+1\sp
+{(i)},E\sb
+2\sp
+{(i)})$ be lattice points satisfying
+$A\sb
+1\sp
+{(1)}\le A\sb
+1\sp
+{(2)}\le\dotsb\le A\sb
+1\sp
+{(r)},\quad
+A\sb
+2\sp
+{(1)}>A\sb
+2\sp
+{(2)}>\dotsb>A\sb
+2\sp
+{(r)},$
+and
+$E\sb
+1\sp
+{(1)}< E\sb
+1\sp
+{(2)}<\dotsb< E\sb
+1\sp
+{(r)},\quad
+E\sb
+2\sp
+{(1)}\ge E\sb
+2\sp
+{(2)}\ge \dotsb\ge E\sb
+2\sp
+{(r)}.$
+The number of all families $\Cal P=(P\sb
+1,\dots,P\sb
+r)$ of nonintersecting lattice paths $P\sb
+i:\Cal A\sb
+i\to\Cal E\sb
+i$,
+such that the paths of $\Cal P$ altogether contain exactly $K$ NE-corners, is
+$$\sum \sb
+{k\sb
+1+\dotsb+k\sb
+r=K} \sp
+{}\det\sb
+{1\le s,t\le r}
+\bigg(\binom{E\sb
+1\sp
+{(t)}-A\sb
+1\sp
+{(s)}+s-t}{k\sb
+s+s-t}
+\binom{E\sb
+2\sp
+{(t)}-A\sb
+2\sp
+{(s)}-s+t}{k\sb
+s}\bigg).\quad \quad \qed\tag4.1$$
+\endproclaim
+\remark{Remark} A special case of this result
+is of relevance in the computation of Hilbert
+polynomials of determinantal ideals. In fact, Kulkarni \cite{\KulkAC,
+Main Theorem~5}
+derived this special case ($r=p$, $K=E$, $\Cal
+A\sb
+i=(0,a\sb
+{p-i+1})$, $\Cal E\sb
+i=(m(2)-b\sb
+{p-i+1},m(1))$) from Abhyankar's formula \cite{\AbhyAB,
+(20.14.4), p.~484},
+while Conca and Herzog \cite{\CoHeAA} used it to give an alternative
+proof of Abhyankar's formula. A special case of the ``pathoid" analogue
+of Theorem~11 is also related to Abhyankar's formula
+(cf\. \cite{\KulkAB, Main Theorem~7}).
+\endremark
+\proclaim{Theorem 12}Let $\Cal A\sb
+i=(A\sb
+1\sp
+{(i)},A\sb
+2\sp
+{(i)})$ and
+$\Cal E\sb
+i=(E\sb
+1\sp
+{(i)},E\sb
+2\sp
+{(i)})$ be lattice points satisfying
+$A\sb
+1\sp
+{(1)}\le A\sb
+1\sp
+{(2)}\le\dotsb\le A\sb
+1\sp
+{(r)},\quad
+A\sb
+2\sp
+{(1)}>A\sb
+2\sp
+{(2)}>\dotsb>A\sb
+2\sp
+{(r)},$
+$
+E\sb
+1\sp
+{(1)}< E\sb
+1\sp
+{(2)}<\dotsb< E\sb
+1\sp
+{(r)},\quad
+E\sb
+2\sp
+{(1)}\ge E\sb
+2\sp
+{(2)}\ge \dotsb\ge E\sb
+2\sp
+{(r)},$
+and
+$A\sb
+1\sp
+{(i)}\ge A\sb
+2\sp
+{(i)},\quad E\sb
+1\sp
+{(i)}\ge E\sb
+2\sp
+{(i)},\quad
+i=1,\dots,r.$
+The number of all families $\Cal P=(P\sb
+1,\dots,P\sb
+r)$ of nonintersecting lattice paths $P\sb
+i:\Cal A\sb
+i\to\Cal E\sb
+i$, which do not cross the line $x=y$, and where the paths of
+$\Cal P$ altogether
+contain exactly $K$ NE-corners, is
+$$\multline
+\sum \sb
+{k\sb
+1+\dotsb+k\sb
+r=K} \sp
+{}\det\sb
+{1\le s,t\le r}
+\bigg(\binom{E\sb
+1\sp
+{(t)}-A\sb
+1\sp
+{(s)}+s-t}{k\sb
+s+s-t}
+\binom{E\sb
+2\sp
+{(t)}-A\sb
+2\sp
+{(s)}-s+t}{k\sb
+s}\\
+-\binom{E\sb
+1\sp
+{(t)}-A\sb
+2\sp
+{(s)}-s-t+1}{k\sb
+s-t}
+\binom{E\sb
+2\sp
+{(t)}-A\sb
+1\sp
+{(s)}+s+t-1}{k\sb
+s+s}\bigg).\quad \quad \qed
+\endmultline\tag4.2$$
+\endproclaim
+\proclaim{Theorem 13}Let $\Cal A\sb
+i=(A\sb
+1\sp
+{(i)},A\sb
+2\sp
+{(i)})$ and 
+$\Cal E\sb
+i=(E\sb
+1\sp
+{(i)},E\sb
+2\sp
+{(i)})$ be lattice points satisfying 
+$A\sb
+1\sp
+{(1)}< A\sb
+1\sp
+{(2)}<\dotsb< A\sb
+1\sp
+{(r)},\quad
+A\sb
+2\sp
+{(1)}\ge A\sb
+2\sp
+{(2)}\ge \dotsb\ge A\sb
+2\sp
+{(r)},$
+$
+E\sb
+1\sp
+{(1)}\le  E\sb
+1\sp
+{(2)}\le \dotsb\le  E\sb
+1\sp
+{(r)},\quad
+E\sb
+2\sp
+{(1)}> E\sb
+2\sp
+{(2)}> \dotsb> E\sb
+2\sp
+{(r)},$
+and
+$A\sb
+1\sp
+{(i)}\ge  A\sb
+2\sp
+{(i)},\quad E\sb
+1\sp
+{(i)}\ge  E\sb
+2\sp
+{(i)},\quad
+i=1,\dots,r.$
+The number of all families $\Cal P=(P\sb
+1,\dots,P\sb
+r)$ of nonintersecting lattice paths $P\sb
+i:\Cal A\sb
+i\to\Cal E\sb
+i$, $P\sb
+i:\Cal A\sb
+i\to\Cal E\sb
+i$, which do not cross the line $x=y$, and where the paths of
+$\Cal P$ altogether
+contain exactly $K$ EN-corners, is
+$$\multline
+\sum \sb
+{k\sb
+1+\dotsb+k\sb
+r=K} \sp
+{}\det\sb
+{1\le  s,t\le  r}
+\bigg(\binom{E\sb
+1\sp
+{(t)}-A\sb
+1\sp
+{(s)}+s-t}{k\sb
+s+s-t}
+\binom{E\sb
+2\sp
+{(t)}-A\sb
+2\sp
+{(s)}-s+t}{k\sb
+s}\\
+-\binom{E\sb
+1\sp
+{(t)}-A\sb
+2\sp
+{(s)}-s-t+3}{k\sb
+s-t+1}
+\binom{E\sb
+2\sp
+{(t)}-A\sb
+1\sp
+{(s)}+s+t-3}{k\sb
+s+s-1}\bigg).\quad \quad \qed
+\endmultline\tag4.3$$
+\endproclaim
+
+
+\NoBlackBoxes
+\Refs
+
+\ref\no \AbhyAB\by S. S. Abhyankar \yr 1988 \book Enumerative combinatorics 
+of Young tableaux\publ Marcel Dekker\publaddr New York, Basel\endref
+
+\ref\no \AndrAF\by G. E. Andrews \yr 1976 
+\book The Theory of Partitions
+\publ Addison--Wesley
+\publaddr Reading 
+\bookinfo Encyclopedia of Mathematics and its Applications, Vol.~2\endref
+
+\ref\no \AndrAJ\by G. E. Andrews \yr 1977 
+\paper Plane partitions (II): The equivalence of the Bender--Knuth and the MacMahon conjectures
+\jour Pacific J. Math.\vol 72
+\pages 283--291 \endref
+
+\ref\no \AndrAK\by G. E. Andrews \yr 1978 
+\paper Plane partitions (I): The MacMahon conjecture
+\inbook Studies in Foundations and Combinatorics\ed G.-C. Rota
+\publ Adv. in Math. Suppl. Studies, Vol.1
+\pages 131--150 \endref
+
+\ref\no \BurgAA\by W. H. Burge \yr 1974 
+\paper Four correspondences between graphs and generalized Young tableaux
+\jour J. Combin\. Theory~A\vol 17
+\pages 12---30\endref
+
+\ref\no \ChGoAA\by S. H. Choi and D. Gouyou--Beauchamps \yr 1991 
+\paper Enum\'eration de tableaux de Young semi-standard
+\inbook Actes de 3eme Colloque de Series Formelles et Combinatoire Algebrique, Bordeaux 1991
+\publ M.~Delest, G.~Jacob, P.~Leroux, Eds.
+\publaddr LabRI, Universit\'e Bordeaux~I
+\pages 229---243\endref
+
+\ref\no \CoHeAA\by A.    Conca and J. Herzog \paper On the Hilbert 
+function of determinantal rings and their canonical module
+\jour Proc\. Amer\. Math\. Soc\. \vol 122 \yr 1994\pages 677--681\endref
+
+\ref\no \FomiAB\by S.    Fomin 
+\paper Schensted algorithms for graded graphs
+\jour J. Alg\. Combin\.\vol 4\yr 1995\pages 5--45\endref
+
+\ref\no \GaRaAA\by G.    Gasper and M. Rahman \yr 1990 
+\book Basic hypergeometric series
+\publ Encyclopedia of Mathematics And Its Applications~35, Cambridge University Press
+\publaddr Cambridge\endref
+
+\ref\no \GessAH\by I. M. Gessel \yr 1990 
+\paper Symmetric functions and $P$-recursiveness
+\jour J. Combin\. Theory A\vol 53
+\pages 257---285\endref
+
+\ref\no \GessAL\by I. M. Gessel \yr 1993 \paper Counting paths in Young's 
+lattice\jour J. Statist\. Plann\. Inference\vol 34 \endref
+
+\ref\no \GeViAB\by I. M. Gessel and G. Viennot \yr 1989 
+\paper Determinants, paths, and plane partitions 
+\paperinfo preprint\endref
+
+\ref\no \GordAA\by B.    Gordon \yr 1971 
+\paper Notes on plane partitions IV. Multirowed partitions with strict decrease along columns
+\inbook Combinatorics, Proc\. Sympos\. Pure Math\. vol.~XIX, Univ\. California, Los Angeles, California, 1968
+\publ Amer\. Math\. Soc\.
+\publaddr Providence, R.~I.
+\pages 91--100\endref
+
+\ref\no \GoulAD\by I. P. Goulden \yr 1992 
+\paper A linear operator for symmetric functions and tableaux in a strip with given trace
+\jour Discrete Math\.\vol 99
+\pages 69---77\endref
+
+\ref\no \GustAA\by R. A. Gustafson \yr 1989 
+\paper The Macdonald identities for affine root systems of classical type and hypergeometric series very-well-poised on semisimple Lie algebras
+\inbook Ramanujan International Symposium on Analysis (Dec.~26th to 28th, 1987, Pune, India)\ed N.~K.~Thakare 
+\pages 187---224\endref
+
+\ref\no \GustPR\by R. A. Gustafson 
+\paper private communication\endref
+
+\ref\no \KnutAA\by D. E. Knuth \yr 1970 
+\paper Permutations, matrices, and generalized Young tableaux
+\jour Pacific J. Math\. \vol 34
+\pages 709---727\endref
+
+\ref\no \KratAP\by C.    Krattenthaler 
+\paper The major counting of nonintersecting lattice paths and generating functions for tableaux 
+\yr 1995
+\publ Mem\. Amer\. Math\. Soc\. 115, no.~552\publaddr Providence, R.~I. \endref
+
+\ref\no \KrSuAA\by C.    Krattenthaler and R. A. Sulanke \paper 
+Counting pairs of nonintersecting lattice paths with respect to weighted 
+turns\paperinfo presented at the poster session of the 5th Conference
+for Formal Power Series and Algebraic Combinatorics, Florence 1993 \endref
+
+\ref\no \KulkAC\by D. M. Kulkarni 
+\paper Counting of paths and coefficients of Hilbert polynomial of a
+ determinantal ideal\yr 1996
+\jour Discrete Math\.\vol 154\pages 141--151\endref
+
+\ref\no \KulkAB\by D. M. Kulkarni 
+\paper Counting of path-like objects and coefficients of Hilbert polynomial of a determinantal ideal
+\paperinfo preprint \endref
+
+\ref\no \LiMiAB\by G. M. Lilly and S. C. Milne 
+\paper The $C_l$ Bailey transform and Bailey Lemma \yr 1993
+\jour Constr\. Approx\. \vol 9\pages 473--500\endref
+
+\ref\no \MacdAA\by I. G. Macdonald \yr 1979 
+\book Symmetric Functions and Hall Polynomials 
+\publ Oxford University Press
+\publaddr New York/Lon\-don\endref
+
+\ref\no \ProcAD\by R. A. Proctor \yr 1984
+\paper Bruhat lattices, plane partitions generating functions, 
+and minuscule representations
+\jour Europ\. J. Combin\.\vol 5
+\pages 331--350\endref
+
+\ref\no \ProcAB\by R. A. Proctor \yr 1990 
+\paper New symmetric plane partition identities from invariant theory work of DeConcini and Procesi
+\jour Europ\. J. Combin\.\vol 11
+\pages 289---300\endref
+
+\ref\no \RobyAA\by T. W. Roby \yr 1991 
+\book Applications and extensions of Fomin's generalization of the Robinson--Schensted correspondence to differential posets
+\publ Ph.D. thesis, M.I.T.
+\publaddr Cambridge, Massachusetts\endref
+
+\ref\no \SaStAA\by B. E. Sagan and R. P. Stanley \yr 1990 
+\paper Robinson--Schensted algorithms for skew tableaux
+\jour J. Combin\. Theory Ser.~A\vol 55
+\pages 161--193\endref
+
+\ref\no \StemAE\by J. R. Stembridge \yr 1990 
+\paper Nonintersecting paths, pfaffians and plane partitions
+\jour Adv\. in Math\.\vol 83
+\pages 96---131\endref
+
+\ref\no \SulaAE\by R. A. Sulanke \yr 1993 \paper Refinements of the 
+Narayana numbers\jour Bull\. Inst\. Combin\. Appl\.\vol 7\pages 60--66\endref
+
+\ref\no \SunaAA\by S.    Sundaram \yr 1986 \book On the combinatorics of 
+representations of $Sp(2n,\Bbb C)$\publ Ph\. D. Thesis\publaddr 
+Massachusetts Institute of Technology\endref
+
+\ref\no \VienAA\by G.    Viennot \yr 1977 
+\paper Une forme g\'eom\'etrique de la correspondance de Robinson--Schensted
+\inbook Combinatoire et Repr\'esentation du Groupe Sym\'etrique\ed D. Foata 
+\publ Lecture Notes in Math\., Vol.~579, Springer--Ver\-lag
+\publaddr New York
+\pages 29---58\endref
+
+\ref\no \WachAA  \by M. L. Wachs \yr 1985 \paper Flagged Schur functions, 
+Schubert polynomials, and symmetrizing operators\jour J. Combin\. 
+Theory Ser.~A\vol 40\pages 276--289\endref
+
+\endRefs
+\enddocument

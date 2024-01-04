@@ -1,0 +1,1386 @@
+\input amstex
+\input amsppt.sty
+
+\def\WolfAA{10}
+\def\SlatAC{8}
+\def\RaVeAA{7}
+\def\GOulAS{6}
+\def\GourAA{5}
+\def\GaRaAA{4}
+\def\ErdeAA{3}
+\def\BailAA{2}
+\def\AndrAC{1}
+
+\nopagenumbers
+\hsize15cm
+\vsize20cm
+\hoffset-1.2truecm
+
+
+\catcode`\@=11
+\font@\twelvesl=cmsl10 scaled\magstep1
+\font@\twelverm=cmr10 scaled\magstep1
+\font@\twelveit=cmti10 scaled\magstep1
+\font@\twelvebf=cmbx10 scaled\magstep1
+\font@\twelvei=cmmi10 scaled\magstep1
+\font@\twelvesy=cmsy10 scaled\magstep1
+\font@\twelveex=cmex10 scaled\magstep1
+
+\newtoks\twelvepoint@
+\def\twelvepoint{\normalbaselineskip15\p@
+ \abovedisplayskip15\p@ plus3.6\p@ minus10.8\p@
+ \belowdisplayskip\abovedisplayskip
+ \abovedisplayshortskip\z@ plus3.6\p@
+ \belowdisplayshortskip8.4\p@ plus3.6\p@ minus4.8\p@
+ \textonlyfont@\rm\twelverm \textonlyfont@\it\twelveit
+ \textonlyfont@\sl\twelvesl \textonlyfont@\bf\twelvebf
+ \textonlyfont@\smc\twelvesmc \textonlyfont@\tt\twelvett
+%Erg„nzung des fetten Small-Capitals-Fonts:
+%
+ \ifsyntax@ \def\big##1{{\hbox{$\left##1\right.$}}}%
+  \let\Big\big \let\bigg\big \let\Bigg\big
+ \else
+  \textfont\z@=\twelverm  \scriptfont\z@=\tenrm  \scriptscriptfont\z@=\sevenrm
+  \textfont\@ne=\twelvei  \scriptfont\@ne=\teni  \scriptscriptfont\@ne=\seveni
+  \textfont\tw@=\twelvesy \scriptfont\tw@=\tensy \scriptscriptfont\tw@=\sevensy
+  \textfont\thr@@=\twelveex \scriptfont\thr@@=\tenex
+        \scriptscriptfont\thr@@=\tenex
+  \textfont\itfam=\twelveit \scriptfont\itfam=\tenit
+        \scriptscriptfont\itfam=\tenit
+  \textfont\bffam=\twelvebf \scriptfont\bffam=\tenbf
+        \scriptscriptfont\bffam=\sevenbf
+  \setbox\strutbox\hbox{\vrule height10.2\p@ depth4.2\p@ width\z@}%
+  \setbox\strutbox@\hbox{\lower.6\normallineskiplimit\vbox{%
+        \kern-\normallineskiplimit\copy\strutbox}}%
+ \setbox\z@\vbox{\hbox{$($}\kern\z@}\bigsize@=1.4\ht\z@
+ \fi
+ \normalbaselines\rm\ex@.2326ex\jot3.6\ex@\the\twelvepoint@}
+
+\font@\fourteenrm=cmr10 scaled\magstep2
+\font@\fourteenit=cmti10 scaled\magstep2
+\font@\fourteensl=cmsl10 scaled\magstep2
+\font@\fourteensmc=cmcsc10 scaled\magstep2
+\font@\fourteentt=cmtt10 scaled\magstep2
+\font@\fourteenbf=cmbx10 scaled\magstep2
+\font@\fourteeni=cmmi10 scaled\magstep2
+\font@\fourteensy=cmsy10 scaled\magstep2
+\font@\fourteenex=cmex10 scaled\magstep2
+\font@\fourteenmsa=msam10 scaled\magstep2
+\font@\fourteeneufm=eufm10 scaled\magstep2
+\font@\fourteenmsb=msbm10 scaled\magstep2
+\newtoks\fourteenpoint@
+\def\fourteenpoint{\normalbaselineskip15\p@
+ \abovedisplayskip18\p@ plus4.3\p@ minus12.9\p@
+ \belowdisplayskip\abovedisplayskip
+ \abovedisplayshortskip\z@ plus4.3\p@
+ \belowdisplayshortskip10.1\p@ plus4.3\p@ minus5.8\p@
+ \textonlyfont@\rm\fourteenrm \textonlyfont@\it\fourteenit
+ \textonlyfont@\sl\fourteensl \textonlyfont@\bf\fourteenbf
+ \textonlyfont@\smc\fourteensmc \textonlyfont@\tt\fourteentt
+%Erg„nzung des fetten Small-Capitals-Fonts:
+%
+ \ifsyntax@ \def\big##1{{\hbox{$\left##1\right.$}}}%
+  \let\Big\big \let\bigg\big \let\Bigg\big
+ \else
+  \textfont\z@=\fourteenrm  \scriptfont\z@=\twelverm  \scriptscriptfont\z@=\tenrm
+  \textfont\@ne=\fourteeni  \scriptfont\@ne=\twelvei  \scriptscriptfont\@ne=\teni
+  \textfont\tw@=\fourteensy \scriptfont\tw@=\twelvesy \scriptscriptfont\tw@=\tensy
+  \textfont\thr@@=\fourteenex \scriptfont\thr@@=\twelveex
+        \scriptscriptfont\thr@@=\twelveex
+  \textfont\itfam=\fourteenit \scriptfont\itfam=\twelveit
+        \scriptscriptfont\itfam=\twelveit
+  \textfont\bffam=\fourteenbf \scriptfont\bffam=\twelvebf
+        \scriptscriptfont\bffam=\tenbf
+  \setbox\strutbox\hbox{\vrule height12.2\p@ depth5\p@ width\z@}%
+  \setbox\strutbox@\hbox{\lower.72\normallineskiplimit\vbox{%
+        \kern-\normallineskiplimit\copy\strutbox}}%
+ \setbox\z@\vbox{\hbox{$($}\kern\z@}\bigsize@=1.7\ht\z@
+ \fi
+ \normalbaselines\rm\ex@.2326ex\jot4.3\ex@\the\fourteenpoint@}
+
+\font@\seventeenrm=cmr10 scaled\magstep3
+\font@\seventeenit=cmti10 scaled\magstep3
+\font@\seventeensl=cmsl10 scaled\magstep3
+\font@\seventeensmc=cmcsc10 scaled\magstep3
+\font@\seventeentt=cmtt10 scaled\magstep3
+\font@\seventeenbf=cmbx10 scaled\magstep3
+\font@\seventeeni=cmmi10 scaled\magstep3
+\font@\seventeensy=cmsy10 scaled\magstep3
+\font@\seventeenex=cmex10 scaled\magstep3
+\font@\seventeenmsa=msam10 scaled\magstep3
+\font@\seventeeneufm=eufm10 scaled\magstep3
+\font@\seventeenmsb=msbm10 scaled\magstep3
+\newtoks\seventeenpoint@
+\def\seventeenpoint{\normalbaselineskip18\p@
+ \abovedisplayskip21.6\p@ plus5.2\p@ minus15.4\p@
+ \belowdisplayskip\abovedisplayskip
+ \abovedisplayshortskip\z@ plus5.2\p@
+ \belowdisplayshortskip12.1\p@ plus5.2\p@ minus7\p@
+ \textonlyfont@\rm\seventeenrm \textonlyfont@\it\seventeenit
+ \textonlyfont@\sl\seventeensl \textonlyfont@\bf\seventeenbf
+ \textonlyfont@\smc\seventeensmc \textonlyfont@\tt\seventeentt
+%Erg„nzung des fetten Small-Capitals-Fonts:
+%
+ \ifsyntax@ \def\big##1{{\hbox{$\left##1\right.$}}}%
+  \let\Big\big \let\bigg\big \let\Bigg\big
+ \else
+  \textfont\z@=\seventeenrm  \scriptfont\z@=\fourteenrm  \scriptscriptfont\z@=\twelverm
+  \textfont\@ne=\seventeeni  \scriptfont\@ne=\fourteeni  \scriptscriptfont\@ne=\twelvei
+  \textfont\tw@=\seventeensy \scriptfont\tw@=\fourteensy \scriptscriptfont\tw@=\twelvesy
+  \textfont\thr@@=\seventeenex \scriptfont\thr@@=\fourteenex
+        \scriptscriptfont\thr@@=\fourteenex
+  \textfont\itfam=\seventeenit \scriptfont\itfam=\fourteenit
+        \scriptscriptfont\itfam=\fourteenit
+  \textfont\bffam=\seventeenbf \scriptfont\bffam=\fourteenbf
+        \scriptscriptfont\bffam=\twelvebf
+  \setbox\strutbox\hbox{\vrule height14.6\p@ depth6\p@ width\z@}%
+  \setbox\strutbox@\hbox{\lower.86\normallineskiplimit\vbox{%
+        \kern-\normallineskiplimit\copy\strutbox}}%
+ \setbox\z@\vbox{\hbox{$($}\kern\z@}\bigsize@=2\ht\z@
+ \fi
+ \normalbaselines\rm\ex@.2326ex\jot5.2\ex@\the\seventeenpoint@}
+
+\catcode`\@=13
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Input-Datei zum Erzeugen von Gitterpunktwegen.%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%entering a path: 
+%  \Pfad(x-coordinate of starting point,y-coordinate of starting point),path
+%  as 1-2-3-4-word\endPfad
+%(1=step in x-direction, 2=step in y-direction, 3=upward diagonal step, 4=downward diagonal step)
+%
+%entering a dotted path: 
+%  \SPfad(x-coordinate of starting point,y-coordinate of starting point),path
+%  as 1-2-3-4-word\endSPfad
+%(1=step in x-direction, 2=step in y-direction, 3=upward diagonal step, 4=downward diagonal step)
+%
+%coordinate-axes:
+%  \Koordinatenachsen(length of positive x-axes, length of positive y-axes)(length of negative x-axes, length of negative y-axes)
+%The length of negative axes are entered as negative numbers.
+%
+%lattice:
+%  \Gitter(number of points in positive x-direction, number of points in positive y-direction)(number of points in negative x-direction, number of points in negative y-direction)
+%
+%diagonal lines:
+%  \Diagonale(x-coordinate of SW-most point,y-coordinate of SW-most point)length of the projection on the x-axes
+%
+%antidiagonal lines:
+%  \AntiDiagonale(x-coordinate of NW-most point,y-coordinate of NW-most point)length of the projection on the x-axes
+%
+%vectors:
+%  \Vektor(x-coordinate of incline, y-coordinate of incline)length(x-coordinate of starting point, y-coordinate of starting point)
+%
+%labelling of points:
+%  \Label[location?]{[label]}(x-coordinate,y-coordinate)
+%where:
+%  [location?]=\l,\lo,\lu,\r,\ro,\ru,\o,\u
+%and l=left, r=right, u=bottom, o=top.
+%In addition, if by \Einheit?cm the basic unit is changed, there exist
+%\llo,\loo,\llu,\luu,\rro,\roo,\rru,\ruu.
+%
+%The basic unit can be changed by entering
+%  \Einheit=?cm
+%The default is \Einheit=0.5cm.
+%
+%The thickness of the paths can be changed by entering
+%     \PfadDicke{?cm}
+%The default is \PfadDicke=1pt.
+%
+%The following point sizes are available:
+%\DuennPunkt, \NormalPunkt, \DickPunkt. Syntax:
+%  \DickPunkt(x-coordinate,y-coordinate), etc.
+%
+%Besides, a circle is available by \Kreis. Syntax:
+%  \Kreis(x-coordinate,y-coordinate)
+%
+\catcode`\@=11
+\font\tenln    = line10
+\font\tenlnw   = linew10
+
+\newskip\Einheit \Einheit=0.5cm
+\newcount\xcoord \newcount\ycoord
+\newdimen\xdim \newdimen\ydim \newdimen\PfadD@cke \newdimen\Pfadd@cke
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%LaTeX counters, dimensions, variables for lines%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcount\@tempcnta
+\newcount\@tempcntb
+
+\newdimen\@tempdima
+\newdimen\@tempdimb
+
+
+\newdimen\@wholewidth
+\newdimen\@halfwidth
+
+\newcount\@xarg
+\newcount\@yarg
+\newcount\@yyarg
+\newbox\@linechar
+\newbox\@tempboxa
+\newdimen\@linelen
+\newdimen\@clnwd
+\newdimen\@clnht
+
+\newif\if@negarg
+
+\def\@whilenoop#1{}
+\def\@whiledim#1\do #2{\ifdim #1\relax#2\@iwhiledim{#1\relax#2}\fi}
+\def\@iwhiledim#1{\ifdim #1\let\@nextwhile=\@iwhiledim
+        \else\let\@nextwhile=\@whilenoop\fi\@nextwhile{#1}}
+
+\def\@whileswnoop#1\fi{}
+\def\@whilesw#1\fi#2{#1#2\@iwhilesw{#1#2}\fi\fi}
+\def\@iwhilesw#1\fi{#1\let\@nextwhile=\@iwhilesw
+         \else\let\@nextwhile=\@whileswnoop\fi\@nextwhile{#1}\fi}
+
+
+\def\thinlines{\let\@linefnt\tenln \let\@circlefnt\tencirc
+  \@wholewidth\fontdimen8\tenln \@halfwidth .5\@wholewidth}
+\def\thicklines{\let\@linefnt\tenlnw \let\@circlefnt\tencircw
+  \@wholewidth\fontdimen8\tenlnw \@halfwidth .5\@wholewidth}
+\thinlines
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\PfadD@cke1pt \Pfadd@cke0.5pt
+\def\PfadDicke#1{\PfadD@cke#1 \divide\PfadD@cke by2 \Pfadd@cke\PfadD@cke \multiply\PfadD@cke by2}
+\long\def\LOOP#1\REPEAT{\def\BODY{#1}\ITERATE}
+\def\ITERATE{\BODY \let\next\ITERATE \else\let\next\relax\fi \next}
+\let\REPEAT=\fi
+\def\Punkt{\hbox{\raise-2pt\hbox to0pt{\hss$\ssize\bullet$\hss}}}
+\def\DuennPunkt(#1,#2){\unskip
+  \raise#2 \Einheit\hbox to0pt{\hskip#1 \Einheit
+          \raise-2.5pt\hbox to0pt{\hss$\bullet$\hss}\hss}}
+\def\NormalPunkt(#1,#2){\unskip
+  \raise#2 \Einheit\hbox to0pt{\hskip#1 \Einheit
+          \raise-3pt\hbox to0pt{\hss\twelvepoint$\bullet$\hss}\hss}}
+\def\DickPunkt(#1,#2){\unskip
+  \raise#2 \Einheit\hbox to0pt{\hskip#1 \Einheit
+          \raise-4pt\hbox to0pt{\hss\fourteenpoint$\bullet$\hss}\hss}}
+\def\Kreis(#1,#2){\unskip
+  \raise#2 \Einheit\hbox to0pt{\hskip#1 \Einheit
+          \raise-4pt\hbox to0pt{\hss\fourteenpoint$\circ$\hss}\hss}}
+
+%%%%%%%%%%%%%%%%%%%%%
+%LaTeX line macros%
+%%%%%%%%%%%%%%%%%%%%%
+\def\Line@(#1,#2)#3{\@xarg #1\relax \@yarg #2\relax
+\@linelen=#3\Einheit
+\ifnum\@xarg =0 \@vline
+  \else \ifnum\@yarg =0 \@hline \else \@sline\fi
+\fi}
+
+\def\@sline{\ifnum\@xarg< 0 \@negargtrue \@xarg -\@xarg \@yyarg -\@yarg
+  \else \@negargfalse \@yyarg \@yarg \fi
+\ifnum \@yyarg >0 \@tempcnta\@yyarg \else \@tempcnta -\@yyarg \fi
+\ifnum\@tempcnta>6 \@badlinearg\@tempcnta0 \fi
+\ifnum\@xarg>6 \@badlinearg\@xarg 1 \fi
+\setbox\@linechar\hbox{\@linefnt\@getlinechar(\@xarg,\@yyarg)}%
+\ifnum \@yarg >0 \let\@upordown\raise \@clnht\z@
+   \else\let\@upordown\lower \@clnht \ht\@linechar\fi
+\@clnwd=\wd\@linechar
+\if@negarg \hskip -\wd\@linechar \def\@tempa{\hskip -2\wd\@linechar}\else
+     \let\@tempa\relax \fi
+\@whiledim \@clnwd <\@linelen \do
+  {\@upordown\@clnht\copy\@linechar
+   \@tempa
+   \advance\@clnht \ht\@linechar
+   \advance\@clnwd \wd\@linechar}%
+\advance\@clnht -\ht\@linechar
+\advance\@clnwd -\wd\@linechar
+\@tempdima\@linelen\advance\@tempdima -\@clnwd
+\@tempdimb\@tempdima\advance\@tempdimb -\wd\@linechar
+\if@negarg \hskip -\@tempdimb \else \hskip \@tempdimb \fi
+\multiply\@tempdima \@m
+\@tempcnta \@tempdima \@tempdima \wd\@linechar \divide\@tempcnta \@tempdima
+\@tempdima \ht\@linechar \multiply\@tempdima \@tempcnta
+\divide\@tempdima \@m
+\advance\@clnht \@tempdima
+\ifdim \@linelen <\wd\@linechar
+   \hskip \wd\@linechar
+  \else\@upordown\@clnht\copy\@linechar\fi}
+
+\def\@hline{\ifnum \@xarg <0 \hskip -\@linelen \fi
+\vrule height\Pfadd@cke width \@linelen depth\Pfadd@cke
+\ifnum \@xarg <0 \hskip -\@linelen \fi}
+
+\def\@getlinechar(#1,#2){\@tempcnta#1\relax\multiply\@tempcnta 8
+\advance\@tempcnta -9 \ifnum #2>0 \advance\@tempcnta #2\relax\else
+\advance\@tempcnta -#2\relax\advance\@tempcnta 64 \fi
+\char\@tempcnta}
+
+\def\Vektor(#1,#2)#3(#4,#5){\unskip\leavevmode
+  \xcoord#4\relax \ycoord#5\relax
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+         \Vector@(#1,#2){#3}\hss}}
+
+\def\Vector@(#1,#2)#3{\@xarg #1\relax \@yarg #2\relax
+\@tempcnta \ifnum\@xarg<0 -\@xarg\else\@xarg\fi
+\ifnum\@tempcnta<5\relax
+\@linelen=#3\Einheit
+\ifnum\@xarg =0 \@vvector
+  \else \ifnum\@yarg =0 \@hvector \else \@svector\fi
+\fi
+\else\@badlinearg\fi}
+
+\def\@hvector{\@hline\hbox to 0pt{\@linefnt
+\ifnum \@xarg <0 \@getlarrow(1,0)\hss\else
+    \hss\@getrarrow(1,0)\fi}}
+
+\def\@vvector{\ifnum \@yarg <0 \@downvector \else \@upvector \fi}
+
+\def\@svector{\@sline
+\@tempcnta\@yarg \ifnum\@tempcnta <0 \@tempcnta=-\@tempcnta\fi
+\ifnum\@tempcnta <5
+  \hskip -\wd\@linechar
+  \@upordown\@clnht \hbox{\@linefnt  \if@negarg
+  \@getlarrow(\@xarg,\@yyarg) \else \@getrarrow(\@xarg,\@yyarg) \fi}%
+\else\@badlinearg\fi}
+
+\def\@upline{\hbox to \z@{\hskip -.5\Pfadd@cke \vrule width \Pfadd@cke
+   height \@linelen depth \z@\hss}}
+
+\def\@downline{\hbox to \z@{\hskip -.5\Pfadd@cke \vrule width \Pfadd@cke
+   height \z@ depth \@linelen \hss}}
+
+\def\@upvector{\@upline\setbox\@tempboxa\hbox{\@linefnt\char'66}\raise
+     \@linelen \hbox to\z@{\lower \ht\@tempboxa\box\@tempboxa\hss}}
+
+\def\@downvector{\@downline\lower \@linelen
+      \hbox to \z@{\@linefnt\char'77\hss}}
+
+\def\@getlarrow(#1,#2){\ifnum #2 =\z@ \@tempcnta='33\else
+\@tempcnta=#1\relax\multiply\@tempcnta \sixt@@n \advance\@tempcnta
+-9 \@tempcntb=#2\relax\multiply\@tempcntb \tw@
+\ifnum \@tempcntb >0 \advance\@tempcnta \@tempcntb\relax
+\else\advance\@tempcnta -\@tempcntb\advance\@tempcnta 64
+\fi\fi\char\@tempcnta}
+
+\def\@getrarrow(#1,#2){\@tempcntb=#2\relax
+\ifnum\@tempcntb < 0 \@tempcntb=-\@tempcntb\relax\fi
+\ifcase \@tempcntb\relax \@tempcnta='55 \or
+\ifnum #1<3 \@tempcnta=#1\relax\multiply\@tempcnta
+24 \advance\@tempcnta -6 \else \ifnum #1=3 \@tempcnta=49
+\else\@tempcnta=58 \fi\fi\or
+\ifnum #1<3 \@tempcnta=#1\relax\multiply\@tempcnta
+24 \advance\@tempcnta -3 \else \@tempcnta=51\fi\or
+\@tempcnta=#1\relax\multiply\@tempcnta
+\sixt@@n \advance\@tempcnta -\tw@ \else
+\@tempcnta=#1\relax\multiply\@tempcnta
+\sixt@@n \advance\@tempcnta 7 \fi\ifnum #2<0 \advance\@tempcnta 64 \fi
+\char\@tempcnta}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\Diagonale(#1,#2)#3{\unskip\leavevmode
+  \xcoord#1\relax \ycoord#2\relax
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+         \Line@(1,1){#3}\hss}}
+\def\AntiDiagonale(#1,#2)#3{\unskip\leavevmode
+  \xcoord#1\relax \ycoord#2\relax %\advance\xcoord by -0.05\relax
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+         \Line@(1,-1){#3}\hss}}
+\def\Pfad(#1,#2),#3\endPfad{\unskip\leavevmode
+  \xcoord#1 \ycoord#2 \thicklines\ZeichnePfad#3\endPfad\thinlines}
+\def\ZeichnePfad#1{\ifx#1\endPfad\let\next\relax
+  \else\let\next\ZeichnePfad
+    \ifnum#1=1
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+         \vrule height\Pfadd@cke width1 \Einheit depth\Pfadd@cke\hss}%
+      \advance\xcoord by 1
+    \else\ifnum#1=2
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+        \hbox{\hskip-\PfadD@cke\vrule height1 \Einheit width\PfadD@cke depth0pt}\hss}%
+      \advance\ycoord by 1
+    \else\ifnum#1=3
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+         \Line@(1,1){1}\hss}
+      \advance\xcoord by 1
+      \advance\ycoord by 1
+    \else\ifnum#1=4
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+         \Line@(1,-1){1}\hss}
+      \advance\xcoord by 1
+      \advance\ycoord by -1
+    \fi\fi\fi\fi
+  \fi\next}
+\def\hSSchritt{\leavevmode\raise-.4pt\hbox to0pt{\hss.\hss}\hskip.2\Einheit
+  \raise-.4pt\hbox to0pt{\hss.\hss}\hskip.2\Einheit
+  \raise-.4pt\hbox to0pt{\hss.\hss}\hskip.2\Einheit
+  \raise-.4pt\hbox to0pt{\hss.\hss}\hskip.2\Einheit
+  \raise-.4pt\hbox to0pt{\hss.\hss}\hskip.2\Einheit}
+\def\vSSchritt{\vbox{\baselineskip.2\Einheit\lineskiplimit0pt
+\hbox{.}\hbox{.}\hbox{.}\hbox{.}\hbox{.}}}
+\def\DSSchritt{\leavevmode\raise-.4pt\hbox to0pt{%
+  \hbox to0pt{\hss.\hss}\hskip.2\Einheit
+  \raise.2\Einheit\hbox to0pt{\hss.\hss}\hskip.2\Einheit
+  \raise.4\Einheit\hbox to0pt{\hss.\hss}\hskip.2\Einheit
+  \raise.6\Einheit\hbox to0pt{\hss.\hss}\hskip.2\Einheit
+  \raise.8\Einheit\hbox to0pt{\hss.\hss}\hss}}
+\def\dSSchritt{\leavevmode\raise-.4pt\hbox to0pt{%
+  \hbox to0pt{\hss.\hss}\hskip.2\Einheit
+  \raise-.2\Einheit\hbox to0pt{\hss.\hss}\hskip.2\Einheit
+  \raise-.4\Einheit\hbox to0pt{\hss.\hss}\hskip.2\Einheit
+  \raise-.6\Einheit\hbox to0pt{\hss.\hss}\hskip.2\Einheit
+  \raise-.8\Einheit\hbox to0pt{\hss.\hss}\hss}}
+\def\SPfad(#1,#2),#3\endSPfad{\unskip\leavevmode
+  \xcoord#1 \ycoord#2 \ZeichneSPfad#3\endSPfad}
+\def\ZeichneSPfad#1{\ifx#1\endSPfad\let\next\relax
+  \else\let\next\ZeichneSPfad
+    \ifnum#1=1
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+         \hSSchritt\hss}%
+      \advance\xcoord by 1
+    \else\ifnum#1=2
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+        \hbox{\hskip-2pt \vSSchritt}\hss}%
+      \advance\ycoord by 1
+    \else\ifnum#1=3
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+         \DSSchritt\hss}
+      \advance\xcoord by 1
+      \advance\ycoord by 1
+    \else\ifnum#1=4
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit
+         \dSSchritt\hss}
+      \advance\xcoord by 1
+      \advance\ycoord by -1
+    \fi\fi\fi\fi
+  \fi\next}
+\def\Koordinatenachsen(#1,#2){\unskip
+ \hbox to0pt{\hskip-.5pt\vrule height#2 \Einheit width.5pt depth1 \Einheit}%
+ \hbox to0pt{\hskip-1 \Einheit \xcoord#1 \advance\xcoord by1
+    \vrule height0.25pt width\xcoord \Einheit depth0.25pt\hss}}
+\def\Koordinatenachsen(#1,#2)(#3,#4){\unskip
+ \hbox to0pt{\hskip-.5pt \ycoord-#4 \advance\ycoord by1
+    \vrule height#2 \Einheit width.5pt depth\ycoord \Einheit}%
+ \hbox to0pt{\hskip-1 \Einheit \hskip#3\Einheit 
+    \xcoord#1 \advance\xcoord by1 \advance\xcoord by-#3 
+    \vrule height0.25pt width\xcoord \Einheit depth0.25pt\hss}}
+\def\Gitter(#1,#2){\unskip \xcoord0 \ycoord0 \leavevmode
+  \LOOP\ifnum\ycoord<#2
+    \loop\ifnum\xcoord<#1
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit\Punkt\hss}%
+      \advance\xcoord by1
+    \repeat
+    \xcoord0
+    \advance\ycoord by1
+  \REPEAT}
+\def\Gitter(#1,#2)(#3,#4){\unskip \xcoord#3 \ycoord#4 \leavevmode
+  \LOOP\ifnum\ycoord<#2
+    \loop\ifnum\xcoord<#1
+      \raise\ycoord \Einheit\hbox to0pt{\hskip\xcoord \Einheit\Punkt\hss}%
+      \advance\xcoord by1
+    \repeat
+    \xcoord#3
+    \advance\ycoord by1
+  \REPEAT}
+\def\Label#1#2(#3,#4){\unskip \xdim#3 \Einheit \ydim#4 \Einheit
+  \def\lo{\advance\xdim by-.5 \Einheit \advance\ydim by.5 \Einheit}%
+  \def\llo{\advance\xdim by-.25cm \advance\ydim by.5 \Einheit}%
+  \def\loo{\advance\xdim by-.5 \Einheit \advance\ydim by.25cm}%
+  \def\o{\advance\ydim by.25cm}%
+  \def\ro{\advance\xdim by.5 \Einheit \advance\ydim by.5 \Einheit}%
+  \def\rro{\advance\xdim by.25cm \advance\ydim by.5 \Einheit}%
+  \def\roo{\advance\xdim by.5 \Einheit \advance\ydim by.25cm}%
+  \def\l{\advance\xdim by-.30cm}%
+  \def\r{\advance\xdim by.30cm}%
+  \def\lu{\advance\xdim by-.5 \Einheit \advance\ydim by-.6 \Einheit}%
+  \def\llu{\advance\xdim by-.25cm \advance\ydim by-.6 \Einheit}%
+  \def\luu{\advance\xdim by-.5 \Einheit \advance\ydim by-.30cm}%
+  \def\u{\advance\ydim by-.30cm}%
+  \def\ru{\advance\xdim by.5 \Einheit \advance\ydim by-.6 \Einheit}%
+  \def\rru{\advance\xdim by.25cm \advance\ydim by-.6 \Einheit}%
+  \def\ruu{\advance\xdim by.5 \Einheit \advance\ydim by-.30cm}%
+  #1\raise\ydim\hbox to0pt{\hskip\xdim
+     \vbox to0pt{\vss\hbox to0pt{\hss$#2$\hss}\vss}\hss}%
+}
+\catcode`\@=13
+
+\def\LaTeX{{\rm L\kern-.36em\raise.3ex\hbox{\smc a}\kern-.15em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\def\poq#1#2{(#1;q)_#2}
+\def\po#1#2{(#1)_#2}
+
+{\obeylines
+\gdef\MATH{\begingroup\parindent0pt\parskip0pt plus 0.25pt\obeylines%
+        \def^^M{\penalty10000\par\penalty10000%
+        \vrule height10pt depth2pt width0pt\leavevmode}%
+        \obeyspaces\tt}%
+}
+\def\goodbreakpoint{\par\penalty-5000%
+         \vrule height8pt depth2pt width0pt\leavevmode}
+\def\endMATH{\endgroup}
+\def\MATHphi{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\hss$\phi$\hss}\hss}}
+\def\MATHGamma{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\hss$\Gamma$\hss}\hss}}
+\def\MATHpi{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\hss$\pi$\hss}\hss}}
+\def\MATHinfty{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\hss$\infty$\hss}\hss}}
+\def\MATHhStrich{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\vrule height4.5pt depth-3.5pt width5.24995pt}\hss}}
+\def\MATHluEck{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\hskip2.12497pt
+         \vrule height4.5pt depth1pt width1pt
+         \vrule height4.5pt depth-3.5pt width2.12498pt}\hss}}
+\def\MATHruEck{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{%
+         \vrule height4.5pt depth-3.5pt width2.12497pt
+         \vrule height4.5pt depth1pt width1pt
+         \hskip2.12498pt}\hss}}
+\def\MATHloEck{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\hskip2.12497pt
+         \vrule height9pt depth-3.5pt width1pt
+         \vrule height4.5pt depth-3.5pt width2.12498pt}\hss}}
+\def\MATHroEck{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{%
+         \vrule height4.5pt depth-3.5pt width2.12497pt
+         \vrule height9pt depth-3.5pt width1pt
+         \hskip2.12498pt}\hss}}
+\def\MATHvStrich{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\hskip2.12497pt
+         \vtop to 0pt{\hsize1pt\vss%
+                \vrule height17pt depth6pt width1pt\vskip8pt\vss\par}%
+         \hskip2.12498pt}\hss}}
+\def\MATHtStueck{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{%
+         \vrule height4.5pt depth-3.5pt width2.12497pt
+         \vrule height4.5pt depth2pt width1pt
+         \vrule height4.5pt depth-3.5pt width2.12498pt}\hss}}
+\def\MATHbackslash{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\hss$\backslash$\hss}\hss}}
+\def\MATHlbrace{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\hss$\{$\hss}\hss}}
+\def\MATHrbrace{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\hss$\}$\hss}\hss}}
+\def\MATHkleiner{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\hss$\langle$\hss}\hss}}
+\def\MATHgroesser{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\hss$\rangle$\hss}\hss}}
+\def\MATHhoch{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\hss$^\land$\hss}\hss}}
+\def\MATHtief{\leavevmode
+        \hbox to 0pt{\hbox to 5.24995pt{\hss\vrule height0pt depth.8pt width3pt\hss}\hss}}
+
+\topmatter 
+\title\fourteenpoint\bf HYP and HYPQ\\\vskip0pt
+\twelvepoint{\sl Mathematica\/} packages for the manipulation of
+binomial sums and hypergeometric series, respectively $q$-binomial
+sums and basic hypergeometric series
+\endtitle 
+\author C.~Krattenthaler
+\endauthor 
+\affil 
+Institut f\"ur Mathematik der Universit\"at Wien,\\
+Strudlhofgasse 4, A-1090 Wien, Austria.\\
+e-mail: KRATT\@Pap.Univie.Ac.At
+\endaffil
+%\address Institut f\"ur Mathematik der Universit\"at Wien,
+%Strudlhofgasse 4, A-1090 Wien, Austria.
+%\endaddress
+%\email KRATT\@Pap.Univie.Ac.At\endemail
+%\dedicatory \enddedicatory
+%\date \enddate
+%\thanks \endthanks
+\abstract We give a brief description of the main features of the 
+\hbox{\sl Mathematica} packages HYP and HYPQ. HYP allows a convenient
+handling of binomial sums and hypergeometric series, while its
+``$q$-analogue", the package HYPQ, allows a convenient handling of
+$q$-binomial sums and basic hypergeometric series.
+\endabstract
+\endtopmatter
+
+\rightheadtext{}
+\leftheadtext{}
+
+\document
+\subhead 1. Introduction\endsubhead
+In some branches of mathematics, in particular in combinatorics,
+research workers frequently have to deal with
+binomial sums and $q$-binomial sums. Hence it would be desirable to
+have something like a standardized list of binomial and $q$-binomial
+identities. An attempt for binomial identities was made by
+H.~W.~Gould \cite{\GOulAS}. However, since there are many different
+ways of writing the same binomial (respectively $q$-binomial) sum,
+such a list could be never satisfying. But ``almost all" binomial
+respectively $q$-binomial sums admit a normal form, namely when
+written as a hypergeometric respectively basic hypergeometric series.
+And even better, there are not too many basic identities for
+hypergeometric respectively basic hypergeometric series (most of
+them being known for more than 50 years) from which ``everything else"
+can be derived, and so are sufficient to work with. These facts were
+emphatically pointed out by G.~E.~Andrews \cite{\AndrAC} in 1974,
+however even now are not as accepted as they should be. A reason for
+this might be that until recently no attempt has been made to set up
+a comprehensive list of hypergeometric and basic hypergeometric
+identities, which are spread over the literature. Until 1990 the main
+sources to be recommended had to be W.~N.~Bailey's booklet
+\cite{\BailAA} and its ``enhanced version" \cite{\SlatAC} by
+L.~J.~Slater. At least Slater's book in the appendix contains a list
+(though narrow) of hypergeometric and basic hypergeometric
+summation formulas, however no transformation formulas. So, for the
+unexperienced it remained to be a difficult task to conveniently
+search for identities which might help in a particular problem.
+Finally, in 1990 G.~Gasper and M.~Rahman published a long-sought book
+\cite{\GaRaAA} about basic hypergeometric series. The appendix of
+this book contains a list of the most important basic hypergeometric
+summations {\it and} transformations. This list can also be used by
+those who are only interested in hypergeometric identities since
+``almost all" hypergeometric identities have their $q$-analogues
+(i.e\. basic hypergeometric analogues), and it is fairly easy to
+deduce from a basic hypergeometric identity its hypergeometric (i.e\.
+$q\uparrow 1$) special case.
+
+So, only one inconvenience remained. Everybody who ever dealt with
+(basic) hypergeometric series knows that doing manipulations with
+(basic) hypergeometric expressions amounts to working with cumbersome
+expressions which involve a lot of parameters. 
+Therefore the probability of mistakes during computations
+done by hand is very high. Obviously, since manipulations of (basic)
+hypergeometric expressions usually are symbolic in nature, symbolic
+computer algebra must be the appropriate tool for a
+convenient treatment of (basic) hypergeometric expressions, in
+particular if a specialized package is available for this purpose.
+This is just what the \hbox{\sl Mathematica\/} packages HYP and HYPQ are
+supposed to be: They provide researchers with a tool box for doing
+manipulations of such expressions fast and error-free. The package
+HYP provides tools for manipulating binomial and hypergeometric
+expressions, while its ``$q$-analogue", the
+package HYPQ, provides tools for manipulating $q$-binomial and basic
+hypergeometric expressions. 
+
+\subhead 2. The structure of HYP and HYPQ\endsubhead
+The packages HYP and HYPQ provide tools for
+\roster
+\item "(A)" manipulating factorial respectively $q$-factorial
+expressions,
+\item "(B)" transforming binomial respectively $q$-binomial sums
+into hypergeometric respectively basic hypergeometric notation,
+\item "(C)" summing hypergeometric respectively basic hypergeometric
+series,
+\item "(D)" transforming hypergeometric respectively basic hypergeometric
+series,
+\item "(E)" applying contiguous relations to hypergeometric
+respectively basic hypergeometric series,
+\item "(F)" doing formal limits of hypergeometric respectively basic hypergeometric
+expressions,
+\item "(G)" transforming hypergeometric respectively basic 
+hypergeometric \hbox{\sl MATHEMATICA} expressions
+into \TeX-code.
+\endroster
+The collection of summations and transformations 
+includes (almost) all identities 
+(respectively their hypergeometric, i.e\. $q\uparrow1$, special cases)
+of \cite{\GaRaAA}, the quadratic transformations listed by Rahman and
+Verma in \cite{\RaVeAA} (respectively Goursat's \cite{\GourAA,
+\ErdeAA} list of quadratic transformations for 
+$_2F_1$'s), and some more identities from the literature. It is supposed
+to be a fairly comprehensive collection of summation and
+transformation formulas.
+
+
+The philosophy behind both packages is:
+
+\bigskip
+\centerline{\twelvepoint\it Do it by yourself!}
+\bigskip
+
+The idea is that 
+every step in a series of manipulations should be controlled by the
+user. Consequently, these packages do not make any attempt to sum or
+transform a series automatically. (This is in contrary to the MAPLE
+program, which automatically tries to sum a series and, if
+successful, displays the result without any information how the system
+found the result, which is not what a serious research worker actually
+desires.) It is the user who has to tell the packages HYP and HYPQ which
+command has to be applied next. In order to help the user to decide
+which command {\it could} be applied next, for both packages a
+comprehensive manual
+(of more than 100 pages, each) giving a complete list
+of all the available objects with detailed descriptions, examples, and cross
+references is provided. 
+
+Both packages are
+mainly {\it rule}-based (a feature which is heavily supported by
+\hbox{\sl
+Mathematica\/} but unfortunately not by MAPLE). This gives a lot more 
+flexibility in doing manipulations compared to sticking to functions
+only.
+
+\subhead 3. Requirements and how to get the packages\endsubhead
+In order to use these packages you need a computer with some version
+of \hbox{\sl Mathematica\/} installed. The input files for the packages
+and the \TeX-files for the manuals are available by WWW at
+\hbox{\tt http://radon.mat.univie.ac.at/People/kratt}. Contact the author for
+further information. In order to use the packages efficiently it
+suffices to have a basic knowledge of \hbox{\sl Mathematica\/}. It is of
+great help to have an advanced knowledge of pattern matching, rules,
+and pure functions (cf\. \cite{\WolfAA, sections~2.3, 2.4, 2.2.5}).
+
+\bigskip
+In the following I am describing the main features of the packages.
+The examples should give a flavour of how to work with these
+packages. The displayed output of the examples imitates the output
+of the packages under the DOS-version of \hbox{MATHEMATICA}. The output
+under other versions of \hbox{MATHEMATICA} is a little bit less
+attractive, but similar.
+
+\subhead 4. The package HYP\endsubhead
+\subsubhead 4.1. The basic objects\endsubsubhead
+Of course, the basic objects of HYP are the binomial coefficient $\binom nk$,
+the Pochhammer symbol $(a)_n$, the Gamma function $\Gamma(x)$, and
+the (generalized) hypergeometric series 
+$${}_r F_s\!\left[\matrix a_1,\dots,a_r\\ b_1,\dots,b_s\endmatrix; 
+z\right]=\sum _{n=0} ^{\infty}\frac {\po{a_1}{n}\cdots\po{a_r}{n}}
+{n!\,\po{b_1}{n}\cdots\po{b_s}{n}} z^n\ .$$
+(All the notation and terminology is adopted from \cite{\GaRaAA, pp.~1--6}.) 
+The example below shows how to enter these basic objects.
+\MATH
+\goodbreakpoint%
+In[1]:= Binomial[n,k]*p[a,n]*GAMMA[x]*F[%
+\MATHlbrace a,b,c%
+\MATHrbrace ,%
+\MATHlbrace d,e%
+\MATHrbrace ,z]
+\goodbreakpoint%
+        (   )    %
+\MATHluEck             %
+\MATHruEck 
+        ( n )    %
+\MATHvStrich  a, b, c    %
+\MATHvStrich 
+Out[1]= (   )  F %
+\MATHvStrich         ; z %
+\MATHvStrich  \MATHGamma (x) (a)
+        ( k ) 3 2%
+\MATHvStrich   d, e      %
+\MATHvStrich          n
+        (   )    %
+\MATHloEck             %
+\MATHroEck 
+\goodbreakpoint%
+\endMATH
+\subsubhead 4.2. Converting binomial sums into hypergeometric notation\endsubsubhead
+As mentioned in the Introduction, ``almost all" binomial 
+sums can be written in 
+hypergeometric notation. For accomplishing this
+task quickly there are the rules \hbox{\tt SumRegeln} and
+\hbox{\tt SumF}.
+\hbox{\tt SumRegeln} tries to transform a binomial sum into
+a form that finally can be written as a hypergeometric
+series. This last step (if possible) is done by the rule \hbox{\tt SumF}.
+As an example we consider the Vandermonde sum.
+\MATH
+\goodbreakpoint%
+In[2]:= Sum[Binomial[N,l]*Binomial[M,K-l],%
+\MATHlbrace l,0,Infinity%
+\MATHrbrace ]
+\goodbreakpoint%
+          \MATHinfty 
+        %
+\MATHluEck %
+\MATHhStrich %
+\MATHhStrich %
+\MATHhStrich %
+\MATHruEck (       ) (   )
+         \MATHbackslash    (   M   ) ( N )
+Out[2]=   \MATHgroesser   (       ) (   )
+         /   ( K - l ) ( l )
+        %
+\MATHloEck %
+\MATHhStrich %
+\MATHhStrich %
+\MATHhStrich %
+\MATHroEck (       ) (   )
+         l=0
+\goodbreakpoint%
+\endMATH
+and convert it into hypergeometric notation
+\MATH
+\goodbreakpoint%
+In[3]:= \%//.SumRegeln
+\goodbreakpoint%
+           \MATHinfty 
+         %
+\MATHluEck %
+\MATHhStrich %
+\MATHhStrich %
+\MATHhStrich %
+\MATHruEck    (-K)  (-N)
+          \MATHbackslash           l     l
+        (  \MATHgroesser   -----------------) (1 - K + M)
+          /   (1)  (1 - K + M)              K
+         %
+\MATHloEck %
+\MATHhStrich %
+\MATHhStrich %
+\MATHhStrich %
+\MATHroEck    l            l
+          l=0
+Out[3]= -------------------------------------
+                        (1)
+                           K
+\goodbreakpoint%
+In[4]:= \%/.SumF
+\goodbreakpoint%
+           %
+\MATHluEck               %
+\MATHruEck 
+           %
+\MATHvStrich   -K, -N      %
+\MATHvStrich 
+         F %
+\MATHvStrich           ; 1 %
+\MATHvStrich  (1 - K + M)
+        2 1%
+\MATHvStrich  1 - K + M    %
+\MATHvStrich             K
+           %
+\MATHloEck               %
+\MATHroEck 
+Out[4]= --------------------------------
+                      (1)
+                         K
+\goodbreakpoint%
+\endMATH
+
+\subsubhead 4.3. Summations for hypergeometric series\endsubsubhead
+The package HYP includes about 25 summation formulas in form of
+rules. All the available summations (with references) 
+are listed and displayed in the 
+manual. Besides, there is the rule \hbox{\tt SListe} which for a
+hypergeometric series gives a list of applicable summations.
+\MATH
+\goodbreakpoint%
+In[5]:= \%4/.SListe
+Is N a nonnegative integer?
+[y|n]:  y
+\goodbreakpoint%
+Be sure to apply "FOrdne" before using the following information!
+\goodbreakpoint%
+          S02 (1 - K + M)     S04 (1 - K + M)
+                         K                   K
+Out[5]= %
+\MATHlbrace %
+\MATHlbrace ----------------%
+\MATHrbrace , %
+\MATHlbrace ----------------%
+\MATHrbrace %
+\MATHrbrace 
+                (1)                 (1)
+                   K                   K
+\goodbreakpoint%
+\endMATH
+Hence, let us apply {\tt S02} (the Vandermonde summation 
+\cite{\SlatAC, (1.7.7)}; {\tt S04} is Gauss'
+$_2F_1[1]$-evaluation \cite{\SlatAC, (1.7.6)}).
+\MATH
+\goodbreakpoint%
+In[6]:= \%4/.S02
+Is N a nonnegative integer?
+[y|n]:  y
+\goodbreakpoint%
+        (1 + M)  (1 - K + M)
+               N            K
+Out[6]= ---------------------
+          (1)  (1 - K + M)
+             K            N
+\goodbreakpoint%
+\endMATH
+
+\subsubhead 4.4. Manipulations of hypergeometric expressions\endsubsubhead
+The result in {\tt Out[6]} is not completely convincing since
+everybody knows that the result for the Vandermonde sum {\tt Out[2]}
+should read $\binom {M+N}K$. To do simplifications of hypergeometric
+expressions there are 15 rules which allow to do all the
+manipulations which are the contents of Appendix~I in \cite{\SlatAC}.
+For instance, to do $(a)_n \to (-1)^n\,(1-n-a)_n$ \cite{\SlatAC, Appendix,
+(I.5)} the user is provided with the rule \hbox{\tt trans}:
+\MATH
+\goodbreakpoint%
+In[7]:= p[a,n]
+\goodbreakpoint%
+Out[7]= (a)
+           n
+\goodbreakpoint%
+In[8]:= \%/.trans
+\goodbreakpoint%
+            n
+Out[8]= (-1)  (1 - a - n)
+                         n
+\goodbreakpoint%
+\endMATH 
+Besides, there are two functions, \hbox{\tt PosListe} and \hbox{\tt Ers}, 
+for {\it controlled} application of
+rules: \hbox{\tt PosListe} gives a list of all subexpressions of an
+expression, together with their respective positions. {\tt Ers}
+allows the application of a rule to a specified subexpression.
+It is a simple task to transform {\tt Out[6]} into $\binom {M+N}K$ by
+means of the above mentioned tools. We omit this here for sake of brevity.
+
+Additional tools are provided for reversing finite summations, for
+splitting summations, for shifting summation indices, for exchanging
+sums, etc.
+
+\subsubhead 4.5. Transformations of hypergeometric series\endsubsubhead
+The package HYP includes about 50 transformation formulas in form
+of rules. All the available transformations (with references) 
+are listed and displayed in the 
+manual. Besides, there is the rule \hbox{\tt TListe} which for a
+hypergeometric series gives a list of applicable transformations.
+
+ As an example, consider the following expression
+\MATH
+\goodbreakpoint%
+In[9]:= 2\MATHhoch n*F[\MATHlbrace (1-n)/2,1+n,-n/2\MATHrbrace ,%
+\MATHlbrace 1,1\MATHrbrace ,1]
+\goodbreakpoint%
+               %
+\MATHluEck  1 - n         -n    %
+\MATHruEck 
+          n    %
+\MATHvStrich  -----, 1 + n, --    %
+\MATHvStrich 
+Out[9]=  2   F %
+\MATHvStrich    2           2 ; 1 %
+\MATHvStrich 
+            3 2%
+\MATHvStrich                      %
+\MATHvStrich 
+               %
+\MATHloEck        1, 1          %
+\MATHroEck 
+\goodbreakpoint%
+\endMATH
+Application of \hbox{\tt TListe} tells us which 
+$_3F_2[1]$-transformations can be directly applied.
+\MATH
+\goodbreakpoint%
+In[10]:= \%9/.TListe
+Is n/2 a nonnegative integer?
+[y|n]:  y
+Is n/2 a nonnegative integer?
+[y|n]:  y
+\goodbreakpoint%
+Be sure to apply "FOrdne" before using the following information!
+\goodbreakpoint%
+            n         n         n         n         n         n
+Out[10]= %
+\MATHlbrace %
+\MATHlbrace 2  T23%
+\MATHrbrace , %
+\MATHlbrace 2  T24%
+\MATHrbrace , %
+\MATHlbrace 2  T25%
+\MATHrbrace , %
+\MATHlbrace 2  T26%
+\MATHrbrace , %
+\MATHlbrace 2  T95%
+\MATHrbrace , %
+\MATHlbrace 2  T96%
+\MATHrbrace %
+\MATHrbrace 
+\goodbreakpoint%
+\endMATH
+(The respective references are \cite{\BailAA, Ex.~7, p.~98},
+\cite{\SlatAC, ((2.3.3.7)}, \cite{\BailAA, Ex.~7, p.~98},
+\cite{\GaRaAA, (3.1.1), $q\uparrow 1$}, \cite{\GaRaAA, (III.33), $q\uparrow
+1$}, \cite{\SlatAC, (4.3.4.2)}.) For instance, let us apply {\tt
+T23}:
+\MATH
+\goodbreakpoint%
+In[11]:= \%9/.T23
+\goodbreakpoint%
+                 1 - n          n                1 - n   n
+               %
+\MATHluEck  -----, -n, 1 + -    %
+\MATHruEck   %
+\MATHluEck  1, 1 - ----- - - %
+\MATHruEck 
+          n    %
+\MATHvStrich    2            2    %
+\MATHvStrich   %
+\MATHvStrich           2     2 %
+\MATHvStrich 
+Out[11]= 2   F %
+\MATHvStrich                  ; 1 %
+\MATHvStrich  \MATHGamma %
+\MATHvStrich                   %
+\MATHvStrich 
+            3 2%
+\MATHvStrich             n        %
+\MATHvStrich   %
+\MATHvStrich      1 - n      n %
+\MATHvStrich 
+               %
+\MATHloEck      1, 1 - -        %
+\MATHroEck   %
+\MATHloEck  1 - -----, 1 - - %
+\MATHroEck 
+                            2                   2        2
+\goodbreakpoint%
+\endMATH
+
+\subsubhead 4.6. Explicit evaluation\endsubsubhead
+Very often one wants to compute special values of hypergeometric
+expressions, in particular when checking if some identity might be
+true or not. For this purpose one should use the {\it evaluation mode}
+of HYP. So far, all examples were done in the {\it symbolic mode} of
+HYP. In symbolic mode even expressions like $(a)_3$ are kept unchanged
+(though it could be evaluated to $a(a+1)(a+2)$).
+In evaluation mode
+every expression (that can be evaluated) is evaluated explicitely.
+There is the switch {\tt P} that toggles between the two modes of HYP.
+For example, let us evaluate the Vandermonde sum {\tt Out[4]} for $K=2$
+(which must result into $\binom {M+N}2$).
+\MATH
+\goodbreakpoint%
+In[12]:= \%4/.K-\MATHgroesser 2;
+\goodbreakpoint%
+In[13]:= P
+\goodbreakpoint%
+In[14]:= Factor[\%12]
+Is N a nonnegative integer?
+[y|n]:  n
+\goodbreakpoint%
+         (-1 + M + N) (M + N)
+Out[14]= --------------------
+                  2
+\goodbreakpoint%
+In[15]:= P
+\goodbreakpoint%
+\endMATH
+The last {\tt P} was entered to switch back to symbolic mode.
+
+\subsubhead  4.7. Contiguous relations\endsubsubhead
+A collection of about 50 contiguous relations in form of rules is
+provided. The application of these rules is very similar to the
+application of summation and transformation rules as discussed before
+in subsections~4.3 and 4.5.
+
+\subsubhead 4.8. Formal limits of hypergeometric expressions\endsubsubhead
+The function \hbox{\tt Limes} enables the user to do {\it formal\/}
+limits of hypergeometric expressions fast. However, it is
+left to the user to check in each particular situation 
+if taking the limit in a formal way is actually allowed. As an
+example we derive Bailey's \cite{\SlatAC, Appendix, (III.7)}
+$_2F_1[\frac {1} {2}]$-sum from Whipple's \cite{\SlatAC, Appendix, (III.24)} 
+$_3F_2$-sum.
+\MATH
+\goodbreakpoint%
+In[16]:= Sgl33
+Do you want to set values for the equation? [y|n]: n
+\goodbreakpoint%
+            %
+\MATHluEck                    %
+\MATHruEck 
+            %
+\MATHvStrich   a, 1 - a, c      %
+\MATHvStrich 
+Out[16]=  F %
+\MATHvStrich                ; 1 %
+\MATHvStrich  == 
+         3 2%
+\MATHvStrich  d, 1 + 2 c - d    %
+\MATHvStrich 
+            %
+\MATHloEck                    %
+\MATHroEck 
+ 
+                 %
+\MATHluEck                      d, 1 + 2 c - d                     %
+\MATHruEck 
+      1 - 2 c    %
+\MATHvStrich                                                         %
+\MATHvStrich 
+\MATHgroesser     2        \MATHpi  \MATHGamma %
+\MATHvStrich  a   d  a   1 + 2 c - d  1   a   d  1   a   1 + 2 c - d %
+\MATHvStrich 
+                 %
+\MATHvStrich  - + -, - + -----------, - - - + -, - - - + ----------- %
+\MATHvStrich 
+                 %
+\MATHloEck  2   2  2        2       2   2   2  2   2        2      %
+\MATHroEck 
+\goodbreakpoint%
+In[17]:= Limes[\%,c-\MATHgroesser Infinity]
+\goodbreakpoint%
+            %
+\MATHluEck              %
+\MATHruEck       1 - d
+            %
+\MATHvStrich  a, 1 - a  1 %
+\MATHvStrich      2      Sqrt[\MATHpi ] \MATHGamma (d)
+Out[17]=  F %
+\MATHvStrich          ; - %
+\MATHvStrich  == ---------------------
+         2 1%
+\MATHvStrich     d      2 %
+\MATHvStrich       1   a   d    a   d
+            %
+\MATHloEck              %
+\MATHroEck     \MATHGamma (- - - + -) \MATHGamma (- + -)
+                                 2   2   2    2   2
+\goodbreakpoint%
+\endMATH
+Incidentally, this example shows another feature of the packages:
+Every summation or transformation is not only available in form of a
+rule, but also directly in form of an equation. This saves a lot of
+typing in many situations.
+
+\subsubhead 4.9. Transforming hypergeometric and basic hypergeometric
+\hbox{\sl Mathematica} expressions into \TeX-code\endsubsubhead 
+Of course, the package HYP gives full support for writing binomial
+or hypergeometric expressions in \TeX-code.
+Besides, the user may choose between Plain\TeX-, \LaTeX-, or
+\AmSTeX-compatibility.
+
+\subhead 5. The package HYPQ\endsubhead
+All the features and the organization of the package HYPQ are 
+completely analogous to those of HYP.
+
+Of course, the basic objects of HYPQ are the $q$-binomial coefficient
+$\left[n \atop k\right]_q$, the upper $q$-factorial 
+$(a;q)_n$, the infinite $q$-factorial $(a;q)_\infty$,
+and the basic hypergeometric series
+$${}_r\phi_s\!\left[\matrix a_1,\dots,a_r\\ b_1,\dots,b_s\endmatrix; q,
+z\right]=\sum _{n=0} ^{\infty}\frac {\poq{a_1}{n}\cdots\poq{a_r}{n}}
+{\poq{q}{n}\poq{b_1}{n}\cdots\poq{b_s}{n}}\left((-1)^nq^{\binom
+n2}\right)^{s-r+1}z^n\ .$$
+(Cf\. \cite{\GaRaAA, pp.~1--6}.)
+These objects are entered as follows,
+\MATH
+\goodbreakpoint%
+In[1]:= Binomialq[n,k]*pq[a,n,q\MATHhoch 2]*Gammaq[x,1/q]*ph[%
+\MATHlbrace a,b,c%
+\MATHrbrace ,%
+\MATHlbrace d,e%
+\MATHrbrace ,q,z]
+\goodbreakpoint%
+        %
+\MATHluEck    %
+\MATHruEck             %
+\MATHluEck                %
+\MATHruEck 
+        %
+\MATHvStrich  n %
+\MATHvStrich      1      %
+\MATHvStrich  a, b, c       %
+\MATHvStrich       2
+Out[1]= %
+\MATHvStrich    %
+\MATHvStrich   (x;-)   \MATHphi  %
+\MATHvStrich         ; q, z %
+\MATHvStrich  (a; q )
+        %
+\MATHvStrich  k %
+\MATHvStrich      q \MATHinfty  3 2%
+\MATHvStrich   d, e         %
+\MATHvStrich         n
+        %
+\MATHloEck    %
+\MATHroEck             %
+\MATHloEck                %
+\MATHroEck 
+             q
+\goodbreakpoint%
+\endMATH
+
+The conversion of $q$-binomal sums into basic hypergeometric notation
+is accomplished by the rules \hbox{\tt SumRegeln} and \hbox{\tt Sumph}
+(see the example below).
+
+The package HYPQ includes 18 rules for the simplification of
+$q$-factorial expressions, about 30 summations in form of rules,
+about 70
+transformations in form of rules, about 100 contiguous relations in
+form of rules, and of course the same rules for
+reversing, splitting, exchanging, etc., sums, and the functions \hbox{\tt
+PosListe} and {\tt Ers} for the controlled application of rules. Also
+the writing of $q$-binomial or basic hypergeometric expressions in
+\TeX-code is fully supported, again leaving the user the choice
+between Plain\TeX-, \LaTeX-, or \AmSTeX-compatibility.
+
+Once being introduced to HYP, a single example should suffice
+for a demonstration of the abilities of
+HYPQ. It concerns the $q$-Vandermonde
+sum (\cite{\GaRaAA, (1.5.3)}; compare with subsections~4.2--4.3).
+\MATH
+\goodbreakpoint%
+In[2]:= Sum[q\MATHhoch ((N-l)*(R-l))*Binomialq[N,l]*Binomialq[M,R-l],%
+\MATHlbrace l,0,Infinity%
+\MATHrbrace ]
+\goodbreakpoint%
+          \MATHinfty 
+        %
+\MATHluEck %
+\MATHhStrich %
+\MATHhStrich %
+\MATHhStrich %
+\MATHruEck                  %
+\MATHluEck        %
+\MATHruEck   %
+\MATHluEck    %
+\MATHruEck  
+         \MATHbackslash     (N - l) (R - l) %
+\MATHvStrich    M   %
+\MATHvStrich   %
+\MATHvStrich  N %
+\MATHvStrich  
+Out[2]=   \MATHgroesser   q                %
+\MATHvStrich        %
+\MATHvStrich   %
+\MATHvStrich    %
+\MATHvStrich  
+         /                    %
+\MATHvStrich  R - l %
+\MATHvStrich   %
+\MATHvStrich  l %
+\MATHvStrich  
+        %
+\MATHloEck %
+\MATHhStrich %
+\MATHhStrich %
+\MATHhStrich %
+\MATHroEck                  %
+\MATHloEck        %
+\MATHroEck   %
+\MATHloEck    %
+\MATHroEck  
+         l=0                           q      q
+\goodbreakpoint%
+In[3]:= \%//.SumRegeln
+\goodbreakpoint%
+                \MATHinfty     l   -N        -R
+              %
+\MATHluEck %
+\MATHhStrich %
+\MATHhStrich %
+\MATHhStrich %
+\MATHruEck  q  (q  ; q)  (q  ; q)
+         N R   \MATHbackslash                l         l     1 + M - R
+        q    (  \MATHgroesser   ------------------------) (q         ; q)
+               /             1 + M - R                      R
+              %
+\MATHloEck %
+\MATHhStrich %
+\MATHhStrich %
+\MATHhStrich %
+\MATHroEck (q; q)  (q         ; q)
+               l=0       l                l
+Out[3]= -----------------------------------------------------
+                               (q; q)
+                                     R
+\goodbreakpoint%
+In[4]:= \%/.Sumph
+\goodbreakpoint%
+                %
+\MATHluEck    -R   -N        %
+\MATHruEck 
+         N R    %
+\MATHvStrich   q  , q          %
+\MATHvStrich    1 + M - R
+        q     \MATHphi  %
+\MATHvStrich            ; q, q %
+\MATHvStrich  (q         ; q)
+             2 1%
+\MATHvStrich   1 + M - R       %
+\MATHvStrich                 R
+                %
+\MATHloEck  q                %
+\MATHroEck 
+Out[4]= ---------------------------------------------
+                           (q; q)
+                                 R
+\goodbreakpoint%
+In[5]:= \%/.SListe
+Is R a nonnegative integer?
+[y|n]:  y
+Is R a nonnegative integer?
+[y|n]:  y
+Is N a nonnegative integer?
+[y|n]:  y
+\goodbreakpoint%
+Be sure to apply "phOrdne" before using the following information!
+\goodbreakpoint%
+               N R   1 + M - R              N R   1 + M - R
+          S02 q    (q         ; q)     S61 q    (q         ; q)
+                                  R                            R
+Out[5]= %
+\MATHlbrace %
+\MATHlbrace -------------------------%
+\MATHrbrace , %
+\MATHlbrace -------------------------%
+\MATHrbrace %
+\MATHrbrace 
+                   (q; q)                       (q; q)
+                         R                            R
+\goodbreakpoint%
+In[6]:= \%4/.S02
+Is N a nonnegative integer?
+[y|n]:  y
+\goodbreakpoint%
+          1 + M        1 + M - R
+        (q     ; q)  (q         ; q)
+                   N                R
+Out[6]= -----------------------------
+                    1 + M - R
+          (q; q)  (q         ; q)
+                R                N
+\goodbreakpoint%
+\endMATH
+Clearly this equals the $q$-binomial coefficient $\left[{M+N}\atop R\right]_q$,
+as could also be shown by using tools of HYPQ (analogous to those
+being discussed before in subsection~4.4).
+
+
+\Refs
+
+\ref\no \AndrAC\by G. E. Andrews \yr 1974 
+\paper Applications of basic hypergeometric series
+\jour SIAM Review\vol 16
+\pages 441--484\endref
+
+\ref\no \BailAA\by W. N. Bailey \yr 1935 
+\book Generalized hypergeometric series
+\publ Cambridge University Press
+\publaddr Cambridge\endref
+
+\ref\no \ErdeAA\by A.    Erd\'elyi (ed.) \yr 1953 \book Higher 
+Transcendental Functions Vol.~I\publ McGraw--Hill\publaddr 
+New York\endref
+
+\ref\no \GaRaAA\by G.    Gasper and M. Rahman \yr 1990 
+\book Basic hypergeometric series
+\publ Encyclopedia of Mathematics And Its Applications~35, Cambridge University Press
+\publaddr Cambridge\endref
+
+\ref\no \GourAA\by E. Goursat\paper Sur l'\'equation diff\'erentielle
+lin\'eaire\jour 
+Ann\. Sci\. \'Ecole Norm\. Sup\. (2)\vol 10\yr 1881\pages 3--142\endref
+
+\ref\no \GOulAS\by H. W. Gould \yr 1972 
+\book Combinatorial identities: A standardized set of tables listing 500 binomial coefficient identities
+\publ (rev\. ed\.)
+\publaddr Morgantown, W. Va.\endref
+
+\ref\no \RaVeAA\by M. Rahman and A. Verma\paper Quadratic
+transformation formulas for basic hypergeometric series\jour 
+Trans\. Amer\. Math\. Soc\.\vol 335\yr 1993\pages 277--302\endref
+
+\ref\no \SlatAC\by L. J. Slater \yr 1966 
+\book Generalized hypergeometric functions
+\publ Cambridge University Press
+\publaddr Cambridge\endref
+
+\ref\no \WolfAA\by S. Wolfram \yr 1991 
+\book MATHEMATICA --- A system for doing mathematics by computer
+\bookinfo second edition
+\publ Addison--Wes\-ley
+\publaddr New York\endref
+
+\endRefs
+
+\enddocument
