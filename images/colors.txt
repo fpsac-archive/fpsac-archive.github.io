@@ -1,0 +1,6 @@
+http://en.wikipedia.org/wiki/List_of_Colors
+Name 		Hex triplet 	RGB 			HSV
+Mint Green 	#98FF98 	152 	255 	152 	140° 	40% 	100%
+Baby blue 	#E0FFFF 	111 	255 	255 	180° 	12% 	100%
+Electric blue 	#7DF9FF 	125 	249 	255 	180° 	40% 	90%
+Lavender blue 	#CCCCFF 	204 	204 	255 	240° 	75% 	88%
