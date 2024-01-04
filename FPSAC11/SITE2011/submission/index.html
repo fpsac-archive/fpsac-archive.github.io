@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf8"> 
+  <link rel="stylesheet" type="text/css" href="../styles/reset.css">
+  <link rel="stylesheet" type="text/css" href="../styles/grid.css">
+  <link rel="stylesheet" type="text/css" href="../styles/text.css">
+  <link rel="stylesheet" type="text/css" href="../styles/fpsac.css">
+  <title>FPSAC 2011</title>
+</head> 
+<body id="bodysubmission">
+<div class="container_14">
+  <div class="grid_1" style="margin-top: 8px; margin-left:0px;">
+  </div>
+  <div class="grid_9">
+  <center style="margin-top:16pt; margin-bottom:14pt">
+    <a href=".."><img src="../images/fpsac2011.png"></a>
+  </center>
+<h4>Submission of final versions of accepted abstracts</h4>
+
+<p>
+<em> The option to submit extended abstracts for consideration for
+FPSAC 2011 closed on November 15, 2010 at 23:59 PST.  This page is
+intended for those whose submitted extended abstracts have been
+accepted as talks or posters.  </em>
+</p>
+
+<p>Before submitting a new version of your accepted extended abstract,
+<em>please</em> follow the guidelines given below.  There are
+requirements for your final submission that are in addition to the
+requirements for your original submission.  These additional
+requirements are given first.  When your revised version is ready,
+please submit it through the <a
+href="https://www.softconf.com/b/fpsac2011/" target="_blank">START
+Conference Manager</a>.  The submission page now includes an
+opportunity for students to indicate their eligibility for the award
+for the best extended abstract submitted by a graduate student.  The
+deadline for revised submissions is
+<center>
+<b>
+April 29, 2011 at 23:59 (<a href="http://www.timeanddate.com/library/abbreviations/timezones/na/pst.html">PST</a>)
+</b>.
+</center>
+</p>
+
+<p>The accepted extended abstracts will be published in a proceedings
+volume of <a href="http://www.dmtcs.org/dmtcs-ojs/index.php/dmtcs"
+target="_blank">DMTCS (Discrete Mathematics and Theoretical Computer
+Science)</a>. The authors will retain the right to publish a full
+version of their work in another journal. <em>Authors who do intend to
+publish a full version elsewhere should, however, make sure that their
+conference contribution is clearly an extended abstract of this full
+version</em>.
+</p>
+
+
+<h4>Instructions for authors specific to final version</h4>
+
+<ol>
+<li> Your new submission should consist of your (La)TeX file, along
+with any supporting files.  Since the proceedings are being published
+in DMTCS, you must continue to use the dmtcs.cls class file.
+
+<li>Please take special care with the `author', `title', `keywords'
+commands and the `abstract' environment. <em>None</em> of them should
+include unbreakable spaces (`\ ' or `~'), non-ascii characters,
+`\cite' or `\ref' commands, or any user-defined commands.  Write out
+any citations, rather than referencing the bibliography.
+
+<li> While you were strongly encouraged to include a summary in French
+in your original version, you are <em>required</em> to do so in your
+final version.  If you are not a French speaker then, as a first
+option, ask a French speaking colleague to provide an abstract. If you
+cannot find anyone to help, please contact <tt>axel[at
+sign]math.kth.se</tt> and we will provide a translation.
+
+<li> Since the local proceedings will be available in both postscript
+and pdf formats, please send your figures in both postscript (eps) and
+pdf formats.  The (standard) package graphicx is used by dmtcs.cls to
+include graphical data; please do not use epsf or similar.  Use the
+includegraphics command to incorporate figures into your extended
+abstract.  Your use of the command can be as simple as
+<pre>
+
+\includegraphics[width=0.25\textwidth]{figure_filename}
+</pre>
+<em>Note that the file name is given without an extension (pdf or
+eps).  Don't include the extension of the graphic file in the command!
+We will be processing your file for both postscript and pdf, so please
+leave the choice of the desired format to the graphicx package.</em> A
+typical inclusion of a figure as part of a LaTeX figure environment
+would look something like: 
+<pre>
+
+\begin{figure}[htbp] 
+  \begin{center} 
+    %% Don't use epsfile!
+    \includegraphics[width=0.25\textwidth]{figure_filename}
+    \caption{Your caption here} 
+    \label{fig:figure_label}
+  \end{center} 
+\end{figure}
+</pre> 
+
+<li> Extended abstracts, when compiled using the dmtcs.cls
+class file, should not exceed 12 pages, even after addressing the
+referees' suggestions.  Extended abstracts should be submitted
+electronically through the <a
+href="https://www.softconf.com/b/fpsac2011/" target="_blank">START
+Conference Manager</a>
+
+<li> Finally, please fill in <a href="copyright.pdf">the copyright form</a> and send it to
+<pre>
+
+ Axel Hultman
+ Department of Mathematics
+ Linkoping University
+ SE-581 83 LINKOPING
+ Sweden
+</pre>
+</ol>
+
+
+<br>
+<h4>Instructions for authors (original submission)</h4>
+
+<p> <em> For your reference, we include here the instructions that
+were given for your original submission.  </em>
+</p>
+
+<p>The accepted extended abstracts will be published in a proceedings
+volume of <a href="http://www.dmtcs.org/dmtcs-ojs/index.php/dmtcs"
+target="_blank">DMTCS (Discrete Mathematics and Theoretical Computer
+Science)</a>. The authors will retain the right to publish a full
+version of their work in another journal. <em>Authors who do intend to
+publish a full version elsewhere should, however, make sure that their
+conference contribution is clearly an extended abstract of this full
+version</em>.</p>
+
+<p> 
+In order to prepare your submission, please take the following steps
+to format your document according to the specifications of DMTCS. Please
+prepare your document using standard LaTeX. If you have any user
+macros, please include them in your submission.
+</p> 
+ 
+<ol> 
+  <li> Download and unpack the file <a href="dmtcs/sample.tar.gz">sample.tar.gz</a> or, if you prefer, download the files it contains individually and place them all in one folder:
+<ul> 
+<li> the LaTex class file <a href="dmtcs/FPSACsubmission/dmtcs.cls"
+    target="_blank">dmtcs.cls</a> ;
+</li> 
+<li> the main LaTeX file <a href="dmtcs/FPSACsubmission/sample.tex"
+    target="_blank">sample.tex</a> ;
+</li> 
+<li> the graphics files <a href="dmtcs/FPSACsubmission/dmtcs.pdf" target="_blank">dmtcs.pdf</a> and <a href="dmtcs/FPSACsubmission/dmtcs.eps" target="_blank">dmtcs.eps</a> .
+</li> 
+<li> If you wish to use BibTeX, you may also want the <a href="dmtcs/FPSACsubmission/sample.bib">sample.bib</a> file.
+</li> 
+</ul> 
+LaTeX the sample.tex file and make sure that your
+    output matches this <a href="dmtcs/FPSACsubmission/sample.pdf"
+    target="_blank">sample.pdf</a> file.  Then use the sample.tex file as your template.  Your submission can be in either postscript or pdf format.  
+</li> 
+<li> 
+ Follow the directions given in <a href="dmtcs/FPSACsubmission/sample.pdf" target="_blank">sample.pdf</a>.  When the instructions in sample.pdf are in conflict with the FPSAC-specific instructions given on this page, please follow the instructions on this page.  
+</li> 
+ 
+  <li> 
+    Fill in your author and institution information.
+  </li> 
+ 
+  <li> 
+    If your title is rather long, please give a short title
+    substitution for the inside headers, e.g. \title[short
+    title]{Long, wordy title} . The same goes for your name, if you
+    have a preferred short form.
+  </li> 
+ 
+  <li> 
+    You must provide 3 to 6 keywords in the form
+    \keywords{keyword1, keyword2, keyword3}
+    that describe the topic of your paper.
+  </li> 
+ 
+  <li> 
+Include a summary with citations written out rather than
+referencing the bibliography. FPSAC/SFCA has a tradition of
+encouraging bilingualism, and thus you are strongly encouraged to
+include a summary in French. There are people available to help with
+this, if help is required. Please format your summary as follows (note
+the nested structure):
+ 
+<pre> 
+\begin{abstract}
+\paragraph{Abstract.}
+text in english
+ 
+\paragraph{R\'esum\'e.}
+texte en fran&ccedil;ais
+
+\end{abstract} 
+</pre> 
+  </li> 
+ 
+  <li> 
+    Extended abstracts, when compiled using the dmtcs.cls class file, should
+    not exceed 12 pages.  They should be submitted electronically through the <a href="https://www.softconf.com/b/fpsac2011/" target="_blank">START Conference Manager</a> as either postscript or pdf files.
+  </li> 
+</ol> 
+ 
+Please contact <tt>axel[at sign]math.kth.se</tt> if you have any questions.
+<br>
+<br>
+  </div>
+  <div class="grid_4" style="margin-top:220px; margin-left:0px;">
+  <ul id="nav"
+  ><li id="general"><a href="..">general</a></i
+  ><li id="schedule"><a href="../schedule">schedule</a></i
+  ><li id="program"><a href="../program">program</a></i
+  ><li id="posters"><a href="../posters">posters</a></i
+  ><li id="proceedings"><a href="../proceedings">local proceedings</a></i
+  ><li id="reimbursement"><a href="../reimbursement">reimbursement for US participants</a></i
+  ><li id="dates"><a href="../dates">important dates</a></i
+  ><li id="registration"><a href="../registration">registration</a></i
+  ><li id="travel"><a href="../travel">travel & visa</a></i
+  ><li id="local"><a href="../general-info.pdf">local information (pdf)</a></i
+  ><li id="hotel"><a href="../hotel">hotel, banquet & excursion</a></i
+  ><li id="committees"><a href="../committees">committees</a></li
+  ></ul>
+  </div>
+</div>
+</body>
+</html>
