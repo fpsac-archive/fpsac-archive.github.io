@@ -1,0 +1,174 @@
+% AMS-LaTeX FPSAC'01 template file, January 24, 2001.
+% For AMS-LaTeX documentation, see http://www.ams.org/tex/amslatex.html
+\documentclass{amsart} % Do not use A4 option; 10-point type preferred
+\setlength{\textheight}{8.5in}   % These are our page sizes; 
+\setlength{\textwidth}{6in}      % please do not change them
+\setlength{\topmargin}{0pt}      % The actual margin will be one inch
+\setlength{\oddsidemargin}{.5in} % larger than these,
+\setlength{\evensidemargin}{0in} % We will bind double-sided
+% Comment this line out if you do not use Fraktur (\mathfrak replaces the old
+% \frak) or blackboard bold (\mathbb replaces the old \Bbb)
+\usepackage{amsfonts} 
+% Change these lines as appropriate
+\title[Short Running Title]{Sample paper subimitted to FPSAC'01, Arizona
+State University}
+\author{Sample Author \and Paul Erd\H os}\thanks{Supported by a grant
+from the NSF} % Note: no period at the end of \thanks
+\email{your\_address@your.institution.edu} % Note how to get underscore
+\address{Department of Mathematics, Your Institution, Tempe, AZ
+85287-1804, USA}
+% Include your own definitions here; some common examples are included
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary} % share numbers with theorems
+\newtheorem{lemma}{Lemma}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\sumkinf}{\sum_{k=0}^\infty}
+\newcommand{\sumtinf}{\sum_{t=0}^\infty}
+\begin{document}
+\begin{abstract} % Short abstract
+
+This is the abstract of the paper in English; please include an abstract
+in a second language if possible, introduced by the appropriate
+translation of ``abstract.'' 
+
+\noindent{\sc R\'esum\'e.}  C'est le r\'esum\'e fran\c cais.
+
+\end{abstract}
+\maketitle % This line must be here, following the abstract
+
+% Note that the Plain TeX commands \over and \atop do not work in
+% AMS-LaTeX; fractions must be specified as \frac{1}{2} and 
+% binomial coefficients as \binom{n}{k}
+
+
+% You will probably want to delete all of the sample text below; it is
+% used only to illustrate the AMS-LaTeX format.
+
+\section{Introduction}
+
+This is a main section; we will cite a theorem in a journal
+article~\cite[Theorem 2]{S}.
+
+\section{Results}
+
+This is another main section, in which we prove a result about the real
+numbers $\R$ and the integers $\Z$.
+
+\subsection{Elementary cases} Note that subsection titles appear
+on the same line as the rest of the subsection.
+
+\begin{thm}\label{samplethm}
+Here is a sample theorem.
+\end{thm}
+
+\begin{proof}
+This is the proof of the sample theorem.  Note that the proof environent
+is already defined; if you have defined your own proof environment in
+\LaTeX, please remove it.
+\end{proof}
+
+\begin{cor}
+This is a corollary of Theorem~\ref{samplethm}; note that corollaries
+and theorems share numbering. 
+\end{cor}
+
+\begin{lemma}
+However, we have a different set of numbers for lemmas.
+\end{lemma}
+
+Here is an example of a mathematical formula defining the hyperbolic
+Bessel functions, along with a citation of the source~\cite{WW}.
+\begin{eqnarray*}
+  \exp(x(u+u^{-1})) 
+    &=& \sumkinf\frac{x^k}{k!} \sum_{j=-k}^k \binom{k}{j} u^{k-2j}\\
+    &=& \sum_{m=-\infty}^{\infty} u^m \sumkinf 
+	     \frac{x^k}{k!}\binom{k}{(k+m)/2}\\
+    &=& \sum_{m=-\infty}^{\infty} u^m \sumtinf \frac{x^{2t+m}}{t!(t+m)!}\\
+    &=& \sum_{m=-\infty}^{\infty} u^m I_m(2x),
+\end{eqnarray*}
+
+\begin{figure}
+\vspace{2.5in}
+\begin{picture}(5,5)(-1,-1)
+\setlength{\unitlength}{.5in}
+\put(0,-1){\vector(0,1){6}}
+\put(-1,0){\vector(1,0){6}}
+\multiput(0,0)(1,0){5}{\line(0,1){4}}
+\multiput(0,0)(0,1){5}{\line(1,0){4}}
+\end{picture}
+\vspace{.5in}
+\caption{This is a blank graph.}\label{samplefig}
+\end{figure}
+
+Figures which were drawn using picture mode in \LaTeX, such as
+Figure~\ref{samplefig} below, should work with $\mathcal{AMS}$-\LaTeX.
+
+There is a bibliography at the end of this sample.
+
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+This is additional text, which is added so that the sample paper will be
+three pages long and you can see the format of the third page.
+
+\begin{thebibliography}{9}
+
+\bibitem{S} Simion, R., ``Noncrossing Partitions.'' {\em Discrete Math.}
+{\bf 217}(2000), 367--409.
+
+\bibitem{WW} Whittaker, E. T.,  and Watson, G. N., {\em A Course of Modern
+Analysis.} Cambridge University Press, Cambridge, 1927. 
+
+\end{thebibliography}
+
+\end{document}
+
+
+
+
