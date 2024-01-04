@@ -1,0 +1,156 @@
+      ===============================================
+          18th Annual International Conference on
+      Formal Power Series and Algebraic Combinatorics
+      ===============================================
+
+                        FPSAC'06
+
+      ===============================================
+                  June 19-23, 2006
+              San Diego, California  USA
+
+      ===============================================
+
+the poster for this conference is available at
+http://garsia.math.yorku.ca/fpsac06/files/fpasc06_poster_print-sized.pdf
+
+
+Third announcement -- Notification of registration
+
+Upcoming important dates:
+  Requests for support:  March 15, 2006 (extended from March 1, 2006)
+  Registration begins: March 1, 2006
+  Reduced registration fees:  April 1, 2006
+  Conference begins:  June 19, 2006 
+
+Topics
+  All aspects of combinatorics and their relations with other parts of
+  mathematics, physics, computer science and biology.
+
+Conference program
+  Invited lectures, contributed presentations, poster session,
+  problem session and software demonstrations. As usual there
+  will be no parallel sessions.
+
+Official languages
+  The official languages of the conference are English and French.
+
+Invited Speakers
+	Marge Bayer (University of Kansas) 
+	Fan Chung (UC San Diego) 
+	Jim Haglund (University of Pennsylvania) 
+	Tom Koornwinder (Universiteit van Amsterdam) 
+	Seok-Jin Kang (Seoul National University) 
+	Nigel Ray (University of Manchester) 
+	Bruce Sagan (Michigan State University) 
+	Michelle Wachs (University of Miami) 
+
+Final versions for papers and posters
+
+  The submitted papers should begin with a short abstract written both
+  in English and in French (translation provided if necessary).
+  The notifications of acceptance were announced February 15, 2006.
+  Presentations will be 20 minutes in length.  
+
+  Updated submissions are requested by March 1, 2006.  Please notify the
+  organizers if you need an extension on this date.
+
+  Important Note: Each submitted abstract must be prepared in accordance
+  with AMS-Latex (see http://www.ams.org/tex/).  Authors are encourged to
+  use the LaTeX template which will be provided on the 'Instruction for
+  Authors' section of the conference web site.
+
+Open problem session
+  Contributions to the problem session are invited in advance of the
+  conference dates. People interested in submitting a problem in advance
+  should submit it via http://garsia.math.yorku.ca/fpsac06/ before June 1, 2006.
+
+Software demonstrations
+  Demonstrations of software relevant to the topics of the conference
+  are encouraged.  Please contact the organizers if you would like to
+  participate in the conference through a presentation of software.  
+  A paper briefly explaining the software, including the hardware 
+  requirements should be included as part of the submission.
+
+Graduate student papers
+  In an ongoing FPSAC tradition, an award will be made for the best paper
+  submitted by a graduate student.  Students submitting extended abstracts
+  are invited to indicate their eligibility for this award.
+
+Participant support
+  Limited funds are available for partial support of participants,
+  in particular for students and junior scientists. Requests should
+  contain a letter of recommendation and include the estimated
+  transportation and living expenses for the duration of the conference
+  as well as the amount of any support available from other sources.
+  All requests should be sent by March 15, 2006 through the conference
+  web site or by postal mail (this is an extension of the date from the
+  last announcement).  See the conference website for details.
+
+Location
+  The conference will take place in San Diego, California at the
+  Catamaran Resort Hotel in Pacific Beach. 
+  An opening reception is scheduled for Sunday, June 18, 2006.
+ 
+Accommodation
+  The Catamaran Resort Hotel is the official hotel for the conference
+  as well as the conference location. A special rate has been arranged
+  for conference attendees.  A limited number of rooms have been reserved
+  for this conference.  Please reserve early.  Details are available at
+  the conference web site: http://garsia.math.yorku.ca/fpsac06/
+
+Further information
+  All important information concerning FPSAC'06 can be found on the
+  conference web site at http://garsia.math.yorku.ca/fpsac06/
+
+  More details will be given in future announcements. 
+  Please direct further questions to fpsac06@mathstat.yorku.ca
+
+Registration
+  We apologize, however we are only able to accept payment by check or 
+  money order. For payment and registration instructions please see 
+  http://garsia.math.yorku.ca/fpsac06/en/registration.html
+  Registration begins March 1, 2006.
+
+  Registration fee before April 1, 2006:      US$250 (students, US$125)
+  Registration fee on or after April 1, 2006: US$325 (students, US$170)
+
+Summary of important dates
+  Submission of abstracts:  (passed) November 15, 2005
+  Notification of acceptance:  (passed) February 15, 2006
+  Requests for support:  March 15, 2006 (extended from March 1, 2006)
+  Registration begins: March 1, 2006
+  Reduced registration fees:  April 1, 2006
+  Conference begins:  June 19, 2006 
+
+Program Committee
+-----------------
+
+	Francois Bergeron (UQAM) (chair) 
+	Jeff Remmel (UC San Diego) (co-chair) 
+	Nantel Bergeron (York University) 
+	Miklos Bona (University of Florida)
+	Bill Chen (Nankai University) 
+	Joseph Kung (University of North Texas)
+	Roberto Mantaci (Université Paris 7) 
+	Jennifer Morse (University of Miami) 
+	Rosa Orellana (Dartmouth College) 
+	Andrew Rechnitzer (University of Melbourne)
+	Manfred Schocker (University of Wales Swansea)
+	Hugh Thomas (University of New Brunswick)
+	Mike Zabrocki (York University) 
+
+Organizing Committee
+--------------------
+
+	Nantel Bergeron (York University) 
+	Sara Faridi (Dalhousie University) 
+	Christophe Hohlweg (The Fields Institute) 
+	Isaiah Lankham (UC Davis)
+	Marni Mishna (Simon Fraser University)
+	Rosa Orellana (Dartmouth College) 
+	Andrew Rechnitzer (University of Melbourne) 
+	Tom Roby (University of Connecticut) 
+	Mercedes Rosas (Universidad de Sevilla)
+	Jeff Remmel (UC San Diego) (co-chair) 
+	Mike Zabrocki (York University) (co-chair) 
