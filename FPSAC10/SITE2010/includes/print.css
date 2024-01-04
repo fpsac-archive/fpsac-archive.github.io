@@ -1,0 +1,9 @@
+/* - - - - - - - content columns - - - - - - - */
+
+body				{background:none;}
+#utilitystripe .skiplinks 	{display:none;}
+#main				{height:100%; margin:0 17%; padding:0; border-left:none;}
+#nav				{height:100%; float:left; width:15%;}
+#sidebar			{height:100%; float:right; width:15%; padding:0; border-left:none;}
+#main ul,#sidebar ul            {padding-left:10px;}
+#main ul li,#sidebar ul li      {list-style-type: disc !important;}

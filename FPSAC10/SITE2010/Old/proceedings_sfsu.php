@@ -1,0 +1,575 @@
+<!-- o main -->
+
+<h2>proceedings</h2>
+
+The proceedings are available for download in any of the following formats:
+<ol>
+<li> The <a href="local_proceedings.pdf">entire proceedings as a single PDF file</a> (13 MB).  <i>Please note: the included contents pages have hyperlinks to the individual extended abstracts, but the internal links within extended abstracts cannot be made available in this format. </i> 
+<li> The <a href="FPSAC2010ProceedingsPDF.tar.gz">entire proceedings as individual PDF files</a> in a gzipped tarball (28 MB).  This gives you a contents file with hyperlinks to the individual extended abstracts, and the hyperlinks within the extended abstracts are preserved.
+<li> The <a href="FPSAC2010ProceedingsPS.tar.gz">entire proceedings as individual postscript files</a> in a gzipped tarball (26 MB).  <i>Mac users: some of these ps files cannot be opened by your mac's ps-to-pdf converter, but can be opened in TeXShop.  Save yourself some hassle and use the PDF version instead.</i>
+<li> Recommended only for those who have no other choice are the <a href="local_proceedings.ps.gz">entire proceedings as a gzipped postscript file</a> (135 MB).
+<li> The <a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/issue/view/111">FPSAC 2010 proceedings published in DMTCS</a>, thanks to Jens Gustedt.
+<li> Or individually in the list below.  For the contributed papers, clicking on the titles takes you to the abstract page at DMTCS for that extended abstract, with the option there to download the extended abstract in PDF or postscript.  You can also directly download a local copy of the PDF by clicking on the link shown.  We plan to add links to the slides and posters 
+here as they become available. 
+</ol>
+<p>
+&nbsp;
+</p>
+<h2>invited speakers</h2>
+
+<ul>
+  <li><a href="http://www.billchen.org/">Bill Chen</a> (Nankai University, China)
+    <br><i><a href="http://math.sfsu.edu/fpsac/details.php">Recent developments on log-concavity and q-log-concavity of combinatorial polynomials</a></i> 
+  </li>
+</ul>
+<ul>
+  <li><a href="http://www-stat.stanford.edu/~cgates/PERSI/">Persi Diaconis</a> (Stanford University, USA)
+    <br><i><a href="http://math.sfsu.edu/fpsac/details.php">A probabalistic interpretation of the Macdonald polynomials</a></i> 
+  </li>
+</ul>
+<ul>
+  <li><a href="http://mate.dm.uba.ar/~alidick/">Alicia Dickenstein</a> (Universidad de Buenos Aires, Argentina)
+    <br><i><a href="http://math.sfsu.edu/fpsac/details.php">Hypergeometric series with algebro-geometric dressing</a></i> 
+</ul>
+<ul>
+  </li>
+  <li><a href="http://math.sfsu.edu/gubeladze/">Joseph Gubeladze</a> (San Francisco State University, USA)
+    <br><i><a href="http://math.sfsu.edu/fpsac/details.php">Normal polytopes</a></i> 
+  </li>
+</ul>
+<ul>
+  <li><a href="http://www-igm.univ-mlv.fr/~hivert/">Florent Hivert</a> (Universit&eacute; de Rouen, France)
+    <br><i><a href="http://math.sfsu.edu/fpsac/details.php">Combinatorial representation theory of algebras: the example of j-trivial monoids</a></i>
+  </li>
+</ul>
+<ul>
+  <li><a href="http://www.math.cornell.edu/~tsh/">Tara Holm</a> (Cornell University, USA)
+    <br><i><a href="http://math.sfsu.edu/fpsac/details.php">The discrete geometry of moment polytopes</a></i> 
+  </li>
+</ul>
+<ul>
+  <li><a href="http://math.ucsb.edu/~mccammon/">Jon McCammond</a> (University of California, Santa Barbara, USA)
+    <br><i><a href="http://math.sfsu.edu/fpsac/details.php">Posets and curvature</a></i> 
+  </li> 
+</ul>
+<ul>
+  <li><a href="http://maven.smith.edu/~streinu/">Ileana Streinu</a> (Smith College, USA) 
+    <br><i><a href="http://math.sfsu.edu/fpsac/details.php">Rigidity, sparsity and pebble games</a></i> 
+  </li>
+</ul>
+<ul>
+  <li><a href="http://math.dartmouth.edu/~pw/">Peter Winkler</a> (Dartmouth College, USA)
+    <br><i><a href="http://math.sfsu.edu/fpsac/details.php">The Worm order and its applications</a></i> 
+  </li>
+</ul>
+
+
+<p>
+&nbsp;
+</p>
+
+<h2>talks</h2>
+
+<ul>
+<li>Sami H. Assaf, Peter R. W. McNamara
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0101">
+A Pieri rule for skew shapes</a></i>  <br>
+<a href="pdfpapers/dmAN0101.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Jason Bandlow, Jennifer Morse
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0102">
+The expansion of Hall-Littlewood functions in the dual Grothendieck polynomial basis</a></i> <br> <a href="pdfpapers/dmAN0102.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Olivier Bernardi, Guillaume Chapuy
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0103">
+Counting unicellular maps on non-orientable surfaces</a></i> <br> <a href="pdfpapers/dmAN0103.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Jonah Blasiak
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0104">
+A canonical basis for Garsia-Procesi modules</a></i> <br> <a href="pdfpapers/dmAN0104.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Florian Block
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0105">
+Computing Node Polynomials for Plane Curves</a></i> <br> <a href="pdfpapers/dmAN0105.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Jonathan M. Borwein, Dirk Nuyens, Armin Straub, James Wan
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0106">
+Random Walks in the Plane</a></i> <br> <a href="pdfpapers/dmAN0106.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Dustin Cartwright, Melody Chan
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0107">
+Three notions of tropical rank for symmetric matrices</a></i> <br> <a href="pdfpapers/dmAN0107.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Fabrizio Caselli, Roberta Fulci
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0108">
+Models and refined models for involutory reflection groups and classical Weyl groups</a></i> <br> <a href="pdfpapers/dmAN0108.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Renzo Cavalieri, Paul Johnson, Hannah Markwig
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0109">
+Chamber Structure For Double Hurwitz Numbers</a></i> <br> <a href="pdfpapers/dmAN0109.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Sheng Chen, Nan Li, Steven V Sam
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0110">
+Generalized Ehrhart polynomials</a></i> <br> <a href="pdfpapers/dmAN0110.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Fan Chung, Anders Claesson, Mark Dukes, Ronald Graham
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0111">
+Descent polynomials for permutations with bounded drop size</a></i> <br> <a href="pdfpapers/dmAN0111.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Ionu&#x0163; Ciocan-Fontanine, Matja&#x017E; Konvalinka, Igor Pak
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0112">
+Weighted branching formulas for the hook lengths</a></i> <br> <a href="pdfpapers/dmAN0112.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Harm Derksen, Alex Fink
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0113">
+Valuative invariants for polymatroids</a></i> <br> <a href="pdfpapers/dmAN0113.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Susanna Fishel, Monica Vazirani
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0114">
+A bijection between (bounded) dominant Shi regions and core partitions</a></i> <br> <a href="pdfpapers/dmAN0114.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Christian Haase, Gregg Musiker, Josephine Yu
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0115">
+Linear Systems on Tropical Curves</a></i> <br> <a href="pdfpapers/dmAN0115.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Florent Hivert, Anne Schilling, Nicolas M. Thi&eacute;ry
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0116">
+The biHecke monoid of a finite Coxeter group</a></i> <br> <a href="pdfpapers/dmAN0116.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Axel Hultman
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0117">
+Criteria for rational smoothness of some symmetric orbit closures</a></i> <br> <a href="pdfpapers/dmAN0117.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Matthieu Josuat-Verg&egrave;s
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0118">
+Combinatorics of the PASEP partition function</a></i> <br> <a href="pdfpapers/dmAN0118.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Anatol N. Kirillov, Reiho Sakamoto
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0119">
+Generalized Energy Statistics and Kostka-Macdonald Polynomials</a></i> <br> <a href="pdfpapers/dmAN0119.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Thomas Lam, Aaron Lauve, Frank Sottile
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0120">
+Skew Littlewood-Richardson rules from Hopf algebras</a></i> <br> <a href="pdfpapers/dmAN0120.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Aaron Lauve, Sarah K Mason
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0121">
+QSym over Sym has a stable basis</a></i> <br> <a href="pdfpapers/dmAN0121.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Lionel Levine
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0122">
+An Algebraic Analogue of a Formula of Knuth</a></i> <br> <a href="pdfpapers/dmAN0122.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Joel Brewster Lewis
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0123">
+Pattern avoidance in alternating permutations and tableaux (extended abstract)</a></i> <br> <a href="pdfpapers/dmAN0123.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Sho Matsumoto, Jonathan Novak
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0124">
+Unitary Matrix Integrals, Primitive Factorizations, and Jucys-Murphy Elements</a></i> <br> <a href="pdfpapers/dmAN0124.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Luca Moci
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0125">
+Zonotopes, toric arrangements, and generalized Tutte polynomials</a></i> <br> <a href="pdfpapers/dmAN0125.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Philippe Nadeau
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0126">
+Fully Packed Loop configurations in a triangle and Littlewood Richardson coefficients</a></i> <br> <a href="pdfpapers/dmAN0126.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Christopher Severs, Jacob A. White
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0127">
+The Homology of the Real Complement of a k-parabolic Subspace Arrangement</a></i> <br> <a href="pdfpapers/dmAN0127.pdf">PDF</a>
+</ul>
+
+
+<p>
+&nbsp;
+</p>
+
+<h2>posters</h2>
+
+<ul>
+<li>Margaret Archibald, Arnold Knopfmacher, Toufik Mansour
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0128">
+Compositions and samples of geometric random variables with constrained multiplicities</a></i> <br> <a href="pdfpapers/dmAN0128.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Arvind Ayyer, Volker Strehl
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0129">
+The spectrum of an asymmetric annihilation process</a></i> <br> <a href="pdfpapers/dmAN0129.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Axel Bacher, Mireille Bousquet-M&eacute;lou
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0130">
+Weakly directed self-avoiding walks</a></i> <br> <a href="pdfpapers/dmAN0130.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Eli Bagno, Yonah Cherniavsky
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0131">
+Involutions of the Symmetric Group and Congruence B-Orbits (Extended Abstract)</a></i> <br> <a href="pdfpapers/dmAN0131.pdf">PDF</a>
+</ul>
+
+<ul>
+<li> Fran&ccedil;ois Bergeron, Adriano Garsia, Nolan Wallach
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0132">
+Harmonics for deformed Steenrod operators (Extended Abstract)</a></i> <br> <a href="pdfpapers/dmAN0132.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Anouk Bergeron-Brlek
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0133">
+Words and Noncommutative Invariants of the Hyperoctahedral Group</a></i> <br> <a href="pdfpapers/dmAN0133.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Olivier Bernardi, &Eacute;ric Fusy
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0134">
+A unified bijective method for maps: application to two classes with boundaries</a></i> <br> <a href="pdfpapers/dmAN0134.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>A. Blondin Mass&eacute;, S. Brlek, S. Labb&eacute;
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0135">
+Combinatorial aspects of Escher tilings</a></i> <br> <a href="pdfpapers/dmAN0135.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Felix Breuer, Aaron Dall
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0136">
+Viewing counting polynomials as Hilbert functions via Ehrhart theory</a></i> <br> <a href="pdfpapers/dmAN0136.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Emmanuel Briand, Rosa Orellana, Mercedes Rosas
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0137">
+The stability of the Kronecker product of Schur functions</a></i> <br> <a href="pdfpapers/dmAN0137.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Katie L. Bright, Carla D. Savage
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0138">
+The Geometry of Lecture Hall Partitions and Quadratic Permutation Statistics</a></i> <br> <a href="pdfpapers/dmAN0138.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Charles Buehrle, Mark Skandera
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0139">
+A preorder-free construction of the Kazhdan-Lusztig representations of Hecke algebras <math>H<sub>n</sub>(q)</math> of symmetric groups</a></i> <br> <a href="pdfpapers/dmAN0139.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Sophie Burrill, Marni Mishna, Jacob Post
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0140">
+On k-crossings and k-nestings of permutations</a></i> <br> <a href="pdfpapers/dmAN0140.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Alexander Burstein
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0141">
+On joint distribution of adjacencies, descents and some Mahonian statistics</a></i> <br> <a href="pdfpapers/dmAN0141.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>William Y. C. Chen, Andrew Y. Z. Wang, Catherine H. Yan, Alina F. Y. Zhao
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0142">
+Mixed Statistics on 01-Fillings of Moon Polyominoes</a></i> <br> <a href="pdfpapers/dmAN0142.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Anders Claesson, V&iacute;t Jel&iacute;nek, Eva Jel&iacute;nkov&aacute, Sergey Kitaev
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0143">
+Pattern avoidance in partial permutations (extended abstract)</a></i> <br> <a href="pdfpapers/dmAN0143.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Anders Claesson, Svante Linusson
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0144">
+n! matchings, n! posets (extended abstract)</a></i> <br> <a href="pdfpapers/dmAN0144.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Eric Clark, Richard Ehrenborg
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0145">
+The Frobenius Complex</a></i> <br> <a href="pdfpapers/dmAN0145.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Andrew Crites
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0146">
+Extended Abstract for Enumerating Pattern Avoidance for Affine Permutations</a></i> <br> <a href="pdfpapers/dmAN0146.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Mar&iacute;a Ang&eacute;lica Cueto and Shaowei Lin
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0147">
+Tropical secant graphs of monomial curves</a></i> <br> <a href="pdfpapers/dmAN0147.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Paul-Olivier Dehaye
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0148">
+A note on moments of derivatives of characteristic polynomials</a></i> <br> <a href="pdfpapers/dmAN0148.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Emanuele Delucchi, Aaron Pixton, Lucas Sabalka
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0149">
+f-vectors of subdivided simplicial complexes (extended abstract)</a></i> <br> <a href="pdfpapers/dmAN0149.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Tom Denton
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0150">
+A Combinatorial Formula for Orthogonal Idempotents in the 0-Hecke Algebra of S<sub>N</sub></a></i> <br> <a href="pdfpapers/dmAN0150.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Valentin F&eacute;ray, Ekaterina A. Vassilieva
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0151">
+Linear coefficients of Kerov's polynomials: bijective proof and refinement of Zagier's result</a></i> <br> <a href="pdfpapers/dmAN0151.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Samuele Giraudo
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0152">
+Balanced binary trees in the Tamari lattice</a></i> <br> <a href="pdfpapers/dmAN0152.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Alain Goupil, Hugo Cloutier, Fathallah Nouboud
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0153">
+Enumeration of inscribed polyominos</a></i> <br> <a href="pdfpapers/dmAN0153.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Christopher J. Hillar, Lionel Levine, Darren Rhea
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0154">
+Word equations in a uniquely divisible group</a></i> <br> <a href="pdfpapers/dmAN0154.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Qing-Hu Hou, Guoce Xin
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0155">
+Constant term evaluation for summation of C-finite sequences</a></i> <br> <a href="pdfpapers/dmAN0155.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>V&iacute;t Jel&iacute;nek and Eva Jel&iacute;nkov&aacute; and Einar Steingr&iacute;msson
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0156">
+The M&ouml;bius function of separable permutations (extended abstract)</a></i> <br> <a href="pdfpapers/dmAN0156.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Brant Jones, Anne Schilling
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0157">
+Affine structures and a tableau model for E<sub>6</sub> crystals</a></i> <br> <a href="pdfpapers/dmAN0157.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Victor Kac, Pierluigi M&ouml;seneder Frajria, Paolo Papi
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0158">
+Denominator formulas for Lie superalgebras (extended abstract) </a></i> <br> <a href="pdfpapers/dmAN0158.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Jang Soo Kim
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0159">
+Chain enumeration of k-divisible noncrossing partitions of classical types</a></i> <br> <a href="pdfpapers/dmAN0159.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Sergey Kitaev, Jeffrey Remmel
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0160">
+Enumerating (2+2)-free posets by the number of minimal elements and other statistics</a></i> <br> <a href="pdfpapers/dmAN0160.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Stavros Kousidis
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0161">
+A Closed Character Formula for Symmetric Powers of Irreducible Representations</a></i> <br> <a href="pdfpapers/dmAN0161.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Gilbert Labelle
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0162">
+On extensions of the Newton-Raphson iterative scheme to arbitrary orders</a></i> <br> <a href="pdfpapers/dmAN0162.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Justin Lambright, Mark Skandera
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0163">
+Combinatorial formulas for double parabolic R-polynomials</a></i> <br> <a href="pdfpapers/dmAN0163.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Aaron D. Lauda, Monica Vazirani
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0164">
+Crystals from categorified quantum groups</a></i> <br> <a href="pdfpapers/dmAN0164.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Kyungyong Lee, Li Li
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0165">
+On the diagonal ideal of (&#x2102;<sup>2</sup>)<sup>n</sup> and q,t-Catalan numbers</a></i> <br> <a href="pdfpapers/dmAN0165.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Matthias Lenz
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0166">
+Toric Ideals of Flow Polytopes</a></i> <br> <a href="pdfpapers/dmAN0166.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Stephen Lewis, Nathaniel Thiem
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0167">
+Nonzero coefficients in restrictions and tensor products of supercharacters of U<sub>n</sub>(q) (extended abstract)</a></i> <br> <a href="pdfpapers/dmAN0167.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Stephen Linton, James Propp, Tom Roby, Julian West
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0168">
+Equivalence Relations of Permutations Generated by Constrained Transpositions</a></i> <br> <a href="pdfpapers/dmAN0168.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Pierre-Lo&iuml;c M&eacute;liot
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0169">
+Products of Geck-Rouquier conjugacy classes and the Hecke algebra of composed permutations</a></i> <br> <a href="pdfpapers/dmAN0169.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Kento Nakada, Shuji Okamura
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0170">
+An algorithm which generates linear extensions for a generalized Young diagram with uniform probability</a></i> <br> <a href="pdfpapers/dmAN0170.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>E. Nevo, T. K. Petersen
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0171">
+On &gamma;-vectors satisfying the Kruskal-Katona inequalities</a></i> <br> <a href="pdfpapers/dmAN0171.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Yasuhide Numata, Satoshi Kuriki
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0172">
+On formulas for moments of the Wishart distributions as weighted generating functions of matchings</a></i> <br> <a href="pdfpapers/dmAN0172.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Suho Oh, Hwanchul Yoo
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0173">
+Bruhat order, rationally smooth Schubert varieties, and hyperplane arrangements</a></i> <br> <a href="pdfpapers/dmAN0173.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Greta Panova
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0174">
+Bijective enumeration of permutations starting with a longest increasing subsequence</a></i> <br> <a href="pdfpapers/dmAN0174.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>T. K. Petersen, L. Serrano
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0175">
+Cyclic sieving for longest reduced words in the hyperoctahedral group</a></i> <br> <a href="pdfpapers/dmAN0175.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Brendon Rhoades
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0176">
+The cluster and dual canonical bases of &#x2124;[x<sub>11</sub>, &hellip;, x<sub>33</sub>] are equal</a></i> <br> <a href="pdfpapers/dmAN0176.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Martin Rubey, Christian Stump
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0177">
+Crossings and nestings in set partitions of classical types</a></i> <br> <a href="pdfpapers/dmAN0177.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Sarah C Rundell, Jane H Long
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0178">
+The Hodge Structure of the Coloring Complex of a Hypergraph (Extended Abstract)</a></i> <br> <a href="pdfpapers/dmAN0178.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Steven V Sam
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0179">
+Schubert complexes and degeneracy loci</a></i> <br> <a href="pdfpapers/dmAN0179.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>C&eacute;dric Saule, Mireille R&eacute;gnier, Jean-Marc Steyaert, Alain Denise
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0180">
+Counting RNA pseudoknotted structures (extended abstract)</a></i> <br> <a href="pdfpapers/dmAN0180.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Bridget Eileen Tenner
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0181">
+Boolean complexes and boolean numbers</a></i> <br> <a href="pdfpapers/dmAN0181.pdf">PDF</a>
+</ul>
+
+<ul>
+<li>Henning A. &Uacute;lfarsson
+<br><i><a href="http://www.dmtcs.org/dmtcs-ojs/index.php/proceedings/article/view/dmAN0182">
+A unification of permutation patterns related to Schubert varieties</a></i> <br> <a href="pdfpapers/dmAN0182.pdf">PDF</a>
+</ul>
+
+
+
+<!-- x main -->
