@@ -1,0 +1,446 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Feb 24, 2004 
+\documentclass{amsart}
+\usepackage{amssymb,latexsym}
+\begin{document}
+
+\begin{center}
+\Large {\bf CURRENT DIRECTIONS IN ALGEBRAIC COMBINATORICS 2003}
+\medskip
+
+\large FPSAC '03 WHITE PAPER 
+\end{center}
+\vspace{.6cm}
+
+\begin{verse}
+{\bf Content:}\\
+1. Introduction\\
+2. Enumeration\\
+3. Statistical physics\\
+4. Discrete probability\\
+5. Bioinformatics\\
+6. Quantum analogues\\
+7. Non-commutative and non-symmetric functions\\
+8. Face numbers and algebraic shifting\\
+9. Cluster algebras and the Laurent phenomenon\\
+10. Hopf algebras\\
+11. Smoothed analysis
+\end{verse}
+
+\section{Introduction}
+The field of algebraic combinatorics has developed rapidly in recent years
+and is rich in connections with other areas,
+within mathematics as well as with physics, computer science, bioinformatics and
+other sciences. This activity and breadth is well represented at the annual FPSAC conferences, 
+the most recent one taking place in Vadstena, Sweden, in June 2003.
+
+Our aim here is to highlight some of the recent progress, capture some of the most important
+current directions, and try to delineate some of the emerging trends in algebraic combinatorics.
+This document was prepared, based on discussions at the FPSAC'03 conference, by an 
+{\em ad hoc} committee consisting of Nantel Bergeron, Anders Bj\"orner, Mireille Bousquet-M\'elou, 
+Art Duval, Kimmo Eriksson, Christian Krattenthaler, Alain Lascoux, Svante Linusson 
+and Richard Stanley.
+
+
+\section{Enumeration} Enumerative questions are at the core of algebraic combinatorics.
+They are involved in almost all topics discussed in  this document.
+
+
+The subject of enumeration of (symmetry classes of)
+plane partitions and alternating sign matrices is a classical subject
+by now. It got a new twist by the recent observations that plane
+partitions
+can be seen as rhombus tilings and that
+alternating sign matrices are in bijection with configurations in
+the intensively studied six vertex model of statistical mechanics.
+While many of the originally conjectured results are
+proved by now (by Andrews, Kuperberg,
+MacMahon, Mills--Robbins--Rumsey,
+Proctor, Stanley, Stembridge, Zeilberger), the understanding
+of this circle of problems is still very incomplete, particularly for
+the alternating sign matrices: the fact that there are
+still several conjectures unproved
+(such as the conjecture about the $q$-enumeration of totally symmetric
+plane partitions, or the conjectured enumeration formulas
+for three symmetry classes of
+alternating sign matrices) implies that we are still missing some
+important enumeration techniques which would lead to solutions of
+these problems. This is particularly true for the alternating sign
+matrices, where the solutions of the problems so far always contain
+a substantial guessing part. Second, there is still no understanding
+at all what plane partitions (rhombus tilings) and
+alternating sign matrices (six vertex model configurations) have to
+do with each other, although, empirically, the connection is
+``obvious'' from comparison of the (proven or conjectured) enumeration
+results. Here, it seems, a new, fundamental bijection has to be found.
+
+Finally, new mysteries have arisen recently in work by mathematical
+physicists (Razumov, Stroganov, de Gier, Batchelor, Nienhuis) on
+the XXZ spin chain: the ground states of certain Hamiltonians
+seem to be given by the numbers of configurations in the $O(1)$ loop
+model (another disguise of six vertex model configurations), but there
+is no understanding at all why.
+It is however obvious that some very intriguing combinatorics must lie
+behind these phenomena.
+
+
+\section{Statistical physics}
+The field of physics known as statistical physics aims at predicting
+the behavior of macroscopic objects from the description of the
+interactions between their particles at a microscopic scale. The {\em
+  models\/} of statistical physics simplify these interactions by
+assuming that the particles live on a regular grid and are only
+subjected to nearest-neighbor interactions. {\em Solving\/} a model
+means computing its partition function, which enumerates all possible
+configurations of particles according to their energy: hence, models
+of statistical physics are actually problems in enumerative
+combinatorics.
+
+During a few decades, the main consequence of this connection was
+that many physicists were doing combinatorics. We can cite the names of
+Hammersley, Fisher, Temperley, in the 50's, for their work on
+self-avoiding walks (polymer models, in physics), or Kac and Ward for the first
+combinatorial solution of the most famous magnetism model, the Ising
+model. 
+
+Nowadays, the border between combinatorics and physics has been
+crossed many times by researchers from both fields. In particular,
+combinatorialists have realized that statistical physics is an
+extremely profound and motivating source of problems in
+enumeration. Let us cite a few recent examples that illustrate this
+fruitful interplay.
+
+\subsection{Statistical physics in high dimensions.} For many models,
+it is believed that there exists a {\em critical dimension\/}, above
+which the system behaves like an unconstrained (or: mean-field, in
+physics terms) model. For example, large self-avoiding walks (SAW) are
+supposed to behave like large random walks in dimension 5 or more. It
+might seem surprising to combinatorialists that high-dimensional models
+are sometimes more tractable than low-dimensional ones, but this is
+true: about 10 years ago, Hara and Slade proved the mean-field
+behavior of SAW in dimension 5 or more -- whereas nothing similar
+is known in smaller dimension. Their technique involves a mixture of
+combinatorial and analytic arguments, and is gradually being
+generalized to other models (lattice trees, percolation...)
+
+\subsection{Quantum gravity and statistical physics on planar maps}
+In 2D quantum gravity, the change in the geometry of the space is
+modelled by putting particles, not on the vertices of a regular grid,
+but on the vertices of a random planar map (a map is the embedding of
+a graph in the plane). Since the early 70's, certain physicists have
+developped very effective (but usually non-rigorous) techniques,
+based on matrix integrals, to solve models on maps. Their results have
+sometimes a remarkably simple structure, which begs for a combinatorial
+understanding. This was done a year ago by Bousquet-M\'elou and
+Schaeffer for the Ising model. A lot remains to be understood.
+
+\subsection{Alternating sign matrices, the 6-vertex model, and the XXZ
+  spin chain}
+The intriguing story of these objects and related conjectures has
+already been told in the section about enumerative combinatorics. Let
+us simply underline that certain determinantal expressions found by
+physicists for the 6-vertex model were the key step in the first
+``simple'' proof of the ASM-conjecture, and that the more recent
+conjectures relating ASM to a certain Markov chain are also due to
+physicists...
+
+More examples could be added, for instance a very nice collection of
+results on the enumeration of perfect matchings of graphs (in
+physics language, dimer coverings) by Propp, Kenyon, Wilson et al. Let us
+ conclude by mentioning a few simple ``physics'' results that still
+await a combinatorial explanation: the enumeration of 3D {\em directed
+  animals\/} (Dhar) or the refined enumeration of 2D directed animals
+(Bousquet-M\'elou) yield nice algebraic functions, but have only been
+obtained via an equivalence with certain gas models; a determinant
+related to meanders (Di Francesco et al.) admits a mysterious
+expression in
+terms of Chebychev polynomials; finally, why is the spontaneous
+magnetization of the 2D Ising model so simple?
+
+
+\section{Discrete Probability}
+
+Combinatorics and discrete probability theory benefit from each other in a
+variety of ways; some related to questions in physics,
+others not. In extremal combinatorics, the so-called {\em
+probabilistic method}, which goes back to Erd\H{o}s, continues to be
+enormously useful.
+In the other direction, combinatorial arguments often form the core part of
+proofs in various parts of probability, such as in large deviations theory,
+percolation theory, and the study of systems with spatial interaction. A
+striking example is Smirnov's celebrated breakthrough for establishing
+conformal invariance in two-dimensional critical percolation. The talk by
+Olle H\"aggstr\"om at the FPSAC gave other interesting examples when the
+combinatorial properties of graphs and lattices are crucial to what can be
+said for problems in the above-mentioned fields.  One of the satellite
+conferences to the European Congress of Mathematics 2004 has ``combinatorial
+methods in statistical mechanics'' in the title. It is a topic of rising
+interest.
+
+During the last decade we have seen a growth in problems that have interested
+researchers across disciplinary boundaries. A good example is the Random
+Assignment Problem (a.k.a. random bipartite matching) studied by
+researchers from optimization, statistical mechanics, probability and
+combinatorics. In short it is the problem of deciding the size of a minimal
+assignment when the entries in the matrix are random variables. A
+fascinating conjecture from 1998 by the theoretical physicist Parisi giving
+the exact answer $1+1/4+1/9+\dots+1/k^2$ in the case of exponentially
+distributed random variables with mean 1 in a $k \times k$ matrix has
+inspired much of the further work. The conjecture was proved simultaneously
+by two independent groups in March 2003. The most general of these
+solutions (due to Linusson and W\"astlund)
+uses algebraic-combinatorial tools, such as the M\"obius
+function of a partially ordered set, at the heart of its discovery.
+
+
+\section{Bioinformatics}
+Modern biology is being reshaped in the post-genomic era, and its
+new basic building blocks are combinatorial in nature, such as
+genomes (with their finer structure of chromosomes, genes and
+DNA-sequences), the genetic code, protein structures,
+protein-protein interactions, and phylogenetic trees. It is by now
+well-known that there are interesting applications of
+combinatorial methods within the rapidly growing field of
+bioinformatics/computational biology. Although some very good
+combinatorialists have entered the field, as yet it has attracted
+many more statisticians and computer scientists. For this reason
+FPSAC '03 devoted a special session to combinatorial problems in
+bioinformatics.
+
+There are two main directions of research in bioinformatics that
+are captured by the words {\em evolution} and {\em function}. In
+evolutionary bioinformatics we already see combinatorialists
+helping answer fundamental questions about the tree of life and
+the mechanisms of evolution. At FPSAC '03 there were reports of
+recent work where classical concepts in algebraic combinatorics
+(such as edge labelled trees or the characters of the symmetric
+group) turned out to be important tools for making progress on
+questions in this area. Without doubt this development will
+continue for the next decade, as the increasing amount of data
+makes the biologists refine or revise their questions and
+hypotheses.
+
+On the other hand, the area of functional genomics still very much
+awaits the breakthrough of combinatorial methods, e.g.~to predict
+function (via 3D-structure) of proteins directly from their
+sequences of amino acids, to understand the interactions of
+proteins in the cell, and to make sense of amassing micro-array data.
+
+
+\section{Quantum analogues}
+
+An important recent development in algebraic geometry has been the
+development of ``quantum analogues'' of the cohomology rings of flag
+varieties. In particular, the quantum cohomology ring
+QH$(\mathrm{Gr}_{kn}; \mathbb{C})$ of the Grassmann variety Gr$_{kn}$
+is related to a remarkable generalization of Schubert calculus due to
+Gromov and Witten which allows the computation of ``3-point
+Gromov-Witten invariants.'' These may be regarded as a $q$-analogue of
+the Littlewood-Richardson coefficients arising as intersection numbers
+in the classical case. A fundamental breakthrough in this area was
+achieved in 2002 by Alexander Postnikov. Ordinary
+Littlewood-Richardson coefficients appear in the expansion of skew
+Schur functions in terms of Schur functions. Skew Schur functions are
+defined combinatorially in terms of Young diagrams, which are certain
+planar arrays of boxes. Postnikov's basic insight was that 3-point
+Gromov-Witten invariants have a similar description if one replaces
+planar Young diagrams with cylindrical and toroidal analogues. Using
+this idea Postnikov settled some open problems on 3-point
+Gromov-Witten invariants and discovered new symmetry properties that
+they satisfy. The subject of cylindrical and toroidal Schur functions
+has tremendous potential for further development.
+
+
+\section{Non-commutative and non-symmetric functions}
+\subsection{Non-commutativity}
+Non-commutative methods have transformed our understanding of such
+classical fields as symmetric functions, determinants and minors, etc.
+For example, the classical Littlewood-Richardson rule for multiplying
+Schur functions becomes a straightforward consequence of the monoid
+structure that one can put on the set of Young
+tableaux. Non-commutative symmetric functions have a wider scope of
+applications than the commutative functions, e.g.  they furnish new
+idempotents in Lie algebras.  One can also define non-commutative
+extensions of quasi symmetric functions, and Schubert polynomials.
+Recent developments lead to similar algebras whose elements are other
+combinatorial objects like trees (Loday-Ronco algebra).
+
+
+\subsection{Non-symmetric functions}
+Symmetric functions theory is a topic in mathematics dating from the
+beginning of algebra. It has found applications in many 
+diverse domains,
+including, most recently, Fock spaces in theoretical physics. 
+
+The theory of non-symmetric functions is much
+less developed, from the
+point of view of algebraic identities extending those satisfied by the
+different families of symmetric polynomials.  The situation has
+changed during the last thirty years, motivated by algebraic geometry
+(flag manifolds, Schubert cycles, degeneracy loci) and representation
+theory (Demazure characters).  One now has several families of
+polynomials extending Schur functions --- Schubert polynomials,
+Grothendieck polynomials, key polynomials --- which can be studied
+combinatorially independently of their geometrical interpretation.
+Properties of Schubert or Grothendieck polynomials are regularly
+presented at the FPSAC conferences since their start, this time by
+Yong at FPSAC 03.
+
+The above-mentioned polynomials are also of much interest from the point 
+of view of computer algebra.
+This is particularly true for algebraic computations of
+polynomials in several variables, where combinatorial manipulations of
+permutations can replace calculus with variables without the usual
+limitations on the number of variables. Schubert polynomials also
+occur as universal coefficients in Newton-type interpolation formulas.
+
+Judging from the wide 
+applicability of symmetric functions, one may
+predict with certainty that this field will develop in the near future
+and find new domains of application.
+
+
+\section{Face numbers  and algebraic shifting}
+
+The study of face numbers for various classes of complexes continues
+to be a rich source of problems for algebraic combinatorics.
+Among the most interesting results of recent years is the proof
+by Ed Swartz that $g$-vectors of matroid complexes satisfy 
+the same conditions as those of the $g$-theorem of simplicial
+polytopes. What is noteworthy is that his method does not depend on the
+hard Lefschetz theorem of a variety; this may open the door to
+further progress for other classes of complexes, 
+notably triangulated spheres.
+
+Other decisive progress has been made using the method of 
+{\em algebraic shifting}.
+The first version of algebraic shifting to be studied was exterior
+algebraic shifting, so-called because it takes place in exterior algebra.
+Its most prominent success was in Bj\"orner and Kalai's characterization of
+pairs of $f$-vectors and (homology) Betti numbers of simplicial complexes.
+More recent attention has been paid to symmetric algebraic shifting, which
+takes place in commutative algebra.  Symmetric algebraic shifting has
+advanced quickly, helped by existing results on generic initial ideals,
+since the key step is the construction of a certain generic initial ideal.
+
+Recently, Babson, Novik, and Thomas continued this trend by adapting
+``iterated Betti numbers'' from exterior to symmetric algebraic
+shifting.  These iterated Betti numbers are easy to compute for an
+arbitrary complex $\Gamma$ from purely combinatorial information of
+the algebraically shifted complex $\Delta(\Gamma)$.  Most
+intriguingly, certain ``extremal'' iterated Betti numbers determine
+extremal (free resolution) Betti numbers, which, in turn, determine a
+great deal of algebraic information, and which had been previously
+shown by Bayer, Charalambous, and Popescu to be preserved by symmetric
+algebraic shifting.  Symmetric iterated Betti numbers and algebraic
+shifting thus reduce questions of the characterizations of many
+algebraic invariants to purely combinatorial questions about shifted
+complexes.
+
+The differences and similarities between exterior and symmetric algebraic
+shifting remain unclear.  Resolving this confusion will continue to be
+worthwhile for the near future.
+
+Isabella Novik's talk at FPSAC on characterizing face numbers of manifolds
+with symmetry featured a potentially very useful wrinkle on algebraic
+shifting.  She replaced the completely generic matrix normally used in
+algebraic shifting by a matrix with certain entries specified, and others
+left generic as usual.  Perhaps other specializations of the generic
+matrix will help algebraic shifting solve characterization problems for
+other special classes of simplicial complexes.
+
+
+\section{Cluster algebras and the Laurent phenomenon} 
+The theory of canonical bases, originated by Lusztig, plays a key role
+in the representation theory and algebraic geometry related to
+semisimple Lie algebras.  A completely novel combinatorial approach to
+the theory of canonical bases was found recently by Sergey Fomin and
+Andrei Zelevinsky and is currently under intense investigation. This
+approach is based on the concept of \emph{cluster algebras}, a class
+of commutative rings with distinguished generating sets related in a
+combinatorial fashion. Closely related to cluster algebras is the
+subject of \emph{tropical geometry}, which roughly speaking allows
+piecewise linear geometry to be replaced with subtraction-free
+manipulation of rational functions.  As a bonus, Fomin and Zelevinsky
+realized that their techniques are applicable to some purely
+combinatorial problems that have been a source of much puzzlement
+since the 1980's. These problems concern certain sequences, the first
+due to Michael Somos, whose terms are \emph{a priori} rational
+numbers, but in fact turn out to be integers.  More generally, certain
+sequences have terms that are \emph{a priori} rational functions of
+several variables with complicated denominators, but whose
+denominators turn out to be monomials, an example of what Fomin and
+Zelevinsky call the \emph{Laurent phenomenon}.
+
+
+\section{Hopf Algebras}
+
+Recent developments have linked distinct subjects within combinatorics,
+algebra, geometry, and theoretical physics thereby uncovering exciting new
+avenues for research. An old theme in algebraic combinatorics, initiated by
+Rota, is that many combinatorial objects possess natural multiplication and
+comultiplication structures. Enumeration and classification of these
+structures often give rise to an associated graded Hopf algebra. Many of
+these Hopf algebras of combinatorial objects (combinatorial Hopf algebras)
+possess important structures. The FPSAC talk by
+A. Lascoux reaffirmed
+the importance of comultiplication in algebraic combinatorics. As another
+example, Connes and Kreimer show that a Hopf algebra of rooted trees encodes
+renormalization in quantum field theory. Loday and Ronco show a Hopf algebra
+of planar binary trees has interesting operadic structure. Recent work of
+Ehrenborg, Bergeron, Sottile, Aguiar, and many others, give a natural Hopf
+morphism from any combinatorial Hopf algebras to the Hopf algebra of
+quasi-symmetric functions Qsym. This morphism arises from a universal
+property of the Hopf algebra Qsym as a terminal object in the category of
+graded Hopf algebras equipped with a zeta-function. In particular, many
+enumerative combinatorial invariants (among them flag $f$-vectors,
+Littlewood-Richardson coefficients, and chromatic symmetric polynomials) are
+obtained from this universal property. In light of this, the Hopf algebra
+Qsym, its generalization and its sub-structures are bound to play a very
+important role in algebraic combinatorics.
+
+The connections uncovered between combinatorial Hopf algebras suggest a
+number of exciting possibilities. This includes a unified approach to
+positivity questions in different realms of enumerative combinatorics or
+using these results as a bridge to transfer ideas and techniques between
+these different realms. For example, both the Schubert calculus and
+polytope/poset theory have important open positivity questions and
+well-developed techniques to study these.
+
+The work of Sagan and Rosas at this FPSAC suggested a new generalization of
+Qsym. As well, Ehrenborg suggested a new construction (which can be
+rephrased in Hopf algebraic language) to generate inequalities of $g$-vectors.
+Hugh Thomas presented maps between important lattices. These induce
+morphisms between related Hopf algebras. Finally, related to some of the
+combinatorial Hopf algebras is the study of their invariants. This gives
+some interesting space related to geometry. At least two presentations gave
+us further generalizations to consider. First, the poster of Aval presented
+quasi-invariants and super covariants. Second, the talk of Biagioli and
+Caselli gave the Hilbert series of some invariant algebras.
+
+
+\section{Smoothed analysis}
+The theory of algorithms has been challenged by the existence of
+remarkable algorithms, in particular the simplex method, that work
+well in practice but whose theoretical analysis is negative or
+inconclusive. The root of the problem is that algorithms have
+traditionally been measured in two ways: worst-case behavior or
+average behavior. In both situations, the analysis deals with
+instances of the algorithms that may differ widely from what actually
+arises in practice. A spectacular breakthrough in the analysis of
+algorithms was achieved by Daniel Spielman and Shang-Hua Teng 
+when they introduced a third
+method of analyzing algorithms, known as \emph{smoothed analysis}. In
+smoothed analysis, the performance of an algorithm is measured under
+slight random perturbations of arbitrary inputs. A major result of
+Spielman and Teng is that the simplex algorithm has polynomial smoothed
+complexity. Numerous other fundamental algorithms have subsequently
+been shown to also have polynomial smoothed complexity, and the area
+of smoothed analysis has become one of the most active subjects in the
+theory of algorithms.
+
+\end{document}
+
+
+
+
