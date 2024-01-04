@@ -1,0 +1,113 @@
+%% Ensure that fpsac.cls is in the same directory
+%% as this document
+\documentclass{fpsac}
+
+%% Theorem definitions
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{xca}[theorem]{Exercise}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+
+
+
+%% Please replace the following fields with your own information.
+
+% If your name is particularly long, and you wish to go by
+% a shorter name on the inside pages, give the second name by
+\author[A. One]{Author Number One}
+\address{Department of Mathematics, University, USA, 90210}
+%    Current address (if different)
+%\curraddr{}
+\email{mathematician@math.univ.edu}
+%  thanks will become a 1st page footnote.
+\thanks{The authors thanks their granting agencies.}
+
+%%%-    Information for second author.
+\author{Deuxi\`eme Auteur}
+\address{Dept. of Math and Stats, ABC University, Alphaville, Canada, T5R 3E6}
+\email{two@maths.univ.edu}
+% to includ a web link
+\urladdr{http://www.math.univ.edu/two}
+\thanks{The second author was generously supported by the first author}
+
+
+\title[Combinatorial Joy]{Long title on the combinatorial joys of formal power series}
+
+%    General info : AMS classes\subjclass{Primary 17B10; Secondary 05E10 }
+
+% Use 2000 ams classes http://www.ams.org/msc/
+\subjclass[2000]{Primary 17B10; Secondary 05E10}
+
+\keywords{algebraic combinatorics, symmetric functions, ECO systems, enumeration, partitions}
+
+% Please use \newcommand to define your macros instead of \def.
+\newcommand{\C}{\mathbb{C}}
+
+
+\begin{document}
+
+\begin{abstract}
+Our major results are the following.
+
+
+
+\end{abstract}
+
+\maketitle  %%% make the title
+
+\section{Section 1}
+The background to this work can be found in~\cite{Bour}.
+
+\begin{theorem}[Main Result] This is our main result.
+\end{theorem}
+
+\begin{proof}
+This is our proof.
+\end{proof}
+
+\subsection{Applications of the main result}
+The main applications are the following.
+
+Combinatorics is a fun and exciting field of study and research.
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  In lorem
+enim, tincidunt id, ultricies eget, faucibus in, lectus.  Mauris
+semper mi vitae nunc.  Duis molestie tortor.  Morbi ante magna,
+convallis eu, condimentum nec, rutrum at, ligula.  Integer in diam.
+Aenean at diam quis nisl suscipit ullamcorper.  Integer lacus orci,
+viverra ac, dapibus nec, dictum ac, risus.  Etiam magna.  Aenean ac
+dolor.  Integer nec wisi.  Nulla fringilla.  Maecenas tristique nunc
+et velit.  Vivamus sit amet odio.  Maecenas et justo.  Phasellus quis
+ipsum quis lectus mattis vestibulum.  Duis aliquet lectus nec erat.
+Duis eu sem.  Donec posuere.
+
+
+
+
+Combinatorics will always remain a fun and exciting field of study and
+research.
+
+
+
+%use either amsalpha bibliography style or acm
+
+\bibliographystyle{amsalpha}
+\begin{thebibliography}{A}
+
+\bibitem{Bour}
+N. Bourbaki,
+  Groupes et Alg\`ebres de Lie, Chapitres 4, 5 et 6, Hermann,
+  Paris (1968).
+
+\end{thebibliography}
+
+\end{document}
+
+%-----------------------------------------------------------------------
+% End of article.tex
+%-----------------------------------------------------------------------

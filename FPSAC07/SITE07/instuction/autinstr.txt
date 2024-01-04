@@ -1,0 +1,41 @@
+
+
+In order to prepare your submission, please take the following steps to format your document according to our specifications. Please prepare your document using standard LaTeX. If you have any user macros, please include them in your submission. We thank you very much for your cooperation. 
+Please download the fpsac.cls class file, and place it in the same directory as your submission. Use \documentclass{fpsac} to prepare your document. 
+
+
+To prepare your document, please follow the example given by sample.tex. Remark that we have defined a number of theorem objects already. Please use these. 
+
+Submissions should be submitted as either postscript or pdf files. Please LaTeX the sample.tex to make sure that your output matches the corresponding sample.pdf file. 
+
+
+Fill in your author and institution information. 
+
+
+If your title is rather long, please give a short title substitution for the inside headers, e.g. \title[short title]{Long, wordy title}. The same goes for your name, if you have a preferred short form. 
+
+
+Please include the 2000 AMS subject classification, e.g. \subjclass[200]{Primary 17B10; Secondary 05E10}. 
+
+
+Please provide 3¨C6 keywords that describe the topic of your paper, e.g. \keywords{keyword1, keyword2, keyword3} 
+
+
+Include a short abstract with citations written out rather than referencing the bibliography. FPSAC/SFCA has a tradition of encouraging bilingualism, and thus you are strongly encouraged to include a summary in the French language. There are people available to help you with this, if help is required. Please format your abstract as follows (Note the nested structure): 
+
+\begin{abstract}
+  English text of abstract
+\end{abstract} 
+
+
+Please embed your bibliography in your document, rather than making a separate .bib file. 
+
+
+Submissions, when compiled using the fpsac.cls class file, should not exceed 12 pages. 
+
+
+You can also download these instructions as a text file. 
+
+Papers should be submitted electronically. 
+
+Please contact Marni Mishna if you have any questions.
