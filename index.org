@@ -11,10 +11,10 @@ https://fpsac.org/
 | 1988 |         |            |                   | [[https://fpsac-archive.github.io/FPSAC88/articles.html][articles]] (no files)                     |
 | 1990 |         |            |                   | [[https://fpsac-archive.github.io/FPSAC90/articles.html][articles]] (no files)                     |
 | 1991 |         |            |                   | [[https://fpsac-archive.github.io/FPSAC91/articles.html][articles]] (no files)                     |
-| 1992 |         |            | [[https://lacim.uqam.ca/wp-content/uploads/Publications/11.pdf][LaCIM]]             | [[https://fpsac-archive.github.io/FPSAC92/articles.html][articles]], [[https://fpsac-archive.github.io/FPSAC92/proceedings.pdf][complete proceedings]]          |
+| 1992 |         |            | [[https://www.sciencedirect.com/journal/discrete-mathematics/vol/139/issue/1][Discrete Math 139]] | [[https://fpsac-archive.github.io/FPSAC92/articles.html][articles]], [[https://fpsac-archive.github.io/FPSAC92/proceedings.pdf][complete proceedings]]          |
 | 1993 |         |            |                   | [[https://fpsac-archive.github.io/FPSAC93/articles.html][articles]] (many articles missing)        |
 | 1994 |         |            |                   | [[https://fpsac-archive.github.io/FPSAC94/articles.html][articles]] (many articles missing)        |
-| 1995 |         |            | [[https://www.sciencedirect.com/journal/discrete-mathematics/vol/139/issue/1][Discrete Math 139]] | [[https://fpsac-archive.github.io/FPSAC95/articles.html][articles]] (many articles missing)        |
+| 1995 |         |            |                   | [[https://fpsac-archive.github.io/FPSAC95/articles.html][articles]] (many articles missing)        |
 | 1996 |         |            |                   | [[https://fpsac-archive.github.io/FPSAC96/articles.html][articles]] (many articles missing)        |
 | 1997 | [[http://www.mat.univie.ac.at/~kratt/fpsac97.html][website]] |            | [[https://www.sciencedirect.com/journal/discrete-mathematics/vol/217/issue/1][Discrete Math 217]] | [[https://fpsac-archive.github.io/FPSAC97/articles.html][articles]] (some articles missing)        |
 | 1998 |         |            | [[https://www.sciencedirect.com/journal/discrete-mathematics/vol/225/issue/1][Discrete Math 225]] | [[https://fpsac-archive.github.io/FPSAC98/articles.html][articles]] (some articles missing)        |
