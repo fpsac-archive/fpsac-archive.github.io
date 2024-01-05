@@ -1,11 +1,12 @@
 #+title: FPSAC-archive
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
-#+OPTIONS: toc:nil num:nil author:nil
+#+OPTIONS: author:nil
 
-- [[https://fpsac.org/][Permanent FPSAC webpage]]
-- Previous FPSAC conferences
+* Permanent FPSAC webpage
+https://fpsac.org/
+* Previous FPSAC conferences
 
-| year | website | local site | proceedings       | local proceedings                       |
+| year | website | local site | proceedings       | papers, posters, software demo          |
 |------+---------+------------+-------------------+-----------------------------------------|
 | 1988 |         |            |                   | [[https://fpsac-archive.github.io/FPSAC88/articles.html][articles]] (no files)                     |
 | 1990 |         |            |                   | [[https://fpsac-archive.github.io/FPSAC90/articles.html][articles]] (no files)                     |
