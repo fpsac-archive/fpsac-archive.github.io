@@ -3,7 +3,7 @@
 #+OPTIONS: author:nil
 
 * Permanent FPSAC webpage
-https://fpsac.org/
+https://fpsac.org
 * Previous FPSAC conferences
 
 | year | website | local site | proceedings       | papers, posters, software demo          |
@@ -25,7 +25,7 @@ https://fpsac.org/
 | 2003 | [[http://www.mai.liu.se/fpsac/][website]] | [[https://fpsac-archive.github.io/FPSAC03/SITE03/index.html][local site]] |                   | [[https://fpsac-archive.github.io/FPSAC03/articles.html][articles]]                                |
 | 2004 |         |            |                   | [[https://fpsac-archive.github.io/FPSAC04/articles.html][articles]], [[https://fpsac-archive.github.io/FPSAC04/papers.pdf][complete proceedings]], [[https://fpsac-archive.github.io/FPSAC04/posters.pdf][posters]] |
 | 2005 |         |            |                   | [[https://fpsac-archive.github.io/FPSAC05/articles.html][articles]], [[https://fpsac-archive.github.io/FPSAC05/FPSAC05.pdf][complete proceedings]]          |
-| 2006 | [[https://garsia.math.yorku.ca/fpsac06/en/announcements.html][website]] | [[https://garsia.math.yorku.ca/fpsac06/en/announcements.html][local site]] |                   | [[https://fpsac-archive.github.io/FPSAC06/contrib_papers.html][talks]], [[https://fpsac-archive.github.io/FPSAC06/contrib_posters.html][posters]], [[https://fpsac-archive.github.io/FPSAC06/SITE06/papers/fpsac06_proceedings.pdf][complete proceedings]]    |
+| 2006 | [[https://garsia.math.yorku.ca/fpsac06/en/announcements.html][website]] | [[https://fpsac-archive.github.io/FPSAC06/SITE06/index.html][local site]] |                   | [[https://fpsac-archive.github.io/FPSAC06/contrib_papers.html][talks]], [[https://fpsac-archive.github.io/FPSAC06/contrib_posters.html][posters]], [[https://fpsac-archive.github.io/FPSAC06/SITE06/papers/fpsac06_proceedings.pdf][complete proceedings]]    |
 | 2007 |         | [[https://fpsac-archive.github.io/FPSAC07/SITE07/index.html][local site]] |                   | [[https://fpsac-archive.github.io/FPSAC07/contrib_papers.html][talks]], [[https://fpsac-archive.github.io/FPSAC07/contrib_posters.html][posters]]                          |
 | 2008 |         | [[https://fpsac-archive.github.io/FPSAC08/SITE08/index.html][local site]] | [[https://dmtcs.episciences.org/volume/view/id/255][DMTCS AJ]]          |                                         |
 | 2009 | [[http://www.risc.uni-linz.ac.at/about/conferences/fpsac2009/][website]] |            | [[https://dmtcs.episciences.org/volume/view/id/256][DMTCS AK]]          |                                         |
