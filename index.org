@@ -43,4 +43,3 @@ https://fpsac.org
 | 2021 | [[https://fpsac2021.math.biu.ac.il/][website]] |            | [[https://www.mat.univie.ac.at/~slc/wpapers/FPSAC2021/][SLC 85B]]           |                                         |
 | 2022 | [[http://math.iisc.ac.in/fpsac2022/][website]] |            | [[https://www.mat.univie.ac.at/~slc/wpapers/FPSAC2022/][SLC 86B]]           |                                         |
 | 2023 | [[http://fpsac23.math.ucdavis.edu/][website]] |            | [[https://www.mat.univie.ac.at/~slc/wpapers/FPSAC2023/][SLC 89B]]           |                                         |
-
