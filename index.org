@@ -5,8 +5,8 @@
 * Permanent FPSAC webpage
 https://fpsac.org
 * Previous FPSAC conferences
-- Before 2008, most FPSAC conferences have proceedings published in a journal or as a book. Such proceedings contain selected papers presented at FPSAC conference possibly accompanied by some original papers.
-- Since 2008, the extended abstracts of all talks and posters have been published in a special issue of DMTCS or SLC.
+- Every FPSAC conference until 2002 has proceedings published in a journal or as a book, which contain selected papers presented at the conference possibly accompanied by some original papers.
+- Since 2008, the extended abstracts of all talks and posters presented at every FPSAC conference have been published in a special issue of DMTCS or SLC.
 
 | year | website | local site | proceedings published in a journal or as a book | pdf files                            |
 |------+---------+------------+-------------------------------------------------+--------------------------------------|
