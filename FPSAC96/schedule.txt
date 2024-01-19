@@ -1,0 +1,211 @@
+TUESDAY June 25
+
+Introductory remarks
+
+9:00-10:00 am   Homology of partition posets
+                Michelle WACHS
+
+10:30-11:00     Intersections of several flags and a
+                generalization of permutation matrices to higher dimensions
+                Kimmo ERIKSSON, Svante LINUSSON
+
+11:15-11:45     Enumeration of trees and one
+                amazing representation of the symmetric group
+                Igor PAK, Alexander POSTNIKOV
+
+12:00-12:30     New Euler-Mahonian permutation statistics
+                Robert J. CLARKE, Einar STEINGR\'IMSSON, Jiang ZENG
+
+2:00-3:00       Combinatorics of ribbon tableaux
+                Bernard LECLERC
+
+3:15-3:45       The Chinese monoid
+                Julien CASSAIGNE, Marc ESPIE, Florent HIVERT,
+                Daniel KROB, Jean-Christophe NOVELLI
+
+4:15-5:30       Poster session papers
+
+                Homology confinement for signed posets and other
+                simplicial complexes
+                Ron M. ADIN
+
+                Permutations avoiding certain patterns:
+                the case of length 4 and some generalizations
+                Mikl\'os B\'ONA
+
+                Spectra of bipartite $P$- and $Q$- polynomial
+                association schemes
+                John CAUGHMAN, IV
+
+                2-homogeneous bipartite distance-regular graphs
+                Brian CURTIN
+
+                Symplectic analogs to $L(m,n)$
+                Rob G. DONNELLY
+
+                Coproducts and the $cd$-index
+                Richard EHRENBORG, Margaret READDY
+
+                On subspace arrangements of type $\cal D$
+                Eva Maria FEICHTNER, Dmitry N. KOZLOV
+
+                An alternative method for $q$-counting
+                directed column-convex polyominoes
+                Svjetlan FERETI\'C
+
+                Mots de piles, tableaux de Young standard, permutations \`a
+                motifs exclus et cartes planaires
+                O. GUIBERT
+
+                Rook theory and hypergeometric series
+                James HAGLUND
+
+                Invariants of cubical spheres
+                G\'abor HETYEI
+
+WEDNESDAY June 26
+
+9:00-10:00 am   Some upper bound problems arising in
+                combinatorial optimization
+                G\"unter M. ZIEGLER
+
+10:30-11:00     Extremal properties of $h$-vectors and Hilbert functions
+                Vesselin GASHAROV
+
+11:15-11:45     Algebraic shifting and sequentially Cohen-Macaulay
+                simplicial complexes
+                Art M. DUVAL
+
+12:00-12:30     On generalized lexicographic shellability and
+                orbit arrangements
+                Dmitry N. KOZLOV
+
+2:00-2:30       Solving algebraic equations in terms of
+                $\cal A$-hypergeometric series
+                Bernd STURMFELS
+
+2:45-3:15       Graphs, syzygies, and multivariate splines
+                Lauren L. ROSE
+
+3:45-5:00       Poster session papers
+
+                Some polynomials associated with up-down permutations
+                Warren JOHNSON
+
+                Using the Schubert toolkit to compute with
+                polynomials in several variables
+                Axel KOHNERT, S\'ebastien VEIGNEAU
+
+                A variation of Kra\'skiewicz insertion and shifted tableaux
+                T. K. LAM
+
+                Necklace algebras and Witt vectors associated with
+                formal group laws
+                Cristian LENART
+
+                Homotopy in $q$-polynomial distance-regular graphs
+                Heather A. LEWIS
+
+                Oscillating tableaux, $S_m\times S_n$-modules,
+                and the Robinson-Schensted-Knuth correspondence
+                Igor PAK, Alexander POSTNIKOV
+
+                Counting constrained domino tilings of Aztec diamonds
+                Ira GESSEL, Alexandru IONESCU, James PROPP
+
+                Multidimensional matrix inversions
+                Michael SCHLOSSER
+
+                Factorizations, trees, and cacti
+                Colin SPRINGER
+
+                An algebraic approach to a class of combinatorial sums
+                Donatella MERLINI, Renzo SPRUGNOLI, M. Cecilia VERRI
+
+                Generalized Lyashko-Looijenga map,
+                ramified coverings of the sphere, and enumeration
+                of edge-labeled $k$-trees
+                B. SHAPIRO, M. SHAPIRO, A. VAINSHTEIN
+
+
+Computer talks at the Geometry Center
+
+7:30-8:00       An overview of CalICo
+                M. DELEST, N. ROUILLON, J.M. F\'EDOU
+
+8:15-8:45       Using ACE an algebraic combinatorics environment for MAPLE
+                Jean-Yves THIBON, S\'ebastien VEIGNEAU
+
+9:00-9:30       RISC software for symbolic computation in combinatorics
+                Istv\'an NEMES
+
+THURSDAY June 27
+
+9:00-10:00 am   Yang-Baxter relations and Rogers-Ramanujanism
+                in Statistical Mechanics
+                Rodney J BAXTER
+
+10:30-11:00     Lecture hall partitions
+                Mireille BOUSQUET-M\'ELOU, Kimmo ERIKSSON
+
+11:15-11:45     Special power series solutions of
+                linear differential equations
+                Sergei A. ABRAMOV, Marko PETKOV\v SEK
+
+2:00-3:00       Graph Eigenvalues, Modular Addition and Nearly Orthogonal
+                Vectors
+                Noga ALON
+
+3:30-4:00       Lyndon factorization of sturmian words
+                Guy MELAN\c CON
+
+4:15-4:45       Int\'egration symbolique des \'equations diff\'erentielles
+                lin\'eaires \`a coefficients m\'eromorphes via les
+                fonctions de Dirichlet
+                Hoang Ngoc MINH
+
+social event
+
+FRIDAY June 28
+
+9:00-10:00 am   J. Kahn (title to be announced)
+
+10:30-11:00     Enumeration of perfect matchings in graphs with
+                reflective symmetry
+                Mihai CIUCU
+
+11:15-11:45     The Terwilliger algebra of an almost-bipartite
+                graph and its antipodal cover
+                Benjamin V.C. COLLINS
+
+12:00-12:30     Affine Lie algebras and reduced Schur functions
+                Susumu ARIKI, Tatsuhiro NAKAJIMA, Hiro-Fumi YAMADA
+
+
+
+no afternoon sessions
+
+SATURDAY June 29
+
+9:00-10:00 am   Kazhdan-Lusztig polynomials from a combinatorial point of view
+                Francesco BRENTI
+
+10:30-11:00     Murnaghan-Nakayama rules for characters of Iwahori-Hecke
+                algebras of the complex reflection groups $G(r,p,n)$
+                Tom HALVERSON, Arun RAM
+
+11:15-11:45     Vertical strip tableau games
+                Glenn TESLER
+
+12:00-12:30     Tensor representations for orthosymplectic
+                Lie superalgebras and  hook Schur functions
+                Georgia BENKART, Chanyoung Lee SHADER, Arun RAM
+
+2:00-3:00       The calculus of shapes: a progress report
+                Vic REINER
+
+3:30-4:00       Four new formulas for Schubert polynomials
+                Peter MAGYAR
+
+4:15-4:45       Vexillary elements in the hyperoctahedral group
+                Sara BILLEY, Tao Kai LAM 
