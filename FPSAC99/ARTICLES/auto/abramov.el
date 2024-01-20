@@ -1,0 +1,49 @@
+(TeX-add-style-hook
+ "abramov"
+ (lambda ()
+   (TeX-add-to-alist 'LaTeX-provided-class-options
+                     '(("article" "12pt")))
+   (TeX-run-style-hooks
+    "latex2"
+    "article"
+    "art12")
+   (TeX-add-symbols
+    "o"
+    "wt")
+   (LaTeX-add-labels
+    "introd"
+    "sys"
+    "subs"
+    "unden"
+    "othx"
+    "matr"
+    "exprs"
+    "x"
+    "ratss"
+    "opform"
+    "e37'"
+    "e38"
+    "l5"
+    "psol"
+    "l6")
+   (LaTeX-add-bibitems
+    "Aprog"
+    "EG"
+    "AB98"
+    "ABP"
+    "fpsac"
+    "APR"
+    "AZ"
+    "And"
+    "q-series"
+    "Bar89"
+    "Bar97"
+    "BP96"
+    "ChyzGB"
+    "HW87"
+    "vh98")
+   (LaTeX-add-environments
+    "Theorem"
+    "Lemma"))
+ :latex)
+
