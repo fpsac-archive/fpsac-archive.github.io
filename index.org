@@ -1,5 +1,5 @@
 #+title: FPSAC-archive
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/html-theme-readtheorg.setup
 #+OPTIONS: author:nil
 
 * Permanent FPSAC webpage
@@ -53,5 +53,7 @@ https://fpsac.org
 | 2021 | [[https://fpsac2021.math.biu.ac.il/][website]] |            | [[https://www.mat.univie.ac.at/~slc/wpapers/FPSAC2021/][SLC 85B]]                                       | [[https://youtube.com/playlist?list=PLCrJ6CKHIwsyqEKRs-90ul1c9lbMVrEMF&si=jVsrtMZT2X4XCMvi][videos]]                                                           |
 | 2022 | [[http://math.iisc.ac.in/fpsac2022/][website]] |            | [[https://www.mat.univie.ac.at/~slc/wpapers/FPSAC2022/][SLC 86B]]                                       | [[https://www.youtube.com/playlist?list=PLQXtaLhI1-1p7AOWGnKjubV4gFRv-6yxv][videos]]                                                           |
 | 2023 | [[http://fpsac23.math.ucdavis.edu/][website]] |            | [[https://www.mat.univie.ac.at/~slc/wpapers/FPSAC2023/][SLC 89B]]                                       | [[https://www.youtube.com/playlist?list=PLC5grzm_SlsdhMsyFsgrEpDwyrhwMPZUF][videos]]                                                           |
-| 2024 | [[https://fpsac2024.rub.de/][website]] |            | [[https://www.mat.univie.ac.at/~slc/][SLC 91B]]                                       | [[https://www.youtube.com/playlist?list=PLphed7LCxl_detudpbk5IDhiU1La1k9KQ][videos]]                                                           |
+| 2024 | [[https://fpsac2024.rub.de/][website]] |            | [[https://www.mat.univie.ac.at/~slc/wpapers/FPSAC2024/][SLC 91B]]                                       | [[https://www.youtube.com/playlist?list=PLphed7LCxl_detudpbk5IDhiU1La1k9KQ][videos]]                                                           |
+| 2025 | [[https://www.math.sci.hokudai.ac.jp/sympo/fpsac2025/][website]] |            | [[https://www.mat.univie.ac.at/~slc/wpapers/FPSAC2025/18.html][SLC 93B]]                                       |                                                                  |
+| 2026 | [[https://sites.math.washington.edu/fpsac2026/][website]] |            |                                               |                                                                  |
 
